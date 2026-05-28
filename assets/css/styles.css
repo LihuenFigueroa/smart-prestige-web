@@ -1,0 +1,45 @@
+@font-face {
+  font-family: 'FOR_smart_Sans';
+  src: url('../fonts/FORsmartSans-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'FOR_smart_Sans';
+  src: url('../fonts/FORsmartSans-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'FOR_smart_Next';
+  src: url('../fonts/FORsmartNext-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'FOR_smart_Next';
+  src: url('../fonts/FORsmartNext-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+* { box-sizing: border-box; }
+body { font-family: 'FOR_smart_Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; overflow-x: hidden; margin: 0; }
+input::placeholder { color: #111; opacity: 1; }
+input:focus { outline: none; }
+
+/* ── Tu auto piensa como vos — carousel indicator ── */
+#tuAutoDots .dot {
+  height: 8px;
+  border-radius: 9999px;
+  background: white;
+  width: 8px;
+  opacity: 0.7;
+  transition: width 0.45s cubic-bezier(0.4,0,0.2,1),
+              opacity 0.45s cubic-bezier(0.4,0,0.2,1);
+}
+#tuAutoDots .dot.active {
+  width: 28px;
+  opacity: 1;
+}
+.font-smart-next { font-family: 'FOR_smart_Next', 'FOR_smart_Sans', sans-serif; }

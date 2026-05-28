@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "WebFetch(domain:es.smart.com)"
+      "WebFetch(domain:es.smart.com)",
+      "Bash(node:*)"
     ]
   }
 }

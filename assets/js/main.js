@@ -1,108 +1,257 @@
-/**
- * Smart Prestige — main.js
- *
- * Módulos:
- *  1. Navbar (hamburger + mobile menu)
- *  2. Video Scrubbing (Hero + BRABUS) con GSAP ScrollTrigger
- */
+// ── Función genérica: convierte cualquier sección en video scroll-driven ──
+function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, captureFps, pinHeight, textEl, textZonePx }) {
+  const video  = document.getElementById(videoId);
+  const canvas = document.getElementById(canvasId);
+  const ctx    = canvas.getContext('2d');
+  const pin    = document.getElementById(pinId);
 
+  const PX_PER_SECOND = pxPerSecond || 300;
+  const CAPTURE_FPS   = captureFps  || 24;
+  const LERP          = 0.12;
+
+  const frames = [];
+  let ready = false, totalFrames = 0;
+  let targetProgress = 0, drawProgress = 0;
+  let videoDuration = 0;
+
+  // ── Canvas ───────────────────────────────────────────────────────────────
+  function resizeCanvas() {
+    canvas.width  = canvas.offsetWidth  || window.innerWidth;
+    canvas.height = canvas.offsetHeight || (pinHeight || window.innerHeight);
+    if (ready) renderProgress(drawProgress);
+  }
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+
+  // ── Render ───────────────────────────────────────────────────────────────
+  function drawBitmap(bmp, alpha) {
+    const cw = canvas.width, ch = canvas.height;
+    const scale = Math.max(cw / bmp.width, ch / bmp.height);
+    const sw = bmp.width * scale, sh = bmp.height * scale;
+    ctx.globalAlpha = alpha;
+    ctx.drawImage(bmp, (cw - sw) / 2, (ch - sh) / 2, sw, sh);
+  }
+
+  function renderProgress(p) {
+    if (!frames.length) return;
+    const exact = p * (frames.length - 1);
+    const idxA  = Math.floor(exact);
+    const idxB  = Math.min(idxA + 1, frames.length - 1);
+    const blend = exact - idxA;
+    if (!frames[idxA]) return;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    drawBitmap(frames[idxA], 1);
+    if (blend > 0.01 && frames[idxB]) drawBitmap(frames[idxB], blend);
+    ctx.globalAlpha = 1;
+  }
+
+  // ── RAF loop ─────────────────────────────────────────────────────────────
+  function tick() {
+    if (ready) {
+      const diff = targetProgress - drawProgress;
+      if (Math.abs(diff) > 0.0001) {
+        drawProgress += diff * LERP;
+        renderProgress(drawProgress);
+      }
+    }
+    requestAnimationFrame(tick);
+  }
+
+  // ── Scroll ───────────────────────────────────────────────────────────────
+  function onScroll() {
+    const rel       = window.scrollY - pin.offsetTop;
+    const videoPx   = videoDuration * PX_PER_SECOND;
+    const extraPx   = textZonePx || 0;
+
+    if (rel <= videoPx) {
+      // Fase 1 — avanza el video
+      targetProgress = Math.max(0, rel / videoPx);
+      if (textEl) { textEl.style.opacity = '0'; textEl.style.pointerEvents = 'none'; }
+    } else {
+      // Fase 2 — video en último frame, texto se revela con el scroll
+      targetProgress = 1;
+      if (textEl && extraPx > 0) {
+        const t = Math.min(1, (rel - videoPx) / extraPx);
+        textEl.style.opacity       = t.toFixed(3);
+        textEl.style.pointerEvents = t > 0.5 ? 'auto' : 'none';
+      }
+    }
+  }
+
+  // ── Captura en background ─────────────────────────────────────────────────
+  function startBackgroundCapture(capVid, duration) {
+    totalFrames = Math.round(duration * CAPTURE_FPS);
+    frames.length = totalFrames;
+
+    const vw = capVid.videoWidth  || 1280;
+    const vh = capVid.videoHeight || 720;
+    const os = new OffscreenCanvas(vw, vh);
+    const oc = os.getContext('2d');
+
+    let lastCapturedTime = -1;
+
+    capVid.playbackRate = 4;
+    capVid.play();
+
+    function captureLoop() {
+      const t   = capVid.currentTime;
+      const idx = Math.round((t / duration) * (totalFrames - 1));
+
+      // Captura siempre antes de decidir si terminar
+      if (t !== lastCapturedTime && idx >= 0 && idx < totalFrames && !frames[idx]) {
+        oc.drawImage(capVid, 0, 0, vw, vh);
+        frames[idx]      = os.transferToImageBitmap();
+        lastCapturedTime = t;
+      }
+
+      if (capVid.ended || t >= duration - 0.01) {
+        // Seek explícito al final para capturar el último frame real
+        capVid.currentTime = duration - 0.001;
+        capVid.addEventListener('seeked', function() {
+          oc.drawImage(capVid, 0, 0, vw, vh);
+          frames[totalFrames - 1] = os.transferToImageBitmap();
+          // Forward-fill cualquier hueco
+          let last = frames[0];
+          for (let i = 0; i < totalFrames; i++) {
+            if (frames[i]) { last = frames[i]; }
+            else if (last) { frames[i] = last; }
+          }
+          onCaptureComplete();
+        }, { once: true });
+        return;
+      }
+
+      requestAnimationFrame(captureLoop);
+    }
+
+    captureLoop();
+  }
+
+  // ── Primer frame ─────────────────────────────────────────────────────────
+  function showFirstFrame() {
+    const tmp    = new OffscreenCanvas(video.videoWidth || 1280, video.videoHeight || 720);
+    const tmpCtx = tmp.getContext('2d');
+    tmpCtx.drawImage(video, 0, 0);
+    frames[0] = tmp.transferToImageBitmap();
+    renderProgress(0);
+  }
+
+  function onCaptureComplete() {
+    ready = true;
+    renderProgress(drawProgress);
+    window.addEventListener('scroll', onScroll, { passive: true });
+  }
+
+  // ── Init ─────────────────────────────────────────────────────────────────
+  function init() {
+    function setup() {
+      videoDuration = video.duration;
+      const videoPx = videoDuration * PX_PER_SECOND;
+      const totalPx = videoPx + (textZonePx || 0);
+      pin.style.height = pinHeight
+        ? `calc(${pinHeight}px + ${totalPx}px)`
+        : `calc(100vh + ${totalPx}px)`;
+
+      // Frame 0
+      function tryFirstFrame() {
+        const seek = () => {
+          video.currentTime = 0;
+          video.addEventListener('seeked', showFirstFrame, { once: true });
+        };
+        video.readyState >= 2 ? seek()
+          : video.addEventListener('canplay', seek, { once: true });
+      }
+      tryFirstFrame();
+
+      // Capture video en background
+      const capVid       = document.createElement('video');
+      capVid.src         = videoSrc;
+      capVid.muted       = true;
+      capVid.playsInline = true;
+      capVid.preload     = 'auto';
+      capVid.style.cssText = 'position:fixed;top:-9999px;left:-9999px;width:1px;height:1px;opacity:0.01;pointer-events:none;';
+      document.body.appendChild(capVid);
+
+      const startCapture = () => startBackgroundCapture(capVid, videoDuration);
+      capVid.readyState >= 1 ? startCapture()
+        : capVid.addEventListener('loadedmetadata', startCapture, { once: true });
+    }
+
+    video.readyState >= 1 ? setup()
+      : video.addEventListener('loadedmetadata', setup, { once: true });
+  }
+
+  requestAnimationFrame(tick);
+  init();
+}
+
+// ── Hero ─────────────────────────────────────────────────────────────────
+initScrollVideo({
+  videoId:    'heroVideo',
+  canvasId:   'heroCanvas',
+  pinId:      'heroPin',
+  videoSrc:   'assets/video/videoHero.mp4',
+  pxPerSecond: 600,   // 2s × 600px = 1200px de scroll para recorrer el video completo
+  captureFps:  15,    // 2s × 15fps = 30 frames, alcanzable en ~30 ciclos RAF (4x speed)
+  pinHeight:   null,  // null = 100vh
+  textZonePx:  400    // hold: último frame visible 400px antes de liberar el pin
+});
+
+// ── Eléctrico de verdad — carrusel horizontal ────────────────────────────
 (function () {
-    'use strict';
+  const pin   = document.getElementById('electricoPin');
+  const strip = document.getElementById('electricoStrip');
+  const SLIDES = 4;
 
-    // ── 1. Navbar ─────────────────────────────────────────────────────────────
+  function updateElectrico() {
+    const scrolled = window.scrollY - pin.offsetTop;
+    const totalScroll = pin.offsetHeight - window.innerHeight;
+    const progress = Math.max(0, Math.min(1, scrolled / totalScroll));
+    strip.style.transform = 'translateX(' + (-progress * (SLIDES - 1) * 100) + 'vw)';
+  }
 
-    const hamburger = document.querySelector('.sp-navbar__hamburger');
-    const mobileMenu = document.getElementById('sp-mobile-menu');
-    const mobileClose = document.querySelector('.sp-mobile-menu__close');
-
-    function openMobileMenu() {
-        mobileMenu.classList.add('is-open');
-        mobileMenu.setAttribute('aria-hidden', 'false');
-        hamburger.setAttribute('aria-expanded', 'true');
-        document.body.style.overflow = 'hidden';
-    }
-
-    function closeMobileMenu() {
-        mobileMenu.classList.remove('is-open');
-        mobileMenu.setAttribute('aria-hidden', 'true');
-        hamburger.setAttribute('aria-expanded', 'false');
-        document.body.style.overflow = '';
-    }
-
-    if (hamburger) hamburger.addEventListener('click', openMobileMenu);
-    if (mobileClose) mobileClose.addEventListener('click', closeMobileMenu);
-
-    // Cerrar con Escape
-    document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape') closeMobileMenu();
-    });
-
-
-    // ── 2. Video Scrubbing ────────────────────────────────────────────────────
-    //
-    // Cómo funciona:
-    //  - ScrollTrigger pinea la sección (.sp-hero / .sp-brabus) al llegar al
-    //    viewport. Mientras está pineada, el usuario scroll genera un valor
-    //    "progress" de 0 a 1.
-    //  - Ese progress se mapea a video.currentTime (0 → video.duration).
-    //  - El scrubFactor controla cuántos px de scroll equivalen a la duración
-    //    completa del video. A más pixels, más "lento" y detallado el efecto.
-    //
-    // IMPORTANTE: el video debe estar en /assets/video/ en el servidor.
-    // Durante desarrollo local podés reemplazar las rutas con URLs absolutas
-    // o archivos locales usando un servidor local (MAMP, Laragon, etc.)
-
-    gsap.registerPlugin(ScrollTrigger);
-
-    /**
-     * Inicializa el scrubbing de video para una sección dada.
-     *
-     * @param {string} sectionSelector  - selector CSS de la sección contenedora
-     * @param {string} videoSelector    - selector CSS del elemento <video>
-     * @param {number} scrubSeconds     - duración en segundos de scroll para
-     *                                    cubrir el video completo (default: 3)
-     */
-    function initVideoScrub(sectionSelector, videoSelector, scrubSeconds) {
-        const section = document.querySelector(sectionSelector);
-        const video   = document.querySelector(videoSelector);
-
-        if (!section || !video) return;
-
-        // Esperamos a que el video tenga metadata para conocer su duración.
-        function setupScrub() {
-            const duration = video.duration;
-            if (!duration || isNaN(duration)) return; // por si el video no cargó
-
-            // El "end" determina cuántos px scrolleamos con la sección pineada.
-            // scrubSeconds * 200 px/s es un ratio razonable; ajustable.
-            const scrollDistance = (scrubSeconds || 3) * 200;
-
-            ScrollTrigger.create({
-                trigger: section,
-                start: 'top top',           // cuando el top de la sección llega al top del viewport
-                end: `+=${scrollDistance}`, // pineada por scrollDistance px
-                pin: true,                  // pinea la sección
-                scrub: true,                // suaviza el movimiento (true = lag mínimo)
-                anticipatePin: 1,
-                onUpdate: function (self) {
-                    // self.progress va de 0 a 1 mientras la sección está pineada
-                    video.currentTime = self.progress * duration;
-                },
-            });
-        }
-
-        if (video.readyState >= 1) {
-            // Metadata ya disponible
-            setupScrub();
-        } else {
-            video.addEventListener('loadedmetadata', setupScrub, { once: true });
-        }
-    }
-
-    // Hero — Smart #3
-    initVideoScrub('.sp-hero', '#sp-hero-video', 4);
-
-    // BRABUS — Smart #1 & #3
-    initVideoScrub('.sp-brabus', '#sp-brabus-video', 4);
-
+  window.addEventListener('scroll', updateElectrico, { passive: true });
+  updateElectrico();
 })();
+
+// ── Tu auto piensa como vos — carrusel imágenes ─────────────────────────
+(function () {
+  const pin   = document.getElementById('tuAutoPin');
+  const strip = document.getElementById('tuAutoStrip');
+  const dots  = document.querySelectorAll('#tuAutoDots .dot');
+  const SLIDES = 6;
+  let lastActive = 0;
+
+  function updateTuAuto() {
+    const scrolled     = window.scrollY - pin.offsetTop;
+    const totalScroll  = pin.offsetHeight - window.innerHeight;
+    const progress     = Math.max(0, Math.min(1, scrolled / totalScroll));
+
+    // Deslizar el strip de imágenes
+    strip.style.transform = 'translateX(' + (-progress * (SLIDES - 1) * 100) + 'vw)';
+
+    // Actualizar indicador (snap al slide más cercano)
+    const active = Math.round(progress * (SLIDES - 1));
+    if (active !== lastActive) {
+      dots[lastActive].classList.remove('active');
+      dots[active].classList.add('active');
+      lastActive = active;
+    }
+  }
+
+  window.addEventListener('scroll', updateTuAuto, { passive: true });
+  updateTuAuto();
+})();
+
+// ── smart X BRABUS banner ─────────────────────────────────────────────────
+initScrollVideo({
+  videoId:     'brabusVideo',
+  canvasId:    'brabusCanvas',
+  pinId:       'brabusPin',
+  videoSrc:    'assets/video/videoSmartXBRABUS.mp4',
+  pxPerSecond: 300,
+  captureFps:  24,
+  pinHeight:   null,
+  textEl:      document.getElementById('brabusText'),
+  textZonePx:  500    // px de scroll para revelar/ocultar el texto
+});

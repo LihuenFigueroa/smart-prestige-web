@@ -4,14 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>smart — Electrizante por naturaleza</title>
-  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
   <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    * { box-sizing: border-box; }
-    body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; overflow-x: hidden; margin: 0; }
-    input::placeholder { color: #111; opacity: 1; }
-    input:focus { outline: none; }
-  </style>
+  <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
 <body class="bg-white">
 
@@ -30,7 +25,7 @@
     <!-- Video oculto: solo para extraer el primer frame rápido -->
     <video
       id="heroVideo"
-      src="videoHero.mp4"
+      src="assets/video/videoHero.mp4"
       muted
       playsinline
       preload="auto"
@@ -57,7 +52,7 @@
 
       <!-- Center: wordmark -->
       <div class="absolute left-1/2 -translate-x-1/2">
-        <img src="Logonavbar.svg" alt="smart" class="h-10 w-auto" />
+        <img src="assets/img/Logonavbar.svg" alt="smart" class="h-10 w-auto" />
       </div>
 
       <!-- Right: icons -->
@@ -134,9 +129,9 @@
 
       <!-- Card 1: smart X BRABUS -->
       <div class="flex flex-col gap-3">
-        <img src="card1.png" alt="smart X BRABUS" class="w-full h-72 object-cover" />
+        <img src="assets/img/card1.png" alt="smart X BRABUS" class="w-full h-72 object-cover" />
         <h3 class="text-3xl font-normal text-black leading-10">smart X BRABUS</h3>
-        <p class="text-base text-black leading-6">
+        <p class="text-base text-black leading-6 flex-1">
           Rendimiento extremo. Diseño inconfundible. La versión más potente de smart lleva cada detalle al límite.
         </p>
         <a href="#"
@@ -147,9 +142,9 @@
 
       <!-- Card 2: Conectividad -->
       <div class="flex flex-col gap-3">
-        <img src="card2.png" alt="Conectividad" class="w-full h-72 object-cover" />
+        <img src="assets/img/card2.png" alt="Conectividad" class="w-full h-72 object-cover" />
         <h3 class="text-3xl font-normal text-black leading-10">Conectividad</h3>
-        <p class="text-base text-black leading-6">
+        <p class="text-base text-black leading-6 flex-1">
           Pantalla central de 12,8'', Apple CarPlay® y Android Auto® inalámbrico. El camino y tu mundo, integrados.
         </p>
         <a href="#"
@@ -160,9 +155,9 @@
 
       <!-- Card 3: Movilidad eléctrica -->
       <div class="flex flex-col gap-3">
-        <img src="card3.png" alt="Movilidad eléctrica" class="w-full h-72 object-cover" />
+        <img src="assets/img/card3.png" alt="Movilidad eléctrica" class="w-full h-72 object-cover" />
         <h3 class="text-3xl font-normal text-black leading-10">Movilidad eléctrica</h3>
-        <p class="text-base text-black leading-6">
+        <p class="text-base text-black leading-6 flex-1">
           Hasta 420 km de autonomía y carga rápida en menos de 30 minutos. El futuro de la movilidad ya tiene forma.
         </p>
         <a href="#"
@@ -173,9 +168,9 @@
 
       <!-- Card 4: Servicios posventa -->
       <div class="flex flex-col gap-3">
-        <img src="card4.png" alt="Servicios posventa" class="w-full h-72 object-cover" />
+        <img src="assets/img/card4.png" alt="Servicios posventa" class="w-full h-72 object-cover" />
         <h3 class="text-3xl font-normal text-black leading-10">Servicios posventa</h3>
-        <p class="text-base text-black leading-6">
+        <p class="text-base text-black leading-6 flex-1">
           Respaldo completo en cada kilómetro. Porque smart no termina en la compra.
         </p>
         <a href="#"
@@ -199,7 +194,7 @@
     ></canvas>
     <video
       id="brabusVideo"
-      src="videoSmartXBRABUS.mp4"
+      src="assets/video/videoSmartXBRABUS.mp4"
       muted
       playsinline
       preload="auto"
@@ -212,126 +207,173 @@
       class="absolute inset-0 pointer-events-none"
       style="z-index:10; opacity:0; transition: opacity 0.8s ease;">
 
-      <!-- Gradiente: oscurece la parte superior para legibilidad del texto -->
-      <div class="absolute inset-x-0 top-0 h-96 bg-gradient-to-b from-black to-transparent pointer-events-none"></div>
-
-      <!-- Contenido del texto — alineado arriba, fiel al export de Figma -->
-      <div class="absolute inset-x-0 top-0 flex justify-center" style="padding-top: 40px;">
-        <div class="w-full max-w-[1199px] px-8 relative" style="height:256px;">
-
-          <!-- ── Stats izquierda ── -->
-          <div class="w-11 h-8 left-0 top-0 absolute text-center justify-center text-white text-3xl font-bold font-['FOR_smart_Sans'] leading-[9.40px]">3,9</div>
-          <div class="w-20 h-8 left-[5.88px] top-[27px] absolute justify-center text-white text-sm font-bold font-['FOR_smart_Sans']">0-100 km/h</div>
-          <div class="w-20 h-8 left-[5.88px] top-[43px] absolute justify-center text-white text-[10.28px] font-normal font-['FOR_smart_Sans']">smart #1 BRABUS</div>
-
-          <div class="w-11 h-8 left-[111.65px] top-0 absolute text-center justify-center text-white text-3xl font-bold font-['FOR_smart_Sans'] leading-[9.40px]">3,7</div>
-          <div class="w-20 h-8 left-[117.53px] top-[27px] absolute justify-center text-white text-sm font-bold font-['FOR_smart_Sans']">0-100 km/h</div>
-          <div class="w-20 h-8 left-[117.53px] top-[43px] absolute justify-center text-white text-[10.28px] font-normal font-['FOR_smart_Sans']">smart #3 BRABUS</div>
-
-          <div class="w-20 h-8 left-0 top-[75.66px] absolute text-center justify-center text-white">
-            <span class="text-3xl font-bold font-['FOR_smart_Sans'] leading-[9.40px]">428</span><span class="text-2xl font-bold font-['FOR_smart_Sans'] leading-[7.52px]">hp</span>
-          </div>
-          <div class="w-20 h-8 left-[2.20px] top-[102px] absolute justify-center text-white text-[10.28px] font-normal font-['FOR_smart_Sans']">smart #1 BRABUS</div>
-
-          <div class="w-40 h-8 left-[107.24px] top-[75.66px] absolute text-center justify-center text-white">
-            <span class="text-2xl font-bold font-['FOR_smart_Sans'] leading-[7.52px]">Tracción </span><span class="text-3xl font-bold font-['FOR_smart_Sans'] leading-[9.40px]">AWD</span>
-          </div>
-          <div class="w-24 h-8 left-[111.65px] top-[102px] absolute justify-center text-white text-[10.28px] font-normal font-['FOR_smart_Sans']">smart #1 BRABUS</div>
-
-          <div class="w-64 h-7 left-0 top-[141.03px] absolute justify-center text-white">
-            <span class="text-3xl font-bold font-['FOR_smart_Sans'] leading-[9.40px]">13 altavoces BEATS</span><span class="text-sm font-normal font-['FOR_smart_Sans'] uppercase leading-[4.70px]">®</span>
-          </div>
-          <div class="w-24 h-8 left-[2.20px] top-[167.48px] absolute justify-center text-white text-[10.28px] font-normal font-['FOR_smart_Sans']">smart #1 y #3 BRABUS</div>
-
-          <div class="w-48 h-8 left-0 top-[202.74px] absolute text-center justify-center text-white">
-            <span class="text-3xl font-bold font-['FOR_smart_Sans'] leading-[9.40px]">400</span><span class="text-2xl font-bold font-['FOR_smart_Sans'] leading-[7.52px]">km autonomía</span>
-          </div>
-          <div class="w-48 h-8 left-[2.20px] top-[229.18px] absolute justify-center text-white text-[10.28px] font-normal font-['FOR_smart_Sans']">Batería 66kWh smart #1 BRABUS</div>
-
-          <div class="w-48 h-8 left-[207.14px] top-[202.74px] absolute text-center justify-center text-white">
-            <span class="text-3xl font-bold font-['FOR_smart_Sans'] leading-[9.40px]">415</span><span class="text-2xl font-bold font-['FOR_smart_Sans'] leading-[7.52px]">km autonomía</span>
-          </div>
-          <div class="w-48 h-8 left-[209.35px] top-[229.18px] absolute justify-center text-white text-[10.28px] font-normal font-['FOR_smart_Sans']">Batería 66kWh smart #3 BRABUS</div>
-
-          <!-- ── Texto derecha ── -->
-          <div class="w-64 left-[821.79px] top-[7px] absolute text-right justify-start text-white text-2xl font-bold font-['FOR_smart_Next'] leading-8">Inconfundiblemente </div>
-          <!-- BRABUS wordmark: fondo blanco sobre el texto -->
-          <div class="w-28 h-6 left-[1088.73px] top-[10.09px] absolute bg-white flex items-center justify-center">
-            <span class="text-black text-sm font-black italic tracking-tight">BRABUS<sup class="text-[8px]">®</sup></span>
-          </div>
-
-          <div class="w-[543.34px] left-[652.68px] top-[43.82px] absolute text-right justify-start text-white">
-            <span class="text-2xl font-normal font-['FOR_smart_Next'] leading-8">Diseño que no necesita presentación.<br/></span>
-            <span class="text-2xl font-normal font-['FOR_smart_Next']">Rendimiento que se siente antes de que lo cuentes.</span>
-          </div>
-
-          <div class="w-[511.80px] left-[684.10px] top-[118.09px] absolute text-right justify-start text-white text-base font-normal font-['FOR_smart_Sans'] leading-6">
-            La colaboración entre smart y BRABUS nació para los que no se conforman con el estándar. El resultado es un SUV eléctrico que combina ingeniería de alto rendimiento con una estética deportiva que parte del interior hacia afuera.
-          </div>
-
-          <!-- CTA -->
-          <div class="w-36 h-7 left-[1051px] top-[220px] absolute bg-white rounded-[692px] flex items-center justify-center cursor-pointer pointer-events-auto">
-            <span class="text-black text-[9.70px] font-bold font-['FOR_smart_Sans'] leading-3 tracking-tight">Encontrá una concesionaria</span>
-          </div>
-
-        </div>
-      </div>
+      <!-- SVG overlay — reproducción fiel al diseño Figma (texto convertido a paths) -->
+      <img src="assets/img/brabus_overlay.svg"
+           class="absolute top-0 left-0 w-full"
+           style="height:auto; display:block;"
+           alt="" />
+      <!-- CTA transparente superpuesto sobre el badge del SVG -->
+      <a href="#contacto"
+         class="absolute pointer-events-auto cursor-pointer"
+         style="top:21.66vw; left:80.79vw; width:10.23vw; height:1.83vw; min-height:20px; min-width:120px; border-radius:9999px;">
+      </a>
     </div>
 
   </section>
   </div>
 
   <!-- ================================================================
-       ELÉCTRICO DE VERDAD — 2 columns
+       ELÉCTRICO DE VERDAD — carrusel horizontal scroll-driven (3 slides)
   ================================================================ -->
-  <section class="w-full bg-white py-24 px-14">
-    <div class="max-w-[1320px] mx-auto flex gap-16 items-center">
+  <div id="electricoPin" style="height:400vh;">
+    <section class="sticky top-0 w-full bg-white overflow-hidden" style="height:100vh;">
+      <div id="electricoStrip" class="flex" style="width:400vw; height:100%; will-change:transform;">
 
-      <!-- Left: text -->
-      <div class="flex-1">
-        <h2 class="text-5xl font-bold text-black leading-tight mb-6">
-          Eléctrico de verdad.<br/>Sin compromisos.
-        </h2>
-        <p class="text-2xl text-black font-normal leading-7 tracking-wide mb-6">
-          Elegir lo eléctrico con smart es una apuesta segura: tenés todo para ganar y nada que perder.
-        </p>
-        <p class="text-base text-black leading-5 tracking-tight mb-10">
-          Los modelos smart #1 y #3 están diseñados para la vida cotidiana y para mucho más. Batería de gran
-          capacidad, carga rápida y una autonomía que acompaña cada viaje sin que tengas que pensar en el
-          siguiente enchufe.
-        </p>
-        <a href="#"
-          class="h-12 px-8 rounded-full border border-neutral-900 text-sm font-bold text-neutral-900 inline-flex items-center hover:bg-neutral-900 hover:text-white transition-colors">
-          Encontrá tu smart
-        </a>
-      </div>
-
-      <!-- Right: image with overlay -->
-      <div class="flex-1 relative overflow-hidden rounded-sm">
-        <img src="electricoDeVerdad.png" alt="Hasta 420 km de autonomía" class="w-full h-[440px] object-cover" />
-        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-b from-transparent to-black/60 p-7">
-          <p class="text-white text-xl font-bold leading-6 mb-1">Hasta 420 km de autonomía</p>
-          <p class="text-white text-xs leading-4">
-            En ciclo WLTP para el smart #1 Pro+.<br/>
-            Distancia de sobra para la ciudad y los viajes que más importan.
-          </p>
+        <!-- ── Slide 1 (original) ── -->
+        <div class="flex items-center" style="width:100vw; height:100%; padding:0 56px; gap:32px;">
+          <div style="width:384px; flex-shrink:0;">
+            <h2 class="text-5xl font-bold text-black leading-10 mb-6">
+              Eléctrico de verdad.<br/>Sin compromisos.
+            </h2>
+            <p class="text-2xl text-black font-normal leading-7 tracking-wide mb-6">
+              Elegir lo eléctrico con smart es una apuesta segura: tenés todo para ganar y nada que perder.
+            </p>
+            <p class="text-base text-black font-normal leading-5 tracking-tight mb-10">
+              Los modelos smart #1 y #3 están diseñados para la vida cotidiana y para mucho más. Batería de gran
+              capacidad, carga rápida y una autonomía que acompaña cada viaje sin que tengas que pensar en el
+              siguiente enchufe.
+            </p>
+            <a href="#contacto"
+              class="h-12 px-8 rounded-full border border-neutral-900 text-sm font-bold text-neutral-900 inline-flex items-center hover:bg-neutral-900 hover:text-white transition-colors">
+              Encontrá tu smart
+            </a>
+          </div>
+          <div class="flex-1 relative overflow-hidden rounded-sm" style="height:440px;">
+            <img src="assets/img/electricoDeVerdad.png" alt="Hasta 420 km de autonomía" class="w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/60"></div>
+            <div class="absolute bottom-0 left-0 p-7">
+              <p class="text-white text-xl font-bold leading-6 mb-1">Hasta 420 km de autonomía</p>
+              <p class="text-white text-xs font-normal leading-4">
+                En ciclo WLTP para el smart #1 Pro+.<br/>
+                Distancia de sobra para la ciudad y los viajes que más importan.
+              </p>
+            </div>
+          </div>
         </div>
-      </div>
 
-    </div>
-  </section>
+        <!-- ── Slide 2 ── -->
+        <div class="flex items-center" style="width:100vw; height:100%; padding:0 56px; gap:32px;">
+          <!-- Texto (idéntico en los 3 slides) -->
+          <div style="width:384px; flex-shrink:0;">
+            <h2 class="text-5xl font-bold text-black leading-10 mb-6">
+              Eléctrico de verdad.<br/>Sin compromisos.
+            </h2>
+            <p class="text-2xl text-black font-normal leading-7 tracking-wide mb-6">
+              Elegir lo eléctrico con smart es una apuesta segura: tenés todo para ganar y nada que perder.
+            </p>
+            <p class="text-base text-black font-normal leading-5 tracking-tight mb-10">
+              Los modelos smart #1 y #3 están diseñados para la vida cotidiana y para mucho más. Batería de gran
+              capacidad, carga rápida y una autonomía que acompaña cada viaje sin que tengas que pensar en el
+              siguiente enchufe.
+            </p>
+            <a href="#contacto"
+              class="h-12 px-8 rounded-full border border-neutral-900 text-sm font-bold text-neutral-900 inline-flex items-center hover:bg-neutral-900 hover:text-white transition-colors">
+              Encontrá tu smart
+            </a>
+          </div>
+          <!-- Foto -->
+          <div class="flex-1 relative overflow-hidden rounded-sm" style="height:440px;">
+            <img src="assets/img/electricoDeVerdad2.png" alt="Hasta 420 km de autonomía" class="w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/60"></div>
+            <div class="absolute bottom-0 left-0 p-7">
+              <p class="text-white text-xl font-bold leading-6 mb-1">Hasta 420 km de autonomía</p>
+              <p class="text-white text-xs font-normal leading-4">
+                En ciclo WLTP para el smart #1 Pro+.<br/>
+                Distancia de sobra para la ciudad y los viajes que más importan.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Slide 3 ── -->
+        <div class="flex items-center" style="width:100vw; height:100%; padding:0 56px; gap:32px;">
+          <div style="width:384px; flex-shrink:0;">
+            <h2 class="text-5xl font-bold text-black leading-10 mb-6">
+              Eléctrico de verdad.<br/>Sin compromisos.
+            </h2>
+            <p class="text-2xl text-black font-normal leading-7 tracking-wide mb-6">
+              Elegir lo eléctrico con smart es una apuesta segura: tenés todo para ganar y nada que perder.
+            </p>
+            <p class="text-base text-black font-normal leading-5 tracking-tight mb-10">
+              Los modelos smart #1 y #3 están diseñados para la vida cotidiana y para mucho más. Batería de gran
+              capacidad, carga rápida y una autonomía que acompaña cada viaje sin que tengas que pensar en el
+              siguiente enchufe.
+            </p>
+            <a href="#contacto"
+              class="h-12 px-8 rounded-full border border-neutral-900 text-sm font-bold text-neutral-900 inline-flex items-center hover:bg-neutral-900 hover:text-white transition-colors">
+              Encontrá tu smart
+            </a>
+          </div>
+          <div class="flex-1 relative overflow-hidden rounded-sm" style="height:440px;">
+            <img src="assets/img/electricoDeVerdad3.png" alt="Carga rápida" class="w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/60"></div>
+            <div class="absolute bottom-0 left-0 p-7">
+              <p class="text-white text-xl font-bold leading-6 mb-1">De 10 al 80% en menos de 30 minutos</p>
+              <p class="text-white text-xs font-normal leading-4">
+                Carga en corriente continua de hasta 150 kW.<br/>
+                En AC: 5,5 h a 7,4 kW (Pure) o 3 h a 22 kW (Pro+ y BRABUS).
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Slide 4 ── -->
+        <div class="flex items-center" style="width:100vw; height:100%; padding:0 56px; gap:32px;">
+          <div style="width:384px; flex-shrink:0;">
+            <h2 class="text-5xl font-bold text-black leading-10 mb-6">
+              Eléctrico de verdad.<br/>Sin compromisos.
+            </h2>
+            <p class="text-2xl text-black font-normal leading-7 tracking-wide mb-6">
+              Elegir lo eléctrico con smart es una apuesta segura: tenés todo para ganar y nada que perder.
+            </p>
+            <p class="text-base text-black font-normal leading-5 tracking-tight mb-10">
+              Los modelos smart #1 y #3 están diseñados para la vida cotidiana y para mucho más. Batería de gran
+              capacidad, carga rápida y una autonomía que acompaña cada viaje sin que tengas que pensar en el
+              siguiente enchufe.
+            </p>
+            <a href="#contacto"
+              class="h-12 px-8 rounded-full border border-neutral-900 text-sm font-bold text-neutral-900 inline-flex items-center hover:bg-neutral-900 hover:text-white transition-colors">
+              Encontrá tu smart
+            </a>
+          </div>
+          <div class="flex-1 relative overflow-hidden rounded-sm" style="height:440px;">
+            <img src="assets/img/electricoDeVerdad4.png" alt="Recuperación de energía" class="w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/60"></div>
+            <div class="absolute bottom-0 left-0 p-7">
+              <p class="text-white text-xl font-bold leading-6 mb-1">Recuperación de energía en cada frenada</p>
+              <p class="text-white text-xs font-normal leading-4">
+                El sistema de frenos regenerativos convierte la energía cinética en carga para la batería.<br/>
+                Menos frenadas, más kilómetros: la conducción eléctrica inteligente.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </div>
 
   <!-- ================================================================
-       TU AUTO PIENSA COMO VOS — Tech section
+       TU AUTO PIENSA COMO VOS — carrusel scroll-driven (imágenes se mueven, texto fijo)
   ================================================================ -->
-  <section class="w-full bg-white pt-4 pb-24 px-14">
-    <div class="max-w-[1320px] mx-auto">
+  <div id="tuAutoPin" style="height:600vh;">
+    <section class="sticky top-0 w-full bg-white overflow-hidden" style="height:100vh; display:flex; flex-direction:column;">
 
-      <!-- Centered heading -->
-      <div class="text-center mb-10">
+      <!-- Texto fijo centrado -->
+      <div class="text-center px-14 pt-14 pb-7 flex-shrink-0">
         <p class="text-2xl text-black font-normal tracking-wide mb-1">Tecnología de integración</p>
-        <h2 class="text-5xl font-bold text-black leading-tight mb-6">Tu auto piensa como vos.</h2>
-        <p class="text-base text-black leading-6 max-w-[783px] mx-auto mb-4">
+        <h2 class="text-5xl font-bold text-black leading-10 mb-5">Tu auto piensa como vos.</h2>
+        <p class="text-base text-black leading-6 max-w-[783px] mx-auto mb-5">
           El smart #1 y el #3 son vehículos diseñados desde cero en la era digital. El sistema de
           infoentretenimiento corre sobre Android Automotive y se integra con el ecosistema Hello smart:
           desde la pantalla central hasta tu teléfono, todo funciona en red.
@@ -343,34 +385,88 @@
         </a>
       </div>
 
-      <!-- Main image with overlay -->
-      <div class="relative overflow-hidden">
-        <img src="tuAutoPiensaComoVos.png" alt="Tecnología smart" class="w-full h-[676px] object-cover" />
-        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-b from-transparent to-black/70 px-14 pb-14 pt-32">
-          <div class="max-w-xl">
-            <h3 class="text-white text-3xl font-normal leading-10 mb-2">
-              Apple CarPlay® y Android Auto® inalámbrico
-            </h3>
-            <p class="text-white text-lg font-normal leading-6">
-              Tu smartphone se conecta sin cables. Llamadas, mapas, música y mensajes integrados,
-              sin perder la vista del camino.
-            </p>
+      <!-- Área de imágenes -->
+      <div class="flex-1 relative overflow-hidden">
+
+        <!-- Strip de 6 imágenes -->
+        <div id="tuAutoStrip" style="display:flex; width:600vw; height:100%; will-change:transform;">
+
+          <!-- Slide 1 -->
+          <div style="width:100vw; height:100%; position:relative; flex-shrink:0;">
+            <img src="assets/img/tuAutoPiensaComoVos.png" alt="Pantalla central" style="width:100%; height:100%; object-fit:cover;" />
+            <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 45%,rgba(0,0,0,0.82));"></div>
+            <div style="position:absolute;bottom:52px;left:56px;max-width:540px;">
+              <p class="font-smart-next text-white text-3xl font-normal leading-10 mb-2">Pantalla central de 12,8''</p>
+              <p class="text-white text-lg font-normal leading-6">Todo el control del vehículo en una pantalla táctil de alta resolución. Y frente al conductor, una pantalla de instrumentos de 9,2'' con información de conducción siempre a la vista.</p>
+            </div>
           </div>
+
+          <!-- Slide 2 -->
+          <div style="width:100vw; height:100%; position:relative; flex-shrink:0;">
+            <img src="assets/img/tuAutoPiensaComoVos2.png" alt="Apple CarPlay" style="width:100%; height:100%; object-fit:cover;" />
+            <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 45%,rgba(0,0,0,0.82));"></div>
+            <div style="position:absolute;bottom:52px;left:56px;max-width:540px;">
+              <p class="font-smart-next text-white text-3xl font-normal leading-10 mb-2">Apple CarPlay® y Android Auto® inalámbrico</p>
+              <p class="text-white text-lg font-normal leading-6">Tu smartphone se conecta sin cables. Llamadas, mapas, música y mensajes integrados, sin perder la vista del camino.</p>
+            </div>
+          </div>
+
+          <!-- Slide 3 -->
+          <div style="width:100vw; height:100%; position:relative; flex-shrink:0;">
+            <img src="assets/img/tuAutoPiensaComoVos3.png" alt="Actualización OTA" style="width:100%; height:100%; object-fit:cover;" />
+            <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 45%,rgba(0,0,0,0.82));"></div>
+            <div style="position:absolute;bottom:52px;left:56px;max-width:540px;">
+              <p class="font-smart-next text-white text-3xl font-normal leading-10 mb-2">Actualización OTA</p>
+              <p class="text-white text-lg font-normal leading-6">El software de tu smart se actualiza de forma remota. Sin ir al taller, sin interrupciones.</p>
+            </div>
+          </div>
+
+          <!-- Slide 4 -->
+          <div style="width:100vw; height:100%; position:relative; flex-shrink:0;">
+            <img src="assets/img/tuAutoPiensaComoVos4.png" alt="Keyless entry" style="width:100%; height:100%; object-fit:cover;" />
+            <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 45%,rgba(0,0,0,0.82));"></div>
+            <div style="position:absolute;bottom:52px;left:56px;max-width:540px;">
+              <p class="font-smart-next text-white text-3xl font-normal leading-10 mb-2">Keyless entry</p>
+              <p class="text-white text-lg font-normal leading-6">Acercate a tu smart y las puertas se abren. La llave es opcional.</p>
+            </div>
+          </div>
+
+          <!-- Slide 5 -->
+          <div style="width:100vw; height:100%; position:relative; flex-shrink:0;">
+            <img src="assets/img/tuAutoPiensaComoVos5.png" alt="Asistente de voz" style="width:100%; height:100%; object-fit:cover;" />
+            <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 45%,rgba(0,0,0,0.82));"></div>
+            <div style="position:absolute;bottom:52px;left:56px;max-width:540px;">
+              <p class="font-smart-next text-white text-3xl font-normal leading-10 mb-2">Asistente de voz</p>
+              <p class="text-white text-lg font-normal leading-6">Controlá la navegación, el clima y los medios sin soltar el volante. El auto responde cuando hablás.</p>
+            </div>
+          </div>
+
+          <!-- Slide 6 -->
+          <div style="width:100vw; height:100%; position:relative; flex-shrink:0;">
+            <img src="assets/img/tuAutoPiensaComoVos6.png" alt="Hello smart app" style="width:100%; height:100%; object-fit:cover;" />
+            <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 45%,rgba(0,0,0,0.82));"></div>
+            <div style="position:absolute;bottom:52px;left:56px;max-width:540px;">
+              <p class="font-smart-next text-white text-3xl font-normal leading-10 mb-2">Hello smart app</p>
+              <p class="text-white text-lg font-normal leading-6">Controlá tu auto desde el celular: monitoreá la carga, programá la climatización antes de subir y localizá el vehículo en cualquier momento.</p>
+            </div>
+          </div>
+
+        </div><!-- /strip -->
+
+        <!-- Indicador de carrusel -->
+        <div id="tuAutoDots" style="position:absolute; bottom:20px; left:50%; transform:translateX(-50%); display:flex; align-items:center; gap:9px;">
+          <div class="dot active"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
         </div>
-      </div>
 
-      <!-- Carousel dots -->
-      <div class="flex justify-center items-center gap-2 mt-6">
-        <div class="w-7 h-2 bg-white rounded-2xl"></div>
-        <div class="w-2 h-2 bg-white/50 rounded-full"></div>
-        <div class="w-2 h-2 bg-white/50 rounded-full"></div>
-        <div class="w-2 h-2 bg-white/50 rounded-full"></div>
-        <div class="w-2 h-2 bg-white/50 rounded-full"></div>
-        <div class="w-2 h-2 bg-white/50 rounded-full"></div>
-      </div>
+      </div><!-- /image area -->
 
-    </div>
-  </section>
+    </section>
+  </div>
 
   <!-- ================================================================
        BRAND HISTORY — 2 columns
@@ -406,7 +502,7 @@
   <!-- Slide 1: Diseño -->
   <div class="relative w-full h-[810px] overflow-hidden bg-gray-700">
     <img
-      src="disenioQueTieneFirmaPropia.png"
+      src="assets/img/disenioQueTieneFirmaPropia.png"
       alt="Diseño smart"
       class="absolute inset-0 w-full h-full object-cover"
     />
@@ -427,7 +523,7 @@
   <!-- Slide 2: BRABUS -->
   <div class="relative w-full h-[810px] overflow-hidden bg-gray-700">
     <img
-      src="laColaboracionBRABUS.png"
+      src="assets/img/laColaboracionBRABUS.png"
       alt="La colaboración BRABUS"
       class="absolute inset-0 w-full h-full object-cover"
     />
@@ -448,7 +544,7 @@
   <!-- Slide 3: 100% eléctrico -->
   <div class="relative w-full h-[810px] overflow-hidden bg-gray-700">
     <img
-      src="100%25electrico.png"
+      src="assets/img/100%25electrico.png"
       alt="100% eléctrico"
       class="absolute inset-0 w-full h-full object-cover"
     />
@@ -519,7 +615,7 @@
 
       <!-- Right: image -->
       <div class="flex-1">
-        <img src="estamosCerca.png" alt="smart Argentina" class="w-full h-full max-h-[760px] object-cover" />
+        <img src="assets/img/estamosCerca.png" alt="smart Argentina" class="w-full h-full max-h-[760px] object-cover" />
       </div>
 
     </div>
@@ -549,7 +645,7 @@
       <!-- Right: map/media image -->
       <div class="flex-1 relative overflow-hidden">
         <img
-          src="presenciaEnArgentina.png"
+          src="assets/img/presenciaEnArgentina.png"
           alt="Concesionarios Argentina"
           class="w-full h-[674px] object-cover"
         />
@@ -798,209 +894,6 @@
     </div>
   </footer>
 
-  <script>
-    // ── Función genérica: convierte cualquier sección en video scroll-driven ──
-    function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, captureFps, pinHeight, textEl, textZonePx }) {
-      const video  = document.getElementById(videoId);
-      const canvas = document.getElementById(canvasId);
-      const ctx    = canvas.getContext('2d');
-      const pin    = document.getElementById(pinId);
-
-      const PX_PER_SECOND = pxPerSecond || 300;
-      const CAPTURE_FPS   = captureFps  || 24;
-      const LERP          = 0.12;
-
-      const frames = [];
-      let ready = false, totalFrames = 0;
-      let targetProgress = 0, drawProgress = 0;
-      let videoDuration = 0;
-
-      // ── Canvas ───────────────────────────────────────────────────────────────
-      function resizeCanvas() {
-        canvas.width  = canvas.offsetWidth  || window.innerWidth;
-        canvas.height = canvas.offsetHeight || (pinHeight || window.innerHeight);
-        if (ready) renderProgress(drawProgress);
-      }
-      window.addEventListener('resize', resizeCanvas);
-      resizeCanvas();
-
-      // ── Render ───────────────────────────────────────────────────────────────
-      function drawBitmap(bmp, alpha) {
-        const cw = canvas.width, ch = canvas.height;
-        const scale = Math.max(cw / bmp.width, ch / bmp.height);
-        const sw = bmp.width * scale, sh = bmp.height * scale;
-        ctx.globalAlpha = alpha;
-        ctx.drawImage(bmp, (cw - sw) / 2, (ch - sh) / 2, sw, sh);
-      }
-
-      function renderProgress(p) {
-        if (!frames.length) return;
-        const exact = p * (frames.length - 1);
-        const idxA  = Math.floor(exact);
-        const idxB  = Math.min(idxA + 1, frames.length - 1);
-        const blend = exact - idxA;
-        if (!frames[idxA]) return;
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        drawBitmap(frames[idxA], 1);
-        if (blend > 0.01 && frames[idxB]) drawBitmap(frames[idxB], blend);
-        ctx.globalAlpha = 1;
-      }
-
-      // ── RAF loop ─────────────────────────────────────────────────────────────
-      function tick() {
-        if (ready) {
-          const diff = targetProgress - drawProgress;
-          if (Math.abs(diff) > 0.0001) {
-            drawProgress += diff * LERP;
-            renderProgress(drawProgress);
-          }
-        }
-        requestAnimationFrame(tick);
-      }
-
-      // ── Scroll ───────────────────────────────────────────────────────────────
-      function onScroll() {
-        const rel       = window.scrollY - pin.offsetTop;
-        const videoPx   = videoDuration * PX_PER_SECOND;
-        const extraPx   = textZonePx || 0;
-
-        if (rel <= videoPx) {
-          // Fase 1 — avanza el video
-          targetProgress = Math.max(0, rel / videoPx);
-          if (textEl) { textEl.style.opacity = '0'; textEl.style.pointerEvents = 'none'; }
-        } else {
-          // Fase 2 — video en último frame, texto se revela con el scroll
-          targetProgress = 1;
-          if (textEl && extraPx > 0) {
-            const t = Math.min(1, (rel - videoPx) / extraPx);
-            textEl.style.opacity       = t.toFixed(3);
-            textEl.style.pointerEvents = t > 0.5 ? 'auto' : 'none';
-          }
-        }
-      }
-
-      // ── Captura en background ─────────────────────────────────────────────────
-      function startBackgroundCapture(capVid, duration) {
-        totalFrames = Math.round(duration * CAPTURE_FPS);
-        frames.length = totalFrames;
-
-        const vw = capVid.videoWidth  || 1280;
-        const vh = capVid.videoHeight || 720;
-        const os = new OffscreenCanvas(vw, vh);
-        const oc = os.getContext('2d');
-
-        let lastCapturedTime = -1;
-
-        capVid.playbackRate = 4;
-        capVid.play();
-
-        function captureLoop() {
-          if (capVid.ended || capVid.currentTime >= duration - 0.01) {
-            let last = frames[0];
-            for (let i = 0; i < totalFrames; i++) {
-              if (frames[i]) { last = frames[i]; }
-              else if (last) { frames[i] = last; }
-            }
-            onCaptureComplete();
-            return;
-          }
-
-          const t   = capVid.currentTime;
-          const idx = Math.round((t / duration) * (totalFrames - 1));
-
-          if (t !== lastCapturedTime && idx >= 0 && idx < totalFrames && !frames[idx]) {
-            oc.drawImage(capVid, 0, 0, vw, vh);
-            frames[idx]      = os.transferToImageBitmap();
-            lastCapturedTime = t;
-          }
-
-          requestAnimationFrame(captureLoop);
-        }
-
-        captureLoop();
-      }
-
-      // ── Primer frame ─────────────────────────────────────────────────────────
-      function showFirstFrame() {
-        const tmp    = new OffscreenCanvas(video.videoWidth || 1280, video.videoHeight || 720);
-        const tmpCtx = tmp.getContext('2d');
-        tmpCtx.drawImage(video, 0, 0);
-        frames[0] = tmp.transferToImageBitmap();
-        renderProgress(0);
-      }
-
-      function onCaptureComplete() {
-        ready = true;
-        renderProgress(drawProgress);
-        window.addEventListener('scroll', onScroll, { passive: true });
-      }
-
-      // ── Init ─────────────────────────────────────────────────────────────────
-      function init() {
-        function setup() {
-          videoDuration = video.duration;
-          const videoPx = videoDuration * PX_PER_SECOND;
-          const totalPx = videoPx + (textZonePx || 0);
-          pin.style.height = pinHeight
-            ? `calc(${pinHeight}px + ${totalPx}px)`
-            : `calc(100vh + ${totalPx}px)`;
-
-          // Frame 0
-          function tryFirstFrame() {
-            const seek = () => {
-              video.currentTime = 0;
-              video.addEventListener('seeked', showFirstFrame, { once: true });
-            };
-            video.readyState >= 2 ? seek()
-              : video.addEventListener('canplay', seek, { once: true });
-          }
-          tryFirstFrame();
-
-          // Capture video en background
-          const capVid       = document.createElement('video');
-          capVid.src         = videoSrc;
-          capVid.muted       = true;
-          capVid.playsInline = true;
-          capVid.preload     = 'auto';
-          capVid.style.cssText = 'position:fixed;top:-9999px;left:-9999px;width:1px;height:1px;opacity:0.01;pointer-events:none;';
-          document.body.appendChild(capVid);
-
-          const startCapture = () => startBackgroundCapture(capVid, videoDuration);
-          capVid.readyState >= 1 ? startCapture()
-            : capVid.addEventListener('loadedmetadata', startCapture, { once: true });
-        }
-
-        video.readyState >= 1 ? setup()
-          : video.addEventListener('loadedmetadata', setup, { once: true });
-      }
-
-      requestAnimationFrame(tick);
-      init();
-    }
-
-    // ── Hero ─────────────────────────────────────────────────────────────────
-    initScrollVideo({
-      videoId:    'heroVideo',
-      canvasId:   'heroCanvas',
-      pinId:      'heroPin',
-      videoSrc:   'videoHero.mp4',
-      pxPerSecond: 300,
-      captureFps:  24,
-      pinHeight:   null   // null = 100vh
-    });
-
-    // ── smart X BRABUS banner ─────────────────────────────────────────────────
-    initScrollVideo({
-      videoId:     'brabusVideo',
-      canvasId:    'brabusCanvas',
-      pinId:       'brabusPin',
-      videoSrc:    'videoSmartXBRABUS.mp4',
-      pxPerSecond: 300,
-      captureFps:  24,
-      pinHeight:   null,
-      textEl:      document.getElementById('brabusText'),
-      textZonePx:  500    // px de scroll para revelar/ocultar el texto
-    });
-  </script>
+  <script src="assets/js/main.js"></script>
 </body>
 </html>
