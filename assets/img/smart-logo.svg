@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 70 18" fill="currentColor" aria-label="smart">
+  <!--
+    Placeholder SVG del logo Smart.
+    REEMPLAZAR con el SVG oficial del cliente o extraído del Figma.
+    El logo en Figma (node I38:9049;25:7264) está compuesto por 5 paths vectoriales
+    que Figma exportó como imágenes asset — necesitás la versión SVG del cliente.
+
+    Por ahora usamos el wordmark "smart" en tipografía system como placeholder.
+  -->
+  <text
+    x="0" y="14"
+    font-family="'FOR smart Sans', sans-serif"
+    font-size="16"
+    letter-spacing="1"
+    fill="currentColor"
+  >smart</text>
+</svg>
