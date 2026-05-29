@@ -96,7 +96,8 @@ function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, capt
     let lastCapturedTime = -1;
 
     capVid.playbackRate = 4;
-    capVid.play();
+    const playPromise = capVid.play();
+    if (playPromise) playPromise.catch(() => {});
 
     function captureLoop() {
       const t   = capVid.currentTime;
@@ -151,7 +152,6 @@ function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, capt
   function init() {
     // Setea la fuente correcta (desktop o mobile) antes de cualquier carga
     video.src = videoSrc;
-    video.load();
 
     function setup() {
       videoDuration = video.duration;
@@ -173,10 +173,11 @@ function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, capt
       tryFirstFrame();
 
       // Capture video en background
-      const capVid       = document.createElement('video');
-      capVid.src         = videoSrc;
-      capVid.muted       = true;
-      capVid.playsInline = true;
+      const capVid = document.createElement('video');
+      capVid.src   = videoSrc;
+      capVid.muted = true;
+      capVid.setAttribute('playsinline', ''); // necesario en iOS Safari
+      capVid.setAttribute('muted', '');
       capVid.preload     = 'auto';
       capVid.style.cssText = 'position:fixed;top:-9999px;left:-9999px;width:1px;height:1px;opacity:0.01;pointer-events:none;';
       document.body.appendChild(capVid);
