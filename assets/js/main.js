@@ -153,6 +153,17 @@ function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, capt
     // Setea la fuente correcta (desktop o mobile) antes de cualquier carga
     video.src = videoSrc;
 
+    // Dibuja el primer frame directo al canvas en cuanto hay datos, sin esperar la captura completa
+    video.addEventListener('canplay', () => {
+      if (!ready && video.videoWidth) {
+        const cw = canvas.width, ch = canvas.height;
+        const vw = video.videoWidth, vh = video.videoHeight;
+        const scale = Math.max(cw / vw, ch / vh);
+        ctx.clearRect(0, 0, cw, ch);
+        ctx.drawImage(video, (cw - vw * scale) / 2, (ch - vh * scale) / 2, vw * scale, vh * scale);
+      }
+    }, { once: true });
+
     function setup() {
       videoDuration = video.duration;
       const videoPx = videoDuration * PX_PER_SECOND;
