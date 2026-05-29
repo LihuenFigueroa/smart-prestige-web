@@ -1,5 +1,5 @@
 // ── Función genérica: convierte cualquier sección en video scroll-driven ──
-function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, captureFps, lerp, pinHeight, textEl, textZonePx, holdZonePx }) {
+function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, captureFps, lerp, pinHeight, textEl, textElMid, textZonePx, holdZonePx }) {
   const video  = document.getElementById(videoId);
   const canvas = document.getElementById(canvasId);
   const ctx    = canvas.getContext('2d');
@@ -17,8 +17,12 @@ function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, capt
 
   // ── Canvas ───────────────────────────────────────────────────────────────
   function resizeCanvas() {
-    canvas.width  = canvas.offsetWidth  || window.innerWidth;
-    canvas.height = canvas.offsetHeight || (pinHeight || window.innerHeight);
+    const newW = canvas.offsetWidth  || window.innerWidth;
+    const newH = canvas.offsetHeight || (pinHeight || window.innerHeight);
+    // Solo redimensionar si cambió de verdad (evita el flash por address bar en mobile)
+    if (canvas.width === newW && canvas.height === newH) return;
+    canvas.width  = newW;
+    canvas.height = newH;
     if (ready) renderProgress(drawProgress);
   }
   window.addEventListener('resize', resizeCanvas);
@@ -63,6 +67,19 @@ function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, capt
     const rel       = window.scrollY - pin.offsetTop;
     const videoPx   = videoDuration * PX_PER_SECOND;
     const extraPx   = textZonePx || 0;
+
+    // Texto mid-video (bloque 1 mobile)
+    if (textElMid) {
+      const midStart = videoPx * 0.38;
+      const midEnd   = videoPx * 0.58;
+      if (rel < midStart) {
+        textElMid.style.opacity = '0';
+      } else if (rel < midEnd) {
+        textElMid.style.opacity = ((rel - midStart) / (midEnd - midStart)).toFixed(3);
+      } else {
+        textElMid.style.opacity = '1';
+      }
+    }
 
     if (rel <= videoPx) {
       // Fase 1 — avanza el video
@@ -307,6 +324,7 @@ initScrollVideo({
   lerp:        0.07,
   pinHeight:   null,
   textEl:      document.getElementById('brabusText'),
+  textElMid:   isMobile ? document.getElementById('brabusTextMid') : null,
   textZonePx:  isMobile ? 300 : 500,
   holdZonePx:  isMobile ? 400 : 600
 });

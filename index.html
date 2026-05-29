@@ -151,16 +151,35 @@
       style="z-index:1; opacity:0; pointer-events:none;"
     ></video>
 
-    <!-- Texto overlay — solo desktop -->
+    <!-- Texto overlay — mobile: bloque 1 (mid-video) -->
+    <div id="brabusTextMid"
+      class="absolute md:hidden pointer-events-none"
+      style="z-index:11; opacity:0; bottom:22%; left:5%;">
+      <div style="position:relative; width:208px; height:52px;">
+        <div style="position:absolute; top:0; left:0; width:208px; color:white; font-family:'FOR_smart_Next',sans-serif; font-size:20px; font-weight:700; line-height:1.4;">Inconfundiblemente</div>
+        <div style="position:absolute; background:white; width:160px; height:36px; left:49px; top:26px;"></div>
+        <img src="assets/img/textSmartXbrabus.png" alt="BRABUS"
+             style="position:absolute; width:154px; height:25px; left:52px; top:30px; object-fit:contain;" />
+      </div>
+    </div>
+
+    <!-- Texto overlay — desktop SVG + mobile bloque 2 (end-of-video) -->
     <div id="brabusText"
       class="absolute inset-0 pointer-events-none"
       style="z-index:10; opacity:0; transition: opacity 0.8s ease;">
       <img src="assets/img/brabus_overlay.svg"
-           class="absolute top-0 left-0 w-full"
-           style="height:auto; display:block;" alt="" />
+           class="hidden md:block absolute top-0 left-0 w-full"
+           style="height:auto;" alt="" />
       <a href="#contacto"
-         class="absolute pointer-events-auto cursor-pointer"
+         class="hidden md:block absolute pointer-events-auto cursor-pointer"
          style="top:21.66vw; left:80.79vw; width:10.23vw; height:1.83vw; min-height:20px; min-width:120px; border-radius:9999px;"></a>
+      <!-- Mobile bloque 2 -->
+      <div class="md:hidden absolute"
+           style="bottom:8%; left:5%; width:256px; color:white; font-family:'FOR_smart_Next',sans-serif; font-size:16px; font-weight:400; line-height:1.5;">
+        Diseño que no necesita presentación.<br/>
+        Rendimiento que se siente antes<br/>
+        de que lo cuentes.
+      </div>
     </div>
   </section>
   </div>
