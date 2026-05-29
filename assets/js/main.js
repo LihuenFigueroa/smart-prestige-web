@@ -1,5 +1,5 @@
 // ── Función genérica: convierte cualquier sección en video scroll-driven ──
-function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, captureFps, pinHeight, textEl, textZonePx }) {
+function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, captureFps, lerp, pinHeight, textEl, textZonePx, holdZonePx }) {
   const video  = document.getElementById(videoId);
   const canvas = document.getElementById(canvasId);
   const ctx    = canvas.getContext('2d');
@@ -7,7 +7,8 @@ function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, capt
 
   const PX_PER_SECOND = pxPerSecond || 300;
   const CAPTURE_FPS   = captureFps  || 24;
-  const LERP          = 0.12;
+  const LERP          = lerp        || 0.12;
+  const HOLD_PX       = holdZonePx  || 0;
 
   const frames = [];
   let ready = false, totalFrames = 0;
@@ -67,7 +68,7 @@ function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, capt
       // Fase 1 — avanza el video
       targetProgress = Math.max(0, rel / videoPx);
       if (textEl) { textEl.style.opacity = '0'; textEl.style.pointerEvents = 'none'; }
-    } else {
+    } else if (rel <= videoPx + extraPx) {
       // Fase 2 — video en último frame, texto se revela con el scroll
       targetProgress = 1;
       if (textEl && extraPx > 0) {
@@ -75,6 +76,10 @@ function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, capt
         textEl.style.opacity       = t.toFixed(3);
         textEl.style.pointerEvents = t > 0.5 ? 'auto' : 'none';
       }
+    } else {
+      // Fase 3 — hold zone: texto 100% visible, pin sigue activo
+      targetProgress = 1;
+      if (textEl) { textEl.style.opacity = '1'; textEl.style.pointerEvents = 'auto'; }
     }
   }
 
@@ -147,7 +152,7 @@ function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, capt
     function setup() {
       videoDuration = video.duration;
       const videoPx = videoDuration * PX_PER_SECOND;
-      const totalPx = videoPx + (textZonePx || 0);
+      const totalPx = videoPx + (textZonePx || 0) + HOLD_PX;
       pin.style.height = pinHeight
         ? `calc(${pinHeight}px + ${totalPx}px)`
         : `calc(100vh + ${totalPx}px)`;
@@ -249,9 +254,11 @@ initScrollVideo({
   canvasId:    'brabusCanvas',
   pinId:       'brabusPin',
   videoSrc:    'assets/video/videoSmartXBRABUS.mp4',
-  pxPerSecond: 300,
-  captureFps:  24,
+  pxPerSecond: 800,   // más px por segundo = video avanza más lento al scrollear
+  captureFps:  60,    // más frames capturados = interpolación más suave entre frames
+  lerp:        0.07,  // más bajo = el frame "sigue" al scroll con más suavidad/inercia
   pinHeight:   null,
   textEl:      document.getElementById('brabusText'),
-  textZonePx:  500    // px de scroll para revelar/ocultar el texto
+  textZonePx:  500,   // px de scroll para revelar el texto
+  holdZonePx:  600    // px de "pausa" con texto 100% visible antes de liberar el pin
 });
