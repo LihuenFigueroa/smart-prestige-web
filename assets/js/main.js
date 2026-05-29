@@ -285,7 +285,7 @@ initScrollVideo({
   canvasId:    'brabusCanvas',
   pinId:       'brabusPin',
   videoSrc:    isMobile ? 'assets/video/videoSmartXBRABUSMobile.mp4' : 'assets/video/videoSmartXBRABUS.mp4',
-  pxPerSecond: isMobile ? 180 : 800,
+  pxPerSecond: isMobile ? 400 : 800,
   captureFps:  60,
   lerp:        0.07,
   pinHeight:   null,
