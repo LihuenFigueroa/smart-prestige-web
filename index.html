@@ -13,104 +13,85 @@
   <!-- ================================================================
        HERO + NAV  (scroll-pinned video)
   ================================================================ -->
-  <div id="heroPin"><!-- height set by JS -->
+  <div id="heroPin">
   <section class="sticky top-0 relative w-full h-screen min-h-[640px] overflow-hidden">
-    <!-- Video: visible de entrada, autoplay en loop -->
-    <!-- Canvas: siempre visible, muestra frame 0 desde el inicio -->
-    <canvas
-      id="heroCanvas"
-      class="absolute inset-0 w-full h-full"
-      style="z-index:2;"
-    ></canvas>
-    <!-- Video oculto: solo para extraer el primer frame rápido -->
+    <canvas id="heroCanvas" class="absolute inset-0 w-full h-full" style="z-index:2;"></canvas>
     <video
       id="heroVideo"
       src="assets/video/videoHero.mp4"
-      muted
-      playsinline
-      preload="auto"
+      muted playsinline preload="auto"
       class="absolute inset-0 w-full h-full object-cover object-center"
       style="z-index:1; opacity:0; pointer-events:none;"
     ></video>
 
-    <!-- Gradient top (nav background) -->
     <div class="absolute top-0 left-0 right-0 h-44 bg-gradient-to-b from-neutral-900/60 to-transparent pointer-events-none"></div>
-    <!-- Gradient bottom (content background) -->
     <div class="absolute bottom-0 left-0 right-0 h-[55%] bg-gradient-to-b from-transparent via-black/50 to-black/80 pointer-events-none"></div>
 
     <!-- Navigation -->
-    <nav class="absolute top-0 left-0 right-0 z-20 px-14 h-16 flex items-center justify-between">
-      <!-- Left: hamburger + nav link -->
+    <nav class="absolute top-0 left-0 right-0 z-20 px-5 md:px-14 h-14 md:h-16 flex items-center justify-between">
       <div class="flex items-center gap-8">
         <button class="flex flex-col gap-[5px] cursor-pointer" aria-label="Menú">
           <span class="w-5 h-px bg-white block"></span>
           <span class="w-5 h-px bg-white block"></span>
           <span class="w-5 h-px bg-white block"></span>
         </button>
-        <a href="#" class="text-white text-sm font-normal uppercase tracking-wide leading-6">Modelos</a>
+        <a href="#" class="hidden md:block text-white text-sm font-normal uppercase tracking-wide leading-6">Modelos</a>
       </div>
-
-      <!-- Center: wordmark -->
       <div class="absolute left-1/2 -translate-x-1/2">
-        <img src="assets/img/Logonavbar.svg" alt="smart" class="h-10 w-auto" />
+        <img src="assets/img/Logonavbar.svg" alt="smart" class="h-8 md:h-10 w-auto" />
       </div>
-
-      <!-- Right: icons -->
-      <div class="flex items-center gap-6">
-        <!-- Cart -->
+      <div class="flex items-center gap-4 md:gap-6">
         <button aria-label="Carrito" class="text-white">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round"
-              d="M2.25 3h1.386c.51 0 .955.343 1.087.836l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
-            />
+          <svg class="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.836l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"/>
           </svg>
         </button>
-        <!-- User -->
         <button aria-label="Usuario" class="text-white">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round"
-              d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
-            />
+          <svg class="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/>
           </svg>
         </button>
       </div>
     </nav>
 
     <!-- Hero content -->
-    <div class="absolute bottom-0 left-0 right-0 px-14 pb-14 flex justify-between items-end z-10">
+    <div class="absolute bottom-0 left-0 right-0 px-5 md:px-14 pb-8 md:pb-14 flex flex-col md:flex-row md:justify-between md:items-end gap-4 z-10">
       <div class="max-w-xl">
-        <h1 class="text-white text-3xl font-normal leading-10 mb-2">
+        <h1 class="text-white text-2xl md:text-3xl font-normal leading-8 md:leading-10 mb-2">
           Electrizante por naturaleza.
         </h1>
-        <p class="text-white text-lg font-normal leading-6 mb-8">
+        <p class="text-white text-base md:text-lg font-normal leading-6 mb-5 md:mb-8">
           El SUV compacto 100% eléctrico que redefine lo que significa conducir bien.
         </p>
-        <div class="flex gap-4">
-          <a href="#modelos"
-            class="h-12 px-6 bg-white rounded-full text-sm font-bold text-neutral-900 flex items-center hover:bg-neutral-100 transition-colors">
+        <div class="flex gap-3 items-center flex-wrap">
+          <a href="#modelos" class="h-7 md:h-12 px-4 md:px-6 bg-white rounded-full text-xs md:text-sm font-bold text-neutral-900 flex items-center hover:bg-neutral-100 transition-colors">
             Conocé los modelos
           </a>
-          <a href="#contacto"
-            class="h-12 px-6 rounded-full text-sm font-bold text-white border border-white flex items-center hover:bg-white/10 transition-colors">
+          <a href="#contacto" class="h-7 md:h-12 px-4 md:px-6 rounded-full text-xs md:text-sm font-bold text-white border border-white flex items-center hover:bg-white/10 transition-colors">
             Contactanos
           </a>
+          <!-- Smart #3 badge — mobile inline con botones -->
+          <div class="md:hidden ml-auto h-7 px-4 bg-white rounded-full flex items-center gap-0.5">
+            <span class="text-xs font-bold text-neutral-900">Smart </span>
+            <span class="text-xs font-normal text-neutral-900">#</span>
+            <span class="text-xs font-bold text-neutral-900">3</span>
+          </div>
         </div>
       </div>
-
-      <!-- Smart #3 badge -->
-      <div class="h-12 px-6 bg-white rounded-full flex items-center gap-0.5">
+      <!-- Smart #3 badge — desktop -->
+      <div class="hidden md:flex h-12 px-6 bg-white rounded-full items-center gap-0.5">
         <span class="text-sm font-bold text-neutral-900">Smart </span>
         <span class="text-sm font-normal text-neutral-900">#</span>
         <span class="text-sm font-bold text-neutral-900">3</span>
       </div>
     </div>
   </section>
-  </div><!-- /heroPin -->
+  </div>
 
   <!-- ================================================================
        LEGAL NOTE (top)
   ================================================================ -->
-  <section class="px-14 pt-3 pb-0 bg-white">
+  <section class="px-5 md:px-14 pt-3 pb-0 bg-white">
     <div class="max-w-[1320px] py-3">
       <p class="text-gray-500 text-xs leading-4">
         <span class="font-bold">#</span>
@@ -122,61 +103,37 @@
   </section>
 
   <!-- ================================================================
-       FEATURE CARDS (4 columns)
+       FEATURE CARDS
   ================================================================ -->
-  <section id="modelos" class="w-full bg-white py-12 px-14">
-    <div class="grid grid-cols-4 gap-6 max-w-[1320px] mx-auto">
+  <section id="modelos" class="w-full bg-white py-8 md:py-12 px-5 md:px-14">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-6 max-w-[1320px] mx-auto">
 
-      <!-- Card 1: smart X BRABUS -->
       <div class="flex flex-col gap-3">
-        <img src="assets/img/card1.png" alt="smart X BRABUS" class="w-full h-72 object-cover" />
-        <h3 class="text-3xl font-normal text-black leading-10">smart X BRABUS</h3>
-        <p class="text-base text-black leading-6 flex-1">
-          Rendimiento extremo. Diseño inconfundible. La versión más potente de smart lleva cada detalle al límite.
-        </p>
-        <a href="#"
-          class="self-start h-6 px-4 rounded-full border border-black text-xs font-bold text-neutral-900 flex items-center hover:bg-black hover:text-white transition-colors">
-          Descubrilo
-        </a>
+        <img src="assets/img/card1.png" alt="smart X BRABUS" class="w-full h-64 md:h-72 object-cover" />
+        <h3 class="text-2xl md:text-3xl font-normal text-black leading-8 md:leading-10">smart X BRABUS</h3>
+        <p class="text-base text-black leading-6 flex-1">Rendimiento extremo. Diseño inconfundible. La versión más potente de smart lleva cada detalle al límite.</p>
+        <a href="#" class="self-start h-6 px-4 rounded-full border border-black text-xs font-bold text-neutral-900 flex items-center hover:bg-black hover:text-white transition-colors">Descubrilo</a>
       </div>
 
-      <!-- Card 2: Conectividad -->
       <div class="flex flex-col gap-3">
-        <img src="assets/img/card2.png" alt="Conectividad" class="w-full h-72 object-cover" />
-        <h3 class="text-3xl font-normal text-black leading-10">Conectividad</h3>
-        <p class="text-base text-black leading-6 flex-1">
-          Pantalla central de 12,8'', Apple CarPlay® y Android Auto® inalámbrico. El camino y tu mundo, integrados.
-        </p>
-        <a href="#"
-          class="self-start h-6 px-4 rounded-full border border-black text-xs font-bold text-neutral-900 flex items-center hover:bg-black hover:text-white transition-colors">
-          Conocé más
-        </a>
+        <img src="assets/img/card2.png" alt="Conectividad" class="w-full h-64 md:h-72 object-cover" />
+        <h3 class="text-2xl md:text-3xl font-normal text-black leading-8 md:leading-10">Conectividad</h3>
+        <p class="text-base text-black leading-6 flex-1">Pantalla central de 12,8'', Apple CarPlay® y Android Auto® inalámbrico. El camino y tu mundo, integrados.</p>
+        <a href="#" class="self-start h-6 px-4 rounded-full border border-black text-xs font-bold text-neutral-900 flex items-center hover:bg-black hover:text-white transition-colors">Conocé más</a>
       </div>
 
-      <!-- Card 3: Movilidad eléctrica -->
       <div class="flex flex-col gap-3">
-        <img src="assets/img/card3.png" alt="Movilidad eléctrica" class="w-full h-72 object-cover" />
-        <h3 class="text-3xl font-normal text-black leading-10">Movilidad eléctrica</h3>
-        <p class="text-base text-black leading-6 flex-1">
-          Hasta 420 km de autonomía y carga rápida en menos de 30 minutos. El futuro de la movilidad ya tiene forma.
-        </p>
-        <a href="#"
-          class="self-start h-6 px-4 rounded-full border border-black text-xs font-bold text-neutral-900 flex items-center hover:bg-black hover:text-white transition-colors">
-          Explorá
-        </a>
+        <img src="assets/img/card3.png" alt="Movilidad eléctrica" class="w-full h-64 md:h-72 object-cover" />
+        <h3 class="text-2xl md:text-3xl font-normal text-black leading-8 md:leading-10">Movilidad eléctrica</h3>
+        <p class="text-base text-black leading-6 flex-1">Hasta 420 km de autonomía y carga rápida en menos de 30 minutos. El futuro de la movilidad ya tiene forma.</p>
+        <a href="#" class="self-start h-6 px-4 rounded-full border border-black text-xs font-bold text-neutral-900 flex items-center hover:bg-black hover:text-white transition-colors">Explorá</a>
       </div>
 
-      <!-- Card 4: Servicios posventa -->
       <div class="flex flex-col gap-3">
-        <img src="assets/img/card4.png" alt="Servicios posventa" class="w-full h-72 object-cover" />
-        <h3 class="text-3xl font-normal text-black leading-10">Servicios posventa</h3>
-        <p class="text-base text-black leading-6 flex-1">
-          Respaldo completo en cada kilómetro. Porque smart no termina en la compra.
-        </p>
-        <a href="#"
-          class="self-start h-6 px-4 rounded-full border border-black text-xs font-bold text-neutral-900 flex items-center hover:bg-black hover:text-white transition-colors">
-          Ver servicios
-        </a>
+        <img src="assets/img/card4.png" alt="Servicios posventa" class="w-full h-64 md:h-72 object-cover" />
+        <h3 class="text-2xl md:text-3xl font-normal text-black leading-8 md:leading-10">Servicios posventa</h3>
+        <p class="text-base text-black leading-6 flex-1">Respaldo completo en cada kilómetro. Porque smart no termina en la compra.</p>
+        <a href="#" class="self-start h-6 px-4 rounded-full border border-black text-xs font-bold text-neutral-900 flex items-center hover:bg-black hover:text-white transition-colors">Ver servicios</a>
       </div>
 
     </div>
@@ -185,436 +142,260 @@
   <!-- ================================================================
        FULL-WIDTH VIDEO BANNER — smart X BRABUS (scroll-driven)
   ================================================================ -->
-  <div id="brabusPin"><!-- height set by JS -->
+  <div id="brabusPin">
   <section class="sticky top-0 relative w-full h-screen overflow-hidden">
-    <canvas
-      id="brabusCanvas"
-      class="absolute inset-0 w-full h-full"
-      style="z-index:2;"
-    ></canvas>
+    <canvas id="brabusCanvas" class="absolute inset-0 w-full h-full" style="z-index:2;"></canvas>
     <video
       id="brabusVideo"
       src="assets/video/videoSmartXBRABUS.mp4"
-      muted
-      playsinline
-      preload="auto"
+      muted playsinline preload="auto"
       class="absolute inset-0 w-full h-full object-cover object-center"
       style="z-index:1; opacity:0; pointer-events:none;"
     ></video>
 
-    <!-- Texto Figma — aparece en fade cuando el video termina -->
+    <!-- Texto overlay — solo desktop -->
     <div id="brabusText"
-      class="absolute inset-0 pointer-events-none"
+      class="absolute inset-0 pointer-events-none hidden md:block"
       style="z-index:10; opacity:0; transition: opacity 0.8s ease;">
-
-      <!-- SVG overlay — reproducción fiel al diseño Figma (texto convertido a paths) -->
       <img src="assets/img/brabus_overlay.svg"
            class="absolute top-0 left-0 w-full"
-           style="height:auto; display:block;"
-           alt="" />
-      <!-- CTA transparente superpuesto sobre el badge del SVG -->
+           style="height:auto; display:block;" alt="" />
       <a href="#contacto"
          class="absolute pointer-events-auto cursor-pointer"
-         style="top:21.66vw; left:80.79vw; width:10.23vw; height:1.83vw; min-height:20px; min-width:120px; border-radius:9999px;">
-      </a>
+         style="top:21.66vw; left:80.79vw; width:10.23vw; height:1.83vw; min-height:20px; min-width:120px; border-radius:9999px;"></a>
     </div>
-
   </section>
   </div>
 
   <!-- ================================================================
-       ELÉCTRICO DE VERDAD — carrusel horizontal scroll-driven (3 slides)
+       MOBILE ONLY — Elegí tu Smart.
+  ================================================================ -->
+  <section class="block md:hidden bg-white pt-12 pb-10 px-5">
+    <h2 class="text-2xl font-bold text-neutral-900 text-center mb-6" style="font-family:'FOR_smart_Next',sans-serif;">
+      Elegí tu Smart.
+    </h2>
+    <!-- Toggle #1 / #3 -->
+    <div class="flex justify-center mb-6">
+      <div class="flex border border-neutral-900 rounded-full overflow-hidden" style="height:28px; width:180px;">
+        <button id="mobileTab1" onclick="switchModel(1)"
+          class="flex-1 flex items-center justify-center text-[10px] font-normal bg-neutral-900 text-white transition-all">
+          Smart #1
+        </button>
+        <button id="mobileTab3" onclick="switchModel(3)"
+          class="flex-1 flex items-center justify-center text-[10px] font-normal text-neutral-900 transition-all">
+          Smart #3
+        </button>
+      </div>
+    </div>
+    <!-- Imagen del modelo -->
+    <div class="relative mx-auto overflow-hidden" style="max-width:320px; height:260px;">
+      <img id="mobileModelImg" src="assets/img/smartXBRABUS.png" alt="Smart" class="w-full h-full object-contain" />
+    </div>
+    <!-- CTA -->
+    <div class="flex justify-center mt-6">
+      <a id="mobileModelCta" href="#contacto"
+        class="h-7 px-5 rounded-full border border-neutral-900 text-xs font-bold text-neutral-900 inline-flex items-center hover:bg-neutral-900 hover:text-white transition-colors">
+        Averiguá más sobre el Smart #1
+      </a>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       ELÉCTRICO DE VERDAD (oculto)
   ================================================================ -->
   <div id="electricoPin" style="height:400vh; display:none;">
-    <section class="sticky top-0 w-full bg-white overflow-hidden" style="height:100vh;">
-      <div id="electricoStrip" class="flex" style="width:400vw; height:100%; will-change:transform;">
-
-        <!-- ── Slide 1 (original) ── -->
-        <div class="flex items-center" style="width:100vw; height:100%; padding:0 56px; gap:32px;">
-          <div style="width:384px; flex-shrink:0;">
-            <h2 class="text-5xl font-bold text-black leading-10 mb-6">
-              Eléctrico de verdad.<br/>Sin compromisos.
-            </h2>
-            <p class="text-2xl text-black font-normal leading-7 tracking-wide mb-6">
-              Elegir lo eléctrico con smart es una apuesta segura: tenés todo para ganar y nada que perder.
-            </p>
-            <p class="text-base text-black font-normal leading-5 tracking-tight mb-10">
-              Los modelos smart #1 y #3 están diseñados para la vida cotidiana y para mucho más. Batería de gran
-              capacidad, carga rápida y una autonomía que acompaña cada viaje sin que tengas que pensar en el
-              siguiente enchufe.
-            </p>
-            <a href="#contacto"
-              class="h-12 px-8 rounded-full border border-neutral-900 text-sm font-bold text-neutral-900 inline-flex items-center hover:bg-neutral-900 hover:text-white transition-colors">
-              Encontrá tu smart
-            </a>
-          </div>
-          <div class="flex-1 relative overflow-hidden rounded-sm" style="height:440px;">
-            <img src="assets/img/electricoDeVerdad.png" alt="Hasta 420 km de autonomía" class="w-full h-full object-cover" />
-            <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/60"></div>
-            <div class="absolute bottom-0 left-0 p-7">
-              <p class="text-white text-xl font-bold leading-6 mb-1">Hasta 420 km de autonomía</p>
-              <p class="text-white text-xs font-normal leading-4">
-                En ciclo WLTP para el smart #1 Pro+.<br/>
-                Distancia de sobra para la ciudad y los viajes que más importan.
-              </p>
-            </div>
+  <section class="sticky top-0 w-full bg-white overflow-hidden" style="height:100vh;">
+    <div id="electricoStrip" class="flex" style="width:400vw; height:100%; will-change:transform;">
+      <div class="flex items-center" style="width:100vw; height:100%; padding:0 56px; gap:32px;">
+        <div style="width:384px; flex-shrink:0;">
+          <h2 class="text-5xl font-bold text-black leading-10 mb-6">Eléctrico de verdad.<br/>Sin compromisos.</h2>
+          <p class="text-2xl text-black font-normal leading-7 tracking-wide mb-6">Elegir lo eléctrico con smart es una apuesta segura: tenés todo para ganar y nada que perder.</p>
+          <p class="text-base text-black font-normal leading-5 tracking-tight mb-10">Los modelos smart #1 y #3 están diseñados para la vida cotidiana y para mucho más. Batería de gran capacidad, carga rápida y una autonomía que acompaña cada viaje sin que tengas que pensar en el siguiente enchufe.</p>
+          <a href="#contacto" class="h-12 px-8 rounded-full border border-neutral-900 text-sm font-bold text-neutral-900 inline-flex items-center hover:bg-neutral-900 hover:text-white transition-colors">Encontrá tu smart</a>
+        </div>
+        <div class="flex-1 relative overflow-hidden rounded-sm" style="height:440px;">
+          <img src="assets/img/electricoDeVerdad.png" alt="Hasta 420 km de autonomía" class="w-full h-full object-cover" />
+          <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/60"></div>
+          <div class="absolute bottom-0 left-0 p-7">
+            <p class="text-white text-xl font-bold leading-6 mb-1">Hasta 420 km de autonomía</p>
+            <p class="text-white text-xs font-normal leading-4">En ciclo WLTP para el smart #1 Pro+.<br/>Distancia de sobra para la ciudad y los viajes que más importan.</p>
           </div>
         </div>
-
-        <!-- ── Slide 2 ── -->
-        <div class="flex items-center" style="width:100vw; height:100%; padding:0 56px; gap:32px;">
-          <!-- Texto (idéntico en los 3 slides) -->
-          <div style="width:384px; flex-shrink:0;">
-            <h2 class="text-5xl font-bold text-black leading-10 mb-6">
-              Eléctrico de verdad.<br/>Sin compromisos.
-            </h2>
-            <p class="text-2xl text-black font-normal leading-7 tracking-wide mb-6">
-              Elegir lo eléctrico con smart es una apuesta segura: tenés todo para ganar y nada que perder.
-            </p>
-            <p class="text-base text-black font-normal leading-5 tracking-tight mb-10">
-              Los modelos smart #1 y #3 están diseñados para la vida cotidiana y para mucho más. Batería de gran
-              capacidad, carga rápida y una autonomía que acompaña cada viaje sin que tengas que pensar en el
-              siguiente enchufe.
-            </p>
-            <a href="#contacto"
-              class="h-12 px-8 rounded-full border border-neutral-900 text-sm font-bold text-neutral-900 inline-flex items-center hover:bg-neutral-900 hover:text-white transition-colors">
-              Encontrá tu smart
-            </a>
-          </div>
-          <!-- Foto -->
-          <div class="flex-1 relative overflow-hidden rounded-sm" style="height:440px;">
-            <img src="assets/img/electricoDeVerdad2.png" alt="Hasta 420 km de autonomía" class="w-full h-full object-cover" />
-            <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/60"></div>
-            <div class="absolute bottom-0 left-0 p-7">
-              <p class="text-white text-xl font-bold leading-6 mb-1">Hasta 420 km de autonomía</p>
-              <p class="text-white text-xs font-normal leading-4">
-                En ciclo WLTP para el smart #1 Pro+.<br/>
-                Distancia de sobra para la ciudad y los viajes que más importan.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!-- ── Slide 3 ── -->
-        <div class="flex items-center" style="width:100vw; height:100%; padding:0 56px; gap:32px;">
-          <div style="width:384px; flex-shrink:0;">
-            <h2 class="text-5xl font-bold text-black leading-10 mb-6">
-              Eléctrico de verdad.<br/>Sin compromisos.
-            </h2>
-            <p class="text-2xl text-black font-normal leading-7 tracking-wide mb-6">
-              Elegir lo eléctrico con smart es una apuesta segura: tenés todo para ganar y nada que perder.
-            </p>
-            <p class="text-base text-black font-normal leading-5 tracking-tight mb-10">
-              Los modelos smart #1 y #3 están diseñados para la vida cotidiana y para mucho más. Batería de gran
-              capacidad, carga rápida y una autonomía que acompaña cada viaje sin que tengas que pensar en el
-              siguiente enchufe.
-            </p>
-            <a href="#contacto"
-              class="h-12 px-8 rounded-full border border-neutral-900 text-sm font-bold text-neutral-900 inline-flex items-center hover:bg-neutral-900 hover:text-white transition-colors">
-              Encontrá tu smart
-            </a>
-          </div>
-          <div class="flex-1 relative overflow-hidden rounded-sm" style="height:440px;">
-            <img src="assets/img/electricoDeVerdad3.png" alt="Carga rápida" class="w-full h-full object-cover" />
-            <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/60"></div>
-            <div class="absolute bottom-0 left-0 p-7">
-              <p class="text-white text-xl font-bold leading-6 mb-1">De 10 al 80% en menos de 30 minutos</p>
-              <p class="text-white text-xs font-normal leading-4">
-                Carga en corriente continua de hasta 150 kW.<br/>
-                En AC: 5,5 h a 7,4 kW (Pure) o 3 h a 22 kW (Pro+ y BRABUS).
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!-- ── Slide 4 ── -->
-        <div class="flex items-center" style="width:100vw; height:100%; padding:0 56px; gap:32px;">
-          <div style="width:384px; flex-shrink:0;">
-            <h2 class="text-5xl font-bold text-black leading-10 mb-6">
-              Eléctrico de verdad.<br/>Sin compromisos.
-            </h2>
-            <p class="text-2xl text-black font-normal leading-7 tracking-wide mb-6">
-              Elegir lo eléctrico con smart es una apuesta segura: tenés todo para ganar y nada que perder.
-            </p>
-            <p class="text-base text-black font-normal leading-5 tracking-tight mb-10">
-              Los modelos smart #1 y #3 están diseñados para la vida cotidiana y para mucho más. Batería de gran
-              capacidad, carga rápida y una autonomía que acompaña cada viaje sin que tengas que pensar en el
-              siguiente enchufe.
-            </p>
-            <a href="#contacto"
-              class="h-12 px-8 rounded-full border border-neutral-900 text-sm font-bold text-neutral-900 inline-flex items-center hover:bg-neutral-900 hover:text-white transition-colors">
-              Encontrá tu smart
-            </a>
-          </div>
-          <div class="flex-1 relative overflow-hidden rounded-sm" style="height:440px;">
-            <img src="assets/img/electricoDeVerdad4.png" alt="Recuperación de energía" class="w-full h-full object-cover" />
-            <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/60"></div>
-            <div class="absolute bottom-0 left-0 p-7">
-              <p class="text-white text-xl font-bold leading-6 mb-1">Recuperación de energía en cada frenada</p>
-              <p class="text-white text-xs font-normal leading-4">
-                El sistema de frenos regenerativos convierte la energía cinética en carga para la batería.<br/>
-                Menos frenadas, más kilómetros: la conducción eléctrica inteligente.
-              </p>
-            </div>
-          </div>
-        </div>
-
       </div>
-    </section>
+      <div class="flex items-center" style="width:100vw; height:100%; padding:0 56px; gap:32px;">
+        <div style="width:384px; flex-shrink:0;">
+          <h2 class="text-5xl font-bold text-black leading-10 mb-6">Eléctrico de verdad.<br/>Sin compromisos.</h2>
+          <p class="text-2xl text-black font-normal leading-7 tracking-wide mb-6">Elegir lo eléctrico con smart es una apuesta segura: tenés todo para ganar y nada que perder.</p>
+          <p class="text-base text-black font-normal leading-5 tracking-tight mb-10">Los modelos smart #1 y #3 están diseñados para la vida cotidiana y para mucho más. Batería de gran capacidad, carga rápida y una autonomía que acompaña cada viaje sin que tengas que pensar en el siguiente enchufe.</p>
+          <a href="#contacto" class="h-12 px-8 rounded-full border border-neutral-900 text-sm font-bold text-neutral-900 inline-flex items-center hover:bg-neutral-900 hover:text-white transition-colors">Encontrá tu smart</a>
+        </div>
+        <div class="flex-1 relative overflow-hidden rounded-sm" style="height:440px;">
+          <img src="assets/img/electricoDeVerdad2.png" alt="Hasta 420 km de autonomía" class="w-full h-full object-cover" />
+          <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/60"></div>
+          <div class="absolute bottom-0 left-0 p-7">
+            <p class="text-white text-xl font-bold leading-6 mb-1">Hasta 420 km de autonomía</p>
+            <p class="text-white text-xs font-normal leading-4">En ciclo WLTP para el smart #1 Pro+.<br/>Distancia de sobra para la ciudad y los viajes que más importan.</p>
+          </div>
+        </div>
+      </div>
+      <div class="flex items-center" style="width:100vw; height:100%; padding:0 56px; gap:32px;">
+        <div style="width:384px; flex-shrink:0;">
+          <h2 class="text-5xl font-bold text-black leading-10 mb-6">Eléctrico de verdad.<br/>Sin compromisos.</h2>
+          <p class="text-2xl text-black font-normal leading-7 tracking-wide mb-6">Elegir lo eléctrico con smart es una apuesta segura: tenés todo para ganar y nada que perder.</p>
+          <p class="text-base text-black font-normal leading-5 tracking-tight mb-10">Los modelos smart #1 y #3 están diseñados para la vida cotidiana y para mucho más. Batería de gran capacidad, carga rápida y una autonomía que acompaña cada viaje sin que tengas que pensar en el siguiente enchufe.</p>
+          <a href="#contacto" class="h-12 px-8 rounded-full border border-neutral-900 text-sm font-bold text-neutral-900 inline-flex items-center hover:bg-neutral-900 hover:text-white transition-colors">Encontrá tu smart</a>
+        </div>
+        <div class="flex-1 relative overflow-hidden rounded-sm" style="height:440px;">
+          <img src="assets/img/electricoDeVerdad3.png" alt="Carga rápida" class="w-full h-full object-cover" />
+          <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/60"></div>
+          <div class="absolute bottom-0 left-0 p-7">
+            <p class="text-white text-xl font-bold leading-6 mb-1">De 10 al 80% en menos de 30 minutos</p>
+            <p class="text-white text-xs font-normal leading-4">Carga en corriente continua de hasta 150 kW.<br/>En AC: 5,5 h a 7,4 kW (Pure) o 3 h a 22 kW (Pro+ y BRABUS).</p>
+          </div>
+        </div>
+      </div>
+      <div class="flex items-center" style="width:100vw; height:100%; padding:0 56px; gap:32px;">
+        <div style="width:384px; flex-shrink:0;">
+          <h2 class="text-5xl font-bold text-black leading-10 mb-6">Eléctrico de verdad.<br/>Sin compromisos.</h2>
+          <p class="text-2xl text-black font-normal leading-7 tracking-wide mb-6">Elegir lo eléctrico con smart es una apuesta segura: tenés todo para ganar y nada que perder.</p>
+          <p class="text-base text-black font-normal leading-5 tracking-tight mb-10">Los modelos smart #1 y #3 están diseñados para la vida cotidiana y para mucho más. Batería de gran capacidad, carga rápida y una autonomía que acompaña cada viaje sin que tengas que pensar en el siguiente enchufe.</p>
+          <a href="#contacto" class="h-12 px-8 rounded-full border border-neutral-900 text-sm font-bold text-neutral-900 inline-flex items-center hover:bg-neutral-900 hover:text-white transition-colors">Encontrá tu smart</a>
+        </div>
+        <div class="flex-1 relative overflow-hidden rounded-sm" style="height:440px;">
+          <img src="assets/img/electricoDeVerdad4.png" alt="Recuperación de energía" class="w-full h-full object-cover" />
+          <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/60"></div>
+          <div class="absolute bottom-0 left-0 p-7">
+            <p class="text-white text-xl font-bold leading-6 mb-1">Recuperación de energía en cada frenada</p>
+            <p class="text-white text-xs font-normal leading-4">El sistema de frenos regenerativos convierte la energía cinética en carga para la batería.<br/>Menos frenadas, más kilómetros: la conducción eléctrica inteligente.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
   </div>
 
   <!-- ================================================================
-       TU AUTO PIENSA COMO VOS — carrusel scroll-driven (imágenes se mueven, texto fijo)
+       TU AUTO PIENSA COMO VOS (oculto)
   ================================================================ -->
   <div id="tuAutoPin" style="height:600vh; display:none;">
     <section class="sticky top-0 w-full bg-white overflow-hidden" style="height:100vh; display:flex; flex-direction:column;">
-
-      <!-- Texto fijo centrado -->
       <div class="text-center px-14 pt-14 pb-7 flex-shrink-0">
         <p class="text-2xl text-black font-normal tracking-wide mb-1">Tecnología de integración</p>
         <h2 class="text-5xl font-bold text-black leading-10 mb-5">Tu auto piensa como vos.</h2>
-        <p class="text-base text-black leading-6 max-w-[783px] mx-auto mb-5">
-          El smart #1 y el #3 son vehículos diseñados desde cero en la era digital. El sistema de
-          infoentretenimiento corre sobre Android Automotive y se integra con el ecosistema Hello smart:
-          desde la pantalla central hasta tu teléfono, todo funciona en red.
-          <strong>Cada función está pensada para que la tecnología quede al servicio del manejo.</strong>
-        </p>
-        <a href="#contacto"
-          class="h-7 px-5 rounded-full border border-neutral-900 text-sm font-bold text-neutral-900 inline-flex items-center hover:bg-neutral-900 hover:text-white transition-colors">
-          Contactanos
-        </a>
+        <p class="text-base text-black leading-6 max-w-[783px] mx-auto mb-5">El smart #1 y el #3 son vehículos diseñados desde cero en la era digital. El sistema de infoentretenimiento corre sobre Android Automotive y se integra con el ecosistema Hello smart: desde la pantalla central hasta tu teléfono, todo funciona en red. <strong>Cada función está pensada para que la tecnología quede al servicio del manejo.</strong></p>
+        <a href="#contacto" class="h-7 px-5 rounded-full border border-neutral-900 text-sm font-bold text-neutral-900 inline-flex items-center hover:bg-neutral-900 hover:text-white transition-colors">Contactanos</a>
       </div>
-
-      <!-- Área de imágenes -->
       <div class="flex-1 relative overflow-hidden">
-
-        <!-- Strip de 6 imágenes -->
         <div id="tuAutoStrip" style="display:flex; width:600vw; height:100%; will-change:transform;">
-
-          <!-- Slide 1 -->
-          <div style="width:100vw; height:100%; position:relative; flex-shrink:0;">
-            <img src="assets/img/tuAutoPiensaComoVos.png" alt="Pantalla central" style="width:100%; height:100%; object-fit:cover;" />
-            <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 45%,rgba(0,0,0,0.82));"></div>
-            <div style="position:absolute;bottom:52px;left:56px;max-width:540px;">
-              <p class="font-smart-next text-white text-3xl font-normal leading-10 mb-2">Pantalla central de 12,8''</p>
-              <p class="text-white text-lg font-normal leading-6">Todo el control del vehículo en una pantalla táctil de alta resolución. Y frente al conductor, una pantalla de instrumentos de 9,2'' con información de conducción siempre a la vista.</p>
-            </div>
-          </div>
-
-          <!-- Slide 2 -->
-          <div style="width:100vw; height:100%; position:relative; flex-shrink:0;">
-            <img src="assets/img/tuAutoPiensaComoVos2.png" alt="Apple CarPlay" style="width:100%; height:100%; object-fit:cover;" />
-            <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 45%,rgba(0,0,0,0.82));"></div>
-            <div style="position:absolute;bottom:52px;left:56px;max-width:540px;">
-              <p class="font-smart-next text-white text-3xl font-normal leading-10 mb-2">Apple CarPlay® y Android Auto® inalámbrico</p>
-              <p class="text-white text-lg font-normal leading-6">Tu smartphone se conecta sin cables. Llamadas, mapas, música y mensajes integrados, sin perder la vista del camino.</p>
-            </div>
-          </div>
-
-          <!-- Slide 3 -->
-          <div style="width:100vw; height:100%; position:relative; flex-shrink:0;">
-            <img src="assets/img/tuAutoPiensaComoVos3.png" alt="Actualización OTA" style="width:100%; height:100%; object-fit:cover;" />
-            <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 45%,rgba(0,0,0,0.82));"></div>
-            <div style="position:absolute;bottom:52px;left:56px;max-width:540px;">
-              <p class="font-smart-next text-white text-3xl font-normal leading-10 mb-2">Actualización OTA</p>
-              <p class="text-white text-lg font-normal leading-6">El software de tu smart se actualiza de forma remota. Sin ir al taller, sin interrupciones.</p>
-            </div>
-          </div>
-
-          <!-- Slide 4 -->
-          <div style="width:100vw; height:100%; position:relative; flex-shrink:0;">
-            <img src="assets/img/tuAutoPiensaComoVos4.png" alt="Keyless entry" style="width:100%; height:100%; object-fit:cover;" />
-            <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 45%,rgba(0,0,0,0.82));"></div>
-            <div style="position:absolute;bottom:52px;left:56px;max-width:540px;">
-              <p class="font-smart-next text-white text-3xl font-normal leading-10 mb-2">Keyless entry</p>
-              <p class="text-white text-lg font-normal leading-6">Acercate a tu smart y las puertas se abren. La llave es opcional.</p>
-            </div>
-          </div>
-
-          <!-- Slide 5 -->
-          <div style="width:100vw; height:100%; position:relative; flex-shrink:0;">
-            <img src="assets/img/tuAutoPiensaComoVos5.png" alt="Asistente de voz" style="width:100%; height:100%; object-fit:cover;" />
-            <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 45%,rgba(0,0,0,0.82));"></div>
-            <div style="position:absolute;bottom:52px;left:56px;max-width:540px;">
-              <p class="font-smart-next text-white text-3xl font-normal leading-10 mb-2">Asistente de voz</p>
-              <p class="text-white text-lg font-normal leading-6">Controlá la navegación, el clima y los medios sin soltar el volante. El auto responde cuando hablás.</p>
-            </div>
-          </div>
-
-          <!-- Slide 6 -->
-          <div style="width:100vw; height:100%; position:relative; flex-shrink:0;">
-            <img src="assets/img/tuAutoPiensaComoVos6.png" alt="Hello smart app" style="width:100%; height:100%; object-fit:cover;" />
-            <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 45%,rgba(0,0,0,0.82));"></div>
-            <div style="position:absolute;bottom:52px;left:56px;max-width:540px;">
-              <p class="font-smart-next text-white text-3xl font-normal leading-10 mb-2">Hello smart app</p>
-              <p class="text-white text-lg font-normal leading-6">Controlá tu auto desde el celular: monitoreá la carga, programá la climatización antes de subir y localizá el vehículo en cualquier momento.</p>
-            </div>
-          </div>
-
-        </div><!-- /strip -->
-
-        <!-- Indicador de carrusel -->
-        <div id="tuAutoDots" style="position:absolute; bottom:20px; left:50%; transform:translateX(-50%); display:flex; align-items:center; gap:9px;">
-          <div class="dot active"></div>
-          <div class="dot"></div>
-          <div class="dot"></div>
-          <div class="dot"></div>
-          <div class="dot"></div>
-          <div class="dot"></div>
+          <div style="width:100vw; height:100%; position:relative; flex-shrink:0;"><img src="assets/img/tuAutoPiensaComoVos.png" alt="Pantalla central" style="width:100%; height:100%; object-fit:cover;" /><div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 45%,rgba(0,0,0,0.82));"></div><div style="position:absolute;bottom:52px;left:56px;max-width:540px;"><p class="font-smart-next text-white text-3xl font-normal leading-10 mb-2">Pantalla central de 12,8''</p><p class="text-white text-lg font-normal leading-6">Todo el control del vehículo en una pantalla táctil de alta resolución. Y frente al conductor, una pantalla de instrumentos de 9,2'' con información de conducción siempre a la vista.</p></div></div>
+          <div style="width:100vw; height:100%; position:relative; flex-shrink:0;"><img src="assets/img/tuAutoPiensaComoVos2.png" alt="Apple CarPlay" style="width:100%; height:100%; object-fit:cover;" /><div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 45%,rgba(0,0,0,0.82));"></div><div style="position:absolute;bottom:52px;left:56px;max-width:540px;"><p class="font-smart-next text-white text-3xl font-normal leading-10 mb-2">Apple CarPlay® y Android Auto® inalámbrico</p><p class="text-white text-lg font-normal leading-6">Tu smartphone se conecta sin cables. Llamadas, mapas, música y mensajes integrados, sin perder la vista del camino.</p></div></div>
+          <div style="width:100vw; height:100%; position:relative; flex-shrink:0;"><img src="assets/img/tuAutoPiensaComoVos3.png" alt="Actualización OTA" style="width:100%; height:100%; object-fit:cover;" /><div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 45%,rgba(0,0,0,0.82));"></div><div style="position:absolute;bottom:52px;left:56px;max-width:540px;"><p class="font-smart-next text-white text-3xl font-normal leading-10 mb-2">Actualización OTA</p><p class="text-white text-lg font-normal leading-6">El software de tu smart se actualiza de forma remota. Sin ir al taller, sin interrupciones.</p></div></div>
+          <div style="width:100vw; height:100%; position:relative; flex-shrink:0;"><img src="assets/img/tuAutoPiensaComoVos4.png" alt="Keyless entry" style="width:100%; height:100%; object-fit:cover;" /><div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 45%,rgba(0,0,0,0.82));"></div><div style="position:absolute;bottom:52px;left:56px;max-width:540px;"><p class="font-smart-next text-white text-3xl font-normal leading-10 mb-2">Keyless entry</p><p class="text-white text-lg font-normal leading-6">Acercate a tu smart y las puertas se abren. La llave es opcional.</p></div></div>
+          <div style="width:100vw; height:100%; position:relative; flex-shrink:0;"><img src="assets/img/tuAutoPiensaComoVos5.png" alt="Asistente de voz" style="width:100%; height:100%; object-fit:cover;" /><div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 45%,rgba(0,0,0,0.82));"></div><div style="position:absolute;bottom:52px;left:56px;max-width:540px;"><p class="font-smart-next text-white text-3xl font-normal leading-10 mb-2">Asistente de voz</p><p class="text-white text-lg font-normal leading-6">Controlá la navegación, el clima y los medios sin soltar el volante. El auto responde cuando hablás.</p></div></div>
+          <div style="width:100vw; height:100%; position:relative; flex-shrink:0;"><img src="assets/img/tuAutoPiensaComoVos6.png" alt="Hello smart app" style="width:100%; height:100%; object-fit:cover;" /><div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 45%,rgba(0,0,0,0.82));"></div><div style="position:absolute;bottom:52px;left:56px;max-width:540px;"><p class="font-smart-next text-white text-3xl font-normal leading-10 mb-2">Hello smart app</p><p class="text-white text-lg font-normal leading-6">Controlá tu auto desde el celular: monitoreá la carga, programá la climatización antes de subir y localizá el vehículo en cualquier momento.</p></div></div>
         </div>
-
-      </div><!-- /image area -->
-
+        <div id="tuAutoDots" style="position:absolute; bottom:20px; left:50%; transform:translateX(-50%); display:flex; align-items:center; gap:9px;">
+          <div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+        </div>
+      </div>
     </section>
   </div>
 
   <!-- ================================================================
-       BRAND HISTORY — 2 columns
+       BRAND HISTORY — 2 columns (oculto desktop, oculto mobile también)
   ================================================================ -->
   <section class="w-full bg-white pb-20 px-14" style="display:none;">
     <div class="max-w-[1320px] mx-auto flex gap-16 items-start">
-
-      <!-- Left: title -->
       <div class="w-72 flex-shrink-0">
-        <h2 class="text-4xl font-bold text-black leading-tight">
-          Smart: tres décadas reinventando el auto urbano.
-        </h2>
+        <h2 class="text-4xl font-bold text-black leading-tight">Smart: tres décadas reinventando el auto urbano.</h2>
       </div>
-
-      <!-- Right: body -->
       <div class="flex-1 pt-1">
-        <p class="text-2xl text-neutral-900 leading-7">
-          SMART nació en 1994 con una idea simple y radical:
-          <strong>¿por qué un auto tiene que ser más grande de lo necesario?</strong>
-          Desde ese primer city car que revolucionó las ciudades europeas, la marca fue sumando modelos,
-          tecnología y una mirada propia sobre lo que significa moverse en el siglo XXI. Hoy, smart es
-          100% eléctrico y parte de una nueva generación de SUVs compactos pensados para el futuro.
-        </p>
+        <p class="text-2xl text-neutral-900 leading-7">SMART nació en 1994 con una idea simple y radical: <strong>¿por qué un auto tiene que ser más grande de lo necesario?</strong> Desde ese primer city car que revolucionó las ciudades europeas, la marca fue sumando modelos, tecnología y una mirada propia sobre lo que significa moverse en el siglo XXI. Hoy, smart es 100% eléctrico y parte de una nueva generación de SUVs compactos pensados para el futuro.</p>
       </div>
-
     </div>
   </section>
+
+  <!-- ================================================================
+       MOBILE ONLY — Brand history dark card
+  ================================================================ -->
+  <div class="block md:hidden mx-5 mb-10 overflow-hidden bg-neutral-900" style="border-radius:4px;">
+    <img src="assets/img/laColaboracionBRABUS.png" alt="Smart historia" class="w-full h-52 object-cover" />
+    <div class="px-6 py-6 flex flex-col gap-5">
+      <p class="text-white text-2xl font-normal leading-7">Smart: tres décadas reinventando el auto urbano.</p>
+      <a href="#" class="self-start h-10 px-6 bg-white rounded-full text-sm font-bold text-neutral-900 inline-flex items-center hover:bg-neutral-100 transition-colors">
+        Descubrí quienes somos
+      </a>
+    </div>
+  </div>
 
   <!-- ================================================================
        STORY SLIDES (3 full-width dark panels)
   ================================================================ -->
-
-  <!-- Slide 1: Diseño -->
-  <div class="relative w-full h-[810px] overflow-hidden bg-gray-700">
-    <img
-      src="assets/img/disenioQueTieneFirmaPropia.png"
-      alt="Diseño smart"
-      class="absolute inset-0 w-full h-full object-cover"
-    />
+  <div class="relative w-full overflow-hidden bg-gray-700" style="height: clamp(320px, 55vh, 810px);">
+    <img src="assets/img/disenioQueTieneFirmaPropia.png" alt="Diseño smart" class="absolute inset-0 w-full h-full object-cover" />
     <div class="absolute inset-0 bg-gradient-to-r from-neutral-900/80 via-neutral-900/50 to-transparent"></div>
-    <div class="absolute inset-0 flex items-start pl-28 pt-28">
+    <div class="absolute inset-0 flex items-start px-6 md:pl-28 pt-12 md:pt-28">
       <div class="max-w-sm">
-        <h2 class="text-white text-4xl font-normal leading-[48px] mb-4">
-          Diseño que tiene firma propia
-        </h2>
-        <p class="text-white text-base font-normal leading-6">
-          Cada modelo smart es reconocible a primera vista. Líneas fluidas, proporciones equilibradas
-          y detalles que hablan de un DNA de marca consistente a lo largo del tiempo.
-        </p>
+        <h2 class="text-white text-2xl md:text-4xl font-normal leading-8 md:leading-[48px] mb-3 md:mb-4">Diseño que tiene firma propia</h2>
+        <p class="text-white text-sm md:text-base font-normal leading-5 md:leading-6">Cada modelo smart es reconocible a primera vista. Líneas fluidas, proporciones equilibradas y detalles que hablan de un DNA de marca consistente a lo largo del tiempo.</p>
       </div>
     </div>
   </div>
 
-  <!-- Slide 2: BRABUS -->
-  <div class="relative w-full h-[810px] overflow-hidden bg-gray-700">
-    <img
-      src="assets/img/laColaboracionBRABUS.png"
-      alt="La colaboración BRABUS"
-      class="absolute inset-0 w-full h-full object-cover"
-    />
+  <div class="relative w-full overflow-hidden bg-gray-700" style="height: clamp(320px, 55vh, 810px);">
+    <img src="assets/img/laColaboracionBRABUS.png" alt="La colaboración BRABUS" class="absolute inset-0 w-full h-full object-cover" />
     <div class="absolute inset-0 bg-gradient-to-r from-neutral-900/80 via-neutral-900/50 to-transparent"></div>
-    <div class="absolute inset-0 flex items-start pl-28 pt-28">
+    <div class="absolute inset-0 flex items-start px-6 md:pl-28 pt-12 md:pt-28">
       <div class="max-w-sm">
-        <h2 class="text-white text-4xl font-normal leading-[48px] mb-4">
-          La colaboración BRABUS
-        </h2>
-        <p class="text-white text-base font-normal leading-6">
-          La alianza con la preparadora alemana BRABUS le dio a smart una versión de alto rendimiento
-          que no resigna nada del ADN eléctrico de la marca.
-        </p>
+        <h2 class="text-white text-2xl md:text-4xl font-normal leading-8 md:leading-[48px] mb-3 md:mb-4">La colaboración BRABUS</h2>
+        <p class="text-white text-sm md:text-base font-normal leading-5 md:leading-6">La alianza con la preparadora alemana BRABUS le dio a smart una versión de alto rendimiento que no resigna nada del ADN eléctrico de la marca.</p>
       </div>
     </div>
   </div>
 
-  <!-- Slide 3: 100% eléctrico -->
-  <div class="relative w-full h-[810px] overflow-hidden bg-gray-700">
-    <img
-      src="assets/img/100%25electrico.png"
-      alt="100% eléctrico"
-      class="absolute inset-0 w-full h-full object-cover"
-    />
+  <div class="relative w-full overflow-hidden bg-gray-700" style="height: clamp(320px, 55vh, 810px);">
+    <img src="assets/img/100%25electrico.png" alt="100% eléctrico" class="absolute inset-0 w-full h-full object-cover" />
     <div class="absolute inset-0 bg-gradient-to-r from-neutral-900/80 via-neutral-900/50 to-transparent"></div>
-    <div class="absolute inset-0 flex items-start pl-28 pt-28">
+    <div class="absolute inset-0 flex items-start px-6 md:pl-28 pt-12 md:pt-28">
       <div class="max-w-sm">
-        <h2 class="text-white text-4xl font-normal leading-[48px] mb-4">
-          100% eléctrico
-        </h2>
-        <p class="text-white text-base font-normal leading-6">
-          Smart tomó la decisión antes que la mayoría: apostar por la movilidad eléctrica como única
-          dirección posible.
-        </p>
+        <h2 class="text-white text-2xl md:text-4xl font-normal leading-8 md:leading-[48px] mb-3 md:mb-4">100% eléctrico</h2>
+        <p class="text-white text-sm md:text-base font-normal leading-5 md:leading-6">Smart tomó la decisión antes que la mayoría: apostar por la movilidad eléctrica como única dirección posible.</p>
       </div>
     </div>
   </div>
 
   <!-- ================================================================
-       CONTACT FORM — "Estamos cerca."
+       CONTACT FORM
   ================================================================ -->
-  <section id="contacto" class="w-full bg-white py-20 px-14">
-    <div class="max-w-[1320px] mx-auto flex gap-16 items-start">
+  <section id="contacto" class="w-full bg-white py-12 md:py-20 px-5 md:px-14">
+    <div class="max-w-[1320px] mx-auto flex flex-col md:flex-row gap-10 md:gap-16 md:items-start">
 
-      <!-- Left: form -->
-      <div class="w-[480px] flex-shrink-0">
-        <h2 class="text-5xl font-bold text-black leading-tight mb-5">Estamos cerca.</h2>
-        <p class="text-2xl text-black font-normal leading-8 tracking-wide mb-5">
-          Encontrá el concesionario smart más cercano y contactanos. Podemos ayudarte a elegir tu
-          modelo, opciones de financiamiento y fecha de entrega.
+      <div class="w-full md:w-[480px] md:flex-shrink-0">
+        <h2 class="text-4xl md:text-5xl font-bold text-black leading-tight mb-4 md:mb-5">Estamos cerca.</h2>
+        <p class="text-xl md:text-2xl text-black font-normal leading-7 md:leading-8 tracking-wide mb-4 md:mb-5">
+          Encontrá el concesionario smart más cercano y contactanos. Podemos ayudarte a elegir tu modelo, opciones de financiamiento y fecha de entrega.
         </p>
-        <p class="text-xl text-black leading-7 tracking-wide mb-8">
+        <p class="text-lg md:text-xl text-black leading-6 md:leading-7 tracking-wide mb-6 md:mb-8">
           Completá el formulario y un asesor te contactará a la brevedad.
         </p>
 
         <form class="space-y-0" novalidate>
-          <div class="border-b border-black py-3">
-            <input type="text" placeholder="Nombre"
-              class="w-full text-xl uppercase text-black bg-transparent" />
-          </div>
-          <div class="border-b border-black py-3">
-            <input type="text" placeholder="Apellido"
-              class="w-full text-xl uppercase text-black bg-transparent" />
-          </div>
-          <div class="border-b border-black py-3">
-            <input type="email" placeholder="E-mail"
-              class="w-full text-xl uppercase text-black bg-transparent" />
-          </div>
-          <div class="border-b border-black py-3">
-            <input type="tel" placeholder="Teléfono"
-              class="w-full text-xl uppercase text-black bg-transparent" />
-          </div>
-          <div class="border-b border-black py-3">
-            <input type="text" placeholder="Concesionario"
-              class="w-full text-xl uppercase text-black bg-transparent" />
-          </div>
-          <div class="border-b border-black py-3">
-            <input type="text" placeholder="Consulta"
-              class="w-full text-xl uppercase text-black bg-transparent" />
-          </div>
+          <div class="border-b border-black py-3"><input type="text" placeholder="Nombre" class="w-full text-xl uppercase text-black bg-transparent" /></div>
+          <div class="border-b border-black py-3"><input type="text" placeholder="Apellido" class="w-full text-xl uppercase text-black bg-transparent" /></div>
+          <div class="border-b border-black py-3"><input type="email" placeholder="E-mail" class="w-full text-xl uppercase text-black bg-transparent" /></div>
+          <div class="border-b border-black py-3"><input type="tel" placeholder="Teléfono" class="w-full text-xl uppercase text-black bg-transparent" /></div>
+          <div class="border-b border-black py-3"><input type="text" placeholder="Concesionario" class="w-full text-xl uppercase text-black bg-transparent" /></div>
+          <div class="border-b border-black py-3"><input type="text" placeholder="Consulta" class="w-full text-xl uppercase text-black bg-transparent" /></div>
           <div class="pt-6">
-            <button type="submit"
-              class="h-10 px-8 bg-black rounded-full text-sm font-bold text-white hover:bg-neutral-800 transition-colors">
+            <button type="submit" class="h-10 px-8 bg-black rounded-full text-sm font-bold text-white hover:bg-neutral-800 transition-colors">
               Enviá tu consulta
             </button>
           </div>
         </form>
       </div>
 
-      <!-- Right: image -->
-      <div class="flex-1">
+      <!-- Imagen lateral — solo desktop -->
+      <div class="hidden md:block flex-1">
         <img src="assets/img/estamosCerca.png" alt="smart Argentina" class="w-full h-full max-h-[760px] object-cover" />
       </div>
 
@@ -624,36 +405,25 @@
   <!-- ================================================================
        PRESENCIA EN ARGENTINA
   ================================================================ -->
-  <section class="w-full bg-white pb-20 px-14">
-    <div class="max-w-[1320px] mx-auto flex gap-4 items-start">
+  <section class="w-full bg-white pb-12 md:pb-20 px-5 md:px-14">
+    <div class="max-w-[1320px] mx-auto flex flex-col md:flex-row gap-8 md:gap-4 md:items-start">
 
-      <!-- Left: text + CTA -->
-      <div class="w-96 flex-shrink-0 flex flex-col gap-10 pr-10">
+      <div class="w-full md:w-96 md:flex-shrink-0 flex flex-col gap-6 md:gap-10 md:pr-10">
         <div class="flex flex-col gap-3">
-          <h3 class="text-3xl text-neutral-900 font-normal leading-10">Presencia en Argentina</h3>
+          <h3 class="text-2xl md:text-3xl text-neutral-900 font-normal leading-8 md:leading-10">Presencia en Argentina</h3>
           <p class="text-base text-neutral-900 leading-6">
-            La red de concesionarios smart te acompaña desde la primera consulta hasta el primer kilómetro
-            y todos los que siguen. Encontrá el punto de venta más cercano y agendá tu prueba de manejo.
+            La red de concesionarios smart te acompaña desde la primera consulta hasta el primer kilómetro y todos los que siguen. Encontrá el punto de venta más cercano y agendá tu prueba de manejo.
           </p>
         </div>
-        <a href="#"
-          class="self-start h-12 px-6 bg-neutral-900 rounded-full text-sm font-bold text-white inline-flex items-center hover:bg-neutral-700 transition-colors">
+        <a href="#" class="self-start h-10 md:h-12 px-5 md:px-6 bg-neutral-900 rounded-full text-sm font-bold text-white inline-flex items-center hover:bg-neutral-700 transition-colors">
           Encontrá tu concesionario
         </a>
       </div>
 
-      <!-- Right: map/media image -->
       <div class="flex-1 relative overflow-hidden">
-        <img
-          src="assets/img/presenciaEnArgentina.png"
-          alt="Concesionarios Argentina"
-          class="w-full h-[674px] object-cover"
-        />
-        <!-- Video/play control -->
-        <button
-          class="absolute bottom-6 right-6 w-12 h-12 bg-white/50 rounded-full backdrop-blur-sm flex items-center justify-center hover:bg-white/70 transition-colors"
-          aria-label="Reproducir">
-          <svg class="w-5 h-5 text-neutral-900 translate-x-0.5" fill="currentColor" viewBox="0 0 24 24">
+        <img src="assets/img/presenciaEnArgentina.png" alt="Concesionarios Argentina" class="w-full h-64 md:h-[674px] object-cover" />
+        <button class="absolute bottom-4 md:bottom-6 right-4 md:right-6 w-10 h-10 md:w-12 md:h-12 bg-white/50 rounded-full backdrop-blur-sm flex items-center justify-center hover:bg-white/70 transition-colors" aria-label="Reproducir">
+          <svg class="w-4 h-4 md:w-5 md:h-5 text-neutral-900 translate-x-0.5" fill="currentColor" viewBox="0 0 24 24">
             <path d="M8 5v14l11-7z"/>
           </svg>
         </button>
@@ -663,114 +433,55 @@
   </section>
 
   <!-- ================================================================
-       LEGAL DISCLAIMERS (small print)
+       LEGAL DISCLAIMERS
   ================================================================ -->
-  <section class="w-full bg-white px-14 pb-12">
+  <section class="w-full bg-white px-5 md:px-14 pb-12">
     <div class="max-w-[1320px] mx-auto space-y-4 text-xs text-neutral-900 leading-4">
-      <p class="text-justify">
-        All illustrations are for information purposes only and may show optional extras. Color deviations
-        are possible for production reasons or due to 3D and lighting effects in the illustrations.
-        smart #3 Pro and Pro+ are not supplied with tinted windows.
-      </p>
-      <p class="text-justify">
-        <span class="font-bold">1</span> All prices and payment terms are inclusive of the applicable
-        Value-Added Tax (VAT) at the time of delivery, unless otherwise stated. The listed vehicle price
-        includes a one-time transportation cost (including registration service) of €850 (inclusive of VAT).
-        For all orders, the relevant <span class="font-bold underline">general terms and conditions of smart Europe GmbH</span> apply.
-        Customers outside of Germany are subject to different conditions and terms.
-      </p>
-      <p class="text-justify">
-        <span class="font-bold">3</span> Offer for a kilometer leasing contract with ALD AutoLeasing D GmbH,
-        Nedderfeld 95, 22529 Hamburg. Subject to positive creditworthiness.
-        <span class="font-bold underline">FAQ | Leasing</span> The leasing rate considers a duration of
-        min. 24 to max. 48 months, a mileage of min. 10,000 to max. 20,000 km/year.
-      </p>
-      <p class="text-justify">
-        <span class="font-bold">4</span> The values were determined according to the prescribed measurement
-        procedure. The data do not refer to an individual vehicle and serve solely for comparison purposes
-        between different vehicle types. The values vary depending on the optional equipment selected.
-        The specified CO₂ emissions only relate to the operation of the vehicle.
-      </p>
-      <p class="text-justify">
-        <span class="font-bold">5</span> All information on smart availability is approximate and may be
-        delayed if, for example: the registration of the vehicle takes longer than expected, delay of ship
-        arrivals in Belgium and overload in ports, and public holidays.
-      </p>
-      <p class="text-justify">
-        <span class="font-bold">6</span> The charging time of the battery may vary depending on various
-        conditions such as different ambient and battery temperatures, available power and other restrictions.
-        With a DC fast charging station, you can charge at up to 150 kW and go from 10% to 80% SOC in
-        30 minutes under optimal conditions.
-      </p>
-      <p class="text-justify">
-        <span class="font-bold">8</span> The available drive power in battery-powered electric cars depends
-        on various factors, such as the duration of the required power as well as the battery voltage and
-        temperature.
-      </p>
-      <p class="text-justify">
-        <span class="font-bold">11</span> smart offers the convenience of remote control functionality via
-        mobile phones for all vehicle models. Extended Connected functions are only available on request and
-        at extra cost. All premium connectivity functions require a paid subscription. To be operational,
-        prior registration at <span class="font-bold underline">id.smart.com</span> is required.
-      </p>
+      <p class="text-justify">All illustrations are for information purposes only and may show optional extras. Color deviations are possible for production reasons or due to 3D and lighting effects in the illustrations. smart #3 Pro and Pro+ are not supplied with tinted windows.</p>
+      <p class="text-justify"><span class="font-bold">1</span> All prices and payment terms are inclusive of the applicable Value-Added Tax (VAT) at the time of delivery, unless otherwise stated. The listed vehicle price includes a one-time transportation cost (including registration service) of €850 (inclusive of VAT). For all orders, the relevant <span class="font-bold underline">general terms and conditions of smart Europe GmbH</span> apply. Customers outside of Germany are subject to different conditions and terms.</p>
+      <p class="text-justify"><span class="font-bold">3</span> Offer for a kilometer leasing contract with ALD AutoLeasing D GmbH, Nedderfeld 95, 22529 Hamburg. Subject to positive creditworthiness. <span class="font-bold underline">FAQ | Leasing</span> The leasing rate considers a duration of min. 24 to max. 48 months, a mileage of min. 10,000 to max. 20,000 km/year.</p>
+      <p class="text-justify"><span class="font-bold">4</span> The values were determined according to the prescribed measurement procedure. The data do not refer to an individual vehicle and serve solely for comparison purposes between different vehicle types. The values vary depending on the optional equipment selected. The specified CO₂ emissions only relate to the operation of the vehicle.</p>
+      <p class="text-justify"><span class="font-bold">5</span> All information on smart availability is approximate and may be delayed if, for example: the registration of the vehicle takes longer than expected, delay of ship arrivals in Belgium and overload in ports, and public holidays.</p>
+      <p class="text-justify"><span class="font-bold">6</span> The charging time of the battery may vary depending on various conditions such as different ambient and battery temperatures, available power and other restrictions. With a DC fast charging station, you can charge at up to 150 kW and go from 10% to 80% SOC in 30 minutes under optimal conditions.</p>
+      <p class="text-justify"><span class="font-bold">8</span> The available drive power in battery-powered electric cars depends on various factors, such as the duration of the required power as well as the battery voltage and temperature.</p>
+      <p class="text-justify"><span class="font-bold">11</span> smart offers the convenience of remote control functionality via mobile phones for all vehicle models. Extended Connected functions are only available on request and at extra cost. All premium connectivity functions require a paid subscription. To be operational, prior registration at <span class="font-bold underline">id.smart.com</span> is required.</p>
     </div>
   </section>
 
   <!-- ================================================================
        FOOTER
   ================================================================ -->
-  <footer class="w-full bg-neutral-900 px-14 py-20">
+  <footer class="w-full bg-neutral-900 px-6 md:px-14 py-12 md:py-20">
     <div class="max-w-[1320px] mx-auto">
 
-      <!-- Top: newsletter + links -->
-      <div class="flex justify-between items-start mb-24">
+      <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-10 mb-12 md:mb-24">
 
         <!-- Newsletter -->
-        <div class="w-96 flex flex-col gap-8">
+        <div class="w-full md:w-96 flex flex-col gap-6 md:gap-8">
           <div class="flex flex-col gap-2">
-            <h3 class="text-white text-3xl font-normal leading-10">
-              Stay up to speed with the latest smart news.
-            </h3>
-            <p class="text-white text-sm font-normal leading-5">
-              Sign up for our newsletter today. No spam, just exclusive information about new products
-              and special offers.
-            </p>
+            <h3 class="text-white text-2xl md:text-3xl font-normal leading-8 md:leading-10">Stay up to speed with the latest smart news.</h3>
+            <p class="text-white text-sm font-normal leading-5">Sign up for our newsletter today. No spam, just exclusive information about new products and special offers.</p>
           </div>
-          <a href="#"
-            class="self-start h-12 px-6 rounded-full border border-white text-sm font-bold text-white inline-flex items-center gap-2 hover:bg-white/10 transition-colors">
+          <a href="#" class="self-start h-10 md:h-12 px-5 md:px-6 rounded-full border border-white text-sm font-bold text-white inline-flex items-center gap-2 hover:bg-white/10 transition-colors">
             Go to sign-up
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
-            </svg>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
           </a>
         </div>
 
         <!-- Nav columns -->
-        <div class="flex gap-14">
-
-          <!-- Models and Shop -->
-          <div class="w-44 flex flex-col gap-2">
+        <div class="flex flex-col md:flex-row gap-8 md:gap-14">
+          <div class="w-full md:w-44 flex flex-col gap-2">
             <p class="text-white text-sm font-normal leading-5 opacity-50">Models and Shop</p>
             <nav class="flex flex-col gap-2">
               <a href="#" class="text-white text-base leading-6 hover:opacity-70">smart #1</a>
               <a href="#" class="text-white text-base leading-6 hover:opacity-70">smart #3</a>
-              <span class="inline-flex items-center gap-1">
-                <a href="#" class="text-white text-base leading-6 hover:opacity-70">smart #5</a>
-                <span class="text-gray-500 text-base leading-6">· Coming soon</span>
-              </span>
-              <a href="#" class="text-white text-base leading-6 hover:opacity-70 inline-flex items-center gap-1">
-                smart EQ fortwo
-                <svg class="w-4 h-4 opacity-60" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/>
-                </svg>
-              </a>
+              <span class="inline-flex items-center gap-1"><a href="#" class="text-white text-base leading-6 hover:opacity-70">smart #5</a><span class="text-gray-500 text-base leading-6">· Coming soon</span></span>
+              <a href="#" class="text-white text-base leading-6 hover:opacity-70 inline-flex items-center gap-1">smart EQ fortwo <svg class="w-4 h-4 opacity-60" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/></svg></a>
               <a href="#" class="text-white text-base leading-6 hover:opacity-70">Available Cars</a>
               <a href="#" class="text-white text-base leading-6 hover:opacity-70">Accessories</a>
             </nav>
           </div>
-
-          <!-- Services -->
-          <div class="w-44 flex flex-col gap-2">
+          <div class="w-full md:w-44 flex flex-col gap-2">
             <p class="text-white text-sm font-normal leading-5 opacity-50">Services</p>
             <nav class="flex flex-col gap-2">
               <a href="#" class="text-white text-base leading-6 hover:opacity-70">Roadside Assistance</a>
@@ -782,9 +493,7 @@
               <a href="#" class="text-white text-base leading-6 hover:opacity-70">Payment Options</a>
             </nav>
           </div>
-
-          <!-- About smart -->
-          <div class="w-44 flex flex-col gap-2">
+          <div class="w-full md:w-44 flex flex-col gap-2">
             <p class="text-white text-sm font-normal leading-5 opacity-50">About smart</p>
             <nav class="flex flex-col gap-2">
               <a href="#" class="text-white text-base leading-6 hover:opacity-70">About Us</a>
@@ -793,91 +502,37 @@
               <a href="#" class="text-white text-base leading-6 hover:opacity-70">Design Philosophy</a>
               <a href="#" class="text-white text-base leading-6 hover:opacity-70">Our achievements</a>
               <a href="#" class="text-white text-base leading-6 hover:opacity-70">Research &amp; Development</a>
-              <a href="#" class="text-white text-base leading-6 hover:opacity-70 inline-flex items-center gap-1">
-                Careers
-                <svg class="w-4 h-4 opacity-60" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/>
-                </svg>
-              </a>
-              <a href="#" class="text-white text-base leading-6 hover:opacity-70 inline-flex items-center gap-1">
-                Media
-                <svg class="w-4 h-4 opacity-60" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/>
-                </svg>
-              </a>
+              <a href="#" class="text-white text-base leading-6 hover:opacity-70 inline-flex items-center gap-1">Careers <svg class="w-4 h-4 opacity-60" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/></svg></a>
+              <a href="#" class="text-white text-base leading-6 hover:opacity-70 inline-flex items-center gap-1">Media <svg class="w-4 h-4 opacity-60" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/></svg></a>
             </nav>
           </div>
-
         </div>
       </div>
 
-      <!-- Bottom bar -->
       <div class="flex flex-col gap-5">
-
-        <!-- Region + socials -->
-        <div class="flex justify-between items-end">
+        <div class="flex flex-col md:flex-row md:justify-between md:items-end gap-6">
           <div class="flex flex-col gap-2.5">
             <div class="flex items-center gap-2">
-              <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418"/>
-              </svg>
+              <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418"/></svg>
               <span class="text-white text-sm">Germany</span>
             </div>
-            <p class="text-white text-sm">
-              Need support?
-              <a href="#contacto" class="underline hover:opacity-70">Contact us</a>
-              or call +49 711 5507 7020.
-            </p>
+            <p class="text-white text-sm">Need support? <a href="#contacto" class="underline hover:opacity-70">Contact us</a> or call +49 711 5507 7020.</p>
           </div>
-
-          <!-- Social icons -->
-          <div class="flex items-center gap-6">
-            <!-- Facebook -->
-            <a href="#" aria-label="Facebook" class="text-white hover:opacity-70">
-              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-              </svg>
-            </a>
-            <!-- Instagram -->
-            <a href="#" aria-label="Instagram" class="text-white hover:opacity-70">
-              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
-              </svg>
-            </a>
-            <!-- TikTok -->
-            <a href="#" aria-label="TikTok" class="text-white hover:opacity-70">
-              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.77a4.85 4.85 0 01-1.01-.08z"/>
-              </svg>
-            </a>
-            <!-- LinkedIn -->
-            <a href="#" aria-label="LinkedIn" class="text-white hover:opacity-70">
-              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M19.7 3H4.3C3.582 3 3 3.582 3 4.3v15.4c0 .718.582 1.3 1.3 1.3h15.4c.718 0 1.3-.582 1.3-1.3V4.3c0-.718-.582-1.3-1.3-1.3zM8.339 18.338H5.667v-8.59h2.672v8.59zM7.004 8.574a1.548 1.548 0 11-.002-3.096 1.548 1.548 0 01.002 3.096zm11.335 9.764h-2.669V14.16c0-.996-.018-2.277-1.388-2.277-1.39 0-1.601 1.086-1.601 2.207v4.248h-2.667v-8.59h2.56v1.174h.037c.355-.675 1.227-1.387 2.524-1.387 2.704 0 3.203 1.778 3.203 4.092v4.711z"/>
-              </svg>
-            </a>
-            <!-- YouTube -->
-            <a href="#" aria-label="YouTube" class="text-white hover:opacity-70">
-              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-              </svg>
-            </a>
-            <!-- Twitter/X -->
-            <a href="#" aria-label="X / Twitter" class="text-white hover:opacity-70">
-              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-              </svg>
-            </a>
+          <div class="flex items-center gap-5 md:gap-6">
+            <a href="#" aria-label="Facebook" class="text-white hover:opacity-70"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+            <a href="#" aria-label="Instagram" class="text-white hover:opacity-70"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+            <a href="#" aria-label="TikTok" class="text-white hover:opacity-70"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.77a4.85 4.85 0 01-1.01-.08z"/></svg></a>
+            <a href="#" aria-label="LinkedIn" class="text-white hover:opacity-70"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19.7 3H4.3C3.582 3 3 3.582 3 4.3v15.4c0 .718.582 1.3 1.3 1.3h15.4c.718 0 1.3-.582 1.3-1.3V4.3c0-.718-.582-1.3-1.3-1.3zM8.339 18.338H5.667v-8.59h2.672v8.59zM7.004 8.574a1.548 1.548 0 11-.002-3.096 1.548 1.548 0 01.002 3.096zm11.335 9.764h-2.669V14.16c0-.996-.018-2.277-1.388-2.277-1.39 0-1.601 1.086-1.601 2.207v4.248h-2.667v-8.59h2.56v1.174h.037c.355-.675 1.227-1.387 2.524-1.387 2.704 0 3.203 1.778 3.203 4.092v4.711z"/></svg></a>
+            <a href="#" aria-label="YouTube" class="text-white hover:opacity-70"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+            <a href="#" aria-label="X / Twitter" class="text-white hover:opacity-70"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
           </div>
         </div>
 
-        <!-- Divider -->
         <div class="border-t border-white/10"></div>
 
-        <!-- Copyright + legal links -->
-        <div class="flex justify-between items-center">
+        <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-3">
           <p class="text-stone-300 text-sm font-normal leading-5">© 2024 smart Europe GmbH</p>
-          <div class="flex items-center gap-2 text-stone-300 text-sm">
+          <div class="flex flex-wrap items-center gap-2 text-stone-300 text-sm">
             <a href="#" class="hover:text-white transition-colors">Terms &amp; Conditions</a>
             <span class="opacity-50">|</span>
             <a href="#" class="hover:text-white transition-colors">Privacy Statement</a>

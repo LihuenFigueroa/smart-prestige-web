@@ -190,16 +190,48 @@ function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, capt
   init();
 }
 
+// ── Mobile detection ──────────────────────────────────────────────────────
+const isMobile = window.innerWidth < 768;
+
+// Swap video sources on mobile
+if (isMobile) {
+  document.getElementById('heroVideo').src   = 'assets/video/videoHeroMobile.mp4';
+  document.getElementById('brabusVideo').src = 'assets/video/videoSmartXBRABUSMobile.mp4';
+}
+
+// ── Mobile model selector ─────────────────────────────────────────────────
+function switchModel(n) {
+  const img  = document.getElementById('mobileModelImg');
+  const cta  = document.getElementById('mobileModelCta');
+  const tab1 = document.getElementById('mobileTab1');
+  const tab3 = document.getElementById('mobileTab3');
+  const activeClass   = 'flex-1 flex items-center justify-center text-[10px] font-normal bg-neutral-900 text-white transition-all';
+  const inactiveClass = 'flex-1 flex items-center justify-center text-[10px] font-normal text-neutral-900 transition-all';
+  if (n === 1) {
+    img.src        = 'assets/img/smartXBRABUS.png';
+    img.alt        = 'Smart #1';
+    cta.textContent = 'Averiguá más sobre el Smart #1';
+    tab1.className = activeClass;
+    tab3.className = inactiveClass;
+  } else {
+    img.src        = 'assets/img/SMART X BRABUS 1.png';
+    img.alt        = 'Smart #3';
+    cta.textContent = 'Averiguá más sobre el Smart #3';
+    tab1.className = inactiveClass;
+    tab3.className = activeClass;
+  }
+}
+
 // ── Hero ─────────────────────────────────────────────────────────────────
 initScrollVideo({
   videoId:    'heroVideo',
   canvasId:   'heroCanvas',
   pinId:      'heroPin',
-  videoSrc:   'assets/video/videoHero.mp4',
-  pxPerSecond: 600,   // 2s × 600px = 1200px de scroll para recorrer el video completo
-  captureFps:  15,    // 2s × 15fps = 30 frames, alcanzable en ~30 ciclos RAF (4x speed)
-  pinHeight:   null,  // null = 100vh
-  textZonePx:  400    // hold: último frame visible 400px antes de liberar el pin
+  videoSrc:   isMobile ? 'assets/video/videoHeroMobile.mp4' : 'assets/video/videoHero.mp4',
+  pxPerSecond: isMobile ? 350 : 600,
+  captureFps:  isMobile ? 30  : 15,
+  pinHeight:   null,
+  textZonePx:  400
 });
 
 // ── Eléctrico de verdad — carrusel horizontal ────────────────────────────
@@ -253,12 +285,12 @@ initScrollVideo({
   videoId:     'brabusVideo',
   canvasId:    'brabusCanvas',
   pinId:       'brabusPin',
-  videoSrc:    'assets/video/videoSmartXBRABUS.mp4',
-  pxPerSecond: 800,   // más px por segundo = video avanza más lento al scrollear
-  captureFps:  60,    // más frames capturados = interpolación más suave entre frames
-  lerp:        0.07,  // más bajo = el frame "sigue" al scroll con más suavidad/inercia
+  videoSrc:    isMobile ? 'assets/video/videoSmartXBRABUSMobile.mp4' : 'assets/video/videoSmartXBRABUS.mp4',
+  pxPerSecond: isMobile ? 400 : 800,
+  captureFps:  60,
+  lerp:        0.07,
   pinHeight:   null,
-  textEl:      document.getElementById('brabusText'),
-  textZonePx:  500,   // px de scroll para revelar el texto
-  holdZonePx:  600    // px de "pausa" con texto 100% visible antes de liberar el pin
+  textEl:      isMobile ? null : document.getElementById('brabusText'),
+  textZonePx:  isMobile ? 0   : 500,
+  holdZonePx:  isMobile ? 0   : 600
 });
