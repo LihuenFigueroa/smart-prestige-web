@@ -68,16 +68,22 @@ function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, capt
     const videoPx   = videoDuration * PX_PER_SECOND;
     const extraPx   = textZonePx || 0;
 
-    // Texto mid-video (bloque 1 mobile)
+    // Texto mid-video (bloque 1 mobile): fade in → hold → fade out
     if (textElMid) {
-      const midStart = videoPx * 0.38;
-      const midEnd   = videoPx * 0.58;
-      if (rel < midStart) {
+      const midFadeIn  = videoPx * 0.38;
+      const midPeak    = videoPx * 0.58;
+      const midFadeOut = midPeak + 350;
+      const midGone    = midFadeOut + 350;
+      if (rel < midFadeIn) {
         textElMid.style.opacity = '0';
-      } else if (rel < midEnd) {
-        textElMid.style.opacity = ((rel - midStart) / (midEnd - midStart)).toFixed(3);
-      } else {
+      } else if (rel < midPeak) {
+        textElMid.style.opacity = ((rel - midFadeIn) / (midPeak - midFadeIn)).toFixed(3);
+      } else if (rel < midFadeOut) {
         textElMid.style.opacity = '1';
+      } else if (rel < midGone) {
+        textElMid.style.opacity = (1 - (rel - midFadeOut) / (midGone - midFadeOut)).toFixed(3);
+      } else {
+        textElMid.style.opacity = '0';
       }
     }
 
