@@ -149,6 +149,10 @@ function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, capt
 
   // ── Init ─────────────────────────────────────────────────────────────────
   function init() {
+    // Setea la fuente correcta (desktop o mobile) antes de cualquier carga
+    video.src = videoSrc;
+    video.load();
+
     function setup() {
       videoDuration = video.duration;
       const videoPx = videoDuration * PX_PER_SECOND;
@@ -192,12 +196,6 @@ function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, capt
 
 // ── Mobile detection ──────────────────────────────────────────────────────
 const isMobile = window.innerWidth < 768;
-
-// Swap video sources on mobile
-if (isMobile) {
-  document.getElementById('heroVideo').src   = 'assets/video/videoHeroMobile.mp4';
-  document.getElementById('brabusVideo').src = 'assets/video/videoSmartXBRABUSMobile.mp4';
-}
 
 // ── Mobile model selector ─────────────────────────────────────────────────
 function switchModel(n) {
@@ -286,7 +284,7 @@ initScrollVideo({
   canvasId:    'brabusCanvas',
   pinId:       'brabusPin',
   videoSrc:    isMobile ? 'assets/video/videoSmartXBRABUSMobile.mp4' : 'assets/video/videoSmartXBRABUS.mp4',
-  pxPerSecond: isMobile ? 400 : 800,
+  pxPerSecond: isMobile ? 180 : 800,
   captureFps:  60,
   lerp:        0.07,
   pinHeight:   null,
