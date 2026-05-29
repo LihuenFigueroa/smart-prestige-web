@@ -146,6 +146,7 @@ function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, capt
     ready = true;
     renderProgress(drawProgress);
     window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll(); // aplica el estado correcto según la posición actual de scroll
   }
 
   // ── Init ─────────────────────────────────────────────────────────────────
