@@ -152,17 +152,22 @@ function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, capt
   function init() {
     // Setea la fuente correcta (desktop o mobile) antes de cualquier carga
     video.src = videoSrc;
+    video.load(); // necesario en iOS Safari para arrancar la descarga sin interacción del usuario
 
-    // Dibuja el primer frame directo al canvas en cuanto hay datos, sin esperar la captura completa
-    video.addEventListener('canplay', () => {
-      if (!ready && video.videoWidth) {
-        const cw = canvas.width, ch = canvas.height;
-        const vw = video.videoWidth, vh = video.videoHeight;
-        const scale = Math.max(cw / vw, ch / vh);
-        ctx.clearRect(0, 0, cw, ch);
-        ctx.drawImage(video, (cw - vw * scale) / 2, (ch - vh * scale) / 2, vw * scale, vh * scale);
-      }
-    }, { once: true });
+    // Dibuja el primer frame directo al canvas en cuanto hay datos
+    // Escucha tanto loadeddata como canplay para máxima compatibilidad (iOS vs otros)
+    let firstFrameDrawn = false;
+    function drawEarlyFrame() {
+      if (firstFrameDrawn || !video.videoWidth || !canvas.width) return;
+      firstFrameDrawn = true;
+      const cw = canvas.width, ch = canvas.height;
+      const vw = video.videoWidth, vh = video.videoHeight;
+      const scale = Math.max(cw / vw, ch / vh);
+      ctx.clearRect(0, 0, cw, ch);
+      ctx.drawImage(video, (cw - vw * scale) / 2, (ch - vh * scale) / 2, vw * scale, vh * scale);
+    }
+    video.addEventListener('loadeddata', drawEarlyFrame, { once: true });
+    video.addEventListener('canplay',    drawEarlyFrame, { once: true });
 
     function setup() {
       videoDuration = video.duration;
