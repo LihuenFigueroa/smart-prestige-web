@@ -289,7 +289,7 @@ initScrollVideo({
   captureFps:  60,
   lerp:        0.07,
   pinHeight:   null,
-  textEl:      isMobile ? null : document.getElementById('brabusText'),
-  textZonePx:  isMobile ? 0   : 500,
-  holdZonePx:  isMobile ? 0   : 600
+  textEl:      document.getElementById('brabusText'),
+  textZonePx:  isMobile ? 300 : 500,
+  holdZonePx:  isMobile ? 400 : 600
 });

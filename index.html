@@ -153,7 +153,7 @@
 
     <!-- Texto overlay — solo desktop -->
     <div id="brabusText"
-      class="absolute inset-0 pointer-events-none hidden md:block"
+      class="absolute inset-0 pointer-events-none"
       style="z-index:10; opacity:0; transition: opacity 0.8s ease;">
       <img src="assets/img/brabus_overlay.svg"
            class="absolute top-0 left-0 w-full"
@@ -166,9 +166,9 @@
   </div>
 
   <!-- ================================================================
-       MOBILE ONLY — Elegí tu Smart.
+       MOBILE ONLY — Elegí tu Smart. (oculto)
   ================================================================ -->
-  <section class="block md:hidden bg-white pt-12 pb-10 px-5">
+  <section class="block md:hidden bg-white pt-12 pb-10 px-5" style="display:none!important;">
     <h2 class="text-2xl font-bold text-neutral-900 text-center mb-6" style="font-family:'FOR_smart_Next',sans-serif;">
       Elegí tu Smart.
     </h2>
@@ -314,9 +314,9 @@
   </section>
 
   <!-- ================================================================
-       MOBILE ONLY — Brand history dark card
+       MOBILE ONLY — Brand history dark card (oculto)
   ================================================================ -->
-  <div class="block md:hidden mx-5 mb-10 overflow-hidden bg-neutral-900" style="border-radius:4px;">
+  <div class="block md:hidden mx-5 mb-10 overflow-hidden bg-neutral-900" style="display:none!important; border-radius:4px;">
     <img src="assets/img/laColaboracionBRABUS.png" alt="Smart historia" class="w-full h-52 object-cover" />
     <div class="px-6 py-6 flex flex-col gap-5">
       <p class="text-white text-2xl font-normal leading-7">Smart: tres décadas reinventando el auto urbano.</p>
