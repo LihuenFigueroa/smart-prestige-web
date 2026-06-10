@@ -1,5 +1,5 @@
 // ── Función genérica: convierte cualquier sección en video scroll-driven ──
-function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, captureFps, lerp, pinHeight, textEl, textElMid, textZonePx, holdZonePx }) {
+function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, captureFps, lerp, pinHeight, textEl, textElMid, textZonePx, holdZonePx, easeOut }) {
   const video  = document.getElementById(videoId);
   const canvas = document.getElementById(canvasId);
   const ctx    = canvas.getContext('2d');
@@ -88,8 +88,9 @@ function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, capt
     }
 
     if (rel <= videoPx) {
-      // Fase 1 — avanza el video
-      targetProgress = Math.max(0, rel / videoPx);
+      // Fase 1 — avanza el video (con ease-out opcional para frenar suave al final)
+      const rawP = Math.max(0, rel / videoPx);
+      targetProgress = easeOut ? rawP * (2 - rawP) : rawP;
       if (textEl) { textEl.style.opacity = '0'; textEl.style.pointerEvents = 'none'; }
     } else if (rel <= videoPx + extraPx) {
       // Fase 2 — video en último frame, texto se revela con el scroll
@@ -248,14 +249,14 @@ function switchModel(n) {
   const inactiveClass = 'flex-1 flex items-center justify-center text-[10px] font-normal text-neutral-900 transition-all';
   if (n === 1) {
     img.src        = 'assets/img/smartXBRABUS.png';
-    img.alt        = 'Smart #1';
-    cta.textContent = 'Averiguá más sobre el Smart #1';
+    img.alt        = 'smart #1';
+    cta.textContent = 'Descubrí más sobre el smart #1';
     tab1.className = activeClass;
     tab3.className = inactiveClass;
   } else {
     img.src        = 'assets/img/SMART X BRABUS 1.png';
-    img.alt        = 'Smart #3';
-    cta.textContent = 'Averiguá más sobre el Smart #3';
+    img.alt        = 'smart #3';
+    cta.textContent = 'Descubrí más sobre el smart #3';
     tab1.className = inactiveClass;
     tab3.className = activeClass;
   }
@@ -270,7 +271,8 @@ initScrollVideo({
   pxPerSecond: isMobile ? 350 : 600,
   captureFps:  isMobile ? 30  : 15,
   pinHeight:   null,
-  textZonePx:  400
+  textZonePx:  400,
+  easeOut:     true
 });
 
 // ── Eléctrico de verdad — carrusel horizontal ────────────────────────────
