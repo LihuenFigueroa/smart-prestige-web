@@ -1,27 +1,29 @@
+// ── Detección de iOS ──────────────────────────────────────────────────────
+var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+var hasCreateImageBitmap = typeof createImageBitmap === 'function';
+
 // ── Función genérica: convierte cualquier sección en video scroll-driven ──
 function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, captureFps, lerp, pinHeight, textEl, textElMid, textZonePx, holdZonePx, easeOut }) {
-  const video  = document.getElementById(videoId);
-  const canvas = document.getElementById(canvasId);
-  const ctx    = canvas.getContext('2d');
-  const pin    = document.getElementById(pinId);
+  var video  = document.getElementById(videoId);
+  var canvas = document.getElementById(canvasId);
+  var ctx    = canvas.getContext('2d');
+  var pin    = document.getElementById(pinId);
 
-  const PX_PER_SECOND = pxPerSecond || 300;
-  const CAPTURE_FPS   = captureFps  || 24;
-  const LERP          = lerp        || 0.12;
-  const HOLD_PX       = holdZonePx  || 0;
+  var PX_PER_SECOND = pxPerSecond || 300;
+  // iOS: menos frames para ahorrar memoria
+  var CAPTURE_FPS   = isIOS ? Math.min(captureFps || 24, 10) : (captureFps || 24);
+  var LERP          = lerp || 0.12;
+  var HOLD_PX       = holdZonePx || 0;
 
-  const frames = [];
-  let ready = false, totalFrames = 0;
-  let targetProgress = 0, drawProgress = 0;
-  let videoDuration = 0;
-
-  // ── Feature detection ─────────────────────────────────────────────────────
-  const hasCreateImageBitmap = typeof createImageBitmap === 'function';
+  var frames = [];
+  var ready = false, totalFrames = 0;
+  var targetProgress = 0, drawProgress = 0;
+  var videoDuration = 0;
 
   // ── Canvas ───────────────────────────────────────────────────────────────
   function resizeCanvas() {
-    const newW = canvas.offsetWidth  || window.innerWidth;
-    const newH = canvas.offsetHeight || (pinHeight || window.innerHeight);
+    var newW = canvas.offsetWidth  || window.innerWidth;
+    var newH = canvas.offsetHeight || (pinHeight || window.innerHeight);
     if (canvas.width === newW && canvas.height === newH) return;
     canvas.width  = newW;
     canvas.height = newH;
@@ -31,35 +33,34 @@ function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, capt
   resizeCanvas();
 
   // ── Render ───────────────────────────────────────────────────────────────
-  // Acepta ImageBitmap, HTMLCanvasElement o ImageData (fallback)
   function drawFrame(frame, alpha) {
     if (!frame) return;
-    const cw = canvas.width, ch = canvas.height;
+    var cw = canvas.width, ch = canvas.height;
     ctx.globalAlpha = alpha;
 
     if (frame instanceof ImageData) {
-      // Fallback para browsers sin createImageBitmap
+      // Fallback sin createImageBitmap: usar canvas temporal estático
       if (!drawFrame._tmp) drawFrame._tmp = document.createElement('canvas');
-      const tmp = drawFrame._tmp;
+      var tmp = drawFrame._tmp;
       if (tmp.width !== frame.width || tmp.height !== frame.height) {
-        tmp.width = frame.width;
+        tmp.width  = frame.width;
         tmp.height = frame.height;
       }
       tmp.getContext('2d').putImageData(frame, 0, 0);
-      const scale = Math.max(cw / frame.width, ch / frame.height);
+      var scale = Math.max(cw / frame.width, ch / frame.height);
       ctx.drawImage(tmp, (cw - frame.width * scale) / 2, (ch - frame.height * scale) / 2, frame.width * scale, frame.height * scale);
     } else {
-      const scale = Math.max(cw / frame.width, ch / frame.height);
+      var scale = Math.max(cw / frame.width, ch / frame.height);
       ctx.drawImage(frame, (cw - frame.width * scale) / 2, (ch - frame.height * scale) / 2, frame.width * scale, frame.height * scale);
     }
   }
 
   function renderProgress(p) {
     if (!frames.length) return;
-    const exact = p * (frames.length - 1);
-    const idxA  = Math.floor(exact);
-    const idxB  = Math.min(idxA + 1, frames.length - 1);
-    const blend = exact - idxA;
+    var exact = p * (frames.length - 1);
+    var idxA  = Math.floor(exact);
+    var idxB  = Math.min(idxA + 1, frames.length - 1);
+    var blend = exact - idxA;
     if (!frames[idxA]) return;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawFrame(frames[idxA], 1);
@@ -70,7 +71,7 @@ function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, capt
   // ── RAF loop ─────────────────────────────────────────────────────────────
   function tick() {
     if (ready) {
-      const diff = targetProgress - drawProgress;
+      var diff = targetProgress - drawProgress;
       if (Math.abs(diff) > 0.0001) {
         drawProgress += diff * LERP;
         renderProgress(drawProgress);
@@ -81,15 +82,15 @@ function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, capt
 
   // ── Scroll ───────────────────────────────────────────────────────────────
   function onScroll() {
-    const rel     = window.scrollY - pin.offsetTop;
-    const videoPx = videoDuration * PX_PER_SECOND;
-    const extraPx = textZonePx || 0;
+    var rel     = window.scrollY - pin.offsetTop;
+    var videoPx = videoDuration * PX_PER_SECOND;
+    var extraPx = textZonePx || 0;
 
     if (textElMid) {
-      const midFadeIn  = videoPx * 0.38;
-      const midPeak    = videoPx * 0.58;
-      const midFadeOut = midPeak + 350;
-      const midGone    = midFadeOut + 350;
+      var midFadeIn  = videoPx * 0.38;
+      var midPeak    = videoPx * 0.58;
+      var midFadeOut = midPeak + 350;
+      var midGone    = midFadeOut + 350;
       if      (rel < midFadeIn)  textElMid.style.opacity = '0';
       else if (rel < midPeak)    textElMid.style.opacity = ((rel - midFadeIn) / (midPeak - midFadeIn)).toFixed(3);
       else if (rel < midFadeOut) textElMid.style.opacity = '1';
@@ -98,13 +99,13 @@ function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, capt
     }
 
     if (rel <= videoPx) {
-      const rawP = Math.max(0, rel / videoPx);
+      var rawP = Math.max(0, rel / videoPx);
       targetProgress = easeOut ? rawP * (2 - rawP) : rawP;
       if (textEl) { textEl.style.opacity = '0'; textEl.style.pointerEvents = 'none'; }
     } else if (rel <= videoPx + extraPx) {
       targetProgress = 1;
       if (textEl && extraPx > 0) {
-        const t = Math.min(1, (rel - videoPx) / extraPx);
+        var t = Math.min(1, (rel - videoPx) / extraPx);
         textEl.style.opacity       = t.toFixed(3);
         textEl.style.pointerEvents = t > 0.5 ? 'auto' : 'none';
       }
@@ -114,51 +115,83 @@ function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, capt
     }
   }
 
-  // ── Guardar un frame desde una fuente de video ────────────────────────────
-  // Usa canvas regular en lugar de OffscreenCanvas (compatible con iOS Safari)
-  function storeFrame(captureCanvas, captureCtx, srcVid, vw, vh, idx) {
+  // ── Guardar frame desde canvas de captura ─────────────────────────────────
+  function storeFrame(captureCanvas, captureCtx, srcVid, cw, ch, idx) {
     if (frames[idx]) return;
-    captureCtx.drawImage(srcVid, 0, 0, vw, vh);
+    captureCtx.drawImage(srcVid, 0, 0, cw, ch);
     if (hasCreateImageBitmap) {
-      // createImageBitmap(canvas) soportado desde iOS 15 — captura snapshot del canvas en este momento
+      // Snapshot inmediato del canvas → ImageBitmap en GPU (eficiente en memoria)
       createImageBitmap(captureCanvas).then(function(bmp) {
         if (!frames[idx]) frames[idx] = bmp;
       });
     } else {
-      // Fallback: guardar ImageData directamente
-      frames[idx] = captureCtx.getImageData(0, 0, vw, vh);
+      // Fallback: ImageData (solo para iOS muy antiguo — baja resolución para no crashear)
+      if (!frames[idx]) frames[idx] = captureCtx.getImageData(0, 0, cw, ch);
     }
   }
 
-  // ── Captura seek-by-seek (fallback cuando autoplay está bloqueado en iOS) ─
-  function seekCapture(capVid, captureCanvas, captureCtx, duration, vw, vh) {
-    const step = duration / totalFrames;
-    let frameIdx = 0;
+  // ── Fin de captura ────────────────────────────────────────────────────────
+  function completeCapture() {
+    // Esperar a que se resuelvan los createImageBitmap pendientes
+    var delay = hasCreateImageBitmap ? 500 : 0;
+    setTimeout(function() {
+      var last = null;
+      for (var i = 0; i < totalFrames; i++) {
+        if (frames[i])   { last = frames[i]; }
+        else if (last)   { frames[i] = last; }
+      }
+      onCaptureComplete();
+    }, delay);
+  }
+
+  // ── Captura seek-by-seek (iOS y fallback) ─────────────────────────────────
+  // En iOS, drawImage(video) durante playback puede devolver frames negros.
+  // La única forma confiable es seek + esperar seeked + un rAF extra para
+  // que WebKit termine de renderizar el frame antes de dibujar al canvas.
+  function seekCapture(capVid, captureCanvas, captureCtx, duration, cw, ch) {
+    var step = duration / totalFrames;
+    var frameIdx = 0;
 
     function seekNext() {
       if (frameIdx >= totalFrames) {
         completeCapture();
         return;
       }
-      const t = Math.min(frameIdx * step, duration - 0.001);
+      var t = Math.min(frameIdx * step, duration - 0.001);
       capVid.currentTime = t;
+
       capVid.addEventListener('seeked', function() {
-        storeFrame(captureCanvas, captureCtx, capVid, vw, vh, frameIdx);
-        frameIdx++;
-        requestAnimationFrame(seekNext);
+        // rAF extra: iOS Safari necesita un ciclo de render extra para que
+        // el frame del video esté disponible para dibujar al canvas
+        requestAnimationFrame(function() {
+          storeFrame(captureCanvas, captureCtx, capVid, cw, ch, frameIdx);
+          frameIdx++;
+          requestAnimationFrame(seekNext);
+        });
       }, { once: true });
     }
-    seekNext();
+
+    // Activar el video con play+pause para que los seeks funcionen correctamente en iOS
+    var initPlay = capVid.play();
+    if (initPlay) {
+      initPlay.then(function() {
+        capVid.pause();
+        seekNext();
+      }).catch(function() {
+        seekNext(); // Intentar seek directo si play falla
+      });
+    } else {
+      seekNext();
+    }
   }
 
-  // ── Captura play-based (más rápida, preferida en desktop / Android) ───────
-  function playCapture(capVid, captureCanvas, captureCtx, duration, vw, vh) {
+  // ── Captura play-based (desktop y Android rápido) ────────────────────────
+  function playCapture(capVid, captureCanvas, captureCtx, duration, cw, ch) {
     capVid.playbackRate = 4;
     var playPromise = capVid.play();
 
     if (!playPromise) {
-      // Browser sin soporte de Promise para play → seek fallback
-      seekCapture(capVid, captureCanvas, captureCtx, duration, vw, vh);
+      seekCapture(capVid, captureCanvas, captureCtx, duration, cw, ch);
       return;
     }
 
@@ -170,16 +203,15 @@ function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, capt
         var idx = Math.round((t / duration) * (totalFrames - 1));
 
         if (t !== lastCapturedTime && idx >= 0 && idx < totalFrames) {
-          storeFrame(captureCanvas, captureCtx, capVid, vw, vh, idx);
+          storeFrame(captureCanvas, captureCtx, capVid, cw, ch, idx);
           lastCapturedTime = t;
         }
 
         if (capVid.ended || t >= duration - 0.01) {
           capVid.currentTime = duration - 0.001;
           capVid.addEventListener('seeked', function() {
-            storeFrame(captureCanvas, captureCtx, capVid, vw, vh, totalFrames - 1);
-            // Pequeño delay para que se resuelvan los createImageBitmap pendientes
-            setTimeout(completeCapture, 300);
+            storeFrame(captureCanvas, captureCtx, capVid, cw, ch, totalFrames - 1);
+            completeCapture();
           }, { once: true });
           return;
         }
@@ -189,22 +221,11 @@ function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, capt
       captureLoop();
 
     }).catch(function() {
-      // Autoplay bloqueado (típico en iOS Safari sin gesto) → seek fallback
-      seekCapture(capVid, captureCanvas, captureCtx, duration, vw, vh);
+      seekCapture(capVid, captureCanvas, captureCtx, duration, cw, ch);
     });
   }
 
-  // ── Fin de captura ────────────────────────────────────────────────────────
-  function completeCapture() {
-    // Forward-fill huecos que puedan haber quedado
-    var last = null;
-    for (var i = 0; i < totalFrames; i++) {
-      if (frames[i])      { last = frames[i]; }
-      else if (last)      { frames[i] = last; }
-    }
-    onCaptureComplete();
-  }
-
+  // ── startBackgroundCapture ────────────────────────────────────────────────
   function startBackgroundCapture(capVid, duration) {
     totalFrames = Math.round(duration * CAPTURE_FPS);
     frames.length = totalFrames;
@@ -212,21 +233,29 @@ function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, capt
     var vw = capVid.videoWidth  || 1280;
     var vh = capVid.videoHeight || 720;
 
-    // Canvas regular en lugar de OffscreenCanvas — compatible con todos los browsers
+    // En iOS reducir la resolución de captura a la mitad para ahorrar memoria
+    var cw = isIOS ? Math.round(vw / 2) : vw;
+    var ch = isIOS ? Math.round(vh / 2) : vh;
+
+    // Canvas regular (compatible con todos los browsers, reemplaza OffscreenCanvas)
     var captureCanvas = document.createElement('canvas');
-    captureCanvas.width  = vw;
-    captureCanvas.height = vh;
+    captureCanvas.width  = cw;
+    captureCanvas.height = ch;
     var captureCtx = captureCanvas.getContext('2d');
 
-    playCapture(capVid, captureCanvas, captureCtx, duration, vw, vh);
+    // iOS: siempre seek-based (drawImage durante playback puede dar frames negros)
+    if (isIOS) {
+      seekCapture(capVid, captureCanvas, captureCtx, duration, cw, ch);
+    } else {
+      playCapture(capVid, captureCanvas, captureCtx, duration, cw, ch);
+    }
   }
 
-  // ── Primer frame ─────────────────────────────────────────────────────────
+  // ── Primer frame ──────────────────────────────────────────────────────────
   function showFirstFrame() {
     var vw = video.videoWidth  || 1280;
     var vh = video.videoHeight || 720;
 
-    // Canvas regular en lugar de OffscreenCanvas
     var tmp    = document.createElement('canvas');
     tmp.width  = vw;
     tmp.height = vh;
@@ -280,7 +309,10 @@ function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, capt
       function tryFirstFrame() {
         var seek = function() {
           video.currentTime = 0;
-          video.addEventListener('seeked', showFirstFrame, { once: true });
+          video.addEventListener('seeked', function() {
+            // rAF extra en iOS para que el frame esté listo
+            requestAnimationFrame(showFirstFrame);
+          }, { once: true });
         };
         video.readyState >= 2 ? seek()
           : video.addEventListener('canplay', seek, { once: true });
@@ -350,8 +382,8 @@ initScrollVideo({
 
 // ── Eléctrico de verdad — carrusel horizontal ─────────────────────────────
 (function () {
-  var pin   = document.getElementById('electricoPin');
-  var strip = document.getElementById('electricoStrip');
+  var pin    = document.getElementById('electricoPin');
+  var strip  = document.getElementById('electricoStrip');
   var SLIDES = 4;
 
   function updateElectrico() {
