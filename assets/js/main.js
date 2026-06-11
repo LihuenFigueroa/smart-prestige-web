@@ -88,9 +88,8 @@ function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, capt
     }
 
     if (rel <= videoPx) {
-      // Fase 1 — avanza el video con ease-out (arranca rápido, frena al final)
-      const rawP = Math.max(0, rel / videoPx);
-      targetProgress = rawP * (2 - rawP);
+      // Fase 1 — avanza el video (lineal; el ease lo da el LERP)
+      targetProgress = Math.max(0, rel / videoPx);
       if (textEl) { textEl.style.opacity = '0'; textEl.style.pointerEvents = 'none'; }
     } else if (rel <= videoPx + extraPx) {
       // Fase 2 — video en último frame, texto se revela con el scroll
@@ -270,6 +269,7 @@ initScrollVideo({
   videoSrc:   isMobile ? 'assets/video/videoHeroMobile.mp4' : 'assets/video/videoHero.mp4',
   pxPerSecond: isMobile ? 500 : 850,
   captureFps:  isMobile ? 30  : 15,
+  lerp:        0.06,
   pinHeight:   null,
   textZonePx:  400
 });
