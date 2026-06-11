@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:es.smart.com)",
+      "Bash(node:*)",
+      "Bash(ls \"C:\\\\Users\\\\lf4902\\\\.claude\\\\projects\\\\C--Users-lf4902-lifisoluciones-smart-prestige-web\\\\memory\\\\\" 2>/dev/null || echo \"empty or missing\")",
+      "Bash(powershell -Command \"Add-Type -AssemblyName System.Drawing; \\\\$pdf = [System.IO.File]::ReadAllBytes\\('C:\\\\Users\\\\lf4902\\\\OneDrive - BYMA\\\\Documents\\\\correccionesWebSmart.pdf'\\); Write-Host 'File size:' \\\\$pdf.Length\")",
+      "Bash(powershell -Command \"Get-Item 'C:\\\\Users\\\\lf4902\\\\OneDrive - BYMA\\\\Documents\\\\correccionesWebSmart.pdf' | Select-Object Name, Length\")",
+      "Bash(python --version 2>/dev/null && python -c \"import pdfplumber; print\\('ok'\\)\" 2>/dev/null || echo \"no python/pdfplumber\")",
+      "Bash(python -c \"\nimport pdfplumber\nwith pdfplumber.open\\('C:/Users/lf4902/OneDrive - BYMA/Documents/correccionesWebSmart.pdf'\\) as pdf:\n    for i, page in enumerate\\(pdf.pages\\):\n        text = page.extract_text\\(\\)\n        if text:\n            print\\(f'--- PAGINA {i+1} ---'\\)\n            print\\(text\\)\n\")",
+      "Bash(powershell -Command \"\nCopy-Item 'C:\\\\Users\\\\lf4902\\\\lifisoluciones\\\\#1+BRABUS-005.JPEG' 'C:\\\\Users\\\\lf4902\\\\lifisoluciones\\\\smart-prestige-web\\\\assets\\\\img\\\\cardBRABUS.jpg' -Force\nCopy-Item 'C:\\\\Users\\\\lf4902\\\\lifisoluciones\\\\smart#1_Feature_Steering+Wheel.JPEG' 'C:\\\\Users\\\\lf4902\\\\lifisoluciones\\\\smart-prestige-web\\\\assets\\\\img\\\\cardConectividad.jpg' -Force\nCopy-Item 'C:\\\\Users\\\\lf4902\\\\lifisoluciones\\\\1 y 3 mobile home.mp4' 'C:\\\\Users\\\\lf4902\\\\lifisoluciones\\\\smart-prestige-web\\\\assets\\\\video\\\\videoHeroMobile.mp4' -Force\nWrite-Host 'Done'\n\")"
+    ]
+  }
+}
