@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Servicios al Cliente — smart Argentina</title>
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="assets/css/tailwind.css" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body class="bg-white">
+
+  <!-- ================================================================
+       NAV MENU OVERLAY
+  ================================================================ -->
+  <div id="nav-menu" class="fixed inset-0 z-[100] pointer-events-none">
+    <div id="nav-backdrop" class="absolute inset-0 bg-black/50 opacity-0 transition-opacity duration-300" onclick="closeNavMenu()"></div>
+    <div id="nav-drawer" class="absolute top-0 left-0 h-full w-full max-w-sm bg-[#141413] flex flex-col -translate-x-full transition-transform duration-300 ease-in-out">
+      <div class="px-8 h-16 flex items-center justify-between border-b border-white/10">
+        <a href="index.html"><img src="assets/img/Logonavbar.svg" alt="smart" class="h-6 w-auto" /></a>
+        <button onclick="closeNavMenu()" aria-label="Cerrar menú" class="text-white p-1">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <nav class="flex-1 overflow-y-auto px-8 py-8 flex flex-col">
+        <p class="text-xs uppercase tracking-widest text-neutral-500 mb-4">Modelos</p>
+        <a href="smart1.html" class="text-white text-xl font-smart-next font-normal py-3 border-b border-white/10 hover:text-neutral-400 transition-colors">smart #1</a>
+        <a href="smart3.html" class="text-white text-xl font-smart-next font-normal py-3 border-b border-white/10 hover:text-neutral-400 transition-colors">smart #3</a>
+        <a href="brabus.html" class="text-white text-xl font-smart-next font-normal py-3 border-b border-white/10 hover:text-neutral-400 transition-colors">smart × BRABUS</a>
+        <p class="text-xs uppercase tracking-widest text-neutral-500 mt-8 mb-4">Descubrí</p>
+        <a href="servicios.html" class="text-white text-xl font-smart-next font-normal py-3 border-b border-white/10 hover:text-neutral-400 transition-colors">Servicios al Cliente</a>
+        <a href="movilidad-electrica.html" class="text-white text-xl font-smart-next font-normal py-3 border-b border-white/10 hover:text-neutral-400 transition-colors">Movilidad Eléctrica</a>
+        <a href="conectividad.html" class="text-white text-xl font-smart-next font-normal py-3 border-b border-white/10 hover:text-neutral-400 transition-colors">Conectividad</a>
+        <p class="text-xs uppercase tracking-widest text-neutral-500 mt-8 mb-4">Sobre smart</p>
+        <a href="sobre-smart.html" class="text-white text-xl font-smart-next font-normal py-3 border-b border-white/10 hover:text-neutral-400 transition-colors">Sobre nosotros</a>
+        <a href="buscador.html" class="text-white text-xl font-smart-next font-normal py-3 border-b border-white/10 hover:text-neutral-400 transition-colors">Buscador de concesionarios</a>
+      </nav>
+      <div class="px-8 py-6 border-t border-white/10">
+        <a href="index.html#contacto" class="text-sm text-neutral-400 hover:text-white transition-colors">Contáctanos</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================================================================
+       HERO
+  ================================================================ -->
+  <section class="relative w-full h-screen min-h-[640px] overflow-hidden">
+    <div class="absolute inset-0 bg-neutral-700">
+      <img src="assets/img/servicios/hero.jpg" alt="Servicios al Cliente" class="w-full h-full object-cover" />
+    </div>
+    <div class="absolute top-0 left-0 right-0 pointer-events-none" style="height:170px; z-index:5; background:linear-gradient(to bottom,rgba(20,20,19,0.65) 0%,rgba(20,20,19,0) 100%);"></div>
+    <div class="absolute bottom-0 left-0 right-0 pointer-events-none" style="height:261px; z-index:5; background:linear-gradient(to bottom,rgba(0,0,0,0) 0%,rgba(0,0,0,0.85) 100%);"></div>
+
+    <nav class="absolute top-0 left-0 right-0 z-20 px-5 md:px-14 h-14 md:h-16 flex items-center justify-between">
+      <div class="flex items-center gap-6">
+        <button onclick="openNavMenu()" class="flex flex-col gap-[5px] cursor-pointer" aria-label="Menú">
+          <span class="w-5 h-px bg-white block"></span>
+          <span class="w-5 h-px bg-white block"></span>
+          <span class="w-5 h-px bg-white block"></span>
+        </button>
+        <button class="hidden md:flex items-center gap-1 text-white text-sm font-normal uppercase tracking-wide">
+          MODELOS <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+      </div>
+      <div class="absolute left-1/2 -translate-x-1/2">
+        <a href="index.html"><img src="assets/img/Logonavbar.svg" alt="smart" class="h-4 md:h-8 w-auto" /></a>
+      </div>
+      <div class="flex items-center gap-4">
+        <button class="text-white" aria-label="Cuenta"><svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg></button>
+        <button class="text-white" aria-label="Carrito"><svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"/></svg></button>
+      </div>
+    </nav>
+
+    <div class="absolute bottom-0 left-0 right-0 px-5 md:px-14 pb-8 md:pb-14 z-10">
+      <h1 class="font-smart-next font-normal text-white mb-4" style="font-size:clamp(28px,4vw,56px); line-height:1.1;">Servicios al Cliente.</h1>
+      <p class="text-white text-sm font-normal opacity-80 max-w-lg">Todo lo que necesitás para vivir la experiencia smart al máximo.</p>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       INTRO
+  ================================================================ -->
+  <section class="w-full bg-white px-5 md:px-14 py-10 md:py-16">
+    <div class="max-w-[1320px] mx-auto flex flex-col md:flex-row gap-10 md:gap-20">
+      <div class="md:w-1/2">
+        <p class="text-neutral-500 text-sm mb-3">Servicios al Cliente</p>
+        <h2 class="font-smart-next font-normal text-black" style="font-size:clamp(22px,2.5vw,36px); line-height:1.2;">
+          Tu tranquilidad, nuestra prioridad.
+        </h2>
+      </div>
+      <div class="md:w-1/2 flex items-center">
+        <p class="text-neutral-600 text-base leading-7">
+          Desde el momento en que elegís tu smart, comenzamos a acompañarte. Nuestro equipo está disponible para brindarte soporte, mantenimiento y toda la asistencia que necesitás en cada etapa de tu experiencia eléctrica.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       SERVICIOS GRID
+  ================================================================ -->
+  <section class="w-full bg-neutral-50 px-5 md:px-14 py-10 md:py-16">
+    <div class="max-w-[1320px] mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+
+        <div class="flex flex-col gap-4">
+          <div class="w-full bg-neutral-200 rounded-lg overflow-hidden" style="aspect-ratio:16/9;">
+            <img src="assets/img/servicios/servicio1.jpg" alt="Mantenimiento" class="w-full h-full object-cover" />
+          </div>
+          <h3 class="font-smart-next font-normal text-black text-xl">Mantenimiento y Service</h3>
+          <p class="text-neutral-600 text-sm leading-6">Nuestros técnicos especializados garantizan que tu smart siempre esté en perfectas condiciones. Turnos disponibles en toda la red de concesionarios.</p>
+        </div>
+
+        <div class="flex flex-col gap-4">
+          <div class="w-full bg-neutral-200 rounded-lg overflow-hidden" style="aspect-ratio:16/9;">
+            <img src="assets/img/servicios/servicio2.jpg" alt="Garantía" class="w-full h-full object-cover" />
+          </div>
+          <h3 class="font-smart-next font-normal text-black text-xl">Garantía smart</h3>
+          <p class="text-neutral-600 text-sm leading-6">Todos los modelos smart cuentan con garantía de fábrica. La batería tiene cobertura extendida para que manejés sin preocupaciones.</p>
+        </div>
+
+        <div class="flex flex-col gap-4">
+          <div class="w-full bg-neutral-200 rounded-lg overflow-hidden" style="aspect-ratio:16/9;">
+            <img src="assets/img/servicios/servicio3.jpg" alt="Carga" class="w-full h-full object-cover" />
+          </div>
+          <h3 class="font-smart-next font-normal text-black text-xl">Soluciones de Carga</h3>
+          <p class="text-neutral-600 text-sm leading-6">Te asesoramos en la instalación de tu cargador en casa y te conectamos con la red de carga pública disponible en Argentina.</p>
+        </div>
+
+        <div class="flex flex-col gap-4">
+          <div class="w-full bg-neutral-200 rounded-lg overflow-hidden" style="aspect-ratio:16/9;">
+            <img src="assets/img/servicios/servicio4.jpg" alt="Asistencia" class="w-full h-full object-cover" />
+          </div>
+          <h3 class="font-smart-next font-normal text-black text-xl">Asistencia en Ruta</h3>
+          <p class="text-neutral-600 text-sm leading-6">Cobertura 24/7 ante cualquier inconveniente. Llámanos y te asistimos donde estés, sin importar la hora.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       ACCORDION / FAQ
+  ================================================================ -->
+  <section class="w-full bg-white px-5 md:px-14 py-10 md:py-16">
+    <div class="max-w-[1320px] mx-auto">
+      <h2 class="font-smart-next font-normal text-black mb-8" style="font-size:clamp(20px,2.5vw,32px);">Preguntas frecuentes</h2>
+
+      <div class="divide-y divide-neutral-200" id="faq-accordion">
+
+        <div class="faq-item py-5">
+          <button class="faq-btn w-full flex items-center justify-between text-left gap-4" onclick="toggleFaq(this)">
+            <span class="text-sm font-normal text-black">¿Cómo agendo un turno de service?</span>
+            <svg class="faq-icon w-5 h-5 text-neutral-400 flex-shrink-0 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-content hidden mt-3 text-sm text-neutral-500 leading-6 max-w-2xl">
+            Podés agendar tu turno directamente con el concesionario más cercano o completar el formulario de contacto en esta misma página. Nuestro equipo te responderá en menos de 24 horas hábiles.
+          </div>
+        </div>
+
+        <div class="faq-item py-5">
+          <button class="faq-btn w-full flex items-center justify-between text-left gap-4" onclick="toggleFaq(this)">
+            <span class="text-sm font-normal text-black">¿Cuánto dura la garantía del vehículo?</span>
+            <svg class="faq-icon w-5 h-5 text-neutral-400 flex-shrink-0 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-content hidden mt-3 text-sm text-neutral-500 leading-6 max-w-2xl">
+            Los vehículos smart cuentan con garantía de fábrica de 3 años o 100.000 km. La batería de alta tensión tiene una garantía extendida de 8 años o 160.000 km.
+          </div>
+        </div>
+
+        <div class="faq-item py-5">
+          <button class="faq-btn w-full flex items-center justify-between text-left gap-4" onclick="toggleFaq(this)">
+            <span class="text-sm font-normal text-black">¿Dónde puedo cargar mi smart?</span>
+            <svg class="faq-icon w-5 h-5 text-neutral-400 flex-shrink-0 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-content hidden mt-3 text-sm text-neutral-500 leading-6 max-w-2xl">
+            Podés cargar en casa con un cargador de pared (Wallbox) o en los puntos de carga pública disponibles en Argentina. Todos los modelos son compatibles con carga rápida DC de hasta 150 kW.
+          </div>
+        </div>
+
+        <div class="faq-item py-5">
+          <button class="faq-btn w-full flex items-center justify-between text-left gap-4" onclick="toggleFaq(this)">
+            <span class="text-sm font-normal text-black">¿Qué incluye el servicio de mantenimiento?</span>
+            <svg class="faq-icon w-5 h-5 text-neutral-400 flex-shrink-0 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-content hidden mt-3 text-sm text-neutral-500 leading-6 max-w-2xl">
+            El servicio incluye revisión de frenos, neumáticos, sistema eléctrico, software y actualización de firmware del vehículo. Los autos eléctricos requieren menos mantenimiento que los combustión, lo que se traduce en mayor ahorro.
+          </div>
+        </div>
+
+        <div class="faq-item py-5">
+          <button class="faq-btn w-full flex items-center justify-between text-left gap-4" onclick="toggleFaq(this)">
+            <span class="text-sm font-normal text-black">¿Puedo instalar un cargador en mi casa o edificio?</span>
+            <svg class="faq-icon w-5 h-5 text-neutral-400 flex-shrink-0 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-content hidden mt-3 text-sm text-neutral-500 leading-6 max-w-2xl">
+            Sí. Te asesoramos en todo el proceso de instalación del cargador domiciliario. Contamos con partners instaladores certificados en las principales ciudades del país.
+          </div>
+        </div>
+
+        <div class="faq-item py-5">
+          <button class="faq-btn w-full flex items-center justify-between text-left gap-4" onclick="toggleFaq(this)">
+            <span class="text-sm font-normal text-black">¿Qué pasa si mi auto necesita asistencia en ruta?</span>
+            <svg class="faq-icon w-5 h-5 text-neutral-400 flex-shrink-0 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-content hidden mt-3 text-sm text-neutral-500 leading-6 max-w-2xl">
+            Contamos con un servicio de asistencia en ruta disponible 24 horas al día, 7 días a la semana. Ante cualquier eventualidad, contactate con tu concesionario o llamá a nuestra línea de atención al cliente.
+          </div>
+        </div>
+
+        <div class="faq-item py-5">
+          <button class="faq-btn w-full flex items-center justify-between text-left gap-4" onclick="toggleFaq(this)">
+            <span class="text-sm font-normal text-black">¿Qué es Hello smart y cómo lo activo?</span>
+            <svg class="faq-icon w-5 h-5 text-neutral-400 flex-shrink-0 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-content hidden mt-3 text-sm text-neutral-500 leading-6 max-w-2xl">
+            Hello smart es el ecosistema digital de smart que conecta tu auto con tu smartphone. Podés activarlo desde la app Hello smart, disponible para iOS y Android, usando las credenciales que te entregamos al momento de la compra.
+          </div>
+        </div>
+
+        <div class="faq-item py-5">
+          <button class="faq-btn w-full flex items-center justify-between text-left gap-4" onclick="toggleFaq(this)">
+            <span class="text-sm font-normal text-black">¿Cómo puedo actualizar el software de mi vehículo?</span>
+            <svg class="faq-icon w-5 h-5 text-neutral-400 flex-shrink-0 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-content hidden mt-3 text-sm text-neutral-500 leading-6 max-w-2xl">
+            Los modelos smart reciben actualizaciones OTA (Over-the-Air) automáticas. Cuando haya una nueva versión disponible, recibirás una notificación en la app Hello smart y en la pantalla del vehículo.
+          </div>
+        </div>
+
+        <div class="faq-item py-5">
+          <button class="faq-btn w-full flex items-center justify-between text-left gap-4" onclick="toggleFaq(this)">
+            <span class="text-sm font-normal text-black">¿Cómo contacto al servicio de atención al cliente?</span>
+            <svg class="faq-icon w-5 h-5 text-neutral-400 flex-shrink-0 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-content hidden mt-3 text-sm text-neutral-500 leading-6 max-w-2xl">
+            Podés contactarnos a través del formulario de esta página, visitando tu concesionario más cercano o encontrándonos en nuestras redes sociales. Nuestro horario de atención es de lunes a viernes de 9 a 18 hs.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       FORMULARIO
+  ================================================================ -->
+  <section id="contacto" class="w-full bg-white py-12 md:py-20 px-5 md:px-14">
+    <div class="max-w-[1320px] mx-auto flex flex-col md:flex-row gap-10 md:gap-16 md:items-start">
+      <div class="md:w-[440px] md:flex-shrink-0 md:pt-1 flex flex-col gap-6">
+        <h2 class="font-smart-next font-normal text-black" style="font-size:32px; line-height:1.2;">Realizar consulta.</h2>
+        <p class="text-base text-neutral-500 font-normal leading-6">Completá el formulario y te contactaremos a la brevedad.</p>
+        <button type="submit" form="form-contacto-servicios" class="self-start h-10 px-8 bg-black rounded-full text-sm font-bold text-white hover:bg-neutral-800 transition-colors">Enviar</button>
+      </div>
+      <div class="flex-1">
+        <form id="form-contacto-servicios" novalidate>
+          <div class="flex flex-col divide-y divide-neutral-200">
+            <div class="py-3">
+              <input type="text" placeholder="NOMBRE" class="w-full text-sm text-black bg-transparent outline-none placeholder:text-xs placeholder:tracking-widest placeholder:text-neutral-400" />
+            </div>
+            <div class="py-3">
+              <input type="text" placeholder="APELLIDO" class="w-full text-sm text-black bg-transparent outline-none placeholder:text-xs placeholder:tracking-widest placeholder:text-neutral-400" />
+            </div>
+            <div class="py-3">
+              <input type="email" placeholder="CORREO ELECTRÓNICO" class="w-full text-sm text-black bg-transparent outline-none placeholder:text-xs placeholder:tracking-widest placeholder:text-neutral-400" />
+            </div>
+            <div class="py-3">
+              <input type="tel" placeholder="CELULAR" class="w-full text-sm text-black bg-transparent outline-none placeholder:text-xs placeholder:tracking-widest placeholder:text-neutral-400" />
+            </div>
+            <div class="py-3">
+              <input type="text" placeholder="CIUDAD" class="w-full text-sm text-black bg-transparent outline-none placeholder:text-xs placeholder:tracking-widest placeholder:text-neutral-400" />
+            </div>
+            <div class="py-3">
+              <select id="sel-modelo-svc" class="w-full bg-transparent outline-none text-sm" onchange="this.style.color=this.value?'#000':''; this.style.fontSize=this.value?'0.875rem':'0.75rem'; this.style.letterSpacing=this.value?'normal':'0.1em';" style="color:transparent; font-size:0.75rem; letter-spacing:0.1em;">
+                <option value="" style="color:#9ca3af; font-size:0.875rem; letter-spacing:normal;">SELECCIONAR MODELO</option>
+                <option value="smart #1">smart #1</option>
+                <option value="smart #3">smart #3</option>
+              </select>
+            </div>
+            <div class="py-3">
+              <select id="sel-servicio" class="w-full bg-transparent outline-none text-sm" onchange="this.style.color=this.value?'#000':''; this.style.fontSize=this.value?'0.875rem':'0.75rem'; this.style.letterSpacing=this.value?'normal':'0.1em';" style="color:transparent; font-size:0.75rem; letter-spacing:0.1em;">
+                <option value="" style="color:#9ca3af; font-size:0.875rem; letter-spacing:normal;">TIPO DE CONSULTA</option>
+                <option value="mantenimiento">Mantenimiento y service</option>
+                <option value="garantia">Garantía</option>
+                <option value="carga">Soluciones de carga</option>
+                <option value="asistencia">Asistencia en ruta</option>
+                <option value="otro">Otro</option>
+              </select>
+            </div>
+            <div class="py-3">
+              <p style="font-size:0.75rem; letter-spacing:0.05em; color:#9ca3af; text-transform:uppercase; margin-bottom:8px;">CONSULTA</p>
+              <textarea rows="5" class="w-full text-sm text-black bg-transparent outline-none resize-none border border-neutral-200 p-3"></textarea>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       FOOTER
+  ================================================================ -->
+  <footer class="bg-black text-white px-5 md:px-14 pt-10 md:pt-16 pb-6">
+    <div class="max-w-[1320px] mx-auto">
+      <div class="grid grid-cols-2 md:grid-cols-5 gap-8 mb-10">
+        <div>
+          <p class="text-xs uppercase tracking-widest text-neutral-400 mb-4">Secciones</p>
+          <ul class="flex flex-col gap-2 text-sm text-neutral-300">
+            <li><a href="index.html" class="hover:text-white transition-colors">Home</a></li>
+            <li><a href="smart1.html" class="hover:text-white transition-colors">smart #1</a></li>
+            <li><a href="smart3.html" class="hover:text-white transition-colors">smart #3</a></li>
+            <li><a href="brabus.html" class="hover:text-white transition-colors">BRABUS</a></li>
+            <li><a href="servicios.html" class="hover:text-white transition-colors">Servicios al Cliente</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="text-xs uppercase tracking-widest text-neutral-400 mb-4">&nbsp;</p>
+          <ul class="flex flex-col gap-2 text-sm text-neutral-300">
+            <li><a href="movilidad-electrica.html" class="hover:text-white transition-colors">Movilidad eléctrica</a></li>
+            <li><a href="conectividad.html" class="hover:text-white transition-colors">Conectividad</a></li>
+            <li><a href="buscador.html" class="hover:text-white transition-colors">Buscador de sucursales</a></li>
+            <li><a href="sobre-smart.html" class="hover:text-white transition-colors">Sobre smart</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="text-xs uppercase tracking-widest text-neutral-400 mb-4">Modelos</p>
+          <ul class="flex flex-col gap-2 text-sm text-neutral-300">
+            <li><a href="smart1.html" class="hover:text-white transition-colors">smart #1</a></li>
+            <li><a href="smart3.html" class="hover:text-white transition-colors">smart #3</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="text-xs uppercase tracking-widest text-neutral-400 mb-4">Servicios</p>
+          <ul class="flex flex-col gap-2 text-sm text-neutral-300">
+            <li><a href="buscador.html" class="hover:text-white transition-colors">Buscador de concesionarios</a></li>
+            <li><a href="servicios.html" class="hover:text-white transition-colors">Servicios</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="text-xs uppercase tracking-widest text-neutral-400 mb-4">Sobre smart</p>
+          <ul class="flex flex-col gap-2 text-sm text-neutral-300">
+            <li><a href="sobre-smart.html" class="hover:text-white transition-colors">Sobre nosotros</a></li>
+            <li><a href="#contacto" class="hover:text-white transition-colors">Contáctanos</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-neutral-800 pt-5 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+        <div class="flex items-center gap-4 text-xs text-neutral-500">
+          <span>📍 Argentina</span>
+          <span>|</span>
+          <span>© 2026 smart Argentina</span>
+        </div>
+        <div class="flex items-center gap-4 text-xs text-neutral-500">
+          <a href="#" class="hover:text-white transition-colors">Legales</a>
+          <span>|</span>
+          <a href="#" class="hover:text-white transition-colors">Cookies</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleFaq(btn) {
+      const content = btn.nextElementSibling;
+      const icon = btn.querySelector('.faq-icon');
+      const isOpen = !content.classList.contains('hidden');
+      document.querySelectorAll('.faq-content').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('.faq-icon').forEach(el => el.style.transform = '');
+      if (!isOpen) {
+        content.classList.remove('hidden');
+        icon.style.transform = 'rotate(180deg)';
+      }
+    }
+  </script>
+
+
+  <script>
+    function openNavMenu() {
+      const menu     = document.getElementById('nav-menu');
+      const drawer   = document.getElementById('nav-drawer');
+      const backdrop = document.getElementById('nav-backdrop');
+      menu.classList.remove('pointer-events-none');
+      backdrop.classList.remove('opacity-0');
+      backdrop.classList.add('opacity-100');
+      drawer.classList.remove('-translate-x-full');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeNavMenu() {
+      const menu     = document.getElementById('nav-menu');
+      const drawer   = document.getElementById('nav-drawer');
+      const backdrop = document.getElementById('nav-backdrop');
+      backdrop.classList.remove('opacity-100');
+      backdrop.classList.add('opacity-0');
+      drawer.classList.add('-translate-x-full');
+      setTimeout(() => {
+        menu.classList.add('pointer-events-none');
+        document.body.style.overflow = '';
+      }, 300);
+    }
+  </script>
+</body>
+</html>

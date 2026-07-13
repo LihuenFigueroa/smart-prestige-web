@@ -11,6 +11,37 @@
 <body class="bg-white">
 
   <!-- ================================================================
+       NAV MENU OVERLAY
+  ================================================================ -->
+  <div id="nav-menu" class="fixed inset-0 z-[100] pointer-events-none">
+    <div id="nav-backdrop" class="absolute inset-0 bg-black/50 opacity-0 transition-opacity duration-300" onclick="closeNavMenu()"></div>
+    <div id="nav-drawer" class="absolute top-0 left-0 h-full w-full max-w-sm bg-[#141413] flex flex-col -translate-x-full transition-transform duration-300 ease-in-out">
+      <div class="px-8 h-16 flex items-center justify-between border-b border-white/10">
+        <a href="index.html"><img src="assets/img/Logonavbar.svg" alt="smart" class="h-6 w-auto" /></a>
+        <button onclick="closeNavMenu()" aria-label="Cerrar menú" class="text-white p-1">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <nav class="flex-1 overflow-y-auto px-8 py-8 flex flex-col">
+        <p class="text-xs uppercase tracking-widest text-neutral-500 mb-4">Modelos</p>
+        <a href="smart1.html" class="text-white text-xl font-smart-next font-normal py-3 border-b border-white/10 hover:text-neutral-400 transition-colors">smart #1</a>
+        <a href="smart3.html" class="text-white text-xl font-smart-next font-normal py-3 border-b border-white/10 hover:text-neutral-400 transition-colors">smart #3</a>
+        <a href="brabus.html" class="text-white text-xl font-smart-next font-normal py-3 border-b border-white/10 hover:text-neutral-400 transition-colors">smart × BRABUS</a>
+        <p class="text-xs uppercase tracking-widest text-neutral-500 mt-8 mb-4">Descubrí</p>
+        <a href="servicios.html" class="text-white text-xl font-smart-next font-normal py-3 border-b border-white/10 hover:text-neutral-400 transition-colors">Servicios al Cliente</a>
+        <a href="movilidad-electrica.html" class="text-white text-xl font-smart-next font-normal py-3 border-b border-white/10 hover:text-neutral-400 transition-colors">Movilidad Eléctrica</a>
+        <a href="conectividad.html" class="text-white text-xl font-smart-next font-normal py-3 border-b border-white/10 hover:text-neutral-400 transition-colors">Conectividad</a>
+        <p class="text-xs uppercase tracking-widest text-neutral-500 mt-8 mb-4">Sobre smart</p>
+        <a href="sobre-smart.html" class="text-white text-xl font-smart-next font-normal py-3 border-b border-white/10 hover:text-neutral-400 transition-colors">Sobre nosotros</a>
+        <a href="buscador.html" class="text-white text-xl font-smart-next font-normal py-3 border-b border-white/10 hover:text-neutral-400 transition-colors">Buscador de concesionarios</a>
+      </nav>
+      <div class="px-8 py-6 border-t border-white/10">
+        <a href="index.html#contacto" class="text-sm text-neutral-400 hover:text-white transition-colors">Contáctanos</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================================================================
        HERO + NAV  (scroll-pinned video)
   ================================================================ -->
   <div id="heroPin">
@@ -29,7 +60,7 @@
     <!-- Navigation -->
     <nav class="absolute top-0 left-0 right-0 z-20 px-5 md:px-14 h-14 md:h-16 flex items-center justify-between">
       <div class="flex items-center gap-8">
-        <button class="flex flex-col gap-[5px] cursor-pointer" aria-label="Menú">
+        <button onclick="openNavMenu()" class="flex flex-col gap-[5px] cursor-pointer" aria-label="Menú">
           <span class="w-5 h-px bg-white block"></span>
           <span class="w-5 h-px bg-white block"></span>
           <span class="w-5 h-px bg-white block"></span>
@@ -73,13 +104,13 @@
 
       <img
         id="model-img-1"
-        src="assets/img/home/smart1_home.jpeg"
+        src="assets/img/home/elegiTuSmart/smart1_home.jpeg"
         alt="smart #1"
         style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center; transform:translateX(0); opacity:1; transition:transform 0.5s ease,opacity 0.5s ease;"
       />
       <img
         id="model-img-3"
-        src="assets/img/home/smart3_home.jpeg"
+        src="assets/img/home/elegiTuSmart/smart3_home.jpeg"
         alt="smart #3"
         style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center; transform:translateX(100%); opacity:0; transition:transform 0.5s ease,opacity 0.5s ease;"
       />
@@ -88,16 +119,20 @@
     <!-- Título + tabs: centrados, en el área de cielo de la imagen (≈9% desde top) -->
     <div style="position:absolute; top:9%; left:50%; transform:translateX(-50%); z-index:10; display:flex; flex-direction:column; align-items:center; gap:1rem; width:25%;">
       <h2 class="font-smart-next font-bold text-neutral-900 text-center" style="font-size:clamp(1.5rem,3.5vw,2.8rem); white-space:nowrap;">Elegí tu smart.</h2>
-      <div class="flex items-center bg-white border border-neutral-900 rounded-full p-1 gap-1">
+      <div id="model-switcher" class="flex items-center bg-white border border-neutral-900 rounded-full" style="position:relative; overflow:hidden;">
+        <!-- Píldora deslizante -->
+        <div id="model-slider-indicator" style="position:absolute; top:0; left:0; height:100%; border-radius:9999px; background:#171717; z-index:0; transition:transform 0.4s cubic-bezier(0.4,0,0.2,1), width 0.4s cubic-bezier(0.4,0,0.2,1);"></div>
         <button
           id="tab-smart1"
           onclick="switchModel(1)"
-          class="h-8 px-5 rounded-full text-base font-normal transition-all bg-neutral-900 text-white"
+          class="h-8 px-5 text-base font-normal"
+          style="position:relative; z-index:1; color:#fff; transition:color 0.4s ease;"
         >smart #1</button>
         <button
           id="tab-smart3"
           onclick="switchModel(3)"
-          class="h-8 px-5 rounded-full text-base font-normal transition-all bg-transparent text-neutral-900"
+          class="h-8 px-5 text-base font-normal"
+          style="position:relative; z-index:1; color:#171717; transition:color 0.4s ease;"
         >smart #3</button>
       </div>
     </div>
@@ -115,32 +150,36 @@
   </section>
 
   <!-- ================================================================
-       FEATURE CARDS
+       FEATURE CARDS — carrusel drag-to-scroll
   ================================================================ -->
-  <section id="modelos" class="w-full bg-white py-10 md:py-16 px-5 md:px-14">
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-6 max-w-[1320px] mx-auto">
+  <section id="modelos" class="w-full bg-white py-10 md:py-16" style="overflow:hidden;">
+    <div
+      id="cards-track"
+      class="flex select-none"
+      style="overflow-x:scroll; scrollbar-width:none; -ms-overflow-style:none; padding-left:1.25rem; padding-right:1.25rem; gap:1.5rem; cursor:grab;"
+    >
 
-      <div class="flex flex-col gap-4">
-        <img src="assets/img/cardBRABUS.jpg" alt="smart X BRABUS" class="w-full aspect-[4/3] object-cover" />
-        <div class="flex flex-col gap-3 flex-1">
+      <div class="flex flex-col" style="flex-shrink:0; width:30vw; gap:1rem;">
+        <img src="assets/img/home/carrusel/1.jpg" alt="smart X BRABUS" class="w-full aspect-[4/3] object-cover" style="pointer-events:none;" />
+        <div class="flex flex-col flex-1" style="gap:0.75rem;">
           <h3 class="font-smart-next text-3xl md:text-4xl font-normal text-black leading-tight">smart X BRABUS.</h3>
           <p class="text-base text-black leading-6 flex-1">Rendimiento extremo. Diseño inconfundible. La versión más potente de smart lleva cada detalle al límite.</p>
           <a href="#" class="self-start h-10 px-5 rounded-full border border-black text-sm font-bold text-neutral-900 flex items-center hover:bg-black hover:text-white transition-colors">Descubrilo</a>
         </div>
       </div>
 
-      <div class="flex flex-col gap-4">
-        <img src="assets/img/cardConectividad.jpg" alt="Conectividad" class="w-full aspect-[4/3] object-cover" />
-        <div class="flex flex-col gap-3 flex-1">
+      <div class="flex flex-col" style="flex-shrink:0; width:30vw; gap:1rem;">
+        <img src="assets/img/home/carrusel/2.jpg" alt="Conectividad" class="w-full aspect-[4/3] object-cover" style="pointer-events:none;" />
+        <div class="flex flex-col flex-1" style="gap:0.75rem;">
           <h3 class="font-smart-next text-3xl md:text-4xl font-normal text-black leading-tight">Conectividad.</h3>
           <p class="text-base text-black leading-6 flex-1">Pantalla central de 12,8'', Apple CarPlay® y Android Auto® inalámbrico. El camino y tu mundo, integrados.</p>
           <a href="#" class="self-start h-10 px-5 rounded-full border border-black text-sm font-bold text-neutral-900 flex items-center hover:bg-black hover:text-white transition-colors">Conocé más</a>
         </div>
       </div>
 
-      <div class="flex flex-col gap-4">
-        <img src="assets/img/card3.png" alt="Movilidad eléctrica" class="w-full aspect-[4/3] object-cover" />
-        <div class="flex flex-col gap-3 flex-1">
+      <div class="flex flex-col" style="flex-shrink:0; width:30vw; gap:1rem;">
+        <img src="assets/img/home/carrusel/3.jpg" alt="Movilidad eléctrica" class="w-full aspect-[4/3] object-cover" style="pointer-events:none;" />
+        <div class="flex flex-col flex-1" style="gap:0.75rem;">
           <h3 class="font-smart-next text-3xl md:text-4xl font-normal text-black leading-tight">Movilidad eléctrica.</h3>
           <p class="text-base text-black leading-6 flex-1">Hasta 597 km de autonomía y carga rápida en menos de 30 minutos. El futuro de la movilidad ya tiene forma.</p>
           <p class="text-xs text-black/30 leading-4">Autonomía sujeta a tipo de conducción, condiciones del terreno y condiciones del clima.</p>
@@ -148,9 +187,9 @@
         </div>
       </div>
 
-      <div class="flex flex-col gap-4">
-        <img src="assets/img/card4.png" alt="Servicios al Cliente" class="w-full aspect-[4/3] object-cover" />
-        <div class="flex flex-col gap-3 flex-1">
+      <div class="flex flex-col" style="flex-shrink:0; width:30vw; gap:1rem;">
+        <img src="assets/img/home/carrusel/4.png" alt="Servicios al Cliente" class="w-full aspect-[4/3] object-cover" style="pointer-events:none;" />
+        <div class="flex flex-col flex-1" style="gap:0.75rem;">
           <h3 class="font-smart-next text-3xl md:text-4xl font-normal text-black leading-tight">Servicios al Cliente.</h3>
           <p class="text-base text-black leading-6 flex-1">Respaldo completo en cada kilómetro. Porque smart no termina en la compra.</p>
           <a href="#" class="self-start h-10 px-5 rounded-full border border-black text-sm font-bold text-neutral-900 flex items-center hover:bg-black hover:text-white transition-colors">Ver servicios</a>
@@ -164,9 +203,9 @@
        BUSCADOR DE CONCESIONARIOS
   ================================================================ -->
   <section id="concesionarios" class="w-full bg-white py-10 md:py-16 px-5 md:px-14">
-    <div class="max-w-[1320px] mx-auto flex flex-col md:flex-row gap-10 md:gap-16 md:items-center">
+    <div class="max-w-[1320px] mx-auto flex flex-col md:flex-row gap-10 md:gap-16 md:items-start">
 
-      <div class="flex flex-col gap-6 md:gap-8 md:w-80 md:flex-shrink-0">
+      <div class="flex flex-col gap-6 md:gap-8 md:w-[480px] md:flex-shrink-0">
         <div class="flex flex-col gap-3">
           <h2 class="font-smart-next text-3xl md:text-4xl font-normal text-neutral-900 leading-tight">
             Buscador de concesionarios.
@@ -181,7 +220,7 @@
       </div>
 
       <div class="flex-1 overflow-hidden">
-        <img src="assets/img/presenciaEnArgentina.png" alt="Concesionarios Argentina" class="w-full h-72 md:h-[460px] object-cover" />
+        <img src="assets/img/home/encontraTuSucursal/presenciaEnArgentina.png" alt="Concesionarios Argentina" class="w-full" />
       </div>
 
     </div>
@@ -190,8 +229,8 @@
   <!-- ================================================================
        QUIENES SOMOS
   ================================================================ -->
-  <section id="quienes-somos" class="w-full bg-[#141413] py-10 md:py-16 px-5 md:px-14">
-    <div class="max-w-[1320px] mx-auto flex flex-col md:flex-row gap-10 md:gap-16 md:items-center">
+  <section id="quienes-somos" class="w-full bg-white py-10 md:py-16 px-5 md:px-14">
+    <div class="bg-[#141413] max-w-[1320px] mx-auto flex flex-col md:flex-row gap-10 md:gap-16 md:items-center px-10 md:px-14 py-10 md:py-16">
 
       <div class="flex flex-col gap-6 md:w-[480px] md:flex-shrink-0">
         <h2 class="font-smart-next text-3xl md:text-4xl font-normal text-white leading-tight">
@@ -202,8 +241,8 @@
         </a>
       </div>
 
-      <div class="flex-1 overflow-hidden">
-        <img src="assets/img/laColaboracionBRABUS.png" alt="smart historia" class="w-full h-64 md:h-80 object-cover" />
+      <div class="flex-1 overflow-hidden flex justify-end">
+        <img src="assets/img/home/smartTresDecadas/bannerNegro.png" alt="smart historia" style="max-height:280px; width:auto;" />
       </div>
 
     </div>
@@ -215,44 +254,54 @@
   <section id="contacto" class="w-full bg-white py-12 md:py-20 px-5 md:px-14">
     <div class="max-w-[1320px] mx-auto flex flex-col md:flex-row gap-10 md:gap-16 md:items-start">
 
-      <div class="w-full md:w-[480px] md:flex-shrink-0">
-        <h2 class="font-smart-next text-3xl md:text-4xl font-normal text-black leading-tight mb-3">Realizar consulta.</h2>
-        <p class="text-base text-black font-normal leading-6 mb-8">
+      <!-- Izquierda: título + subtítulo + botón -->
+      <div class="md:w-[440px] md:flex-shrink-0 md:pt-1 flex flex-col gap-6">
+        <h2 class="font-smart-next font-normal text-black" style="font-size:32px; line-height:1.2;">Realizar consulta.</h2>
+        <p class="text-base text-neutral-500 font-normal leading-6">
           Completá el formulario y te contactaremos a la brevedad.
         </p>
+        <button type="submit" form="form-contacto" class="self-start h-10 px-8 bg-black rounded-full text-sm font-bold text-white hover:bg-neutral-800 transition-colors">
+          Enviar
+        </button>
+      </div>
 
-        <form class="space-y-0" novalidate>
-          <div class="border-b border-neutral-300 py-3"><input type="text" placeholder="Nombre" class="w-full text-base text-black placeholder:text-neutral-400 bg-transparent outline-none" /></div>
-          <div class="border-b border-neutral-300 py-3"><input type="text" placeholder="Apellido" class="w-full text-base text-black placeholder:text-neutral-400 bg-transparent outline-none" /></div>
-          <div class="border-b border-neutral-300 py-3"><input type="text" placeholder="Ciudad" class="w-full text-base text-black placeholder:text-neutral-400 bg-transparent outline-none" /></div>
-          <div class="border-b border-neutral-300 py-3"><input type="email" placeholder="Correo electrónico" class="w-full text-base text-black placeholder:text-neutral-400 bg-transparent outline-none" /></div>
-          <div class="border-b border-neutral-300 py-3"><input type="tel" placeholder="Celular" class="w-full text-base text-black placeholder:text-neutral-400 bg-transparent outline-none" /></div>
-          <div class="border-b border-neutral-300 py-3">
-            <select name="concesionario" class="w-full text-base bg-transparent appearance-none cursor-pointer outline-none" style="color:#9ca3af;" onchange="this.style.color=this.value?'#111':'#9ca3af'">
-              <option value="" disabled selected>Concesionario</option>
-            </select>
+      <!-- Derecha: campos -->
+      <div class="flex-1">
+        <form id="form-contacto" novalidate>
+          <div class="border-b border-neutral-200 py-3">
+            <input type="text" placeholder="NOMBRE" class="w-full text-sm text-black bg-transparent outline-none placeholder:text-xs placeholder:tracking-widest placeholder:text-neutral-400" />
           </div>
-          <div class="border-b border-neutral-300 py-3">
-            <select name="modelo" class="w-full text-base bg-transparent appearance-none cursor-pointer outline-none" style="color:#9ca3af;" onchange="this.style.color=this.value?'#111':'#9ca3af'">
-              <option value="" disabled selected>Seleccione modelo</option>
+          <div class="border-b border-neutral-200 py-3">
+            <input type="text" placeholder="APELLIDO" class="w-full text-sm text-black bg-transparent outline-none placeholder:text-xs placeholder:tracking-widest placeholder:text-neutral-400" />
+          </div>
+          <div class="border-b border-neutral-200 py-3">
+            <input type="text" placeholder="CIUDAD" class="w-full text-sm text-black bg-transparent outline-none placeholder:text-xs placeholder:tracking-widest placeholder:text-neutral-400" />
+          </div>
+          <div class="border-b border-neutral-200 py-3">
+            <input type="email" placeholder="CORREO ELECTRÓNICO" class="w-full text-sm text-black bg-transparent outline-none placeholder:text-xs placeholder:tracking-widest placeholder:text-neutral-400" />
+          </div>
+          <div class="border-b border-neutral-200 py-3">
+            <input type="tel" placeholder="CELULAR" class="w-full text-sm text-black bg-transparent outline-none placeholder:text-xs placeholder:tracking-widest placeholder:text-neutral-400" />
+          </div>
+          <div class="border-b border-neutral-200 py-3 relative">
+            <select name="concesionario" class="w-full text-sm bg-transparent appearance-none cursor-pointer outline-none" style="color:#9ca3af;" onchange="this.style.color=this.value?'#111827':'#9ca3af'; this.style.letterSpacing=this.value?'normal':'0.1em'; this.style.fontSize=this.value?'0.875rem':'0.75rem';">
+              <option value="" disabled selected>CONCESIONARIO</option>
+            </select>
+            <span class="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 text-neutral-400 text-xs">&#8964;</span>
+          </div>
+          <div class="border-b border-neutral-200 py-3 relative">
+            <select name="modelo" class="w-full text-sm bg-transparent appearance-none cursor-pointer outline-none" style="color:#9ca3af;" onchange="this.style.color=this.value?'#111827':'#9ca3af'; this.style.letterSpacing=this.value?'normal':'0.1em'; this.style.fontSize=this.value?'0.875rem':'0.75rem';">
+              <option value="" disabled selected>SELECCIONE MODELO</option>
               <option value="smart1">smart #1</option>
               <option value="smart3">smart #3</option>
             </select>
+            <span class="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 text-neutral-400 text-xs">&#8964;</span>
           </div>
-          <div class="border border-neutral-300 mt-1" style="height:104px; padding:12px;">
-            <textarea placeholder="Consulta" class="w-full h-full text-base text-black placeholder:text-neutral-400 bg-transparent outline-none resize-none"></textarea>
-          </div>
-          <div class="pt-6">
-            <button type="submit" class="h-10 px-8 bg-black rounded-full text-sm font-bold text-white hover:bg-neutral-800 transition-colors">
-              Enviar
-            </button>
+          <div class="py-3">
+            <p style="font-size:0.75rem; letter-spacing:0.05em; color:#9ca3af; text-transform:uppercase; margin-bottom:8px;">CONSULTA</p>
+            <textarea rows="5" class="w-full text-sm text-black bg-transparent outline-none resize-none border border-neutral-200 p-3"></textarea>
           </div>
         </form>
-      </div>
-
-      <!-- Imagen lateral — solo desktop -->
-      <div class="hidden md:block flex-1">
-        <img src="assets/img/estamosCerca.png" alt="smart Argentina" class="w-full h-full max-h-[760px] object-cover" />
       </div>
 
     </div>
@@ -266,6 +315,7 @@
 
       <!-- Nav columns -->
       <div class="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
+        <!-- Col 1: Secciones -->
         <div class="flex flex-col gap-2">
           <p class="text-white text-sm font-normal leading-5 opacity-50 mb-2">Secciones</p>
           <nav class="flex flex-col gap-2">
@@ -276,6 +326,17 @@
             <a href="#" class="text-white text-base leading-6 hover:opacity-70">Servicios al cliente</a>
           </nav>
         </div>
+        <!-- Col 2: sin título -->
+        <div class="flex flex-col gap-2">
+          <p class="text-white text-sm font-normal leading-5 opacity-50 mb-2">&nbsp;</p>
+          <nav class="flex flex-col gap-2">
+            <a href="#" class="text-white text-base leading-6 hover:opacity-70">Movilidad eléctrica</a>
+            <a href="#" class="text-white text-base leading-6 hover:opacity-70">Conectividad</a>
+            <a href="#" class="text-white text-base leading-6 hover:opacity-70">Buscador de sucursales</a>
+            <a href="#" class="text-white text-base leading-6 hover:opacity-70">Sobre smart</a>
+          </nav>
+        </div>
+        <!-- Col 3: Modelos -->
         <div class="flex flex-col gap-2">
           <p class="text-white text-sm font-normal leading-5 opacity-50 mb-2">Modelos</p>
           <nav class="flex flex-col gap-2">
@@ -283,6 +344,7 @@
             <a href="#" class="text-white text-base leading-6 hover:opacity-70">smart #3</a>
           </nav>
         </div>
+        <!-- Col 4: Servicios -->
         <div class="flex flex-col gap-2">
           <p class="text-white text-sm font-normal leading-5 opacity-50 mb-2">Servicios</p>
           <nav class="flex flex-col gap-2">
@@ -290,19 +352,12 @@
             <a href="#" class="text-white text-base leading-6 hover:opacity-70">Servicios</a>
           </nav>
         </div>
-        <div class="flex flex-col gap-2">
-          <p class="text-white text-sm font-normal leading-5 opacity-50 mb-2">Características</p>
-          <nav class="flex flex-col gap-2">
-            <a href="#" class="text-white text-base leading-6 hover:opacity-70">Movilidad eléctrica</a>
-            <a href="#" class="text-white text-base leading-6 hover:opacity-70">Conectividad</a>
-            <a href="#" class="text-white text-base leading-6 hover:opacity-70">Buscador de sucursales</a>
-          </nav>
-        </div>
+        <!-- Col 5: Sobre smart -->
         <div class="flex flex-col gap-2">
           <p class="text-white text-sm font-normal leading-5 opacity-50 mb-2">Sobre smart</p>
           <nav class="flex flex-col gap-2">
             <a href="#" class="text-white text-base leading-6 hover:opacity-70">Sobre nosotros</a>
-            <a href="#contacto" class="text-white text-base leading-6 hover:opacity-70">Contactanos</a>
+            <a href="#contacto" class="text-white text-base leading-6 hover:opacity-70">Contáctanos</a>
           </nav>
         </div>
       </div>
@@ -312,15 +367,18 @@
       <!-- Footer bottom -->
       <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-4">
         <div class="flex flex-wrap items-center gap-x-4 gap-y-2 text-[#BABFC4] text-sm">
+          <div class="flex items-center gap-2 text-white text-sm">
+            <svg class="w-4 h-4 opacity-70" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
+            <span>Argentina</span>
+          </div>
+          <span class="opacity-40">|</span>
+          <p class="text-[#BABFC4] text-sm">© 2026 smart Argentina</p>
+        </div>
+        <div class="flex items-center gap-x-4 text-[#BABFC4] text-sm">
           <a href="#" class="hover:text-white transition-colors">Legales</a>
           <span class="opacity-40">|</span>
           <a href="#" class="hover:text-white transition-colors">Cookies</a>
         </div>
-        <div class="flex items-center gap-2 text-white text-sm">
-          <svg class="w-4 h-4 opacity-70" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418"/></svg>
-          <span>Argentina</span>
-        </div>
-        <p class="text-[#BABFC4] text-sm">© 2026 smart Argentina</p>
       </div>
 
     </div>
@@ -328,65 +386,152 @@
 
   <script>
     // Precargá las imágenes para que el slide no tenga delay
-    new Image().src = 'assets/img/home/smart1_home.jpeg';
-    new Image().src = 'assets/img/home/smart3_home.jpeg';
+    new Image().src = 'assets/img/home/elegiTuSmart/smart1_home.jpeg';
+    new Image().src = 'assets/img/home/elegiTuSmart/smart3_home.jpeg';
 
     let currentModel = 1;
+
+    function initModelSwitcher() {
+      const tab1      = document.getElementById('tab-smart1');
+      const indicator = document.getElementById('model-slider-indicator');
+      indicator.style.width     = tab1.offsetWidth + 'px';
+      indicator.style.transform = `translateX(${tab1.offsetLeft}px)`;
+    }
 
     function switchModel(num) {
       if (num === currentModel) return;
 
-      const img1 = document.getElementById('model-img-1');
-      const img3 = document.getElementById('model-img-3');
-      const cta  = document.getElementById('model-cta');
-      const tab1 = document.getElementById('tab-smart1');
-      const tab3 = document.getElementById('tab-smart3');
+      const img1      = document.getElementById('model-img-1');
+      const img3      = document.getElementById('model-img-3');
+      const cta       = document.getElementById('model-cta');
+      const tab1      = document.getElementById('tab-smart1');
+      const tab3      = document.getElementById('tab-smart3');
+      const indicator = document.getElementById('model-slider-indicator');
 
       const goingRight = num > currentModel; // #1→#3: derecha, #3→#1: izquierda
+      const incoming   = num === 1 ? img1 : img3;
+      const outgoing   = num === 1 ? img3 : img1;
 
-      const incoming = num === 1 ? img1 : img3;
-      const outgoing = num === 1 ? img3 : img1;
-
-      // Ponemos el incoming fuera de pantalla sin transición
+      // Slide de imagen
       incoming.style.transition = 'none';
-      incoming.style.transform = goingRight ? 'translateX(100%)' : 'translateX(-100%)';
-      incoming.style.opacity = '0';
-
-      // Forzamos reflow
-      incoming.getBoundingClientRect();
-
-      // Activamos transiciones y animamos
+      incoming.style.transform  = goingRight ? 'translateX(100%)' : 'translateX(-100%)';
+      incoming.style.opacity    = '0';
+      incoming.getBoundingClientRect(); // forzar reflow
       incoming.style.transition = 'transform 0.5s ease, opacity 0.5s ease';
       outgoing.style.transition = 'transform 0.5s ease, opacity 0.5s ease';
-
-      incoming.style.transform = 'translateX(0)';
-      incoming.style.opacity = '1';
-
-      outgoing.style.transform = goingRight ? 'translateX(-100%)' : 'translateX(100%)';
-      outgoing.style.opacity = '0';
+      incoming.style.transform  = 'translateX(0)';
+      incoming.style.opacity    = '1';
+      outgoing.style.transform  = goingRight ? 'translateX(-100%)' : 'translateX(100%)';
+      outgoing.style.opacity    = '0';
 
       // CTA
       cta.textContent = num === 1
         ? 'Descubrí más sobre el smart #1'
         : 'Descubrí más sobre el smart #3';
 
-      // Tabs
-      if (num === 1) {
-        tab1.classList.add('bg-neutral-900', 'text-white');
-        tab1.classList.remove('bg-transparent', 'text-neutral-900');
-        tab3.classList.add('bg-transparent', 'text-neutral-900');
-        tab3.classList.remove('bg-neutral-900', 'text-white');
-      } else {
-        tab3.classList.add('bg-neutral-900', 'text-white');
-        tab3.classList.remove('bg-transparent', 'text-neutral-900');
-        tab1.classList.add('bg-transparent', 'text-neutral-900');
-        tab1.classList.remove('bg-neutral-900', 'text-white');
-      }
+      // Píldora deslizante: mover y redimensionar
+      const activeTab = num === 1 ? tab1 : tab3;
+      indicator.style.width     = activeTab.offsetWidth + 'px';
+      indicator.style.transform = `translateX(${activeTab.offsetLeft}px)`;
+
+      // Colores de texto (sincronizados con la transición del indicator)
+      tab1.style.color = num === 1 ? '#fff' : '#171717';
+      tab3.style.color = num === 3 ? '#fff' : '#171717';
 
       currentModel = num;
     }
+
+    requestAnimationFrame(initModelSwitcher);
+
+    // ── Carrusel de feature cards — drag-to-scroll con inercia ─────────
+    (function () {
+      const track = document.getElementById('cards-track');
+      if (!track) return;
+
+      let isDragging  = false;
+      let hasMoved    = false;
+      let startX      = 0;
+      let startScroll = 0;
+      let lastX       = 0;
+      let lastTime    = 0;
+      let velocity    = 0;
+      let rafId       = null;
+
+      // Inercia post-release
+      function momentum() {
+        velocity *= 0.97;          // fricción: 0.97 = desaceleración muy suave
+        track.scrollLeft -= velocity;
+        if (Math.abs(velocity) > 0.15) {
+          rafId = requestAnimationFrame(momentum);
+        }
+      }
+
+      track.addEventListener('mousedown', function (e) {
+        cancelAnimationFrame(rafId);
+        isDragging  = true;
+        hasMoved    = false;
+        startX      = e.clientX;
+        startScroll = track.scrollLeft;
+        lastX       = e.clientX;
+        lastTime    = performance.now();
+        velocity    = 0;
+        track.style.cursor = 'grabbing';
+      });
+
+      window.addEventListener('mouseup', function () {
+        if (!isDragging) return;
+        isDragging = false;
+        track.style.cursor = 'grab';
+        rafId = requestAnimationFrame(momentum);
+      });
+
+      track.addEventListener('mousemove', function (e) {
+        if (!isDragging) return;
+        const delta = e.clientX - startX;
+        if (Math.abs(delta) > 4) hasMoved = true;
+
+        // Velocidad: píxeles por ms, normalizado a frame de 16ms
+        const now = performance.now();
+        const dt  = now - lastTime || 1;
+        velocity  = ((e.clientX - lastX) / dt) * 16;
+        lastX     = e.clientX;
+        lastTime  = now;
+
+        track.scrollLeft = startScroll - delta;
+      });
+
+      // Bloquear clicks en links si hubo arrastre real
+      track.addEventListener('click', function (e) {
+        if (hasMoved) e.preventDefault();
+      }, true);
+    })();
   </script>
 
   <script src="assets/js/main.js"></script>
+
+  <script>
+    function openNavMenu() {
+      const menu     = document.getElementById('nav-menu');
+      const drawer   = document.getElementById('nav-drawer');
+      const backdrop = document.getElementById('nav-backdrop');
+      menu.classList.remove('pointer-events-none');
+      backdrop.classList.remove('opacity-0');
+      backdrop.classList.add('opacity-100');
+      drawer.classList.remove('-translate-x-full');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeNavMenu() {
+      const menu     = document.getElementById('nav-menu');
+      const drawer   = document.getElementById('nav-drawer');
+      const backdrop = document.getElementById('nav-backdrop');
+      backdrop.classList.remove('opacity-100');
+      backdrop.classList.add('opacity-0');
+      drawer.classList.add('-translate-x-full');
+      setTimeout(() => {
+        menu.classList.add('pointer-events-none');
+        document.body.style.overflow = '';
+      }, 300);
+    }
+  </script>
 </body>
 </html>
