@@ -45,3 +45,6 @@ select option { color: #111111; }
   opacity: 1;
 }
 .font-smart-next { font-family: 'FOR_smart_Next', 'FOR_smart_Sans', sans-serif; }
+
+/* ── Feature cards carousel — ocultar scrollbar nativo ── */
+#cards-track::-webkit-scrollbar { display: none; }

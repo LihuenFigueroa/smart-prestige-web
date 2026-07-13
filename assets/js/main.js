@@ -2,8 +2,9 @@
 function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, captureFps, lerp, pinHeight, textEl, textElMid, textZonePx, holdZonePx }) {
   const video  = document.getElementById(videoId);
   const canvas = document.getElementById(canvasId);
-  const ctx    = canvas.getContext('2d');
   const pin    = document.getElementById(pinId);
+  if (!video || !canvas || !pin) return;
+  const ctx    = canvas.getContext('2d');
 
   const PX_PER_SECOND = pxPerSecond || 300;
   const CAPTURE_FPS   = captureFps  || 24;
@@ -238,28 +239,6 @@ function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, capt
 // ── Mobile detection ──────────────────────────────────────────────────────
 const isMobile = window.innerWidth < 768;
 
-// ── Mobile model selector ─────────────────────────────────────────────────
-function switchModel(n) {
-  const img  = document.getElementById('mobileModelImg');
-  const cta  = document.getElementById('mobileModelCta');
-  const tab1 = document.getElementById('mobileTab1');
-  const tab3 = document.getElementById('mobileTab3');
-  const activeClass   = 'flex-1 flex items-center justify-center text-[10px] font-normal bg-neutral-900 text-white transition-all';
-  const inactiveClass = 'flex-1 flex items-center justify-center text-[10px] font-normal text-neutral-900 transition-all';
-  if (n === 1) {
-    img.src        = 'assets/img/smartXBRABUS.png';
-    img.alt        = 'Smart #1';
-    cta.textContent = 'Averiguá más sobre el Smart #1';
-    tab1.className = activeClass;
-    tab3.className = inactiveClass;
-  } else {
-    img.src        = 'assets/img/SMART X BRABUS 1.png';
-    img.alt        = 'Smart #3';
-    cta.textContent = 'Averiguá más sobre el Smart #3';
-    tab1.className = inactiveClass;
-    tab3.className = activeClass;
-  }
-}
 
 // ── Hero ─────────────────────────────────────────────────────────────────
 initScrollVideo({
@@ -278,6 +257,7 @@ initScrollVideo({
 (function () {
   const pin   = document.getElementById('electricoPin');
   const strip = document.getElementById('electricoStrip');
+  if (!pin || !strip) return;
   const SLIDES = 4;
 
   function updateElectrico() {
@@ -295,6 +275,7 @@ initScrollVideo({
 (function () {
   const pin   = document.getElementById('tuAutoPin');
   const strip = document.getElementById('tuAutoStrip');
+  if (!pin || !strip) return;
   const dots  = document.querySelectorAll('#tuAutoDots .dot');
   const SLIDES = 6;
   let lastActive = 0;
@@ -304,10 +285,8 @@ initScrollVideo({
     const totalScroll  = pin.offsetHeight - window.innerHeight;
     const progress     = Math.max(0, Math.min(1, scrolled / totalScroll));
 
-    // Deslizar el strip de imágenes
     strip.style.transform = 'translateX(' + (-progress * (SLIDES - 1) * 100) + 'vw)';
 
-    // Actualizar indicador (snap al slide más cercano)
     const active = Math.round(progress * (SLIDES - 1));
     if (active !== lastActive) {
       dots[lastActive].classList.remove('active');

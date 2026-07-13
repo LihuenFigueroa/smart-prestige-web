@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Conectividad — smart Argentina</title>
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="assets/css/tailwind.css" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body class="bg-white">
+
+  <!-- ================================================================
+       NAV MENU OVERLAY
+  ================================================================ -->
+  <div id="nav-menu" class="fixed inset-0 z-[100] pointer-events-none">
+    <div id="nav-backdrop" class="absolute inset-0 bg-black/50 opacity-0 transition-opacity duration-300" onclick="closeNavMenu()"></div>
+    <div id="nav-drawer" class="absolute top-0 left-0 h-full w-full max-w-sm bg-[#141413] flex flex-col -translate-x-full transition-transform duration-300 ease-in-out">
+      <div class="px-8 h-16 flex items-center justify-between border-b border-white/10">
+        <a href="index.html"><img src="assets/img/Logonavbar.svg" alt="smart" class="h-6 w-auto" /></a>
+        <button onclick="closeNavMenu()" aria-label="Cerrar menú" class="text-white p-1">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <nav class="flex-1 overflow-y-auto px-8 py-8 flex flex-col">
+        <p class="text-xs uppercase tracking-widest text-neutral-500 mb-4">Modelos</p>
+        <a href="smart1.html" class="text-white text-xl font-smart-next font-normal py-3 border-b border-white/10 hover:text-neutral-400 transition-colors">smart #1</a>
+        <a href="smart3.html" class="text-white text-xl font-smart-next font-normal py-3 border-b border-white/10 hover:text-neutral-400 transition-colors">smart #3</a>
+        <a href="brabus.html" class="text-white text-xl font-smart-next font-normal py-3 border-b border-white/10 hover:text-neutral-400 transition-colors">smart × BRABUS</a>
+        <p class="text-xs uppercase tracking-widest text-neutral-500 mt-8 mb-4">Descubrí</p>
+        <a href="servicios.html" class="text-white text-xl font-smart-next font-normal py-3 border-b border-white/10 hover:text-neutral-400 transition-colors">Servicios al Cliente</a>
+        <a href="movilidad-electrica.html" class="text-white text-xl font-smart-next font-normal py-3 border-b border-white/10 hover:text-neutral-400 transition-colors">Movilidad Eléctrica</a>
+        <a href="conectividad.html" class="text-white text-xl font-smart-next font-normal py-3 border-b border-white/10 hover:text-neutral-400 transition-colors">Conectividad</a>
+        <p class="text-xs uppercase tracking-widest text-neutral-500 mt-8 mb-4">Sobre smart</p>
+        <a href="sobre-smart.html" class="text-white text-xl font-smart-next font-normal py-3 border-b border-white/10 hover:text-neutral-400 transition-colors">Sobre nosotros</a>
+        <a href="buscador.html" class="text-white text-xl font-smart-next font-normal py-3 border-b border-white/10 hover:text-neutral-400 transition-colors">Buscador de concesionarios</a>
+      </nav>
+      <div class="px-8 py-6 border-t border-white/10">
+        <a href="index.html#contacto" class="text-sm text-neutral-400 hover:text-white transition-colors">Contáctanos</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================================================================
+       HERO
+  ================================================================ -->
+  <section class="relative w-full h-screen min-h-[640px] overflow-hidden">
+    <div class="absolute inset-0 bg-neutral-800">
+      <img src="assets/img/conectividad/hero.jpg" alt="Conectividad smart" class="w-full h-full object-cover" />
+    </div>
+    <div class="absolute top-0 left-0 right-0 pointer-events-none" style="height:170px; z-index:5; background:linear-gradient(to bottom,rgba(20,20,19,0.65) 0%,rgba(20,20,19,0) 100%);"></div>
+    <div class="absolute bottom-0 left-0 right-0 pointer-events-none" style="height:261px; z-index:5; background:linear-gradient(to bottom,rgba(0,0,0,0) 0%,rgba(0,0,0,0.85) 100%);"></div>
+
+    <nav class="absolute top-0 left-0 right-0 z-20 px-5 md:px-14 h-14 md:h-16 flex items-center justify-between">
+      <div class="flex items-center gap-6">
+        <button onclick="openNavMenu()" class="flex flex-col gap-[5px] cursor-pointer" aria-label="Menú">
+          <span class="w-5 h-px bg-white block"></span>
+          <span class="w-5 h-px bg-white block"></span>
+          <span class="w-5 h-px bg-white block"></span>
+        </button>
+        <button class="hidden md:flex items-center gap-1 text-white text-sm font-normal uppercase tracking-wide">
+          MODELOS <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+      </div>
+      <div class="absolute left-1/2 -translate-x-1/2">
+        <a href="index.html"><img src="assets/img/Logonavbar.svg" alt="smart" class="h-4 md:h-8 w-auto" /></a>
+      </div>
+      <div class="flex items-center gap-4">
+        <button class="text-white" aria-label="Cuenta"><svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg></button>
+        <button class="text-white" aria-label="Carrito"><svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"/></svg></button>
+      </div>
+    </nav>
+
+    <div class="absolute bottom-0 left-0 right-0 px-5 md:px-14 pb-8 md:pb-14 z-10">
+      <h1 class="font-smart-next font-normal text-white mb-4" style="font-size:clamp(28px,4vw,56px); line-height:1.1;">Conectividad.</h1>
+      <p class="text-white text-sm font-normal opacity-80 max-w-lg">Tu smart, siempre conectado con vos.</p>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       INTRO
+  ================================================================ -->
+  <section class="w-full bg-white px-5 md:px-14 py-10 md:py-16">
+    <div class="max-w-[1320px] mx-auto">
+      <div class="max-w-2xl">
+        <p class="text-neutral-500 text-sm mb-3">Hello smart</p>
+        <h2 class="font-smart-next font-normal text-black mb-6" style="font-size:clamp(22px,3vw,40px); line-height:1.2;">
+          Tu vida, tu auto, tu mundo. Todo conectado.
+        </h2>
+        <p class="text-neutral-600 text-base leading-7">
+          El ecosistema Hello smart integra todas las funcionalidades de tu vehículo con tu smartphone. Controlá, monitoreá y personalizá tu smart desde donde estés. La tecnología al servicio de tu libertad.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       FEATURES GRID 2×4
+  ================================================================ -->
+  <section class="w-full bg-neutral-50 px-5 md:px-14 py-10 md:py-16">
+    <div class="max-w-[1320px] mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-neutral-200">
+
+        <div class="bg-white p-8 md:p-10 flex flex-col gap-4">
+          <div class="w-10 h-10 rounded-full bg-black flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 8.25h3"/></svg>
+          </div>
+          <h3 class="font-smart-next font-normal text-black text-xl">App Hello smart</h3>
+          <p class="text-neutral-600 text-sm leading-6">Disponible para iOS y Android. Monitoreo en tiempo real, control remoto de funciones y actualizaciones OTA desde la palma de tu mano.</p>
+        </div>
+
+        <div class="bg-white p-8 md:p-10 flex flex-col gap-4">
+          <div class="w-10 h-10 rounded-full bg-black flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 6.75V15m6-6v8.25m.503 3.498l4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 00-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0z"/></svg>
+          </div>
+          <h3 class="font-smart-next font-normal text-black text-xl">Navegación integrada</h3>
+          <p class="text-neutral-600 text-sm leading-6">GPS con puntos de carga integrados en la ruta. Planificá tu viaje teniendo en cuenta la autonomía restante y los cargadores disponibles en el camino.</p>
+        </div>
+
+        <div class="bg-white p-8 md:p-10 flex flex-col gap-4">
+          <div class="w-10 h-10 rounded-full bg-black flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>
+          </div>
+          <h3 class="font-smart-next font-normal text-black text-xl">Carga inteligente</h3>
+          <p class="text-neutral-600 text-sm leading-6">Programá el horario de carga para aprovechar las tarifas más económicas. El sistema aprende tus hábitos y optimiza cada sesión de carga automáticamente.</p>
+        </div>
+
+        <div class="bg-white p-8 md:p-10 flex flex-col gap-4">
+          <div class="w-10 h-10 rounded-full bg-black flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/></svg>
+          </div>
+          <h3 class="font-smart-next font-normal text-black text-xl">Preacondicionamiento</h3>
+          <p class="text-neutral-600 text-sm leading-6">Precalentá o enfriá el habitáculo de tu smart antes de salir. Desde la app, podés programarlo para que el auto esté a la temperatura ideal cuando lo necesités.</p>
+        </div>
+
+        <div class="bg-white p-8 md:p-10 flex flex-col gap-4">
+          <div class="w-10 h-10 rounded-full bg-black flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
+          </div>
+          <h3 class="font-smart-next font-normal text-black text-xl">Seguridad remota</h3>
+          <p class="text-neutral-600 text-sm leading-6">Verificá si el auto está cerrado, activá la alarma y recibí notificaciones ante movimientos inusuales. Tu smart siempre bajo control, desde cualquier lugar.</p>
+        </div>
+
+        <div class="bg-white p-8 md:p-10 flex flex-col gap-4">
+          <div class="w-10 h-10 rounded-full bg-black flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0H3"/></svg>
+          </div>
+          <h3 class="font-smart-next font-normal text-black text-xl">Pantalla 12.8" MBUX</h3>
+          <p class="text-neutral-600 text-sm leading-6">Sistema de infoentretenimiento con pantalla táctil central de 12.8 pulgadas. Integración nativa con Apple CarPlay y Android Auto de forma inalámbrica.</p>
+        </div>
+
+        <div class="bg-white p-8 md:p-10 flex flex-col gap-4">
+          <div class="w-10 h-10 rounded-full bg-black flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.288 15.038a5.25 5.25 0 017.424 0M5.106 11.856c3.807-3.808 9.98-3.808 13.788 0M1.924 8.674c5.565-5.565 14.587-5.565 20.152 0M12.53 18.22l-.53.53-.53-.53a.75.75 0 011.06 0z"/></svg>
+          </div>
+          <h3 class="font-smart-next font-normal text-black text-xl">Conectividad 4G/OTA</h3>
+          <p class="text-neutral-600 text-sm leading-6">Chip SIM integrado para conectividad permanente. Recibí actualizaciones de software Over-The-Air que mejoran y agregan funcionalidades a tu auto sin ir al taller.</p>
+        </div>
+
+        <div class="bg-white p-8 md:p-10 flex flex-col gap-4">
+          <div class="w-10 h-10 rounded-full bg-black flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.182 15.182a4.5 4.5 0 01-6.364 0M21 12a9 9 0 11-18 0 9 9 0 0118 0zM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75zm-.375 0h.008v.015h-.008V9.75zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75zm-.375 0h.008v.015h-.008V9.75z"/></svg>
+          </div>
+          <h3 class="font-smart-next font-normal text-black text-xl">Asistente de voz</h3>
+          <p class="text-neutral-600 text-sm leading-6">Control por voz para navegación, música, llamadas y control del clima. Mantené tus manos en el volante y tu vista en el camino mientras el auto te escucha.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       FOOTER
+  ================================================================ -->
+  <footer class="bg-black text-white px-5 md:px-14 pt-10 md:pt-16 pb-6">
+    <div class="max-w-[1320px] mx-auto">
+      <div class="grid grid-cols-2 md:grid-cols-5 gap-8 mb-10">
+        <div>
+          <p class="text-xs uppercase tracking-widest text-neutral-400 mb-4">Secciones</p>
+          <ul class="flex flex-col gap-2 text-sm text-neutral-300">
+            <li><a href="index.html" class="hover:text-white transition-colors">Home</a></li>
+            <li><a href="smart1.html" class="hover:text-white transition-colors">smart #1</a></li>
+            <li><a href="smart3.html" class="hover:text-white transition-colors">smart #3</a></li>
+            <li><a href="brabus.html" class="hover:text-white transition-colors">BRABUS</a></li>
+            <li><a href="servicios.html" class="hover:text-white transition-colors">Servicios al Cliente</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="text-xs uppercase tracking-widest text-neutral-400 mb-4">&nbsp;</p>
+          <ul class="flex flex-col gap-2 text-sm text-neutral-300">
+            <li><a href="movilidad-electrica.html" class="hover:text-white transition-colors">Movilidad eléctrica</a></li>
+            <li><a href="conectividad.html" class="hover:text-white transition-colors">Conectividad</a></li>
+            <li><a href="buscador.html" class="hover:text-white transition-colors">Buscador de sucursales</a></li>
+            <li><a href="sobre-smart.html" class="hover:text-white transition-colors">Sobre smart</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="text-xs uppercase tracking-widest text-neutral-400 mb-4">Modelos</p>
+          <ul class="flex flex-col gap-2 text-sm text-neutral-300">
+            <li><a href="smart1.html" class="hover:text-white transition-colors">smart #1</a></li>
+            <li><a href="smart3.html" class="hover:text-white transition-colors">smart #3</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="text-xs uppercase tracking-widest text-neutral-400 mb-4">Servicios</p>
+          <ul class="flex flex-col gap-2 text-sm text-neutral-300">
+            <li><a href="buscador.html" class="hover:text-white transition-colors">Buscador de concesionarios</a></li>
+            <li><a href="servicios.html" class="hover:text-white transition-colors">Servicios</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="text-xs uppercase tracking-widest text-neutral-400 mb-4">Sobre smart</p>
+          <ul class="flex flex-col gap-2 text-sm text-neutral-300">
+            <li><a href="sobre-smart.html" class="hover:text-white transition-colors">Sobre nosotros</a></li>
+            <li><a href="index.html#contacto" class="hover:text-white transition-colors">Contáctanos</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-neutral-800 pt-5 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+        <div class="flex items-center gap-4 text-xs text-neutral-500">
+          <span>📍 Argentina</span>
+          <span>|</span>
+          <span>© 2026 smart Argentina</span>
+        </div>
+        <div class="flex items-center gap-4 text-xs text-neutral-500">
+          <a href="#" class="hover:text-white transition-colors">Legales</a>
+          <span>|</span>
+          <a href="#" class="hover:text-white transition-colors">Cookies</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+    function openNavMenu() {
+      const menu     = document.getElementById('nav-menu');
+      const drawer   = document.getElementById('nav-drawer');
+      const backdrop = document.getElementById('nav-backdrop');
+      menu.classList.remove('pointer-events-none');
+      backdrop.classList.remove('opacity-0');
+      backdrop.classList.add('opacity-100');
+      drawer.classList.remove('-translate-x-full');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeNavMenu() {
+      const menu     = document.getElementById('nav-menu');
+      const drawer   = document.getElementById('nav-drawer');
+      const backdrop = document.getElementById('nav-backdrop');
+      backdrop.classList.remove('opacity-100');
+      backdrop.classList.add('opacity-0');
+      drawer.classList.add('-translate-x-full');
+      setTimeout(() => {
+        menu.classList.add('pointer-events-none');
+        document.body.style.overflow = '';
+      }, 300);
+    }
+  </script>
+</body>
+</html>
