@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="assets/css/tailwind.css" />
   <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
-<body class="bg-white">
+<body class="bg-white font-smart-next">
 
   <!-- ================================================================
        NAV MENU OVERLAY
@@ -23,15 +23,15 @@
         </button>
       </div>
       <nav class="flex-1 overflow-y-auto px-8 py-8 flex flex-col">
-        <p class="text-xs uppercase tracking-widest text-neutral-500 mb-4">Modelos</p>
+        <p class="text-xs uppercase tracking-widest text-neutral-500 mb-4 font-smart-next">Modelos</p>
         <a href="smart1.html" class="text-white text-xl font-smart-next font-normal py-3 border-b border-white/10 hover:text-neutral-400 transition-colors">smart #1</a>
         <a href="smart3.html" class="text-white text-xl font-smart-next font-normal py-3 border-b border-white/10 hover:text-neutral-400 transition-colors">smart #3</a>
         <a href="brabus.html" class="text-white text-xl font-smart-next font-normal py-3 border-b border-white/10 hover:text-neutral-400 transition-colors">smart × BRABUS</a>
-        <p class="text-xs uppercase tracking-widest text-neutral-500 mt-8 mb-4">Descubrí</p>
+        <p class="text-xs uppercase tracking-widest text-neutral-500 mt-8 mb-4 font-smart-next">Descubrí</p>
         <a href="servicios.html" class="text-white text-xl font-smart-next font-normal py-3 border-b border-white/10 hover:text-neutral-400 transition-colors">Servicios al Cliente</a>
         <a href="movilidad-electrica.html" class="text-white text-xl font-smart-next font-normal py-3 border-b border-white/10 hover:text-neutral-400 transition-colors">Movilidad Eléctrica</a>
         <a href="conectividad.html" class="text-white text-xl font-smart-next font-normal py-3 border-b border-white/10 hover:text-neutral-400 transition-colors">Conectividad</a>
-        <p class="text-xs uppercase tracking-widest text-neutral-500 mt-8 mb-4">Sobre smart</p>
+        <p class="text-xs uppercase tracking-widest text-neutral-500 mt-8 mb-4 font-smart-next">Sobre smart</p>
         <a href="sobre-smart.html" class="text-white text-xl font-smart-next font-normal py-3 border-b border-white/10 hover:text-neutral-400 transition-colors">Sobre nosotros</a>
         <a href="buscador.html" class="text-white text-xl font-smart-next font-normal py-3 border-b border-white/10 hover:text-neutral-400 transition-colors">Buscador de concesionarios</a>
       </nav>
@@ -72,8 +72,8 @@
     </nav>
 
     <div class="absolute bottom-0 left-0 right-0 px-5 md:px-14 pb-8 md:pb-14 z-10">
-      <p class="text-white text-sm font-normal mb-1">smart #1</p>
-      <p class="text-white text-sm font-normal mb-4 opacity-80">hasta 504 km de autonomía. hasta 532 km en ciclo WLTP en la versión BRABUS.</p>
+      <p class="text-white text-sm font-normal mb-1 font-smart-next">smart #1</p>
+      <p class="text-white text-sm font-normal mb-4 opacity-80 font-smart-sans">hasta 504 km de autonomía. hasta 532 km en ciclo WLTP en la versión BRABUS.</p>
       <a href="#contacto" class="inline-flex items-center h-10 px-6 border border-white text-white text-sm font-bold rounded-full hover:bg-white hover:text-black transition-colors">
         Realizar consulta
       </a>
@@ -85,7 +85,7 @@
   ================================================================ -->
   <section class="w-full bg-white px-5 md:px-14 py-10 md:py-16">
     <div class="max-w-[1320px] mx-auto">
-      <p class="text-neutral-500 text-sm mb-3">smart #1</p>
+      <p class="text-neutral-500 text-sm mb-3 font-smart-next">smart #1</p>
       <h2 class="font-smart-next font-normal text-black max-w-2xl" style="font-size:clamp(24px,3vw,40px); line-height:1.15;">
         Sentite el #1. Cada detalle, cada línea, cada kilómetro recorrido de una forma distinta. Sentite diferente.
       </h2>
@@ -101,28 +101,48 @@
     <div class="pb-6" style="overflow:hidden;">
       <div id="track-c1" class="flex select-none" style="overflow-x:scroll; scrollbar-width:none; -ms-overflow-style:none; padding-left:1.25rem; padding-right:1.25rem; gap:1rem; cursor:grab;">
 
-        <div class="flex flex-col" style="flex-shrink:0; width:288px; gap:0.75rem;">
-          <img src="assets/img/smart1/2.png" alt="Vista frontal" class="w-full rounded object-cover" style="aspect-ratio:4/3; pointer-events:none;" />
-          <p class="text-sm font-normal text-black">Vista frontal</p>
-          <p class="text-xs text-neutral-500">Presencia inconfundible desde el primer ángulo.</p>
+        <div class="c-card">
+          <img src="assets/img/smart1/2.png" alt="Vista frontal" class="c-card__img" />
+          <div class="c-card__gradient"></div>
+          <div class="c-card__body">
+            <div class="c-card__text">
+              <p class="c-card__title">Los detalles son los que definen lo premium.</p>
+              <p class="c-card__desc">El frente del smart #1 combina una firma lumínica LED de última generación con una parrilla sellada que anticipa su naturaleza 100% eléctrica.</p>
+            </div>
+          </div>
         </div>
 
-        <div class="flex flex-col" style="flex-shrink:0; width:288px; gap:0.75rem;">
-          <img src="assets/img/smart1/3.jpg" alt="Faros full LED" class="w-full rounded object-cover" style="aspect-ratio:4/3; pointer-events:none;" />
-          <p class="text-sm font-normal text-black">Faros full LED</p>
-          <p class="text-xs text-neutral-500">Diseñados para ver y ser vistos.</p>
+        <div class="c-card">
+          <img src="assets/img/smart1/3.jpg" alt="Faros full LED" class="c-card__img" />
+          <div class="c-card__gradient"></div>
+          <div class="c-card__body">
+            <div class="c-card__text">
+              <p class="c-card__title">Precisión en cada detalle.</p>
+              <p class="c-card__desc">Las ópticas del smart #1 integran tecnología LED en un diseño escultórico que refuerza el carácter premium del vehículo.</p>
+            </div>
+          </div>
         </div>
 
-        <div class="flex flex-col" style="flex-shrink:0; width:288px; gap:0.75rem;">
-          <img src="assets/img/smart1/4.jpg" alt="Manija electro-emergente" class="w-full rounded object-cover" style="aspect-ratio:4/3; pointer-events:none;" />
-          <p class="text-sm font-normal text-black">Manija electro-emergente</p>
-          <p class="text-xs text-neutral-500">Firma smart. Elegante y funcional.</p>
+        <div class="c-card">
+          <img src="assets/img/smart1/4.jpg" alt="Manija electro-emergente" class="c-card__img" />
+          <div class="c-card__gradient"></div>
+          <div class="c-card__body">
+            <div class="c-card__text">
+              <p class="c-card__title">Una identidad visual que no pasa desapercibida.</p>
+              <p class="c-card__desc">Las manijas al ras del smart #1 se integran en la carrocería con una geometría limpia que refuerza tanto la estética como la eficiencia aerodinámica del vehículo.</p>
+            </div>
+          </div>
         </div>
 
-        <div class="flex flex-col" style="flex-shrink:0; width:288px; gap:0.75rem;">
-          <img src="assets/img/smart1/5.png" alt="Portón trasero" class="w-full rounded object-cover" style="aspect-ratio:4/3; pointer-events:none;" />
-          <p class="text-sm font-normal text-black">Portón trasero</p>
-          <p class="text-xs text-neutral-500">Acceso sin contacto al maletero.</p>
+        <div class="c-card">
+          <img src="assets/img/smart1/5.png" alt="Portón trasero" class="c-card__img" />
+          <div class="c-card__gradient"></div>
+          <div class="c-card__body">
+            <div class="c-card__text">
+              <p class="c-card__title">Funcionalidad sin compromisos.</p>
+              <p class="c-card__desc">Con hasta 313 litros de capacidad y apertura eléctrica manos libres, el baúl del smart #1 se adapta a cada necesidad con total comodidad.</p>
+            </div>
+          </div>
         </div>
 
       </div>
@@ -132,28 +152,48 @@
     <div class="pb-6" style="overflow:hidden;">
       <div id="track-c2" class="flex select-none" style="overflow-x:scroll; scrollbar-width:none; -ms-overflow-style:none; padding-left:1.25rem; padding-right:1.25rem; gap:1rem; cursor:grab;">
 
-        <div class="flex flex-col" style="flex-shrink:0; width:288px; gap:0.75rem;">
-          <img src="assets/img/smart1/teaser.png" alt="smart #1" class="w-full rounded object-cover" style="aspect-ratio:4/3; pointer-events:none;" />
-          <p class="text-sm font-normal text-black">smart #1</p>
-          <p class="text-xs text-neutral-500">&nbsp;</p>
+        <div class="c-card">
+          <img src="assets/img/smart1/teaser.png" alt="Un espacio diseñado para quienes valoran el confort" class="c-card__img" />
+          <div class="c-card__gradient"></div>
+          <div class="c-card__body">
+            <div class="c-card__text">
+              <p class="c-card__title">Un espacio diseñado para quienes valoran el confort.</p>
+              <p class="c-card__desc">El habitáculo del smart #1 ofrece cinco plazas amplias, materiales de calidad superior y una atmósfera que eleva cada trayecto.</p>
+            </div>
+          </div>
         </div>
 
-        <div class="flex flex-col" style="flex-shrink:0; width:288px; gap:0.75rem;">
-          <img src="assets/img/smart1/8.png" alt="Cabina del futuro" class="w-full rounded object-cover" style="aspect-ratio:4/3; pointer-events:none;" />
-          <p class="text-sm font-normal text-black">Cabina del futuro</p>
-          <p class="text-xs text-neutral-500">Un cockpit diseñado para el conductor.</p>
+        <div class="c-card">
+          <img src="assets/img/smart1/8.png" alt="Control total, siempre a mano" class="c-card__img" />
+          <div class="c-card__gradient"></div>
+          <div class="c-card__body">
+            <div class="c-card__text">
+              <p class="c-card__title">Control total, siempre a mano.</p>
+              <p class="c-card__desc">El volante multifunción del smart #1 integra todos los comandos esenciales para una conducción segura, intuitiva y enfocada en el camino.</p>
+            </div>
+          </div>
         </div>
 
-        <div class="flex flex-col" style="flex-shrink:0; width:288px; gap:0.75rem;">
-          <img src="assets/img/smart1/9.jpg" alt="Pantalla central 12.8&quot;" class="w-full rounded object-cover" style="aspect-ratio:4/3; pointer-events:none;" />
-          <p class="text-sm font-normal text-black">Pantalla central 12.8"</p>
-          <p class="text-xs text-neutral-500">Control total en la punta de tus dedos.</p>
+        <div class="c-card">
+          <img src="assets/img/smart1/9.jpg" alt="Tecnología al servicio del conductor" class="c-card__img" />
+          <div class="c-card__gradient"></div>
+          <div class="c-card__body">
+            <div class="c-card__text">
+              <p class="c-card__title">Tecnología al servicio del conductor.</p>
+              <p class="c-card__desc">La pantalla táctil de 12,8 pulgadas con smart OS centraliza navegación, conectividad y climatización en una interfaz clara y precisa.</p>
+            </div>
+          </div>
         </div>
 
-        <div class="flex flex-col" style="flex-shrink:0; width:288px; gap:0.75rem;">
-          <img src="assets/img/smart1/10.jpg" alt="Carga inalámbrica" class="w-full rounded object-cover" style="aspect-ratio:4/3; pointer-events:none;" />
-          <p class="text-sm font-normal text-black">Carga inalámbrica</p>
-          <p class="text-xs text-neutral-500">Mantenete conectado sin cables.</p>
+        <div class="c-card">
+          <img src="assets/img/smart1/10.jpg" alt="Conectividad continua, sin interrupciones" class="c-card__img" />
+          <div class="c-card__gradient"></div>
+          <div class="c-card__body">
+            <div class="c-card__text">
+              <p class="c-card__title">Conectividad continua, sin interrupciones.</p>
+              <p class="c-card__desc">La base de carga inalámbrica integrada mantiene el dispositivo cargado durante todo el recorrido, de forma simple y eficiente.</p>
+            </div>
+          </div>
         </div>
 
       </div>
@@ -163,53 +203,81 @@
     <div class="pb-6" style="overflow:hidden;">
       <div id="track-c3" class="flex select-none" style="overflow-x:scroll; scrollbar-width:none; -ms-overflow-style:none; padding-left:1.25rem; padding-right:1.25rem; gap:1rem; cursor:grab;">
 
-        <!-- 1 -->
-        <div class="flex flex-col" style="flex-shrink:0; width:288px; gap:0.75rem;">
-          <img src="assets/img/smart1/11.png" alt="Cámara 360°" class="w-full rounded object-cover" style="aspect-ratio:4/3; pointer-events:none;" />
-          <p class="text-sm font-normal text-black">Cámara 360°</p>
-          <p class="text-xs text-neutral-500">Estacioná con total precisión.</p>
+        <div class="c-card">
+          <img src="assets/img/smart1/11.png" alt="Cámara 360" class="c-card__img" />
+          <div class="c-card__gradient"></div>
+          <div class="c-card__body">
+            <div class="c-card__text">
+              <p class="c-card__title">Cámara 360.</p>
+              <p class="c-card__desc">Esta función permite seleccionar hasta nueve vistas diferentes con las distintas cámaras situadas alrededor del vehículo para ofrecer un control óptimo de la situación en todas las direcciones. *Disponible en todas las versiones, excepto Pure.</p>
+            </div>
+          </div>
         </div>
 
-        <!-- 2 -->
-        <div class="flex flex-col" style="flex-shrink:0; width:288px; gap:0.75rem;">
-          <img src="assets/img/smart1/teaser5.png" alt="Techo panorámico" class="w-full rounded object-cover" style="aspect-ratio:4/3; pointer-events:none;" />
-          <p class="text-sm font-normal text-black">Techo panorámico</p>
-          <p class="text-xs text-neutral-500">Luz natural en cada trayecto.</p>
+        <div class="c-card">
+          <img src="assets/img/smart1/teaser5.png" alt="Techo Halo panorámico" class="c-card__img" />
+          <div class="c-card__gradient"></div>
+          <div class="c-card__body">
+            <div class="c-card__text">
+              <p class="c-card__title">Techo Halo panorámico.</p>
+              <p class="c-card__desc">El techo es una pieza de vidrio fija. El área del vidrio es de 1,5 m² y filtra el 99 % de la radiación ultravioleta. *Disponible en todas las versiones, excepto Pure.</p>
+            </div>
+          </div>
         </div>
 
-        <!-- 3 -->
-        <div class="flex flex-col" style="flex-shrink:0; width:288px; gap:0.75rem;">
-          <img src="assets/img/smart1/15.jpg" alt="Asientos con calefacción" class="w-full rounded object-cover" style="aspect-ratio:4/3; pointer-events:none;" />
-          <p class="text-sm font-normal text-black">Asientos con calefacción</p>
-          <p class="text-xs text-neutral-500">Confort en todas las estaciones.</p>
+        <div class="c-card">
+          <img src="assets/img/smart1/15.jpg" alt="Asientos eléctricos y calefaccionados" class="c-card__img" />
+          <div class="c-card__gradient"></div>
+          <div class="c-card__body">
+            <div class="c-card__text">
+              <p class="c-card__title">Asientos eléctricos y calefaccionados.</p>
+              <p class="c-card__desc">Los asientos delanteros presentan un ajuste eléctrico en seis direcciones y un soporte lumbar ajustable. El conductor cuenta también con función de memoria. *Disponible en todas las versiones, excepto Pure.</p>
+            </div>
+          </div>
         </div>
 
-        <!-- 4 -->
-        <div class="flex flex-col" style="flex-shrink:0; width:288px; gap:0.75rem;">
-          <img src="assets/img/smart1/16.jpg" alt="Climatizador dual" class="w-full rounded object-cover" style="aspect-ratio:4/3; pointer-events:none;" />
-          <p class="text-sm font-normal text-black">Climatizador dual</p>
-          <p class="text-xs text-neutral-500">Tu temperatura ideal, siempre.</p>
+        <div class="c-card">
+          <img src="assets/img/smart1/16.jpg" alt="Climatización bizona" class="c-card__img" />
+          <div class="c-card__gradient"></div>
+          <div class="c-card__body">
+            <div class="c-card__text">
+              <p class="c-card__title">Climatización bizona.</p>
+              <p class="c-card__desc">Cada ocupante ajusta la temperatura de su zona de forma independiente. El sistema regula automáticamente la temperatura, el modo y el flujo de aire. *Disponible en todas las versiones, excepto Pure.</p>
+            </div>
+          </div>
         </div>
 
-        <!-- 5 -->
-        <div class="flex flex-col" style="flex-shrink:0; width:288px; gap:0.75rem;">
-          <img src="assets/img/smart1/17.jpg" alt="Volante multifunción" class="w-full rounded object-cover" style="aspect-ratio:4/3; pointer-events:none;" />
-          <p class="text-sm font-normal text-black">Volante multifunción</p>
-          <p class="text-xs text-neutral-500">Controlá todo sin soltar las manos.</p>
+        <div class="c-card">
+          <img src="assets/img/smart1/17.jpg" alt="Volante calefaccionado" class="c-card__img" />
+          <div class="c-card__gradient"></div>
+          <div class="c-card__body">
+            <div class="c-card__text">
+              <p class="c-card__title">Volante calefaccionado.</p>
+              <p class="c-card__desc">En condiciones de temperatura bajas, el volante calefactable ayuda a mejorar la experiencia de conducción.</p>
+            </div>
+          </div>
         </div>
 
-        <!-- 6 -->
-        <div class="flex flex-col" style="flex-shrink:0; width:288px; gap:0.75rem;">
-          <img src="assets/img/smart1/18.jpg" alt="Audio Beats premium" class="w-full rounded object-cover" style="aspect-ratio:4/3; pointer-events:none;" />
-          <p class="text-sm font-normal text-black">Audio Beats premium</p>
-          <p class="text-xs text-neutral-500">Sonido de alta fidelidad.</p>
+        <div class="c-card">
+          <img src="assets/img/smart1/18.jpg" alt="Sistema de audio Beats" class="c-card__img" />
+          <div class="c-card__gradient"></div>
+          <div class="c-card__body">
+            <div class="c-card__text">
+              <p class="c-card__title">Sistema de audio Beats®.</p>
+              <p class="c-card__desc">13 altavoces distribuidos estratégicamente en toda la cabina para una experiencia sonora de alta fidelidad. *Disponible para la versión BRABUS.</p>
+            </div>
+          </div>
         </div>
 
-        <!-- 7 -->
-        <div class="flex flex-col" style="flex-shrink:0; width:288px; gap:0.75rem;">
-          <img src="assets/img/smart1/19.png" alt="Hello smart" class="w-full rounded object-cover" style="aspect-ratio:4/3; pointer-events:none;" />
-          <p class="text-sm font-normal text-black">Hello smart</p>
-          <p class="text-xs text-neutral-500">Tu asistente inteligente a bordo.</p>
+        <div class="c-card">
+          <img src="assets/img/smart1/19.png" alt="Luz ambiental" class="c-card__img" />
+          <div class="c-card__gradient"></div>
+          <div class="c-card__body">
+            <div class="c-card__text">
+              <p class="c-card__title">Luz ambiental.</p>
+              <p class="c-card__desc">Ajusta el brillo y el color de la iluminación ambiente a través de la pantalla de control central.</p>
+            </div>
+          </div>
         </div>
 
       </div>
@@ -219,84 +287,161 @@
     <div class="pb-6" style="overflow:hidden;">
       <div id="track-c4" class="flex select-none" style="overflow-x:scroll; scrollbar-width:none; -ms-overflow-style:none; padding-left:1.25rem; padding-right:1.25rem; gap:1rem; cursor:grab;">
 
-        <div class="flex flex-col" style="flex-shrink:0; width:288px; gap:0.75rem;">
-          <img src="assets/img/smart1/21.jpg" alt="Estacionamiento autónomo" class="w-full rounded object-cover" style="aspect-ratio:4/3; pointer-events:none;" />
-          <p class="text-sm font-normal text-black">Estacionamiento autónomo</p>
-          <p class="text-xs text-neutral-500">El auto se estaciona solo.</p>
+        <div class="c-card">
+          <img src="assets/img/smart1/20.png" alt="smart pilot assist" class="c-card__img" />
+          <div class="c-card__gradient"></div>
+          <div class="c-card__body">
+            <div class="c-card__text">
+              <p class="c-card__title">smart pilot assist.</p>
+              <p class="c-card__desc">Ayuda al conductor a permanecer en su carril y permite configurar el intervalo de distancia con el vehículo de adelante, incluyendo ayuda para el adelantamiento de camiones. *Disponible en todas las versiones, excepto Pure.</p>
+            </div>
+          </div>
         </div>
 
-        <div class="flex flex-col" style="flex-shrink:0; width:288px; gap:0.75rem;">
-          <img src="assets/img/smart1/22.png" alt="Crucero adaptativo" class="w-full rounded object-cover" style="aspect-ratio:4/3; pointer-events:none;" />
-          <p class="text-sm font-normal text-black">Crucero adaptativo</p>
-          <p class="text-xs text-neutral-500">Mantené la distancia de seguridad.</p>
+        <div class="c-card">
+          <img src="assets/img/smart1/21.jpg" alt="Parking Assist" class="c-card__img" />
+          <div class="c-card__gradient"></div>
+          <div class="c-card__body">
+            <div class="c-card__text">
+              <p class="c-card__title">Parking Assist.</p>
+              <p class="c-card__desc">El sistema combina sensores ultrasónicos y cámaras para estacionar de manera 100% autónoma, controlando la dirección, la velocidad y el frenado.</p>
+            </div>
+          </div>
         </div>
 
-        <div class="flex flex-col" style="flex-shrink:0; width:288px; gap:0.75rem;">
-          <img src="assets/img/smart1/24.jpg" alt="Asistente de carril" class="w-full rounded object-cover" style="aspect-ratio:4/3; pointer-events:none;" />
-          <p class="text-sm font-normal text-black">Asistente de carril</p>
-          <p class="text-xs text-neutral-500">Nunca salgas de tu carril.</p>
+        <div class="c-card">
+          <img src="assets/img/smart1/22.png" alt="Control crucero adaptativo" class="c-card__img" />
+          <div class="c-card__gradient"></div>
+          <div class="c-card__body">
+            <div class="c-card__text">
+              <p class="c-card__title">Control crucero adaptativo.</p>
+              <p class="c-card__desc">Una vez ajustada la velocidad de crucero (de 0 a 150 km/h), el vehículo circula al valor establecido o lo ajusta automáticamente según el tráfico que tenga delante.</p>
+            </div>
+          </div>
         </div>
 
-        <div class="flex flex-col" style="flex-shrink:0; width:288px; gap:0.75rem;">
-          <img src="assets/img/smart1/25.jpg" alt="Frenado de emergencia" class="w-full rounded object-cover" style="aspect-ratio:4/3; pointer-events:none;" />
-          <p class="text-sm font-normal text-black">Frenado de emergencia</p>
-          <p class="text-xs text-neutral-500">Reacción antes que vos.</p>
+        <div class="c-card">
+          <img src="assets/img/smart1/23.png" alt="Airbags" class="c-card__img" />
+          <div class="c-card__gradient"></div>
+          <div class="c-card__body">
+            <div class="c-card__text">
+              <p class="c-card__title">Airbags.</p>
+              <p class="c-card__desc">El smart #1 ofrece seis airbags: dos delanteros, dos laterales, dos de cortina lateral y uno central.</p>
+            </div>
+          </div>
         </div>
 
-        <div class="flex flex-col" style="flex-shrink:0; width:288px; gap:0.75rem;">
-          <div class="w-full rounded bg-neutral-200" style="aspect-ratio:4/3;"></div>
-          <p class="text-sm font-normal text-black">—</p>
-          <p class="text-xs text-neutral-500">&nbsp;</p>
+        <div class="c-card">
+          <img src="assets/img/smart1/24.jpg" alt="Asistencia mantenimiento de carril" class="c-card__img" />
+          <div class="c-card__gradient"></div>
+          <div class="c-card__body">
+            <div class="c-card__text">
+              <p class="c-card__title">Asistencia mantenimiento de carril.</p>
+              <p class="c-card__desc">Previene desviaciones no intencionadas del carril a velocidades entre 60 y 180 km/h mediante advertencias y ajuste automático del volante.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="c-card">
+          <img src="assets/img/smart1/25.jpg" alt="Freno AEB" class="c-card__img" />
+          <div class="c-card__gradient"></div>
+          <div class="c-card__body">
+            <div class="c-card__text">
+              <p class="c-card__title">Freno AEB.</p>
+              <p class="c-card__desc">Cuando el vehículo está a punto de colisionar, el sistema frena automáticamente para evitar o reducir el impacto. Disponible para peatones, bicicletas y vehículos.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="c-card">
+          <img src="assets/img/smart1/26.jpg" alt="CyberSparksLED" class="c-card__img" />
+          <div class="c-card__gradient"></div>
+          <div class="c-card__body">
+            <div class="c-card__text">
+              <p class="c-card__title">CyberSparksLED.</p>
+              <p class="c-card__desc">Faros LED de bajo consumo que a más de 60 km/h y con suficiente distancia al vehículo de adelante activan automáticamente la luz larga sin deslumbrar.</p>
+            </div>
+          </div>
         </div>
 
       </div>
     </div>
 
-    <!-- ── Fila 1 — 3 cards ── -->
-    <div class="px-5 md:px-14 pb-6">
-      <div class="grid grid-cols-3 gap-4">
+    <!-- ── Carrusel 5 — 3 fotos ── -->
+    <div class="pb-6" style="overflow:hidden;">
+      <div id="track-c5" class="flex select-none" style="overflow-x:scroll; scrollbar-width:none; -ms-overflow-style:none; padding-left:1.25rem; padding-right:1.25rem; gap:1rem; cursor:grab;">
 
-        <div class="flex flex-col gap-3">
-          <div class="w-full rounded bg-neutral-200" style="aspect-ratio:4/3;"></div>
-          <p class="text-sm font-normal text-black">—</p>
-          <p class="text-xs text-neutral-500">&nbsp;</p>
+        <div class="c-card">
+          <img src="assets/img/smart1/27.jpg" alt="Pantalla central 12,8" class="c-card__img" />
+          <div class="c-card__gradient"></div>
+          <div class="c-card__body">
+            <div class="c-card__text">
+              <p class="c-card__title">Pantalla central 12,8".</p>
+              <p class="c-card__desc">La pantalla central de 12,8" es una pantalla táctil con una resolución de 1920×1080 píxeles y modos de día y noche. Superficie de la pantalla: 283×159 mm. Pantalla completa: 321×190 mm RAM de 12 GB, almacenamiento de 128 GB.</p>
+            </div>
+          </div>
         </div>
 
-        <div class="flex flex-col gap-3">
-          <div class="w-full rounded bg-neutral-200" style="aspect-ratio:4/3;"></div>
-          <p class="text-sm font-normal text-black">—</p>
-          <p class="text-xs text-neutral-500">&nbsp;</p>
+        <div class="c-card">
+          <img src="assets/img/smart1/32.png" alt="Cuadro de instrumentos digital 9,2" class="c-card__img" />
+          <div class="c-card__gradient"></div>
+          <div class="c-card__body">
+            <div class="c-card__text">
+              <p class="c-card__title">Cuadro de instrumentos digital 9,2".</p>
+              <p class="c-card__desc">El cuadro de instrumentos de 9,2" es un panel de material LCD de alta definición que se usa para mostrar información de conducción, música y otros datos relacionados. Tiene una resolución de 1920x384 píxeles.</p>
+            </div>
+          </div>
         </div>
 
-        <div class="flex flex-col gap-3">
-          <div class="w-full rounded bg-neutral-200" style="aspect-ratio:4/3;"></div>
-          <p class="text-sm font-normal text-black">—</p>
-          <p class="text-xs text-neutral-500">&nbsp;</p>
+        <div class="c-card">
+          <img src="assets/img/smart1/30.png" alt="Head Up display 10" class="c-card__img" />
+          <div class="c-card__gradient"></div>
+          <div class="c-card__body">
+            <div class="c-card__text">
+              <p class="c-card__title">Head Up display 10".</p>
+              <p class="c-card__desc">Los grupos ópticos del smart #1 integran tecnología LED en un diseño escultórico que refuerza el carácter premium del vehículo. *Función disponible para la versión BRABUS.</p>
+            </div>
+          </div>
         </div>
 
       </div>
     </div>
 
-    <!-- ── Fila 2 — 3 cards ── -->
-    <div class="px-5 md:px-14 pb-6">
-      <div class="grid grid-cols-3 gap-4">
+    <!-- ── Carrusel 6 — 3 fotos ── -->
+    <div class="pb-6" style="overflow:hidden;">
+      <div id="track-c6" class="flex select-none" style="overflow-x:scroll; scrollbar-width:none; -ms-overflow-style:none; padding-left:1.25rem; padding-right:1.25rem; gap:1rem; cursor:grab;">
 
-        <div class="flex flex-col gap-3">
-          <div class="w-full rounded bg-neutral-200" style="aspect-ratio:4/3;"></div>
-          <p class="text-sm font-normal text-black">—</p>
-          <p class="text-xs text-neutral-500">&nbsp;</p>
+        <div class="c-card">
+          <img src="assets/img/smart1/33.png" alt="Baúl trasero eléctrico" class="c-card__img" />
+          <div class="c-card__gradient"></div>
+          <div class="c-card__body">
+            <div class="c-card__text">
+              <p class="c-card__title">Baúl trasero eléctrico.</p>
+              <p class="c-card__desc">La apertura y el cierre del baúl trasero son automáticos y pueden accionarse desde el botón del portón, el comando interior o la llave con mando a distancia. Además, incorpora funciones de memoria y ajuste de apertura. Este sistema facilita el acceso a un baúl de 323 litros de capacidad, ampliable hasta 986 litros al rebatir los asientos traseros.</p>
+            </div>
+          </div>
         </div>
 
-        <div class="flex flex-col gap-3">
-          <div class="w-full rounded bg-neutral-200" style="aspect-ratio:4/3;"></div>
-          <p class="text-sm font-normal text-black">—</p>
-          <p class="text-xs text-neutral-500">&nbsp;</p>
+        <div class="c-card">
+          <img src="assets/img/smart1/34.jpg" alt="Baúl delantero" class="c-card__img" />
+          <div class="c-card__gradient"></div>
+          <div class="c-card__body">
+            <div class="c-card__text">
+              <p class="c-card__title">Baúl delantero.</p>
+              <p class="c-card__desc">Compartimento de 15 litros bajo el capó. Apertura manual y sellado con espuma.</p>
+            </div>
+          </div>
         </div>
 
-        <div class="flex flex-col gap-3">
-          <div class="w-full rounded bg-neutral-200" style="aspect-ratio:4/3;"></div>
-          <p class="text-sm font-normal text-black">—</p>
-          <p class="text-xs text-neutral-500">&nbsp;</p>
+        <div class="c-card">
+          <img src="assets/img/smart1/35.jpg" alt="Deslizamiento asientos traseros" class="c-card__img" />
+          <div class="c-card__gradient"></div>
+          <div class="c-card__body">
+            <div class="c-card__text">
+              <p class="c-card__title">Deslizamiento asientos traseros.</p>
+              <p class="c-card__desc">Los asientos traseros pueden deslizarse 130 mm para disponer de un espacio más amplio para las piernas o de mayor capacidad de almacenamiento en el baúl.</p>
+            </div>
+          </div>
         </div>
 
       </div>
@@ -309,7 +454,7 @@
   ================================================================ -->
   <section class="w-full bg-white px-5 md:px-14 py-10 md:py-16">
     <div class="max-w-[1320px] mx-auto">
-      <p class="text-neutral-500 text-sm mb-2">smart #1</p>
+      <p class="text-neutral-500 text-sm mb-2 font-smart-next">smart #1</p>
       <h2 class="font-smart-next font-normal text-black text-2xl md:text-3xl mb-10">Características generales</h2>
       <div class="overflow-x-auto" style="scrollbar-width:none;">
         <table class="w-full min-w-[700px] text-sm">
@@ -318,23 +463,23 @@
               <th class="text-left pb-4 font-normal text-neutral-500 w-1/3"></th>
               <th class="text-left pb-4 font-normal text-neutral-900">
                 <div class="w-20 h-12 rounded mb-2 bg-neutral-200"></div>
-                <p class="font-normal text-xs text-neutral-500">smart #1</p>
-                <p class="font-bold text-base">Pure</p>
+                <p class="font-normal text-xs text-neutral-500 font-smart-sans">smart #1</p>
+                <p class="font-bold text-base font-smart-next">Pure</p>
               </th>
               <th class="text-left pb-4 font-normal text-neutral-900">
                 <div class="w-20 h-12 rounded mb-2 bg-neutral-200"></div>
-                <p class="font-normal text-xs text-neutral-500">smart #1</p>
-                <p class="font-bold text-base">Pro</p>
+                <p class="font-normal text-xs text-neutral-500 font-smart-sans">smart #1</p>
+                <p class="font-bold text-base font-smart-next">Pro</p>
               </th>
               <th class="text-left pb-4 font-normal text-neutral-900">
                 <div class="w-20 h-12 rounded mb-2 bg-neutral-200"></div>
-                <p class="font-normal text-xs text-neutral-500">smart #1</p>
-                <p class="font-bold text-base">Pro+</p>
+                <p class="font-normal text-xs text-neutral-500 font-smart-sans">smart #1</p>
+                <p class="font-bold text-base font-smart-next">Pro+</p>
               </th>
               <th class="text-left pb-4 font-normal text-neutral-900">
                 <div class="w-20 h-12 rounded mb-2 bg-neutral-200"></div>
-                <p class="font-normal text-xs text-neutral-500">smart #1</p>
-                <p class="font-bold text-base">BRABUS</p>
+                <p class="font-normal text-xs text-neutral-500 font-smart-sans">smart #1</p>
+                <p class="font-bold text-base font-smart-next">BRABUS</p>
               </th>
             </tr>
           </thead>
@@ -411,7 +556,7 @@
         <!-- Exterior — imagen 30 -->
         <div class="flex-1 border border-neutral-200 p-6">
           <h3 class="font-smart-next font-normal text-black text-xl mb-1">Elegí tu versión</h3>
-          <p class="text-sm text-neutral-500 mb-4">100% compacto 100% eléctrico. hasta 584 km de autonomía en la versión Pro+.</p>
+          <p class="text-sm text-neutral-500 mb-4 font-smart-sans">100% compacto 100% eléctrico. hasta 584 km de autonomía en la versión Pro+.</p>
           <!-- Model tabs -->
           <div class="flex gap-4 mb-6 border-b border-neutral-200 pb-3">
             <button class="text-sm font-bold text-black border-b-2 border-black pb-1 configurator-tab-1 active" onclick="switchTab1('BRABUS')">BRABUS</button>
@@ -422,7 +567,7 @@
           <div class="w-full rounded mb-4 bg-neutral-200" style="aspect-ratio:16/9;"></div>
           <!-- Colors -->
           <div class="flex items-center gap-2 mb-4">
-            <p class="text-xs text-neutral-500 mr-2">Color</p>
+            <p class="text-xs text-neutral-500 mr-2 font-smart-sans">Color</p>
             <button class="w-6 h-6 rounded-full bg-red-700 border-2 border-transparent hover:border-black"></button>
             <button class="w-6 h-6 rounded-full bg-neutral-900 border-2 border-black"></button>
             <button class="w-6 h-6 rounded-full bg-gray-100 border border-neutral-300 hover:border-black"></button>
@@ -435,7 +580,7 @@
         <!-- Interior — imagen 31 -->
         <div class="flex-1 border border-neutral-200 p-6">
           <h3 class="font-smart-next font-normal text-black text-xl mb-1">Elegí tu versión</h3>
-          <p class="text-sm text-neutral-500 mb-4">100% compacto 100% eléctrico. hasta 584 km de autonomía en la versión Pro+.</p>
+          <p class="text-sm text-neutral-500 mb-4 font-smart-sans">100% compacto 100% eléctrico. hasta 584 km de autonomía en la versión Pro+.</p>
           <!-- Model tabs -->
           <div class="flex gap-4 mb-6 border-b border-neutral-200 pb-3">
             <button class="text-sm font-bold text-black border-b-2 border-black pb-1">BRABUS</button>
@@ -446,7 +591,7 @@
           <div class="w-full rounded mb-4 bg-neutral-200" style="aspect-ratio:16/9;"></div>
           <!-- Colors -->
           <div class="flex items-center gap-2 mb-4">
-            <p class="text-xs text-neutral-500 mr-2">Color</p>
+            <p class="text-xs text-neutral-500 mr-2 font-smart-sans">Color</p>
             <button class="w-6 h-6 rounded-full bg-amber-900 border-2 border-black"></button>
             <button class="w-6 h-6 rounded-full bg-neutral-900 border-2 border-transparent hover:border-black"></button>
             <button class="w-6 h-6 rounded-full bg-gray-200 border border-neutral-300 hover:border-black"></button>
@@ -465,7 +610,7 @@
     <div class="max-w-[1320px] mx-auto flex flex-col md:flex-row gap-10 md:gap-16 md:items-start">
       <div class="md:w-[440px] md:flex-shrink-0 md:pt-1 flex flex-col gap-6">
         <h2 class="font-smart-next font-normal text-black" style="font-size:32px; line-height:1.2;">Realizar consulta.</h2>
-        <p class="text-base text-neutral-500 font-normal leading-6">Completá el formulario y te contactaremos a la brevedad.</p>
+        <p class="text-base text-neutral-500 font-normal leading-6 font-smart-sans">Completá el formulario y te contactaremos a la brevedad.</p>
         <button type="submit" form="form-contacto" class="self-start h-10 px-8 bg-black rounded-full text-sm font-bold text-white hover:bg-neutral-800 transition-colors">Enviar</button>
       </div>
       <div class="flex-1">
@@ -507,7 +652,7 @@
     <div class="max-w-[1320px] mx-auto">
       <div class="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
         <div class="flex flex-col gap-2">
-          <p class="text-white text-sm font-normal leading-5 opacity-50 mb-2">Secciones</p>
+          <p class="text-white text-sm font-normal leading-5 opacity-50 mb-2 font-smart-next">Secciones</p>
           <nav class="flex flex-col gap-2">
             <a href="index.html" class="text-white text-base leading-6 hover:opacity-70">Home</a>
             <a href="smart1.html" class="text-white text-base leading-6 hover:opacity-70">smart #1</a>
@@ -517,7 +662,7 @@
           </nav>
         </div>
         <div class="flex flex-col gap-2">
-          <p class="text-white text-sm font-normal leading-5 opacity-50 mb-2">&nbsp;</p>
+          <p class="text-white text-sm font-normal leading-5 opacity-50 mb-2 font-smart-next">&nbsp;</p>
           <nav class="flex flex-col gap-2">
             <a href="movilidad-electrica.html" class="text-white text-base leading-6 hover:opacity-70">Movilidad eléctrica</a>
             <a href="conectividad.html" class="text-white text-base leading-6 hover:opacity-70">Conectividad</a>
@@ -526,21 +671,21 @@
           </nav>
         </div>
         <div class="flex flex-col gap-2">
-          <p class="text-white text-sm font-normal leading-5 opacity-50 mb-2">Modelos</p>
+          <p class="text-white text-sm font-normal leading-5 opacity-50 mb-2 font-smart-next">Modelos</p>
           <nav class="flex flex-col gap-2">
             <a href="smart1.html" class="text-white text-base leading-6 hover:opacity-70">smart #1</a>
             <a href="smart3.html" class="text-white text-base leading-6 hover:opacity-70">smart #3</a>
           </nav>
         </div>
         <div class="flex flex-col gap-2">
-          <p class="text-white text-sm font-normal leading-5 opacity-50 mb-2">Servicios</p>
+          <p class="text-white text-sm font-normal leading-5 opacity-50 mb-2 font-smart-next">Servicios</p>
           <nav class="flex flex-col gap-2">
             <a href="buscador.html" class="text-white text-base leading-6 hover:opacity-70">Buscador de concesionarios</a>
             <a href="servicios.html" class="text-white text-base leading-6 hover:opacity-70">Servicios</a>
           </nav>
         </div>
         <div class="flex flex-col gap-2">
-          <p class="text-white text-sm font-normal leading-5 opacity-50 mb-2">Sobre smart</p>
+          <p class="text-white text-sm font-normal leading-5 opacity-50 mb-2 font-smart-next">Sobre smart</p>
           <nav class="flex flex-col gap-2">
             <a href="sobre-smart.html" class="text-white text-base leading-6 hover:opacity-70">Sobre nosotros</a>
             <a href="#contacto" class="text-white text-base leading-6 hover:opacity-70">Contáctanos</a>
@@ -555,7 +700,7 @@
             <span>Argentina</span>
           </div>
           <span class="text-[#BABFC4] opacity-40">|</span>
-          <p class="text-[#BABFC4] text-sm">© 2026 smart Argentina</p>
+          <p class="text-[#BABFC4] text-sm font-smart-sans">© 2026 smart Argentina</p>
         </div>
         <div class="flex items-center gap-x-4 text-[#BABFC4] text-sm">
           <a href="#" class="hover:text-white transition-colors">Legales</a>
@@ -573,6 +718,8 @@
       function initDragCarousel(trackId) {
         const track = document.getElementById(trackId);
         if (!track) return;
+        track.style.willChange = 'scroll-position';
+        track.style.webkitOverflowScrolling = 'touch';
 
         let isDragging  = false;
         let hasMoved    = false;
@@ -584,11 +731,12 @@
         let rafId       = null;
 
         function momentum() {
-          velocity *= 0.97;
+          velocity *= 0.94;
           track.scrollLeft -= velocity;
-          if (Math.abs(velocity) > 0.15) rafId = requestAnimationFrame(momentum);
+          if (Math.abs(velocity) > 0.3) rafId = requestAnimationFrame(momentum);
         }
 
+        // ── Mouse ──
         track.addEventListener('mousedown', function (e) {
           cancelAnimationFrame(rafId);
           isDragging  = true;
@@ -623,9 +771,38 @@
         track.addEventListener('click', function (e) {
           if (hasMoved) e.preventDefault();
         }, true);
+
+        // ── Touch ──
+        track.addEventListener('touchstart', function (e) {
+          cancelAnimationFrame(rafId);
+          isDragging  = true;
+          hasMoved    = false;
+          startX      = e.touches[0].clientX;
+          startScroll = track.scrollLeft;
+          lastX       = e.touches[0].clientX;
+          lastTime    = performance.now();
+          velocity    = 0;
+        }, { passive: true });
+
+        track.addEventListener('touchmove', function (e) {
+          if (!isDragging) return;
+          const delta = e.touches[0].clientX - startX;
+          if (Math.abs(delta) > 4) hasMoved = true;
+          const now = performance.now();
+          const dt  = now - lastTime || 1;
+          velocity  = ((e.touches[0].clientX - lastX) / dt) * 16;
+          lastX     = e.touches[0].clientX;
+          lastTime  = now;
+          track.scrollLeft = startScroll - delta;
+        }, { passive: true });
+
+        track.addEventListener('touchend', function () {
+          isDragging = false;
+          rafId = requestAnimationFrame(momentum);
+        }, { passive: true });
       }
 
-      ['track-c1', 'track-c2', 'track-c3', 'track-c4'].forEach(initDragCarousel);
+      ['track-c1', 'track-c2', 'track-c3', 'track-c4', 'track-c5', 'track-c6'].forEach(initDragCarousel);
     })();
 
     function openNavMenu() {

@@ -25,7 +25,14 @@
       "Bash(npm install:*)",
       "Bash(claude --version)",
       "Bash(cd \"C:\\\\Users\\\\lf4902\\\\lifisoluciones\\\\smart-prestige-web\" && npx tailwindcss -i ./assets/css/input.css -o ./assets/css/tailwind.css 2>&1)",
-      "Bash(grep:*)"
+      "Bash(grep:*)",
+      "Bash(cp \"C:/Users/Lihuen/Downloads/smart-1_Feature_Traffic-Jam-Assist.png\" \"C:/Users/Lihuen/lifisoluciones/smart-prestige-web/assets/img/smart1/20.png\")",
+      "Bash(cp \"C:/Users/Lihuen/Downloads/smart-1_Feature_Airbag.png\" \"C:/Users/Lihuen/lifisoluciones/smart-prestige-web/assets/img/smart1/23.png\")",
+      "Bash(for f:*)",
+      "Bash(do echo:*)",
+      "Read(//c/Users/Lihuen/lifisoluciones/smart-prestige-web/**)",
+      "Bash(done)",
+      "Bash(python3:*)"
     ]
   }
 }
