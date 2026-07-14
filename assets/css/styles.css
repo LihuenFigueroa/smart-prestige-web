@@ -110,3 +110,17 @@ select option { color: #111111; }
 
 /* ── Feature cards carousel — ocultar scrollbar nativo ── */
 #cards-track::-webkit-scrollbar { display: none; }
+
+/* ── Características generales — comparison grid ── */
+.comp-header-label { font-family: 'FOR_smart_Sans', sans-serif; font-size: 20px; font-weight: 400; color: #6B747B; line-height: 120%; letter-spacing: -0.01em; margin: 0 0 4px; }
+.comp-header-title { font-family: 'FOR_smart_Sans', sans-serif; font-size: 40px; font-weight: 400; color: #141413; line-height: 90%; margin: 0 0 48px; }
+.comp-divider { border: none; border-top: 0.888px solid #DFE2E5; margin: 0 0 12px; }
+.comp-model { font-family: 'FOR_smart_Sans', sans-serif; font-size: 12.432px; font-weight: 700; color: #141413; line-height: 140%; margin: 12px 0 0; }
+.comp-version { font-family: 'FOR_smart_Sans', sans-serif; font-size: 19.536px; font-weight: 700; color: #141413; letter-spacing: -0.01em; line-height: 120%; margin: 4px 0 12px; }
+.comp-range-label { font-family: 'FOR_smart_Sans', sans-serif; font-size: 8.88px; font-weight: 700; color: #6B747B; letter-spacing: -0.01em; line-height: 120%; margin: 0 0 10px; }
+.comp-range-num { font-family: 'FOR_smart_Sans', sans-serif; font-size: 28.8834px; font-weight: 700; color: #000; letter-spacing: -0.01em; line-height: 120%; margin: 0 0 2px; }
+.comp-range-sub { font-family: 'FOR_smart_Sans', sans-serif; font-size: 12.432px; font-weight: 700; color: #6B747B; line-height: 1.2; margin: 0 0 10px; }
+.comp-features { margin: 0 0 12px; padding-left: 14px; list-style: disc; }
+.comp-features li { font-family: 'FOR_smart_Sans', sans-serif; font-size: 10.5px; font-weight: 400; color: #6B747B; line-height: 120%; letter-spacing: -0.01em; margin-bottom: 4px; }
+.comp-features li:last-child { margin-bottom: 0; }
+.comp-features--bold li { font-weight: 400; }

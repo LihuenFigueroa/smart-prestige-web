@@ -454,95 +454,196 @@
   ================================================================ -->
   <section class="w-full bg-white px-5 md:px-14 py-10 md:py-16">
     <div class="max-w-[1320px] mx-auto">
-      <p class="text-neutral-500 text-sm mb-2 font-smart-next">smart #1</p>
-      <h2 class="font-smart-next font-normal text-black text-2xl md:text-3xl mb-10">Características generales</h2>
-      <div class="overflow-x-auto" style="scrollbar-width:none;">
-        <table class="w-full min-w-[700px] text-sm">
-          <thead>
-            <tr class="border-b border-neutral-200">
-              <th class="text-left pb-4 font-normal text-neutral-500 w-1/3"></th>
-              <th class="text-left pb-4 font-normal text-neutral-900">
-                <div class="w-20 h-12 rounded mb-2 bg-neutral-200"></div>
-                <p class="font-normal text-xs text-neutral-500 font-smart-sans">smart #1</p>
-                <p class="font-bold text-base font-smart-next">Pure</p>
-              </th>
-              <th class="text-left pb-4 font-normal text-neutral-900">
-                <div class="w-20 h-12 rounded mb-2 bg-neutral-200"></div>
-                <p class="font-normal text-xs text-neutral-500 font-smart-sans">smart #1</p>
-                <p class="font-bold text-base font-smart-next">Pro</p>
-              </th>
-              <th class="text-left pb-4 font-normal text-neutral-900">
-                <div class="w-20 h-12 rounded mb-2 bg-neutral-200"></div>
-                <p class="font-normal text-xs text-neutral-500 font-smart-sans">smart #1</p>
-                <p class="font-bold text-base font-smart-next">Pro+</p>
-              </th>
-              <th class="text-left pb-4 font-normal text-neutral-900">
-                <div class="w-20 h-12 rounded mb-2 bg-neutral-200"></div>
-                <p class="font-normal text-xs text-neutral-500 font-smart-sans">smart #1</p>
-                <p class="font-bold text-base font-smart-next">BRABUS</p>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="border-b border-neutral-100">
-              <td class="py-3 text-neutral-500">Autonomía WLTP</td>
-              <td class="py-3 font-bold text-neutral-900">310 km</td>
-              <td class="py-3 font-bold text-neutral-900">310 km</td>
-              <td class="py-3 font-bold text-neutral-900">420 km</td>
-              <td class="py-3 font-bold text-neutral-900">400 km</td>
-            </tr>
-            <tr class="border-b border-neutral-100">
-              <td class="py-3 text-neutral-500">Autonomía WLTP combinado</td>
-              <td class="py-3 text-neutral-900">427 km</td>
-              <td class="py-3 text-neutral-900">427 km</td>
-              <td class="py-3 text-neutral-900">584 km</td>
-              <td class="py-3 text-neutral-900">532 km</td>
-            </tr>
-            <tr class="border-b border-neutral-100">
-              <td class="py-3 text-neutral-500">Potencia</td>
-              <td class="py-3 text-neutral-900">200 cv</td>
-              <td class="py-3 text-neutral-900">272 cv</td>
-              <td class="py-3 text-neutral-900">272 cv</td>
-              <td class="py-3 text-neutral-900">428 cv</td>
-            </tr>
-            <tr class="border-b border-neutral-100">
-              <td class="py-3 text-neutral-500">Batería</td>
-              <td class="py-3 text-neutral-900">49 kWh</td>
-              <td class="py-3 text-neutral-900">49 kWh</td>
-              <td class="py-3 text-neutral-900">66 kWh</td>
-              <td class="py-3 text-neutral-900">66 kWh</td>
-            </tr>
-            <tr class="border-b border-neutral-100">
-              <td class="py-3 text-neutral-500">Carga AC</td>
-              <td class="py-3 text-neutral-900">22 kW</td>
-              <td class="py-3 text-neutral-900">22 kW</td>
-              <td class="py-3 text-neutral-900">22 kW</td>
-              <td class="py-3 text-neutral-900">22 kW</td>
-            </tr>
-            <tr class="border-b border-neutral-100">
-              <td class="py-3 text-neutral-500">Carga DC</td>
-              <td class="py-3 text-neutral-900">—</td>
-              <td class="py-3 text-neutral-900">80 kW</td>
-              <td class="py-3 text-neutral-900">150 kW</td>
-              <td class="py-3 text-neutral-900">150 kW</td>
-            </tr>
-            <tr class="border-b border-neutral-100">
-              <td class="py-3 text-neutral-500">Tracción</td>
-              <td class="py-3 text-neutral-900">RWD</td>
-              <td class="py-3 text-neutral-900">RWD</td>
-              <td class="py-3 text-neutral-900">AWD</td>
-              <td class="py-3 text-neutral-900">AWD</td>
-            </tr>
-            <tr class="border-b border-neutral-100">
-              <td class="py-3 text-neutral-500">0–100 km/h</td>
-              <td class="py-3 text-neutral-900">6.7 seg</td>
-              <td class="py-3 text-neutral-900">5.8 seg</td>
-              <td class="py-3 text-neutral-900">5.1 seg</td>
-              <td class="py-3 text-neutral-900">3.9 seg</td>
-            </tr>
-          </tbody>
-        </table>
+
+      <p class="comp-header-label">smart #1</p>
+      <h2 class="comp-header-title">Características generales</h2>
+
+      <div style="overflow-x:auto; -webkit-overflow-scrolling:touch; scrollbar-width:none;">
+        <div style="display:grid; grid-template-columns:repeat(4, minmax(260px, 1fr)); gap:23px;">
+
+          <!-- ── PURE ── -->
+          <div>
+            <img src="assets/img/smart1/comp-pure.png" alt="smart #1 Pure" style="width:100%; aspect-ratio:3/2; object-fit:cover; object-position:center; display:block;" />
+            <p class="comp-model">smart #1</p>
+            <p class="comp-version">Pure</p>
+            <hr class="comp-divider" />
+            <p class="comp-range-label">Autonomía</p>
+            <p class="comp-range-num">310 km</p>
+            <p class="comp-range-sub">Autonomía WLTP<br>ciclo mixto</p>
+            <p class="comp-range-num">427 km</p>
+            <p class="comp-range-sub" style="margin-bottom:16px;">Autonomía WLTP<br>ciudad</p>
+            <hr class="comp-divider" />
+            <ul class="comp-features">
+              <li>RWD (Tracción trasera), 200 kW</li>
+              <li>Batería de 49 kWh</li>
+              <li>Carga CC de hasta 130 kW</li>
+              <li>Carga CA de hasta 7.4 kW</li>
+            </ul>
+            <hr class="comp-divider" />
+            <ul class="comp-features">
+              <li>Luces LED CyberSparks con Asistente de Luces Altas Automático</li>
+            </ul>
+            <hr class="comp-divider" />
+            <ul class="comp-features">
+              <li>Asientos de tela</li>
+            </ul>
+            <hr class="comp-divider" />
+            <ul class="comp-features">
+              <li>Pantalla central de 12.8" con Navegador Apple CarPlay® y Android Auto</li>
+            </ul>
+            <hr class="comp-divider" />
+            <ul class="comp-features" style="margin-bottom:0;">
+              <li>smart Pilot Assist</li>
+              <li>4 sensores de estacionamiento traseros</li>
+            </ul>
+          </div>
+
+          <!-- ── PRO ── -->
+          <div>
+            <img src="assets/img/smart1/comp-pro.png" alt="smart #1 Pro" style="width:100%; aspect-ratio:3/2; object-fit:cover; object-position:center; display:block;" />
+            <p class="comp-model">smart #1</p>
+            <p class="comp-version">Pro</p>
+            <hr class="comp-divider" />
+            <p class="comp-range-label">Autonomía</p>
+            <p class="comp-range-num">310 km</p>
+            <p class="comp-range-sub">Autonomía WLTP<br>ciclo mixto</p>
+            <p class="comp-range-num">427 km</p>
+            <p class="comp-range-sub" style="margin-bottom:16px;">Autonomía WLTP<br>ciudad</p>
+            <hr class="comp-divider" />
+            <ul class="comp-features">
+              <li>RWD (Tracción trasera), 200 kW</li>
+              <li>Batería de 49 kWh</li>
+              <li>Carga CC de hasta 130 kW</li>
+              <li>Carga CA de hasta 7.4 kW</li>
+            </ul>
+            <hr class="comp-divider" />
+            <ul class="comp-features">
+              <li>Luces LED CyberSparks con Asistente de Luces Altas Automático</li>
+              <li>Techo Panorámico Halo</li>
+              <li>Portón trasero eléctrico</li>
+              <li>Cristales de Privacidad (Tintados)</li>
+            </ul>
+            <hr class="comp-divider" />
+            <ul class="comp-features">
+              <li>Asientos de cuero sintético</li>
+              <li>Asientos delanteros calefactables y ajustables eléctricos</li>
+              <li>Asiento trasero deslizable</li>
+              <li>Iluminación ambiental</li>
+            </ul>
+            <hr class="comp-divider" />
+            <ul class="comp-features">
+              <li>Pantalla central de 12.8" con Navegador Apple CarPlay® y Android Auto</li>
+              <li>Cargador inalámbrico para teléfono</li>
+            </ul>
+            <hr class="comp-divider" />
+            <ul class="comp-features" style="margin-bottom:0;">
+              <li>smart Pilot Assist</li>
+              <li>8 sensores de estacionamiento (del. y tras.)</li>
+              <li>Cámara de estacionamiento de 360°</li>
+            </ul>
+          </div>
+
+          <!-- ── PRO+ ── -->
+          <div>
+            <img src="assets/img/smart1/comp-prop.png" alt="smart #1 Pro+" style="width:100%; aspect-ratio:3/2; object-fit:cover; object-position:center; display:block;" />
+            <p class="comp-model">smart #1</p>
+            <p class="comp-version">Pro+</p>
+            <hr class="comp-divider" />
+            <p class="comp-range-label">Autonomía</p>
+            <p class="comp-range-num">420 km</p>
+            <p class="comp-range-sub">Autonomía WLTP<br>ciclo mixto</p>
+            <p class="comp-range-num">584 km</p>
+            <p class="comp-range-sub" style="margin-bottom:16px;">Autonomía WLTP<br>ciudad</p>
+            <hr class="comp-divider" />
+            <ul class="comp-features">
+              <li>RWD (Tracción trasera), 200 kW</li>
+              <li>Batería de 66 kWh</li>
+              <li>Carga CC de hasta 150 kW</li>
+              <li>Carga CA de hasta 22 kW</li>
+            </ul>
+            <hr class="comp-divider" />
+            <ul class="comp-features">
+              <li>Luces LED CyberSparks con Asistente de Luces Altas Automático</li>
+              <li>Techo Panorámico Halo</li>
+              <li>Portón trasero eléctrico</li>
+              <li>Cristales de Privacidad (Tintados)</li>
+            </ul>
+            <hr class="comp-divider" />
+            <ul class="comp-features">
+              <li>Asientos de cuero sintético</li>
+              <li>Asientos delanteros calefactables y ajustables eléctricos</li>
+              <li>Asiento trasero deslizable</li>
+              <li>Iluminación ambiental</li>
+            </ul>
+            <hr class="comp-divider" />
+            <ul class="comp-features">
+              <li>Pantalla central de 12.8" con Navegador Apple CarPlay® y Android Auto</li>
+              <li>Cargador inalámbrico para teléfono</li>
+            </ul>
+            <hr class="comp-divider" />
+            <ul class="comp-features" style="margin-bottom:0;">
+              <li>smart Pilot Assist</li>
+              <li>8 sensores de estacionamiento (del. y tras.)</li>
+              <li>Cámara de estacionamiento de 360°</li>
+            </ul>
+          </div>
+
+          <!-- ── BRABUS ── -->
+          <div>
+            <img src="assets/img/smart1/comp-brabus.png" alt="smart #1 BRABUS" style="width:100%; aspect-ratio:3/2; object-fit:cover; object-position:center; display:block;" />
+            <p class="comp-model">smart #1</p>
+            <p class="comp-version">BRABUS</p>
+            <hr class="comp-divider" />
+            <p class="comp-range-label">Autonomía</p>
+            <p class="comp-range-num">400 km</p>
+            <p class="comp-range-sub">Autonomía WLTP<br>ciclo mixto</p>
+            <p class="comp-range-num">532 km</p>
+            <p class="comp-range-sub" style="margin-bottom:16px;">Autonomía WLTP<br>ciudad</p>
+            <hr class="comp-divider" />
+            <ul class="comp-features comp-features--bold">
+              <li>AWD (Tracción total), 315 kW</li>
+              <li>Batería de 66 kWh</li>
+              <li>Carga CC de hasta 150 kW</li>
+              <li>Carga CA de hasta 22 kW</li>
+            </ul>
+            <hr class="comp-divider" />
+            <ul class="comp-features comp-features--bold">
+              <li>Luces LED+ CyberSparks con Faros Matriciales y Luz de Carretera Adaptativa</li>
+              <li>Techo Panorámico Halo</li>
+              <li>Portón trasero con Control Gestual</li>
+              <li>Cristales de Privacidad (Tintados)</li>
+              <li>Luces de cortesía con proyección de logo</li>
+              <li>Estilo de carrocería y emblemas BRABUS</li>
+              <li>Pinzas de freno rojas</li>
+            </ul>
+            <hr class="comp-divider" />
+            <ul class="comp-features comp-features--bold">
+              <li>Asientos de gamuza de microfibra</li>
+              <li>Asientos delanteros calefactables y ajustables eléc.</li>
+              <li>Asiento trasero deslizable</li>
+              <li>Iluminación ambiental+</li>
+              <li>Bomba de calor</li>
+              <li>Sonido Beats® (13 altavoces)</li>
+              <li>Volante de Alcantara®</li>
+              <li>Asientos delanteros ventilados</li>
+            </ul>
+            <hr class="comp-divider" />
+            <ul class="comp-features">
+              <li>Pantalla central de 12.8" con Navegador Apple CarPlay® y Android Auto</li>
+              <li>Cargador inalámbrico para teléfono</li>
+              <li>Pantalla Head-Up Display de 10"</li>
+            </ul>
+            <hr class="comp-divider" />
+            <ul class="comp-features" style="margin-bottom:0;">
+              <li>smart Pilot Assist</li>
+              <li>8 sensores de estacionamiento (del. y tras.)</li>
+              <li>Cámara de estacionamiento de 360°</li>
+            </ul>
+          </div>
+
+        </div>
       </div>
+
     </div>
   </section>
 
