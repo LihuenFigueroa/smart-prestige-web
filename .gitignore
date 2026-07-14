@@ -1,0 +1,6 @@
+# Imágenes TIF — no renderizan en browsers y suelen ser muy pesadas
+*.tif
+*.tiff
+
+# Archivos de desarrollo — no van a producción
+dev/pdf_pages/
