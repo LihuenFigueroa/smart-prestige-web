@@ -24,7 +24,8 @@
       "Bash(C:/Python311/python.exe -c \"from PIL import Image; print\\(''PIL ok''\\)\")",
       "Bash(npm install:*)",
       "Bash(claude --version)",
-      "Bash(cd \"C:\\\\Users\\\\lf4902\\\\lifisoluciones\\\\smart-prestige-web\" && npx tailwindcss -i ./assets/css/input.css -o ./assets/css/tailwind.css 2>&1)"
+      "Bash(cd \"C:\\\\Users\\\\lf4902\\\\lifisoluciones\\\\smart-prestige-web\" && npx tailwindcss -i ./assets/css/input.css -o ./assets/css/tailwind.css 2>&1)",
+      "Bash(grep:*)"
     ]
   }
 }
