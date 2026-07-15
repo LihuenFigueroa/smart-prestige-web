@@ -42,13 +42,22 @@
   </div>
 
   <!-- ================================================================
-       HERO 1 — imagen negra, solo nav
+       HERO — scroll-pinned video smart x BRABUS
   ================================================================ -->
-  <section class="relative w-full h-screen min-h-[640px] overflow-hidden">
-    <div class="absolute inset-0 bg-neutral-900">
-      <img src="assets/img/brabus/hero1.jpg" alt="smart x BRABUS" class="w-full h-full object-cover" />
-    </div>
-    <div class="absolute top-0 left-0 right-0 pointer-events-none" style="height:170px; z-index:5; background:linear-gradient(to bottom,rgba(20,20,19,0.65) 0%,rgba(20,20,19,0) 100%);"></div>
+  <div id="brabusPin">
+  <section class="sticky top-0 relative w-full h-screen min-h-[640px] overflow-hidden">
+    <canvas id="brabusCanvas" class="absolute inset-0 w-full h-full" style="z-index:2;"></canvas>
+    <video
+      id="brabusVideo"
+      muted playsinline preload="auto"
+      class="absolute inset-0 w-full h-full object-cover object-center"
+      style="z-index:1; opacity:0; pointer-events:none;"
+    ></video>
+
+    <div class="absolute top-0 left-0 right-0 pointer-events-none" style="height:170px; z-index:5; background:linear-gradient(to bottom,rgba(20,20,19,0.65) 0%,rgba(20,20,19,0.57) 35%,rgba(20,20,19,0) 100%);"></div>
+    <div class="absolute bottom-0 left-0 right-0 pointer-events-none" style="height:261px; z-index:5; background:linear-gradient(to bottom,rgba(0,0,0,0) 0%,rgba(0,0,0,0.58) 60%,rgba(0,0,0,0.85) 100%);"></div>
+
+    <!-- Navigation -->
     <nav class="absolute top-0 left-0 right-0 z-20 px-5 md:px-14 h-14 md:h-16 flex items-center justify-between">
       <div class="flex items-center gap-6">
         <button onclick="openNavMenu()" class="flex flex-col gap-[5px] cursor-pointer" aria-label="Menú">
@@ -68,34 +77,21 @@
         <button class="text-white" aria-label="Carrito"><svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"/></svg></button>
       </div>
     </nav>
-  </section>
 
-  <!-- ================================================================
-       HERO 2 — "Inconfundiblemente BRABUS"
-  ================================================================ -->
-  <section class="relative w-full h-screen min-h-[640px] overflow-hidden">
-    <div class="absolute inset-0 bg-neutral-900">
-      <img src="assets/img/brabus/hero2.jpg" alt="BRABUS badge" class="w-full h-full object-cover" />
+    <!-- Texto mid-video — solo mobile -->
+    <div id="brabusTextMid" class="md:hidden absolute inset-0 flex items-center justify-center z-10 pointer-events-none" style="opacity:0;">
+      <p class="text-white text-3xl font-smart-next text-center px-6 leading-tight">Inconfundiblemente<br/><span class="font-bold">BRABUS.</span></p>
     </div>
-    <div class="absolute bottom-0 left-0 right-0 pointer-events-none" style="height:261px; z-index:5; background:linear-gradient(to bottom,rgba(0,0,0,0) 0%,rgba(0,0,0,0.75) 100%);"></div>
-    <div class="absolute bottom-0 right-0 px-5 md:px-14 pb-10 md:pb-16 z-10 text-right">
-      <p class="text-white text-lg font-normal font-smart-sans">Inconfundiblemente</p>
-      <p class="text-white font-bold text-4xl md:text-5xl tracking-tight font-smart-next">BRABUS</p>
-    </div>
-  </section>
 
-  <!-- ================================================================
-       HERO 3 — dos autos en túnel
-  ================================================================ -->
-  <section class="relative w-full h-screen min-h-[640px] overflow-hidden">
-    <div class="absolute inset-0 bg-neutral-800">
-      <img src="assets/img/brabus/hero3.jpg" alt="smart BRABUS en túnel" class="w-full h-full object-cover" />
+    <!-- Texto final — aparece al terminar el video -->
+    <div id="brabusText" class="absolute bottom-0 left-0 right-0 px-5 md:px-14 pb-8 md:pb-14 z-10" style="opacity:0; pointer-events:none;">
+      <p class="text-white/80 text-lg font-normal font-smart-sans mb-1">Inconfundiblemente</p>
+      <h1 class="text-white text-5xl md:text-6xl font-bold font-smart-next leading-tight mb-3">BRABUS.</h1>
+      <p class="text-white/70 text-base font-normal leading-6 font-smart-sans max-w-sm">Diseño que no necesita presentación.<br/>Rendimiento que se siente antes de que lo cuentes.</p>
     </div>
-    <div class="absolute bottom-0 left-0 right-0 pointer-events-none" style="height:261px; z-index:5; background:linear-gradient(to bottom,rgba(0,0,0,0) 0%,rgba(0,0,0,0.8) 100%);"></div>
-    <div class="absolute bottom-0 left-0 px-5 md:px-14 pb-10 md:pb-16 z-10 max-w-sm">
-      <p class="text-white text-base font-normal leading-6 font-smart-sans">Diseño que no necesita presentación.<br/>Rendimiento que se siente antes de que lo cuentes.</p>
-    </div>
+
   </section>
+  </div>
 
   <!-- ================================================================
        TEXTO SMART X BRABUS
@@ -223,6 +219,7 @@
   </footer>
 
 
+  <script src="assets/js/main.js"></script>
   <script>
     function openNavMenu() {
       const menu     = document.getElementById('nav-menu');
