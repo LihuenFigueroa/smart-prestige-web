@@ -445,7 +445,6 @@
         </div>
 
       </div>
-    </div>
 
   </section>
 
@@ -648,58 +647,100 @@
   <!-- ================================================================
        ELEGÍ TU VERSIÓN (CONFIGURADOR)
   ================================================================ -->
-  <section class="w-full bg-white px-5 md:px-14 py-10 md:py-16 border-t border-neutral-100">
-    <div class="max-w-[1320px] mx-auto">
-      <div class="flex flex-col md:flex-row gap-6">
+  <section class="w-full bg-white" style="overflow:hidden;">
 
-        <!-- Exterior — imagen 30 -->
-        <div class="flex-1 border border-neutral-200 p-6">
-          <h3 class="font-smart-next font-normal text-black text-xl mb-1">Elegí tu versión</h3>
-          <p class="text-sm text-neutral-500 mb-4 font-smart-sans">100% compacto 100% eléctrico. hasta 584 km de autonomía en la versión Pro+.</p>
-          <!-- Model tabs -->
-          <div class="flex gap-4 mb-6 border-b border-neutral-200 pb-3">
-            <button class="text-sm font-bold text-black border-b-2 border-black pb-1 configurator-tab-1 active" onclick="switchTab1('BRABUS')">BRABUS</button>
-            <button class="text-sm font-normal text-neutral-400 configurator-tab-1" onclick="switchTab1('Pure')">Pure</button>
-            <button class="text-sm font-normal text-neutral-400 configurator-tab-1" onclick="switchTab1('Pro')">Pro</button>
-            <button class="text-sm font-normal text-neutral-400 configurator-tab-1" onclick="switchTab1('Pro+')">Pro+</button>
-          </div>
-          <div class="w-full rounded mb-4 bg-neutral-200" style="aspect-ratio:16/9;"></div>
-          <!-- Colors -->
-          <div class="flex items-center gap-2 mb-4">
-            <p class="text-xs text-neutral-500 mr-2 font-smart-sans">Color</p>
-            <button class="w-6 h-6 rounded-full bg-red-700 border-2 border-transparent hover:border-black"></button>
-            <button class="w-6 h-6 rounded-full bg-neutral-900 border-2 border-black"></button>
-            <button class="w-6 h-6 rounded-full bg-gray-100 border border-neutral-300 hover:border-black"></button>
-            <button class="w-6 h-6 rounded-full bg-gray-400 border-2 border-transparent hover:border-black"></button>
-            <button class="w-6 h-6 rounded-full bg-amber-700 border-2 border-transparent hover:border-black"></button>
-          </div>
-          <a href="#" class="text-xs text-neutral-500 underline">Manual de usuario</a>
-        </div>
+    <!-- Top: título + info LEFT, toggle RIGHT -->
+    <div style="padding:52px 60px 12px; display:flex; justify-content:space-between; align-items:flex-end;">
 
-        <!-- Interior — imagen 31 -->
-        <div class="flex-1 border border-neutral-200 p-6">
-          <h3 class="font-smart-next font-normal text-black text-xl mb-1">Elegí tu versión</h3>
-          <p class="text-sm text-neutral-500 mb-4 font-smart-sans">100% compacto 100% eléctrico. hasta 584 km de autonomía en la versión Pro+.</p>
-          <!-- Model tabs -->
-          <div class="flex gap-4 mb-6 border-b border-neutral-200 pb-3">
-            <button class="text-sm font-bold text-black border-b-2 border-black pb-1">BRABUS</button>
-            <button class="text-sm font-normal text-neutral-400">Pure</button>
-            <button class="text-sm font-normal text-neutral-400">Pro</button>
-            <button class="text-sm font-normal text-neutral-400">Pro+</button>
-          </div>
-          <div class="w-full rounded mb-4 bg-neutral-200" style="aspect-ratio:16/9;"></div>
-          <!-- Colors -->
-          <div class="flex items-center gap-2 mb-4">
-            <p class="text-xs text-neutral-500 mr-2 font-smart-sans">Color</p>
-            <button class="w-6 h-6 rounded-full bg-amber-900 border-2 border-black"></button>
-            <button class="w-6 h-6 rounded-full bg-neutral-900 border-2 border-transparent hover:border-black"></button>
-            <button class="w-6 h-6 rounded-full bg-gray-200 border border-neutral-300 hover:border-black"></button>
-          </div>
-          <a href="#" class="text-xs text-neutral-500 underline">Manual de usuario</a>
-        </div>
-
+      <!-- Izquierda: título + descripción + CTA -->
+      <div style="max-width:480px; align-self:flex-start;">
+        <h2 class="font-smart-next" style="font-size:40px; font-weight:400; color:#141413; line-height:1.1; margin:0 0 16px;">Elegí tu versión</h2>
+        <p class="font-smart-sans" style="font-size:16px; color:#000000; line-height:1.5; margin:0 0 4px;">SUV compacto 100% eléctrico. Hasta 420 km de autonomía WLTP y 428 cv en su versión BRABUS.</p>
+        <p class="font-smart-sans" style="font-size:10px; color:#9ca3af; line-height:1.4; margin:0 0 12px;">Autonomía sujeta a tipo de conducción, puede variar por factores y condiciones del viaje.</p>
+        <button class="font-smart-sans" style="height:40px; padding:0 22px; border-radius:999px; background:#1A1A1A; font-size:13px; font-weight:700; color:#fff; cursor:pointer; border:none;">Ficha técnica</button>
       </div>
+
+      <!-- Derecha: toggle exterior/interior -->
+      <div id="vis-switcher" style="display:flex; align-items:center; background:white; border:1px solid #141413; border-radius:9999px; position:relative; overflow:hidden;">
+        <div id="vis-indicator" style="position:absolute; top:0; left:0; height:100%; border-radius:9999px; background:#141413; z-index:0; transition:transform 0.4s cubic-bezier(0.4,0,0.2,1), width 0.4s cubic-bezier(0.4,0,0.2,1);"></div>
+        <button id="vis-btn-ext" onclick="switchVis('ext')" class="font-smart-sans" style="height:36px; padding:0 20px; font-size:14px; font-weight:400; position:relative; z-index:1; color:#fff; border:none; background:transparent; cursor:pointer; transition:color 0.4s ease;">exterior</button>
+        <button id="vis-btn-int" onclick="switchVis('int')" class="font-smart-sans" style="height:36px; padding:0 20px; font-size:14px; font-weight:400; position:relative; z-index:1; color:#141413; border:none; background:transparent; cursor:pointer; transition:color 0.4s ease;">interior</button>
+      </div>
+
     </div>
+
+    <!-- Stage: imagen full-width + selector debajo — interior cubre ambos -->
+    <div id="vis-stage" style="position:relative; overflow:visible;">
+
+      <!-- Car wrapper: da la altura al stage -->
+      <div id="vis-car-wrapper" style="position:relative; width:100%;">
+        <img id="vis-car-back" src="assets/img/smart1/vis-c1.png" alt="" style="width:100%; max-height:62vh; display:block; object-fit:contain;" />
+        <img id="vis-car-front" src="assets/img/smart1/vis-c1.png" alt="smart #1" style="position:absolute; inset:0; width:100%; height:100%; object-fit:contain; transition:opacity 0.4s cubic-bezier(0.25,0,0,1);" />
+      </div>
+
+      <!-- Interior carousel: cubre todo el stage (auto + barra) sin recortar -->
+      <div id="vis-interior" style="position:absolute; inset:0; z-index:5; transform:translateX(100%); transition:transform 0.52s cubic-bezier(0.25,0,0,1); overflow:hidden; cursor:grab;">
+        <div id="vis-int-track" style="display:flex; height:100%; will-change:transform;"></div>
+      </div>
+
+      <!-- Barra inferior: z-index alto para flotar sobre el interior -->
+      <div id="vis-bottom-bar" style="position:relative; z-index:20; padding:20px 31px 28px; display:flex; justify-content:space-between; align-items:flex-end;">
+
+        <div id="vis-controls-card" style="background:#fff; border-radius:16px; padding:18px 24px;">
+          <!-- Línea -->
+          <div style="display:flex; align-items:center; gap:20px; margin-bottom:14px;">
+            <span class="font-smart-sans" style="font-size:11px; color:#6B747B; font-weight:700; min-width:44px;">Línea</span>
+            <button class="vis-linea-btn font-smart-sans" data-linea="BRABUS" style="font-size:13px; font-weight:700; color:#141413; background:none; border:none; cursor:pointer; padding:0;">BRABUS</button>
+            <button class="vis-linea-btn font-smart-sans" data-linea="Pure"   style="font-size:13px; font-weight:400; color:#6B747B; background:none; border:none; cursor:pointer; padding:0;">Pure</button>
+            <button class="vis-linea-btn font-smart-sans" data-linea="Pro"    style="font-size:13px; font-weight:400; color:#6B747B; background:none; border:none; cursor:pointer; padding:0;">Pro</button>
+            <button class="vis-linea-btn font-smart-sans" data-linea="Pro+"   style="font-size:13px; font-weight:400; color:#6B747B; background:none; border:none; cursor:pointer; padding:0;">Pro+</button>
+          </div>
+          <!-- Color -->
+          <div style="display:flex; align-items:center; gap:10px;">
+            <span class="font-smart-sans" style="font-size:11px; color:#6B747B; font-weight:700; min-width:44px;">Color</span>
+            <div id="vis-color-wrap" style="display:flex; gap:10px; transition:opacity 0.3s ease;">
+              <div id="vis-swatches-BRABUS" style="display:flex; gap:10px;">
+                <button class="vis-color-btn" data-color="1" data-img="assets/img/smart1/vis-c1.png" style="width:28px;height:28px;border-radius:50%;background:linear-gradient(to bottom,#2a2a2a 50%,#bf1e2e 50%);border:none;cursor:pointer;box-shadow:0 0 0 2px #fff,0 0 0 3.5px #141413;"></button>
+                <button class="vis-color-btn" data-color="2" data-img="assets/img/smart1/vis-c2.png" style="width:28px;height:28px;border-radius:50%;background:#111111;border:none;cursor:pointer;"></button>
+                <button class="vis-color-btn" data-color="4" data-img="assets/img/smart1/vis-c4.png" style="width:28px;height:28px;border-radius:50%;background:linear-gradient(to bottom,#bf1e2e 50%,#111111 50%);border:none;cursor:pointer;"></button>
+                <button class="vis-color-btn" data-color="5" data-img="assets/img/smart1/vis-c5.png" style="width:28px;height:28px;border-radius:50%;background:linear-gradient(to bottom,#111111 50%,#4a4e57 50%);border:none;cursor:pointer;"></button>
+                <button class="vis-color-btn" data-color="6" data-img="assets/img/smart1/vis-c6.png" style="width:28px;height:28px;border-radius:50%;background:#4a4e57;border:none;cursor:pointer;"></button>
+                <button class="vis-color-btn" data-color="7" data-img="assets/img/smart1/vis-c7.png" style="width:28px;height:28px;border-radius:50%;background:linear-gradient(to bottom,#bf1e2e 50%,#7a7d84 50%);border:none;cursor:pointer;"></button>
+                <button class="vis-color-btn" data-color="8" data-img="assets/img/smart1/vis-c8.png" style="width:28px;height:28px;border-radius:50%;background:linear-gradient(to bottom,#3a3c40 50%,#c8caca 50%);border:none;cursor:pointer;"></button>
+              </div>
+              <div id="vis-swatches-Pro" style="display:none; gap:10px;">
+                <button class="vis-color-btn" data-color="pro1" data-img="assets/img/smart1/vis-pro-c1.png" style="width:28px;height:28px;border-radius:50%;background:linear-gradient(to bottom,#111111 50%,#bfb641 50%);border:none;cursor:pointer;"></button>
+                <button class="vis-color-btn" data-color="pro2" data-img="assets/img/smart1/vis-pro-c2.png" style="width:28px;height:28px;border-radius:50%;background:linear-gradient(to bottom,#bfb641 50%,#111111 50%);border:none;cursor:pointer;"></button>
+                <button class="vis-color-btn" data-color="pro3" data-img="assets/img/smart1/vis-pro-c3.png" style="width:28px;height:28px;border-radius:50%;background:#111111;border:none;cursor:pointer;"></button>
+                <button class="vis-color-btn" data-color="pro4" data-img="assets/img/smart1/vis-pro-c4.png" style="width:28px;height:28px;border-radius:50%;background:linear-gradient(to bottom,#111111 50%,#b8baba 50%);border:none;cursor:pointer;"></button>
+                <button class="vis-color-btn" data-color="pro5" data-img="assets/img/smart1/vis-pro-c5.png" style="width:28px;height:28px;border-radius:50%;background:linear-gradient(to bottom,#111111 50%,#88958c 50%);border:none;cursor:pointer;"></button>
+                <button class="vis-color-btn" data-color="pro6" data-img="assets/img/smart1/vis-pro-c6.png" style="width:28px;height:28px;border-radius:50%;background:linear-gradient(to bottom,#111111 50%,#f0f0f0 50%);border:none;cursor:pointer;"></button>
+                <button class="vis-color-btn" data-color="pro7" data-img="assets/img/smart1/vis-pro-c7.png" style="width:28px;height:28px;border-radius:50%;background:linear-gradient(to bottom,#111111 50%,#bf1e2e 50%);border:none;cursor:pointer;"></button>
+              </div>
+              <div id="vis-swatches-Pro+" style="display:none; gap:10px;">
+                <button class="vis-color-btn" data-color="pp1" data-img="assets/img/smart1/vis-pro-c1.png" style="width:28px;height:28px;border-radius:50%;background:linear-gradient(to bottom,#111111 50%,#bfb641 50%);border:none;cursor:pointer;"></button>
+                <button class="vis-color-btn" data-color="pp2" data-img="assets/img/smart1/vis-pro-c2.png" style="width:28px;height:28px;border-radius:50%;background:linear-gradient(to bottom,#bfb641 50%,#111111 50%);border:none;cursor:pointer;"></button>
+                <button class="vis-color-btn" data-color="pp3" data-img="assets/img/smart1/vis-pro-c3.png" style="width:28px;height:28px;border-radius:50%;background:#111111;border:none;cursor:pointer;"></button>
+                <button class="vis-color-btn" data-color="pp4" data-img="assets/img/smart1/vis-pro-c4.png" style="width:28px;height:28px;border-radius:50%;background:linear-gradient(to bottom,#111111 50%,#b8baba 50%);border:none;cursor:pointer;"></button>
+                <button class="vis-color-btn" data-color="pp5" data-img="assets/img/smart1/vis-pro-c5.png" style="width:28px;height:28px;border-radius:50%;background:linear-gradient(to bottom,#111111 50%,#88958c 50%);border:none;cursor:pointer;"></button>
+                <button class="vis-color-btn" data-color="pp6" data-img="assets/img/smart1/vis-pro-c6.png" style="width:28px;height:28px;border-radius:50%;background:linear-gradient(to bottom,#111111 50%,#f0f0f0 50%);border:none;cursor:pointer;"></button>
+                <button class="vis-color-btn" data-color="pp7" data-img="assets/img/smart1/vis-pro-c7.png" style="width:28px;height:28px;border-radius:50%;background:linear-gradient(to bottom,#111111 50%,#bf1e2e 50%);border:none;cursor:pointer;"></button>
+              </div>
+              <div id="vis-swatches-Pure" style="display:none; gap:10px;">
+                <button class="vis-color-btn" data-color="p1" data-img="assets/img/smart1/vis-pure-c1.png" style="width:28px;height:28px;border-radius:50%;background:#111111;border:none;cursor:pointer;"></button>
+                <button class="vis-color-btn" data-color="p2" data-img="assets/img/smart1/vis-pure-c2.png" style="width:28px;height:28px;border-radius:50%;background:#b8baba;border:none;cursor:pointer;"></button>
+                <button class="vis-color-btn" data-color="p3" data-img="assets/img/smart1/vis-pure-c3.png" style="width:28px;height:28px;border-radius:50%;background:#f0f0f0;border:1px solid #ddd;cursor:pointer;"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <a id="vis-manual-link" href="#" class="font-smart-sans" style="font-size:12px; color:#141413; text-decoration:none; border-bottom:1px solid #141413; padding-bottom:1px; transition:color 0.3s, border-color 0.3s;">Manual de usuario</a>
+
+      </div><!-- end vis-bottom-bar -->
+
+    </div><!-- end vis-stage -->
+
   </section>
 
   <!-- ================================================================
@@ -714,19 +755,19 @@
       </div>
       <div class="flex-1">
         <form id="form-contacto" novalidate>
-          <div class="border-b border-neutral-200 py-3"><input type="text" placeholder="NOMBRE" class="w-full text-sm text-black bg-transparent outline-none placeholder:text-xs placeholder:tracking-widest placeholder:text-neutral-400" /></div>
-          <div class="border-b border-neutral-200 py-3"><input type="text" placeholder="APELLIDO" class="w-full text-sm text-black bg-transparent outline-none placeholder:text-xs placeholder:tracking-widest placeholder:text-neutral-400" /></div>
-          <div class="border-b border-neutral-200 py-3"><input type="text" placeholder="CIUDAD" class="w-full text-sm text-black bg-transparent outline-none placeholder:text-xs placeholder:tracking-widest placeholder:text-neutral-400" /></div>
-          <div class="border-b border-neutral-200 py-3"><input type="email" placeholder="CORREO ELECTRÓNICO" class="w-full text-sm text-black bg-transparent outline-none placeholder:text-xs placeholder:tracking-widest placeholder:text-neutral-400" /></div>
-          <div class="border-b border-neutral-200 py-3"><input type="tel" placeholder="CELULAR" class="w-full text-sm text-black bg-transparent outline-none placeholder:text-xs placeholder:tracking-widest placeholder:text-neutral-400" /></div>
+          <div class="border-b border-neutral-200 py-3"><input type="text" placeholder="NOMBRE" class="font-smart-sans w-full text-sm text-black bg-transparent outline-none placeholder:text-xs placeholder:tracking-widest placeholder:text-neutral-400" /></div>
+          <div class="border-b border-neutral-200 py-3"><input type="text" placeholder="APELLIDO" class="font-smart-sans w-full text-sm text-black bg-transparent outline-none placeholder:text-xs placeholder:tracking-widest placeholder:text-neutral-400" /></div>
+          <div class="border-b border-neutral-200 py-3"><input type="text" placeholder="CIUDAD" class="font-smart-sans w-full text-sm text-black bg-transparent outline-none placeholder:text-xs placeholder:tracking-widest placeholder:text-neutral-400" /></div>
+          <div class="border-b border-neutral-200 py-3"><input type="email" placeholder="CORREO ELECTRÓNICO" class="font-smart-sans w-full text-sm text-black bg-transparent outline-none placeholder:text-xs placeholder:tracking-widest placeholder:text-neutral-400" /></div>
+          <div class="border-b border-neutral-200 py-3"><input type="tel" placeholder="CELULAR" class="font-smart-sans w-full text-sm text-black bg-transparent outline-none placeholder:text-xs placeholder:tracking-widest placeholder:text-neutral-400" /></div>
           <div class="border-b border-neutral-200 py-3 relative">
-            <select name="concesionario" class="w-full text-sm bg-transparent appearance-none cursor-pointer outline-none" style="color:#9ca3af;" onchange="this.style.color=this.value?'#111827':'#9ca3af';">
+            <select name="concesionario" class="font-smart-sans w-full bg-transparent appearance-none cursor-pointer outline-none" style="color:#9ca3af; font-size:0.75rem; letter-spacing:0.1em;" onchange="this.style.color=this.value?'#111827':'#9ca3af'; this.style.letterSpacing=this.value?'normal':'0.1em'; this.style.fontSize=this.value?'0.875rem':'0.75rem';">
               <option value="" disabled selected>CONCESIONARIO</option>
             </select>
             <span class="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 text-neutral-400 text-xs">&#8964;</span>
           </div>
           <div class="border-b border-neutral-200 py-3 relative">
-            <select name="modelo" class="w-full text-sm bg-transparent appearance-none cursor-pointer outline-none" style="color:#9ca3af;" onchange="this.style.color=this.value?'#111827':'#9ca3af';">
+            <select name="modelo" class="font-smart-sans w-full bg-transparent appearance-none cursor-pointer outline-none" style="color:#9ca3af; font-size:0.75rem; letter-spacing:0.1em;" onchange="this.style.color=this.value?'#111827':'#9ca3af'; this.style.letterSpacing=this.value?'normal':'0.1em'; this.style.fontSize=this.value?'0.875rem':'0.75rem';">
               <option value="" disabled selected>SELECCIONE MODELO</option>
               <option value="smart1-pure">smart #1 Pure</option>
               <option value="smart1-pro">smart #1 Pro</option>
@@ -736,8 +777,8 @@
             <span class="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 text-neutral-400 text-xs">&#8964;</span>
           </div>
           <div class="py-3">
-            <p style="font-size:0.75rem; letter-spacing:0.05em; color:#9ca3af; text-transform:uppercase; margin-bottom:8px;">CONSULTA</p>
-            <textarea rows="5" class="w-full text-sm text-black bg-transparent outline-none resize-none border border-neutral-200 p-3"></textarea>
+            <p class="font-smart-sans" style="font-size:0.75rem; letter-spacing:0.05em; color:#9ca3af; text-transform:uppercase; margin-bottom:8px;">CONSULTA</p>
+            <textarea rows="5" class="font-smart-sans w-full text-sm text-black bg-transparent outline-none resize-none border border-neutral-200 p-3"></textarea>
           </div>
         </form>
       </div>
@@ -793,12 +834,12 @@
       </div>
       <div class="border-t border-white/10 mb-8"></div>
       <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-4">
-        <div class="flex flex-wrap items-center gap-x-4 gap-y-2">
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-2 text-[#BABFC4] text-sm">
           <div class="flex items-center gap-2 text-white text-sm">
             <svg class="w-4 h-4 opacity-70" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
             <span>Argentina</span>
           </div>
-          <span class="text-[#BABFC4] opacity-40">|</span>
+          <span class="opacity-40">|</span>
           <p class="text-[#BABFC4] text-sm font-smart-sans">© 2026 smart Argentina</p>
         </div>
         <div class="flex items-center gap-x-4 text-[#BABFC4] text-sm">
@@ -902,7 +943,249 @@
       }
 
       ['track-c1', 'track-c2', 'track-c3', 'track-c4', 'track-c5', 'track-c6'].forEach(initDragCarousel);
+
+      // ── Visualizador: toggle exterior / interior ──
+      (function() {
+        var indicator = document.getElementById('vis-indicator');
+        var btnExt    = document.getElementById('vis-btn-ext');
+        var btnInt    = document.getElementById('vis-btn-int');
+        if (!indicator || !btnExt || !btnInt) return;
+        function initVis() {
+          indicator.style.width = btnExt.offsetWidth + 'px';
+          indicator.style.transform = 'translateX(0)';
+        }
+        initVis();
+        window.switchVis = function(view) {
+          var intPanel  = document.getElementById('vis-interior');
+          var colorWrap = document.getElementById('vis-color-wrap');
+          window._visMode = view;
+
+          var carBack    = document.getElementById('vis-car-back');
+          var carFront   = document.getElementById('vis-car-front');
+          var manualLink = document.getElementById('vis-manual-link');
+          if (view === 'ext') {
+            indicator.style.width = btnExt.offsetWidth + 'px';
+            indicator.style.transform = 'translateX(0)';
+            btnExt.style.color = '#fff';
+            btnInt.style.color = '#141413';
+            if (intPanel) {
+              intPanel.style.transition = 'transform 0.52s cubic-bezier(0.25,0,0,1)';
+              intPanel.style.transform  = 'translateX(100%)';
+            }
+            if (carBack)    carBack.style.visibility    = '';
+            if (carFront)   carFront.style.visibility   = '';
+            if (manualLink) { manualLink.style.color = '#141413'; manualLink.style.borderBottomColor = '#141413'; }
+            if (colorWrap)  { colorWrap.style.opacity = ''; colorWrap.style.pointerEvents = ''; }
+          } else {
+            indicator.style.width = btnInt.offsetWidth + 'px';
+            indicator.style.transform = 'translateX(' + btnExt.offsetWidth + 'px)';
+            btnInt.style.color = '#fff';
+            btnExt.style.color = '#141413';
+            if (carBack)    carBack.style.visibility    = 'hidden';
+            if (carFront)   carFront.style.visibility   = 'hidden';
+            if (manualLink) { manualLink.style.color = '#fff'; manualLink.style.borderBottomColor = 'rgba(255,255,255,0.6)'; }
+            if (colorWrap)  { colorWrap.style.opacity = '0.4'; colorWrap.style.pointerEvents = 'none'; }
+            if (intPanel && window.loadInteriorFor) {
+              var linea = window.getVisLinea ? window.getVisLinea() : 'BRABUS';
+              window.loadInteriorFor(linea);
+              intPanel.style.transition = 'none';
+              intPanel.style.transform  = 'translateX(100%)';
+              requestAnimationFrame(function() {
+                requestAnimationFrame(function() {
+                  intPanel.style.transition = 'transform 0.52s cubic-bezier(0.25,0,0,1)';
+                  intPanel.style.transform  = 'translateX(0)';
+                });
+              });
+            }
+          }
+        };
+      })();
+
+      // ── Visualizador: Línea + Color — sistema unificado ──
+      (function() {
+        var front       = document.getElementById('vis-car-front');
+        var back        = document.getElementById('vis-car-back');
+        var activeSrc   = 'assets/img/smart1/vis-c1.png';
+        var activeLinea = 'BRABUS';
+        var fading      = false;
+        window.getVisLinea = function() { return activeLinea; };
+
+        function carFade(newSrc) {
+          if (!newSrc || newSrc === activeSrc || fading) return;
+          activeSrc = newSrc;
+          fading = true;
+          back.src = newSrc;
+          front.style.opacity = '0';
+          setTimeout(function() {
+            front.src = newSrc;
+            front.style.transition = 'none';
+            front.style.opacity    = '1';
+            requestAnimationFrame(function() {
+              requestAnimationFrame(function() {
+                front.style.transition = 'opacity 0.4s cubic-bezier(0.25,0,0,1)';
+                fading = false;
+              });
+            });
+          }, 450);
+        }
+
+        function selectColorBtn(btn) {
+          document.querySelectorAll('.vis-color-btn').forEach(function(b) {
+            b.style.boxShadow = 'none';
+          });
+          btn.style.boxShadow = '0 0 0 2px #fff, 0 0 0 3.5px #141413';
+          carFade(btn.getAttribute('data-img'));
+        }
+
+        document.addEventListener('click', function(e) {
+          var btn = e.target.closest('.vis-color-btn');
+          if (btn) selectColorBtn(btn);
+        });
+
+        document.querySelectorAll('.vis-linea-btn').forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var newLinea = this.getAttribute('data-linea');
+            if (newLinea === activeLinea) return;
+
+            document.querySelectorAll('.vis-linea-btn').forEach(function(b) {
+              b.style.fontWeight = '400'; b.style.color = '#6B747B';
+            });
+            this.style.fontWeight = '700'; this.style.color = '#141413';
+
+            var currentGroup = document.getElementById('vis-swatches-' + activeLinea);
+            var newGroup     = document.getElementById('vis-swatches-' + newLinea);
+            if (!newGroup) { activeLinea = newLinea; return; }
+
+            fading = true;
+
+            // Fade out current swatches in place + car simultaneously
+            if (currentGroup) {
+              currentGroup.style.transition = 'opacity 0.18s ease';
+              currentGroup.style.opacity = '0';
+            }
+            front.style.opacity = '0';
+
+            setTimeout(function() {
+              // Reset & hide current group
+              if (currentGroup) {
+                currentGroup.style.display = 'none';
+                currentGroup.style.transition = 'none';
+                currentGroup.style.opacity = '1';
+                currentGroup.style.transform = '';
+              }
+
+              // Prepare new group: invisible, shifted right
+              newGroup.style.transition = 'none';
+              newGroup.style.opacity = '0';
+              newGroup.style.transform = 'translateX(36px)';
+              newGroup.style.display = 'flex';
+
+              // Select first swatch & update car
+              var firstBtn = newGroup.querySelector('.vis-color-btn');
+              if (firstBtn) {
+                document.querySelectorAll('.vis-color-btn').forEach(function(b) { b.style.boxShadow = 'none'; });
+                firstBtn.style.boxShadow = '0 0 0 2px #fff, 0 0 0 3.5px #111111';
+                var newSrc = firstBtn.getAttribute('data-img');
+                activeSrc = newSrc;
+                back.src  = newSrc;
+                front.src = newSrc;
+              }
+
+              // Force reflow, then animate in
+              newGroup.offsetHeight;
+              newGroup.style.transition = 'opacity 0.25s ease, transform 0.25s cubic-bezier(0.25,0,0,1)';
+              newGroup.style.opacity = '1';
+              newGroup.style.transform = 'translateX(0)';
+
+              // Fade in car
+              front.style.transition = 'none';
+              front.style.opacity = '1';
+              requestAnimationFrame(function() {
+                requestAnimationFrame(function() {
+                  front.style.transition = 'opacity 0.4s cubic-bezier(0.25,0,0,1)';
+                  fading = false;
+                });
+              });
+
+              activeLinea = newLinea;
+              // Si estamos en interior, recargar el carousel con la nueva línea
+              if (window._visMode === 'int' && window.loadInteriorFor) {
+                window.loadInteriorFor(newLinea);
+              }
+            }, 200);
+          });
+        });
+      })();
     })();
+
+      // ── Interior carousel ──
+      (function() {
+        var panel = document.getElementById('vis-interior');
+        var track = document.getElementById('vis-int-track');
+        if (!panel || !track) return;
+
+        var idx  = 0;
+        var imgs = [];
+        var STD  = ['assets/img/smart1/int-std-1.png','assets/img/smart1/int-std-2.png','assets/img/smart1/int-std-3.png','assets/img/smart1/int-std-4.png'];
+        var lineaMap = {
+          'BRABUS': ['assets/img/smart1/int-brabus-1.png','assets/img/smart1/int-brabus-2.png','assets/img/smart1/int-brabus-3.png','assets/img/smart1/int-brabus-4.png'],
+          'Pure': STD, 'Pro': STD, 'Pro+': STD
+        };
+
+        window.loadInteriorFor = function(linea) {
+          imgs = lineaMap[linea] || lineaMap['BRABUS'];
+          idx  = 0;
+          var W = panel.offsetWidth;
+          track.innerHTML = '';
+          imgs.forEach(function(src) {
+            var el = document.createElement('img');
+            el.src = src;
+            el.alt = '';
+            el.draggable = false;
+            el.style.cssText = 'flex-shrink:0;width:' + W + 'px;height:100%;object-fit:cover;display:block;pointer-events:none;user-select:none;';
+            track.appendChild(el);
+          });
+          track.style.transition = 'none';
+          track.style.transform  = 'translateX(0)';
+        };
+
+        function goTo(n) {
+          n   = Math.max(0, Math.min(imgs.length - 1, n));
+          idx = n;
+          track.style.transition = 'transform 0.4s cubic-bezier(0.25,0,0,1)';
+          track.style.transform  = 'translateX(-' + (idx * panel.offsetWidth) + 'px)';
+        }
+
+        var dragging = false, sx = 0, cx = 0;
+        function dStart(x) {
+          dragging = true; sx = cx = x;
+          track.style.transition = 'none';
+          panel.style.cursor = 'grabbing';
+        }
+        function dMove(x) {
+          if (!dragging) return;
+          cx = x;
+          var raw  = -idx * panel.offsetWidth + (x - sx);
+          var minX = -(imgs.length - 1) * panel.offsetWidth;
+          track.style.transform = 'translateX(' + Math.max(minX, Math.min(0, raw)) + 'px)';
+        }
+        function dEnd() {
+          if (!dragging) return;
+          dragging = false;
+          panel.style.cursor = 'grab';
+          var delta = cx - sx;
+          if (delta < -40) goTo(idx + 1);
+          else if (delta > 40) goTo(idx - 1);
+          else goTo(idx);
+        }
+
+        panel.addEventListener('mousedown', function(e) { dStart(e.clientX); e.preventDefault(); });
+        window.addEventListener('mousemove', function(e) { dMove(e.clientX); });
+        window.addEventListener('mouseup', dEnd);
+        panel.addEventListener('touchstart', function(e) { dStart(e.touches[0].clientX); }, {passive:true});
+        panel.addEventListener('touchmove',  function(e) { dMove(e.touches[0].clientX); },  {passive:true});
+        panel.addEventListener('touchend', dEnd, {passive:true});
+      })();
 
     function openNavMenu() {
       const menu     = document.getElementById('nav-menu');
