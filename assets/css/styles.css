@@ -124,3 +124,6 @@ select option { color: #111111; }
 .comp-features li { font-family: 'FOR_smart_Sans', sans-serif; font-size: 10.5px; font-weight: 400; color: #6B747B; line-height: 120%; letter-spacing: -0.01em; margin-bottom: 4px; }
 .comp-features li:last-child { margin-bottom: 0; }
 .comp-features--bold li { font-weight: 400; }
+
+/* ── Visualizador de versión — color swatches ── */
+.vis-color-btn { transition: box-shadow 0.2s ease; }

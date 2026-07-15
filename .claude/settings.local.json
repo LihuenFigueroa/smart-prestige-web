@@ -32,7 +32,23 @@
       "Bash(do echo:*)",
       "Read(//c/Users/Lihuen/lifisoluciones/smart-prestige-web/**)",
       "Bash(done)",
-      "Bash(python3:*)"
+      "Bash(python3:*)",
+      "Bash(cp \"C:/Users/Lihuen/Downloads/android_HXYH2D3C61EU000004_GarageImage_EU_APP.png\" \"vis-c1.png\")",
+      "Bash(cp \"C:/Users/Lihuen/Downloads/android_HXYH2D3C61EU000006_GarageImage_EU_APP.png\" \"vis-c2.png\")",
+      "Bash(cp \"C:/Users/Lihuen/Downloads/iphone_HXYH2D3C61EU000002_GarageImage_EU_APP.png\" \"vis-c4.png\")",
+      "Bash(cp \"C:/Users/Lihuen/Downloads/iphone_HXYH2D3C61EU000002_GarageImage_EU_APP.png\" \"vis-c5.png\")",
+      "Bash(cp \"C:/Users/Lihuen/Downloads/android_HXYH2D3C61EU000008_GarageImage_EU_APP.png\" \"vis-c6.png\")",
+      "Bash(powershell -File - <<'PSEOF'\n$cssFile = 'C:/Users/Lihuen/lifisoluciones/smart-prestige-web/assets/css/styles.css'\n$css = [System.IO.File]::ReadAllText\\($cssFile\\)\nif \\($css -notmatch '\\\\.vis-color-btn'\\) {\n  $css += \"`r`n.vis-color-btn { transition: box-shadow 0.25s ease; }`r`n\"\n  [System.IO.File]::WriteAllText\\($cssFile, $css\\)\n  Write-Host 'added'\n} else {\n  Write-Host 'already exists'\n}\nPSEOF)",
+      "Bash(cp \"android_HXYESD1C51EU00001E_GarageImage_EU_APP.png\" \"../lifisoluciones/smart-prestige-web/assets/img/smart1/vis-pro-c1.png\")",
+      "Bash(cp \"android_HXYESD1C51EU00000F_GarageImage_EU_APP.png\" \"../lifisoluciones/smart-prestige-web/assets/img/smart1/vis-pro-c2.png\")",
+      "Bash(cp \"iphone_HXYESD1C51EU00001M_GarageImage_EU_APP.png\" \"../lifisoluciones/smart-prestige-web/assets/img/smart1/vis-pro-c3.png\")",
+      "Bash(cp \"iphone_HXYESD1C51EU00000P_GarageImage_EU_APP.png\" \"../lifisoluciones/smart-prestige-web/assets/img/smart1/vis-pro-c4.png\")",
+      "Bash(cp \"iphone_HXYESD1C51EU00001A_GarageImage_EU_APP.png\" \"../lifisoluciones/smart-prestige-web/assets/img/smart1/vis-pro-c5.png\")",
+      "Bash(cp \"BRABUS 1.png\" \"../lifisoluciones/smart-prestige-web/assets/img/smart1/int-brabus-1.png\")",
+      "Bash(cp \"BRABUS 2.png\" \"../lifisoluciones/smart-prestige-web/assets/img/smart1/int-brabus-2.png\")",
+      "Bash(cp \"BRABUS 3.png\" \"../lifisoluciones/smart-prestige-web/assets/img/smart1/int-brabus-3.png\")",
+      "Bash(cp \"BRABUS 4.png\" \"../lifisoluciones/smart-prestige-web/assets/img/smart1/int-brabus-4.png\")",
+      "Bash(cp \"PRO Y PRO + 1.png\" \"../lifisoluciones/smart-prestige-web/assets/img/smart1/int-std-1.png\")"
     ]
   }
 }
