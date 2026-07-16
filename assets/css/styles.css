@@ -125,6 +125,11 @@ select option { color: #111111; }
 .comp-features li:last-child { margin-bottom: 0; }
 .comp-features--bold li { font-weight: 400; }
 
+/* ── Formulario de contacto ── */
+.contacto-title    { font-size: 32px; line-height: 1.2; }
+.contacto-subtitle { color: #6b7280; line-height: 1.5; }
+
+
 /* ── Quiénes somos — imagen ── */
 #quienes-img { padding: 35px 46px 35px 0; }
 
@@ -161,6 +166,27 @@ select option { color: #111111; }
     font-size: 32px;
     line-height: 120%;
     letter-spacing: -0.01em;
+  }
+
+  /* ── Formulario de contacto ── */
+  .contacto-title {
+    font-size: 27.5px;
+    line-height: 120%;
+    letter-spacing: -0.01em;
+  }
+  .contacto-subtitle {
+    color: #000000;
+    line-height: 130%;
+    letter-spacing: 0.02em;
+  }
+  #form-contacto input,
+  #form-contacto select,
+  #form-contacto textarea,
+  #form-contacto p {
+    font-size: 16px;
+  }
+  #form-contacto input::placeholder {
+    font-size: 16px;
   }
 
   /* ── Quiénes somos — imagen arriba en mobile ── */
