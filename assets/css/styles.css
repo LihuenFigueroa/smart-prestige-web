@@ -145,6 +145,15 @@ select option { color: #111111; }
 /* ── Hero mobile — smart #1 ── */
 #hero-s1-mobile { display: none; }
 
+/* ── Hero mobile — smart #3 ── */
+#hero-s3-mobile { display: none; }
+
+/* ── Características generales — smart #3 ── */
+#comp-s3-grid       { grid-template-columns: repeat(3, minmax(260px, 1fr)); column-gap: 23px; }
+#comp-s3-grid > img { display: block; }
+#comp-s3-nav        { display: none; }
+#comp-s3-img-track  { display: none; }
+
 /* ── Características generales ── */
 #comp-s1-grid       { grid-template-columns: repeat(4, minmax(260px, 1fr)); column-gap: 23px; }
 #comp-s1-grid > img { display: block; }
@@ -191,6 +200,7 @@ select option { color: #111111; }
 
   /* ── Elegí tu versión — layout mobile ── */
   #vis-switcher { z-index: 20; }
+  #vis-car-back { height: 60vw; }
   #vis-car-back, #vis-car-front { object-position: center 78%; }
   #vis-interior { top: -70px; right: 0; bottom: 120px; left: 0; }
   #vis-top-bar      { flex-direction: column; padding: 2rem 1.75rem 1rem; align-items: flex-start; }
@@ -207,6 +217,18 @@ select option { color: #111111; }
   /* ── Hero mobile — smart #1 ── */
   #hero-s1-mobile { display: block; }
   #hero-s1        { display: none; }
+
+  /* ── Hero mobile — smart #3 ── */
+  #hero-s3-mobile { display: block; }
+  #hero-s3        { display: none; }
+
+  /* ── Características generales — smart #3 ── */
+  #comp-s3-img-track { display: flex; }
+  #comp-s3-grid { grid-template-columns: repeat(3, calc(100vw - 2.5rem)); column-gap: 0; }
+  #comp-s3-grid > img { display: none; }
+  #comp-s3-container { scroll-snap-type: x mandatory; }
+  #comp-s3-grid > * { scroll-snap-align: start; }
+  #comp-s3-nav { display: flex; }
 
   /* ── Características generales ── */
   #comp-s1-img-track { display: flex; }

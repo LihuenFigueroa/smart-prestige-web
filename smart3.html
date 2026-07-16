@@ -42,9 +42,35 @@
   </div>
 
   <!-- ================================================================
+       HERO MOBILE — smart #3
+  ================================================================ -->
+  <section id="hero-s3-mobile" style="position:relative; width:100%; aspect-ratio:375/812; overflow:hidden;">
+    <img src="assets/img/smart3/hero-mobile.png" alt="smart #3" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center;" />
+    <div style="position:absolute; top:0; left:0; right:0; height:170px; z-index:5; pointer-events:none; background:linear-gradient(to bottom,rgba(20,20,19,0.65) 0%,rgba(20,20,19,0) 100%);"></div>
+    <div style="position:absolute; bottom:0; left:0; right:0; height:55%; z-index:5; pointer-events:none; background:linear-gradient(to bottom,rgba(0,0,0,0) 0%,rgba(0,0,0,0.88) 100%);"></div>
+    <nav style="position:absolute; top:0; left:0; right:0; z-index:20; padding:0 1.25rem; height:56px; display:flex; align-items:center;">
+      <button onclick="openNavMenu()" class="flex flex-col gap-[5px] cursor-pointer" aria-label="Menú">
+        <span class="w-5 h-px bg-white block"></span>
+        <span class="w-5 h-px bg-white block"></span>
+        <span class="w-5 h-px bg-white block"></span>
+      </button>
+      <div style="position:absolute; left:50%; transform:translateX(-50%);">
+        <a href="index.html"><img src="assets/img/Logonavbar.svg" alt="smart" style="height:1rem; width:auto;" /></a>
+      </div>
+    </nav>
+    <div style="position:absolute; bottom:0; left:0; right:0; padding:0 1.25rem 2rem; z-index:10;">
+      <h1 class="font-smart-next font-normal" style="color:#fff; font-size:36px; line-height:1.1; margin:0 0 6px;">smart #3</h1>
+      <p class="font-smart-next font-normal" style="color:#fff; font-size:20px; line-height:1.3; margin:0 0 12px;">SUV Coupé 100% eléctrico.</p>
+      <p class="font-smart-sans" style="color:#fff; font-size:17px; line-height:1.45; margin:0 0 10px;">Hasta 597km de autonomía WLTP y 428 CV en su versión BRABUS.</p>
+      <p class="font-smart-sans" style="color:#fff; opacity:0.5; font-size:11px; line-height:1.4; margin:0 0 1.5rem;">Autonomía sujeta a tipo de conducción, condiciones del terrreno y condiciones del clima.</p>
+      <a href="#contacto" class="inline-flex items-center justify-center font-smart-sans font-bold" style="height:44px; padding:0 2rem; background:#fff; border-radius:9999px; color:#141413; font-size:14px;">Realizar consulta</a>
+    </div>
+  </section>
+
+  <!-- ================================================================
        HERO
   ================================================================ -->
-  <section class="relative w-full h-screen min-h-[640px] overflow-hidden">
+  <section id="hero-s3" class="relative w-full h-screen min-h-[640px] overflow-hidden">
     <div class="absolute inset-0 bg-neutral-700">
       <img src="assets/img/smart3/hero.jpg" alt="smart #3" class="w-full h-full object-cover" />
     </div>
@@ -431,18 +457,41 @@
       <p class="comp-header-label">smart #3</p>
       <h2 class="comp-header-title">Características generales</h2>
 
-      <div style="overflow-x:auto; -webkit-overflow-scrolling:touch; scrollbar-width:none;">
-        <div style="display:grid; grid-template-columns:repeat(3, minmax(260px, 1fr)); column-gap:23px; row-gap:12px; align-items:start;">
+      <!-- Track de imágenes — solo mobile -->
+      <div id="comp-s3-img-track" style="overflow-x:hidden;">
+        <img src="assets/img/smart3/comp-pro.png"    alt="smart #3 Pro"    style="width:calc(100vw - 2.5rem); aspect-ratio:3/2; object-fit:cover; object-position:center; flex-shrink:0; display:block;" />
+        <img src="assets/img/smart3/comp-prop.png"   alt="smart #3 Pro+"   style="width:calc(100vw - 2.5rem); aspect-ratio:3/2; object-fit:cover; object-position:center; flex-shrink:0; display:block;" />
+        <img src="assets/img/smart3/comp-brabus.png" alt="smart #3 BRABUS" style="width:calc(100vw - 2.5rem); aspect-ratio:3/2; object-fit:cover; object-position:center; flex-shrink:0; display:block;" />
+      </div>
+
+      <!-- Nav flechas — solo mobile -->
+      <div id="comp-s3-nav" style="align-items:center; justify-content:space-between; margin-bottom:1rem;">
+        <div>
+          <p class="comp-model">smart #3</p>
+          <p class="comp-version" id="comp-s3-label">Pro</p>
+        </div>
+        <div style="display:flex; gap:1.5rem; align-items:center;">
+          <button onclick="compS3Prev()" style="background:none;border:none;padding:0;cursor:pointer;line-height:0;" aria-label="Anterior">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0.5 10.7949L7.14648 4.14844L7.85352 4.85547L1.20728 11.502H24V12.502H1.20703L7.85352 19.1484L7.14648 19.8555L0.5 13.2092C0.177734 12.887 0 12.4583 0 12.002C0 11.5457 0.177734 11.1169 0.5 10.7949Z" fill="#141413"/></svg>
+          </button>
+          <button onclick="compS3Next()" style="background:none;border:none;padding:0;cursor:pointer;line-height:0;" aria-label="Siguiente">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g transform="translate(24,0) scale(-1,1)"><path d="M0.5 10.7949L7.14648 4.14844L7.85352 4.85547L1.20728 11.502H24V12.502H1.20703L7.85352 19.1484L7.14648 19.8555L0.5 13.2092C0.177734 12.887 0 12.4583 0 12.002C0 11.5457 0.177734 11.1169 0.5 10.7949Z" fill="#141413"/></g></svg>
+          </button>
+        </div>
+      </div>
+
+      <div id="comp-s3-container" style="overflow-x:auto; -webkit-overflow-scrolling:touch; scrollbar-width:none;">
+        <div id="comp-s3-grid" style="display:grid; row-gap:12px; align-items:start;">
 
           <!-- ROW: imágenes -->
-          <img src="assets/img/smart3/comp-pro.png"    alt="smart #3 Pro"    style="width:100%; aspect-ratio:3/2; object-fit:cover; object-position:center; display:block;" />
-          <img src="assets/img/smart3/comp-prop.png"   alt="smart #3 Pro+"   style="width:100%; aspect-ratio:3/2; object-fit:cover; object-position:center; display:block;" />
-          <img src="assets/img/smart3/comp-brabus.png" alt="smart #3 BRABUS" style="width:100%; aspect-ratio:3/2; object-fit:cover; object-position:center; display:block;" />
+          <img src="assets/img/smart3/comp-pro.png"    alt="smart #3 Pro"    style="width:100%; aspect-ratio:3/2; object-fit:cover; object-position:center;" />
+          <img src="assets/img/smart3/comp-prop.png"   alt="smart #3 Pro+"   style="width:100%; aspect-ratio:3/2; object-fit:cover; object-position:center;" />
+          <img src="assets/img/smart3/comp-brabus.png" alt="smart #3 BRABUS" style="width:100%; aspect-ratio:3/2; object-fit:cover; object-position:center;" />
 
           <!-- ROW: modelo / versión -->
-          <div><p class="comp-model">smart #3</p><p class="comp-version">Pro</p></div>
-          <div><p class="comp-model">smart #3</p><p class="comp-version">Pro+</p></div>
-          <div><p class="comp-model">smart #3</p><p class="comp-version">BRABUS</p></div>
+          <div class="comp-ver-cell"><p class="comp-model">smart #3</p><p class="comp-version">Pro</p></div>
+          <div class="comp-ver-cell"><p class="comp-model">smart #3</p><p class="comp-version">Pro+</p></div>
+          <div class="comp-ver-cell"><p class="comp-model">smart #3</p><p class="comp-version">BRABUS</p></div>
 
           <!-- ROW: divider -->
           <hr class="comp-divider" /><hr class="comp-divider" /><hr class="comp-divider" />
@@ -589,30 +638,33 @@
   <!-- ================================================================
        ELEGÍ TU VERSIÓN (CONFIGURADOR)
   ================================================================ -->
-  <section class="w-full bg-white" style="overflow:hidden;">
+  <section id="elegi-tu-version" class="w-full bg-white" style="overflow:hidden;">
 
     <!-- Top: título + info LEFT, toggle RIGHT -->
-    <div style="padding:52px 60px 12px; display:flex; justify-content:space-between; align-items:flex-end;">
+    <div id="vis-top-bar">
 
       <!-- Izquierda: título + descripción + CTA -->
-      <div style="max-width:480px; align-self:flex-start;">
-        <h2 class="font-smart-next" style="font-size:40px; font-weight:400; color:#141413; line-height:1.1; margin:0 0 16px;">Elegí tu versión</h2>
-        <p class="font-smart-sans" style="font-size:16px; color:#000000; line-height:1.5; margin:0 0 4px;">Coupé SUV 100% eléctrico. Hasta 435 km de autonomía WLTP y 428 cv en su versión BRABUS.</p>
-        <p class="font-smart-sans" style="font-size:10px; color:#9ca3af; line-height:1.4; margin:0 0 12px;">Autonomía sujeta a tipo de conducción, puede variar por factores y condiciones del viaje.</p>
-        <button class="font-smart-sans" style="height:40px; padding:0 22px; border-radius:999px; background:#1A1A1A; font-size:13px; font-weight:700; color:#fff; cursor:pointer; border:none;">Ficha técnica</button>
+      <div id="vis-left-content">
+        <h2 class="font-smart-next" style="font-weight:400; color:#141413; line-height:1.1; margin:0 0 16px;">Elegí tu versión</h2>
+        <p class="font-smart-sans" style="font-size:16px; color:#000000; line-height:1.5; margin:0 0 4px;">Coupé SUV 100% eléctrico. Hasta 597 km de autonomía WLTP y 428 CV en su versión BRABUS.</p>
+        <p class="font-smart-sans" style="font-size:10px; color:#9ca3af; line-height:1.4; margin:0 0 12px;">Autonomía sujeta a tipo de conducción, condiciones del terrreno y condiciones del clima.</p>
+        <div id="vis-btn-row">
+          <button class="font-smart-sans" style="height:40px; padding:0 22px; border-radius:999px; background:#1A1A1A; font-size:13px; font-weight:700; color:#fff; cursor:pointer; border:none;">Ficha técnica</button>
+          <a class="vis-manual-link font-smart-sans" href="#" style="font-size:12px; color:#6B747B; text-decoration:none;">Manual de usuario</a>
+        </div>
       </div>
 
       <!-- Derecha: toggle exterior/interior -->
       <div id="vis-switcher" style="display:flex; align-items:center; background:white; border:1px solid #141413; border-radius:9999px; position:relative; overflow:hidden;">
         <div id="vis-indicator" style="position:absolute; top:0; left:0; height:100%; border-radius:9999px; background:#141413; z-index:0; transition:transform 0.4s cubic-bezier(0.4,0,0.2,1), width 0.4s cubic-bezier(0.4,0,0.2,1);"></div>
-        <button id="vis-btn-ext" onclick="switchVis('ext')" class="font-smart-sans" style="height:36px; padding:0 20px; font-size:14px; font-weight:400; position:relative; z-index:1; color:#fff; border:none; background:transparent; cursor:pointer; transition:color 0.4s ease;">exterior</button>
-        <button id="vis-btn-int" onclick="switchVis('int')" class="font-smart-sans" style="height:36px; padding:0 20px; font-size:14px; font-weight:400; position:relative; z-index:1; color:#141413; border:none; background:transparent; cursor:pointer; transition:color 0.4s ease;">interior</button>
+        <button id="vis-btn-ext" onclick="switchVis('ext')" class="font-smart-sans" style="font-weight:400; position:relative; z-index:1; color:#fff; border:none; background:transparent; cursor:pointer; transition:color 0.4s ease;">exterior</button>
+        <button id="vis-btn-int" onclick="switchVis('int')" class="font-smart-sans" style="font-weight:400; position:relative; z-index:1; color:#141413; border:none; background:transparent; cursor:pointer; transition:color 0.4s ease;">interior</button>
       </div>
 
     </div>
 
     <!-- Stage: imagen full-width + selector debajo — interior cubre ambos -->
-    <div id="vis-stage" style="position:relative; overflow:visible;">
+    <div id="vis-stage" style="overflow:visible;">
 
       <!-- Car wrapper: da la altura al stage -->
       <div id="vis-car-wrapper" style="position:relative; width:100%;">
@@ -621,14 +673,14 @@
       </div>
 
       <!-- Interior carousel: cubre todo el stage (auto + barra) sin recortar -->
-      <div id="vis-interior" style="position:absolute; inset:0; z-index:5; transform:translateX(100%); transition:transform 0.52s cubic-bezier(0.25,0,0,1); overflow:hidden; cursor:grab;">
+      <div id="vis-interior" style="position:absolute; z-index:5; transform:translateX(100%); transition:transform 0.52s cubic-bezier(0.25,0,0,1); overflow:hidden; cursor:grab;">
         <div id="vis-int-track" style="display:flex; height:100%; will-change:transform;"></div>
       </div>
 
       <!-- Barra inferior: z-index alto para flotar sobre el interior -->
-      <div id="vis-bottom-bar" style="position:relative; z-index:20; padding:20px 31px 28px; display:flex; justify-content:space-between; align-items:flex-end;">
+      <div id="vis-bottom-bar" style="position:relative; z-index:20; display:flex; justify-content:space-between; align-items:flex-end;">
 
-        <div id="vis-controls-card" style="background:#fff; border-radius:16px; padding:18px 24px;">
+        <div id="vis-controls-card">
           <!-- Línea -->
           <div style="display:flex; align-items:center; gap:20px; margin-bottom:14px;">
             <span class="font-smart-sans" style="font-size:11px; color:#6B747B; font-weight:700; min-width:44px;">Línea</span>
@@ -786,6 +838,43 @@
 
 
   <script>
+    // ── Características generales — nav flechas mobile ───────────────────────
+    var compS3Index = 0;
+    var compS3Labels = ['Pro', 'Pro+', 'BRABUS'];
+    function compS3Prev() {
+      if (compS3Index > 0) { compS3Index--; compS3Update(); }
+    }
+    function compS3Next() {
+      if (compS3Index < 2) { compS3Index++; compS3Update(); }
+    }
+    function compS3Update() {
+      var c = document.getElementById('comp-s3-container');
+      var t = document.getElementById('comp-s3-img-track');
+      c.scrollTo({ left: compS3Index * (c.scrollWidth / 3), behavior: 'smooth' });
+      if (t) t.scrollTo({ left: compS3Index * (t.scrollWidth / 3), behavior: 'smooth' });
+      document.getElementById('comp-s3-label').textContent = compS3Labels[compS3Index];
+    }
+    // Sync imagen y label al swipear manualmente
+    (function() {
+      var timer;
+      var c = document.getElementById('comp-s3-container');
+      if (!c) return;
+      c.addEventListener('scroll', function() {
+        clearTimeout(timer);
+        timer = setTimeout(function() {
+          var t = document.getElementById('comp-s3-img-track');
+          var colW = c.scrollWidth / 3;
+          var idx = Math.round(c.scrollLeft / colW);
+          idx = Math.max(0, Math.min(2, idx));
+          if (idx !== compS3Index) {
+            compS3Index = idx;
+            document.getElementById('comp-s3-label').textContent = compS3Labels[idx];
+            if (t) t.scrollTo({ left: idx * (t.scrollWidth / 3), behavior: 'smooth' });
+          }
+        }, 80);
+      });
+    })();
+
     // ── Carruseles drag-to-scroll con inercia ────────────────────────────────
     (function () {
       function initDragCarousel(trackId) {
@@ -944,12 +1033,25 @@
         window.getVisLinea = function() { return activeLinea; };
 
         var ZOOM_SRCS = ['assets/img/smart3/vis-c1.png','assets/img/smart3/vis-c4.png','assets/img/smart3/vis-c5.png','assets/img/smart3/vis-c6.png','assets/img/smart3/vis-c7.png','assets/img/smart3/vis-pro-c1.png','assets/img/smart3/vis-pro-c2.png','assets/img/smart3/vis-pro-c3.png','assets/img/smart3/vis-pro-c4.png','assets/img/smart3/vis-pro-c5.png','assets/img/smart3/vis-prop-c1.png','assets/img/smart3/vis-prop-c2.png','assets/img/smart3/vis-prop-c3.png','assets/img/smart3/vis-prop-c4.png','assets/img/smart3/vis-prop-c5.png'];
+        // Imágenes con el auto más abajo en el frame — posición compensada en mobile
+        var LOWER_SRCS = ['assets/img/smart3/vis-c1.png','assets/img/smart3/vis-c3.png'];
+        function getMobilePos(src) {
+          if (window.innerWidth > 767) return '';
+          return (LOWER_SRCS.indexOf(src) !== -1) ? 'center 45%' : 'center 78%';
+        }
+        function applyMobilePos(src) {
+          if (window.innerWidth > 767) return;
+          var pos = getMobilePos(src);
+          back.style.objectPosition  = pos;
+          front.style.objectPosition = pos;
+        }
 
         function carFade(newSrc) {
           if (!newSrc || newSrc === activeSrc || fading) return;
           activeSrc = newSrc;
           fading = true;
-          var scale = (ZOOM_SRCS.indexOf(newSrc) !== -1) ? 'scale(1.14)' : 'scale(1)';
+          var scale = (ZOOM_SRCS.indexOf(newSrc) !== -1 && window.innerWidth > 767) ? 'scale(1.14)' : 'scale(1)';
+          applyMobilePos(newSrc);
           back.src = newSrc;
           back.style.transform = scale;
           front.style.opacity = '0';
@@ -1025,7 +1127,8 @@
                 firstBtn.style.boxShadow = '0 0 0 2px #fff, 0 0 0 3.5px #111111';
                 var newSrc = firstBtn.getAttribute('data-img');
                 activeSrc = newSrc;
-                var scale = (ZOOM_SRCS.indexOf(newSrc) !== -1) ? 'scale(1.14)' : 'scale(1)';
+                var scale = (ZOOM_SRCS.indexOf(newSrc) !== -1 && window.innerWidth > 767) ? 'scale(1.14)' : 'scale(1)';
+                applyMobilePos(newSrc);
                 back.src  = newSrc;
                 back.style.transform = scale;
                 front.src = newSrc;
