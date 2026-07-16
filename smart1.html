@@ -931,6 +931,26 @@
       if (t) t.scrollTo({ left: compS1Index * (t.scrollWidth / 4), behavior: 'smooth' });
       document.getElementById('comp-s1-label').textContent = compS1Labels[compS1Index];
     }
+    // Sync imagen y label al swipear manualmente
+    (function() {
+      var timer;
+      var c = document.getElementById('comp-s1-container');
+      if (!c) return;
+      c.addEventListener('scroll', function() {
+        clearTimeout(timer);
+        timer = setTimeout(function() {
+          var t = document.getElementById('comp-s1-img-track');
+          var colW = c.scrollWidth / 4;
+          var idx = Math.round(c.scrollLeft / colW);
+          idx = Math.max(0, Math.min(3, idx));
+          if (idx !== compS1Index) {
+            compS1Index = idx;
+            document.getElementById('comp-s1-label').textContent = compS1Labels[idx];
+            if (t) t.scrollTo({ left: idx * (t.scrollWidth / 4), behavior: 'smooth' });
+          }
+        }, 80);
+      });
+    })();
 
     // ── Carruseles drag-to-scroll con inercia ────────────────────────────────
     (function () {

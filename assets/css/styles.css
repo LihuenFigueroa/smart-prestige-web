@@ -191,6 +191,7 @@ select option { color: #111111; }
 
   /* ── Elegí tu versión — layout mobile ── */
   #vis-switcher { z-index: 20; }
+  #vis-car-back, #vis-car-front { object-position: center 78%; }
   #vis-interior { top: -70px; right: 0; bottom: 120px; left: 0; }
   #vis-top-bar      { flex-direction: column; padding: 2rem 1.75rem 1rem; align-items: flex-start; }
   #vis-left-content { max-width: 100%; }
