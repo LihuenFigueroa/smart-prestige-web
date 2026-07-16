@@ -490,20 +490,44 @@
       <p class="comp-header-label">smart #1</p>
       <h2 class="comp-header-title">Características generales</h2>
 
-      <div style="overflow-x:auto; -webkit-overflow-scrolling:touch; scrollbar-width:none;">
-        <div style="display:grid; grid-template-columns:repeat(4, minmax(260px, 1fr)); column-gap:23px; row-gap:12px; align-items:start;">
+      <!-- Track de imágenes — solo mobile -->
+      <div id="comp-s1-img-track" style="overflow-x:hidden;">
+        <img src="assets/img/smart1/comp-pure.png"   alt="smart #1 Pure"   style="width:calc(100vw - 2.5rem); aspect-ratio:3/2; object-fit:cover; object-position:center; flex-shrink:0; display:block;" />
+        <img src="assets/img/smart1/comp-pro.png"    alt="smart #1 Pro"    style="width:calc(100vw - 2.5rem); aspect-ratio:3/2; object-fit:cover; object-position:center; flex-shrink:0; display:block;" />
+        <img src="assets/img/smart1/comp-prop.png"   alt="smart #1 Pro+"   style="width:calc(100vw - 2.5rem); aspect-ratio:3/2; object-fit:cover; object-position:center; flex-shrink:0; display:block;" />
+        <img src="assets/img/smart1/comp-brabus.png" alt="smart #1 BRABUS" style="width:calc(100vw - 2.5rem); aspect-ratio:3/2; object-fit:cover; object-position:center; flex-shrink:0; display:block;" />
+      </div>
+
+      <!-- Nav flechas — solo mobile -->
+      <div id="comp-s1-nav" style="align-items:center; justify-content:space-between; margin-bottom:1rem;">
+        <div>
+          <p class="comp-model">smart #1</p>
+          <p class="comp-version" id="comp-s1-label">Pure</p>
+        </div>
+        <div style="display:flex; gap:1.5rem; align-items:center;">
+          <button onclick="compS1Prev()" style="background:none;border:none;padding:0;cursor:pointer;line-height:0;" aria-label="Anterior">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0.5 10.7949L7.14648 4.14844L7.85352 4.85547L1.20728 11.502H24V12.502H1.20703L7.85352 19.1484L7.14648 19.8555L0.5 13.2092C0.177734 12.887 0 12.4583 0 12.002C0 11.5457 0.177734 11.1169 0.5 10.7949Z" fill="#141413"/></svg>
+          </button>
+          <button onclick="compS1Next()" style="background:none;border:none;padding:0;cursor:pointer;line-height:0;" aria-label="Siguiente">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g transform="translate(24,0) scale(-1,1)"><path d="M0.5 10.7949L7.14648 4.14844L7.85352 4.85547L1.20728 11.502H24V12.502H1.20703L7.85352 19.1484L7.14648 19.8555L0.5 13.2092C0.177734 12.887 0 12.4583 0 12.002C0 11.5457 0.177734 11.1169 0.5 10.7949Z" fill="#141413"/></g></svg>
+          </button>
+        </div>
+      </div>
+
+      <div id="comp-s1-container" style="overflow-x:auto; -webkit-overflow-scrolling:touch; scrollbar-width:none;">
+        <div id="comp-s1-grid" style="display:grid; row-gap:12px; align-items:start;">
 
           <!-- ROW: imágenes -->
-          <img src="assets/img/smart1/comp-pure.png"   alt="smart #1 Pure"   style="width:100%; aspect-ratio:3/2; object-fit:cover; object-position:center; display:block;" />
-          <img src="assets/img/smart1/comp-pro.png"    alt="smart #1 Pro"    style="width:100%; aspect-ratio:3/2; object-fit:cover; object-position:center; display:block;" />
-          <img src="assets/img/smart1/comp-prop.png"   alt="smart #1 Pro+"   style="width:100%; aspect-ratio:3/2; object-fit:cover; object-position:center; display:block;" />
-          <img src="assets/img/smart1/comp-brabus.png" alt="smart #1 BRABUS" style="width:100%; aspect-ratio:3/2; object-fit:cover; object-position:center; display:block;" />
+          <img src="assets/img/smart1/comp-pure.png"   alt="smart #1 Pure"   style="width:100%; aspect-ratio:3/2; object-fit:cover; object-position:center;" />
+          <img src="assets/img/smart1/comp-pro.png"    alt="smart #1 Pro"    style="width:100%; aspect-ratio:3/2; object-fit:cover; object-position:center;" />
+          <img src="assets/img/smart1/comp-prop.png"   alt="smart #1 Pro+"   style="width:100%; aspect-ratio:3/2; object-fit:cover; object-position:center;" />
+          <img src="assets/img/smart1/comp-brabus.png" alt="smart #1 BRABUS" style="width:100%; aspect-ratio:3/2; object-fit:cover; object-position:center;" />
 
           <!-- ROW: modelo / versión -->
-          <div><p class="comp-model">smart #1</p><p class="comp-version">Pure</p></div>
-          <div><p class="comp-model">smart #1</p><p class="comp-version">Pro</p></div>
-          <div><p class="comp-model">smart #1</p><p class="comp-version">Pro+</p></div>
-          <div><p class="comp-model">smart #1</p><p class="comp-version">BRABUS</p></div>
+          <div class="comp-ver-cell"><p class="comp-model">smart #1</p><p class="comp-version">Pure</p></div>
+          <div class="comp-ver-cell"><p class="comp-model">smart #1</p><p class="comp-version">Pro</p></div>
+          <div class="comp-ver-cell"><p class="comp-model">smart #1</p><p class="comp-version">Pro+</p></div>
+          <div class="comp-ver-cell"><p class="comp-model">smart #1</p><p class="comp-version">BRABUS</p></div>
 
           <!-- ROW: divider -->
           <hr class="comp-divider" /><hr class="comp-divider" /><hr class="comp-divider" /><hr class="comp-divider" />
@@ -888,6 +912,23 @@
 
 
   <script>
+    // ── Características generales — nav flechas mobile ───────────────────────
+    var compS1Index = 0;
+    var compS1Labels = ['Pure', 'Pro', 'Pro+', 'BRABUS'];
+    function compS1Prev() {
+      if (compS1Index > 0) { compS1Index--; compS1Update(); }
+    }
+    function compS1Next() {
+      if (compS1Index < 3) { compS1Index++; compS1Update(); }
+    }
+    function compS1Update() {
+      var c = document.getElementById('comp-s1-container');
+      var t = document.getElementById('comp-s1-img-track');
+      c.scrollTo({ left: compS1Index * (c.scrollWidth / 4), behavior: 'smooth' });
+      if (t) t.scrollTo({ left: compS1Index * (t.scrollWidth / 4), behavior: 'smooth' });
+      document.getElementById('comp-s1-label').textContent = compS1Labels[compS1Index];
+    }
+
     // ── Carruseles drag-to-scroll con inercia ────────────────────────────────
     (function () {
       function initDragCarousel(trackId) {

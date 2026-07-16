@@ -133,6 +133,12 @@ select option { color: #111111; }
 /* ── Hero mobile — smart #1 ── */
 #hero-s1-mobile { display: none; }
 
+/* ── Características generales ── */
+#comp-s1-grid       { grid-template-columns: repeat(4, minmax(260px, 1fr)); column-gap: 23px; }
+#comp-s1-grid > img { display: block; }
+#comp-s1-nav        { display: none; }
+#comp-s1-img-track  { display: none; }
+
 /* ── Quiénes somos — imagen ── */
 #quienes-img { padding: 35px 46px 35px 0; }
 
@@ -174,6 +180,15 @@ select option { color: #111111; }
   /* ── Hero mobile — smart #1 ── */
   #hero-s1-mobile { display: block; }
   #hero-s1        { display: none; }
+
+  /* ── Características generales ── */
+  #comp-s1-img-track { display: flex; }
+  #comp-s1-grid { grid-template-columns: repeat(4, calc(100vw - 2.5rem)); column-gap: 0; }
+  #comp-s1-grid > img { display: none; }
+  #comp-s1-container { scroll-snap-type: x mandatory; }
+  #comp-s1-grid > *  { scroll-snap-align: start; }
+  #comp-s1-nav { display: flex; }
+  .comp-ver-cell > p { display: none; }
 
   /* ── Formulario de contacto ── */
   .contacto-title {
