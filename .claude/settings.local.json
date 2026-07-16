@@ -48,7 +48,12 @@
       "Bash(cp \"BRABUS 2.png\" \"../lifisoluciones/smart-prestige-web/assets/img/smart1/int-brabus-2.png\")",
       "Bash(cp \"BRABUS 3.png\" \"../lifisoluciones/smart-prestige-web/assets/img/smart1/int-brabus-3.png\")",
       "Bash(cp \"BRABUS 4.png\" \"../lifisoluciones/smart-prestige-web/assets/img/smart1/int-brabus-4.png\")",
-      "Bash(cp \"PRO Y PRO + 1.png\" \"../lifisoluciones/smart-prestige-web/assets/img/smart1/int-std-1.png\")"
+      "Bash(cp \"PRO Y PRO + 1.png\" \"../lifisoluciones/smart-prestige-web/assets/img/smart1/int-std-1.png\")",
+      "Bash(mkdir -p \"C:/Users/Lihuen/lifisoluciones/smart-prestige-web/assets/img/brabus\")",
+      "Bash(cp \"C:/Users/Lihuen/Downloads/smart+#1+BRABUS_EGG_3329.jpg\" \"C:/Users/Lihuen/lifisoluciones/smart-prestige-web/assets/img/brabus/spec1.jpg\")",
+      "Bash(cp \"C:/Users/Lihuen/Downloads/smart#3_Beautyshots_BRABUS_73169.jpg\" \"C:/Users/Lihuen/lifisoluciones/smart-prestige-web/assets/img/brabus/spec3.jpg\")",
+      "Bash(cp \"C:/Users/Lihuen/Downloads/smart#3_CN_Brabus_Brabus_PhotonOrange_EXT_Chocolate_011_Studio 3.png\" \"C:/Users/Lihuen/lifisoluciones/smart-prestige-web/assets/img/brabus/spec1_wide.png\")",
+      "Bash(cp \"C:/Users/Lihuen/Downloads/smart#3_CN_Brabus_Brabus_PhotonOrange_EXT_Chocolate_011_Studio 4.png\" \"C:/Users/Lihuen/lifisoluciones/smart-prestige-web/assets/img/brabus/spec3_wide.png\")"
     ]
   }
 }
