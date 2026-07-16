@@ -1,5 +1,5 @@
 // ── Función genérica: convierte cualquier sección en video scroll-driven ──
-function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, captureFps, lerp, pinHeight, textEl, textElMid, textZonePx, holdZonePx }) {
+function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, captureFps, lerp, pinHeight, textEl, textElMid, textElMidDesktop, textZonePx, holdZonePx }) {
   const video  = document.getElementById(videoId);
   const canvas = document.getElementById(canvasId);
   const pin    = document.getElementById(pinId);
@@ -70,21 +70,45 @@ function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, capt
     const extraPx   = textZonePx || 0;
 
     // Texto mid-video (bloque 1 mobile): fade in → hold → fade out
-    if (textElMid) {
+    if (textElMid || textElMidDesktop) {
       const midFadeIn  = videoPx * 0.38;
       const midPeak    = videoPx * 0.58;
       const midFadeOut = midPeak + 350;
       const midGone    = midFadeOut + 350;
-      if (rel < midFadeIn) {
-        textElMid.style.opacity = '0';
-      } else if (rel < midPeak) {
-        textElMid.style.opacity = ((rel - midFadeIn) / (midPeak - midFadeIn)).toFixed(3);
-      } else if (rel < midFadeOut) {
-        textElMid.style.opacity = '1';
-      } else if (rel < midGone) {
-        textElMid.style.opacity = (1 - (rel - midFadeOut) / (midGone - midFadeOut)).toFixed(3);
-      } else {
-        textElMid.style.opacity = '0';
+
+      if (textElMid) {
+        if (rel < midFadeIn) {
+          textElMid.style.opacity = '0';
+        } else if (rel < midPeak) {
+          textElMid.style.opacity = ((rel - midFadeIn) / (midPeak - midFadeIn)).toFixed(3);
+        } else if (rel < midFadeOut) {
+          textElMid.style.opacity = '1';
+        } else if (rel < midGone) {
+          textElMid.style.opacity = (1 - (rel - midFadeOut) / (midGone - midFadeOut)).toFixed(3);
+        } else {
+          textElMid.style.opacity = '0';
+        }
+      }
+
+      if (textElMidDesktop) {
+        if (rel < midFadeIn) {
+          textElMidDesktop.style.opacity   = '0';
+          textElMidDesktop.style.transform = 'translateY(40px)';
+        } else if (rel < midPeak) {
+          const t = (rel - midFadeIn) / (midPeak - midFadeIn);
+          textElMidDesktop.style.opacity   = t.toFixed(3);
+          textElMidDesktop.style.transform = `translateY(${(40 * (1 - t)).toFixed(1)}px)`;
+        } else if (rel < midFadeOut) {
+          textElMidDesktop.style.opacity   = '1';
+          textElMidDesktop.style.transform = 'translateY(0)';
+        } else if (rel < midGone) {
+          const t = (rel - midFadeOut) / (midGone - midFadeOut);
+          textElMidDesktop.style.opacity   = (1 - t).toFixed(3);
+          textElMidDesktop.style.transform = 'translateY(0)';
+        } else {
+          textElMidDesktop.style.opacity   = '0';
+          textElMidDesktop.style.transform = 'translateY(0)';
+        }
       }
     }
 
@@ -309,8 +333,9 @@ initScrollVideo({
   captureFps:  60,
   lerp:        0.07,
   pinHeight:   null,
-  textEl:      document.getElementById('brabusText'),
-  textElMid:   isMobile ? document.getElementById('brabusTextMid') : null,
-  textZonePx:  isMobile ? 300 : 500,
+  textEl:            document.getElementById('brabusText'),
+  textElMid:         isMobile ? document.getElementById('brabusTextMid') : null,
+  textElMidDesktop:  !isMobile ? document.getElementById('brabusTextMidDesktop') : null,
+  textZonePx:        isMobile ? 300 : 500,
   holdZonePx:  isMobile ? 400 : 600
 });
