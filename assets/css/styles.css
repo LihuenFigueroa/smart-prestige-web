@@ -130,6 +130,18 @@ select option { color: #111111; }
 .contacto-subtitle { color: #6b7280; line-height: 1.5; }
 
 
+/* ── Elegí tu versión — layout base (desktop) ── */
+#vis-stage    { position: relative; }
+#vis-interior { inset: 0; }
+#vis-top-bar       { display: flex; justify-content: space-between; align-items: flex-end; padding: 52px 60px 12px; }
+#vis-left-content  { max-width: 480px; align-self: flex-start; }
+#elegi-tu-version h2 { font-size: 40px; }
+#vis-btn-row       { display: block; }
+.vis-manual-link   { display: none; }
+#vis-bottom-bar    { padding: 20px 31px 28px; }
+#vis-controls-card { background: #fff; border-radius: 16px; padding: 18px 24px; }
+#vis-btn-ext, #vis-btn-int { height: 36px; padding: 0 20px; font-size: 14px; }
+
 /* ── Hero mobile — smart #1 ── */
 #hero-s1-mobile { display: none; }
 
@@ -176,6 +188,20 @@ select option { color: #111111; }
     line-height: 120%;
     letter-spacing: -0.01em;
   }
+
+  /* ── Elegí tu versión — layout mobile ── */
+  #vis-switcher { z-index: 20; }
+  #vis-interior { top: -70px; right: 0; bottom: 120px; left: 0; }
+  #vis-top-bar      { flex-direction: column; padding: 2rem 1.75rem 1rem; align-items: flex-start; }
+  #vis-left-content { max-width: 100%; }
+  #elegi-tu-version h2 { font-size: 28px; }
+  #vis-btn-row      { display: flex; justify-content: space-between; align-items: center; margin-top: 0.5rem; }
+  .vis-manual-link  { display: inline; }
+  #vis-switcher     { align-self: flex-end; margin-top: 3rem; }
+  #vis-btn-ext, #vis-btn-int { height: 26px; padding: 0 12px; font-size: 11px; }
+  #vis-bottom-bar   { padding: 0; }
+  #vis-controls-card { background: #fff; border-radius: 0; padding: 1rem 1.25rem 1.5rem; }
+  #vis-manual-link  { display: none; }
 
   /* ── Hero mobile — smart #1 ── */
   #hero-s1-mobile { display: block; }
