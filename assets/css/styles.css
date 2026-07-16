@@ -125,5 +125,71 @@ select option { color: #111111; }
 .comp-features li:last-child { margin-bottom: 0; }
 .comp-features--bold li { font-weight: 400; }
 
+/* ── Feature cards (home) — layout base (desktop) ── */
+#cards-track { gap: 1.5rem; cursor: grab; padding-left: 1.25rem; padding-right: 1.25rem; }
+.cards-item  { flex-shrink: 0; width: 30vw; gap: 1rem; }
+
 /* ── Visualizador de versión — color swatches ── */
 .vis-color-btn { transition: box-shadow 0.2s ease; }
+
+/* ════════════════════════════════════════════════════════════════
+   MOBILE OVERRIDES  (max-width: 767px)
+   Todo lo que esté aquí sobreescribe los estilos de arriba
+   únicamente en pantallas mobile.
+   ════════════════════════════════════════════════════════════════ */
+@media (max-width: 767px) {
+
+  /* ── Feature cards (home) — layout vertical ── */
+  #cards-track {
+    flex-direction: column;
+    padding-left: 41px;
+    padding-right: 41px;
+    gap: 33px;
+    cursor: default;
+  }
+  .cards-item {
+    width: 100%;
+    gap: 21px;
+  }
+  #cards-track .cards-item img {
+    aspect-ratio: 291.62 / 315.56;
+  }
+  #cards-track .cards-item h3 {
+    font-size: 32px;
+    line-height: 120%;
+    letter-spacing: -0.01em;
+  }
+
+  /* ── Carrusel con overlay — cards ── */
+  .c-card {
+    width: 72vw;
+  }
+  .c-card__body {
+    padding: 3.5vw 3vw;
+  }
+  .c-card__title {
+    font-size: 15px;
+    margin: 0 0 4px 0;
+  }
+  .c-card__desc {
+    font-size: 9px;
+  }
+
+  /* ── Comparativa — cabecera ── */
+  .comp-header-label {
+    font-size: 14px;
+  }
+  .comp-header-title {
+    font-size: 28px;
+    margin: 0 0 28px;
+  }
+
+  /* ── Comparativa — columnas ── */
+  .comp-model  { font-size: 10px; }
+  .comp-version { font-size: 15px; }
+  .comp-range-label { font-size: 7px; }
+  .comp-range-num { font-size: 22px; }
+  .comp-range-sub { font-size: 10px; }
+  .comp-features li { font-size: 9px; }
+
+}
