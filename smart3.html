@@ -685,9 +685,8 @@
   <section id="contacto" class="w-full bg-white py-12 md:py-20 px-5 md:px-14">
     <div class="max-w-[1320px] mx-auto flex flex-col md:flex-row gap-10 md:gap-16 md:items-start">
       <div class="md:w-[440px] md:flex-shrink-0 md:pt-1 flex flex-col gap-6">
-        <h2 class="font-smart-next font-normal text-black" style="font-size:32px; line-height:1.2;">Realizar consulta.</h2>
-        <p class="text-base text-neutral-500 font-normal leading-6 font-smart-sans">Completá el formulario y te contactaremos a la brevedad.</p>
-        <button type="submit" form="form-contacto" class="self-start h-10 px-8 bg-black rounded-full text-sm font-bold text-white hover:bg-neutral-800 transition-colors">Enviar</button>
+        <h2 class="contacto-title font-smart-next font-normal text-black">Realizar consulta.</h2>
+        <p class="contacto-subtitle text-base font-normal font-smart-sans">Completá el formulario y te contactaremos a la brevedad.</p>
       </div>
       <div class="flex-1">
         <form id="form-contacto" novalidate>
@@ -697,13 +696,13 @@
           <div class="border-b border-neutral-200 py-3"><input type="email" placeholder="CORREO ELECTRÓNICO" class="font-smart-sans w-full text-sm text-black bg-transparent outline-none placeholder:text-xs placeholder:tracking-widest placeholder:text-neutral-400" /></div>
           <div class="border-b border-neutral-200 py-3"><input type="tel" placeholder="CELULAR" class="font-smart-sans w-full text-sm text-black bg-transparent outline-none placeholder:text-xs placeholder:tracking-widest placeholder:text-neutral-400" /></div>
           <div class="border-b border-neutral-200 py-3 relative">
-            <select name="concesionario" class="font-smart-sans w-full bg-transparent appearance-none cursor-pointer outline-none" style="color:#9ca3af; font-size:0.75rem; letter-spacing:0.1em;" onchange="this.style.color=this.value?'#111827':'#9ca3af'; this.style.letterSpacing=this.value?'normal':'0.1em'; this.style.fontSize=this.value?'0.875rem':'0.75rem';">
+            <select name="concesionario" class="font-smart-sans w-full text-xs bg-transparent appearance-none cursor-pointer outline-none" style="color:#9ca3af; letter-spacing:0.1em;" onchange="this.style.color=this.value?'#111827':'#9ca3af'; this.style.letterSpacing=this.value?'normal':'0.1em';">
               <option value="" disabled selected>CONCESIONARIO</option>
             </select>
             <span class="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 text-neutral-400 text-xs">&#8964;</span>
           </div>
           <div class="border-b border-neutral-200 py-3 relative">
-            <select name="modelo" class="font-smart-sans w-full bg-transparent appearance-none cursor-pointer outline-none" style="color:#9ca3af; font-size:0.75rem; letter-spacing:0.1em;" onchange="this.style.color=this.value?'#111827':'#9ca3af'; this.style.letterSpacing=this.value?'normal':'0.1em'; this.style.fontSize=this.value?'0.875rem':'0.75rem';">
+            <select name="modelo" class="font-smart-sans w-full text-xs bg-transparent appearance-none cursor-pointer outline-none" style="color:#9ca3af; letter-spacing:0.1em;" onchange="this.style.color=this.value?'#111827':'#9ca3af'; this.style.letterSpacing=this.value?'normal':'0.1em';">
               <option value="" disabled selected>SELECCIONE MODELO</option>
               <option value="smart3-pro">smart #3 Pro</option>
               <option value="smart3-proplus">smart #3 Pro+</option>
@@ -712,8 +711,11 @@
             <span class="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 text-neutral-400 text-xs">&#8964;</span>
           </div>
           <div class="py-3">
-            <p class="font-smart-sans" style="font-size:0.75rem; letter-spacing:0.05em; color:#9ca3af; text-transform:uppercase; margin-bottom:8px;">CONSULTA</p>
+            <p class="font-smart-sans text-xs" style="letter-spacing:0.05em; color:#9ca3af; text-transform:uppercase; margin-bottom:8px;">CONSULTA</p>
             <textarea rows="5" class="font-smart-sans w-full text-sm text-black bg-transparent outline-none resize-none border border-neutral-200 p-3"></textarea>
+          </div>
+          <div class="pt-6">
+            <button type="submit" id="btn-enviar" class="self-start h-10 px-8 bg-black rounded-full text-sm font-bold text-white hover:bg-neutral-800 transition-colors">Enviar</button>
           </div>
         </form>
       </div>
@@ -725,7 +727,7 @@
   ================================================================ -->
   <footer class="w-full bg-[#141413] px-5 md:px-14 pt-14 pb-10">
     <div class="max-w-[1320px] mx-auto">
-      <div class="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-8 mb-12">
         <div class="flex flex-col gap-2">
           <p class="text-white text-sm font-normal leading-5 opacity-50 mb-2 font-smart-next">Secciones</p>
           <nav class="flex flex-col gap-2">
@@ -737,7 +739,7 @@
           </nav>
         </div>
         <div class="flex flex-col gap-2">
-          <p class="text-white text-sm font-normal leading-5 opacity-50 mb-2 font-smart-next">&nbsp;</p>
+          <p class="hidden md:block text-white text-sm font-normal leading-5 opacity-50 mb-2 font-smart-next">&nbsp;</p>
           <nav class="flex flex-col gap-2">
             <a href="movilidad-electrica.html" class="text-white text-base leading-6 hover:opacity-70">Movilidad eléctrica</a>
             <a href="conectividad.html" class="text-white text-base leading-6 hover:opacity-70">Conectividad</a>
