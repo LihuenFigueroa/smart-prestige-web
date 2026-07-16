@@ -130,6 +130,9 @@ select option { color: #111111; }
 .contacto-subtitle { color: #6b7280; line-height: 1.5; }
 
 
+/* ── Hero mobile — smart #1 ── */
+#hero-s1-mobile { display: none; }
+
 /* ── Quiénes somos — imagen ── */
 #quienes-img { padding: 35px 46px 35px 0; }
 
@@ -167,6 +170,10 @@ select option { color: #111111; }
     line-height: 120%;
     letter-spacing: -0.01em;
   }
+
+  /* ── Hero mobile — smart #1 ── */
+  #hero-s1-mobile { display: block; }
+  #hero-s1        { display: none; }
 
   /* ── Formulario de contacto ── */
   .contacto-title {

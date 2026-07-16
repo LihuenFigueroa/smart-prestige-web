@@ -42,9 +42,46 @@
   </div>
 
   <!-- ================================================================
+       HERO MOBILE — smart #1
+  ================================================================ -->
+  <section id="hero-s1-mobile" style="position:relative; width:100%; aspect-ratio:375/812; overflow:hidden;">
+
+    <!-- Imagen a dimensiones naturales -->
+    <img src="assets/img/smart1/hero-mobile.png" alt="smart #1" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center;" />
+
+    <!-- Gradiente superior (nav) -->
+    <div style="position:absolute; top:0; left:0; right:0; height:170px; z-index:5; pointer-events:none; background:linear-gradient(to bottom,rgba(20,20,19,0.65) 0%,rgba(20,20,19,0) 100%);"></div>
+    <!-- Gradiente inferior (texto) -->
+    <div style="position:absolute; bottom:0; left:0; right:0; height:55%; z-index:5; pointer-events:none; background:linear-gradient(to bottom,rgba(0,0,0,0) 0%,rgba(0,0,0,0.88) 100%);"></div>
+
+    <!-- Nav -->
+    <nav style="position:absolute; top:0; left:0; right:0; z-index:20; padding:0 1.25rem; height:56px; display:flex; align-items:center;">
+      <button onclick="openNavMenu()" class="flex flex-col gap-[5px] cursor-pointer" aria-label="Menú">
+        <span class="w-5 h-px bg-white block"></span>
+        <span class="w-5 h-px bg-white block"></span>
+        <span class="w-5 h-px bg-white block"></span>
+      </button>
+      <div style="position:absolute; left:50%; transform:translateX(-50%);">
+        <a href="index.html"><img src="assets/img/Logonavbar.svg" alt="smart" style="height:1rem; width:auto;" /></a>
+      </div>
+    </nav>
+
+    <!-- Texto flotante -->
+    <div style="position:absolute; bottom:0; left:0; right:0; padding:0 1.25rem 2rem; z-index:10;">
+      <h1 class="font-smart-next font-normal" style="color:#fff; font-size:36px; line-height:1.1; margin:0 0 6px;">smart #1</h1>
+      <p class="font-smart-next font-normal" style="color:#fff; font-size:20px; line-height:1.3; margin:0 0 12px;">SUV 100% eléctrico.</p>
+      <p class="font-smart-sans" style="color:#fff; font-size:17px; line-height:1.45; margin:0 0 10px;">Hasta 584km de autonomía WLTP y 428 CV en su versión BRABUS.</p>
+      <p class="font-smart-sans" style="color:#fff; opacity:0.5; font-size:11px; line-height:1.4; margin:0 0 1.5rem;">Autonomía sujeta a tipo de conducción, condiciones del terrreno y condiciones del clima.</p>
+      <a href="#contacto" class="inline-flex items-center justify-center font-smart-sans font-bold" style="height:44px; padding:0 2rem; background:#fff; border-radius:9999px; color:#141413; font-size:14px;">
+        Realizar consulta
+      </a>
+    </div>
+  </section>
+
+  <!-- ================================================================
        HERO — imagen 1
   ================================================================ -->
-  <section class="relative w-full h-screen min-h-[640px] overflow-hidden">
+  <section id="hero-s1" class="relative w-full h-screen min-h-[640px] overflow-hidden">
     <div class="absolute inset-0 bg-neutral-700">
       <img src="assets/img/smart1/hero.png" alt="smart #1" class="w-full h-full object-cover" />
     </div>
