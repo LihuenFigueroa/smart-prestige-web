@@ -70,45 +70,48 @@ function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, capt
     const extraPx   = textZonePx || 0;
 
     // Texto mid-video (bloque 1 mobile): fade in → hold → fade out
-    if (textElMid || textElMidDesktop) {
+    if (textElMid) {
       const midFadeIn  = videoPx * 0.38;
       const midPeak    = videoPx * 0.58;
       const midFadeOut = midPeak + 350;
       const midGone    = midFadeOut + 350;
 
-      if (textElMid) {
-        if (rel < midFadeIn) {
-          textElMid.style.opacity = '0';
-        } else if (rel < midPeak) {
-          textElMid.style.opacity = ((rel - midFadeIn) / (midPeak - midFadeIn)).toFixed(3);
-        } else if (rel < midFadeOut) {
-          textElMid.style.opacity = '1';
-        } else if (rel < midGone) {
-          textElMid.style.opacity = (1 - (rel - midFadeOut) / (midGone - midFadeOut)).toFixed(3);
-        } else {
-          textElMid.style.opacity = '0';
-        }
+      if (rel < midFadeIn) {
+        textElMid.style.opacity = '0';
+      } else if (rel < midPeak) {
+        textElMid.style.opacity = ((rel - midFadeIn) / (midPeak - midFadeIn)).toFixed(3);
+      } else if (rel < midFadeOut) {
+        textElMid.style.opacity = '1';
+      } else if (rel < midGone) {
+        textElMid.style.opacity = (1 - (rel - midFadeOut) / (midGone - midFadeOut)).toFixed(3);
+      } else {
+        textElMid.style.opacity = '0';
       }
+    }
 
-      if (textElMidDesktop) {
-        if (rel < midFadeIn) {
-          textElMidDesktop.style.opacity   = '0';
-          textElMidDesktop.style.transform = 'translateY(40px)';
-        } else if (rel < midPeak) {
-          const t = (rel - midFadeIn) / (midPeak - midFadeIn);
-          textElMidDesktop.style.opacity   = t.toFixed(3);
-          textElMidDesktop.style.transform = `translateY(${(40 * (1 - t)).toFixed(1)}px)`;
-        } else if (rel < midFadeOut) {
-          textElMidDesktop.style.opacity   = '1';
-          textElMidDesktop.style.transform = 'translateY(0)';
-        } else if (rel < midGone) {
-          const t = (rel - midFadeOut) / (midGone - midFadeOut);
-          textElMidDesktop.style.opacity   = (1 - t).toFixed(3);
-          textElMidDesktop.style.transform = 'translateY(0)';
-        } else {
-          textElMidDesktop.style.opacity   = '0';
-          textElMidDesktop.style.transform = 'translateY(0)';
-        }
+    if (textElMidDesktop) {
+      const midFadeIn  = videoPx * 0.20;
+      const midPeak    = videoPx * 0.38;
+      const midFadeOut = midPeak + 350;
+      const midGone    = midFadeOut + 350;
+
+      if (rel < midFadeIn) {
+        textElMidDesktop.style.opacity   = '0';
+        textElMidDesktop.style.transform = 'translateY(40px)';
+      } else if (rel < midPeak) {
+        const t = (rel - midFadeIn) / (midPeak - midFadeIn);
+        textElMidDesktop.style.opacity   = t.toFixed(3);
+        textElMidDesktop.style.transform = `translateY(${(40 * (1 - t)).toFixed(1)}px)`;
+      } else if (rel < midFadeOut) {
+        textElMidDesktop.style.opacity   = '1';
+        textElMidDesktop.style.transform = 'translateY(0)';
+      } else if (rel < midGone) {
+        const t = (rel - midFadeOut) / (midGone - midFadeOut);
+        textElMidDesktop.style.opacity   = (1 - t).toFixed(3);
+        textElMidDesktop.style.transform = 'translateY(0)';
+      } else {
+        textElMidDesktop.style.opacity   = '0';
+        textElMidDesktop.style.transform = 'translateY(0)';
       }
     }
 
@@ -339,3 +342,49 @@ initScrollVideo({
   textZonePx:        isMobile ? 300 : 500,
   holdZonePx:  isMobile ? 400 : 600
 });
+
+// ── Brabus specs toggle ───────────────────────────────────────────────────────
+let currentSpec = 1;
+
+function switchSpec(num) {
+  if (num === currentSpec) return;
+
+  const bg1   = document.getElementById('spec-bg-1');
+  const bg3   = document.getElementById('spec-bg-3');
+  const tab1  = document.getElementById('spec-tab-1');
+  const tab3  = document.getElementById('spec-tab-3');
+  const ind   = document.getElementById('spec-slider-indicator');
+  const accel = document.getElementById('spec-accel');
+  const range = document.getElementById('spec-range');
+
+  if (!bg1) return;
+
+  const goingRight = num > currentSpec; // #1→#3: derecha, #3→#1: izquierda
+  const incoming   = num === 1 ? bg1 : bg3;
+  const outgoing   = num === 1 ? bg3 : bg1;
+
+  // Posicionar incoming fuera de pantalla sin transición
+  incoming.style.transition = 'none';
+  incoming.style.transform  = goingRight ? 'translateX(100%)' : 'translateX(-100%)';
+  incoming.style.opacity    = '0';
+  incoming.getBoundingClientRect(); // forzar reflow
+  // Animar ambas
+  incoming.style.transition = 'transform 0.5s ease, opacity 0.5s ease';
+  outgoing.style.transition = 'transform 0.5s ease, opacity 0.5s ease';
+  incoming.style.transform  = 'translateX(0)';
+  incoming.style.opacity    = '1';
+  outgoing.style.transform  = goingRight ? 'translateX(-100%)' : 'translateX(100%)';
+  outgoing.style.opacity    = '0';
+
+  // Píldora
+  const activeTab = num === 1 ? tab1 : tab3;
+  ind.style.transform = `translateX(${activeTab.offsetLeft}px)`;
+  tab1.style.color = num === 1 ? '#fff' : '#141413';
+  tab3.style.color = num === 3 ? '#fff' : '#141413';
+
+  // Stats variables
+  if (accel) accel.textContent = num === 1 ? '3,9 seg' : '3,7 seg';
+  if (range) range.textContent = num === 1 ? '400km'   : '415km';
+
+  currentSpec = num;
+}
