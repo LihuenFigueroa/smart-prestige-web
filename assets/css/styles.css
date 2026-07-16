@@ -125,6 +125,9 @@ select option { color: #111111; }
 .comp-features li:last-child { margin-bottom: 0; }
 .comp-features--bold li { font-weight: 400; }
 
+/* ── Quiénes somos — imagen ── */
+#quienes-img { padding: 35px 46px 35px 0; }
+
 /* ── Feature cards (home) — layout base (desktop) ── */
 #cards-track { gap: 1.5rem; cursor: grab; padding-left: 1.25rem; padding-right: 1.25rem; }
 .cards-item  { flex-shrink: 0; width: 30vw; gap: 1rem; }
@@ -159,6 +162,9 @@ select option { color: #111111; }
     line-height: 120%;
     letter-spacing: -0.01em;
   }
+
+  /* ── Quiénes somos — imagen arriba en mobile ── */
+  #quienes-img { order: -1; padding: 0; }
 
   /* ── Carrusel con overlay — cards ── */
   .c-card {
