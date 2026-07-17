@@ -173,8 +173,8 @@ select option { color: #111111; }
   top: 1.4vw;
   right: 0.85vw;
   z-index: 10;
-  width: 5.35vw;
-  height: 1.8vw;
+  width: 6.95vw;
+  height: 2.34vw;
   background: #201F1F;
   border-radius: 9999px;
   pointer-events: none;
@@ -183,7 +183,7 @@ select option { color: #111111; }
   justify-content: center;
   color: #fff;
   font-family: 'FOR_smart_Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 0.85vw;
+  font-size: 1.1vw;
   font-weight: 400;
 }
 
@@ -319,9 +319,9 @@ select option { color: #111111; }
     font-size: 9px;
   }
   .c-card__tag {
-    width: 13vw;
-    height: 4.4vw;
-    font-size: 2vw;
+    width: 17vw;
+    height: 5.7vw;
+    font-size: 2.6vw;
     top: 3.2vw;
     right: 2vw;
   }
