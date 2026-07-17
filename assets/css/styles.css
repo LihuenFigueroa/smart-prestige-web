@@ -170,6 +170,27 @@ select option { color: #111111; }
 /* ── Visualizador de versión — color swatches ── */
 .vis-color-btn { transition: box-shadow 0.2s ease; }
 
+/* ── Navbar — drawer hamburguesa ── */
+#nav-drawer img { filter: brightness(0); }
+
+/* ── Navbar — dropdown Modelos ── */
+#modelos-menu {
+  opacity: 0;
+  transform: translateY(-6px);
+  pointer-events: none;
+  transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+  background: #ffffff;
+  white-space: nowrap;
+}
+#modelos-menu.is-open {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+#modelos-chevron {
+  transition: transform 0.2s ease-out;
+}
+
 /* ════════════════════════════════════════════════════════════════
    MOBILE OVERRIDES  (max-width: 767px)
    Todo lo que esté aquí sobreescribe los estilos de arriba
