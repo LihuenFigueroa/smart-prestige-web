@@ -167,6 +167,26 @@ select option { color: #111111; }
 #cards-track { gap: 1.5rem; cursor: grab; padding-left: 1.25rem; padding-right: 1.25rem; }
 .cards-item  { flex-shrink: 0; width: 30vw; gap: 1rem; }
 
+/* ── Card tag (badge de categoría sobre imagen) ── */
+.c-card__tag {
+  position: absolute;
+  top: 1.4vw;
+  right: 0.85vw;
+  z-index: 10;
+  width: 5.35vw;
+  height: 1.8vw;
+  background: #201F1F;
+  border-radius: 9999px;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-family: 'FOR_smart_Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 0.85vw;
+  font-weight: 400;
+}
+
 /* ── Visualizador de versión — color swatches ── */
 .vis-color-btn { transition: box-shadow 0.2s ease; }
 
@@ -297,6 +317,13 @@ select option { color: #111111; }
   }
   .c-card__desc {
     font-size: 9px;
+  }
+  .c-card__tag {
+    width: 13vw;
+    height: 4.4vw;
+    font-size: 2vw;
+    top: 3.2vw;
+    right: 2vw;
   }
 
   /* ── Comparativa — cabecera ── */
