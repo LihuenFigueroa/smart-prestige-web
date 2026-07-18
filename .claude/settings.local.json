@@ -61,7 +61,22 @@
       "Bash(cp \"C:\\\\Users\\\\Lihuen\\\\Downloads\\\\Motiv_1_v01_mood_jg_v02.jpg\" \"C:\\\\Users\\\\Lihuen\\\\lifisoluciones\\\\smart-prestige-web\\\\assets\\\\img\\\\servicios\\\\hero.jpg\")",
       "Bash(cp \"C:\\\\Users\\\\Lihuen\\\\Downloads\\\\Rectangle 2829 \\(1\\).png\" \"C:\\\\Users\\\\Lihuen\\\\lifisoluciones\\\\smart-prestige-web\\\\assets\\\\img\\\\servicios\\\\intro-img1.jpg\")",
       "Bash(cp \"C:\\\\Users\\\\Lihuen\\\\Downloads\\\\smart_Hashtag1_brabus_digital-white-metallic_photography_hashtag3-launch-campaign_001.jpg\" \"C:\\\\Users\\\\Lihuen\\\\lifisoluciones\\\\smart-prestige-web\\\\assets\\\\img\\\\servicios\\\\intro-img2.jpg\")",
-      "Bash(cp \"C:\\\\Users\\\\Lihuen\\\\Downloads\\\\Teaser row image ratio \\(1\\).png\" \"C:\\\\Users\\\\Lihuen\\\\lifisoluciones\\\\smart-prestige-web\\\\assets\\\\img\\\\servicios\\\\intro-img3.jpg\")"
+      "Bash(cp \"C:\\\\Users\\\\Lihuen\\\\Downloads\\\\Teaser row image ratio \\(1\\).png\" \"C:\\\\Users\\\\Lihuen\\\\lifisoluciones\\\\smart-prestige-web\\\\assets\\\\img\\\\servicios\\\\intro-img3.jpg\")",
+      "Bash(cp \"Captura de pantalla 2026-05-27 a la\\(s\\) 12.38.02 p. m. 1.png\" \"C:/Users/Lihuen/lifisoluciones/smart-prestige-web/assets/img/conectividad/c1-1.png\")",
+      "Bash(cp \"Captura de pantalla 2026-05-27 a la\\(s\\) 12.36.59 p. m. 1.png\" \"C:/Users/Lihuen/lifisoluciones/smart-prestige-web/assets/img/conectividad/c1-2.png\")",
+      "Bash(cp \"Captura de pantalla 2026-05-27 a la\\(s\\) 12.36.01 p. m. 1.png\" \"C:/Users/Lihuen/lifisoluciones/smart-prestige-web/assets/img/conectividad/c1-3.png\")",
+      "Bash(cp \"Captura de pantalla 2026-05-27 a la\\(s\\) 12.37.18 p. m. 1.png\" \"C:/Users/Lihuen/lifisoluciones/smart-prestige-web/assets/img/conectividad/c1-4.png\")",
+      "Bash(cp \"Captura de pantalla 2026-05-27 a la\\(s\\) 12.36.28 p. m. 1.png\" \"C:/Users/Lihuen/lifisoluciones/smart-prestige-web/assets/img/conectividad/c2-1.png\")",
+      "Bash(dest=\"/c/Users/Lihuen/lifisoluciones/smart-prestige-web/assets/img/conectividad\")",
+      "Bash(cp \"/c/Users/Lihuen/Downloads/Captura de pantalla 2026-05-27 a la\\(s\\) 12.38.02 p. m. 1.png\" \"$dest/c1-1.png\")",
+      "Bash(cp \"/c/Users/Lihuen/Downloads/Captura de pantalla 2026-05-27 a la\\(s\\) 12.36.59 p. m. 1.png\" \"$dest/c1-2.png\")",
+      "Bash(cp \"/c/Users/Lihuen/Downloads/Captura de pantalla 2026-05-27 a la\\(s\\) 12.36.01 p. m. 1.png\" \"$dest/c1-3.png\")",
+      "Bash(cp \"/c/Users/Lihuen/Downloads/Captura de pantalla 2026-05-27 a la\\(s\\) 12.37.18 p. m. 1.png\" \"$dest/c1-4.png\")",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(git checkout:*)",
+      "Bash(git merge:*)"
     ]
   }
 }
