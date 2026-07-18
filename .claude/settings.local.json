@@ -56,7 +56,12 @@
       "Bash(cp \"C:/Users/Lihuen/Downloads/smart#3_CN_Brabus_Brabus_PhotonOrange_EXT_Chocolate_011_Studio 4.png\" \"C:/Users/Lihuen/lifisoluciones/smart-prestige-web/assets/img/brabus/spec3_wide.png\")",
       "Bash(jobs -l)",
       "Bash(kill 1120)",
-      "Bash(kill 1118)"
+      "Bash(kill 1118)",
+      "Bash(mkdir -p \"C:\\\\Users\\\\Lihuen\\\\lifisoluciones\\\\smart-prestige-web\\\\assets\\\\img\\\\servicios\")",
+      "Bash(cp \"C:\\\\Users\\\\Lihuen\\\\Downloads\\\\Motiv_1_v01_mood_jg_v02.jpg\" \"C:\\\\Users\\\\Lihuen\\\\lifisoluciones\\\\smart-prestige-web\\\\assets\\\\img\\\\servicios\\\\hero.jpg\")",
+      "Bash(cp \"C:\\\\Users\\\\Lihuen\\\\Downloads\\\\Rectangle 2829 \\(1\\).png\" \"C:\\\\Users\\\\Lihuen\\\\lifisoluciones\\\\smart-prestige-web\\\\assets\\\\img\\\\servicios\\\\intro-img1.jpg\")",
+      "Bash(cp \"C:\\\\Users\\\\Lihuen\\\\Downloads\\\\smart_Hashtag1_brabus_digital-white-metallic_photography_hashtag3-launch-campaign_001.jpg\" \"C:\\\\Users\\\\Lihuen\\\\lifisoluciones\\\\smart-prestige-web\\\\assets\\\\img\\\\servicios\\\\intro-img2.jpg\")",
+      "Bash(cp \"C:\\\\Users\\\\Lihuen\\\\Downloads\\\\Teaser row image ratio \\(1\\).png\" \"C:\\\\Users\\\\Lihuen\\\\lifisoluciones\\\\smart-prestige-web\\\\assets\\\\img\\\\servicios\\\\intro-img3.jpg\")"
     ]
   }
 }
