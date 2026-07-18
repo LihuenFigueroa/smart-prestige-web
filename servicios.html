@@ -54,7 +54,7 @@
   ================================================================ -->
   <section class="relative w-full h-screen min-h-[640px] overflow-hidden">
     <div class="absolute inset-0 bg-neutral-700">
-      <img src="assets/img/servicios/hero.jpg" alt="Servicios al Cliente" class="w-full h-full object-cover" />
+      <img src="assets/img/servicios/hero.jpg" alt="Servicios al Cliente" class="w-full h-full object-cover" style="object-position: center 85%;" />
     </div>
     <div class="absolute top-0 left-0 right-0 pointer-events-none" style="height:170px; z-index:5; background:linear-gradient(to bottom,rgba(20,20,19,0.65) 0%,rgba(20,20,19,0) 100%);"></div>
     <div class="absolute bottom-0 left-0 right-0 pointer-events-none" style="height:261px; z-index:5; background:linear-gradient(to bottom,rgba(0,0,0,0) 0%,rgba(0,0,0,0.85) 100%);"></div>
@@ -83,29 +83,50 @@
     </nav>
 
     <div class="absolute bottom-0 left-0 right-0 px-5 md:px-14 pb-8 md:pb-14 z-10">
-      <h1 class="font-smart-next font-normal text-white mb-4" style="font-size:clamp(28px,4vw,56px); line-height:1.1;">Servicios al Cliente.</h1>
-      <p class="text-white text-sm font-normal opacity-80 max-w-lg font-smart-sans">Todo lo que necesitás para vivir la experiencia smart al máximo.</p>
+      <h1 class="font-smart-next font-normal text-white" style="font-size:clamp(28px,4vw,56px); line-height:1.1;">Servicios al Cliente.</h1>
     </div>
   </section>
 
   <!-- ================================================================
-       INTRO
+       INTRO + CARRUSEL  (scroll-pinned en desktop)
   ================================================================ -->
-  <section class="w-full bg-white px-5 md:px-14 py-10 md:py-16">
-    <div class="max-w-[1320px] mx-auto flex flex-col md:flex-row gap-10 md:gap-20">
-      <div class="md:w-1/2">
-        <p class="text-neutral-500 text-sm mb-3 font-smart-next">Servicios al Cliente</p>
-        <h2 class="font-smart-next font-normal text-black" style="font-size:clamp(22px,2.5vw,36px); line-height:1.2;">
-          Tu tranquilidad, nuestra prioridad.
-        </h2>
+  <div id="svc-pin-wrap" style="position:relative;">
+  <section id="svc-intro" class="w-full bg-white overflow-hidden" style="height:561px;">
+    <div class="flex flex-col md:flex-row" style="height:100%;">
+
+      <!-- Texto izquierda -->
+      <div class="px-5 md:flex-shrink-0 flex flex-col justify-center py-10 md:py-0" style="width:471px; padding-left:56px; padding-right:48px;">
+        <div style="width:375px; max-width:100%; height:185px; display:flex; flex-direction:column; justify-content:center;">
+          <div class="flex flex-col gap-2">
+            <p class="font-smart-sans font-normal" style="font-size:20px; line-height:120%; letter-spacing:-0.01em; color:#6B747B;">Servicios</p>
+            <h2 class="font-smart-sans font-normal" style="font-size:29px; line-height:36px; color:#141413;">
+              Tu smart en las manos de expertos.
+            </h2>
+          </div>
+          <p class="font-smart-sans font-normal" style="margin-top:24px; font-size:16px; line-height:130%; letter-spacing:0.02em; color:#000000;">
+            En smart, nos esforzamos al máximo para ofrecerte servicios de excelencia para tu vehículo y mucho más.
+          </p>
+        </div>
       </div>
-      <div class="md:w-1/2 flex items-center">
-        <p class="text-neutral-600 text-base leading-7 font-smart-sans">
-          Desde el momento en que elegís tu smart, comenzamos a acompañarte. Nuestro equipo está disponible para brindarte soporte, mantenimiento y toda la asistencia que necesitás en cada etapa de tu experiencia eléctrica.
-        </p>
+
+      <!-- Carrusel imágenes -->
+      <div id="svc-carousel-viewport" class="flex-1 min-w-0 flex items-center" style="padding-top:69px; padding-bottom:63px; overflow:hidden;">
+        <div id="track-svc-intro" class="flex select-none" style="gap:19px; height:429px; will-change:transform;">
+          <div class="flex-shrink-0 h-full" style="width:clamp(260px,39.9vw,574px);">
+            <img src="assets/img/servicios/intro-img1.jpg" alt="" class="w-full h-full object-cover" draggable="false" />
+          </div>
+          <div class="flex-shrink-0 h-full" style="width:clamp(260px,39.8vw,573px);">
+            <img src="assets/img/servicios/intro-img2.jpg" alt="" class="w-full h-full object-cover" draggable="false" />
+          </div>
+          <div class="flex-shrink-0 h-full" style="width:clamp(260px,39.8vw,573px);">
+            <img src="assets/img/servicios/intro-img3.jpg" alt="" class="w-full h-full object-cover" draggable="false" />
+          </div>
+        </div>
       </div>
+
     </div>
   </section>
+  </div>
 
   <!-- ================================================================
        SERVICIOS GRID
@@ -369,6 +390,63 @@
       </div>
     </div>
   </footer>
+
+  <script>
+    /* ── Scroll-driven horizontal carousel (desktop only) ── */
+    (function () {
+      if (window.innerWidth < 768) return;
+
+      var wrap     = document.getElementById('svc-pin-wrap');
+      var section  = document.getElementById('svc-intro');
+      var viewport = document.getElementById('svc-carousel-viewport');
+      var track    = document.getElementById('track-svc-intro');
+      if (!wrap || !section || !viewport || !track) return;
+
+      var sectionH = 561;
+
+      function maxTranslate() {
+        return track.scrollWidth - viewport.clientWidth;
+      }
+
+      var holdPx = 300; // pausa al final antes de continuar
+
+      function init() {
+        var extra = maxTranslate();
+        if (extra <= 0) return; // todas las imágenes entran sin scroll
+        wrap.style.height    = (sectionH + extra + holdPx * 2) + 'px';
+        section.style.position = 'sticky';
+        section.style.top      = '0px';
+        section.style.zIndex   = '1';
+      }
+
+      function onScroll() {
+        var wrapTop  = wrap.getBoundingClientRect().top + window.scrollY;
+        var progress = window.scrollY - wrapTop;
+        var max      = maxTranslate();
+        var offset   = Math.max(0, Math.min(progress - holdPx, max));
+        track.style.transform = 'translateX(-' + offset + 'px)';
+      }
+
+      window.addEventListener('load', function () {
+        init();
+        onScroll();
+      });
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+
+      window.addEventListener('resize', function () {
+        if (window.innerWidth < 768) {
+          wrap.style.height      = '';
+          section.style.position = '';
+          section.style.top      = '';
+          track.style.transform  = '';
+        } else {
+          init();
+          onScroll();
+        }
+      });
+    })();
+  </script>
 
   <script>
     function toggleFaq(btn) {
