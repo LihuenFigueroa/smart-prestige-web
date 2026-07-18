@@ -7,6 +7,25 @@
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="assets/css/tailwind.css" />
   <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style>
+    .smart-marker { background: none; border: none; }
+    .smart-popup .leaflet-popup-content-wrapper {
+      border-radius: 4px;
+      border: 1px solid #E5E7EB;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+      padding: 0;
+    }
+    .smart-popup .leaflet-popup-content {
+      margin: 18px 20px 16px;
+    }
+    .smart-popup .leaflet-popup-tip-container { display: none; }
+    .smart-popup .leaflet-popup-close-button {
+      color: #141413;
+      font-size: 18px;
+      padding: 6px 8px;
+    }
+  </style>
 </head>
 <body class="bg-white font-smart-next">
 
@@ -252,16 +271,7 @@
 
       <!-- Columna derecha: mapa -->
       <div style="flex:1; height:100%; overflow:hidden;">
-        <iframe
-          src="https://maps.google.com/maps?q=Galileo+Galilei+1744,+Moreno,+Buenos+Aires&output=embed&z=15"
-          width="100%"
-          height="100%"
-          style="border:0; min-height:480px;"
-          allowfullscreen=""
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          title="Mapa de concesionarios smart Argentina">
-        </iframe>
+        <div id="map" style="width:100%; height:100%;"></div>
       </div>
 
     </div>
@@ -329,23 +339,140 @@
     </div>
   </footer>
 
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script>
+    const sucursales = [
+      { nombre: "Colcar",       direccion: "Galileo Galilei 1744, Moreno, GBA",                             tags: "colcar moreno gba buenos aires",                    lat: -34.6315864, lng: -58.7760953 },
+      { nombre: "Lonco Hue",    direccion: "Av. Del Libertador 2244, Palermo, CABA",                        tags: "lonco hue palermo caba buenos aires capital",        lat: -34.5811869, lng: -58.4044515 },
+      { nombre: "Klasse",       direccion: "Av. del Libertador 14850, Vicente López, GBA",                  tags: "klasse vicente lopez gba buenos aires",              lat: -34.4772848, lng: -58.4979407 },
+      { nombre: "La Merced",    direccion: "Panamericana km 50, Pilar, GBA",                                tags: "la merced pilar gba buenos aires",                   lat: -34.4439420, lng: -58.8776730 },
+      { nombre: "Besten",       direccion: "Ruta 9 km 61, Cardales / Tigre, GBA",                          tags: "besten cardales tigre gba buenos aires",             lat: -34.2736354, lng: -58.8988459 },
+      { nombre: "Stern Motors", direccion: "Av. Francia 3450, Rosario, Santa Fe",                           tags: "stern motors rosario santa fe",                      lat: -32.9723636, lng: -60.6736472 },
+      { nombre: "Rolcar",       direccion: "Av. Aconquija 1800, Yerba Buena, Tucumán",                      tags: "rolcar yerba buena tucuman",                         lat: -26.8125682, lng: -65.2948571 },
+      { nombre: "Klasse",       direccion: "Av. Del Libertador 1551, Vicente López, GBA",                   tags: "klasse vicente lopez gba buenos aires",              lat: -34.5187995, lng: -58.4746415 },
+      { nombre: "Klasse",       direccion: "Av. Francisco Beiró 4420, Villa Devoto, CABA",                  tags: "klasse villa devoto caba buenos aires capital",      lat: -34.6070101, lng: -58.5134585 },
+      { nombre: "Klasse",       direccion: "Grecia 3633, Núñez, CABA",                                     tags: "klasse nunez caba buenos aires capital",             lat: -34.5460833, lng: -58.4632994 },
+      { nombre: "La Merced",    direccion: "Las Magnolias 581, Pilar, GBA",                                 tags: "la merced pilar gba buenos aires",                   lat: -34.4455126, lng: -58.8718679 },
+      { nombre: "Besten",       direccion: "Av. del Libertador 2827, Victoria, GBA",                        tags: "besten victoria gba buenos aires",                   lat: -34.4482784, lng: -58.5380991 },
+      { nombre: "Besten",       direccion: "Av. Juan B. Justo 2353, Tigre, GBA",                            tags: "besten tigre gba buenos aires",                      lat: -34.4408562, lng: -58.5752994 },
+      { nombre: "Stern Motors", direccion: "Junín 250, Rosario",                                            tags: "stern motors rosario santa fe",                      lat: -32.9262057, lng: -60.6665938 },
+      { nombre: "Rolcar",       direccion: "Avenida Aconquija 1238, Yerba Buena, Tucumán",                  tags: "rolcar yerba buena tucuman",                         lat: -26.8147598, lng: -65.2870540 },
+      { nombre: "Colcor",       direccion: "Colectora Norte Agustín Tosco S/N, Córdoba Capital",            tags: "colcor cordoba capital",                             lat: -31.3527796, lng: -64.1938955 },
+      { nombre: "Yacopini",     direccion: "Carril Rodriguez Peña 744, Maipú, Mendoza",                     tags: "yacopini maipu mendoza",                             lat: -32.9315650, lng: -68.7962284 },
+      { nombre: "Meister",      direccion: "Colectora Este Panamericana 27559, Don Torcuato, GBA",          tags: "meister don torcuato gba buenos aires",              lat: -34.4820155, lng: -58.6325636 }
+    ];
+
+    const map = L.map('map');
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    function makePinIcon(size) {
+      const [w, h] = size;
+      const cx = w / 2, r = w * 0.2;
+      return new L.DivIcon({
+        className: 'smart-marker',
+        html: `<svg width="${w}" height="${h}" viewBox="0 0 30 42" xmlns="http://www.w3.org/2000/svg" style="filter:drop-shadow(0 2px 4px rgba(0,0,0,0.35));display:block;">
+                 <path d="M15 0C6.7 0 0 6.7 0 15c0 11.2 15 27 15 27s15-15.8 15-27C30 6.7 23.3 0 15 0z" fill="#141413"/>
+                 <circle cx="15" cy="15" r="6" fill="#fff"/>
+               </svg>`,
+        iconSize: size,
+        iconAnchor: [w / 2, h],
+        popupAnchor: [0, -h + 4]
+      });
+    }
+
+    const pinIcon     = makePinIcon([30, 42]);
+    const pinIconHover = makePinIcon([38, 53]);
+
+    const popupOptions = {
+      className: 'smart-popup',
+      maxWidth: 260,
+      minWidth: 200
+    };
+
+    window.mapMarkers = sucursales.map(s => {
+      const marker = L.marker([s.lat, s.lng], { icon: pinIcon }).addTo(map);
+      marker.bindPopup(
+        `<p class="font-smart-next" style="font-size:16px;color:#141413;margin:0 0 4px;">${s.nombre}</p>
+         <p class="font-smart-sans" style="font-size:13px;color:#141413;margin:0 0 14px;">${s.direccion}</p>
+         <button class="font-smart-sans" style="height:36px;padding:0 20px;border-radius:18px;font-size:12px;color:#fff;background:#141413;border:none;cursor:pointer;">Contactar</button>`,
+        popupOptions
+      );
+      return marker;
+    });
+
+    let activeItemIdx = null;
+
+    const allLatLngs = sucursales.map(s => [s.lat, s.lng]);
+    map.fitBounds(allLatLngs, { padding: [40, 40] });
+
+    function activateMarker(i) {
+      if (activeItemIdx !== null && activeItemIdx !== i) {
+        window.mapMarkers[activeItemIdx].setIcon(pinIcon);
+      }
+      if (window.mapMarkers[i]) window.mapMarkers[i].setIcon(pinIconHover);
+      activeItemIdx = i;
+    }
+
+    function deactivateMarker(i) {
+      if (window.mapMarkers[i]) window.mapMarkers[i].setIcon(pinIcon);
+      if (activeItemIdx === i) activeItemIdx = null;
+    }
+
+    // Click / hover en item → destacar marcador, centrar mapa, abrir popup
+    document.querySelectorAll('.concesionario-item').forEach((item, i) => {
+      item.style.cursor = 'pointer';
+      item.addEventListener('mouseenter', () => activateMarker(i));
+      item.addEventListener('mouseleave', () => {
+        if (activeItemIdx === i && !window.mapMarkers[i]._popup.isOpen()) deactivateMarker(i);
+      });
+      item.addEventListener('click', function(e) {
+        if (e.target.tagName === 'BUTTON') return;
+        activateMarker(i);
+        const marker = window.mapMarkers[i];
+        if (marker) { map.setView(marker.getLatLng(), 15); marker.openPopup(); }
+      });
+      const btn = item.querySelector('button');
+      if (btn) btn.addEventListener('click', function() {
+        activateMarker(i);
+        const marker = window.mapMarkers[i];
+        if (marker) { map.setView(marker.getLatLng(), 15); marker.openPopup(); }
+      });
+    });
+
+    // Al cerrar popup, vuelve al tamaño normal
+    window.mapMarkers.forEach((marker, i) => {
+      marker.on('popupclose', () => deactivateMarker(i));
+    });
+
     function filtrarConcesionarios(query) {
       const items = document.querySelectorAll('.concesionario-item');
       const noRes = document.getElementById('no-resultados');
       const q = query.toLowerCase().trim();
-      let visible = 0;
-      items.forEach(item => {
+      let visibleLatLngs = [];
+      items.forEach((item, i) => {
         const tags = item.getAttribute('data-tags') || '';
         const name = item.querySelector('p').textContent.toLowerCase();
-        if (!q || tags.includes(q) || name.includes(q)) {
-          item.style.display = '';
-          visible++;
-        } else {
-          item.style.display = 'none';
+        const match = !q || tags.includes(q) || name.includes(q);
+        item.style.display = match ? '' : 'none';
+        const marker = window.mapMarkers[i];
+        if (marker) {
+          if (match) {
+            marker.addTo(map);
+            visibleLatLngs.push(marker.getLatLng());
+          } else {
+            map.removeLayer(marker);
+          }
         }
       });
-      noRes.classList.toggle('hidden', visible > 0 || !q);
+      noRes.classList.toggle('hidden', visibleLatLngs.length > 0 || !q);
+      if (visibleLatLngs.length > 0) {
+        map.fitBounds(visibleLatLngs, { padding: [40, 40] });
+      } else if (q) {
+        map.fitBounds(allLatLngs, { padding: [40, 40] });
+      }
     }
   </script>
 
