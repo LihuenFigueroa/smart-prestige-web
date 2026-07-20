@@ -7,6 +7,63 @@
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="assets/css/tailwind.css" />
   <link rel="stylesheet" href="assets/css/styles.css" />
+  <style>
+    @media (max-width: 767px) {
+      .servicios-hero-img {
+        content: url('assets/img/servicios/hero-mobile.png');
+        object-position: center center !important;
+      }
+      /* Sección intro — mobile */
+      .svc-intro-section  { height: auto !important; }
+      .svc-intro-text-wrap {
+        width: 100% !important;
+        padding-left: 24px !important;
+        padding-right: 24px !important;
+        padding-top: 40px !important;
+        padding-bottom: 32px !important;
+      }
+      .svc-intro-inner    { width: 100% !important; height: auto !important; }
+      .svc-intro-label    { font-size: 13px !important; }
+      .svc-intro-headline { font-size: 29px !important; line-height: 120% !important; }
+      .svc-intro-desc     { font-size: 16px !important; width: 100% !important; }
+
+      .svc-hero-text-wrap {
+        left: 24px !important;
+        padding-left: 0 !important;
+        padding-bottom: 32px !important;
+      }
+      .svc-hero-title {
+        font-size: 39px !important;
+        line-height: 120% !important;
+        letter-spacing: -0.02em !important;
+        width: 257px;
+      }
+
+      /* Sábana — texto contenido */
+      .sabana-content p {
+        color: #141413 !important;
+        font-size: 16px !important;
+      }
+
+      /* Carrusel mobile */
+      #svc-carousel-viewport {
+        padding-top: 24px !important;
+        padding-bottom: 24px !important;
+      }
+      #track-svc-intro {
+        height: auto !important;
+        padding-left: 1.25rem !important;
+      }
+      .svc-intro-slide {
+        width: calc(100vw - 2.5rem) !important;
+        height: auto !important;
+      }
+      .svc-intro-slide img {
+        height: auto !important;
+        aspect-ratio: 4 / 3;
+      }
+    }
+  </style>
 </head>
 <body class="bg-white font-smart-next">
 
@@ -54,7 +111,7 @@
   ================================================================ -->
   <section class="relative w-full h-screen min-h-[640px] overflow-hidden">
     <div class="absolute inset-0 bg-neutral-700">
-      <img src="assets/img/servicios/hero.jpg" alt="Servicios al cliente" class="w-full h-full object-cover" style="object-position: center 85%;" />
+      <img src="assets/img/servicios/hero.jpg" alt="Servicios al cliente" class="servicios-hero-img w-full h-full object-cover" style="object-position: center 85%;" />
     </div>
     <div class="absolute top-0 left-0 right-0 pointer-events-none" style="height:170px; z-index:5; background:linear-gradient(to bottom,rgba(20,20,19,0.65) 0%,rgba(20,20,19,0) 100%);"></div>
     <div class="absolute bottom-0 left-0 right-0 pointer-events-none" style="height:261px; z-index:5; background:linear-gradient(to bottom,rgba(0,0,0,0) 0%,rgba(0,0,0,0.85) 100%);"></div>
@@ -82,8 +139,8 @@
       </div>
     </nav>
 
-    <div class="absolute bottom-0 left-0 right-0 px-5 md:px-14 pb-8 md:pb-14 z-10">
-      <h1 class="font-smart-next font-normal text-white" style="font-size:clamp(28px,4vw,56px); line-height:1.1;">Servicios al cliente.</h1>
+    <div class="svc-hero-text-wrap absolute bottom-0 left-0 right-0 px-5 md:px-14 pb-8 md:pb-14 z-10">
+      <h1 class="svc-hero-title font-smart-next font-normal text-white" style="font-size:clamp(28px,4vw,56px); line-height:1.1;">Servicios al cliente.</h1>
     </div>
   </section>
 
@@ -91,19 +148,19 @@
        INTRO + CARRUSEL  (scroll-pinned en desktop)
   ================================================================ -->
   <div id="svc-pin-wrap" style="position:relative;">
-  <section id="svc-intro" class="w-full bg-white overflow-hidden" style="height:561px;">
+  <section id="svc-intro" class="svc-intro-section w-full bg-white overflow-hidden" style="height:561px;">
     <div class="flex flex-col md:flex-row" style="height:100%;">
 
       <!-- Texto izquierda -->
-      <div class="px-5 md:flex-shrink-0 flex flex-col justify-center py-10 md:py-0" style="width:471px; padding-left:56px; padding-right:48px;">
-        <div style="width:375px; max-width:100%; height:185px; display:flex; flex-direction:column; justify-content:center;">
+      <div class="svc-intro-text-wrap px-5 md:flex-shrink-0 flex flex-col justify-center py-10 md:py-0" style="width:471px; padding-left:56px; padding-right:48px;">
+        <div class="svc-intro-inner" style="width:375px; max-width:100%; height:185px; display:flex; flex-direction:column; justify-content:center;">
           <div class="flex flex-col gap-2">
-            <p class="font-smart-sans font-normal" style="font-size:20px; line-height:120%; letter-spacing:-0.01em; color:#6B747B;">Servicios</p>
-            <h2 class="font-smart-next font-normal" style="font-size:29px; line-height:36px; color:#141413;">
+            <p class="svc-intro-label font-smart-sans font-normal" style="font-size:20px; line-height:120%; letter-spacing:-0.01em; color:#6B747B;">Servicios</p>
+            <h2 class="svc-intro-headline font-smart-next font-normal" style="font-size:29px; line-height:36px; color:#141413;">
               Tu smart en las manos de expertos.
             </h2>
           </div>
-          <p class="font-smart-sans font-normal" style="margin-top:24px; font-size:16px; line-height:130%; letter-spacing:0.02em; color:#000000;">
+          <p class="svc-intro-desc font-smart-sans font-normal" style="margin-top:24px; font-size:16px; line-height:130%; letter-spacing:0.02em; color:#000000;">
             En smart, nos esforzamos al máximo para ofrecerte servicios de excelencia para tu vehículo y mucho más.
           </p>
         </div>
@@ -112,13 +169,13 @@
       <!-- Carrusel imágenes -->
       <div id="svc-carousel-viewport" class="flex-1 min-w-0 flex items-center" style="padding-top:69px; padding-bottom:63px; overflow:hidden;">
         <div id="track-svc-intro" class="flex select-none" style="gap:19px; height:429px; will-change:transform;">
-          <div class="flex-shrink-0 h-full" style="width:clamp(260px,39.9vw,574px);">
+          <div class="svc-intro-slide flex-shrink-0 h-full" style="width:clamp(260px,39.9vw,574px);">
             <img src="assets/img/servicios/intro-img1.jpg" alt="" class="w-full h-full object-cover" draggable="false" />
           </div>
-          <div class="flex-shrink-0 h-full" style="width:clamp(260px,39.8vw,573px);">
+          <div class="svc-intro-slide flex-shrink-0 h-full" style="width:clamp(260px,39.8vw,573px);">
             <img src="assets/img/servicios/intro-img2.jpg" alt="" class="w-full h-full object-cover" draggable="false" />
           </div>
-          <div class="flex-shrink-0 h-full" style="width:clamp(260px,39.8vw,573px);">
+          <div class="svc-intro-slide flex-shrink-0 h-full" style="width:clamp(260px,39.8vw,573px);">
             <img src="assets/img/servicios/intro-img3.jpg" alt="" class="w-full h-full object-cover" draggable="false" />
           </div>
         </div>
@@ -418,6 +475,61 @@
         document.body.style.overflow = '';
       }, 300);
     }
+  </script>
+
+  <!-- ── Carrusel intro mobile: navegación por flechas ── -->
+  <script>
+    (function () {
+      if (window.innerWidth >= 768) return;
+
+      var track = document.getElementById('track-svc-intro');
+      if (!track) return;
+
+      var SVG_PREV = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0.5 10.7949L7.14648 4.14844L7.85352 4.85547L1.20728 11.502H24V12.502H1.20703L7.85352 19.1484L7.14648 19.8555L0.5 13.2092C0.177734 12.887 0 12.4583 0 12.002C0 11.5457 0.177734 11.1169 0.5 10.7949Z" fill="#141413"/></svg>';
+      var SVG_NEXT = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g transform="translate(24,0) scale(-1,1)"><path d="M0.5 10.7949L7.14648 4.14844L7.85352 4.85547L1.20728 11.502H24V12.502H1.20703L7.85352 19.1484L7.14648 19.8555L0.5 13.2092C0.177734 12.887 0 12.4583 0 12.002C0 11.5457 0.177734 11.1169 0.5 10.7949Z" fill="#141413"/></g></svg>';
+
+      var idx = 0;
+      var slides = track.querySelectorAll('.svc-intro-slide');
+
+      track.style.overflow    = 'visible';
+      track.style.touchAction = 'none';
+      track.style.transition  = 'transform 0.32s cubic-bezier(0.4,0,0.2,1)';
+      track.style.gap         = '4rem';
+
+      function step() { return window.innerWidth + 24; }
+
+      var btnPrev, btnNext;
+
+      function goTo(i) {
+        i = Math.max(0, Math.min(i, slides.length - 1));
+        idx = i;
+        track.style.transform = 'translateX(-' + (idx * step()) + 'px)';
+        btnPrev.style.opacity      = idx === 0 ? '0.25' : '1';
+        btnNext.style.opacity      = idx === slides.length - 1 ? '0.25' : '1';
+        btnPrev.style.pointerEvents = idx === 0 ? 'none' : '';
+        btnNext.style.pointerEvents = idx === slides.length - 1 ? 'none' : '';
+      }
+
+      var nav = document.createElement('div');
+      nav.style.cssText = 'display:flex;justify-content:flex-end;gap:1.5rem;align-items:center;padding:0.75rem 1.25rem 0;';
+
+      btnPrev = document.createElement('button');
+      btnPrev.innerHTML = SVG_PREV;
+      btnPrev.setAttribute('aria-label', 'Anterior');
+      btnPrev.style.cssText = 'background:none;border:none;padding:0;cursor:pointer;line-height:0;opacity:0.25;transition:opacity 0.2s;pointer-events:none;';
+      btnPrev.addEventListener('click', function () { goTo(idx - 1); });
+
+      btnNext = document.createElement('button');
+      btnNext.innerHTML = SVG_NEXT;
+      btnNext.setAttribute('aria-label', 'Siguiente');
+      btnNext.style.cssText = 'background:none;border:none;padding:0;cursor:pointer;line-height:0;transition:opacity 0.2s;';
+      btnNext.addEventListener('click', function () { goTo(idx + 1); });
+
+      nav.appendChild(btnPrev);
+      nav.appendChild(btnNext);
+      var viewport = document.getElementById('svc-carousel-viewport');
+      viewport.parentNode.insertBefore(nav, viewport.nextSibling);
+    })();
   </script>
 </body>
 </html>
