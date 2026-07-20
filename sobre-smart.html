@@ -7,6 +7,11 @@
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="assets/css/tailwind.css" />
   <link rel="stylesheet" href="assets/css/styles.css" />
+  <style>
+    .sobre-scroll::-webkit-scrollbar { width: 3px; }
+    .sobre-scroll::-webkit-scrollbar-track { background: transparent; }
+    .sobre-scroll::-webkit-scrollbar-thumb { background: #4b4b4b; border-radius: 2px; }
+  </style>
 </head>
 <body class="bg-white font-smart-next">
 
@@ -88,27 +93,51 @@
   </section>
 
   <!-- ================================================================
-       HISTORIA — SECCIÓN OSCURA
+       BANNER — QUIÉNES SOMOS
   ================================================================ -->
-  <section class="w-full bg-[#141413] px-5 md:px-14 py-12 md:py-20">
-    <div class="max-w-[1320px] mx-auto">
-      <div class="flex flex-col md:flex-row gap-10 md:gap-20">
-        <div class="md:w-1/2 flex flex-col gap-6">
-          <p class="text-neutral-500 text-sm uppercase tracking-widest font-smart-next">Historia</p>
-          <h2 class="font-smart-next font-normal text-white" style="font-size:clamp(22px,3vw,40px); line-height:1.2;">
-            Tres décadas pensando diferente.
-          </h2>
-          <p class="text-neutral-400 text-base leading-7 font-smart-sans">
-            Desde 1994, smart lleva más de 30 años desafiando las convenciones del mundo automotriz. Nacimos con una idea radical: crear un vehículo urbano que combinara eficiencia, diseño y una huella de carbono mínima.
-          </p>
-          <p class="text-neutral-400 text-base leading-7 font-smart-sans">
-            Hoy, esa visión se transforma en una propuesta completamente eléctrica, con los nuevos smart #1 y smart #3: dos vehículos que redefinen lo que significa moverse de forma inteligente en el siglo XXI.
-          </p>
+  <section class="w-full bg-white px-5 md:px-14 py-10 md:py-14">
+    <div class="max-w-[1320px] mx-auto bg-[#141413] overflow-hidden">
+      <div class="flex flex-col md:flex-row">
+
+        <!-- Imagen izquierda -->
+        <div class="md:w-[50%] flex-shrink-0" style="padding: 44px 0 44px 40px;">
+          <img
+            src="assets/img/sobre-smart/banner.png"
+            alt="smart"
+            class="w-full h-full object-cover"
+            style="min-height:400px;"
+          />
         </div>
-        <div class="md:w-1/2">
-          <div class="w-full bg-neutral-700 rounded-lg overflow-hidden" style="aspect-ratio:4/3;">
-            <img src="assets/img/sobre-smart/historia.jpg" alt="Historia smart" class="w-full h-full object-cover" />
+
+        <!-- Texto + botón derecha -->
+        <div class="md:w-[45%] flex flex-col justify-between gap-8" style="padding: 44px 64px 44px 48px;">
+
+          <!-- Texto con scroll interno -->
+          <div class="sobre-scroll overflow-y-auto pr-3" style="width:100%; height:432px;">
+            <p class="text-white font-smart-sans mb-5" style="font-size:21px; line-height:140%;">
+              Desde la fundación de la marca en la década de 1990, smart se ha mantenido comprometida con su visión de explorar las mejores soluciones para la movilidad urbana del futuro.
+            </p>
+            <p class="text-white font-smart-sans mb-5" style="font-size:21px; line-height:140%;">
+              En 2019, Mercedes-Benz AG y Zhejiang Geely Holding Group establecieron el joint venture global de smart. Desde entonces, smart ha renovado exitosamente su marca, sus productos y su modelo de negocio, evolucionando hasta convertirse en una distintiva marca premium contemporánea de vehículos eléctricos. Actualmente, cuenta con una gama de productos en expansión y presencia global en más de 40 países y regiones.
+            </p>
+            <p class="text-white font-smart-sans mb-5" style="font-size:21px; line-height:140%;">
+              Prestige Auto es el representante oficial de Mercedes-Benz (Autos y Vans) y de smart en Argentina. Lidera las operaciones de importación, distribución, ventas y posventa de estos vehículos en el país. Con una red de concesionarios en las principales ciudades, acompaña a cada cliente en cada etapa de su experiencia con la marca.
+            </p>
+            <p class="text-white font-smart-sans" style="font-size:21px; line-height:140%;">
+              Nuestro compromiso es acercar la movilidad eléctrica premium a Argentina, con el respaldo de una marca global y el servicio de un equipo local dedicado a brindar la mejor experiencia de compra y posventa.
+            </p>
           </div>
+
+          <!-- Botón -->
+          <div class="flex-shrink-0">
+            <a
+              href="buscador.html"
+              class="inline-flex items-center justify-center bg-white text-black font-bold rounded-full hover:bg-neutral-200 transition-colors font-smart-sans" style="width:242px; height:50px; font-size:14px; letter-spacing:0.02em;"
+            >
+              Encontrá tu concesionario
+            </a>
+          </div>
+
         </div>
       </div>
     </div>
