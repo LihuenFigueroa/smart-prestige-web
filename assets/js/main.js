@@ -72,21 +72,28 @@ function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, capt
 
     // Texto mid-video (bloque 1 mobile): fade in → hold → fade out
     if (textElMid) {
-      const midFadeIn  = videoPx * 0.38;
-      const midPeak    = videoPx * 0.58;
+      const midFadeIn  = videoPx * 0.18;
+      const midPeak    = videoPx * 0.32;
       const midFadeOut = midPeak + 350;
       const midGone    = midFadeOut + 350;
 
       if (rel < midFadeIn) {
-        textElMid.style.opacity = '0';
+        textElMid.style.opacity   = '0';
+        textElMid.style.transform = 'translateY(40px)';
       } else if (rel < midPeak) {
-        textElMid.style.opacity = ((rel - midFadeIn) / (midPeak - midFadeIn)).toFixed(3);
+        const t = (rel - midFadeIn) / (midPeak - midFadeIn);
+        textElMid.style.opacity   = t.toFixed(3);
+        textElMid.style.transform = `translateY(${(40 * (1 - t)).toFixed(1)}px)`;
       } else if (rel < midFadeOut) {
-        textElMid.style.opacity = '1';
+        textElMid.style.opacity   = '1';
+        textElMid.style.transform = 'translateY(0)';
       } else if (rel < midGone) {
-        textElMid.style.opacity = (1 - (rel - midFadeOut) / (midGone - midFadeOut)).toFixed(3);
+        const t = (rel - midFadeOut) / (midGone - midFadeOut);
+        textElMid.style.opacity   = (1 - t).toFixed(3);
+        textElMid.style.transform = 'translateY(0)';
       } else {
-        textElMid.style.opacity = '0';
+        textElMid.style.opacity   = '0';
+        textElMid.style.transform = 'translateY(0)';
       }
     }
 
@@ -344,7 +351,7 @@ initScrollVideo({
   captureFps:  60,
   lerp:        0.07,
   pinHeight:   null,
-  textEl:            document.getElementById('brabusText'),
+  textEl:            isMobile ? document.getElementById('brabusTextMobile') : document.getElementById('brabusText'),
   textElMid:         isMobile ? document.getElementById('brabusTextMid') : null,
   textElMidDesktop:  !isMobile ? document.getElementById('brabusTextMidDesktop') : null,
   textZonePx:        isMobile ? 300 : 500,
