@@ -6,7 +6,80 @@
   <title>smart x BRABUS — smart Argentina</title>
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="assets/css/tailwind.css" />
-  <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="stylesheet" href="assets/css/styles.css?v=2" />
+  <style>
+    /* Defaults (desktop) — deben ir ANTES del media query */
+    .brabus-collab-img-mobile { display: none; }
+    .brabus-specs-gradient-mobile { display: none; }
+    .brabus-specs-desktop-gradient { display: block; }
+
+    /* ── brabus mobile overrides — inline para evitar caché ── */
+    @media (max-width: 767px) {
+
+      .brabus-collab-img-mobile { display: flex; justify-content: center; }
+      .brabus-specs-desktop-gradient { background: linear-gradient(180deg, rgba(20,20,19,0.75) 0%, transparent 60%) !important; }
+
+      /* Sección specs: altura = ancho * 4/3 para coincidir con imagen portrait */
+      .brabus-specs-section {
+        min-height: unset !important;
+        height: calc(100vw * 1.7) !important;
+      }
+      /* Imágenes de fondo mobile-only para la sección specs */
+      #spec-bg-1 { content: url('assets/img/brabus/spec1-mobile.png'); object-fit: cover !important; object-position: center top !important; }
+      #spec-bg-3 { content: url('assets/img/brabus/spec3-mobile.png'); object-fit: cover !important; object-position: center top !important; }
+
+      .brabus-specs-gradient-mobile { display: block; opacity: 0.45; }
+
+      .brabus-specs-group {
+        left: 34px !important;
+        top: 45px !important;
+        width: 236px !important;
+        height: 204.51px !important;
+      }
+      .brabus-specs-group #spec-accel,
+      .brabus-specs-group #spec-range,
+      .brabus-specs-group p[style*="font-size:36px"] {
+        font-size: 21px !important;
+        line-height: 1.2 !important;
+      }
+      .brabus-specs-group p[style*="font-size:13px"] {
+        font-size: 7.4px !important;
+      }
+      .brabus-specs-group div[style*="grid-template-columns:112px"] {
+        grid-template-columns: 77px 1fr !important;
+        column-gap: 6px !important;
+      }
+      .brabus-specs-group div[style*="margin-bottom:40px"],
+      .brabus-specs-group div[style*="margin-bottom:30px"] {
+        margin-bottom: 8px !important;
+      }
+      .brabus-specs-group p[style*="font-size:13.82px"] {
+        font-size: 8px !important;
+        margin-bottom: 11px !important;
+      }
+      .brabus-specs-btn {
+        width: 198px !important;
+        height: 29.51px !important;
+        font-size: 10.33px !important;
+      }
+      .brabus-specs-toggle {
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        bottom: 24px !important;
+      }
+      .brabus-collab-wrap {
+        padding: 24px 37px !important;
+      }
+      .brabus-collab-text-wrap {
+        width: 100% !important;
+        min-height: unset !important;
+      }
+      .brabus-collab-text {
+        font-size: 26px !important;
+      }
+    }
+
+  </style>
 </head>
 <body class="bg-white font-smart-next">
 
@@ -116,7 +189,7 @@
       <img src="assets/img/brabus/bottom-text-desktop.svg" alt="" style="width:100%; display:block;" draggable="false" />
     </div>
     <!-- Texto final — mobile -->
-    <div id="brabusTextMobile" class="md:hidden" style="position:absolute; left:0; bottom:0; right:0; opacity:0; pointer-events:none; z-index:20; padding:0 1.5rem 2.5rem;">
+    <div id="brabusTextMobile" class="md:hidden" style="position:absolute; left:0; top:0; right:0; opacity:0; pointer-events:none; z-index:20; padding:6rem 1.5rem 0;">
       <img src="assets/img/brabus/final-text-mobile.png" alt="Diseño que no necesita presentación." style="width:309px; max-width:100%; display:block;" draggable="false" />
     </div>
 
@@ -135,19 +208,24 @@
     </div>
   </section>
 
+  <!-- Imagen mobile-only: aparece después del texto introductorio -->
+  <div class="brabus-collab-img-mobile">
+    <img src="assets/img/brabus/collab-mobile.png" alt="smart x BRABUS" style="width:341px; height:509px; object-fit:cover; display:block;" />
+  </div>
+
   <!-- ================================================================
        2 COLUMNAS — texto izquierda + imagen derecha
   ================================================================ -->
   <section class="w-full bg-white">
-    <div style="padding: 35px 87px 35px 87px; display:flex; flex-direction:row; align-items:center;">
+    <div class="brabus-collab-wrap" style="padding: 35px 87px 35px 87px; display:flex; flex-direction:row; align-items:center;">
       <!-- Texto izquierda -->
-      <div class="flex-shrink-0 flex items-center" style="width:406px; min-height:480px;">
-        <p style="font-family:'FOR_smart_Sans',sans-serif; font-weight:400; font-size:26px; line-height:140%; color:#000000; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;">
+      <div class="flex-shrink-0 flex items-center brabus-collab-text-wrap" style="width:406px; min-height:480px;">
+        <p class="brabus-collab-text" style="font-family:'FOR_smart_Sans',sans-serif; font-weight:400; font-size:26px; line-height:140%; color:#000000; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;">
           La colaboración entre smart y BRABUS nació para los que no se conforman con el estándar. El resultado es un SUV eléctrico que combina ingeniería de alto rendimiento con una estética deportiva que parte del interior hacia afuera.
         </p>
       </div>
-      <!-- Imagen derecha -->
-      <div class="flex-1 flex justify-end">
+      <!-- Imagen derecha — oculta en mobile (se muestra arriba) -->
+      <div class="flex-1 hidden md:flex justify-end">
         <img src="assets/img/laColaboracionBRABUS.png" alt="smart x BRABUS" style="width:720px; height:480px; object-fit:cover;" />
       </div>
     </div>
@@ -156,7 +234,7 @@
   <!-- ================================================================
        SPECS — toggle smart #1 / smart #3
   ================================================================ -->
-  <section class="w-full bg-[#141413] relative overflow-hidden" style="min-height:100vh;">
+  <section class="w-full bg-[#141413] relative overflow-hidden brabus-specs-section" style="min-height:100vh;">
 
     <!-- Background images (alternan con el toggle, slide igual al home) -->
     <img id="spec-bg-1"
@@ -169,15 +247,19 @@
          alt="smart #3 BRABUS"
          class="absolute inset-0 w-full h-full object-cover"
          style="transform:translateX(100%); opacity:0; transition:transform 0.5s ease, opacity 0.5s ease;" />
-    <!-- Gradiente para legibilidad del texto -->
-    <div class="absolute inset-0 pointer-events-none"
+    <!-- Gradiente para legibilidad del texto (desktop) -->
+    <div class="brabus-specs-desktop-gradient absolute inset-0 pointer-events-none"
          style="background:linear-gradient(90deg,rgba(20,20,19,0.78) 0%,rgba(20,20,19,0.38) 52%,transparent 100%);"></div>
+    <!-- Gradiente mobile-only: cubre el área del texto de specs -->
+    <img src="assets/img/brabus/specs-top-gradient-mobile.svg"
+         class="brabus-specs-gradient-mobile absolute top-0 left-0 w-full pointer-events-none"
+         style="z-index:1;" alt="" />
 
     <!-- Contenido (posicionado absoluto para respetar specs Figma: frame 1440×829) -->
     <div class="absolute inset-0 z-10">
 
       <!-- Stats group: left 91px, top 57px del frame Figma -->
-      <div style="position:absolute; left:91px; top:57px; width:384px;">
+      <div class="brabus-specs-group" style="position:absolute; left:91px; top:57px; width:384px;">
 
         <!-- 3,9 seg / 0–100 km/h -->
         <div style="margin-bottom:40px;">
@@ -226,15 +308,14 @@
 
         <!-- Button -->
         <a href="buscador.html"
-           class="font-smart-sans"
-           style="display:inline-flex; align-items:center; justify-content:center; width:289px; height:51px; background:#fff; border-radius:1273px; font-weight:700; font-size:17.84px; letter-spacing:0.02em; color:#000; text-decoration:none; transition:opacity 0.2s;"
+           class="font-smart-sans brabus-specs-btn" style="display:inline-flex; align-items:center; justify-content:center; width:289px; height:51px; background:#fff; border-radius:1273px; font-weight:700; font-size:17.84px; letter-spacing:0.02em; color:#000; text-decoration:none; transition:opacity 0.2s;"
            onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
           Encontrá tu concesionario
         </a>
       </div>
 
       <!-- Toggle pill: left 91px, bottom 97px (frame 829 – top 732 = 97px) -->
-      <div style="position:absolute; left:91px; bottom:97px;">
+      <div class="brabus-specs-toggle" style="position:absolute; left:91px; bottom:97px;">
         <div id="spec-model-switcher" style="position:relative; overflow:hidden; width:177px; height:34px; border-radius:16.84px; border:0.211px solid #141413; background:#fff;">
           <div id="spec-slider-indicator"
                style="position:absolute; top:2px; left:2px; height:29px; width:81px; border-radius:14.74px; background:#141413; z-index:0; transition:transform 0.4s cubic-bezier(0.4,0,0.2,1);"></div>
