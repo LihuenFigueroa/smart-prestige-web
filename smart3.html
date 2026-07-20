@@ -66,12 +66,10 @@
         <a href="index.html"><img src="assets/img/Logonavbar.svg" alt="smart" style="height:1rem; width:auto;" /></a>
       </div>
     </nav>
-    <div style="position:absolute; bottom:0; left:0; right:0; padding:0 1.25rem 2rem; z-index:10;">
-      <h1 class="font-smart-next font-normal" style="color:#fff; font-size:36px; line-height:1.1; margin:0 0 6px;">smart #3</h1>
-      <p class="font-smart-next font-normal" style="color:#fff; font-size:20px; line-height:1.3; margin:0 0 12px;">SUV Coupé 100% eléctrico.</p>
-      <p class="font-smart-sans" style="color:#fff; font-size:17px; line-height:1.45; margin:0 0 10px;">Hasta 597km de autonomía WLTP y 428 CV en su versión BRABUS.</p>
-      <p class="font-smart-sans" style="color:#fff; opacity:0.5; font-size:11px; line-height:1.4; margin:0 0 1.5rem;">Autonomía sujeta a tipo de conducción, condiciones del terrreno y condiciones del clima.</p>
-      <a href="#contacto" class="inline-flex items-center justify-center font-smart-sans font-bold" style="height:44px; padding:0 2rem; background:#fff; border-radius:9999px; color:#141413; font-size:14px;">Realizar consulta</a>
+    <!-- SVG bottom (texto + botón, sin gradiente — lo maneja el CSS) -->
+    <div style="position:absolute; bottom:0; left:0; right:0; z-index:10; line-height:0;">
+      <img src="assets/img/smart3/hero-mobile-bottom.svg" alt="" style="width:100%; display:block;" draggable="false" />
+      <a href="#contacto" style="position:absolute; left:6.4%; bottom:11.7%; width:39.47%; aspect-ratio:148/33.92; border-radius:9999px; display:block;"></a>
     </div>
   </section>
 
@@ -119,7 +117,8 @@
   ================================================================ -->
   <section class="w-full bg-white px-5 md:px-14 py-10 md:py-16">
     <div class="max-w-[1320px] mx-auto">
-      <img src="assets/img/smart3/headline.svg" alt="Hacé la diferencia. El smart #3 combina el arte y el rendimiento." style="width:100%; display:block;" draggable="false" />
+      <img src="assets/img/smart3/statement.svg" alt="" class="md:hidden w-full" draggable="false" />
+      <img src="assets/img/smart3/headline.svg" alt="Hacé la diferencia. El smart #3 combina el arte y el rendimiento." class="hidden md:block w-full" draggable="false" />
     </div>
   </section>
 
@@ -134,6 +133,7 @@
 
         <div class="c-card">
           <img src="assets/img/smart3/2.png" alt="Dinamismo sin estridencias" class="c-card__img" />
+          <span class="c-card__tag">Exterior</span>
           <div class="c-card__gradient"></div>
           <div class="c-card__body">
             <div class="c-card__text">
@@ -185,6 +185,7 @@
 
         <div class="c-card">
           <img src="assets/img/smart3/8.png" alt="Tecnología al servicio del conductor" class="c-card__img" />
+          <span class="c-card__tag">Interior</span>
           <div class="c-card__gradient"></div>
           <div class="c-card__body">
             <div class="c-card__text">
@@ -225,6 +226,7 @@
 
         <div class="c-card">
           <img src="assets/img/smart3/15.png" alt="Cámara 360" class="c-card__img" />
+          <span class="c-card__tag">Confort</span>
           <div class="c-card__gradient"></div>
           <div class="c-card__body">
             <div class="c-card__text">
@@ -298,6 +300,7 @@
 
         <div class="c-card">
           <img src="assets/img/smart3/22.png" alt="smart pilot assist" class="c-card__img" />
+          <span class="c-card__tag">Seguridad</span>
           <div class="c-card__gradient"></div>
           <div class="c-card__body">
             <div class="c-card__text">
@@ -308,7 +311,7 @@
         </div>
 
         <div class="c-card">
-          <img src="assets/img/smart3/23.jpg" alt="Parking Assist" class="c-card__img" />
+          <img src="assets/img/smart3/21-seguridad.png" alt="Parking Assist" class="c-card__img" />
           <div class="c-card__gradient"></div>
           <div class="c-card__body">
             <div class="c-card__text">
@@ -382,6 +385,7 @@
 
         <div class="c-card">
           <img src="assets/img/smart3/30.png" alt="Pantalla central 12,8" class="c-card__img" />
+          <span class="c-card__tag">Conectividad</span>
           <div class="c-card__gradient"></div>
           <div class="c-card__body">
             <div class="c-card__text">
@@ -422,6 +426,7 @@
 
         <div class="c-card">
           <img src="assets/img/smart3/33.png" alt="Baúl trasero eléctrico" class="c-card__img" />
+          <span class="c-card__tag">Practicidad</span>
           <div class="c-card__gradient"></div>
           <div class="c-card__body">
             <div class="c-card__text">
