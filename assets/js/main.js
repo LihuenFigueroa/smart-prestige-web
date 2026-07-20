@@ -1,5 +1,6 @@
 // ── Función genérica: convierte cualquier sección en video scroll-driven ──
-function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, captureFps, lerp, pinHeight, textEl, textElMid, textElMidDesktop, textZonePx, holdZonePx }) {
+function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, captureFps, lerp, pinHeight, textEl, textElMid, textElMidDesktop, textZonePx, holdZonePx, startOffset }) {
+  startOffset = startOffset || 0;
   const video  = document.getElementById(videoId);
   const canvas = document.getElementById(canvasId);
   const pin    = document.getElementById(pinId);
@@ -135,7 +136,8 @@ function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, capt
   }
 
   // ── Captura en background ─────────────────────────────────────────────────
-  function startBackgroundCapture(capVid, duration) {
+  function startBackgroundCapture(capVid, duration, offset) {
+    offset = offset || 0;
     totalFrames = Math.round(duration * CAPTURE_FPS);
     frames.length = totalFrames;
 
@@ -146,13 +148,17 @@ function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, capt
 
     let lastCapturedTime = -1;
 
-    capVid.playbackRate = 4;
-    const playPromise = capVid.play();
-    if (playPromise) playPromise.catch(() => {});
+    capVid.currentTime = offset;
+    capVid.addEventListener('seeked', function startPlay() {
+      capVid.playbackRate = 4;
+      const playPromise = capVid.play();
+      if (playPromise) playPromise.catch(() => {});
+      requestAnimationFrame(captureLoop);
+    }, { once: true });
 
     function captureLoop() {
       const t   = capVid.currentTime;
-      const idx = Math.round((t / duration) * (totalFrames - 1));
+      const idx = Math.round(((t - offset) / duration) * (totalFrames - 1));
 
       // Captura siempre antes de decidir si terminar
       if (t !== lastCapturedTime && idx >= 0 && idx < totalFrames && !frames[idx]) {
@@ -161,9 +167,9 @@ function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, capt
         lastCapturedTime = t;
       }
 
-      if (capVid.ended || t >= duration - 0.01) {
+      if (capVid.ended || t >= offset + duration - 0.01) {
         // Seek explícito al final para capturar el último frame real
-        capVid.currentTime = duration - 0.001;
+        capVid.currentTime = offset + duration - 0.001;
         capVid.addEventListener('seeked', function() {
           oc.drawImage(capVid, 0, 0, vw, vh);
           frames[totalFrames - 1] = os.transferToImageBitmap();
@@ -230,9 +236,11 @@ function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, capt
         : `calc(100vh + ${totalPx}px)`;
 
       // Frame 0
+      videoDuration = videoDuration - startOffset;
+
       function tryFirstFrame() {
         const seek = () => {
-          video.currentTime = 0;
+          video.currentTime = startOffset;
           video.addEventListener('seeked', showFirstFrame, { once: true });
         };
         video.readyState >= 2 ? seek()
@@ -250,7 +258,7 @@ function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, capt
       capVid.style.cssText = 'position:fixed;top:-9999px;left:-9999px;width:1px;height:1px;opacity:0.01;pointer-events:none;';
       document.body.appendChild(capVid);
 
-      const startCapture = () => startBackgroundCapture(capVid, videoDuration);
+      const startCapture = () => startBackgroundCapture(capVid, videoDuration, startOffset);
       capVid.readyState >= 1 ? startCapture()
         : capVid.addEventListener('loadedmetadata', startCapture, { once: true });
     }
@@ -277,7 +285,8 @@ initScrollVideo({
   captureFps:  isMobile ? 30  : 15,
   lerp:        0.06,
   pinHeight:   null,
-  textZonePx:  400
+  textZonePx:  400,
+  startOffset: 0.5
 });
 
 // ── Eléctrico de verdad — carrusel horizontal ────────────────────────────
