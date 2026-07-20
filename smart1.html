@@ -59,8 +59,8 @@
 
     <!-- Gradiente superior (nav) -->
     <div style="position:absolute; top:0; left:0; right:0; height:170px; z-index:5; pointer-events:none; background:linear-gradient(to bottom,rgba(20,20,19,0.65) 0%,rgba(20,20,19,0) 100%);"></div>
-    <!-- Gradiente inferior (texto) -->
-    <div style="position:absolute; bottom:0; left:0; right:0; height:55%; z-index:5; pointer-events:none; background:linear-gradient(to bottom,rgba(0,0,0,0) 0%,rgba(0,0,0,0.88) 100%);"></div>
+    <!-- Gradiente inferior (imagen) -->
+    <div style="position:absolute; bottom:0; left:0; right:0; height:55%; z-index:5; pointer-events:none; background:linear-gradient(to bottom,rgba(0,0,0,0) 0%,rgba(0,0,0,0.60) 100%);"></div>
 
     <!-- Nav -->
     <nav style="position:absolute; top:0; left:0; right:0; z-index:20; padding:0 1.25rem; height:56px; display:flex; align-items:center;">
@@ -74,15 +74,10 @@
       </div>
     </nav>
 
-    <!-- Texto flotante -->
-    <div style="position:absolute; bottom:0; left:0; right:0; padding:0 1.25rem 2rem; z-index:10;">
-      <h1 class="font-smart-next font-normal" style="color:#fff; font-size:36px; line-height:1.1; margin:0 0 6px;">smart #1</h1>
-      <p class="font-smart-next font-normal" style="color:#fff; font-size:20px; line-height:1.3; margin:0 0 12px;">SUV 100% eléctrico.</p>
-      <p class="font-smart-sans" style="color:#fff; font-size:17px; line-height:1.45; margin:0 0 10px;">Hasta 584km de autonomía WLTP y 428 CV en su versión BRABUS.</p>
-      <p class="font-smart-sans" style="color:#fff; opacity:0.5; font-size:11px; line-height:1.4; margin:0 0 1.5rem;">Autonomía sujeta a tipo de conducción, condiciones del terrreno y condiciones del clima.</p>
-      <a href="#contacto" class="inline-flex items-center justify-center font-smart-sans font-bold" style="height:44px; padding:0 2rem; background:#fff; border-radius:9999px; color:#141413; font-size:14px;">
-        Realizar consulta
-      </a>
+    <!-- SVG bottom (gradiente + texto + botón) -->
+    <div style="position:absolute; bottom:0; left:0; right:0; z-index:10; line-height:0;">
+      <img src="assets/img/smart1/hero-mobile-bottom.svg" alt="" style="width:100%; display:block;" draggable="false" />
+      <a href="#contacto" style="position:absolute; left:6.4%; bottom:11.7%; width:39.47%; aspect-ratio:148/33.92; border-radius:9999px; display:block;"></a>
     </div>
   </section>
 
@@ -130,10 +125,15 @@
   ================================================================ -->
   <section class="w-full bg-white px-5 md:px-14 py-10 md:py-16">
     <div class="max-w-[1320px] mx-auto">
-      <p class="text-neutral-500 text-sm mb-3 font-smart-next">smart #1</p>
-      <h2 class="font-smart-next font-normal text-black max-w-2xl" style="font-size:clamp(24px,3vw,40px); line-height:1.15;">
-        Sentite el #1. Cada detalle, cada línea, cada kilómetro recorrido de una forma distinta. Sentite diferente.
-      </h2>
+      <!-- Mobile: SVG statement -->
+      <img src="assets/img/smart1/statement.svg" alt="Sentite el #1." class="md:hidden w-full" />
+      <!-- Desktop: texto original -->
+      <div class="hidden md:block">
+        <p class="text-neutral-500 text-sm mb-3 font-smart-next">smart #1</p>
+        <h2 class="font-smart-next font-normal text-black max-w-2xl" style="font-size:clamp(24px,3vw,40px); line-height:1.15;">
+          Sentite el #1. Cada detalle, cada línea, cada kilómetro recorrido de una forma distinta. Sentite diferente.
+        </h2>
+      </div>
     </div>
   </section>
 
@@ -521,10 +521,10 @@
           <p class="comp-version" id="comp-s1-label">Pure</p>
         </div>
         <div style="display:flex; gap:1.5rem; align-items:center;">
-          <button onclick="compS1Prev()" style="background:none;border:none;padding:0;cursor:pointer;line-height:0;" aria-label="Anterior">
+          <button id="comp-s1-btn-prev" onclick="compS1Prev()" style="background:none;border:none;padding:0;cursor:pointer;line-height:0;opacity:0.25;transition:opacity 0.2s;pointer-events:none;" aria-label="Anterior">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0.5 10.7949L7.14648 4.14844L7.85352 4.85547L1.20728 11.502H24V12.502H1.20703L7.85352 19.1484L7.14648 19.8555L0.5 13.2092C0.177734 12.887 0 12.4583 0 12.002C0 11.5457 0.177734 11.1169 0.5 10.7949Z" fill="#141413"/></svg>
           </button>
-          <button onclick="compS1Next()" style="background:none;border:none;padding:0;cursor:pointer;line-height:0;" aria-label="Siguiente">
+          <button id="comp-s1-btn-next" onclick="compS1Next()" style="background:none;border:none;padding:0;cursor:pointer;line-height:0;transition:opacity 0.2s;" aria-label="Siguiente">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g transform="translate(24,0) scale(-1,1)"><path d="M0.5 10.7949L7.14648 4.14844L7.85352 4.85547L1.20728 11.502H24V12.502H1.20703L7.85352 19.1484L7.14648 19.8555L0.5 13.2092C0.177734 12.887 0 12.4583 0 12.002C0 11.5457 0.177734 11.1169 0.5 10.7949Z" fill="#141413"/></g></svg>
           </button>
         </div>
@@ -842,6 +842,12 @@
     // ── Características generales — nav flechas mobile ───────────────────────
     var compS1Index = 0;
     var compS1Labels = ['Pure', 'Pro', 'Pro+', 'BRABUS'];
+    function compS1UpdateArrows() {
+      var p = document.getElementById('comp-s1-btn-prev');
+      var n = document.getElementById('comp-s1-btn-next');
+      if (p) { p.style.opacity = compS1Index === 0 ? '0.25' : '1'; p.style.pointerEvents = compS1Index === 0 ? 'none' : ''; }
+      if (n) { n.style.opacity = compS1Index === 3 ? '0.25' : '1'; n.style.pointerEvents = compS1Index === 3 ? 'none' : ''; }
+    }
     function compS1Prev() {
       if (compS1Index > 0) { compS1Index--; compS1Update(); }
     }
@@ -854,6 +860,7 @@
       c.scrollTo({ left: compS1Index * (c.scrollWidth / 4), behavior: 'smooth' });
       if (t) t.scrollTo({ left: compS1Index * (t.scrollWidth / 4), behavior: 'smooth' });
       document.getElementById('comp-s1-label').textContent = compS1Labels[compS1Index];
+      compS1UpdateArrows();
     }
     // Sync imagen y label al swipear manualmente
     (function() {
@@ -871,6 +878,7 @@
             compS1Index = idx;
             document.getElementById('comp-s1-label').textContent = compS1Labels[idx];
             if (t) t.scrollTo({ left: idx * (t.scrollWidth / 4), behavior: 'smooth' });
+            compS1UpdateArrows();
           }
         }, 80);
       });
@@ -1274,7 +1282,7 @@
   <!-- ── Carruseles mobile: navegación por flechas ── -->
   <style>
     @media (max-width: 767px) {
-      .c-card { width: calc(100vw - 1.25rem) !important; }
+      .c-card { width: calc(100vw - 2.5rem) !important; }
     }
   </style>
   <script>
@@ -1286,18 +1294,24 @@
 
       var indices = {};
 
-      var GAP_PX = 40; /* 2.5rem */
+      var GAP_PX = 64; /* 4rem */
 
       function step() {
-        /* card width (100vw - 1.25rem = vw-20px) + gap (2.5rem = 40px) = vw + 20px */
-        return window.innerWidth + 20;
+        /* card width (100vw - 2.5rem = vw-40px) + gap (4rem = 64px) = vw + 24px */
+        return window.innerWidth + 24;
       }
 
-      function goTo(track, i) {
+      function goTo(track, i, btnPrev, btnNext) {
         var cards = track.querySelectorAll('.c-card');
         i = Math.max(0, Math.min(i, cards.length - 1));
         indices[track.id] = i;
         track.style.transform = 'translateX(-' + (i * step()) + 'px)';
+        var atStart = i === 0;
+        var atEnd   = i === cards.length - 1;
+        btnPrev.style.opacity = atStart ? '0.25' : '1';
+        btnNext.style.opacity = atEnd   ? '0.25' : '1';
+        btnPrev.style.pointerEvents = atStart ? 'none' : '';
+        btnNext.style.pointerEvents = atEnd   ? 'none' : '';
       }
 
       ['track-c1','track-c2','track-c3','track-c4','track-c5','track-c6'].forEach(function (id) {
@@ -1307,7 +1321,7 @@
         track.style.overflow   = 'visible';
         track.style.touchAction = 'none';
         track.style.transition = 'transform 0.32s cubic-bezier(0.4,0,0.2,1)';
-        track.style.gap        = '2.5rem';
+        track.style.gap        = '4rem';
         indices[id] = 0;
 
         var nav = document.createElement('div');
@@ -1316,14 +1330,14 @@
         var btnPrev = document.createElement('button');
         btnPrev.innerHTML = SVG_PREV;
         btnPrev.setAttribute('aria-label', 'Anterior');
-        btnPrev.style.cssText = 'background:none;border:none;padding:0;cursor:pointer;line-height:0;';
-        btnPrev.addEventListener('click', function () { goTo(track, (indices[id] || 0) - 1); });
+        btnPrev.style.cssText = 'background:none;border:none;padding:0;cursor:pointer;line-height:0;opacity:0.25;transition:opacity 0.2s;pointer-events:none;';
+        btnPrev.addEventListener('click', function () { goTo(track, (indices[id] || 0) - 1, btnPrev, btnNext); });
 
         var btnNext = document.createElement('button');
         btnNext.innerHTML = SVG_NEXT;
         btnNext.setAttribute('aria-label', 'Siguiente');
-        btnNext.style.cssText = 'background:none;border:none;padding:0;cursor:pointer;line-height:0;';
-        btnNext.addEventListener('click', function () { goTo(track, (indices[id] || 0) + 1); });
+        btnNext.style.cssText = 'background:none;border:none;padding:0;cursor:pointer;line-height:0;transition:opacity 0.2s;';
+        btnNext.addEventListener('click', function () { goTo(track, (indices[id] || 0) + 1, btnPrev, btnNext); });
 
         nav.appendChild(btnPrev);
         nav.appendChild(btnNext);
