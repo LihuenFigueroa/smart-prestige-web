@@ -349,3 +349,13 @@ select option { color: #111111; }
 #heroCanvas, #brabusCanvas {
   background: #141413;
 }
+
+
+/* ── Mobile: links deshabilitados (visitas no disponibles) ── */
+@media (max-width: 767px) {
+  a.mob-disabled {
+    opacity: 0.35;
+    pointer-events: none;
+    cursor: default;
+  }
+}
