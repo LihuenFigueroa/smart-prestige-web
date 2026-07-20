@@ -241,11 +241,6 @@ function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, capt
 
       function tryFirstFrame() {
         const seek = () => {
-          // Rellenar canvas con color oscuro para evitar parpadeo negro durante el seek
-          if (startOffset > 0) {
-            ctx.fillStyle = '#141413';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-          }
           video.currentTime = startOffset;
           video.addEventListener('seeked', showFirstFrame, { once: true });
         };
@@ -292,7 +287,7 @@ initScrollVideo({
   lerp:        0.06,
   pinHeight:   null,
   textZonePx:  400,
-  startOffset: 0.5
+  startOffset: 0
 });
 
 // ── Eléctrico de verdad — carrusel horizontal ────────────────────────────
