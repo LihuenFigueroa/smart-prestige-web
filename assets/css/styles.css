@@ -344,3 +344,8 @@ select option { color: #111111; }
   .comp-features li { font-size: 9px; }
 
 }
+
+/* ── Hero canvas: fondo oscuro para evitar parpadeo negro inicial ── */
+#heroCanvas, #brabusCanvas {
+  background: #141413;
+}

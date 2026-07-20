@@ -148,31 +148,25 @@ function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, capt
 
     let lastCapturedTime = -1;
 
-    capVid.currentTime = offset;
-    capVid.addEventListener('seeked', function startPlay() {
-      capVid.playbackRate = 4;
-      const playPromise = capVid.play();
-      if (playPromise) playPromise.catch(() => {});
-      requestAnimationFrame(captureLoop);
-    }, { once: true });
+    // Jugar desde 0 sin seek — más compatible con iOS Safari
+    capVid.playbackRate = 4;
+    const playPromise = capVid.play();
+    if (playPromise) playPromise.catch(() => {});
 
     function captureLoop() {
       const t   = capVid.currentTime;
-      const idx = Math.round(((t - offset) / duration) * (totalFrames - 1));
 
-      // Captura siempre antes de decidir si terminar
-      if (t !== lastCapturedTime && idx >= 0 && idx < totalFrames && !frames[idx]) {
-        oc.drawImage(capVid, 0, 0, vw, vh);
-        frames[idx]      = os.transferToImageBitmap();
-        lastCapturedTime = t;
-      }
+      // Ignorar frames antes del offset
+      if (t >= offset) {
+        const idx = Math.round(((t - offset) / duration) * (totalFrames - 1));
 
-      if (capVid.ended || t >= offset + duration - 0.01) {
-        // Seek explícito al final para capturar el último frame real
-        capVid.currentTime = offset + duration - 0.001;
-        capVid.addEventListener('seeked', function() {
+        if (t !== lastCapturedTime && idx >= 0 && idx < totalFrames && !frames[idx]) {
           oc.drawImage(capVid, 0, 0, vw, vh);
-          frames[totalFrames - 1] = os.transferToImageBitmap();
+          frames[idx]      = os.transferToImageBitmap();
+          lastCapturedTime = t;
+        }
+
+        if (capVid.ended || t >= offset + duration - 0.01) {
           // Forward-fill cualquier hueco
           let last = frames[0];
           for (let i = 0; i < totalFrames; i++) {
@@ -180,14 +174,14 @@ function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, capt
             else if (last) { frames[i] = last; }
           }
           onCaptureComplete();
-        }, { once: true });
-        return;
+          return;
+        }
       }
 
       requestAnimationFrame(captureLoop);
     }
 
-    captureLoop();
+    requestAnimationFrame(captureLoop);
   }
 
   // ── Primer frame ─────────────────────────────────────────────────────────
@@ -240,6 +234,11 @@ function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, capt
 
       function tryFirstFrame() {
         const seek = () => {
+          // Rellenar canvas con color oscuro para evitar parpadeo negro durante el seek
+          if (startOffset > 0) {
+            ctx.fillStyle = '#141413';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+          }
           video.currentTime = startOffset;
           video.addEventListener('seeked', showFirstFrame, { once: true });
         };
