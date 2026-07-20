@@ -9,6 +9,57 @@
   <link rel="stylesheet" href="assets/css/styles.css" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <style>
+    @media (max-width: 767px) {
+      .bus-hero-img {
+        content: url('assets/img/buscador/hero-mobile.png');
+        object-position: center center !important;
+      }
+      .bus-hero-wrap {
+        padding-left: 24px !important;
+        padding-bottom: 32px !important;
+      }
+      .bus-hero-title {
+        font-size: 36px !important;
+        line-height: 1.15 !important;
+        letter-spacing: -0.02em !important;
+        margin-bottom: 8px !important;
+      }
+      .bus-hero-label {
+        font-size: 18px !important;
+        line-height: 1.4 !important;
+        margin-bottom: 0 !important;
+      }
+      .bus-hero-btn {
+        display: none !important;
+      }
+
+      /* Sección buscador mobile */
+      #buscador {
+        height: auto !important;
+        padding: 32px 20px 48px !important;
+      }
+      #buscador-inner {
+        flex-direction: column !important;
+        height: auto !important;
+        gap: 0 !important;
+      }
+      #buscador-left {
+        width: 100% !important;
+        height: auto !important;
+      }
+      #buscador-map-col {
+        width: 100% !important;
+        height: 340px !important;
+        flex: none !important;
+        margin-top: 24px !important;
+      }
+      #lista-concesionarios {
+        overflow-y: scroll !important;
+        flex: none !important;
+        margin-top: 24px !important;
+        max-height: 560px !important;
+      }
+    }
     .smart-marker { background: none; border: none; }
     .smart-popup .leaflet-popup-content-wrapper {
       border-radius: 4px;
@@ -73,7 +124,7 @@
   ================================================================ -->
   <section class="relative w-full h-screen min-h-[640px] overflow-hidden">
     <div class="absolute inset-0 bg-neutral-800">
-      <img src="assets/img/buscador/hero.jpg" alt="Buscador de concesionarios" class="w-full h-full object-cover" style="object-position:center top;" />
+      <img src="assets/img/buscador/hero.jpg" alt="Buscador de concesionarios" class="bus-hero-img w-full h-full object-cover" style="object-position:center top;" />
     </div>
     <div class="absolute top-0 left-0 right-0 pointer-events-none" style="height:170px; z-index:5; background:linear-gradient(to bottom,rgba(20,20,19,0.65) 0%,rgba(20,20,19,0) 100%);"></div>
     <div class="absolute bottom-0 left-0 right-0 pointer-events-none" style="height:261px; z-index:5; background:linear-gradient(to bottom,rgba(0,0,0,0) 0%,rgba(0,0,0,0.85) 100%);"></div>
@@ -101,10 +152,10 @@
       </div>
     </nav>
 
-    <div class="absolute bottom-0 left-0 right-0 z-10" style="padding-left:56px; padding-bottom:68px;">
-      <h1 class="font-smart-next font-normal text-white" style="font-size:34px; line-height:1.1; margin-bottom:12px;">Buscador de concesionarios.</h1>
-      <p class="font-smart-sans text-white" style="font-size:19px; opacity:0.9; margin-bottom:33px;">Encontrá tu concesionario más cercano.</p>
-      <a href="#buscador" class="font-smart-sans" style="display:inline-flex; align-items:center; height:50px; padding:0 28px; background:white; border-radius:25px; font-size:16px; color:#141413; text-decoration:none; font-weight:600;">Realizar consulta</a>
+    <div class="bus-hero-wrap absolute bottom-0 left-0 right-0 z-10" style="padding-left:56px; padding-bottom:68px;">
+      <h1 class="bus-hero-title font-smart-next font-normal text-white" style="font-size:34px; line-height:1.1; margin-bottom:12px;">Buscador de concesionarios.</h1>
+      <p class="bus-hero-label font-smart-sans text-white" style="font-size:19px; opacity:0.9; margin-bottom:33px;">Encontrá tu concesionario más cercano.</p>
+      <a href="#buscador" class="bus-hero-btn font-smart-sans" style="display:inline-flex; align-items:center; height:50px; padding:0 28px; background:white; border-radius:25px; font-size:16px; color:#141413; text-decoration:none; font-weight:600;">Realizar consulta</a>
     </div>
   </section>
 
@@ -112,10 +163,10 @@
        BUSCADOR + MAPA
   ================================================================ -->
   <section id="buscador" class="w-full bg-white" style="padding:64px 56px 80px; height:100vh; box-sizing:border-box;">
-    <div style="display:flex; gap:48px; height:100%;">
+    <div id="buscador-inner" style="display:flex; gap:48px; height:100%;">
 
       <!-- Columna izquierda: buscador + listado -->
-      <div style="width:380px; flex-shrink:0; display:flex; flex-direction:column; height:100%;">
+      <div id="buscador-left" style="width:380px; flex-shrink:0; display:flex; flex-direction:column; height:100%;">
 
         <!-- Título -->
         <h2 class="font-smart-next" style="font-size:27px; color:#141413; line-height:1.2; margin-bottom:24px;">Encontrá la sucursal smart más cercana.</h2>
@@ -270,7 +321,7 @@
       </div>
 
       <!-- Columna derecha: mapa -->
-      <div style="flex:1; height:100%; overflow:hidden;">
+      <div id="buscador-map-col" style="flex:1; height:100%; overflow:hidden;">
         <div id="map" style="width:100%; height:100%;"></div>
       </div>
 
@@ -377,12 +428,18 @@
         activateMarker(i);
         const marker = window.mapMarkers[i];
         if (marker) { map.setView(marker.getLatLng(), 15); marker.openPopup(); }
+        if (window.innerWidth < 768) {
+          document.getElementById('buscador-map-col').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
       });
       const btn = item.querySelector('button');
       if (btn) btn.addEventListener('click', function() {
         activateMarker(i);
         const marker = window.mapMarkers[i];
         if (marker) { map.setView(marker.getLatLng(), 15); marker.openPopup(); }
+        if (window.innerWidth < 768) {
+          document.getElementById('buscador-map-col').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
       });
     });
 
@@ -422,6 +479,25 @@
 
 
   <script>
+    // Reordenamiento mobile: título → input → botones → mapa → lista
+    (function () {
+      if (window.innerWidth >= 768) return;
+      var inner   = document.getElementById('buscador-inner');
+      var mapCol  = document.getElementById('buscador-map-col');
+      var lista   = document.getElementById('lista-concesionarios');
+      var noRes   = document.getElementById('no-resultados');
+      var left    = document.getElementById('buscador-left');
+      if (!inner || !mapCol || !lista || !left) return;
+      // sacar lista (y mensaje sin resultados) del left-col
+      left.removeChild(lista);
+      if (noRes) left.removeChild(noRes);
+      // mapa después del left-col
+      inner.appendChild(mapCol);
+      // lista después del mapa
+      inner.appendChild(lista);
+      if (noRes) inner.appendChild(noRes);
+    })();
+
     function toggleModelosDropdown() {
       const menu    = document.getElementById('modelos-menu');
       const chevron = document.getElementById('modelos-chevron');
