@@ -214,6 +214,9 @@ select option { color: #111111; }
 /* ── brabus: imagen mobile-only — oculta en desktop ── */
 .brabus-collab-img-mobile { display: none; }
 
+/* ── brabus: gradiente specs mobile-only — oculto en desktop ── */
+.brabus-specs-gradient-mobile { display: none; }
+
 /* ════════════════════════════════════════════════════════════════
    MOBILE OVERRIDES  (max-width: 767px)
    Todo lo que esté aquí sobreescribe los estilos de arriba
@@ -348,6 +351,53 @@ select option { color: #111111; }
 
   /* ── brabus: imagen mobile-only post-texto ── */
   .brabus-collab-img-mobile { display: flex; justify-content: center; }
+
+  /* ── brabus: gradiente specs — visible en mobile ── */
+  .brabus-specs-gradient-mobile { display: block; opacity: 0.45; }
+
+  /* ── brabus: specs group — mobile ── */
+  .brabus-specs-group {
+    left: 34px !important;
+    top: 45px !important;
+    width: 236px !important;
+    height: 204.51px !important;
+  }
+  /* Números */
+  .brabus-specs-group #spec-accel,
+  .brabus-specs-group #spec-range,
+  .brabus-specs-group p[style*="font-size:36px"] {
+    font-size: 21px !important;
+    line-height: 1.2 !important;
+  }
+  /* Labels */
+  .brabus-specs-group p[style*="font-size:13px"] {
+    font-size: 7.4px !important;
+  }
+  /* Grid columns */
+  .brabus-specs-group div[style*="grid-template-columns:112px"] {
+    grid-template-columns: 77px 1fr !important;
+    column-gap: 6px !important;
+  }
+  /* Espaciado entre filas de specs */
+  .brabus-specs-group div[style*="margin-bottom:40px"],
+  .brabus-specs-group div[style*="margin-bottom:30px"] {
+    margin-bottom: 8px !important;
+  }
+  /* Párrafo disclaimer */
+  .brabus-specs-group p[style*="font-size:13.82px"] {
+    font-size: 8px !important;
+    margin-bottom: 11px !important;
+  }
+  /* Botón */
+  .brabus-specs-btn {
+    width: 155px !important;
+    height: 24px !important;
+    font-size: 9px !important;
+  }
+  .brabus-specs-toggle {
+    left: 34px !important;
+    bottom: 40px !important;
+  }
 
   /* ── brabus: sección "La colaboración" — mobile ── */
   .brabus-collab-wrap {
