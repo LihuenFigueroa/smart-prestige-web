@@ -224,6 +224,12 @@ select option { color: #111111; }
    ════════════════════════════════════════════════════════════════ */
 @media (max-width: 767px) {
 
+  /* ── Links deshabilitados en mobile ── */
+  .mob-disabled {
+    opacity: 0.35;
+    pointer-events: none;
+  }
+
   /* ── Feature cards (home) — layout vertical ── */
   #cards-track {
     flex-direction: column;

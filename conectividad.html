@@ -7,6 +7,69 @@
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="assets/css/tailwind.css" />
   <link rel="stylesheet" href="assets/css/styles.css" />
+  <style>
+    @media (max-width: 767px) {
+      .con-hero-img {
+        content: url('assets/img/conectividad/hero-mobile.png');
+        object-position: center center !important;
+      }
+      .con-hero-text-wrap {
+        top: unset !important;
+        left: 24px !important;
+        padding-left: 0 !important;
+        padding-bottom: 32px !important;
+        width: 257px !important;
+      }
+      /* Carruseles — apilado vertical */
+      #track-cc1, #track-cc2 {
+        flex-direction: column !important;
+        overflow-x: visible !important;
+        cursor: default !important;
+        gap: 1.5rem !important;
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+      }
+      #track-cc1 .c-card, #track-cc2 .c-card {
+        width: 100% !important;
+        flex-shrink: 0;
+      }
+      #track-cc1 .c-card__text, #track-cc2 .c-card__text {
+        max-width: 88% !important;
+        padding-left: 6px !important;
+        padding-bottom: 8px !important;
+      }
+      #track-cc1 .c-card__title, #track-cc2 .c-card__title {
+        font-size: 18px !important;
+        line-height: 1.25 !important;
+        margin-bottom: 6px !important;
+      }
+      #track-cc1 .c-card__desc, #track-cc2 .c-card__desc {
+        font-size: 13px !important;
+        line-height: 1.45 !important;
+      }
+
+      /* Intro text */
+      .con-intro-section {
+        padding-left: 32px !important;
+        padding-right: 32px !important;
+      }
+      .con-intro-text {
+        font-size: 18px !important;
+      }
+
+      .con-hero-label {
+        font-size: 19.58px !important;
+        line-height: 140% !important;
+        margin-bottom: 0 !important;
+        opacity: 1 !important;
+      }
+      .con-hero-title {
+        font-size: 39.16px !important;
+        line-height: 120% !important;
+        letter-spacing: -0.02em !important;
+      }
+    }
+  </style>
 </head>
 <body class="bg-white font-smart-next">
 
@@ -54,7 +117,7 @@
   ================================================================ -->
   <section class="relative w-full h-screen min-h-[640px] overflow-hidden">
     <div class="absolute inset-0 bg-neutral-800">
-      <img src="assets/img/conectividad/hero.jpg" alt="Conectividad smart" class="w-full h-full object-cover" />
+      <img src="assets/img/conectividad/hero.jpg" alt="Conectividad smart" class="con-hero-img w-full h-full object-cover" />
     </div>
     <div class="absolute top-0 left-0 right-0 pointer-events-none" style="height:170px; z-index:5; background:linear-gradient(to bottom,rgba(20,20,19,0.65) 0%,rgba(20,20,19,0) 100%);"></div>
     <div class="absolute bottom-0 left-0 right-0 pointer-events-none" style="height:261px; z-index:5; background:linear-gradient(to bottom,rgba(0,0,0,0) 0%,rgba(0,0,0,0.85) 100%);"></div>
@@ -82,17 +145,17 @@
       </div>
     </nav>
 
-    <div class="absolute bottom-0 left-0 right-0 z-10" style="padding-left:56px; padding-bottom:74px;">
-      <p class="font-smart-sans text-white" style="font-size:16px; margin-bottom:8px; opacity:0.9;">Tecnología de integración</p>
-      <h1 class="font-smart-next font-normal text-white" style="font-size:34px; line-height:1.1;">Tu auto piensa como vos.</h1>
+    <div class="con-hero-text-wrap absolute bottom-0 left-0 right-0 z-10" style="padding-left:56px; padding-bottom:74px;">
+      <p class="con-hero-label font-smart-sans text-white" style="font-size:16px; margin-bottom:8px; opacity:0.9;">Tecnología de integración</p>
+      <h1 class="con-hero-title font-smart-next font-normal text-white" style="font-size:34px; line-height:1.1;">Tu auto piensa como vos.</h1>
     </div>
   </section>
 
   <!-- ================================================================
        INTRO TEXT
   ================================================================ -->
-  <section style="background:white; padding:64px 81px 80px;">
-    <p class="font-smart-sans" style="font-size:26px; color:#141413; line-height:1.5; max-width:1176px;">
+  <section class="con-intro-section" style="background:white; padding:64px 81px 80px;">
+    <p class="con-intro-text font-smart-sans" style="font-size:26px; color:#141413; line-height:1.5; max-width:1176px;">
       El smart #1 y el #3 son vehículos diseñados desde cero en la era digital. El sistema de infoentretenimiento se integra con el ecosistema Hello smart: desde la pantalla central hasta tu teléfono, todo funciona en red. <strong class="font-smart-sans">Cada función está pensada para que la tecnología quede al servicio del manejo.</strong>
     </p>
   </section>
@@ -112,9 +175,9 @@
           <div class="c-card__body">
             <div class="c-card__text">
               <p class="c-card__title">Hello smart App</p>
-              <p class="c-card__desc">Controlá tu vehículo, consultá, monitoreá y accedé a los reportes de manejo desde donde estés, las 24 hs del día.</p>
+              <p class="c-card__desc">Controlá tu auto desde tu celular: monitoreá la carga, programá la climatización antes de subir y localizá el vehículo en cualquier momento. Tu smart, siempre conectado a vos.</p>
             </div>
-            <a href="#" class="font-smart-sans" style="display:inline-flex; align-items:center; height:28px; padding:0 16px; border:1px solid rgba(255,255,255,0.7); border-radius:14px; font-size:10px; color:#fff; text-decoration:none; margin-top:10px; white-space:nowrap;">Descargar</a>
+            <a href="#" style="display:inline-flex; align-items:center; height:32px; padding:0 36px; background:#fff; border:none; border-radius:16px; font-size:11px; font-family:'FOR_smart_Sans','Helvetica Neue',Helvetica,Arial,sans-serif; color:#141413; text-decoration:none; margin-top:10px; white-space:nowrap;">Descargar</a>
           </div>
         </div>
 
@@ -123,8 +186,8 @@
           <div class="c-card__gradient"></div>
           <div class="c-card__body">
             <div class="c-card__text">
-              <p class="c-card__title">Apple CarPlay® y Android Auto inalámbrico</p>
-              <p class="c-card__desc">Conectamos tu teléfono a la pantalla central de forma inalámbrica. Música, Maps, Podcasts, Mensajes, todo desde tu mano.</p>
+              <p class="c-card__title">Apple CarPlay® y Android Auto® inalámbrico</p>
+              <p class="c-card__desc">Tu smartphone se conecta sin cables. Llamadas, mapas, música y mensajes integrados, sin perder la vista del camino.</p>
             </div>
           </div>
         </div>
@@ -135,7 +198,7 @@
           <div class="c-card__body">
             <div class="c-card__text">
               <p class="c-card__title">Actualización OTA (Over-The-Air)</p>
-              <p class="c-card__desc">El software de tu smart se actualiza de forma remota y automáticamente.</p>
+              <p class="c-card__desc">El software de tu smart se actualiza de forma remota. Sin ir al taller, sin interrupciones.</p>
             </div>
           </div>
         </div>
@@ -146,7 +209,7 @@
           <div class="c-card__body">
             <div class="c-card__text">
               <p class="c-card__title">Keyless entry</p>
-              <p class="c-card__desc">Accedé a tu smart sin las llaves, desde el bolsillo.</p>
+              <p class="c-card__desc">Acercate a tu smart y las puertas se abren. Usar la llave es opcional.</p>
             </div>
           </div>
         </div>
@@ -164,7 +227,7 @@
           <div class="c-card__body">
             <div class="c-card__text">
               <p class="c-card__title">Asistente de voz</p>
-              <p class="c-card__desc">Con él podés controlar la navegación, música, llamadas y el clima sin soltar el volante. El auto responde de forma intuitiva.</p>
+              <p class="c-card__desc">Controlá la navegación, el clima y los medios sin soltar el volante. El auto responde cuando hablás.</p>
             </div>
           </div>
         </div>
@@ -174,8 +237,8 @@
           <div class="c-card__gradient"></div>
           <div class="c-card__body">
             <div class="c-card__text">
-              <p class="c-card__title">Pantalla central 12.8"</p>
-              <p class="c-card__desc">Pantalla táctil MBUX que centraliza navegación, climatización y entretenimiento en una interfaz clara e intuitiva.</p>
+              <p class="c-card__title">Pantalla central de 12,8"</p>
+              <p class="c-card__desc">Todo el control del vehículo en una pantalla táctil de alta resolución. Y frente al conductor, una pantalla de instrumentos de 9,2" con información de conducción a simple vista.</p>
             </div>
           </div>
         </div>
@@ -185,8 +248,8 @@
           <div class="c-card__gradient"></div>
           <div class="c-card__body">
             <div class="c-card__text">
-              <p class="c-card__title">Cuadro de instrumentos digital 9.2"</p>
-              <p class="c-card__desc">Panel LCD de alta definición para monitorear velocidad, autonomía y asistencias en tiempo real.</p>
+              <p class="c-card__title">Cuadro de instrumentos digital 9,2"</p>
+              <p class="c-card__desc">El cuadro de instrumentos de 9,2" es un panel de material LCD de alta definición que se usa para mostrar información de conducción, música y otros datos relacionados. Tiene una resolución de 1920x384 píxeles.</p>
             </div>
           </div>
         </div>
@@ -197,7 +260,7 @@
           <div class="c-card__body">
             <div class="c-card__text">
               <p class="c-card__title">Head Up display 10"</p>
-              <p class="c-card__desc">Información proyectada en el parabrisas para mantener la vista en el camino sin distracciones.</p>
+              <p class="c-card__desc">La imagen se proyecta en la luna delantera del vehículo, por lo que el conductor no tiene que bajar la cabeza para obtener la información que necesita, lo cual ofrece una experiencia de conducción más segura.</p>
             </div>
           </div>
         </div>
@@ -302,7 +365,34 @@
         }, { passive: true });
       }
 
+      if (window.innerWidth >= 768) {
       ['track-cc1', 'track-cc2'].forEach(initDragCarousel);
+    }
+    })();
+
+    // ── Cards conectividad — estilos mobile ──
+    (function () {
+      if (window.innerWidth >= 768) return;
+      ['track-cc1', 'track-cc2'].forEach(function (id) {
+        var t = document.getElementById(id);
+        if (!t) return;
+        t.style.paddingLeft = '16px';
+        t.style.paddingRight = '16px';
+      });
+      document.querySelectorAll('#track-cc1 .c-card__title, #track-cc2 .c-card__title').forEach(function (el) {
+        el.style.fontSize   = '18px';
+        el.style.lineHeight = '1.25';
+        el.style.marginBottom = '6px';
+      });
+      document.querySelectorAll('#track-cc1 .c-card__desc, #track-cc2 .c-card__desc').forEach(function (el) {
+        el.style.fontSize   = '13px';
+        el.style.lineHeight = '1.45';
+      });
+      document.querySelectorAll('#track-cc1 .c-card__text, #track-cc2 .c-card__text').forEach(function (el) {
+        el.style.maxWidth = '88%';
+        el.style.paddingLeft = '6px';
+        el.style.paddingBottom = '8px';
+      });
     })();
 
     function toggleModelosDropdown() {
