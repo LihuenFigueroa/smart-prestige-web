@@ -7,6 +7,63 @@
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="assets/css/tailwind.css" />
   <link rel="stylesheet" href="assets/css/styles.css" />
+  <style>
+    @media (max-width: 767px) {
+      .mov-hero-img {
+        content: url('assets/img/movilidad/hero-mobile.png');
+        object-position: center center !important;
+      }
+      .mov-hero-text-wrap {
+        bottom: unset !important;
+        top: 110px !important;
+        padding-left: 24px !important;
+        padding-right: 24px !important;
+        padding-bottom: 0 !important;
+      }
+      .mov-hero-text-wrap svg {
+        width: 100% !important;
+        height: auto !important;
+      }
+
+      /* FAQ — márgenes laterales + texto respuestas */
+      .mov-faq-section {
+        padding-left: 24px !important;
+        padding-right: 24px !important;
+      }
+      .mov-faq-section .font-smart-sans {
+        font-size: 16px !important;
+      }
+
+      /* 3 Cards — carrusel mobile */
+      #mov-cards-section {
+        padding: 32px 0 40px !important;
+        overflow: hidden;
+      }
+      #mov-cards-track {
+        padding-left: 1.25rem !important;
+        gap: 4rem !important;
+      }
+      .mov-card {
+        flex: none !important;
+        width: calc(100vw - 2.5rem) !important;
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+        box-sizing: border-box;
+      }
+      .mov-card-top-text {
+        font-size: 17px !important;
+        line-height: 1.2 !important;
+      }
+      .mov-card .font-smart-next {
+        font-size: 15px !important;
+        line-height: 1.2 !important;
+      }
+      .mov-card .font-smart-sans:not(.mov-card-top-text):not(strong) {
+        font-size: 12px !important;
+        line-height: 1.3 !important;
+      }
+    }
+  </style>
 </head>
 <body class="bg-white font-smart-next">
 
@@ -54,7 +111,7 @@
   ================================================================ -->
   <section class="relative w-full h-screen min-h-[640px] overflow-hidden">
     <div class="absolute inset-0 bg-neutral-800">
-      <img src="assets/img/movilidad/hero.jpg" alt="Movilidad eléctrica" class="w-full h-full object-cover" style="object-position: center center;" />
+      <img src="assets/img/movilidad/hero.jpg" alt="Movilidad eléctrica" class="mov-hero-img w-full h-full object-cover" style="object-position: center center;" />
     </div>
     <div class="absolute top-0 left-0 right-0 pointer-events-none" style="height:170px; z-index:5; background:linear-gradient(to bottom,rgba(20,20,19,0.65) 0%,rgba(20,20,19,0) 100%);"></div>
     <div class="absolute bottom-0 left-0 right-0 pointer-events-none" style="height:261px; z-index:5; background:linear-gradient(to bottom,rgba(0,0,0,0) 0%,rgba(0,0,0,0.85) 100%);"></div>
@@ -82,7 +139,7 @@
       </div>
     </nav>
 
-    <div class="absolute bottom-0 left-0 right-0 z-10" style="padding-left:56px; padding-bottom:56px;">
+    <div class="mov-hero-text-wrap absolute bottom-0 left-0 right-0 z-10" style="padding-left:56px; padding-bottom:56px;">
       <svg width="272" height="71" viewBox="0 0 272 71" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block; margin-bottom:16px;">
 <path d="M14.9531 26.1406H0.28125V23.9219H2.39062V6.85938H0.28125V4.59375H14.9531V10.8906H12.6719V6.85938H4.92188V13.9062H10.0781V16.1719H4.92188V23.9219H12.6719V19.7031H14.9531V26.1406ZM22.2269 24H24.8675V26.1406H17.1175V24H19.7738V4.375L17.1175 4.57812L16.9769 2.51562L22.2269 2.07812V24ZM38.485 22.1562L40.0006 23.7188C38.6413 25.3281 36.5944 26.5938 34.0475 26.5938C28.0475 26.5938 26.735 21.3906 26.735 17.5156C26.735 13.9844 28.235 9.125 33.5944 9.125C39.3288 9.125 40.0944 15.25 40.0944 18.0469V18.6719H29.3444C29.3913 21.9219 31.11 24.375 34.1569 24.375C35.6413 24.375 37.235 23.5781 38.485 22.1562ZM33.5944 11.3438C30.4069 11.3438 29.3444 14.2188 29.3444 16.5938H37.5319C37.5319 14.2188 36.5944 11.3438 33.5944 11.3438ZM31.2663 5.75L35.1881 0H37.8288L33.5006 5.75H31.2663ZM53.4306 22.1562L54.9463 23.6875C53.7119 25.375 51.8213 26.5938 49.0713 26.5938C44.8681 26.5938 42.1806 22.8438 42.1806 17.8594C42.1806 13.2188 44.6025 9.125 48.8994 9.125C50.8369 9.125 52.29 10.0312 53.0244 11.5312L53.165 9.54688H54.7744V15.4531H52.915C52.8525 14.7969 52.2744 11.3438 49.1338 11.3438C46.3056 11.3438 44.6338 13.9844 44.6338 17.8594C44.6338 21.7344 46.3369 24.375 49.3056 24.375C50.915 24.375 52.3525 23.5938 53.4306 22.1562ZM58.1575 20.8438V4.59375H60.6106V9.54688H66.1575V11.6875H60.6106V20.5781C60.6106 22.8438 61.1263 24.2188 62.9388 24.2188C63.7981 24.2188 64.5794 24.0156 65.1888 23.7812C65.5325 23.6562 65.8606 23.5 66.1575 23.3281L66.7356 25.3906C66.3138 25.625 65.8606 25.8281 65.4075 26C64.6106 26.2969 63.5794 26.5938 62.5794 26.5938C58.7825 26.5938 58.1575 23.7969 58.1575 20.8438ZM68.3688 11.6875V9.54688H72.6344L72.8063 11.875C74.2125 10.2656 75.6031 9.125 77.5563 9.125C78.1656 9.125 78.6813 9.28125 79.0719 9.42188C79.3063 9.5 79.5094 9.59375 79.6969 9.70312L78.9156 11.9062C78.7281 11.8281 78.5406 11.75 78.3531 11.6875C78.025 11.5781 77.5875 11.4688 77.1969 11.4688C74.9469 11.4688 73.6969 13.5469 72.9469 14.375V24H77.3688V26.1406H68.3688V24H70.4938V11.6875H68.3688ZM80.955 26.1406V24H83.4863V11.6875H80.955V9.54688H85.9394V24H88.455V26.1406H80.955ZM86.08 2.53125V5.75H83.1113V2.53125H86.08ZM101.682 22.1562L103.198 23.6875C101.963 25.375 100.073 26.5938 97.3225 26.5938C93.1194 26.5938 90.4319 22.8438 90.4319 17.8594C90.4319 13.2188 92.8538 9.125 97.1506 9.125C99.0881 9.125 100.541 10.0312 101.276 11.5312L101.416 9.54688H103.026V15.4531H101.166C101.104 14.7969 100.526 11.3438 97.385 11.3438C94.5569 11.3438 92.885 13.9844 92.885 17.8594C92.885 21.7344 94.5881 24.375 97.5569 24.375C99.1663 24.375 100.604 23.5938 101.682 22.1562ZM112.143 11.3438C109.393 11.3438 107.706 13.8438 107.706 17.8594C107.706 21.8906 109.393 24.375 112.143 24.375C114.893 24.375 116.581 21.8906 116.581 17.8594C116.581 13.8438 114.893 11.3438 112.143 11.3438ZM112.143 9.125C116.299 9.125 119.034 12.875 119.034 17.8594C119.034 22.8438 116.299 26.5938 112.143 26.5938C107.971 26.5938 105.253 22.8438 105.253 17.8594C105.253 12.875 107.971 9.125 112.143 9.125ZM136.05 9.125C137.503 9.125 139.894 9.84375 141.019 12.4531V4.45312L137.769 4.64062L137.613 2.48438L143.472 2.07812V24H145.613V26.1406H141.191L141.019 23.375C140.081 25.5156 138.409 26.5938 136.003 26.5938C133.566 26.5938 129.738 24.6719 129.738 17.8594C129.738 11.0781 133.503 9.125 136.05 9.125ZM136.597 11.3438C134.597 11.3438 132.191 12.9531 132.191 17.8594C132.191 22.9219 134.784 24.375 136.55 24.375C138.55 24.375 141.097 23 141.097 17.8594C141.097 13.1406 138.722 11.3438 136.597 11.3438ZM159.355 22.1562L160.871 23.7188C159.511 25.3281 157.464 26.5938 154.917 26.5938C148.917 26.5938 147.605 21.3906 147.605 17.5156C147.605 13.9844 149.105 9.125 154.464 9.125C160.199 9.125 160.964 15.25 160.964 18.0469V18.6719H150.214C150.261 21.9219 151.98 24.375 155.027 24.375C156.511 24.375 158.105 23.5781 159.355 22.1562ZM154.464 11.3438C151.277 11.3438 150.214 14.2188 150.214 16.5938H158.402C158.402 14.2188 157.464 11.3438 154.464 11.3438ZM180.293 11.6875V9.54688H186.231V11.6875H184.824L179.777 26.375H177.074L172.059 11.6875H170.621V9.54688H176.668V11.6875H174.387L178.434 23.875L182.496 11.6875H180.293ZM199.114 22.1562L200.629 23.7188C199.27 25.3281 197.223 26.5938 194.676 26.5938C188.676 26.5938 187.364 21.3906 187.364 17.5156C187.364 13.9844 188.864 9.125 194.223 9.125C199.958 9.125 200.723 15.25 200.723 18.0469V18.6719H189.973C190.02 21.9219 191.739 24.375 194.786 24.375C196.27 24.375 197.864 23.5781 199.114 22.1562ZM194.223 11.3438C191.036 11.3438 189.973 14.2188 189.973 16.5938H198.161C198.161 14.2188 197.223 11.3438 194.223 11.3438ZM203.044 11.6875V9.54688H207.309L207.481 11.875C208.887 10.2656 210.278 9.125 212.231 9.125C212.841 9.125 213.356 9.28125 213.747 9.42188C213.981 9.5 214.184 9.59375 214.372 9.70312L213.591 11.9062C213.403 11.8281 213.216 11.75 213.028 11.6875C212.7 11.5781 212.262 11.4688 211.872 11.4688C209.622 11.4688 208.372 13.5469 207.622 14.375V24H212.044V26.1406H203.044V24H205.169V11.6875H203.044ZM221.505 9.125C222.958 9.125 225.349 9.84375 226.474 12.4531V4.45312L223.224 4.64062L223.068 2.48438L228.927 2.07812V24H231.068V26.1406H226.646L226.474 23.375C225.536 25.5156 223.864 26.5938 221.458 26.5938C219.021 26.5938 215.193 24.6719 215.193 17.8594C215.193 11.0781 218.958 9.125 221.505 9.125ZM222.052 11.3438C220.052 11.3438 217.646 12.9531 217.646 17.8594C217.646 22.9219 220.239 24.375 222.005 24.375C224.005 24.375 226.552 23 226.552 17.8594C226.552 13.1406 224.177 11.3438 222.052 11.3438ZM247.497 24V26.1406H243.247L243.076 24.0312C241.982 25.2969 240.247 26.5938 237.982 26.5938C235.482 26.5938 233.076 25.1719 233.076 21.3438C233.076 17.6406 235.638 16 239.513 16H242.904V14.75C242.904 12.375 241.404 11.2656 238.997 11.2656C237.747 11.2656 236.732 11.4844 235.997 11.6875C235.576 11.8125 235.185 11.9531 234.826 12.1094L234.232 10.0469C234.685 9.875 235.185 9.73438 235.701 9.59375C236.591 9.35938 237.81 9.125 239.122 9.125C242.732 9.125 245.357 10.8906 245.357 15.1719V24H247.497ZM238.435 24.4219C240.185 24.4219 241.857 23.0938 242.904 21.8906V18.1406H239.513C237.435 18.1406 235.529 18.75 235.529 21.3438C235.529 23.7656 237.107 24.4219 238.435 24.4219ZM255.771 9.125C257.224 9.125 259.615 9.84375 260.74 12.4531V4.45312L257.49 4.64062L257.334 2.48438L263.193 2.07812V24H265.334V26.1406H260.912L260.74 23.375C259.803 25.5156 258.131 26.5938 255.724 26.5938C253.287 26.5938 249.459 24.6719 249.459 17.8594C249.459 11.0781 253.224 9.125 255.771 9.125ZM256.318 11.3438C254.318 11.3438 251.912 12.9531 251.912 17.8594C251.912 22.9219 254.506 24.375 256.271 24.375C258.271 24.375 260.818 23 260.818 17.8594C260.818 13.1406 258.443 11.3438 256.318 11.3438ZM271.311 22.7344V26.1406H268.154V22.7344H271.311ZM10.8906 42.5938H12.7656V49.1094H10.5781C10.4375 48.2812 10.2031 47.5312 9.85938 46.8906C9.23438 45.7656 8.17188 44.6719 6.21875 44.6719C3.59375 44.6719 2.67188 46.1719 2.67188 47.8906C2.67188 49.9844 4.17188 51.0156 6.07812 51.75C6.39062 51.8594 6.70312 51.9844 7.03125 52.1094L8.04688 52.4844C10.75 53.4844 13.4375 54.7188 13.4375 58.625C13.4375 62.5469 11.0156 64.5938 7.46875 64.5938C4.21875 64.5938 2.5 62.4531 2.20312 61.6094L2 64.1406H0.0625V58.125H2.23438C2.46875 58.9062 2.79688 59.6094 3.23438 60.2188C3.98438 61.25 5.20312 62.2969 7.125 62.2969C9.32812 62.2969 10.7812 61.0312 10.7812 58.7812C10.7812 56.7656 9.28125 55.75 7.375 55.0781L6.46875 54.75L5.39062 54.3438C2.6875 53.2969 0 51.9688 0 47.9219C0 45.2188 1.625 42.375 5.82812 42.375C8.51562 42.375 10.3594 44.0938 10.6875 45.0938L10.8906 42.5938ZM15.8363 64.1406V62H18.3675V49.6875H15.8363V47.5469H20.8206V62H23.3363V64.1406H15.8363ZM20.9613 40.5312V43.75H17.9925V40.5312H20.9613ZM25.5475 64.1406V62H27.6725V49.6875H25.5475V47.5469H29.7819L29.9694 49.9531C31.2506 48.4219 32.86 47.125 34.985 47.125C38.2819 47.125 39.6413 48.6406 39.6413 54.0625V62H41.7819V64.1406H35.235V62H37.1881V54.0625C37.1881 50.9375 36.7819 49.5 34.4225 49.5C32.4538 49.5 31.1256 50.9531 30.1256 52.0312V62H32.0788V64.1406H25.5475ZM63.6731 60.1562L65.1888 61.6875C63.9544 63.375 62.0638 64.5938 59.3138 64.5938C55.1106 64.5938 52.4231 60.8438 52.4231 55.8594C52.4231 51.2188 54.845 47.125 59.1419 47.125C61.0794 47.125 62.5325 48.0312 63.2669 49.5312L63.4075 47.5469H65.0169V53.4531H63.1575C63.095 52.7969 62.5169 49.3438 59.3763 49.3438C56.5481 49.3438 54.8763 51.9844 54.8763 55.8594C54.8763 59.7344 56.5794 62.375 59.5481 62.375C61.1575 62.375 62.595 61.5938 63.6731 60.1562ZM74.1344 49.3438C71.3844 49.3438 69.6969 51.8438 69.6969 55.8594C69.6969 59.8906 71.3844 62.375 74.1344 62.375C76.8844 62.375 78.5719 59.8906 78.5719 55.8594C78.5719 51.8438 76.8844 49.3438 74.1344 49.3438ZM74.1344 47.125C78.2906 47.125 81.025 50.875 81.025 55.8594C81.025 60.8438 78.2906 64.5938 74.1344 64.5938C69.9625 64.5938 67.2438 60.8438 67.2438 55.8594C67.2438 50.875 69.9625 47.125 74.1344 47.125ZM83.455 64.1406V62H85.58V49.6875H83.455V47.5469H87.8456L87.9706 49C88.8925 48.1094 90.7675 47.125 92.6581 47.125C94.2675 47.125 95.0644 47.9844 95.5644 48.8125C96.1894 48.3125 98.0956 47.125 100.424 47.125C103.408 47.125 104.471 49.6094 104.471 51.9531V62H106.424V64.1406H102.018V52.6875C102.018 51.1094 101.846 49.3438 99.9081 49.3438C98.3769 49.3438 96.4706 50.5156 96.1738 50.6875C96.3456 51.4219 96.3456 51.8438 96.3456 52.4531V62H98.5956V64.1406H93.8925V52.4531C93.8925 50.9219 93.6113 49.3438 91.7831 49.3438C90.9081 49.3438 89.9863 49.75 89.2519 50.1406C88.83 50.375 88.4238 50.625 88.0331 50.9219V62H90.2988V64.1406H83.455ZM118.104 64.5938C116.448 64.5938 114.26 63.75 113.088 61.1562V68.8125H115.51V70.9688H108.51V68.8125H110.635V49.6875H108.51V47.5469H113.088V50.5312C114.213 47.9688 116.291 47.125 118.104 47.125C120.729 47.125 124.369 48.8281 124.369 55.7812C124.369 62.7812 120.666 64.5938 118.104 64.5938ZM117.541 62.375C119.244 62.375 121.932 60.9531 121.932 55.7812C121.932 50.6094 119.244 49.3438 117.541 49.3438C115.619 49.3438 113.026 50.7969 113.026 55.7812C113.026 60.6094 115.619 62.375 117.541 62.375ZM126.721 49.6875V47.5469H130.987L131.159 49.875C132.565 48.2656 133.956 47.125 135.909 47.125C136.518 47.125 137.034 47.2812 137.424 47.4219C137.659 47.5 137.862 47.5938 138.049 47.7031L137.268 49.9062C137.081 49.8281 136.893 49.75 136.706 49.6875C136.378 49.5781 135.94 49.4688 135.549 49.4688C133.299 49.4688 132.049 51.5469 131.299 52.375V62H135.721V64.1406H126.721V62H128.846V49.6875H126.721ZM145.667 49.3438C142.917 49.3438 141.229 51.8438 141.229 55.8594C141.229 59.8906 142.917 62.375 145.667 62.375C148.417 62.375 150.104 59.8906 150.104 55.8594C150.104 51.8438 148.417 49.3438 145.667 49.3438ZM145.667 47.125C149.823 47.125 152.557 50.875 152.557 55.8594C152.557 60.8438 149.823 64.5938 145.667 64.5938C141.495 64.5938 138.776 60.8438 138.776 55.8594C138.776 50.875 141.495 47.125 145.667 47.125ZM154.988 64.1406V62H157.113V49.6875H154.988V47.5469H159.378L159.503 49C160.425 48.1094 162.3 47.125 164.191 47.125C165.8 47.125 166.597 47.9844 167.097 48.8125C167.722 48.3125 169.628 47.125 171.956 47.125C174.941 47.125 176.003 49.6094 176.003 51.9531V62H177.956V64.1406H173.55V52.6875C173.55 51.1094 173.378 49.3438 171.441 49.3438C169.909 49.3438 168.003 50.5156 167.706 50.6875C167.878 51.4219 167.878 51.8438 167.878 52.4531V62H170.128V64.1406H165.425V52.4531C165.425 50.9219 165.144 49.3438 163.316 49.3438C162.441 49.3438 161.519 49.75 160.784 50.1406C160.363 50.375 159.956 50.625 159.566 50.9219V62H161.831V64.1406H154.988ZM180.386 64.1406V62H182.917V49.6875H180.386V47.5469H185.371V62H187.886V64.1406H180.386ZM185.511 40.5312V43.75H182.542V40.5312H185.511ZM199.879 47.5469H201.488V52.2969H199.691C199.582 51.75 199.379 51.25 199.051 50.8125C198.519 50.0781 197.504 49.3125 195.738 49.3125C192.926 49.3125 192.66 50.9375 192.66 51.6875C192.66 53.8906 194.316 54.2344 196.879 54.6406C199.566 55.1094 202.379 55.9375 202.379 59.5469C202.379 63.1406 200.019 64.5938 197.019 64.5938C194.066 64.5938 192.519 62.9375 191.973 62.1406L191.785 64.1406H190.207V59.125H191.988C192.16 59.7344 192.441 60.2969 192.848 60.7812C193.519 61.625 194.723 62.4219 196.738 62.4219C198.754 62.4219 199.926 61.5781 199.926 59.8125C199.926 57.875 198.426 57.5 196.051 57.0469C193.348 56.5469 190.301 55.8281 190.301 51.8438C190.301 50.2656 190.926 47.125 195.457 47.125C198.066 47.125 199.363 48.3438 199.707 49.1875L199.879 47.5469ZM211.387 49.3438C208.637 49.3438 206.949 51.8438 206.949 55.8594C206.949 59.8906 208.637 62.375 211.387 62.375C214.137 62.375 215.824 59.8906 215.824 55.8594C215.824 51.8438 214.137 49.3438 211.387 49.3438ZM211.387 47.125C215.543 47.125 218.277 50.875 218.277 55.8594C218.277 60.8438 215.543 64.5938 211.387 64.5938C207.215 64.5938 204.496 60.8438 204.496 55.8594C204.496 50.875 207.215 47.125 211.387 47.125ZM230.333 47.5469H231.942V52.2969H230.145C230.036 51.75 229.833 51.25 229.504 50.8125C228.973 50.0781 227.958 49.3125 226.192 49.3125C223.379 49.3125 223.114 50.9375 223.114 51.6875C223.114 53.8906 224.77 54.2344 227.333 54.6406C230.02 55.1094 232.833 55.9375 232.833 59.5469C232.833 63.1406 230.473 64.5938 227.473 64.5938C224.52 64.5938 222.973 62.9375 222.426 62.1406L222.239 64.1406H220.661V59.125H222.442C222.614 59.7344 222.895 60.2969 223.301 60.7812C223.973 61.625 225.176 62.4219 227.192 62.4219C229.208 62.4219 230.379 61.5781 230.379 59.8125C230.379 57.875 228.879 57.5 226.504 57.0469C223.801 56.5469 220.754 55.8281 220.754 51.8438C220.754 50.2656 221.379 47.125 225.911 47.125C228.52 47.125 229.817 48.3438 230.161 49.1875L230.333 47.5469Z" fill="white"/>
 </svg>
@@ -101,12 +158,12 @@
   <!-- ================================================================
        3 CARDS — CARRUSEL
   ================================================================ -->
-  <section style="background:white; padding:48px 81px 56px;">
-    <div style="display:flex; gap:81px; align-items:flex-start;">
+  <section id="mov-cards-section" style="background:white; padding:48px 81px 56px;">
+    <div id="mov-cards-track" style="display:flex; gap:81px; align-items:flex-start;">
 
       <!-- Card 1 -->
-      <div style="flex:1; display:flex; flex-direction:column;">
-        <p class="font-smart-sans" style="font-size:14px; color:#141413; line-height:1.65; margin-bottom:20px;"><strong class="font-smart-sans">Los modelos smart #1 y #3 están diseñados para la vida cotidiana y para mucho más.</strong> Batería de gran capacidad, carga rápida y una autonomía que acompaña cada viaje sin que tengas que pensar en el siguiente enchufe.</p>
+      <div class="mov-card" style="flex:1; display:flex; flex-direction:column;">
+        <p class="mov-card-top-text font-smart-sans" style="font-size:14px; color:#141413; line-height:1.65; margin-bottom:20px;"><strong class="font-smart-sans">Los modelos smart #1 y #3 están diseñados para la vida cotidiana y para mucho más.</strong> Batería de gran capacidad, carga rápida y una autonomía que acompaña cada viaje sin que tengas que pensar en el siguiente enchufe.</p>
         <div style="margin-bottom:28px;">
           <a href="buscador.html" style="display:inline-flex; align-items:center; height:36px; padding:0 22px; border:1px solid #141413; border-radius:18px; font-size:12px; color:#141413; text-decoration:none; white-space:nowrap;" class="font-smart-sans">Encontrá tu smart</a>
         </div>
@@ -121,8 +178,8 @@
       </div>
 
       <!-- Card 2 -->
-      <div style="flex:1; display:flex; flex-direction:column;">
-        <p class="font-smart-sans" style="font-size:14px; color:#141413; line-height:1.65; margin-bottom:20px;"><strong class="font-smart-sans">Los modelos smart #1 y #3 están diseñados para la vida cotidiana y para mucho más.</strong> Batería de gran capacidad, carga rápida y una autonomía que acompaña cada viaje sin que tengas que pensar en el siguiente enchufe.</p>
+      <div class="mov-card" style="flex:1; display:flex; flex-direction:column;">
+        <p class="mov-card-top-text font-smart-sans" style="font-size:14px; color:#141413; line-height:1.65; margin-bottom:20px;"><strong class="font-smart-sans">Los modelos smart #1 y #3 están diseñados para la vida cotidiana y para mucho más.</strong> Batería de gran capacidad, carga rápida y una autonomía que acompaña cada viaje sin que tengas que pensar en el siguiente enchufe.</p>
         <div style="margin-bottom:28px;">
           <a href="buscador.html" style="display:inline-flex; align-items:center; height:36px; padding:0 22px; border:1px solid #141413; border-radius:18px; font-size:12px; color:#141413; text-decoration:none; white-space:nowrap;" class="font-smart-sans">Encontrá tu smart</a>
         </div>
@@ -136,8 +193,8 @@
       </div>
 
       <!-- Card 3 -->
-      <div style="flex:1; display:flex; flex-direction:column;">
-        <p class="font-smart-sans" style="font-size:14px; color:#141413; line-height:1.65; margin-bottom:20px;"><strong class="font-smart-sans">Los modelos smart #1 y #3 están diseñados para la vida cotidiana y para mucho más.</strong> Batería de gran capacidad, carga rápida y una autonomía que acompaña cada viaje sin que tengas que pensar en el siguiente enchufe.</p>
+      <div class="mov-card" style="flex:1; display:flex; flex-direction:column;">
+        <p class="mov-card-top-text font-smart-sans" style="font-size:14px; color:#141413; line-height:1.65; margin-bottom:20px;"><strong class="font-smart-sans">Los modelos smart #1 y #3 están diseñados para la vida cotidiana y para mucho más.</strong> Batería de gran capacidad, carga rápida y una autonomía que acompaña cada viaje sin que tengas que pensar en el siguiente enchufe.</p>
         <div style="margin-bottom:28px;">
           <a href="buscador.html" style="display:inline-flex; align-items:center; height:36px; padding:0 22px; border:1px solid #141413; border-radius:18px; font-size:12px; color:#141413; text-decoration:none; white-space:nowrap;" class="font-smart-sans">Encontrá tu smart</a>
         </div>
@@ -156,7 +213,7 @@
   <!-- ================================================================
        TEXTO — TÍTULO + PÁRRAFO
   ================================================================ -->
-  <section style="background:white; padding:64px 81px 80px;">
+  <section class="mov-faq-section" style="background:white; padding:64px 81px 80px;">
     <div style="max-width:760px;">
 
       <div style="margin-bottom:48px;">
@@ -226,14 +283,67 @@
       const menu     = document.getElementById('nav-menu');
       const drawer   = document.getElementById('nav-drawer');
       const backdrop = document.getElementById('nav-backdrop');
-      backdrop.classList.remove('opacity-100');
-      backdrop.classList.add('opacity-0');
+      backdrop.classList.remove('opacity-100');      backdrop.classList.add('opacity-0');
       drawer.classList.add('-translate-x-full');
       setTimeout(() => {
         menu.classList.add('pointer-events-none');
         document.body.style.overflow = '';
       }, 300);
     }
+  </script>
+
+  <!-- ── 3 Cards — carrusel mobile con flechas ── -->
+  <script>
+    (function () {
+      if (window.innerWidth >= 768) return;
+
+      var track = document.getElementById('mov-cards-track');
+      if (!track) return;
+
+      var SVG_PREV = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0.5 10.7949L7.14648 4.14844L7.85352 4.85547L1.20728 11.502H24V12.502H1.20703L7.85352 19.1484L7.14648 19.8555L0.5 13.2092C0.177734 12.887 0 12.4583 0 12.002C0 11.5457 0.177734 11.1169 0.5 10.7949Z" fill="#141413"/></svg>';
+      var SVG_NEXT = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g transform="translate(24,0) scale(-1,1)"><path d="M0.5 10.7949L7.14648 4.14844L7.85352 4.85547L1.20728 11.502H24V12.502H1.20703L7.85352 19.1484L7.14648 19.8555L0.5 13.2092C0.177734 12.887 0 12.4583 0 12.002C0 11.5457 0.177734 11.1169 0.5 10.7949Z" fill="#141413"/></g></svg>';
+
+      var idx    = 0;
+      var slides = track.querySelectorAll('.mov-card');
+
+      track.style.overflow    = 'visible';
+      track.style.touchAction = 'none';
+      track.style.transition  = 'transform 0.32s cubic-bezier(0.4,0,0.2,1)';
+
+      function step() { return window.innerWidth + 24; }
+
+      var btnPrev, btnNext;
+
+      function goTo(i) {
+        i = Math.max(0, Math.min(i, slides.length - 1));
+        idx = i;
+        track.style.transform = 'translateX(-' + (idx * step()) + 'px)';
+        btnPrev.style.opacity       = idx === 0 ? '0.25' : '1';
+        btnNext.style.opacity       = idx === slides.length - 1 ? '0.25' : '1';
+        btnPrev.style.pointerEvents = idx === 0 ? 'none' : '';
+        btnNext.style.pointerEvents = idx === slides.length - 1 ? 'none' : '';
+      }
+
+      var nav = document.createElement('div');
+      nav.style.cssText = 'display:flex;justify-content:flex-end;gap:1.5rem;align-items:center;padding:0.75rem 1.25rem 0;';
+
+      btnPrev = document.createElement('button');
+      btnPrev.innerHTML = SVG_PREV;
+      btnPrev.setAttribute('aria-label', 'Anterior');
+      btnPrev.style.cssText = 'background:none;border:none;padding:0;cursor:pointer;line-height:0;opacity:0.25;transition:opacity 0.2s;pointer-events:none;';
+      btnPrev.addEventListener('click', function () { goTo(idx - 1); });
+
+      btnNext = document.createElement('button');
+      btnNext.innerHTML = SVG_NEXT;
+      btnNext.setAttribute('aria-label', 'Siguiente');
+      btnNext.style.cssText = 'background:none;border:none;padding:0;cursor:pointer;line-height:0;transition:opacity 0.2s;';
+      btnNext.addEventListener('click', function () { goTo(idx + 1); });
+
+      nav.appendChild(btnPrev);
+      nav.appendChild(btnNext);
+      var section = document.getElementById('mov-cards-section');
+      section.appendChild(nav);
+    })();
   </script>
 </body>
 </html>
