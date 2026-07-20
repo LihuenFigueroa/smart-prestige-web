@@ -1286,9 +1286,11 @@
 
       var indices = {};
 
+      var GAP_PX = 40; /* 2.5rem */
+
       function step() {
-        /* card width (100vw - 1.25rem = vw-20px) + gap (1rem = 16px) = vw - 4px */
-        return window.innerWidth - 4;
+        /* card width (100vw - 1.25rem = vw-20px) + gap (2.5rem = 40px) = vw + 20px */
+        return window.innerWidth + 20;
       }
 
       function goTo(track, i) {
@@ -1305,6 +1307,7 @@
         track.style.overflow   = 'visible';
         track.style.touchAction = 'none';
         track.style.transition = 'transform 0.32s cubic-bezier(0.4,0,0.2,1)';
+        track.style.gap        = '2.5rem';
         indices[id] = 0;
 
         var nav = document.createElement('div');
