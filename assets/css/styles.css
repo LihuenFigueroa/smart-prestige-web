@@ -211,6 +211,9 @@ select option { color: #111111; }
   transition: transform 0.2s ease-out;
 }
 
+/* ── brabus: imagen mobile-only — oculta en desktop ── */
+.brabus-collab-img-mobile { display: none; }
+
 /* ════════════════════════════════════════════════════════════════
    MOBILE OVERRIDES  (max-width: 767px)
    Todo lo que esté aquí sobreescribe los estilos de arriba
@@ -342,6 +345,21 @@ select option { color: #111111; }
   .comp-range-num { font-size: 22px; }
   .comp-range-sub { font-size: 10px; }
   .comp-features li { font-size: 9px; }
+
+  /* ── brabus: imagen mobile-only post-texto ── */
+  .brabus-collab-img-mobile { display: flex; justify-content: center; }
+
+  /* ── brabus: sección "La colaboración" — mobile ── */
+  .brabus-collab-wrap {
+    padding: 24px 24px 24px 24px !important;
+  }
+  .brabus-collab-text-wrap {
+    width: 100% !important;
+    min-height: unset !important;
+  }
+  .brabus-collab-text {
+    font-size: 16px !important;
+  }
 
 }
 
