@@ -32,19 +32,11 @@
         <a href="movilidad-electrica.html" class="text-[#141413] text-xl font-smart-next font-normal py-3 border-b border-neutral-200 hover:text-neutral-400 transition-colors">Movilidad eléctrica</a>
         <a href="conectividad.html" class="text-[#141413] text-xl font-smart-next font-normal py-3 border-b border-neutral-200 hover:text-neutral-400 transition-colors">Conectividad</a>
         <p class="text-xs uppercase tracking-widest text-neutral-500 mt-8 mb-4 font-smart-next">Sobre smart</p>
-        <a href="buscador.html" class="text-[#141413] text-xl font-smart-next font-normal py-3 border-b border-neutral-200 hover:text-neutral-400 transition-colors">Buscador de concesionarios</a>
         <a href="sobre-smart.html" class="text-[#141413] text-xl font-smart-next font-normal py-3 border-b border-neutral-200 hover:text-neutral-400 transition-colors">Sobre nosotros</a>
+        <a href="buscador.html" class="text-[#141413] text-xl font-smart-next font-normal py-3 border-b border-neutral-200 hover:text-neutral-400 transition-colors">Buscador de concesionarios</a>
       </nav>
       <div class="px-8 py-6 border-t border-neutral-200">
-        <a href="index.html#contacto" class="text-sm text-neutral-500 hover:text-[#141413] transition-colors">Contáctanos</a>
-      </div>
-      <div class="px-8 pt-5 pb-8 border-t border-neutral-200 flex flex-col gap-3">
-        <p class="text-xs text-neutral-400 font-smart-sans">
-          <a href="#" class="hover:text-[#141413] transition-colors">Legales</a>
-          <span class="mx-2 text-neutral-300">|</span>
-          <a href="#" class="hover:text-[#141413] transition-colors">Cookies</a>
-        </p>
-        <p class="text-xs text-neutral-400 font-smart-sans">© 2026 smart Argentina</p>
+        <a href="index.html#contacto" class="text-sm text-neutral-400 hover:text-white transition-colors">Contáctanos</a>
       </div>
     </div>
   </div>
@@ -73,19 +65,16 @@
           <span class="w-5 h-px bg-white block"></span>
           <span class="w-5 h-px bg-white block"></span>
         </button>
-        <div class="relative" id="modelos-dropdown">
-          <button onclick="toggleModelosDropdown()" class="flex items-center gap-1 text-white text-sm font-normal uppercase tracking-wide leading-6">
-            MODELOS
-            <svg id="modelos-chevron" class="w-3 h-3 ml-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
-          </button>
-          <div id="modelos-menu" class="absolute top-full left-0 mt-1 min-w-[152px] z-50">
-            <a href="smart1.html" class="block px-6 py-4 text-[#141413] text-base font-smart-sans border-b border-neutral-200 hover:bg-neutral-100 transition-colors">smart #1</a>
-            <a href="smart3.html" class="block px-6 py-4 text-[#141413] text-base font-smart-sans hover:bg-neutral-100 transition-colors">smart #3</a>
-          </div>
-        </div>
+        <button class="hidden md:flex items-center gap-1 text-white text-sm font-normal uppercase tracking-wide">
+          MODELOS <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+        </button>
       </div>
       <div class="absolute left-1/2 -translate-x-1/2">
         <a href="index.html"><img src="assets/img/Logonavbar.svg" alt="smart" class="h-4 md:h-8 w-auto" /></a>
+      </div>
+      <div class="flex items-center gap-4">
+        <button class="text-white" aria-label="Cuenta"><svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg></button>
+        <button class="text-white" aria-label="Carrito"><svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"/></svg></button>
       </div>
     </nav>
 
@@ -124,8 +113,8 @@
     </div>
 
     <!-- Texto final — aparece al terminar el video -->
-    <div id="brabusText" class="absolute z-20 pointer-events-none left-5 bottom-8 md:left-[82px] md:bottom-[56px]" style="opacity:0;">
-      <p class="font-smart-next max-w-[260px] md:max-w-[300px]" style="font-weight:400; font-size:clamp(15px,3.5vw,18px); line-height:1.3; color:#fff; margin:0; -webkit-font-smoothing:antialiased;">Diseño que no necesita presentación.<br/>Rendimiento que se siente antes de que lo cuentes.</p>
+    <div id="brabusText" style="position:absolute; left:82px; bottom:56px; opacity:0; pointer-events:none; z-index:20;">
+      <p style="font-family:'FOR_smart_Next',sans-serif; font-style:normal; font-weight:400; font-size:18px; line-height:22px; color:#FFFFFF; margin:0; max-width:300px; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; font-synthesis:none;">Diseño que no necesita presentación.<br/>Rendimiento que se siente antes de que lo cuentes.</p>
     </div>
 
   </section>
@@ -134,10 +123,10 @@
   <!-- ================================================================
        STRIP — título smart x BRABUS + descripción
   ================================================================ -->
-  <section class="w-full bg-white px-5 py-8 md:py-10 md:px-[59px]">
+  <section class="w-full bg-white" style="padding: 39px 59px 40px;">
     <div style="max-width:1076px;">
-      <h2 class="font-smart-next" style="font-weight:400; font-size:clamp(26px,5vw,40px); line-height:120%; letter-spacing:-0.02em; color:#141413; margin:0 0 8px;">smart x BRABUS.</h2>
-      <p class="font-smart-sans" style="font-weight:400; font-size:clamp(18px,3.2vw,26px); line-height:130%; letter-spacing:0.02em; color:#141413; margin:0; -webkit-font-smoothing:antialiased;">
+      <h2 style="font-family:'FOR_smart_Next',sans-serif; font-weight:400; font-size:40px; line-height:120%; letter-spacing:-0.02em; color:#141413; margin:0 0 8px;">smart x BRABUS.</h2>
+      <p style="font-family:'FOR_smart_Sans',sans-serif; font-weight:400; font-size:26px; line-height:130%; letter-spacing:0.02em; color:#141413; margin:0; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;">
         Representa la máxima expresión de desempeño dentro de la gama smart. Desarrollado en colaboración con BRABUS, combina la movilidad 100% eléctrica con un diseño distintivo, prestaciones deportivas y una experiencia de conducción emocionante.
       </p>
     </div>
@@ -147,16 +136,16 @@
        2 COLUMNAS — texto izquierda + imagen derecha
   ================================================================ -->
   <section class="w-full bg-white">
-    <div class="max-w-[1440px] mx-auto flex flex-col md:flex-row md:items-start px-5 py-8 md:px-[87px] md:py-[35px] gap-8 md:gap-0">
+    <div class="max-w-[1440px] mx-auto flex flex-col md:flex-row md:items-start" style="padding: 35px 87px 35px 87px;">
       <!-- Texto izquierda -->
-      <div class="md:flex-shrink-0 flex items-center md:w-[406px] md:min-h-[532px]">
-        <p class="font-smart-sans" style="font-weight:400; font-size:clamp(18px,3.2vw,26px); line-height:140%; color:#000; -webkit-font-smoothing:antialiased;">
+      <div class="md:flex-shrink-0 flex items-center" style="width:406px; min-height:532px;">
+        <p style="font-family:'FOR_smart_Sans',sans-serif; font-weight:400; font-size:26px; line-height:140%; color:#000000; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;">
           La colaboración entre smart y BRABUS nació para los que no se conforman con el estándar. El resultado es un SUV eléctrico que combina ingeniería de alto rendimiento con una estética deportiva que parte del interior hacia afuera.
         </p>
       </div>
       <!-- Imagen derecha -->
       <div class="flex-1 flex justify-end">
-        <img src="assets/img/laColaboracionBRABUS.png" alt="smart x BRABUS" class="w-full md:w-[798px] md:h-[532px] object-cover" />
+        <img src="assets/img/laColaboracionBRABUS.png" alt="smart x BRABUS" style="width:798px; height:532px; object-fit:cover;" />
       </div>
     </div>
   </section>
@@ -164,7 +153,7 @@
   <!-- ================================================================
        SPECS — toggle smart #1 / smart #3
   ================================================================ -->
-  <section class="w-full bg-[#141413] relative overflow-hidden" style="aspect-ratio:1440/829;">
+  <section class="w-full bg-[#141413] relative overflow-hidden" style="min-height:100vh;">
 
     <!-- Background images (alternan con el toggle, slide igual al home) -->
     <img id="spec-bg-1"
@@ -181,68 +170,68 @@
     <div class="absolute inset-0 pointer-events-none"
          style="background:linear-gradient(90deg,rgba(20,20,19,0.78) 0%,rgba(20,20,19,0.38) 52%,transparent 100%);"></div>
 
-    <!-- Contenido -->
-    <div class="absolute inset-0 z-10 flex flex-col justify-between px-5 py-8 md:px-[91px] md:py-[57px]">
+    <!-- Contenido (posicionado absoluto para respetar specs Figma: frame 1440×829) -->
+    <div class="absolute inset-0 z-10">
 
-      <!-- Stats -->
-      <div class="max-w-[384px]">
+      <!-- Stats group: left 91px, top 57px del frame Figma -->
+      <div style="position:absolute; left:91px; top:57px; width:384px;">
 
         <!-- 3,9 seg / 0–100 km/h -->
-        <div class="mb-6 md:mb-10">
+        <div style="margin-bottom:40px;">
           <p id="spec-accel" class="font-smart-sans"
-             style="font-weight:700; font-size:clamp(26px,4vw,36px); line-height:1.2; color:#fff; margin:0;">3,9 seg</p>
+             style="font-weight:700; font-size:36px; line-height:1.2; color:#fff; margin:0;">3,9 seg</p>
           <p class="font-smart-sans"
-             style="font-weight:400; font-size:clamp(11px,1.5vw,13px); color:#fff; margin:0;">0 – 100 km/h</p>
+             style="font-weight:400; font-size:13px; color:#fff; margin:0;">0 – 100 km/h</p>
         </div>
 
         <!-- 66kWh + AWD -->
-        <div class="grid grid-cols-2 mb-6 md:mb-10" style="column-gap:clamp(16px,3vw,31px);">
+        <div style="display:grid; grid-template-columns:112px 1fr; column-gap:31px; margin-bottom:40px;">
           <div>
             <p class="font-smart-sans"
-               style="font-weight:700; font-size:clamp(22px,3.5vw,36px); line-height:1.2; color:#fff; margin:0;">66kWh</p>
+               style="font-weight:700; font-size:36px; line-height:1.2; color:#fff; margin:0;">66kWh</p>
             <p class="font-smart-sans"
-               style="font-weight:400; font-size:clamp(11px,1.5vw,13px); color:#fff; margin:0;">Batería</p>
+               style="font-weight:400; font-size:13px; color:#fff; margin:0;">Batería</p>
           </div>
           <div>
             <p class="font-smart-sans"
-               style="font-weight:700; font-size:clamp(22px,3.5vw,36px); line-height:1.2; color:#fff; margin:0;">AWD</p>
+               style="font-weight:700; font-size:36px; line-height:1.2; color:#fff; margin:0;">AWD</p>
             <p class="font-smart-sans"
-               style="font-weight:400; font-size:clamp(11px,1.5vw,13px); color:#fff; margin:0;">Tracción</p>
+               style="font-weight:400; font-size:13px; color:#fff; margin:0;">Tracción</p>
           </div>
         </div>
 
         <!-- 400km + 428CV -->
-        <div class="grid grid-cols-2 mb-5 md:mb-8" style="column-gap:clamp(16px,3vw,31px);">
+        <div style="display:grid; grid-template-columns:112px 1fr; column-gap:31px; margin-bottom:30px;">
           <div>
             <p id="spec-range" class="font-smart-sans"
-               style="font-weight:700; font-size:clamp(22px,3.5vw,36px); line-height:1.2; color:#fff; margin:0;">400km</p>
+               style="font-weight:700; font-size:36px; line-height:1.2; color:#fff; margin:0;">400km</p>
             <p class="font-smart-sans"
-               style="font-weight:400; font-size:clamp(11px,1.5vw,13px); color:#fff; margin:0;">Autonomía</p>
+               style="font-weight:400; font-size:13px; color:#fff; margin:0;">Autonomía</p>
           </div>
           <div>
             <p class="font-smart-sans"
-               style="font-weight:700; font-size:clamp(22px,3.5vw,36px); line-height:1.2; color:#fff; margin:0;">428CV</p>
+               style="font-weight:700; font-size:36px; line-height:1.2; color:#fff; margin:0;">428CV</p>
             <p class="font-smart-sans"
-               style="font-weight:400; font-size:clamp(11px,1.5vw,13px); color:#fff; margin:0;">Potencia</p>
+               style="font-weight:400; font-size:13px; color:#fff; margin:0;">Potencia</p>
           </div>
         </div>
 
         <!-- Paragraph -->
-        <p class="font-smart-sans mb-4 md:mb-4" style="font-weight:400; font-size:clamp(11px,1.5vw,14px); line-height:140%; color:#fff; opacity:0.8; margin:0;">
+        <p class="font-smart-sans" style="font-weight:400; font-size:13.82px; line-height:140%; color:#fff; opacity:0.8; margin:0 0 15px;">
           Autonomía en ciclo mixto, sujeta a tipo de conducción, condiciones del terreno y condiciones del clima.
         </p>
 
         <!-- Button -->
         <a href="buscador.html"
-           class="font-smart-sans inline-flex items-center justify-center w-full md:w-[289px] bg-white text-black rounded-full"
-           style="height:clamp(42px,5.5vw,51px); font-weight:700; font-size:clamp(14px,1.5vw,18px); letter-spacing:0.02em; text-decoration:none; transition:opacity 0.2s;"
+           class="font-smart-sans"
+           style="display:inline-flex; align-items:center; justify-content:center; width:289px; height:51px; background:#fff; border-radius:1273px; font-weight:700; font-size:17.84px; letter-spacing:0.02em; color:#000; text-decoration:none; transition:opacity 0.2s;"
            onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
           Encontrá tu concesionario
         </a>
       </div>
 
-      <!-- Toggle pill -->
-      <div class="mt-6 md:mt-0">
+      <!-- Toggle pill: left 91px, bottom 97px (frame 829 – top 732 = 97px) -->
+      <div style="position:absolute; left:91px; bottom:97px;">
         <div id="spec-model-switcher" style="position:relative; overflow:hidden; width:177px; height:34px; border-radius:16.84px; border:0.211px solid #141413; background:#fff;">
           <div id="spec-slider-indicator"
                style="position:absolute; top:2px; left:2px; height:29px; width:81px; border-radius:14.74px; background:#141413; z-index:0; transition:transform 0.4s cubic-bezier(0.4,0,0.2,1);"></div>
@@ -267,21 +256,6 @@
     new Image().src = 'assets/img/brabus/spec1_wide.png';
     new Image().src = 'assets/img/brabus/spec3_wide.png';
 
-    function toggleModelosDropdown() {
-      const menu    = document.getElementById('modelos-menu');
-      const chevron = document.getElementById('modelos-chevron');
-      menu.classList.toggle('is-open');
-      chevron.style.transform = menu.classList.contains('is-open') ? 'rotate(180deg)' : '';
-    }
-    document.addEventListener('click', function(e) {
-      const dd = document.getElementById('modelos-dropdown');
-      if (dd && !dd.contains(e.target)) {
-        const menu    = document.getElementById('modelos-menu');
-        const chevron = document.getElementById('modelos-chevron');
-        if (menu)    menu.classList.remove('is-open');
-        if (chevron) chevron.style.transform = '';
-      }
-    });
     function openNavMenu() {
       const menu     = document.getElementById('nav-menu');
       const drawer   = document.getElementById('nav-drawer');
