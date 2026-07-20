@@ -1274,7 +1274,7 @@
   <!-- ── Carruseles mobile: navegación por flechas ── -->
   <style>
     @media (max-width: 767px) {
-      .c-card { width: calc(100vw - 2.5rem) !important; }
+      .c-card { width: calc(100vw - 1.25rem) !important; }
     }
   </style>
   <script>
@@ -1287,8 +1287,8 @@
       var indices = {};
 
       function step() {
-        /* card width (100vw - 2.5rem = vw-40px) + gap (1rem = 16px) = vw - 24px */
-        return window.innerWidth - 24;
+        /* card width (100vw - 1.25rem = vw-20px) + gap (1rem = 16px) = vw - 4px */
+        return window.innerWidth - 4;
       }
 
       function goTo(track, i) {
