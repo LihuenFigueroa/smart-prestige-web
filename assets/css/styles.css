@@ -351,14 +351,14 @@ select option { color: #111111; }
 
   /* ── brabus: sección "La colaboración" — mobile ── */
   .brabus-collab-wrap {
-    padding: 24px 24px 24px 24px !important;
+    padding: 24px 37px 24px 37px !important;
   }
   .brabus-collab-text-wrap {
     width: 100% !important;
     min-height: unset !important;
   }
   .brabus-collab-text {
-    font-size: 16px !important;
+    font-size: 26px !important;
   }
 
 }
