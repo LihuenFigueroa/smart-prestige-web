@@ -44,8 +44,8 @@
   <!-- ================================================================
        HERO — scroll-pinned video smart x BRABUS
   ================================================================ -->
-  <div id="brabusPin">
-  <section class="sticky top-0 relative w-full h-screen min-h-[640px] overflow-hidden">
+  <div id="brabusPin" style="height:calc(100vh + 20000px)">
+  <section class="sticky top-0 relative w-full overflow-hidden" style="height:100vh; height:100dvh; min-height:640px;">
     <canvas id="brabusCanvas" class="absolute inset-0 w-full h-full" style="z-index:2;"></canvas>
     <video
       id="brabusVideo"
@@ -76,8 +76,9 @@
     </nav>
 
     <!-- Texto mid-video — solo mobile -->
-    <div id="brabusTextMid" class="md:hidden absolute inset-0 flex items-center justify-center z-10 pointer-events-none" style="opacity:0;">
-      <p class="text-white text-3xl font-smart-next text-center px-6 leading-tight">Inconfundiblemente<br/><span class="font-bold">BRABUS.</span></p>
+    <div id="brabusTextMid" class="md:hidden absolute bottom-0 right-0 z-10 pointer-events-none" style="opacity:0; transform:translateY(40px); padding:0 1.5rem 2rem; display:flex; flex-direction:column; align-items:flex-end; gap:6px;">
+      <img src="assets/img/brabus/inconfundiblemente.svg" alt="Inconfundiblemente" style="display:block;" draggable="false" />
+      <img src="assets/img/brabus/brabus-label.svg" alt="BRABUS." style="display:block;" draggable="false" />
     </div>
 
     <!-- Texto mid-video — solo desktop: SVG overlay inconfundiblemente + BRABUS -->
@@ -110,8 +111,13 @@
     </div>
 
     <!-- Texto final — aparece al terminar el video -->
-    <div id="brabusText" style="position:absolute; left:0; bottom:0; right:0; opacity:0; pointer-events:none; z-index:20;">
-      <img src="assets/img/brabus/bottom-text.svg" alt="" style="width:100%; display:block;" draggable="false" />
+    <!-- Texto final — desktop -->
+    <div id="brabusText" class="hidden md:block" style="position:absolute; left:0; bottom:0; right:0; opacity:0; pointer-events:none; z-index:20;">
+      <img src="assets/img/brabus/bottom-text-desktop.svg" alt="" style="width:100%; display:block;" draggable="false" />
+    </div>
+    <!-- Texto final — mobile -->
+    <div id="brabusTextMobile" class="md:hidden" style="position:absolute; left:0; bottom:0; right:0; opacity:0; pointer-events:none; z-index:20; padding:0 1.5rem 2.5rem;">
+      <img src="assets/img/brabus/final-text-mobile.png" alt="Diseño que no necesita presentación." style="width:309px; max-width:100%; display:block;" draggable="false" />
     </div>
 
   </section>
@@ -133,16 +139,16 @@
        2 COLUMNAS — texto izquierda + imagen derecha
   ================================================================ -->
   <section class="w-full bg-white">
-    <div class="max-w-[1440px] mx-auto flex flex-col md:flex-row md:items-start" style="padding: 35px 87px 35px 87px;">
+    <div style="padding: 35px 87px 35px 87px; display:flex; flex-direction:row; align-items:center;">
       <!-- Texto izquierda -->
-      <div class="md:flex-shrink-0 flex items-center" style="width:406px; min-height:532px;">
+      <div class="flex-shrink-0 flex items-center" style="width:406px; min-height:480px;">
         <p style="font-family:'FOR_smart_Sans',sans-serif; font-weight:400; font-size:26px; line-height:140%; color:#000000; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;">
           La colaboración entre smart y BRABUS nació para los que no se conforman con el estándar. El resultado es un SUV eléctrico que combina ingeniería de alto rendimiento con una estética deportiva que parte del interior hacia afuera.
         </p>
       </div>
       <!-- Imagen derecha -->
       <div class="flex-1 flex justify-end">
-        <img src="assets/img/laColaboracionBRABUS.png" alt="smart x BRABUS" style="width:798px; height:532px; object-fit:cover;" />
+        <img src="assets/img/laColaboracionBRABUS.png" alt="smart x BRABUS" style="width:720px; height:480px; object-fit:cover;" />
       </div>
     </div>
   </section>
