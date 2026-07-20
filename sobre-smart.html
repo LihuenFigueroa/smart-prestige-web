@@ -13,7 +13,7 @@
     .sobre-scroll::-webkit-scrollbar-thumb { background: #4b4b4b; border-radius: 2px; }
   </style>
 </head>
-<body class="bg-white font-smart-next">
+<body class="bg-white font-smart-sans">
 
   <!-- ================================================================
        NAV MENU OVERLAY
@@ -28,17 +28,17 @@
         </button>
       </div>
       <nav class="flex-1 overflow-y-auto px-8 py-8 flex flex-col">
-        <p class="text-xs uppercase tracking-widest text-neutral-500 mb-4 font-smart-next">Modelos</p>
-        <a href="smart1.html" class="text-[#141413] text-xl font-smart-next font-normal py-3 border-b border-neutral-200 hover:text-neutral-400 transition-colors">smart #1</a>
-        <a href="smart3.html" class="text-[#141413] text-xl font-smart-next font-normal py-3 border-b border-neutral-200 hover:text-neutral-400 transition-colors">smart #3</a>
-        <a href="brabus.html" class="text-[#141413] text-xl font-smart-next font-normal py-3 border-b border-neutral-200 hover:text-neutral-400 transition-colors">smart × BRABUS</a>
-        <p class="text-xs uppercase tracking-widest text-neutral-500 mt-8 mb-4 font-smart-next">Descubrí</p>
-        <a href="servicios.html" class="text-[#141413] text-xl font-smart-next font-normal py-3 border-b border-neutral-200 hover:text-neutral-400 transition-colors">Servicios al Cliente</a>
-        <a href="movilidad-electrica.html" class="text-[#141413] text-xl font-smart-next font-normal py-3 border-b border-neutral-200 hover:text-neutral-400 transition-colors">Movilidad Eléctrica</a>
-        <a href="conectividad.html" class="text-[#141413] text-xl font-smart-next font-normal py-3 border-b border-neutral-200 hover:text-neutral-400 transition-colors">Conectividad</a>
-        <p class="text-xs uppercase tracking-widest text-neutral-500 mt-8 mb-4 font-smart-next">Sobre smart</p>
-        <a href="sobre-smart.html" class="text-[#141413] text-xl font-smart-next font-normal py-3 border-b border-neutral-200 hover:text-neutral-400 transition-colors">Sobre nosotros</a>
-        <a href="buscador.html" class="text-[#141413] text-xl font-smart-next font-normal py-3 border-b border-neutral-200 hover:text-neutral-400 transition-colors">Buscador de concesionarios</a>
+        <p class="text-xs uppercase tracking-widest text-neutral-500 mb-4 font-smart-sans">Modelos</p>
+        <a href="smart1.html" class="text-[#141413] text-xl font-smart-sans font-normal py-3 border-b border-neutral-200 hover:text-neutral-400 transition-colors">smart #1</a>
+        <a href="smart3.html" class="text-[#141413] text-xl font-smart-sans font-normal py-3 border-b border-neutral-200 hover:text-neutral-400 transition-colors">smart #3</a>
+        <a href="brabus.html" class="text-[#141413] text-xl font-smart-sans font-normal py-3 border-b border-neutral-200 hover:text-neutral-400 transition-colors">smart × BRABUS</a>
+        <p class="text-xs uppercase tracking-widest text-neutral-500 mt-8 mb-4 font-smart-sans">Descubrí</p>
+        <a href="servicios.html" class="text-[#141413] text-xl font-smart-sans font-normal py-3 border-b border-neutral-200 hover:text-neutral-400 transition-colors">Servicios al Cliente</a>
+        <a href="movilidad-electrica.html" class="text-[#141413] text-xl font-smart-sans font-normal py-3 border-b border-neutral-200 hover:text-neutral-400 transition-colors">Movilidad Eléctrica</a>
+        <a href="conectividad.html" class="text-[#141413] text-xl font-smart-sans font-normal py-3 border-b border-neutral-200 hover:text-neutral-400 transition-colors">Conectividad</a>
+        <p class="text-xs uppercase tracking-widest text-neutral-500 mt-8 mb-4 font-smart-sans">Sobre smart</p>
+        <a href="sobre-smart.html" class="text-[#141413] text-xl font-smart-sans font-normal py-3 border-b border-neutral-200 hover:text-neutral-400 transition-colors">Sobre nosotros</a>
+        <a href="buscador.html" class="text-[#141413] text-xl font-smart-sans font-normal py-3 border-b border-neutral-200 hover:text-neutral-400 transition-colors">Buscador de concesionarios</a>
       </nav>
       <div class="px-8 py-6 border-t border-neutral-200">
         <a href="index.html#contacto" class="text-sm text-neutral-500 hover:text-[#141413] transition-colors">Contáctanos</a>
@@ -88,7 +88,7 @@
     </nav>
 
     <div class="absolute bottom-0 left-0 right-0 z-10" style="padding-left:56px; padding-bottom:68px;">
-      <h1 class="font-smart-next font-normal text-white" style="font-size:54px; line-height:1.15;">smart: tres décadas<br>reinventando el auto urbano.</h1>
+      <h1 class="font-smart-sans font-normal text-white" style="font-size:54px; line-height:1.15;">smart: tres décadas<br>reinventando el auto urbano.</h1>
     </div>
   </section>
 
@@ -144,104 +144,73 @@
   </section>
 
   <!-- ================================================================
-       COLABORACIÓN BRABUS
+       RED DE CONCESIONARIOS — CARRUSEL
   ================================================================ -->
-  <section class="w-full bg-[#141413] px-5 md:px-14 py-12 md:py-20 border-t border-neutral-800">
-    <div class="max-w-[1320px] mx-auto flex flex-col md:flex-row gap-10 md:gap-20 items-center">
-      <div class="md:w-1/2">
-        <div class="w-full bg-neutral-700 rounded-lg overflow-hidden" style="aspect-ratio:4/3;">
-          <img src="assets/img/sobre-smart/brabus-collab.jpg" alt="smart x BRABUS" class="w-full h-full object-cover" />
+  <div id="sobre-pin-wrap" style="position:relative;">
+  <section id="sobre-carousel" class="w-full bg-white overflow-hidden" style="height:693.42px;">
+    <div class="flex flex-col md:flex-row" style="height:100%;">
+
+      <!-- Texto izquierda -->
+      <div class="px-5 md:flex-shrink-0 flex flex-col justify-start py-10 md:py-0" style="width:471px; padding-left:56px; padding-right:48px; padding-top:69px;">
+        <div style="width:375px; max-width:100%;">
+          <div class="flex flex-col gap-3">
+            <p class="font-smart-sans font-normal" style="font-size:20px; line-height:120%; letter-spacing:-0.01em; color:#6B747B;">smart en Argentina.</p>
+            <p class="font-smart-sans font-normal" style="font-size:29px; line-height:1.25; color:#141413;">
+              La red de concesionarios smart te acompaña desde la primera consulta hasta el primer kilómetro y todos los que siguen. Encontrá el punto de venta más cercano y agendá tu prueba de manejo.
+            </p>
+          </div>
         </div>
       </div>
-      <div class="md:w-1/2 flex flex-col gap-6">
-        <p class="text-neutral-500 text-sm uppercase tracking-widest font-smart-next">Colaboración</p>
-        <h2 class="font-smart-next font-normal text-white" style="font-size:clamp(22px,3vw,40px); line-height:1.2;">
-          smart × BRABUS.
-        </h2>
-        <p class="text-neutral-400 text-base leading-7 font-smart-sans">
-          La asociación entre smart y BRABUS reúne a dos marcas con filosofías complementarias: el diseño inteligente y la ingeniería de alto rendimiento. El resultado son versiones BRABUS del smart #1 y el smart #3 que llevan la experiencia eléctrica a un nivel completamente diferente.
-        </p>
-        <p class="text-neutral-400 text-base leading-7 font-smart-sans">
-          Desde 428 CV hasta una aceleración de 0 a 100 en 3.7 segundos, la alianza smart × BRABUS demuestra que el lujo y la sostenibilidad pueden ir de la mano.
-        </p>
-        <a href="brabus.html" class="self-start h-10 px-8 border border-white text-white text-sm font-bold rounded-full hover:bg-white hover:text-black transition-colors flex items-center">
-          Descubrí BRABUS
-        </a>
+
+      <!-- Carrusel -->
+      <div id="sobre-carousel-viewport" class="flex-1 min-w-0 flex items-center" style="padding-top:69px; padding-bottom:63px; overflow:hidden;">
+        <div id="track-sobre-carousel" class="flex select-none" style="gap:19px; height:561.42px; will-change:transform;">
+
+          <div class="flex-shrink-0 flex flex-col" style="width:292.38px; height:561.42px;">
+            <div style="height:363.01px; flex-shrink:0; overflow:hidden;">
+              <img src="assets/img/sobre-smart/carousel-1.jpg" alt="" class="w-full h-full object-cover" draggable="false" />
+            </div>
+            <div style="padding-top:20.8px; flex:1;">
+              <h3 class="font-smart-sans font-normal" style="font-size:32.5px; line-height:120%; letter-spacing:-0.02em; color:#000000; margin-bottom:9.6px;">Diseño que tiene firma propia.</h3>
+              <p class="font-smart-sans font-normal" style="font-size:13px; line-height:140%; color:#000000;">Cada modelo smart es reconocible a primera vista. El modelo ideado por Mercedes–Benz tiene líneas fluidas, proporciones equilibradas y detalles que hablan de un ADN de marca consistente a lo largo del tiempo.</p>
+            </div>
+          </div>
+
+          <div class="flex-shrink-0 flex flex-col" style="width:292.38px; height:561.42px;">
+            <div style="height:363.01px; flex-shrink:0; overflow:hidden;">
+              <img src="assets/img/sobre-smart/carousel-2.jpg" alt="" class="w-full h-full object-cover" draggable="false" />
+            </div>
+            <div style="padding-top:20.8px; flex:1;">
+              <h3 class="font-smart-sans font-normal" style="font-size:32.5px; line-height:120%; letter-spacing:-0.02em; color:#000000; margin-bottom:9.6px;">100% eléctrico.</h3>
+              <p class="font-smart-sans font-normal" style="font-size:13px; line-height:140%; color:#000000;">smart tomó la decisión antes que la mayoría: apostar por la movilidad electrificada desde el primer modelo y sin volver atrás.</p>
+            </div>
+          </div>
+
+          <div class="flex-shrink-0 flex flex-col" style="width:292.38px; height:561.42px;">
+            <div style="height:363.01px; flex-shrink:0; overflow:hidden;">
+              <img src="assets/img/sobre-smart/carousel-3.jpg" alt="" class="w-full h-full object-cover" draggable="false" />
+            </div>
+            <div style="padding-top:20.8px; flex:1;">
+              <h3 class="font-smart-sans font-normal" style="font-size:32.5px; line-height:120%; letter-spacing:-0.02em; color:#000000; margin-bottom:9.6px;">La colaboración BRABUS.</h3>
+              <p class="font-smart-sans font-normal" style="font-size:13px; line-height:140%; color:#000000;">La alianza con la preparadora alemana BRABUS le dió a smart una versión de alto rendimiento que no resigna nada del ADN eléctrico de la marca.</p>
+            </div>
+          </div>
+
+        </div>
       </div>
+
     </div>
   </section>
-
-  <!-- ================================================================
-       SMART EN ARGENTINA
-  ================================================================ -->
-  <section class="w-full bg-white px-5 md:px-14 py-12 md:py-20">
-    <div class="max-w-[1320px] mx-auto">
-      <div class="flex flex-col md:flex-row gap-10 md:gap-20 items-center mb-14">
-        <div class="md:w-1/2 flex flex-col gap-6">
-          <p class="text-neutral-500 text-sm uppercase tracking-widest font-smart-next">Argentina</p>
-          <h2 class="font-smart-next font-normal text-black" style="font-size:clamp(22px,3vw,40px); line-height:1.2;">
-            smart en Argentina.
-          </h2>
-          <p class="text-neutral-600 text-base leading-7 font-smart-sans">
-            Prestige Auto es el distribuidor oficial de smart en Argentina. Con una red de concesionarios en las principales ciudades del país, te acompañamos en cada etapa: desde la elección de tu modelo hasta el soporte posventa.
-          </p>
-          <p class="text-neutral-600 text-base leading-7 font-smart-sans">
-            Nuestra misión es acercar la movilidad eléctrica premium a Argentina, con el respaldo de una marca global y el servicio de un equipo local comprometido.
-          </p>
-        </div>
-        <div class="md:w-1/2">
-          <div class="w-full bg-neutral-200 rounded-lg overflow-hidden" style="aspect-ratio:4/3;">
-            <img src="assets/img/sobre-smart/argentina.jpg" alt="smart Argentina" class="w-full h-full object-cover" />
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================================================================
-       3 COLUMNAS — VALORES
-  ================================================================ -->
-  <section class="w-full bg-neutral-50 px-5 md:px-14 py-12 md:py-20">
-    <div class="max-w-[1320px] mx-auto">
-      <h2 class="font-smart-next font-normal text-black mb-10" style="font-size:clamp(20px,2.5vw,32px);">Lo que nos define.</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-
-        <div class="flex flex-col gap-4">
-          <div class="w-10 h-10 rounded-full bg-black flex items-center justify-center">
-            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18"/></svg>
-          </div>
-          <h3 class="font-smart-next font-normal text-black text-xl">Innovación constante</h3>
-          <p class="text-neutral-600 text-sm leading-6 font-smart-sans">Cada modelo smart incorpora la tecnología más avanzada disponible. Actualizaciones OTA, conectividad total y diseño premiado son solo el comienzo.</p>
-        </div>
-
-        <div class="flex flex-col gap-4">
-          <div class="w-10 h-10 rounded-full bg-black flex items-center justify-center">
-            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/></svg>
-          </div>
-          <h3 class="font-smart-next font-normal text-black text-xl">Sustentabilidad</h3>
-          <p class="text-neutral-600 text-sm leading-6 font-smart-sans">100% eléctrico, 0 emisiones locales. smart lidera la transición hacia una movilidad más limpia, sin renunciar al placer de conducir.</p>
-        </div>
-
-        <div class="flex flex-col gap-4">
-          <div class="w-10 h-10 rounded-full bg-black flex items-center justify-center">
-            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"/></svg>
-          </div>
-          <h3 class="font-smart-next font-normal text-black text-xl">Comunidad smart</h3>
-          <p class="text-neutral-600 text-sm leading-6 font-smart-sans">Ser parte de smart es unirte a una comunidad de personas que comparten una visión diferente del mundo y de cómo quieren moverse por él.</p>
-        </div>
-
-      </div>
-    </div>
-  </section>
+  </div>
 
   <!-- ================================================================
        FOOTER
   ================================================================ -->
-  <footer class="bg-black text-white px-5 md:px-14 pt-10 md:pt-16 pb-6">
+  <footer class="font-smart-sans bg-black text-white px-5 md:px-14 pt-10 md:pt-16 pb-6">
     <div class="max-w-[1320px] mx-auto">
       <div class="grid grid-cols-1 md:grid-cols-5 gap-8 mb-10">
         <div>
-          <p class="text-xs uppercase tracking-widest text-neutral-400 mb-4 font-smart-next">Secciones</p>
+          <p class="text-xs uppercase tracking-widest text-neutral-400 mb-4 font-smart-sans">Secciones</p>
           <ul class="flex flex-col gap-2 text-sm text-neutral-300">
             <li><a href="index.html" class="hover:text-white transition-colors">Home</a></li>
             <li><a href="smart1.html" class="hover:text-white transition-colors">smart #1</a></li>
@@ -251,7 +220,7 @@
           </ul>
         </div>
         <div>
-          <p class="hidden md:block text-xs uppercase tracking-widest text-neutral-400 mb-4 font-smart-next">&nbsp;</p>
+          <p class="hidden md:block text-xs uppercase tracking-widest text-neutral-400 mb-4 font-smart-sans">&nbsp;</p>
           <ul class="flex flex-col gap-2 text-sm text-neutral-300">
             <li><a href="movilidad-electrica.html" class="hover:text-white transition-colors">Movilidad eléctrica</a></li>
             <li><a href="conectividad.html" class="hover:text-white transition-colors">Conectividad</a></li>
@@ -260,21 +229,21 @@
           </ul>
         </div>
         <div>
-          <p class="text-xs uppercase tracking-widest text-neutral-400 mb-4 font-smart-next">Modelos</p>
+          <p class="text-xs uppercase tracking-widest text-neutral-400 mb-4 font-smart-sans">Modelos</p>
           <ul class="flex flex-col gap-2 text-sm text-neutral-300">
             <li><a href="smart1.html" class="hover:text-white transition-colors">smart #1</a></li>
             <li><a href="smart3.html" class="hover:text-white transition-colors">smart #3</a></li>
           </ul>
         </div>
         <div>
-          <p class="text-xs uppercase tracking-widest text-neutral-400 mb-4 font-smart-next">Servicios</p>
+          <p class="text-xs uppercase tracking-widest text-neutral-400 mb-4 font-smart-sans">Servicios</p>
           <ul class="flex flex-col gap-2 text-sm text-neutral-300">
             <li><a href="buscador.html" class="hover:text-white transition-colors">Buscador de concesionarios</a></li>
             <li><a href="servicios.html" class="hover:text-white transition-colors">Servicios</a></li>
           </ul>
         </div>
         <div>
-          <p class="text-xs uppercase tracking-widest text-neutral-400 mb-4 font-smart-next">Sobre smart</p>
+          <p class="text-xs uppercase tracking-widest text-neutral-400 mb-4 font-smart-sans">Sobre smart</p>
           <ul class="flex flex-col gap-2 text-sm text-neutral-300">
             <li><a href="sobre-smart.html" class="hover:text-white transition-colors">Sobre nosotros</a></li>
             <li><a href="index.html#contacto" class="hover:text-white transition-colors">Contáctanos</a></li>
@@ -283,7 +252,7 @@
       </div>
       <div class="border-t border-neutral-800 pt-5 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
         <div class="flex items-center gap-4 text-xs text-neutral-500">
-          <span><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="16" height="16" fill="white"/></svg> Argentina</span>
+          <span><img src="assets/img/icon-argentina.png" alt="" class="inline-block w-4 h-4 align-middle" /> Argentina</span>
           <span>|</span>
           <span>© 2026 smart Argentina</span>
         </div>
@@ -296,6 +265,59 @@
     </div>
   </footer>
 
+
+  <script>
+    /* ── Scroll-driven horizontal carousel (sobre-smart) ── */
+    (function () {
+      if (window.innerWidth < 768) return;
+
+      var wrap     = document.getElementById('sobre-pin-wrap');
+      var section  = document.getElementById('sobre-carousel');
+      var viewport = document.getElementById('sobre-carousel-viewport');
+      var track    = document.getElementById('track-sobre-carousel');
+      if (!wrap || !section || !viewport || !track) return;
+
+      var sectionH     = 693.42;
+      var startHoldPx  = 300;
+      var endHoldPx    = 500;
+      var stickyTopPx  = -40;
+
+      function maxTranslate() {
+        return track.scrollWidth - viewport.clientWidth;
+      }
+
+      function init() {
+        var extra = maxTranslate();
+        if (extra <= 0) return;
+        wrap.style.height      = (sectionH + extra + startHoldPx + endHoldPx) + 'px';
+        section.style.position = 'sticky';
+        section.style.top      = stickyTopPx + 'px';
+        section.style.zIndex   = '1';
+      }
+
+      function onScroll() {
+        var wrapTop  = wrap.getBoundingClientRect().top + window.scrollY;
+        var progress = window.scrollY - wrapTop;
+        var max      = maxTranslate();
+        var offset   = Math.max(0, Math.min(progress - startHoldPx, max));
+        track.style.transform = 'translateX(-' + offset + 'px)';
+      }
+
+      window.addEventListener('load', function () { init(); onScroll(); });
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', function () {
+        if (window.innerWidth < 768) {
+          wrap.style.height      = '';
+          section.style.position = '';
+          section.style.top      = '';
+          track.style.transform  = '';
+        } else {
+          init();
+          onScroll();
+        }
+      });
+    })();
+  </script>
 
   <script>
     function toggleModelosDropdown() {
