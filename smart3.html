@@ -963,7 +963,7 @@
         var fading      = false;
         window.getVisLinea = function() { return activeLinea; };
 
-        var ZOOM_SRCS = ['assets/img/smart3/normalized/vis-c1.png','assets/img/smart3/normalized/vis-c4.png','assets/img/smart3/normalized/vis-c5.png','assets/img/smart3/normalized/vis-c6.png','assets/img/smart3/normalized/vis-c7.png','assets/img/smart3/normalized/vis-pro-c1.png','assets/img/smart3/normalized/vis-pro-c2.png','assets/img/smart3/normalized/vis-pro-c3.png','assets/img/smart3/normalized/vis-pro-c4.png','assets/img/smart3/normalized/vis-pro-c5.png','assets/img/smart3/normalized/vis-prop-c1.png','assets/img/smart3/normalized/vis-prop-c2.png','assets/img/smart3/normalized/vis-prop-c3.png','assets/img/smart3/normalized/vis-prop-c4.png','assets/img/smart3/normalized/vis-prop-c5.png'];
+        var ZOOM_SRCS = ['assets/img/smart3/normalized/vis-c1.png','assets/img/smart3/normalized/vis-c2.png','assets/img/smart3/normalized/vis-c3.png','assets/img/smart3/normalized/vis-c4.png','assets/img/smart3/normalized/vis-c5.png','assets/img/smart3/normalized/vis-c6.png','assets/img/smart3/normalized/vis-c7.png','assets/img/smart3/normalized/vis-pro-c1.png','assets/img/smart3/normalized/vis-pro-c2.png','assets/img/smart3/normalized/vis-pro-c3.png','assets/img/smart3/normalized/vis-pro-c4.png','assets/img/smart3/normalized/vis-pro-c5.png','assets/img/smart3/normalized/vis-prop-c1.png','assets/img/smart3/normalized/vis-prop-c2.png','assets/img/smart3/normalized/vis-prop-c3.png','assets/img/smart3/normalized/vis-prop-c4.png','assets/img/smart3/normalized/vis-prop-c5.png'];
         // All normalized images have identical car alignment — no per-image position adjustment needed
         function applyMobilePos(src) { /* no-op: images are normalized */ }
 
@@ -997,6 +997,13 @@
           btn.style.boxShadow = '0 0 0 2px #fff, 0 0 0 3.5px #141413';
           carFade(btn.getAttribute('data-img'));
         }
+
+        // Aplicar zoom inicial
+        (function() {
+          var initScale = (ZOOM_SRCS.indexOf(activeSrc) !== -1 && window.innerWidth > 767) ? 'scale(1.14)' : 'scale(1)';
+          back.style.transform = initScale;
+          front.style.transform = initScale;
+        })();
 
         document.addEventListener('click', function(e) {
           var btn = e.target.closest('.vis-color-btn');
