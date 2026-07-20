@@ -218,6 +218,13 @@ select option { color: #111111; }
 .brabus-specs-gradient-mobile { display: none; }
 
 /* ════════════════════════════════════════════════════════════════
+   DESKTOP OVERRIDES  (min-width: 768px)
+   ════════════════════════════════════════════════════════════════ */
+@media (min-width: 768px) {
+  .mob-only { display: none !important; }
+}
+
+/* ════════════════════════════════════════════════════════════════
    MOBILE OVERRIDES  (max-width: 767px)
    Todo lo que esté aquí sobreescribe los estilos de arriba
    únicamente en pantallas mobile.
