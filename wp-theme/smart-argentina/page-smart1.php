@@ -1,0 +1,1302 @@
+<?php /* Template Name: Smart 1 */ ?>
+<?php get_header(); ?>
+<?php get_template_part('partials/header'); ?>
+  <!-- ================================================================
+       HERO MOBILE — smart #1
+  ================================================================ -->
+  <section id="hero-s1-mobile" style="position:relative; width:100%; aspect-ratio:375/812; overflow:hidden;">
+
+    <!-- Imagen a dimensiones naturales -->
+    <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/hero-mobile.png" alt="smart #1" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center;" />
+
+    <!-- Gradiente superior (nav) -->
+    <div style="position:absolute; top:0; left:0; right:0; height:170px; z-index:5; pointer-events:none; background:linear-gradient(to bottom,rgba(20,20,19,0.65) 0%,rgba(20,20,19,0) 100%);"></div>
+    <!-- Gradiente inferior (imagen) -->
+    <div style="position:absolute; bottom:0; left:0; right:0; height:55%; z-index:5; pointer-events:none; background:linear-gradient(to bottom,rgba(0,0,0,0) 0%,rgba(0,0,0,0.60) 100%);"></div>
+
+    <!-- Nav -->
+    <nav style="position:absolute; top:0; left:0; right:0; z-index:20; padding:0 1.25rem; height:56px; display:flex; align-items:center;">
+      <button onclick="openNavMenu()" class="flex flex-col gap-[5px] cursor-pointer" aria-label="Menú">
+        <span class="w-5 h-px bg-white block"></span>
+        <span class="w-5 h-px bg-white block"></span>
+        <span class="w-5 h-px bg-white block"></span>
+      </button>
+      <div style="position:absolute; left:50%; transform:translateX(-50%);">
+        <a href="<?php echo home_url('/'); ?>"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/Logonavbar.svg" alt="smart" style="height:1rem; width:auto;" /></a>
+      </div>
+    </nav>
+
+    <!-- SVG bottom (gradiente + texto + botón) -->
+    <div style="position:absolute; bottom:0; left:0; right:0; z-index:10; line-height:0;">
+      <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/hero-mobile-bottom.svg" alt="" style="width:100%; display:block;" draggable="false" />
+      <a href="#contacto" style="position:absolute; left:6.4%; bottom:11.7%; width:39.47%; aspect-ratio:148/33.92; border-radius:9999px; display:block;"></a>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       HERO — imagen 1
+  ================================================================ -->
+  <section id="hero-s1" class="relative w-full h-screen min-h-[640px] overflow-hidden">
+    <div class="absolute inset-0 bg-neutral-700">
+      <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/hero.png" alt="smart #1" class="w-full h-full object-cover" />
+    </div>
+    <div class="absolute top-0 left-0 right-0 pointer-events-none" style="height:170px; z-index:5; background:linear-gradient(to bottom,rgba(20,20,19,0.65) 0%,rgba(20,20,19,0) 100%);"></div>
+
+
+    <nav class="absolute top-0 left-0 right-0 z-20 px-5 md:px-14 h-14 md:h-16 flex items-center justify-between">
+      <div class="flex items-center gap-6">
+        <button onclick="openNavMenu()" class="flex flex-col gap-[5px] cursor-pointer" aria-label="Menú">
+          <span class="w-5 h-px bg-white block"></span>
+          <span class="w-5 h-px bg-white block"></span>
+          <span class="w-5 h-px bg-white block"></span>
+        </button>
+        <div class="relative hidden md:block" id="modelos-dropdown">
+          <button onclick="toggleModelosDropdown()" class="flex items-center gap-1 text-white text-sm font-normal uppercase tracking-wide leading-6">
+            MODELOS
+            <svg id="modelos-chevron" class="w-3 h-3 ml-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="modelos-menu" class="absolute top-full left-0 mt-1 min-w-[152px] z-50">
+            <a href="<?php echo home_url('/smart-1/'); ?>" class="block px-6 py-4 text-[#141413] text-base font-smart-sans border-b border-neutral-200 hover:bg-neutral-100 transition-colors">smart #1</a>
+            <a href="<?php echo home_url('/smart-3/'); ?>" class="block px-6 py-4 text-[#141413] text-base font-smart-sans hover:bg-neutral-100 transition-colors">smart #3</a>
+          </div>
+        </div>
+      </div>
+      <div class="absolute left-1/2 -translate-x-1/2">
+        <a href="<?php echo home_url('/'); ?>"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/Logonavbar.svg" alt="smart" class="h-4 md:h-8 w-auto" /></a>
+      </div>
+    </nav>
+
+    <div class="absolute bottom-0 left-0 right-0 z-10 hidden md:block" style="line-height:0;">
+      <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/hero-content.svg" alt="" style="width:100%; display:block;" draggable="false" />
+      <a href="#contacto" style="position:absolute; left:4.167%; bottom:18.24%; width:12.708%; aspect-ratio:183/50; border-radius:25px; display:block;"></a>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       INTRO
+  ================================================================ -->
+  <section class="w-full bg-white px-5 md:px-14 py-2 md:py-16">
+    <div class="max-w-[1320px] mx-auto">
+      <!-- Mobile: SVG statement -->
+      <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/statement.svg" alt="Sentite el #1." class="mob-only w-full" />
+      <!-- Desktop: texto original -->
+      <div class="hidden md:block">
+        <p class="text-neutral-500 text-sm mb-3 font-smart-next">smart #1</p>
+        <h2 class="font-smart-next font-normal text-black max-w-2xl" style="font-size:clamp(24px,3vw,40px); line-height:1.15;">
+          Sentite el #1. Cada detalle, cada línea, cada kilómetro recorrido de una forma distinta. Sentite diferente.
+        </h2>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       CARRUSELES DE CARACTERÍSTICAS
+  ================================================================ -->
+  <section class="w-full bg-white pb-10">
+
+    <!-- ── Carrusel 1 — 4 fotos ── -->
+    <div style="padding-bottom:1rem; overflow:hidden;">
+      <div id="track-c1" class="flex select-none" style="overflow-x:scroll; scrollbar-width:none; -ms-overflow-style:none; padding-left:1.25rem; padding-right:1.25rem; gap:1rem; cursor:grab;">
+
+        <div class="c-card">
+          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/2.png" alt="Vista frontal" class="c-card__img" />
+          <span class="c-card__tag">Exterior</span>
+          <div class="c-card__gradient"></div>
+          <div class="c-card__body">
+            <div class="c-card__text">
+              <p class="c-card__title">Los detalles son los que definen lo premium.</p>
+              <p class="c-card__desc">El frente del smart #1 combina una firma lumínica LED de última generación con una parrilla sellada que anticipa su naturaleza 100% eléctrica.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="c-card">
+          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/3.jpg" alt="Faros full LED" class="c-card__img" />
+          <div class="c-card__gradient"></div>
+          <div class="c-card__body">
+            <div class="c-card__text">
+              <p class="c-card__title">Precisión en cada detalle.</p>
+              <p class="c-card__desc">Las ópticas del smart #1 integran tecnología LED en un diseño escultórico que refuerza el carácter premium del vehículo.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="c-card">
+          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/4.jpg" alt="Manija electro-emergente" class="c-card__img" />
+          <div class="c-card__gradient"></div>
+          <div class="c-card__body">
+            <div class="c-card__text">
+              <p class="c-card__title">Una identidad visual que no pasa desapercibida.</p>
+              <p class="c-card__desc">Las manijas al ras del smart #1 se integran en la carrocería con una geometría limpia que refuerza tanto la estética como la eficiencia aerodinámica del vehículo.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="c-card">
+          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/5.png" alt="Portón trasero" class="c-card__img" />
+          <div class="c-card__gradient"></div>
+          <div class="c-card__body">
+            <div class="c-card__text">
+              <p class="c-card__title">Funcionalidad sin compromisos.</p>
+              <p class="c-card__desc">Con hasta 313 litros de capacidad y apertura eléctrica manos libres, el baúl del smart #1 se adapta a cada necesidad con total comodidad.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── Carrusel 2 — 4 fotos ── -->
+    <div style="padding-bottom:1rem; overflow:hidden;">
+      <div id="track-c2" class="flex select-none" style="overflow-x:scroll; scrollbar-width:none; -ms-overflow-style:none; padding-left:1.25rem; padding-right:1.25rem; gap:1rem; cursor:grab;">
+
+        <div class="c-card">
+          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/teaser.png" alt="Un espacio diseñado para quienes valoran el confort" class="c-card__img" />
+          <span class="c-card__tag">Interior</span>
+          <div class="c-card__gradient"></div>
+          <div class="c-card__body">
+            <div class="c-card__text">
+              <p class="c-card__title">Un espacio diseñado para quienes valoran el confort.</p>
+              <p class="c-card__desc">El habitáculo del smart #1 ofrece cinco plazas amplias, materiales de calidad superior y una atmósfera que eleva cada trayecto.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="c-card">
+          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/8.png" alt="Control total, siempre a mano" class="c-card__img" />
+          <div class="c-card__gradient"></div>
+          <div class="c-card__body">
+            <div class="c-card__text">
+              <p class="c-card__title">Control total, siempre a mano.</p>
+              <p class="c-card__desc">El volante multifunción del smart #1 integra todos los comandos esenciales para una conducción segura, intuitiva y enfocada en el camino.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="c-card">
+          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/9.jpg" alt="Tecnología al servicio del conductor" class="c-card__img" />
+          <div class="c-card__gradient"></div>
+          <div class="c-card__body">
+            <div class="c-card__text">
+              <p class="c-card__title">Tecnología al servicio del conductor.</p>
+              <p class="c-card__desc">La pantalla táctil de 12,8 pulgadas con smart OS centraliza navegación, conectividad y climatización en una interfaz clara y precisa.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="c-card">
+          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/10.jpg" alt="Conectividad continua, sin interrupciones" class="c-card__img" />
+          <div class="c-card__gradient"></div>
+          <div class="c-card__body">
+            <div class="c-card__text">
+              <p class="c-card__title">Conectividad continua, sin interrupciones.</p>
+              <p class="c-card__desc">La base de carga inalámbrica integrada mantiene el dispositivo cargado durante todo el recorrido, de forma simple y eficiente.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── Carrusel 3 — 7 fotos ── -->
+    <div style="padding-bottom:1rem; overflow:hidden;">
+      <div id="track-c3" class="flex select-none" style="overflow-x:scroll; scrollbar-width:none; -ms-overflow-style:none; padding-left:1.25rem; padding-right:1.25rem; gap:1rem; cursor:grab;">
+
+        <div class="c-card">
+          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/confort-1.png" alt="Cámara 360" class="c-card__img" />
+          <span class="c-card__tag">Confort</span>
+          <div class="c-card__gradient"></div>
+          <div class="c-card__body">
+            <div class="c-card__text">
+              <p class="c-card__title">Cámara 360.</p>
+              <p class="c-card__desc">Esta función permite seleccionar hasta nueve vistas diferentes con las distintas cámaras situadas alrededor del vehículo para ofrecer un control óptimo de la situación en todas las direcciones. *Disponible en todas las versiones, excepto Pure.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="c-card">
+          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/teaser5.png" alt="Techo Halo panorámico" class="c-card__img" />
+          <div class="c-card__gradient"></div>
+          <div class="c-card__body">
+            <div class="c-card__text">
+              <p class="c-card__title">Techo Halo panorámico.</p>
+              <p class="c-card__desc">El techo es una pieza de vidrio fija. El área del vidrio es de 1,5 m² y filtra el 99 % de la radiación ultravioleta. *Disponible en todas las versiones, excepto Pure.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="c-card">
+          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/15.jpg" alt="Asientos eléctricos y calefaccionados" class="c-card__img" />
+          <div class="c-card__gradient"></div>
+          <div class="c-card__body">
+            <div class="c-card__text">
+              <p class="c-card__title">Asientos eléctricos y calefaccionados.</p>
+              <p class="c-card__desc">Los asientos delanteros presentan un ajuste eléctrico en seis direcciones y un soporte lumbar ajustable. El conductor cuenta también con función de memoria. *Disponible en todas las versiones, excepto Pure.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="c-card">
+          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/16.jpg" alt="Climatización bizona" class="c-card__img" />
+          <div class="c-card__gradient"></div>
+          <div class="c-card__body">
+            <div class="c-card__text">
+              <p class="c-card__title">Climatización bizona.</p>
+              <p class="c-card__desc">Cada ocupante ajusta la temperatura de su zona de forma independiente. El sistema regula automáticamente la temperatura, el modo y el flujo de aire. *Disponible en todas las versiones, excepto Pure.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="c-card">
+          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/17.jpg" alt="Volante calefaccionado" class="c-card__img" />
+          <div class="c-card__gradient"></div>
+          <div class="c-card__body">
+            <div class="c-card__text">
+              <p class="c-card__title">Volante calefaccionado.</p>
+              <p class="c-card__desc">En condiciones de temperatura bajas, el volante calefactable ayuda a mejorar la experiencia de conducción.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="c-card">
+          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/18.jpg" alt="Sistema de audio Beats" class="c-card__img" />
+          <div class="c-card__gradient"></div>
+          <div class="c-card__body">
+            <div class="c-card__text">
+              <p class="c-card__title">Sistema de audio Beats®.</p>
+              <p class="c-card__desc">13 altavoces distribuidos estratégicamente en toda la cabina para una experiencia sonora de alta fidelidad. *Disponible para la versión BRABUS.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="c-card">
+          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/19.png" alt="Luz ambiental" class="c-card__img" />
+          <div class="c-card__gradient"></div>
+          <div class="c-card__body">
+            <div class="c-card__text">
+              <p class="c-card__title">Luz ambiental.</p>
+              <p class="c-card__desc">Ajusta el brillo y el color de la iluminación ambiente a través de la pantalla de control central.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── Carrusel 4 — 7 fotos ── -->
+    <div style="padding-bottom:1rem; overflow:hidden;">
+      <div id="track-c4" class="flex select-none" style="overflow-x:scroll; scrollbar-width:none; -ms-overflow-style:none; padding-left:1.25rem; padding-right:1.25rem; gap:1rem; cursor:grab;">
+
+        <div class="c-card">
+          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/20.png" alt="smart pilot assist" class="c-card__img" />
+          <span class="c-card__tag">Seguridad</span>
+          <div class="c-card__gradient"></div>
+          <div class="c-card__body">
+            <div class="c-card__text">
+              <p class="c-card__title">smart pilot assist.</p>
+              <p class="c-card__desc">Ayuda al conductor a permanecer en su carril y permite configurar el intervalo de distancia con el vehículo de adelante, incluyendo ayuda para el adelantamiento de camiones. *Disponible en todas las versiones, excepto Pure.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="c-card">
+          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/21.png" alt="Parking Assist" class="c-card__img" />
+          <div class="c-card__gradient"></div>
+          <div class="c-card__body">
+            <div class="c-card__text">
+              <p class="c-card__title">Parking Assist.</p>
+              <p class="c-card__desc">El sistema combina sensores ultrasónicos y cámaras para estacionar de manera 100% autónoma, controlando la dirección, la velocidad y el frenado.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="c-card">
+          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/22.png" alt="Control crucero adaptativo" class="c-card__img" />
+          <div class="c-card__gradient"></div>
+          <div class="c-card__body">
+            <div class="c-card__text">
+              <p class="c-card__title">Control crucero adaptativo.</p>
+              <p class="c-card__desc">Una vez ajustada la velocidad de crucero (de 0 a 150 km/h), el vehículo circula al valor establecido o lo ajusta automáticamente según el tráfico que tenga delante.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="c-card">
+          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/23.png" alt="Airbags" class="c-card__img" />
+          <div class="c-card__gradient"></div>
+          <div class="c-card__body">
+            <div class="c-card__text">
+              <p class="c-card__title">Airbags.</p>
+              <p class="c-card__desc">El smart #1 ofrece seis airbags: dos delanteros, dos laterales, dos de cortina lateral y uno central.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="c-card">
+          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/24.jpg" alt="Asistencia mantenimiento de carril" class="c-card__img" />
+          <div class="c-card__gradient"></div>
+          <div class="c-card__body">
+            <div class="c-card__text">
+              <p class="c-card__title">Asistencia mantenimiento de carril.</p>
+              <p class="c-card__desc">Previene desviaciones no intencionadas del carril a velocidades entre 60 y 180 km/h mediante advertencias y ajuste automático del volante.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="c-card">
+          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/25.jpg" alt="Freno AEB" class="c-card__img" />
+          <div class="c-card__gradient"></div>
+          <div class="c-card__body">
+            <div class="c-card__text">
+              <p class="c-card__title">Freno AEB.</p>
+              <p class="c-card__desc">Cuando el vehículo está a punto de colisionar, el sistema frena automáticamente para evitar o reducir el impacto. Disponible para peatones, bicicletas y vehículos.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="c-card">
+          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/26.jpg" alt="CyberSparksLED" class="c-card__img" />
+          <div class="c-card__gradient"></div>
+          <div class="c-card__body">
+            <div class="c-card__text">
+              <p class="c-card__title">CyberSparksLED.</p>
+              <p class="c-card__desc">Faros LED de bajo consumo que a más de 60 km/h y con suficiente distancia al vehículo de adelante activan automáticamente la luz larga sin deslumbrar.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── Carrusel 5 — 3 fotos ── -->
+    <div style="padding-bottom:1rem; overflow:hidden;">
+      <div id="track-c5" class="flex select-none" style="overflow-x:scroll; scrollbar-width:none; -ms-overflow-style:none; padding-left:1.25rem; padding-right:1.25rem; gap:1rem; cursor:grab;">
+
+        <div class="c-card">
+          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/27.jpg" alt="Pantalla central 12,8" class="c-card__img" />
+          <span class="c-card__tag">Conectividad</span>
+          <div class="c-card__gradient"></div>
+          <div class="c-card__body">
+            <div class="c-card__text">
+              <p class="c-card__title">Pantalla central 12,8".</p>
+              <p class="c-card__desc">La pantalla central de 12,8" es una pantalla táctil con una resolución de 1920×1080 píxeles y modos de día y noche. Superficie de la pantalla: 283×159 mm. Pantalla completa: 321×190 mm RAM de 12 GB, almacenamiento de 128 GB.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="c-card">
+          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/32.png" alt="Cuadro de instrumentos digital 9,2" class="c-card__img" />
+          <div class="c-card__gradient"></div>
+          <div class="c-card__body">
+            <div class="c-card__text">
+              <p class="c-card__title">Cuadro de instrumentos digital 9,2".</p>
+              <p class="c-card__desc">El cuadro de instrumentos de 9,2" es un panel de material LCD de alta definición que se usa para mostrar información de conducción, música y otros datos relacionados. Tiene una resolución de 1920x384 píxeles.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="c-card">
+          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/30.png" alt="Head Up display 10" class="c-card__img" />
+          <div class="c-card__gradient"></div>
+          <div class="c-card__body">
+            <div class="c-card__text">
+              <p class="c-card__title">Head Up display 10".</p>
+              <p class="c-card__desc">Los grupos ópticos del smart #1 integran tecnología LED en un diseño escultórico que refuerza el carácter premium del vehículo. *Función disponible para la versión BRABUS.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── Carrusel 6 — 3 fotos ── -->
+    <div style="padding-bottom:1rem; overflow:hidden;">
+      <div id="track-c6" class="flex select-none" style="overflow-x:scroll; scrollbar-width:none; -ms-overflow-style:none; padding-left:1.25rem; padding-right:1.25rem; gap:1rem; cursor:grab;">
+
+        <div class="c-card">
+          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/33.png" alt="Baúl trasero eléctrico" class="c-card__img" />
+          <span class="c-card__tag">Practicidad</span>
+          <div class="c-card__gradient"></div>
+          <div class="c-card__body">
+            <div class="c-card__text">
+              <p class="c-card__title">Baúl trasero eléctrico.</p>
+              <p class="c-card__desc">La apertura y el cierre del baúl trasero son automáticos y pueden accionarse desde el botón del portón, el comando interior o la llave con mando a distancia. Además, incorpora funciones de memoria y ajuste de apertura. Este sistema facilita el acceso a un baúl de 323 litros de capacidad, ampliable hasta 986 litros al rebatir los asientos traseros.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="c-card">
+          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/34.jpg" alt="Baúl delantero" class="c-card__img" />
+          <div class="c-card__gradient"></div>
+          <div class="c-card__body">
+            <div class="c-card__text">
+              <p class="c-card__title">Baúl delantero.</p>
+              <p class="c-card__desc">Compartimento de 15 litros bajo el capó. Apertura manual y sellado con espuma.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="c-card">
+          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/35.jpg" alt="Deslizamiento asientos traseros" class="c-card__img" />
+          <div class="c-card__gradient"></div>
+          <div class="c-card__body">
+            <div class="c-card__text">
+              <p class="c-card__title">Deslizamiento asientos traseros.</p>
+              <p class="c-card__desc">Los asientos traseros pueden deslizarse 130 mm para disponer de un espacio más amplio para las piernas o de mayor capacidad de almacenamiento en el baúl.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+  </section>
+
+  <!-- ================================================================
+       CARACTERÍSTICAS GENERALES
+  ================================================================ -->
+  <section id="caracteristicas" class="w-full bg-white px-5 md:px-14 py-10 md:py-16">
+    <div class="max-w-[1320px] mx-auto">
+
+      <p class="comp-header-label">smart #1</p>
+      <h2 class="comp-header-title">Características generales</h2>
+
+      <!-- Track de imágenes — solo mobile -->
+      <div id="comp-s1-img-track" style="overflow-x:hidden;">
+        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/comp-pure.png"   alt="smart #1 Pure"   style="width:calc(100vw - 2.5rem); aspect-ratio:3/2; object-fit:cover; object-position:center; flex-shrink:0; display:block;" />
+        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/comp-pro.png"    alt="smart #1 Pro"    style="width:calc(100vw - 2.5rem); aspect-ratio:3/2; object-fit:cover; object-position:center; flex-shrink:0; display:block;" />
+        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/comp-prop.png"   alt="smart #1 Pro+"   style="width:calc(100vw - 2.5rem); aspect-ratio:3/2; object-fit:cover; object-position:center; flex-shrink:0; display:block;" />
+        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/comp-brabus.png" alt="smart #1 BRABUS" style="width:calc(100vw - 2.5rem); aspect-ratio:3/2; object-fit:cover; object-position:center; flex-shrink:0; display:block;" />
+      </div>
+
+      <!-- Nav flechas — solo mobile -->
+      <div id="comp-s1-nav" style="align-items:center; justify-content:space-between; margin-bottom:1rem;">
+        <div>
+          <p class="comp-model">smart #1</p>
+          <p class="comp-version" id="comp-s1-label">Pure</p>
+        </div>
+        <div style="display:flex; gap:1.5rem; align-items:center;">
+          <button id="comp-s1-btn-prev" onclick="compS1Prev()" style="background:none;border:none;padding:0;cursor:pointer;line-height:0;opacity:0.25;transition:opacity 0.2s;pointer-events:none;" aria-label="Anterior">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0.5 10.7949L7.14648 4.14844L7.85352 4.85547L1.20728 11.502H24V12.502H1.20703L7.85352 19.1484L7.14648 19.8555L0.5 13.2092C0.177734 12.887 0 12.4583 0 12.002C0 11.5457 0.177734 11.1169 0.5 10.7949Z" fill="#141413"/></svg>
+          </button>
+          <button id="comp-s1-btn-next" onclick="compS1Next()" style="background:none;border:none;padding:0;cursor:pointer;line-height:0;transition:opacity 0.2s;" aria-label="Siguiente">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g transform="translate(24,0) scale(-1,1)"><path d="M0.5 10.7949L7.14648 4.14844L7.85352 4.85547L1.20728 11.502H24V12.502H1.20703L7.85352 19.1484L7.14648 19.8555L0.5 13.2092C0.177734 12.887 0 12.4583 0 12.002C0 11.5457 0.177734 11.1169 0.5 10.7949Z" fill="#141413"/></g></svg>
+          </button>
+        </div>
+      </div>
+
+      <div id="comp-s1-container" style="overflow-x:auto; -webkit-overflow-scrolling:touch; scrollbar-width:none;">
+        <div id="comp-s1-grid" style="display:grid; row-gap:12px; align-items:start;">
+
+          <!-- ROW: imágenes -->
+          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/comp-pure.png"   alt="smart #1 Pure"   style="width:100%; aspect-ratio:3/2; object-fit:cover; object-position:center;" />
+          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/comp-pro.png"    alt="smart #1 Pro"    style="width:100%; aspect-ratio:3/2; object-fit:cover; object-position:center;" />
+          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/comp-prop.png"   alt="smart #1 Pro+"   style="width:100%; aspect-ratio:3/2; object-fit:cover; object-position:center;" />
+          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/comp-brabus.png" alt="smart #1 BRABUS" style="width:100%; aspect-ratio:3/2; object-fit:cover; object-position:center;" />
+
+          <!-- ROW: modelo / versión -->
+          <div class="comp-ver-cell"><p class="comp-model">smart #1</p><p class="comp-version">Pure</p></div>
+          <div class="comp-ver-cell"><p class="comp-model">smart #1</p><p class="comp-version">Pro</p></div>
+          <div class="comp-ver-cell"><p class="comp-model">smart #1</p><p class="comp-version">Pro+</p></div>
+          <div class="comp-ver-cell"><p class="comp-model">smart #1</p><p class="comp-version">BRABUS</p></div>
+
+          <!-- ROW: divider -->
+          <hr class="comp-divider" /><hr class="comp-divider" /><hr class="comp-divider" /><hr class="comp-divider" />
+
+          <!-- ROW: autonomía -->
+          <div>
+            <p class="comp-range-label">Autonomía</p>
+            <p class="comp-range-num">310 km</p>
+            <p class="comp-range-sub">Autonomía WLTP<br>ciclo mixto</p>
+            <p class="comp-range-num">427 km</p>
+            <p class="comp-range-sub">Autonomía WLTP<br>ciudad</p>
+          </div>
+          <div>
+            <p class="comp-range-label">Autonomía</p>
+            <p class="comp-range-num">310 km</p>
+            <p class="comp-range-sub">Autonomía WLTP<br>ciclo mixto</p>
+            <p class="comp-range-num">427 km</p>
+            <p class="comp-range-sub">Autonomía WLTP<br>ciudad</p>
+          </div>
+          <div>
+            <p class="comp-range-label">Autonomía</p>
+            <p class="comp-range-num">420 km</p>
+            <p class="comp-range-sub">Autonomía WLTP<br>ciclo mixto</p>
+            <p class="comp-range-num">584 km</p>
+            <p class="comp-range-sub">Autonomía WLTP<br>ciudad</p>
+          </div>
+          <div>
+            <p class="comp-range-label">Autonomía</p>
+            <p class="comp-range-num">400 km</p>
+            <p class="comp-range-sub">Autonomía WLTP<br>ciclo mixto</p>
+            <p class="comp-range-num">532 km</p>
+            <p class="comp-range-sub">Autonomía WLTP<br>ciudad</p>
+          </div>
+
+          <!-- ROW: divider -->
+          <hr class="comp-divider" /><hr class="comp-divider" /><hr class="comp-divider" /><hr class="comp-divider" />
+
+          <!-- ROW: mecánica -->
+          <ul class="comp-features">
+            <li>RWD (Tracción trasera), 200 kW</li>
+            <li>Batería de 49 kWh</li>
+            <li>Carga CC de hasta 130 kW</li>
+            <li>Carga CA de hasta 7.4 kW</li>
+          </ul>
+          <ul class="comp-features">
+            <li>RWD (Tracción trasera), 200 kW</li>
+            <li>Batería de 49 kWh</li>
+            <li>Carga CC de hasta 130 kW</li>
+            <li>Carga CA de hasta 7.4 kW</li>
+          </ul>
+          <ul class="comp-features">
+            <li>RWD (Tracción trasera), 200 kW</li>
+            <li>Batería de 66 kWh</li>
+            <li>Carga CC de hasta 150 kW</li>
+            <li>Carga CA de hasta 22 kW</li>
+          </ul>
+          <ul class="comp-features comp-features--bold">
+            <li>AWD (Tracción total), 315 kW</li>
+            <li>Batería de 66 kWh</li>
+            <li>Carga CC de hasta 150 kW</li>
+            <li>Carga CA de hasta 22 kW</li>
+          </ul>
+
+          <!-- ROW: divider -->
+          <hr class="comp-divider" /><hr class="comp-divider" /><hr class="comp-divider" /><hr class="comp-divider" />
+
+          <!-- ROW: exterior -->
+          <ul class="comp-features">
+            <li>Luces LED CyberSparks con Asistente de Luces Altas Automático</li>
+          </ul>
+          <ul class="comp-features">
+            <li>Luces LED CyberSparks con Asistente de Luces Altas Automático</li>
+            <li>Techo Panorámico Halo</li>
+            <li>Portón trasero eléctrico</li>
+            <li>Cristales de Privacidad (Tintados)</li>
+          </ul>
+          <ul class="comp-features">
+            <li>Luces LED CyberSparks con Asistente de Luces Altas Automático</li>
+            <li>Techo Panorámico Halo</li>
+            <li>Portón trasero eléctrico</li>
+            <li>Cristales de Privacidad (Tintados)</li>
+          </ul>
+          <ul class="comp-features comp-features--bold">
+            <li>Luces LED+ CyberSparks con Faros Matriciales y Luz de Carretera Adaptativa</li>
+            <li>Techo Panorámico Halo</li>
+            <li>Portón trasero con Control Gestual</li>
+            <li>Cristales de Privacidad (Tintados)</li>
+            <li>Luces de cortesía con proyección de logo</li>
+            <li>Estilo de carrocería y emblemas BRABUS</li>
+            <li>Pinzas de freno rojas</li>
+          </ul>
+
+          <!-- ROW: divider -->
+          <hr class="comp-divider" /><hr class="comp-divider" /><hr class="comp-divider" /><hr class="comp-divider" />
+
+          <!-- ROW: interior -->
+          <ul class="comp-features">
+            <li>Asientos de tela</li>
+          </ul>
+          <ul class="comp-features">
+            <li>Asientos de cuero sintético</li>
+            <li>Asientos delanteros calefactables y ajustables eléctricos</li>
+            <li>Asiento trasero deslizable</li>
+            <li>Iluminación ambiental</li>
+          </ul>
+          <ul class="comp-features">
+            <li>Asientos de cuero sintético</li>
+            <li>Asientos delanteros calefactables y ajustables eléctricos</li>
+            <li>Asiento trasero deslizable</li>
+            <li>Iluminación ambiental</li>
+          </ul>
+          <ul class="comp-features comp-features--bold">
+            <li>Asientos de gamuza de microfibra</li>
+            <li>Asientos delanteros calefactables y ajustables eléc.</li>
+            <li>Asiento trasero deslizable</li>
+            <li>Iluminación ambiental+</li>
+            <li>Bomba de calor</li>
+            <li>Sonido Beats® (13 altavoces)</li>
+            <li>Volante de Alcantara®</li>
+            <li>Asientos delanteros ventilados</li>
+          </ul>
+
+          <!-- ROW: divider -->
+          <hr class="comp-divider" /><hr class="comp-divider" /><hr class="comp-divider" /><hr class="comp-divider" />
+
+          <!-- ROW: tecnología -->
+          <ul class="comp-features">
+            <li>Pantalla central de 12.8" con Navegador Apple CarPlay® y Android Auto</li>
+          </ul>
+          <ul class="comp-features">
+            <li>Pantalla central de 12.8" con Navegador Apple CarPlay® y Android Auto</li>
+            <li>Cargador inalámbrico para teléfono</li>
+          </ul>
+          <ul class="comp-features">
+            <li>Pantalla central de 12.8" con Navegador Apple CarPlay® y Android Auto</li>
+            <li>Cargador inalámbrico para teléfono</li>
+          </ul>
+          <ul class="comp-features">
+            <li>Pantalla central de 12.8" con Navegador Apple CarPlay® y Android Auto</li>
+            <li>Cargador inalámbrico para teléfono</li>
+            <li>Pantalla Head-Up Display de 10"</li>
+          </ul>
+
+          <!-- ROW: divider -->
+          <hr class="comp-divider" /><hr class="comp-divider" /><hr class="comp-divider" /><hr class="comp-divider" />
+
+          <!-- ROW: seguridad -->
+          <ul class="comp-features">
+            <li>smart Pilot Assist</li>
+            <li>4 sensores de estacionamiento traseros</li>
+          </ul>
+          <ul class="comp-features">
+            <li>smart Pilot Assist</li>
+            <li>8 sensores de estacionamiento (del. y tras.)</li>
+            <li>Cámara de estacionamiento de 360°</li>
+          </ul>
+          <ul class="comp-features">
+            <li>smart Pilot Assist</li>
+            <li>8 sensores de estacionamiento (del. y tras.)</li>
+            <li>Cámara de estacionamiento de 360°</li>
+          </ul>
+          <ul class="comp-features">
+            <li>smart Pilot Assist</li>
+            <li>8 sensores de estacionamiento (del. y tras.)</li>
+            <li>Cámara de estacionamiento de 360°</li>
+          </ul>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================================================================
+       ELEGÍ TU VERSIÓN (CONFIGURADOR)
+  ================================================================ -->
+  <section id="elegi-tu-version" class="w-full bg-white" style="overflow:hidden;">
+
+    <!-- Top: título + info LEFT, toggle RIGHT -->
+    <div id="vis-top-bar">
+
+      <!-- Izquierda: título + descripción + CTA -->
+      <div id="vis-left-content">
+        <h2 class="font-smart-next" style="font-weight:400; color:#141413; line-height:1.1; margin:0 0 16px;">Elegí tu versión</h2>
+        <p class="font-smart-sans" style="font-size:16px; color:#000000; line-height:1.5; margin:0 0 4px;">SUV compacto 100% eléctrico. Hasta 584 km de autonomía WLTP y 428 CV en su versión BRABUS.</p>
+        <p class="font-smart-sans" style="font-size:10px; color:#9ca3af; line-height:1.4; margin:0 0 12px;">Autonomía sujeta a tipo de conducción, condiciones del terrreno y condiciones del clima.</p>
+        <div id="vis-btn-row">
+          <button class="font-smart-sans" style="height:40px; padding:0 22px; border-radius:999px; background:#1A1A1A; font-size:13px; font-weight:700; color:#fff; cursor:pointer; border:none;">Ficha técnica</button>
+          <a class="vis-manual-link font-smart-sans" href="<?php echo get_template_directory_uri(); ?>/assets/pdf/manual-smart1.pdf" download style="font-size:12px; color:#6B747B; text-decoration:underline;">Manual de usuario</a>
+        </div>
+      </div>
+
+      <!-- Derecha: toggle exterior/interior -->
+      <div id="vis-switcher" style="display:flex; align-items:center; background:white; border:1px solid #141413; border-radius:9999px; position:relative; overflow:hidden;">
+        <div id="vis-indicator" style="position:absolute; top:0; left:0; height:100%; border-radius:9999px; background:#141413; z-index:0; transition:transform 0.4s cubic-bezier(0.4,0,0.2,1), width 0.4s cubic-bezier(0.4,0,0.2,1);"></div>
+        <button id="vis-btn-ext" onclick="switchVis('ext')" class="font-smart-sans" style="font-weight:400; position:relative; z-index:1; color:#fff; border:none; background:transparent; cursor:pointer; transition:color 0.4s ease;">exterior</button>
+        <button id="vis-btn-int" onclick="switchVis('int')" class="font-smart-sans" style="font-weight:400; position:relative; z-index:1; color:#141413; border:none; background:transparent; cursor:pointer; transition:color 0.4s ease;">interior</button>
+      </div>
+
+    </div>
+
+    <!-- Stage: imagen full-width + selector debajo — interior cubre ambos -->
+    <div id="vis-stage" style="overflow:visible;">
+
+      <!-- Car wrapper: da la altura al stage -->
+      <div id="vis-car-wrapper" style="position:relative; width:100%;">
+        <img id="vis-car-back" src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/vis-c1.png" alt="" style="width:100%; max-height:62vh; display:block; object-fit:contain;" />
+        <img id="vis-car-front" src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/vis-c1.png" alt="smart #1" style="position:absolute; inset:0; width:100%; height:100%; object-fit:contain; transition:opacity 0.4s cubic-bezier(0.25,0,0,1);" />
+      </div>
+
+      <!-- Interior carousel: cubre todo el stage (auto + barra) sin recortar -->
+      <div id="vis-interior" style="position:absolute; z-index:5; transform:translateX(100%); transition:transform 0.52s cubic-bezier(0.25,0,0,1); overflow:hidden; cursor:grab;">
+        <div id="vis-int-track" style="display:flex; height:100%; will-change:transform;"></div>
+      </div>
+
+      <!-- Barra inferior: z-index alto para flotar sobre el interior -->
+      <div id="vis-bottom-bar" style="position:relative; z-index:20; display:flex; justify-content:space-between; align-items:flex-end;">
+
+        <div id="vis-controls-card">
+          <!-- Línea -->
+          <div id="vis-linea-row" style="display:flex; align-items:center; gap:20px; margin-bottom:14px; transition:margin-bottom 0.4s cubic-bezier(0.25,0,0,1);">
+            <span class="font-smart-sans" style="font-size:11px; color:#6B747B; font-weight:700; min-width:44px;">Línea</span>
+            <button class="vis-linea-btn font-smart-sans" data-linea="BRABUS" style="font-size:13px; font-weight:700; color:#141413; background:none; border:none; cursor:pointer; padding:0;">BRABUS</button>
+            <button class="vis-linea-btn font-smart-sans" data-linea="Pure"   style="font-size:13px; font-weight:400; color:#6B747B; background:none; border:none; cursor:pointer; padding:0;">Pure</button>
+            <button class="vis-linea-btn font-smart-sans" data-linea="Pro"    style="font-size:13px; font-weight:400; color:#6B747B; background:none; border:none; cursor:pointer; padding:0;">Pro</button>
+            <button class="vis-linea-btn font-smart-sans" data-linea="Pro+"   style="font-size:13px; font-weight:400; color:#6B747B; background:none; border:none; cursor:pointer; padding:0;">Pro+</button>
+          </div>
+          <!-- Color -->
+          <div id="vis-color-row" style="display:flex; align-items:center; gap:10px; overflow:hidden; max-height:60px; transition:max-height 0.4s cubic-bezier(0.25,0,0,1);">
+            <span class="font-smart-sans" style="font-size:11px; color:#6B747B; font-weight:700; min-width:44px;">Color</span>
+            <div id="vis-color-wrap" style="display:flex; gap:10px; transition:opacity 0.3s ease;">
+              <div id="vis-swatches-BRABUS" style="display:flex; gap:10px;">
+                <button class="vis-color-btn" data-color="1" data-img="assets/img/smart1/vis-c1.png" style="width:28px;height:28px;border-radius:50%;background:linear-gradient(to bottom,#2a2a2a 50%,#bf1e2e 50%);border:none;cursor:pointer;box-shadow:0 0 0 2px #fff,0 0 0 3.5px #141413;"></button>
+                <button class="vis-color-btn" data-color="2" data-img="assets/img/smart1/vis-c2.png" style="width:28px;height:28px;border-radius:50%;background:#111111;border:none;cursor:pointer;"></button>
+                <button class="vis-color-btn" data-color="4" data-img="assets/img/smart1/vis-c4.png" style="width:28px;height:28px;border-radius:50%;background:linear-gradient(to bottom,#bf1e2e 50%,#111111 50%);border:none;cursor:pointer;"></button>
+                <button class="vis-color-btn" data-color="5" data-img="assets/img/smart1/vis-c5.png" style="width:28px;height:28px;border-radius:50%;background:linear-gradient(to bottom,#111111 50%,#4a4e57 50%);border:none;cursor:pointer;"></button>
+                <button class="vis-color-btn" data-color="6" data-img="assets/img/smart1/vis-c6.png" style="width:28px;height:28px;border-radius:50%;background:#4a4e57;border:none;cursor:pointer;"></button>
+                <button class="vis-color-btn" data-color="7" data-img="assets/img/smart1/vis-c7.png" style="width:28px;height:28px;border-radius:50%;background:linear-gradient(to bottom,#bf1e2e 50%,#7a7d84 50%);border:none;cursor:pointer;"></button>
+                <button class="vis-color-btn" data-color="8" data-img="assets/img/smart1/vis-c8.png" style="width:28px;height:28px;border-radius:50%;background:linear-gradient(to bottom,#3a3c40 50%,#c8caca 50%);border:none;cursor:pointer;"></button>
+              </div>
+              <div id="vis-swatches-Pro" style="display:none; gap:10px;">
+                <button class="vis-color-btn" data-color="pro1" data-img="assets/img/smart1/vis-pro-c1.png" style="width:28px;height:28px;border-radius:50%;background:linear-gradient(to bottom,#111111 50%,#bfb641 50%);border:none;cursor:pointer;"></button>
+                <button class="vis-color-btn" data-color="pro2" data-img="assets/img/smart1/vis-pro-c2.png" style="width:28px;height:28px;border-radius:50%;background:linear-gradient(to bottom,#bfb641 50%,#111111 50%);border:none;cursor:pointer;"></button>
+                <button class="vis-color-btn" data-color="pro3" data-img="assets/img/smart1/vis-pro-c3.png" style="width:28px;height:28px;border-radius:50%;background:#111111;border:none;cursor:pointer;"></button>
+                <button class="vis-color-btn" data-color="pro4" data-img="assets/img/smart1/vis-pro-c4.png" style="width:28px;height:28px;border-radius:50%;background:linear-gradient(to bottom,#111111 50%,#b8baba 50%);border:none;cursor:pointer;"></button>
+                <button class="vis-color-btn" data-color="pro5" data-img="assets/img/smart1/vis-pro-c5.png" style="width:28px;height:28px;border-radius:50%;background:linear-gradient(to bottom,#111111 50%,#88958c 50%);border:none;cursor:pointer;"></button>
+                <button class="vis-color-btn" data-color="pro6" data-img="assets/img/smart1/vis-pro-c6.png" style="width:28px;height:28px;border-radius:50%;background:linear-gradient(to bottom,#111111 50%,#f0f0f0 50%);border:none;cursor:pointer;"></button>
+                <button class="vis-color-btn" data-color="pro7" data-img="assets/img/smart1/vis-pro-c7.png" style="width:28px;height:28px;border-radius:50%;background:linear-gradient(to bottom,#111111 50%,#bf1e2e 50%);border:none;cursor:pointer;"></button>
+              </div>
+              <div id="vis-swatches-Pro+" style="display:none; gap:10px;">
+                <button class="vis-color-btn" data-color="pp1" data-img="assets/img/smart1/vis-pro-c1.png" style="width:28px;height:28px;border-radius:50%;background:linear-gradient(to bottom,#111111 50%,#bfb641 50%);border:none;cursor:pointer;"></button>
+                <button class="vis-color-btn" data-color="pp2" data-img="assets/img/smart1/vis-pro-c2.png" style="width:28px;height:28px;border-radius:50%;background:linear-gradient(to bottom,#bfb641 50%,#111111 50%);border:none;cursor:pointer;"></button>
+                <button class="vis-color-btn" data-color="pp3" data-img="assets/img/smart1/vis-pro-c3.png" style="width:28px;height:28px;border-radius:50%;background:#111111;border:none;cursor:pointer;"></button>
+                <button class="vis-color-btn" data-color="pp4" data-img="assets/img/smart1/vis-pro-c4.png" style="width:28px;height:28px;border-radius:50%;background:linear-gradient(to bottom,#111111 50%,#b8baba 50%);border:none;cursor:pointer;"></button>
+                <button class="vis-color-btn" data-color="pp5" data-img="assets/img/smart1/vis-pro-c5.png" style="width:28px;height:28px;border-radius:50%;background:linear-gradient(to bottom,#111111 50%,#88958c 50%);border:none;cursor:pointer;"></button>
+                <button class="vis-color-btn" data-color="pp6" data-img="assets/img/smart1/vis-pro-c6.png" style="width:28px;height:28px;border-radius:50%;background:linear-gradient(to bottom,#111111 50%,#f0f0f0 50%);border:none;cursor:pointer;"></button>
+                <button class="vis-color-btn" data-color="pp7" data-img="assets/img/smart1/vis-pro-c7.png" style="width:28px;height:28px;border-radius:50%;background:linear-gradient(to bottom,#111111 50%,#bf1e2e 50%);border:none;cursor:pointer;"></button>
+              </div>
+              <div id="vis-swatches-Pure" style="display:none; gap:10px;">
+                <button class="vis-color-btn" data-color="p1" data-img="assets/img/smart1/vis-pure-c1.png" style="width:28px;height:28px;border-radius:50%;background:#111111;border:none;cursor:pointer;"></button>
+                <button class="vis-color-btn" data-color="p2" data-img="assets/img/smart1/vis-pure-c2.png" style="width:28px;height:28px;border-radius:50%;background:#b8baba;border:none;cursor:pointer;"></button>
+                <button class="vis-color-btn" data-color="p3" data-img="assets/img/smart1/vis-pure-c3.png" style="width:28px;height:28px;border-radius:50%;background:#f0f0f0;border:1px solid #ddd;cursor:pointer;"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <a id="vis-manual-link" href="<?php echo get_template_directory_uri(); ?>/assets/pdf/manual-smart1.pdf" download class="font-smart-sans" style="font-size:12px; color:#141413; text-decoration:underline; padding-bottom:1px; transition:color 0.3s;">Manual de usuario</a>
+
+      </div><!-- end vis-bottom-bar -->
+
+    </div><!-- end vis-stage -->
+
+  </section>
+
+  <!-- ================================================================
+       FORMULARIO
+  ================================================================ -->
+  <?php get_template_part('partials/form-contacto'); ?>
+
+  <!-- ================================================================
+       FOOTER
+  ================================================================ -->
+  <?php get_template_part('partials/footer'); ?>
+
+
+  <script>
+    // ── Características generales — nav flechas mobile ───────────────────────
+    var compS1Index = 0;
+    var compS1Labels = ['Pure', 'Pro', 'Pro+', 'BRABUS'];
+    function compS1UpdateArrows() {
+      var p = document.getElementById('comp-s1-btn-prev');
+      var n = document.getElementById('comp-s1-btn-next');
+      if (p) { p.style.opacity = compS1Index === 0 ? '0.25' : '1'; p.style.pointerEvents = compS1Index === 0 ? 'none' : ''; }
+      if (n) { n.style.opacity = compS1Index === 3 ? '0.25' : '1'; n.style.pointerEvents = compS1Index === 3 ? 'none' : ''; }
+    }
+    function compS1Prev() {
+      if (compS1Index > 0) { compS1Index--; compS1Update(); }
+    }
+    function compS1Next() {
+      if (compS1Index < 3) { compS1Index++; compS1Update(); }
+    }
+    function compS1Update() {
+      var c = document.getElementById('comp-s1-container');
+      var t = document.getElementById('comp-s1-img-track');
+      c.scrollTo({ left: compS1Index * (c.scrollWidth / 4), behavior: 'smooth' });
+      if (t) t.scrollTo({ left: compS1Index * (t.scrollWidth / 4), behavior: 'smooth' });
+      document.getElementById('comp-s1-label').textContent = compS1Labels[compS1Index];
+      compS1UpdateArrows();
+    }
+    // Sync imagen y label al swipear manualmente
+    (function() {
+      var timer;
+      var c = document.getElementById('comp-s1-container');
+      if (!c) return;
+      c.addEventListener('scroll', function() {
+        clearTimeout(timer);
+        timer = setTimeout(function() {
+          var t = document.getElementById('comp-s1-img-track');
+          var colW = c.scrollWidth / 4;
+          var idx = Math.round(c.scrollLeft / colW);
+          idx = Math.max(0, Math.min(3, idx));
+          if (idx !== compS1Index) {
+            compS1Index = idx;
+            document.getElementById('comp-s1-label').textContent = compS1Labels[idx];
+            if (t) t.scrollTo({ left: idx * (t.scrollWidth / 4), behavior: 'smooth' });
+            compS1UpdateArrows();
+          }
+        }, 80);
+      });
+    })();
+
+    // ── Carruseles drag-to-scroll con inercia ────────────────────────────────
+    (function () {
+      function initDragCarousel(trackId) {
+        const track = document.getElementById(trackId);
+        if (!track) return;
+        track.style.willChange = 'scroll-position';
+        track.style.webkitOverflowScrolling = 'touch';
+
+        let isDragging  = false;
+        let hasMoved    = false;
+        let startX      = 0;
+        let startScroll = 0;
+        let lastX       = 0;
+        let lastTime    = 0;
+        let velocity    = 0;
+        let rafId       = null;
+
+        function momentum() {
+          velocity *= 0.94;
+          track.scrollLeft -= velocity;
+          if (Math.abs(velocity) > 0.3) rafId = requestAnimationFrame(momentum);
+        }
+
+        // ── Mouse ──
+        track.addEventListener('mousedown', function (e) {
+          cancelAnimationFrame(rafId);
+          isDragging  = true;
+          hasMoved    = false;
+          startX      = e.clientX;
+          startScroll = track.scrollLeft;
+          lastX       = e.clientX;
+          lastTime    = performance.now();
+          velocity    = 0;
+          track.style.cursor = 'grabbing';
+        });
+
+        window.addEventListener('mouseup', function () {
+          if (!isDragging) return;
+          isDragging = false;
+          track.style.cursor = 'grab';
+          rafId = requestAnimationFrame(momentum);
+        });
+
+        track.addEventListener('mousemove', function (e) {
+          if (!isDragging) return;
+          const delta = e.clientX - startX;
+          if (Math.abs(delta) > 4) hasMoved = true;
+          const now = performance.now();
+          const dt  = now - lastTime || 1;
+          velocity  = ((e.clientX - lastX) / dt) * 16;
+          lastX     = e.clientX;
+          lastTime  = now;
+          track.scrollLeft = startScroll - delta;
+        });
+
+        track.addEventListener('click', function (e) {
+          if (hasMoved) e.preventDefault();
+        }, true);
+
+        // ── Touch ──
+        track.addEventListener('touchstart', function (e) {
+          cancelAnimationFrame(rafId);
+          isDragging  = true;
+          hasMoved    = false;
+          startX      = e.touches[0].clientX;
+          startScroll = track.scrollLeft;
+          lastX       = e.touches[0].clientX;
+          lastTime    = performance.now();
+          velocity    = 0;
+        }, { passive: true });
+
+        track.addEventListener('touchmove', function (e) {
+          if (!isDragging) return;
+          const delta = e.touches[0].clientX - startX;
+          if (Math.abs(delta) > 4) hasMoved = true;
+          const now = performance.now();
+          const dt  = now - lastTime || 1;
+          velocity  = ((e.touches[0].clientX - lastX) / dt) * 16;
+          lastX     = e.touches[0].clientX;
+          lastTime  = now;
+          track.scrollLeft = startScroll - delta;
+        }, { passive: true });
+
+        track.addEventListener('touchend', function () {
+          isDragging = false;
+          rafId = requestAnimationFrame(momentum);
+        }, { passive: true });
+      }
+
+      ['track-c1', 'track-c2', 'track-c3', 'track-c4', 'track-c5', 'track-c6'].forEach(initDragCarousel);
+
+      // ── Visualizador: toggle exterior / interior ──
+      (function() {
+        var indicator = document.getElementById('vis-indicator');
+        var btnExt    = document.getElementById('vis-btn-ext');
+        var btnInt    = document.getElementById('vis-btn-int');
+        if (!indicator || !btnExt || !btnInt) return;
+        function initVis() {
+          indicator.style.width = btnExt.offsetWidth + 'px';
+          indicator.style.transform = 'translateX(0)';
+        }
+        initVis();
+        window.switchVis = function(view) {
+          var intPanel  = document.getElementById('vis-interior');
+          var colorWrap = document.getElementById('vis-color-wrap');
+          window._visMode = view;
+
+          var carBack    = document.getElementById('vis-car-back');
+          var carFront   = document.getElementById('vis-car-front');
+          var manualLink = document.getElementById('vis-manual-link');
+          if (view === 'ext') {
+            indicator.style.width = btnExt.offsetWidth + 'px';
+            indicator.style.transform = 'translateX(0)';
+            btnExt.style.color = '#fff';
+            btnInt.style.color = '#141413';
+            if (intPanel) {
+              intPanel.style.transition = 'transform 0.52s cubic-bezier(0.25,0,0,1)';
+              intPanel.style.transform  = 'translateX(100%)';
+            }
+            if (carBack)    carBack.style.visibility    = '';
+            if (carFront)   carFront.style.visibility   = '';
+            if (manualLink) { manualLink.style.color = '#141413'; manualLink.style.borderBottomColor = '#141413'; }
+            var colorRow  = document.getElementById('vis-color-row');
+            var lineaRow  = document.getElementById('vis-linea-row');
+            if (colorRow)  { colorRow.style.maxHeight = '60px'; }
+            if (lineaRow)  { lineaRow.style.marginBottom = '14px'; }
+          } else {
+            indicator.style.width = btnInt.offsetWidth + 'px';
+            indicator.style.transform = 'translateX(' + btnExt.offsetWidth + 'px)';
+            btnInt.style.color = '#fff';
+            btnExt.style.color = '#141413';
+            if (carBack)    carBack.style.visibility    = 'hidden';
+            if (carFront)   carFront.style.visibility   = 'hidden';
+            if (manualLink) { manualLink.style.color = '#fff'; manualLink.style.borderBottomColor = 'rgba(255,255,255,0.6)'; }
+            var colorRow  = document.getElementById('vis-color-row');
+            var lineaRow  = document.getElementById('vis-linea-row');
+            if (colorRow)  { colorRow.style.maxHeight = '0'; }
+            if (lineaRow)  { lineaRow.style.marginBottom = '0'; }
+            if (intPanel && window.loadInteriorFor) {
+              var linea = window.getVisLinea ? window.getVisLinea() : 'BRABUS';
+              window.loadInteriorFor(linea);
+              intPanel.style.transition = 'none';
+              intPanel.style.transform  = 'translateX(100%)';
+              requestAnimationFrame(function() {
+                requestAnimationFrame(function() {
+                  intPanel.style.transition = 'transform 0.52s cubic-bezier(0.25,0,0,1)';
+                  intPanel.style.transform  = 'translateX(0)';
+                });
+              });
+            }
+          }
+        };
+      })();
+
+      // ── Visualizador: Línea + Color — sistema unificado ──
+      (function() {
+        var front       = document.getElementById('vis-car-front');
+        var back        = document.getElementById('vis-car-back');
+        var activeSrc   = 'assets/img/smart1/vis-c1.png';
+        var activeLinea = 'BRABUS';
+        var fading      = false;
+        window.getVisLinea = function() { return activeLinea; };
+
+        function carFade(newSrc) {
+          if (!newSrc || newSrc === activeSrc || fading) return;
+          activeSrc = newSrc;
+          fading = true;
+          back.src = newSrc;
+          front.style.opacity = '0';
+          setTimeout(function() {
+            front.src = newSrc;
+            front.style.transition = 'none';
+            front.style.opacity    = '1';
+            requestAnimationFrame(function() {
+              requestAnimationFrame(function() {
+                front.style.transition = 'opacity 0.4s cubic-bezier(0.25,0,0,1)';
+                fading = false;
+              });
+            });
+          }, 450);
+        }
+
+        function selectColorBtn(btn) {
+          document.querySelectorAll('.vis-color-btn').forEach(function(b) {
+            b.style.boxShadow = 'none';
+          });
+          btn.style.boxShadow = '0 0 0 2px #fff, 0 0 0 3.5px #141413';
+          carFade(btn.getAttribute('data-img'));
+        }
+
+        document.addEventListener('click', function(e) {
+          var btn = e.target.closest('.vis-color-btn');
+          if (btn) selectColorBtn(btn);
+        });
+
+        document.querySelectorAll('.vis-linea-btn').forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var newLinea = this.getAttribute('data-linea');
+            if (newLinea === activeLinea) return;
+
+            document.querySelectorAll('.vis-linea-btn').forEach(function(b) {
+              b.style.fontWeight = '400'; b.style.color = '#6B747B';
+            });
+            this.style.fontWeight = '700'; this.style.color = '#141413';
+
+            var currentGroup = document.getElementById('vis-swatches-' + activeLinea);
+            var newGroup     = document.getElementById('vis-swatches-' + newLinea);
+            if (!newGroup) { activeLinea = newLinea; return; }
+
+            fading = true;
+
+            // Fade out current swatches in place + car simultaneously
+            if (currentGroup) {
+              currentGroup.style.transition = 'opacity 0.18s ease';
+              currentGroup.style.opacity = '0';
+            }
+            front.style.opacity = '0';
+
+            setTimeout(function() {
+              // Reset & hide current group
+              if (currentGroup) {
+                currentGroup.style.display = 'none';
+                currentGroup.style.transition = 'none';
+                currentGroup.style.opacity = '1';
+                currentGroup.style.transform = '';
+              }
+
+              // Prepare new group: invisible, shifted right
+              newGroup.style.transition = 'none';
+              newGroup.style.opacity = '0';
+              newGroup.style.transform = 'translateX(36px)';
+              newGroup.style.display = 'flex';
+
+              // Select first swatch & update car
+              var firstBtn = newGroup.querySelector('.vis-color-btn');
+              if (firstBtn) {
+                document.querySelectorAll('.vis-color-btn').forEach(function(b) { b.style.boxShadow = 'none'; });
+                firstBtn.style.boxShadow = '0 0 0 2px #fff, 0 0 0 3.5px #111111';
+                var newSrc = firstBtn.getAttribute('data-img');
+                activeSrc = newSrc;
+                back.src  = newSrc;
+                front.src = newSrc;
+              }
+
+              // Force reflow, then animate in
+              newGroup.offsetHeight;
+              newGroup.style.transition = 'opacity 0.25s ease, transform 0.25s cubic-bezier(0.25,0,0,1)';
+              newGroup.style.opacity = '1';
+              newGroup.style.transform = 'translateX(0)';
+
+              // Fade in car
+              front.style.transition = 'none';
+              front.style.opacity = '1';
+              requestAnimationFrame(function() {
+                requestAnimationFrame(function() {
+                  front.style.transition = 'opacity 0.4s cubic-bezier(0.25,0,0,1)';
+                  fading = false;
+                });
+              });
+
+              activeLinea = newLinea;
+              // Si estamos en interior, recargar el carousel con la nueva línea
+              if (window._visMode === 'int' && window.loadInteriorFor) {
+                window.loadInteriorFor(newLinea);
+              }
+            }, 200);
+          });
+        });
+      })();
+    })();
+
+      // ── Interior carousel ──
+      (function() {
+        var panel = document.getElementById('vis-interior');
+        var track = document.getElementById('vis-int-track');
+        if (!panel || !track) return;
+
+        var idx  = 0;
+        var imgs = [];
+        var STD  = ['assets/img/smart1/int-std-1.png','assets/img/smart1/int-std-2.png','assets/img/smart1/int-std-3.png','assets/img/smart1/int-std-4.png'];
+        var lineaMap = {
+          'BRABUS': ['assets/img/smart1/int-brabus-1.png','assets/img/smart1/int-brabus-2.png','assets/img/smart1/int-brabus-3.png','assets/img/smart1/int-brabus-4.png'],
+          'Pure': STD, 'Pro': STD, 'Pro+': STD
+        };
+
+        window.loadInteriorFor = function(linea) {
+          imgs = lineaMap[linea] || lineaMap['BRABUS'];
+          idx  = 0;
+          var W = panel.offsetWidth;
+          track.innerHTML = '';
+          imgs.forEach(function(src) {
+            var el = document.createElement('img');
+            el.src = src;
+            el.alt = '';
+            el.draggable = false;
+            el.style.cssText = 'flex-shrink:0;width:' + W + 'px;height:100%;object-fit:cover;display:block;pointer-events:none;user-select:none;';
+            track.appendChild(el);
+          });
+          track.style.transition = 'none';
+          track.style.transform  = 'translateX(0)';
+        };
+
+        function goTo(n) {
+          n   = Math.max(0, Math.min(imgs.length - 1, n));
+          idx = n;
+          track.style.transition = 'transform 0.4s cubic-bezier(0.25,0,0,1)';
+          track.style.transform  = 'translateX(-' + (idx * panel.offsetWidth) + 'px)';
+        }
+
+        var dragging = false, sx = 0, cx = 0;
+        function dStart(x) {
+          dragging = true; sx = cx = x;
+          track.style.transition = 'none';
+          panel.style.cursor = 'grabbing';
+        }
+        function dMove(x) {
+          if (!dragging) return;
+          cx = x;
+          var raw  = -idx * panel.offsetWidth + (x - sx);
+          var minX = -(imgs.length - 1) * panel.offsetWidth;
+          track.style.transform = 'translateX(' + Math.max(minX, Math.min(0, raw)) + 'px)';
+        }
+        function dEnd() {
+          if (!dragging) return;
+          dragging = false;
+          panel.style.cursor = 'grab';
+          var delta = cx - sx;
+          if (delta < -40) goTo(idx + 1);
+          else if (delta > 40) goTo(idx - 1);
+          else goTo(idx);
+        }
+
+        panel.addEventListener('mousedown', function(e) { dStart(e.clientX); e.preventDefault(); });
+        window.addEventListener('mousemove', function(e) { dMove(e.clientX); });
+        window.addEventListener('mouseup', dEnd);
+        panel.addEventListener('touchstart', function(e) { dStart(e.touches[0].clientX); }, {passive:true});
+        panel.addEventListener('touchmove',  function(e) { dMove(e.touches[0].clientX); },  {passive:true});
+        panel.addEventListener('touchend', dEnd, {passive:true});
+      })();
+
+    function toggleModelosDropdown() {
+      const menu    = document.getElementById('modelos-menu');
+      const chevron = document.getElementById('modelos-chevron');
+      menu.classList.toggle('is-open');
+      chevron.style.transform = menu.classList.contains('is-open') ? 'rotate(180deg)' : '';
+    }
+    document.addEventListener('click', function(e) {
+      const dd = document.getElementById('modelos-dropdown');
+      if (dd && !dd.contains(e.target)) {
+        const menu    = document.getElementById('modelos-menu');
+        const chevron = document.getElementById('modelos-chevron');
+        if (menu)    menu.classList.remove('is-open');
+        if (chevron) chevron.style.transform = '';
+      }
+    });
+    function openNavMenu() {
+      const menu     = document.getElementById('nav-menu');
+      const drawer   = document.getElementById('nav-drawer');
+      const backdrop = document.getElementById('nav-backdrop');
+      menu.classList.remove('pointer-events-none');
+      backdrop.classList.remove('opacity-0');
+      backdrop.classList.add('opacity-100');
+      drawer.classList.remove('-translate-x-full');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeNavMenu() {
+      const menu     = document.getElementById('nav-menu');
+      const drawer   = document.getElementById('nav-drawer');
+      const backdrop = document.getElementById('nav-backdrop');
+      backdrop.classList.remove('opacity-100');
+      backdrop.classList.add('opacity-0');
+      drawer.classList.add('-translate-x-full');
+      setTimeout(() => {
+        menu.classList.add('pointer-events-none');
+        document.body.style.overflow = '';
+      }, 300);
+    }
+  </script>
+  <script>
+    document.addEventListener('click', function(e) {
+      var a = e.target.closest('a[href^="#"]');
+      if (!a) return;
+      var id = a.getAttribute('href');
+      var target = document.querySelector(id);
+      if (!target) return;
+      e.preventDefault();
+      var start = window.pageYOffset;
+      var end = target.getBoundingClientRect().top + start;
+      var duration = 480;
+      var startTime = null;
+      function step(ts) {
+        if (!startTime) startTime = ts;
+        var progress = Math.min((ts - startTime) / duration, 1);
+        var ease = progress < 0.5 ? 2*progress*progress : -1+(4-2*progress)*progress;
+        window.scrollTo(0, start + (end - start) * ease);
+        if (progress < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    });
+  </script>
+
+  <!-- ── Carruseles mobile: navegación por flechas ── -->
+  <style>
+    @media (max-width: 767px) {
+      .c-card { width: calc(100vw - 2.5rem) !important; }
+    }
+  </style>
+  <script>
+    (function () {
+      if (window.innerWidth >= 768) return;
+
+      var SVG_PREV = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0.5 10.7949L7.14648 4.14844L7.85352 4.85547L1.20728 11.502H24V12.502H1.20703L7.85352 19.1484L7.14648 19.8555L0.5 13.2092C0.177734 12.887 0 12.4583 0 12.002C0 11.5457 0.177734 11.1169 0.5 10.7949Z" fill="#141413"/></svg>';
+      var SVG_NEXT = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g transform="translate(24,0) scale(-1,1)"><path d="M0.5 10.7949L7.14648 4.14844L7.85352 4.85547L1.20728 11.502H24V12.502H1.20703L7.85352 19.1484L7.14648 19.8555L0.5 13.2092C0.177734 12.887 0 12.4583 0 12.002C0 11.5457 0.177734 11.1169 0.5 10.7949Z" fill="#141413"/></g></svg>';
+
+      var indices = {};
+
+      var GAP_PX = 64; /* 4rem */
+
+      function step() {
+        /* card width (100vw - 2.5rem = vw-40px) + gap (4rem = 64px) = vw + 24px */
+        return window.innerWidth + 24;
+      }
+
+      function goTo(track, i, btnPrev, btnNext) {
+        var cards = track.querySelectorAll('.c-card');
+        i = Math.max(0, Math.min(i, cards.length - 1));
+        indices[track.id] = i;
+        track.style.transform = 'translateX(-' + (i * step()) + 'px)';
+        var atStart = i === 0;
+        var atEnd   = i === cards.length - 1;
+        btnPrev.style.opacity = atStart ? '0.25' : '1';
+        btnNext.style.opacity = atEnd   ? '0.25' : '1';
+        btnPrev.style.pointerEvents = atStart ? 'none' : '';
+        btnNext.style.pointerEvents = atEnd   ? 'none' : '';
+      }
+
+      ['track-c1','track-c2','track-c3','track-c4','track-c5','track-c6'].forEach(function (id) {
+        var track = document.getElementById(id);
+        if (!track) return;
+
+        track.style.overflow   = 'visible';
+        track.style.touchAction = 'none';
+        track.style.transition = 'transform 0.32s cubic-bezier(0.4,0,0.2,1)';
+        track.style.gap        = '4rem';
+        indices[id] = 0;
+
+        var nav = document.createElement('div');
+        nav.style.cssText = 'display:flex;justify-content:flex-end;gap:1.5rem;align-items:center;padding:0.75rem 1.25rem 0;';
+
+        var btnPrev = document.createElement('button');
+        btnPrev.innerHTML = SVG_PREV;
+        btnPrev.setAttribute('aria-label', 'Anterior');
+        btnPrev.style.cssText = 'background:none;border:none;padding:0;cursor:pointer;line-height:0;opacity:0.25;transition:opacity 0.2s;pointer-events:none;';
+        btnPrev.addEventListener('click', function () { goTo(track, (indices[id] || 0) - 1, btnPrev, btnNext); });
+
+        var btnNext = document.createElement('button');
+        btnNext.innerHTML = SVG_NEXT;
+        btnNext.setAttribute('aria-label', 'Siguiente');
+        btnNext.style.cssText = 'background:none;border:none;padding:0;cursor:pointer;line-height:0;transition:opacity 0.2s;';
+        btnNext.addEventListener('click', function () { goTo(track, (indices[id] || 0) + 1, btnPrev, btnNext); });
+
+        nav.appendChild(btnPrev);
+        nav.appendChild(btnNext);
+        track.parentNode.insertBefore(nav, track.nextSibling);
+      });
+    })();
+  </script>
+<?php wp_footer(); ?>
+</body>
+</html>
