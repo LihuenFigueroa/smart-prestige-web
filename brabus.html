@@ -73,11 +73,12 @@
       .brabus-strip-desc    { font-size: 20px !important; }
 
       .brabus-collab-wrap {
-        padding: 24px 37px !important;
+        padding: 32px !important;
       }
       .brabus-collab-text-wrap {
         width: 100% !important;
         min-height: unset !important;
+        height: auto !important;
       }
       .brabus-collab-text {
         font-size: 26px !important;
@@ -204,34 +205,34 @@
   <!-- ================================================================
        STRIP — título smart x BRABUS + descripción
   ================================================================ -->
-  <section class="w-full bg-white brabus-strip-section" style="padding: 39px 59px 40px;">
-    <div style="max-width:1076px;">
-      <h2 class="brabus-strip-title" style="font-family:'FOR_smart_Next',sans-serif; font-weight:400; font-size:40px; line-height:120%; letter-spacing:-0.02em; color:#141413; margin:0 0 8px;">smart x BRABUS.</h2>
-      <p class="brabus-strip-desc" style="font-family:'FOR_smart_Sans',sans-serif; font-weight:400; font-size:26px; line-height:130%; letter-spacing:0.02em; color:#141413; margin:0; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;">
+  <section class="w-full bg-white brabus-strip-section" style="padding: 39px 59px 35px;">
+    <div>
+      <h2 class="brabus-strip-title" style="font-family:'FOR_smart_Next',sans-serif; font-weight:400; font-size:39px; line-height:120%; letter-spacing:-0.02em; color:#141413; margin:0 0 8px;">smart x BRABUS.</h2>
+      <p class="brabus-strip-desc" style="font-family:'FOR_smart_Sans',sans-serif; font-weight:400; font-size:25px; line-height:130%; letter-spacing:0.02em; color:#141413; margin:0; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;">
         Representa la máxima expresión de desempeño dentro de la gama smart. Desarrollado en colaboración con BRABUS, combina la movilidad 100% eléctrica con un diseño distintivo, prestaciones deportivas y una experiencia de conducción emocionante.
       </p>
     </div>
   </section>
 
   <!-- Imagen mobile-only: aparece después del texto introductorio -->
-  <div class="brabus-collab-img-mobile">
-    <img src="assets/img/brabus/collab-mobile.png" alt="smart x BRABUS" style="width:341px; height:509px; object-fit:cover; display:block;" />
+  <div class="brabus-collab-img-mobile" style="padding:32px 32px 0 32px;">
+    <img src="assets/img/brabus/collab-mobile.png" alt="smart x BRABUS" style="width:100%; height:auto; object-fit:cover; display:block;" />
   </div>
 
   <!-- ================================================================
        2 COLUMNAS — texto izquierda + imagen derecha
   ================================================================ -->
   <section class="w-full bg-white">
-    <div class="brabus-collab-wrap" style="padding: 35px 87px 35px 87px; display:flex; flex-direction:row; align-items:center;">
+    <div class="brabus-collab-wrap" style="padding: 0px 35px 35px 87px; display:flex; flex-direction:row; align-items:flex-start; gap:35px;">
       <!-- Texto izquierda -->
-      <div class="flex-shrink-0 flex items-center brabus-collab-text-wrap" style="width:406px; min-height:480px;">
+      <div class="flex-shrink-0 flex items-center brabus-collab-text-wrap" style="width:406px; height:480px;">
         <p class="brabus-collab-text" style="font-family:'FOR_smart_Sans',sans-serif; font-weight:400; font-size:26px; line-height:140%; color:#000000; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;">
           La colaboración entre smart y BRABUS nació para los que no se conforman con el estándar. El resultado es un SUV eléctrico que combina ingeniería de alto rendimiento con una estética deportiva que parte del interior hacia afuera.
         </p>
       </div>
       <!-- Imagen derecha — oculta en mobile (se muestra arriba) -->
-      <div class="flex-1 hidden md:flex justify-end">
-        <img src="assets/img/laColaboracionBRABUS.png" alt="smart x BRABUS" style="width:720px; height:480px; object-fit:cover;" />
+      <div class="flex-1 hidden md:block" style="height:480px; overflow:hidden; position:relative;">
+        <img src="assets/img/laColaboracionBRABUS.png" alt="smart x BRABUS" style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; object-position:75% center; display:block;" />
       </div>
     </div>
   </section>

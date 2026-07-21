@@ -197,14 +197,29 @@ function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, capt
     const tmpCtx = tmp.getContext('2d');
     tmpCtx.drawImage(video, 0, 0);
     frames[0] = tmp.transferToImageBitmap();
-    renderProgress(0);
+    // Solo renderizar frame 0 si el usuario está en o arriba del hero
+    const rel = window.scrollY - pin.offsetTop;
+    if (rel <= 0) renderProgress(0);
   }
 
   function onCaptureComplete() {
     ready = true;
+    // Calcular el progress correcto para la posición actual de scroll
+    // y asignarlo directamente a drawProgress para evitar animación desde 0
+    const rel     = window.scrollY - pin.offsetTop;
+    const videoPx = videoDuration * PX_PER_SECOND;
+    const extraPx = textZonePx || 0;
+    if (rel <= 0) {
+      targetProgress = drawProgress = 0;
+    } else if (rel <= videoPx) {
+      targetProgress = drawProgress = Math.max(0, rel / videoPx);
+    } else {
+      targetProgress = drawProgress = 1;
+    }
     renderProgress(drawProgress);
+    canvas.style.opacity = '1';
     window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll(); // aplica el estado correcto según la posición actual de scroll
+    onScroll();
   }
 
   // ── Init ─────────────────────────────────────────────────────────────────
@@ -219,6 +234,8 @@ function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, capt
     function drawEarlyFrame() {
       if (firstFrameDrawn || !video.videoWidth || !canvas.width) return;
       firstFrameDrawn = true;
+      // Solo dibujar frame inicial si el usuario está en o arriba del hero
+      if (window.scrollY > pin.offsetTop) return;
       const cw = canvas.width, ch = canvas.height;
       const vw = video.videoWidth, vh = video.videoHeight;
       const scale = Math.max(cw / vw, ch / vh);
@@ -240,9 +257,39 @@ function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, capt
       videoDuration = videoDuration - startOffset;
 
       function tryFirstFrame() {
+        const belowHero = window.scrollY > pin.offsetTop;
         const seek = () => {
-          video.currentTime = startOffset;
-          video.addEventListener('seeked', showFirstFrame, { once: true });
+          if (belowHero) {
+            // Primero capturar el último frame para mostrarlo de inmediato
+            video.currentTime = startOffset + videoDuration - 0.01;
+            video.addEventListener('seeked', function() {
+              const tmp = new OffscreenCanvas(video.videoWidth || 1280, video.videoHeight || 720);
+              tmp.getContext('2d').drawImage(video, 0, 0);
+              frames[totalFrames - 1] = tmp.transferToImageBitmap();
+              drawProgress = targetProgress = 1;
+              if (textEl) { textEl.style.opacity = '1'; textEl.style.pointerEvents = 'auto'; }
+              canvas.style.opacity = '1';
+              renderProgress(1);
+              // Luego capturar el primer frame para que al scrollear para arriba no haya negro
+              video.currentTime = startOffset;
+              video.addEventListener('seeked', function() {
+                const tmp2 = new OffscreenCanvas(video.videoWidth || 1280, video.videoHeight || 720);
+                tmp2.getContext('2d').drawImage(video, 0, 0);
+                frames[0] = tmp2.transferToImageBitmap();
+              }, { once: true });
+            }, { once: true });
+          } else {
+            video.currentTime = startOffset;
+            video.addEventListener('seeked', function() {
+              const tmp = new OffscreenCanvas(video.videoWidth || 1280, video.videoHeight || 720);
+              tmp.getContext('2d').drawImage(video, 0, 0);
+              frames[0] = tmp.transferToImageBitmap();
+              drawProgress = targetProgress = 0;
+              if (textEl) { textEl.style.opacity = '0'; textEl.style.pointerEvents = 'none'; }
+              canvas.style.opacity = '1';
+              renderProgress(0);
+            }, { once: true });
+          }
         };
         video.readyState >= 2 ? seek()
           : video.addEventListener('canplay', seek, { once: true });
@@ -267,6 +314,9 @@ function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, capt
     video.readyState >= 1 ? setup()
       : video.addEventListener('loadedmetadata', setup, { once: true });
   }
+
+  // Si al cargar ya estamos debajo del hero, ocultar canvas hasta tener el frame correcto
+  if (window.scrollY > pin.offsetTop) canvas.style.opacity = '0';
 
   requestAnimationFrame(tick);
   init();
