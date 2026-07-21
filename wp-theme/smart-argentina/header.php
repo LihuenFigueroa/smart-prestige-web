@@ -6,5 +6,8 @@
   <title><?php wp_title('|', true, 'right'); ?><?php bloginfo('name'); ?></title>
   <link rel="icon" href="<?php echo get_template_directory_uri(); ?>/assets/img/favicon.svg" type="image/svg+xml" />
   <?php wp_head(); ?>
+  <script>
+    window.THEME_URL = '<?php echo get_template_directory_uri(); ?>';
+  </script>
 </head>
 <body <?php body_class('bg-white font-smart-next'); ?>>

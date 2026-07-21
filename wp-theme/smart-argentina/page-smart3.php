@@ -659,27 +659,27 @@
             <span class="font-smart-sans" style="font-size:11px; color:#6B747B; font-weight:700; min-width:44px;">Color</span>
             <div id="vis-color-wrap" style="display:flex; gap:10px; transition:opacity 0.3s ease;">
               <div id="vis-swatches-BRABUS" style="display:flex; gap:10px;">
-                <button class="vis-color-btn" data-color="3" data-img="assets/img/smart3/normalized/vis-c3.png" style="width:28px;height:28px;border-radius:50%;background:#e05a1a;border:none;cursor:pointer;box-shadow:0 0 0 2px #fff,0 0 0 3.5px #141413;"></button>
-                <button class="vis-color-btn" data-color="1" data-img="assets/img/smart3/normalized/vis-c1.png" style="width:28px;height:28px;border-radius:50%;background:linear-gradient(to bottom,#f0f0f0 50%,#1c1c1c 50%);border:none;cursor:pointer;"></button>
-                <button class="vis-color-btn" data-color="2" data-img="assets/img/smart3/normalized/vis-c2.png" style="width:28px;height:28px;border-radius:50%;background:#252525;border:none;cursor:pointer;"></button>
-                <button class="vis-color-btn" data-color="4" data-img="assets/img/smart3/normalized/vis-c6.png" style="width:28px;height:28px;border-radius:50%;background:linear-gradient(to bottom,#c41920 50%,#1c1c1c 50%);border:none;cursor:pointer;"></button>
-                <button class="vis-color-btn" data-color="5" data-img="assets/img/smart3/normalized/vis-c5.png" style="width:28px;height:28px;border-radius:50%;background:#4c5058;border:none;cursor:pointer;"></button>
-                <button class="vis-color-btn" data-color="6" data-img="assets/img/smart3/normalized/vis-c4.png" style="width:28px;height:28px;border-radius:50%;background:linear-gradient(to bottom,#1c1c1c 50%,#c0201e 50%);border:none;cursor:pointer;"></button>
-                <button class="vis-color-btn" data-color="7" data-img="assets/img/smart3/normalized/vis-c7.png" style="width:28px;height:28px;border-radius:50%;background:linear-gradient(to bottom,#4c5058 50%,#c0201e 50%);border:none;cursor:pointer;"></button>
+                <button class="vis-color-btn" data-color="3" data-img="<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-c3.png" style="width:28px;height:28px;border-radius:50%;background:#e05a1a;border:none;cursor:pointer;box-shadow:0 0 0 2px #fff,0 0 0 3.5px #141413;"></button>
+                <button class="vis-color-btn" data-color="1" data-img="<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-c1.png" style="width:28px;height:28px;border-radius:50%;background:linear-gradient(to bottom,#f0f0f0 50%,#1c1c1c 50%);border:none;cursor:pointer;"></button>
+                <button class="vis-color-btn" data-color="2" data-img="<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-c2.png" style="width:28px;height:28px;border-radius:50%;background:#252525;border:none;cursor:pointer;"></button>
+                <button class="vis-color-btn" data-color="4" data-img="<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-c6.png" style="width:28px;height:28px;border-radius:50%;background:linear-gradient(to bottom,#c41920 50%,#1c1c1c 50%);border:none;cursor:pointer;"></button>
+                <button class="vis-color-btn" data-color="5" data-img="<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-c5.png" style="width:28px;height:28px;border-radius:50%;background:#4c5058;border:none;cursor:pointer;"></button>
+                <button class="vis-color-btn" data-color="6" data-img="<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-c4.png" style="width:28px;height:28px;border-radius:50%;background:linear-gradient(to bottom,#1c1c1c 50%,#c0201e 50%);border:none;cursor:pointer;"></button>
+                <button class="vis-color-btn" data-color="7" data-img="<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-c7.png" style="width:28px;height:28px;border-radius:50%;background:linear-gradient(to bottom,#4c5058 50%,#c0201e 50%);border:none;cursor:pointer;"></button>
               </div>
               <div id="vis-swatches-Pro" style="display:none; gap:10px;">
-                <button class="vis-color-btn" data-color="pro1" data-img="assets/img/smart3/normalized/vis-pro-c1.png" style="width:28px;height:28px;border-radius:50%;background:linear-gradient(to bottom,#c4c020 50%,#1c1c1c 50%);border:none;cursor:pointer;"></button>
-                <button class="vis-color-btn" data-color="pro2" data-img="assets/img/smart3/normalized/vis-pro-c2.png" style="width:28px;height:28px;border-radius:50%;background:#b8bcc0;border:none;cursor:pointer;"></button>
-                <button class="vis-color-btn" data-color="pro3" data-img="assets/img/smart3/normalized/vis-pro-c3.png" style="width:28px;height:28px;border-radius:50%;background:#232327;border:none;cursor:pointer;"></button>
-                <button class="vis-color-btn" data-color="pro4" data-img="assets/img/smart3/normalized/vis-pro-c4.png" style="width:28px;height:28px;border-radius:50%;background:#f0f0f0;border:1px solid #ddd;cursor:pointer;"></button>
-                <button class="vis-color-btn" data-color="pro5" data-img="assets/img/smart3/normalized/vis-pro-c5.png" style="width:28px;height:28px;border-radius:50%;background:#8aaa8e;border:none;cursor:pointer;"></button>
+                <button class="vis-color-btn" data-color="pro1" data-img="<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-pro-c1.png" style="width:28px;height:28px;border-radius:50%;background:linear-gradient(to bottom,#c4c020 50%,#1c1c1c 50%);border:none;cursor:pointer;"></button>
+                <button class="vis-color-btn" data-color="pro2" data-img="<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-pro-c2.png" style="width:28px;height:28px;border-radius:50%;background:#b8bcc0;border:none;cursor:pointer;"></button>
+                <button class="vis-color-btn" data-color="pro3" data-img="<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-pro-c3.png" style="width:28px;height:28px;border-radius:50%;background:#232327;border:none;cursor:pointer;"></button>
+                <button class="vis-color-btn" data-color="pro4" data-img="<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-pro-c4.png" style="width:28px;height:28px;border-radius:50%;background:#f0f0f0;border:1px solid #ddd;cursor:pointer;"></button>
+                <button class="vis-color-btn" data-color="pro5" data-img="<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-pro-c5.png" style="width:28px;height:28px;border-radius:50%;background:#8aaa8e;border:none;cursor:pointer;"></button>
               </div>
               <div id="vis-swatches-Pro+" style="display:none; gap:10px;">
-                <button class="vis-color-btn" data-color="pp1" data-img="assets/img/smart3/normalized/vis-prop-c1.png" style="width:28px;height:28px;border-radius:50%;background:linear-gradient(to bottom,#c4c020 50%,#1c1c1c 50%);border:none;cursor:pointer;"></button>
-                <button class="vis-color-btn" data-color="pp2" data-img="assets/img/smart3/normalized/vis-prop-c2.png" style="width:28px;height:28px;border-radius:50%;background:#b8bcc0;border:none;cursor:pointer;"></button>
-                <button class="vis-color-btn" data-color="pp3" data-img="assets/img/smart3/normalized/vis-prop-c3.png" style="width:28px;height:28px;border-radius:50%;background:#232327;border:none;cursor:pointer;"></button>
-                <button class="vis-color-btn" data-color="pp4" data-img="assets/img/smart3/normalized/vis-prop-c4.png" style="width:28px;height:28px;border-radius:50%;background:#f0f0f0;border:1px solid #ddd;cursor:pointer;"></button>
-                <button class="vis-color-btn" data-color="pp5" data-img="assets/img/smart3/normalized/vis-prop-c5.png" style="width:28px;height:28px;border-radius:50%;background:#8aaa8e;border:none;cursor:pointer;"></button>
+                <button class="vis-color-btn" data-color="pp1" data-img="<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-prop-c1.png" style="width:28px;height:28px;border-radius:50%;background:linear-gradient(to bottom,#c4c020 50%,#1c1c1c 50%);border:none;cursor:pointer;"></button>
+                <button class="vis-color-btn" data-color="pp2" data-img="<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-prop-c2.png" style="width:28px;height:28px;border-radius:50%;background:#b8bcc0;border:none;cursor:pointer;"></button>
+                <button class="vis-color-btn" data-color="pp3" data-img="<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-prop-c3.png" style="width:28px;height:28px;border-radius:50%;background:#232327;border:none;cursor:pointer;"></button>
+                <button class="vis-color-btn" data-color="pp4" data-img="<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-prop-c4.png" style="width:28px;height:28px;border-radius:50%;background:#f0f0f0;border:1px solid #ddd;cursor:pointer;"></button>
+                <button class="vis-color-btn" data-color="pp5" data-img="<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-prop-c5.png" style="width:28px;height:28px;border-radius:50%;background:#8aaa8e;border:none;cursor:pointer;"></button>
               </div>
             </div>
           </div>
@@ -908,12 +908,12 @@
       (function() {
         var front       = document.getElementById('vis-car-front');
         var back        = document.getElementById('vis-car-back');
-        var activeSrc   = 'assets/img/smart3/normalized/vis-c3.png';
+        var activeSrc   = '<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-c3.png';
         var activeLinea = 'BRABUS';
         var fading      = false;
         window.getVisLinea = function() { return activeLinea; };
 
-        var ZOOM_SRCS = ['assets/img/smart3/normalized/vis-c1.png','assets/img/smart3/normalized/vis-c2.png','assets/img/smart3/normalized/vis-c3.png','assets/img/smart3/normalized/vis-c4.png','assets/img/smart3/normalized/vis-c5.png','assets/img/smart3/normalized/vis-c6.png','assets/img/smart3/normalized/vis-c7.png','assets/img/smart3/normalized/vis-pro-c1.png','assets/img/smart3/normalized/vis-pro-c2.png','assets/img/smart3/normalized/vis-pro-c3.png','assets/img/smart3/normalized/vis-pro-c4.png','assets/img/smart3/normalized/vis-pro-c5.png','assets/img/smart3/normalized/vis-prop-c1.png','assets/img/smart3/normalized/vis-prop-c2.png','assets/img/smart3/normalized/vis-prop-c3.png','assets/img/smart3/normalized/vis-prop-c4.png','assets/img/smart3/normalized/vis-prop-c5.png'];
+        var ZOOM_SRCS = ['<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-c1.png','<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-c2.png','<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-c3.png','<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-c4.png','<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-c5.png','<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-c6.png','<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-c7.png','<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-pro-c1.png','<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-pro-c2.png','<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-pro-c3.png','<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-pro-c4.png','<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-pro-c5.png','<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-prop-c1.png','<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-prop-c2.png','<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-prop-c3.png','<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-prop-c4.png','<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-prop-c5.png'];
         // All normalized images have identical car alignment — no per-image position adjustment needed
         function applyMobilePos(src) { /* no-op: images are normalized */ }
 
@@ -1048,9 +1048,9 @@
 
         var idx  = 0;
         var imgs = [];
-        var STD  = ['assets/img/smart3/int-std-1.png','assets/img/smart3/int-std-2.png','assets/img/smart3/int-std-3.png','assets/img/smart3/int-std-4.png'];
+        var STD  = ['<?php echo get_template_directory_uri(); ?>/assets/img/smart3/int-std-1.png','<?php echo get_template_directory_uri(); ?>/assets/img/smart3/int-std-2.png','<?php echo get_template_directory_uri(); ?>/assets/img/smart3/int-std-3.png','<?php echo get_template_directory_uri(); ?>/assets/img/smart3/int-std-4.png'];
         var lineaMap = {
-          'BRABUS': ['assets/img/smart3/int-brabus-1.png','assets/img/smart3/int-brabus-2.png','assets/img/smart3/int-brabus-3.png','assets/img/smart3/int-brabus-4.png'],
+          'BRABUS': ['<?php echo get_template_directory_uri(); ?>/assets/img/smart3/int-brabus-1.png','<?php echo get_template_directory_uri(); ?>/assets/img/smart3/int-brabus-2.png','<?php echo get_template_directory_uri(); ?>/assets/img/smart3/int-brabus-3.png','<?php echo get_template_directory_uri(); ?>/assets/img/smart3/int-brabus-4.png'],
           'Pro': STD, 'Pro+': STD
         };
 

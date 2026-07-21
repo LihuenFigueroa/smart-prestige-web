@@ -247,8 +247,8 @@
 
   <script>
     // Precargá las imágenes para que el slide no tenga delay
-    new Image().src = 'assets/img/home/elegiTuSmart/smart1_home.jpeg';
-    new Image().src = 'assets/img/home/elegiTuSmart/smart3_home.jpeg';
+    new Image().src = '<?php echo get_template_directory_uri(); ?>/assets/img/home/elegiTuSmart/smart1_home.jpeg';
+    new Image().src = '<?php echo get_template_directory_uri(); ?>/assets/img/home/elegiTuSmart/smart3_home.jpeg';
 
     let currentModel = 1;
 
@@ -289,7 +289,7 @@
       cta.textContent = num === 1
         ? 'Descubrí más sobre el smart #1'
         : 'Descubrí más sobre el smart #3';
-      cta.href = num === 1 ? 'smart1.html' : 'smart3.html';
+      cta.href = num === 1 ? '<?php echo home_url('/smart-1/'); ?>' : '<?php echo home_url('/smart-3/'); ?>';
 
       // Píldora deslizante: mover y redimensionar
       const activeTab = num === 1 ? tab1 : tab3;
@@ -368,8 +368,6 @@
       }, true);
     })();
   </script>
-
-  <script src="<?php echo get_template_directory_uri(); ?>/assets/js/main.js"></script>
 
   <script>
     function toggleModelosDropdown() {

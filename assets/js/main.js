@@ -16,15 +16,25 @@ function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, capt
   let ready = false, totalFrames = 0;
   let targetProgress = 0, drawProgress = 0;
   let videoDuration = 0;
+  let logicalW = 0, logicalH = 0;
 
   // ── Canvas ───────────────────────────────────────────────────────────────
+  // El buffer del canvas se dimensiona a resolución física (CSS px * devicePixelRatio)
+  // para que no se vea pixelado/borroso en pantallas de alta densidad (Retina, escalado de Windows, etc.).
+  // Todo el dibujo sigue usando coordenadas en CSS px gracias al ctx.setTransform.
   function resizeCanvas() {
+    const dpr  = window.devicePixelRatio || 1;
     const newW = canvas.offsetWidth  || window.innerWidth;
     const newH = canvas.offsetHeight || (pinHeight || window.innerHeight);
+    const newPxW = Math.round(newW * dpr);
+    const newPxH = Math.round(newH * dpr);
     // Solo redimensionar si cambió de verdad (evita el flash por address bar en mobile)
-    if (canvas.width === newW && canvas.height === newH) return;
-    canvas.width  = newW;
-    canvas.height = newH;
+    if (canvas.width === newPxW && canvas.height === newPxH) return;
+    canvas.width  = newPxW;
+    canvas.height = newPxH;
+    logicalW = newW;
+    logicalH = newH;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     if (ready) renderProgress(drawProgress);
   }
   window.addEventListener('resize', resizeCanvas);
@@ -32,7 +42,7 @@ function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, capt
 
   // ── Render ───────────────────────────────────────────────────────────────
   function drawBitmap(bmp, alpha) {
-    const cw = canvas.width, ch = canvas.height;
+    const cw = logicalW, ch = logicalH;
     const scale = Math.max(cw / bmp.width, ch / bmp.height);
     const sw = bmp.width * scale, sh = bmp.height * scale;
     ctx.globalAlpha = alpha;
@@ -46,7 +56,7 @@ function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, capt
     const idxB  = Math.min(idxA + 1, frames.length - 1);
     const blend = exact - idxA;
     if (!frames[idxA]) return;
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.clearRect(0, 0, logicalW, logicalH);
     drawBitmap(frames[idxA], 1);
     if (blend > 0.01 && frames[idxB]) drawBitmap(frames[idxB], blend);
     ctx.globalAlpha = 1;
@@ -236,7 +246,7 @@ function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, capt
       firstFrameDrawn = true;
       // Solo dibujar frame inicial si el usuario está en o arriba del hero
       if (window.scrollY > pin.offsetTop) return;
-      const cw = canvas.width, ch = canvas.height;
+      const cw = logicalW, ch = logicalH;
       const vw = video.videoWidth, vh = video.videoHeight;
       const scale = Math.max(cw / vw, ch / vh);
       ctx.clearRect(0, 0, cw, ch);
@@ -331,7 +341,7 @@ initScrollVideo({
   videoId:    'heroVideo',
   canvasId:   'heroCanvas',
   pinId:      'heroPin',
-  videoSrc:   isMobile ? 'assets/video/videoHeroMobile.mp4' : 'assets/video/videoHero.mp4',
+  videoSrc:   isMobile ? (window.THEME_URL || '') + '/assets/video/videoHeroMobile.mp4' : (window.THEME_URL || '') + '/assets/video/videoHero.mp4',
   pxPerSecond: isMobile ? 750 : 1300,
   captureFps:  isMobile ? 30  : 15,
   lerp:        0.06,
@@ -391,7 +401,7 @@ initScrollVideo({
   videoId:     'brabusVideo',
   canvasId:    'brabusCanvas',
   pinId:       'brabusPin',
-  videoSrc:    isMobile ? 'assets/video/videoSmartXBRABUSMobile.mp4' : 'assets/video/videoSmartXBRABUS.mp4',
+  videoSrc:    isMobile ? (window.THEME_URL || '') + '/assets/video/videoSmartXBRABUSMobile.mp4' : (window.THEME_URL || '') + '/assets/video/videoSmartXBRABUS.mp4',
   pxPerSecond: isMobile ? 650 : 1250,
   captureFps:  60,
   lerp:        0.07,

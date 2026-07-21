@@ -45,7 +45,7 @@
         <p class="text-white text-sm font-normal leading-5 opacity-50 mb-2 font-smart-sans">Sobre smart</p>
         <nav class="flex flex-col gap-2">
           <a href="<?php echo home_url('/sobre-smart/'); ?>" class="text-white text-base leading-6 hover:opacity-70">Sobre nosotros</a>
-          <a href="index.html#contacto" class="text-white text-base leading-6 hover:opacity-70">Contáctanos</a>
+          <a href="<?php echo home_url('/'); ?>#contacto" class="text-white text-base leading-6 hover:opacity-70">Contáctanos</a>
         </nav>
       </div>
     </div>
@@ -63,9 +63,9 @@
         <p class="text-[#BABFC4] text-sm font-smart-sans">© 2026 smart Argentina</p>
       </div>
       <div class="flex items-center gap-x-4 text-[#BABFC4] text-sm">
-        <a href="legales.html" class="hover:text-white transition-colors">Legales</a>
+        <a href="<?php echo home_url('/legales/'); ?>" class="hover:text-white transition-colors">Legales</a>
         <span class="opacity-40">|</span>
-        <a href="cookies.html" class="hover:text-white transition-colors">Cookies</a>
+        <a href="<?php echo home_url('/cookies/'); ?>" class="hover:text-white transition-colors">Cookies</a>
       </div>
     </div>
 

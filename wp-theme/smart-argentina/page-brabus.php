@@ -220,11 +220,10 @@
   <?php get_template_part('partials/footer'); ?>
 
 
-  <script src="<?php echo get_template_directory_uri(); ?>/assets/js/main.js"></script>
   <script>
     // Preload spec images para que el primer slide no tenga delay
-    new Image().src = 'assets/img/brabus/spec1_wide.png';
-    new Image().src = 'assets/img/brabus/spec3_wide.png';
+    new Image().src = '<?php echo get_template_directory_uri(); ?>/assets/img/brabus/spec1_wide.png';
+    new Image().src = '<?php echo get_template_directory_uri(); ?>/assets/img/brabus/spec3_wide.png';
 
     function openNavMenu() {
       const menu     = document.getElementById('nav-menu');

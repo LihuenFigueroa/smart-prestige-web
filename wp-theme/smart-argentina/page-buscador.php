@@ -1,6 +1,76 @@
 <?php /* Template Name: Buscador */ ?>
 <?php get_header(); ?>
 <?php get_template_part('partials/header'); ?>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style>
+    @media (max-width: 767px) {
+      .bus-hero-img {
+        content: url('<?php echo get_template_directory_uri(); ?>/assets/img/buscador/hero-mobile.png');
+        object-position: center center !important;
+      }
+      .bus-hero-wrap {
+        padding-left: 24px !important;
+        padding-bottom: 32px !important;
+      }
+      .bus-hero-title {
+        font-size: 36px !important;
+        line-height: 1.15 !important;
+        letter-spacing: -0.02em !important;
+        margin-bottom: 8px !important;
+      }
+      .bus-hero-label {
+        font-size: 18px !important;
+        line-height: 1.4 !important;
+        margin-bottom: 0 !important;
+      }
+      .bus-hero-btn {
+        display: none !important;
+      }
+
+      /* Sección buscador mobile */
+      #buscador {
+        height: auto !important;
+        padding: 32px 20px 48px !important;
+      }
+      #buscador-inner {
+        flex-direction: column !important;
+        height: auto !important;
+        gap: 0 !important;
+      }
+      #buscador-left {
+        width: 100% !important;
+        height: auto !important;
+      }
+      #buscador-map-col {
+        width: 100% !important;
+        height: 340px !important;
+        flex: none !important;
+        margin-top: 24px !important;
+      }
+      #lista-concesionarios {
+        overflow-y: scroll !important;
+        flex: none !important;
+        margin-top: 24px !important;
+        max-height: 560px !important;
+      }
+    }
+    .smart-marker { background: none; border: none; }
+    .smart-popup .leaflet-popup-content-wrapper {
+      border-radius: 4px;
+      border: 1px solid #E5E7EB;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+      padding: 0;
+    }
+    .smart-popup .leaflet-popup-content {
+      margin: 18px 20px 16px;
+    }
+    .smart-popup .leaflet-popup-tip-container { display: none; }
+    .smart-popup .leaflet-popup-close-button {
+      color: #141413;
+      font-size: 18px;
+      padding: 6px 8px;
+    }
+  </style>
   <!-- ================================================================
        HERO
   ================================================================ -->

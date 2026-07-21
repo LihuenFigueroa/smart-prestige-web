@@ -21,13 +21,13 @@
         <a href="<?php echo home_url('/sobre-smart/'); ?>" class="text-[#141413] text-xl font-smart-next font-normal py-3 border-b border-neutral-200 hover:text-neutral-400 transition-colors">Sobre nosotros</a>
       </nav>
       <div class="px-8 py-6 border-t border-neutral-200">
-        <a href="index.html#contacto" class="text-sm text-neutral-500 hover:text-[#141413] transition-colors">Contáctanos</a>
+        <a href="<?php echo home_url('/'); ?>#contacto" class="text-sm text-neutral-500 hover:text-[#141413] transition-colors">Contáctanos</a>
       </div>
       <div class="px-8 pt-5 pb-8 border-t border-neutral-200 flex flex-col gap-3">
         <p class="text-xs text-neutral-400 font-smart-sans">
-          <a href="legales.html" class="hover:text-[#141413] transition-colors">Legales</a>
+          <a href="<?php echo home_url('/legales/'); ?>" class="hover:text-[#141413] transition-colors">Legales</a>
           <span class="mx-2 text-neutral-300">|</span>
-          <a href="cookies.html" class="hover:text-[#141413] transition-colors">Cookies</a>
+          <a href="<?php echo home_url('/cookies/'); ?>" class="hover:text-[#141413] transition-colors">Cookies</a>
         </p>
         <p class="text-xs text-neutral-400 font-smart-sans">© 2026 smart Argentina</p>
       </div>
