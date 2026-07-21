@@ -147,8 +147,7 @@
   <!-- ================================================================
        INTRO + CARRUSEL  (scroll-pinned en desktop)
   ================================================================ -->
-  <div id="svc-pin-wrap" style="position:relative;">
-  <section id="svc-intro" class="svc-intro-section w-full bg-white overflow-hidden" style="height:561px;">
+  <section id="svc-intro" class="svc-intro-section w-full bg-white overflow-hidden" style="height:480px;">
     <div class="flex flex-col md:flex-row" style="height:100%;">
 
       <!-- Texto izquierda -->
@@ -160,15 +159,15 @@
               Tu smart en las manos de expertos.
             </h2>
           </div>
-          <p class="svc-intro-desc font-smart-sans font-normal" style="margin-top:24px; font-size:16px; line-height:130%; letter-spacing:0.02em; color:#000000;">
+          <p class="svc-intro-desc font-smart-sans font-normal" style="margin-top:24px; font-size:15px; line-height:130%; letter-spacing:0.02em; color:#000000;">
             En smart, nos esforzamos al máximo para ofrecerte servicios de excelencia para tu vehículo y mucho más.
           </p>
         </div>
       </div>
 
-      <!-- Carrusel imágenes -->
-      <div id="svc-carousel-viewport" class="flex-1 min-w-0 flex items-center" style="padding-top:69px; padding-bottom:63px; overflow:hidden;">
-        <div id="track-svc-intro" class="flex select-none" style="gap:19px; height:429px; will-change:transform;">
+      <!-- Carrusel imágenes — drag-to-scroll -->
+      <div id="svc-carousel-viewport" class="flex-1 min-w-0 flex items-center" style="padding-top:19px; padding-bottom:19px; overflow:hidden;">
+        <div id="track-svc-intro" class="flex select-none" style="gap:19px; height:432px; will-change:transform; overflow-x:scroll; scrollbar-width:none; -ms-overflow-style:none; cursor:grab;">
           <div class="svc-intro-slide flex-shrink-0 h-full" style="width:clamp(260px,39.9vw,574px);">
             <img src="assets/img/servicios/intro-img1.jpg" alt="" class="w-full h-full object-cover" draggable="false" />
           </div>
@@ -183,12 +182,11 @@
 
     </div>
   </section>
-  </div>
 
   <!-- ================================================================
        FORMULARIO
   ================================================================ -->
-  <section id="contacto" class="w-full bg-white py-12 md:py-20 px-5 md:px-14">
+  <section id="contacto" class="w-full bg-white py-12 md:pt-0 md:pb-16 px-5 md:px-14">
     <div class="max-w-[1320px] mx-auto flex flex-col md:flex-row gap-10 md:gap-16 md:items-start">
 
       <!-- Izquierda: título + subtítulo -->
@@ -248,8 +246,8 @@
           <span class="font-smart-next font-normal text-black" style="font-size:18px;">Garantía</span>
           <svg class="sabana-icon flex-shrink-0 text-neutral-400" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2"><line x1="8" y1="1" x2="8" y2="15" class="sabana-vline"/><line x1="1" y1="8" x2="15" y2="8"/></svg>
         </button>
-        <div class="sabana-content pb-7">
-          <p class="font-smart-sans text-sm leading-6" style="color:#6B747B;">3 años sin límites de kilometraje para componentes del vehículo.<br>Garantía batería y componentes de alto voltaje: 8 años o 160.000 km. lo que ocurra primero.</p>
+        <div class="sabana-content">
+          <p class="font-smart-sans" style="color:#141413; font-size:15px; line-height:160%; padding-bottom:60px;">3 años sin límites de kilometraje para componentes del vehículo.<br>Garantía batería y componentes de alto voltaje: 8 años o 160.000 km. lo que ocurra primero.</p>
         </div>
       </div>
 
@@ -258,8 +256,8 @@
           <span class="font-smart-next font-normal text-black" style="font-size:18px;">Asistencia en ruta</span>
           <svg class="sabana-icon flex-shrink-0 text-neutral-400" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2"><line x1="8" y1="1" x2="8" y2="15" class="sabana-vline"/><line x1="1" y1="8" x2="15" y2="8"/></svg>
         </button>
-        <div class="sabana-content pb-7">
-          <p class="font-smart-sans text-sm leading-6" style="color:#6B747B;">Asistencia rápida donde te encuentres, las 24 horas del día. Frente a cualquier eventual problema en la ruta, te asistimos dentro del país y en países limítrofes.</p>
+        <div class="sabana-content">
+          <p class="font-smart-sans" style="color:#141413; font-size:15px; line-height:160%; padding-bottom:60px;">Asistencia rápida donde te encuentres, las 24 horas del día. Frente a cualquier eventual problema en la ruta, te asistimos dentro del país y en países limítrofes.</p>
         </div>
       </div>
 
@@ -268,8 +266,8 @@
           <span class="font-smart-next font-normal text-black" style="font-size:18px;">Mantenimiento</span>
           <svg class="sabana-icon flex-shrink-0 text-neutral-400" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2"><line x1="8" y1="1" x2="8" y2="15" class="sabana-vline"/><line x1="1" y1="8" x2="15" y2="8"/></svg>
         </button>
-        <div class="sabana-content pb-7">
-          <p class="font-smart-sans text-sm leading-6" style="color:#6B747B;">Nuestro servicio oficial smart es tu mejor opción para mantenerlo siempre en perfecto estado. Gracias al servicio premium y la atención al detalle, podrás seguir disfrutando de tu smart con la misma confianza y placer que el primer día.<br><br>El mantenimiento debe realizarse cada 10.000 kilómetros o cada dos años, para garantizar que tu smart conserve su fiabilidad, seguridad y máximo rendimiento. En cada visita, nuestros técnicos especializados realizan un mantenimiento integral, siguiendo los estándares más exigentes de la marca y utilizando siempre piezas originales smart.</p>
+        <div class="sabana-content">
+          <p class="font-smart-sans" style="color:#141413; font-size:15px; line-height:160%; padding-bottom:60px;">Nuestro servicio oficial smart es tu mejor opción para mantenerlo siempre en perfecto estado. Gracias al servicio premium y la atención al detalle, podrás seguir disfrutando de tu smart con la misma confianza y placer que el primer día.<br><br>El mantenimiento debe realizarse cada 10.000 kilómetros o cada dos años, para garantizar que tu smart conserve su fiabilidad, seguridad y máximo rendimiento. En cada visita, nuestros técnicos especializados realizan un mantenimiento integral, siguiendo los estándares más exigentes de la marca y utilizando siempre piezas originales smart.</p>
         </div>
       </div>
 
@@ -278,8 +276,8 @@
           <span class="font-smart-next font-normal text-black" style="font-size:18px;">Reparaciones</span>
           <svg class="sabana-icon flex-shrink-0 text-neutral-400" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2"><line x1="8" y1="1" x2="8" y2="15" class="sabana-vline"/><line x1="1" y1="8" x2="15" y2="8"/></svg>
         </button>
-        <div class="sabana-content pb-7">
-          <p class="font-smart-sans text-sm leading-6" style="color:#6B747B;">Podés contar con nosotros para cualquier tipo de solución que requiera tu smart.</p>
+        <div class="sabana-content">
+          <p class="font-smart-sans" style="color:#141413; font-size:15px; line-height:160%; padding-bottom:60px;">Podés contar con nosotros para cualquier tipo de solución que requiera tu smart.</p>
         </div>
       </div>
 
@@ -288,8 +286,8 @@
           <span class="font-smart-next font-normal text-black" style="font-size:18px;">Sustitución del parabrisas</span>
           <svg class="sabana-icon flex-shrink-0 text-neutral-400" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2"><line x1="8" y1="1" x2="8" y2="15" class="sabana-vline"/><line x1="1" y1="8" x2="15" y2="8"/></svg>
         </button>
-        <div class="sabana-content pb-7">
-          <p class="font-smart-sans text-sm leading-6" style="color:#6B747B;">Si el parabrisas sufre un daño por impacto de piedras, tu seguridad también se ve afectada. El parabrisas contribuye a la rigidez torsional de la carrocería. Si se rompe, no puede garantizarse plenamente su capacidad portante, sobre todo en situaciones críticas. Al sustituir el parabrisas, lo importante es la correcta ejecución del trabajo en un taller autorizado smart.</p>
+        <div class="sabana-content">
+          <p class="font-smart-sans" style="color:#141413; font-size:15px; line-height:160%; padding-bottom:60px;">Si el parabrisas sufre un daño por impacto de piedras, tu seguridad también se ve afectada. El parabrisas contribuye a la rigidez torsional de la carrocería. Si se rompe, no puede garantizarse plenamente su capacidad portante, sobre todo en situaciones críticas. Al sustituir el parabrisas, lo importante es la correcta ejecución del trabajo en un taller autorizado smart.</p>
         </div>
       </div>
 
@@ -298,8 +296,8 @@
           <span class="font-smart-next font-normal text-black" style="font-size:18px;">Frenos y pastillas de freno</span>
           <svg class="sabana-icon flex-shrink-0 text-neutral-400" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2"><line x1="8" y1="1" x2="8" y2="15" class="sabana-vline"/><line x1="1" y1="8" x2="15" y2="8"/></svg>
         </button>
-        <div class="sabana-content pb-7">
-          <p class="font-smart-sans text-sm leading-6" style="color:#6B747B;">Te ofrecemos un servicio especial en aras de tu seguridad: nuestro control de frenos. Para incrementar la seguridad en el tránsito vehicular es indispensable revisar periódicamente las pastillas de freno y la potencia de frenado. Por ello te recomendamos encargar la revisión de los frenos al menos una vez al año.</p>
+        <div class="sabana-content">
+          <p class="font-smart-sans" style="color:#141413; font-size:15px; line-height:160%; padding-bottom:60px;">Te ofrecemos un servicio especial en aras de tu seguridad: nuestro control de frenos. Para incrementar la seguridad en el tránsito vehicular es indispensable revisar periódicamente las pastillas de freno y la potencia de frenado. Por ello te recomendamos encargar la revisión de los frenos al menos una vez al año.</p>
         </div>
       </div>
 
@@ -308,8 +306,8 @@
           <span class="font-smart-next font-normal text-black" style="font-size:18px;">Cambio de batería 12v</span>
           <svg class="sabana-icon flex-shrink-0 text-neutral-400" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2"><line x1="8" y1="1" x2="8" y2="15" class="sabana-vline"/><line x1="1" y1="8" x2="15" y2="8"/></svg>
         </button>
-        <div class="sabana-content pb-7">
-          <p class="font-smart-sans text-sm leading-6" style="color:#6B747B;">Si tu batería pierde rendimiento, la única solución suele ser cambiarla. Estaremos encantados de ayudarte y encargarnos de sustituir tu batería de 12v. Efectuaremos el cambio de forma rápida y sin complicaciones; naturalmente, con la alta calidad habitual de smart.</p>
+        <div class="sabana-content">
+          <p class="font-smart-sans" style="color:#141413; font-size:15px; line-height:160%; padding-bottom:60px;">Si tu batería pierde rendimiento, la única solución suele ser cambiarla. Estaremos encantados de ayudarte y encargarnos de sustituir tu batería de 12v. Efectuaremos el cambio de forma rápida y sin complicaciones; naturalmente, con la alta calidad habitual de smart.</p>
         </div>
       </div>
 
@@ -318,8 +316,8 @@
           <span class="font-smart-next font-normal text-black" style="font-size:18px;">Repuestos originales</span>
           <svg class="sabana-icon flex-shrink-0 text-neutral-400" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2"><line x1="8" y1="1" x2="8" y2="15" class="sabana-vline"/><line x1="1" y1="8" x2="15" y2="8"/></svg>
         </button>
-        <div class="sabana-content pb-7">
-          <p class="font-smart-sans text-sm leading-6" style="color:#6B747B;">Si es necesario realizar una reparación o sustituir alguna pieza averiada, recomendamos utilizar repuestos originales smart. Todos estos repuestos están respaldados por el know-how de smart como fabricante, se desarrollan específicamente para tu modelo y se adaptan a la perfección a los demás componentes del vehículo.</p>
+        <div class="sabana-content">
+          <p class="font-smart-sans" style="color:#141413; font-size:15px; line-height:160%; padding-bottom:60px;">Si es necesario realizar una reparación o sustituir alguna pieza averiada, recomendamos utilizar repuestos originales smart. Todos estos repuestos están respaldados por el know-how de smart como fabricante, se desarrollan específicamente para tu modelo y se adaptan a la perfección a los demás componentes del vehículo.</p>
         </div>
       </div>
 
@@ -328,8 +326,8 @@
           <span class="font-smart-next font-normal text-black" style="font-size:18px;">Manuales de usuario</span>
           <svg class="sabana-icon flex-shrink-0 text-neutral-400" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2"><line x1="8" y1="1" x2="8" y2="15" class="sabana-vline"/><line x1="1" y1="8" x2="15" y2="8"/></svg>
         </button>
-        <div class="sabana-content pb-7">
-          <p class="font-smart-sans text-sm leading-6" style="color:#6B747B;">Navegá por el manual en línea o descargá el PDF del manual de usuario para acceder rápidamente cuando lo necesites.</p>
+        <div class="sabana-content">
+          <p class="font-smart-sans" style="color:#141413; font-size:15px; line-height:160%; padding-bottom:60px;">Navegá por el manual en línea o descargá el PDF del manual de usuario para acceder rápidamente cuando lo necesites.</p>
         </div>
       </div>
 
@@ -348,59 +346,31 @@
   <script>fetch('assets/partials/footer.html').then(r=>r.text()).then(html=>{document.getElementById('site-footer').innerHTML=html;});</script>
 
   <script>
-    /* ── Scroll-driven horizontal carousel (desktop only) ── */
+    /* ── Carrusel servicios — drag-to-scroll con inercia ── */
     (function () {
-      if (window.innerWidth < 768) return;
-
-      var wrap     = document.getElementById('svc-pin-wrap');
-      var section  = document.getElementById('svc-intro');
-      var viewport = document.getElementById('svc-carousel-viewport');
-      var track    = document.getElementById('track-svc-intro');
-      if (!wrap || !section || !viewport || !track) return;
-
-      var sectionH = 561;
-
-      function maxTranslate() {
-        return track.scrollWidth - viewport.clientWidth;
-      }
-
-      var holdPx = 300; // pausa al final antes de continuar
-
-      function init() {
-        var extra = maxTranslate();
-        if (extra <= 0) return; // todas las imágenes entran sin scroll
-        wrap.style.height    = (sectionH + extra + holdPx * 2) + 'px';
-        section.style.position = 'sticky';
-        section.style.top      = '0px';
-        section.style.zIndex   = '1';
-      }
-
-      function onScroll() {
-        var wrapTop  = wrap.getBoundingClientRect().top + window.scrollY;
-        var progress = window.scrollY - wrapTop;
-        var max      = maxTranslate();
-        var offset   = Math.max(0, Math.min(progress - holdPx, max));
-        track.style.transform = 'translateX(-' + offset + 'px)';
-      }
-
-      window.addEventListener('load', function () {
-        init();
-        onScroll();
+      var track = document.getElementById('track-svc-intro');
+      if (!track) return;
+      var isDown = false, startX, scrollLeft, velocity = 0, lastX, rafId;
+      track.addEventListener('mousedown', function (e) {
+        isDown = true; track.style.cursor = 'grabbing';
+        startX = e.pageX - track.offsetLeft; scrollLeft = track.scrollLeft;
+        velocity = 0; lastX = e.pageX; cancelAnimationFrame(rafId);
       });
-
-      window.addEventListener('scroll', onScroll, { passive: true });
-
-      window.addEventListener('resize', function () {
-        if (window.innerWidth < 768) {
-          wrap.style.height      = '';
-          section.style.position = '';
-          section.style.top      = '';
-          track.style.transform  = '';
-        } else {
-          init();
-          onScroll();
-        }
+      track.addEventListener('mouseleave', function () { isDown = false; track.style.cursor = 'grab'; startInertia(); });
+      track.addEventListener('mouseup',    function () { isDown = false; track.style.cursor = 'grab'; startInertia(); });
+      track.addEventListener('mousemove',  function (e) {
+        if (!isDown) return; e.preventDefault();
+        velocity = e.pageX - lastX; lastX = e.pageX;
+        track.scrollLeft = scrollLeft - (e.pageX - track.offsetLeft - startX);
       });
+      function startInertia() {
+        cancelAnimationFrame(rafId);
+        (function loop() {
+          if (Math.abs(velocity) < 0.5) return;
+          track.scrollLeft -= velocity; velocity *= 0.92;
+          rafId = requestAnimationFrame(loop);
+        })();
+      }
     })();
   </script>
 
