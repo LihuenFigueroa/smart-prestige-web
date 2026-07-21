@@ -119,8 +119,13 @@
     @media (min-width:768px) {
       #elegir-modelo        { aspect-ratio:1440/891; }
       #elegi-img-wrap       { left:3.19%; top:5.39%; width:93.54%; height:81.93%; }
-      #elegi-title-area     { top:9%; gap:1rem; width:25%; }
+      #elegi-title-area     { top:9%; gap:1rem; width:auto; }
       #model-cta            { top:93%; }
+    }
+    @media (min-width:768px) and (max-width:1024px) {
+      #elegi-title-area     { top:4%; gap:0.5rem; }
+      #elegi-title-area h2  { font-size:1.4rem; }
+      #tab-smart1, #tab-smart3 { height:26px; font-size:12px; padding-left:14px; padding-right:14px; }
     }
   </style>
   <section id="elegir-modelo" style="position:relative; width:100%; overflow:hidden; background:#fff;">
@@ -154,13 +159,13 @@
         <button
           id="tab-smart1"
           onclick="switchModel(1)"
-          class="h-[30px] md:h-8 px-5 md:px-5 text-[13px] md:text-base font-normal"
+          class="h-[30px] md:h-8 px-5 md:px-5 text-[13px] md:text-base font-normal whitespace-nowrap"
           style="position:relative; z-index:1; color:#fff; transition:color 0.4s ease;"
         >smart #1</button>
         <button
           id="tab-smart3"
           onclick="switchModel(3)"
-          class="h-[30px] md:h-8 px-5 md:px-5 text-[13px] md:text-base font-normal"
+          class="h-[30px] md:h-8 px-5 md:px-5 text-[13px] md:text-base font-normal whitespace-nowrap"
           style="position:relative; z-index:1; color:#171717; transition:color 0.4s ease;"
         >smart #3</button>
       </div>

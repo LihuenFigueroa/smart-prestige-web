@@ -58,7 +58,10 @@
       "Bash(__NEW_LINE_d510a23647af6666__ cp:*)",
       "Bash(cp \"$SRC/PRO Y PRO + 2.png\" \"$DST/int-std-2.png\")",
       "Bash(cp \"$SRC/PRO Y PRO+ 3.png\" \"$DST/int-std-3.png\")",
-      "Bash(cp \"$SRC/PRO Y PRO + 4.png\" \"$DST/int-std-4.png\")"
+      "Bash(cp \"$SRC/PRO Y PRO + 4.png\" \"$DST/int-std-4.png\")",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)"
     ]
   }
 }
