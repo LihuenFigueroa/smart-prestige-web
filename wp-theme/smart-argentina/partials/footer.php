@@ -60,7 +60,7 @@
           <span>Argentina</span>
         </div>
         <span class="opacity-40">|</span>
-        <p class="text-[#BABFC4] text-sm font-smart-sans">© 2026 smart Argentina</p>
+        <p class="text-[#BABFC4] text-sm font-smart-sans">© <?php echo esc_html(date('Y')); ?> smart Argentina</p>
       </div>
       <div class="flex items-center gap-x-4 text-[#BABFC4] text-sm">
         <a href="<?php echo home_url('/legales/'); ?>" class="hover:text-white transition-colors">Legales</a>

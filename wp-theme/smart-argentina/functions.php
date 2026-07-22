@@ -769,6 +769,273 @@ function smart_get_servicio_acordeon() {
   return $cache = $items;
 }
 
+// ── CPT "Tipo de cookie" ─────────────────────────────────────────────────────
+add_action('init', function () {
+  register_post_type('cookie_tipo', [
+    'labels' => [
+      'name'          => 'Tipos de cookies',
+      'singular_name' => 'Tipo de cookie',
+      'add_new_item'  => 'Agregar tipo de cookie',
+      'edit_item'     => 'Editar tipo de cookie',
+      'all_items'     => 'Tipos de cookies',
+      'search_items'  => 'Buscar tipo de cookie',
+      'not_found'     => 'No se encontraron tipos de cookies',
+    ],
+    'public'          => false,
+    'show_ui'         => true,
+    'show_in_menu'    => true,
+    'menu_icon'       => 'dashicons-privacy',
+    'supports'        => ['title'],
+    'has_archive'     => false,
+    'rewrite'         => false,
+    'capability_type' => 'post',
+  ]);
+});
+
+// ── CPT "Contenido rico" (legales + historia institucional) ─────────────────
+add_action('init', function () {
+  register_post_type('contenido_wysiwyg', [
+    'labels' => [
+      'name'          => 'Contenido institucional',
+      'singular_name' => 'Bloque de contenido',
+      'add_new_item'  => 'Agregar bloque',
+      'edit_item'     => 'Editar bloque',
+      'all_items'     => 'Contenido institucional',
+      'search_items'  => 'Buscar bloque',
+      'not_found'     => 'No se encontraron bloques',
+    ],
+    'public'          => false,
+    'show_ui'         => true,
+    'show_in_menu'    => true,
+    'menu_icon'       => 'dashicons-media-text',
+    'supports'        => ['title'],
+    'has_archive'     => false,
+    'rewrite'         => false,
+    'capability_type' => 'post',
+  ]);
+});
+
+// ── Campos ACF: tipo de cookie ───────────────────────────────────────────────
+add_action('acf/init', function () {
+  if (!function_exists('acf_add_local_field_group')) return;
+
+  acf_add_local_field_group([
+    'key'      => 'group_cookie_tipo',
+    'title'    => 'Datos del tipo de cookie',
+    'fields'   => [
+      ['key' => 'field_ct_orden', 'label' => 'Orden', 'name' => 'orden', 'type' => 'number', 'required' => 1],
+      ['key' => 'field_ct_titulo', 'label' => 'Título', 'name' => 'titulo', 'type' => 'text', 'required' => 1],
+      ['key' => 'field_ct_descripcion', 'label' => 'Descripción', 'name' => 'descripcion', 'type' => 'textarea', 'rows' => 3, 'required' => 1],
+      ['key' => 'field_ct_activo', 'label' => 'Activo por defecto', 'name' => 'activo_por_defecto', 'type' => 'true_false', 'instructions' => 'Muestra el círculo relleno (ej. "Necesarias", que siempre está activo).'],
+    ],
+    'location' => [
+      [['param' => 'post_type', 'operator' => '==', 'value' => 'cookie_tipo']],
+    ],
+  ]);
+});
+
+// ── Campos ACF: contenido rico (legales / historia institucional) ───────────
+add_action('acf/init', function () {
+  if (!function_exists('acf_add_local_field_group')) return;
+
+  acf_add_local_field_group([
+    'key'      => 'group_contenido_wysiwyg',
+    'title'    => 'Datos del bloque',
+    'fields'   => [
+      [
+        'key'      => 'field_cw_clave',
+        'label'    => 'Ubicación',
+        'name'     => 'clave',
+        'type'     => 'select',
+        'required' => 1,
+        'choices'  => [
+          'legal_propiedad_intelectual'     => 'Legales — Propiedad intelectual',
+          'legal_afirmaciones_prospectivas' => 'Legales — Afirmaciones prospectivas',
+          'historia_institucional'          => 'Sobre smart — Historia institucional',
+        ],
+      ],
+      ['key' => 'field_cw_orden', 'label' => 'Orden', 'name' => 'orden', 'type' => 'number', 'required' => 1],
+      ['key' => 'field_cw_titulo', 'label' => 'Título (opcional)', 'name' => 'titulo', 'type' => 'text', 'instructions' => 'Dejar vacío si el bloque no lleva título visible (ej. historia institucional).'],
+      ['key' => 'field_cw_contenido', 'label' => 'Contenido', 'name' => 'contenido', 'type' => 'wysiwyg', 'required' => 1, 'tabs' => 'visual', 'toolbar' => 'full', 'media_upload' => 0],
+    ],
+    'location' => [
+      [['param' => 'post_type', 'operator' => '==', 'value' => 'contenido_wysiwyg']],
+    ],
+  ]);
+});
+
+// ── Migración one-time: tipos de cookies ────────────────────────────────────
+add_action('init', function () {
+  if (get_option('smart_cookie_tipos_migrados') === 'si') return;
+  if (!function_exists('update_field')) return;
+
+  update_option('smart_cookie_tipos_migrados', 'si');
+
+  $tipos = [
+    ['slug' => 'necesarias', 'orden' => 0, 'titulo' => 'Cookies necesarias', 'descripcion' => 'Son imprescindibles para el funcionamiento básico de la página web. Sin estas cookies, la página web no puede funcionar correctamente.', 'activo' => 1],
+    ['slug' => 'rendimiento', 'orden' => 1, 'titulo' => 'Cookies de rendimiento', 'descripcion' => 'Nos permiten analizar el uso de la página web para medir y mejorar su rendimiento. Toda la información que recopilan estas cookies es anónima.', 'activo' => 0],
+    ['slug' => 'funcionalidad', 'orden' => 2, 'titulo' => 'Cookies de funcionalidad', 'descripcion' => 'Permiten que la página web recuerde las elecciones que realizás (como tu nombre de usuario o el idioma) y proporcione funciones mejoradas y más personalizadas.', 'activo' => 0],
+    ['slug' => 'publicidad', 'orden' => 3, 'titulo' => 'Cookies de publicidad', 'descripcion' => 'Se utilizan para mostrarte publicidad más relevante para vos y tus intereses, en colaboración con socios seleccionados (entre otros, Google, Meta).', 'activo' => 0],
+  ];
+
+  foreach ($tipos as $t) {
+    if (get_page_by_path($t['slug'], OBJECT, 'cookie_tipo')) continue;
+
+    $post_id = wp_insert_post([
+      'post_type'   => 'cookie_tipo',
+      'post_title'  => $t['titulo'],
+      'post_name'   => $t['slug'],
+      'post_status' => 'publish',
+    ]);
+    if (is_wp_error($post_id) || !$post_id) continue;
+
+    update_field('orden', $t['orden'], $post_id);
+    update_field('titulo', $t['titulo'], $post_id);
+    update_field('descripcion', $t['descripcion'], $post_id);
+    update_field('activo_por_defecto', $t['activo'], $post_id);
+  }
+}, 20);
+
+// ── Migración one-time: contenido rico (legales + historia institucional) ──
+add_action('init', function () {
+  if (get_option('smart_contenido_wysiwyg_migrado') === 'si') return;
+  if (!function_exists('update_field')) return;
+
+  update_option('smart_contenido_wysiwyg_migrado', 'si');
+
+  $afirmaciones_items = [
+    'una evolución desfavorable de la situación económica mundial, especialmente a causa del retroceso de la demanda en nuestros principales mercados destinatarios,',
+    'un empeoramiento de nuestras posibilidades de refinanciación en los mercados crediticios y financieros,',
+    'eventos inevitables de fuerza mayor, como catástrofes naturales, pandemias, actos de terrorismo, disturbios políticos, conflictos armados, accidentes industriales y sus consecuencias para nuestras actividades de venta, compra, producción o financiación,',
+    'modificaciones de los tipos de cambio, las disposiciones aduaneras y de comercio exterior,',
+    'cambios en los hábitos de consumo en favor de vehículos más pequeños con menor margen de beneficios o una posible pérdida de aceptación de nuestros productos y servicios que influya negativamente en la aplicación de nuestros precios y en el aprovechamiento de nuestras capacidades de producción,',
+    'aumentos de los precios de los combustibles, las materias primas y la energía,',
+    'interrupciones de la producción debido a dificultades de aprovisionamiento de material o energía, huelgas del personal o insolvencia de proveedores,',
+    'descenso en los precios de reventa de los vehículos usados,',
+    'el éxito en la implementación de medidas de reducción de costes y aumento de la eficiencia,',
+    'las perspectivas comerciales de las sociedades de las que tenemos participaciones significativas,',
+    'el éxito en la implementación de cooperaciones estratégicas y Joint Ventures,',
+    'enmiendas de leyes, disposiciones y directivas oficiales, especialmente las relativas a las emisiones de los vehículos, el consumo de combustible y la seguridad,',
+    'así como la conclusión de investigaciones realizadas por autoridades o encargadas por ellas que deriven o puedan derivar en procesos legales vinculados,',
+    'y otros riesgos y factores imponderables, algunos de los cuales figuran en la memoria actual de la empresa, en la rúbrica «Informe sobre riesgos y oportunidades».',
+  ];
+  $afirmaciones_html = '<p>Esta página web contiene afirmaciones prospectivas, que se basan en nuestra estimación actual acerca de desarrollos futuros. Palabras como «anticipar», «asumir», «creer», «estimar», «prever», «pretender», «poder/podría», «planificar», «proyectar», «debería» y similares son características de estas afirmaciones. Estas afirmaciones están sujetas a diversos riesgos e incertidumbres. Algunos ejemplos de ello son:</p><ul>';
+  foreach ($afirmaciones_items as $li) {
+    $afirmaciones_html .= '<li>' . $li . '</li>';
+  }
+  $afirmaciones_html .= '</ul><p>En caso de que se dé uno de estos factores de inseguridad u otras incertidumbres, o en caso de que las suposiciones en que se basan tales afirmaciones prospectivas demuestren ser incorrectas, los resultados reales podrían diferir notablemente de los resultados expresados, implícita o explícitamente, en dichas afirmaciones. No pretendemos ni nos comprometemos a actualizar estas afirmaciones sobre previsiones de futuro periódicamente, puesto que estas se basan exclusivamente en las circunstancias que imperan el día en que se publican.</p>';
+
+  $bloques = [
+    [
+      'slug'      => 'legal-propiedad-intelectual',
+      'clave'     => 'legal_propiedad_intelectual',
+      'orden'     => 0,
+      'titulo'    => 'Propiedad intelectual',
+      'contenido' => '<p>En el marco del uso de esta página web se debe tener en cuenta la propiedad intelectual (en particular los derechos de autor, de marca, de nombre y de patentes) de Prestige Auto SAU, smart Argentina o de terceros. El acceso a la página web no confiere ningún derecho de licencia o de uso sobre la propiedad intelectual de smart o de terceros.</p>',
+    ],
+    [
+      'slug'      => 'legal-afirmaciones-prospectivas',
+      'clave'     => 'legal_afirmaciones_prospectivas',
+      'orden'     => 1,
+      'titulo'    => 'Afirmaciones prospectivas',
+      'contenido' => $afirmaciones_html,
+    ],
+    [
+      'slug'      => 'historia-institucional',
+      'clave'     => 'historia_institucional',
+      'orden'     => 0,
+      'titulo'    => '',
+      'contenido' => '<p>Desde la fundación de la marca en la década de 1990, smart se ha mantenido comprometida con su visión de explorar las mejores soluciones para la movilidad urbana del futuro.</p>'
+        . '<p>En 2019, Mercedes-Benz AG y Zhejiang Geely Holding Group establecieron el joint venture global de smart. Desde entonces, smart ha renovado exitosamente su marca, sus productos y su modelo de negocio, evolucionando hasta convertirse en una distintiva marca premium contemporánea de vehículos eléctricos. Actualmente, cuenta con una gama de productos en expansión y presencia global en más de 40 países y regiones.</p>'
+        . '<p>Prestige Auto es el representante oficial de Mercedes-Benz (Autos y Vans) y de smart en Argentina. Lidera las operaciones de importación, distribución, ventas y posventa de estos vehículos en el país. Con una red de concesionarios en las principales ciudades, acompaña a cada cliente en cada etapa de su experiencia con la marca.</p>'
+        . '<p>Nuestro compromiso es acercar la movilidad eléctrica premium a Argentina, con el respaldo de una marca global y el servicio de un equipo local dedicado a brindar la mejor experiencia de compra y posventa.</p>',
+    ],
+  ];
+
+  foreach ($bloques as $b) {
+    if (get_page_by_path($b['slug'], OBJECT, 'contenido_wysiwyg')) continue;
+
+    $post_id = wp_insert_post([
+      'post_type'   => 'contenido_wysiwyg',
+      'post_title'  => $b['titulo'] !== '' ? $b['titulo'] : $b['slug'],
+      'post_name'   => $b['slug'],
+      'post_status' => 'publish',
+    ]);
+    if (is_wp_error($post_id) || !$post_id) continue;
+
+    update_field('clave', $b['clave'], $post_id);
+    update_field('orden', $b['orden'], $post_id);
+    update_field('titulo', $b['titulo'], $post_id);
+    update_field('contenido', $b['contenido'], $post_id);
+  }
+}, 20);
+
+// ── Helper: tipos de cookies (usado por page-cookies.php) ───────────────────
+function smart_get_cookie_tipos() {
+  static $cache = null;
+  if ($cache !== null) return $cache;
+
+  $items = [];
+  if (!function_exists('get_field')) return $cache = $items;
+
+  $query = new WP_Query([
+    'post_type'      => 'cookie_tipo',
+    'posts_per_page' => -1,
+    'no_found_rows'  => true,
+  ]);
+
+  if ($query->have_posts()) {
+    while ($query->have_posts()) {
+      $query->the_post();
+      $id = get_the_ID();
+      $items[] = [
+        'orden'              => (int) get_field('orden', $id),
+        'titulo'             => (string) get_field('titulo', $id),
+        'descripcion'        => (string) get_field('descripcion', $id),
+        'activo_por_defecto' => (bool) get_field('activo_por_defecto', $id),
+      ];
+    }
+    wp_reset_postdata();
+  }
+
+  usort($items, function ($a, $b) { return $a['orden'] <=> $b['orden']; });
+
+  return $cache = $items;
+}
+
+// ── Helper: bloques de contenido rico por clave (legales / historia) ────────
+function smart_get_contenido($clave) {
+  static $cache = [];
+  if (isset($cache[$clave])) return $cache[$clave];
+
+  $items = [];
+  if (!function_exists('get_field')) return $cache[$clave] = $items;
+
+  $query = new WP_Query([
+    'post_type'      => 'contenido_wysiwyg',
+    'posts_per_page' => -1,
+    'meta_query'     => [['key' => 'clave', 'value' => $clave]],
+    'no_found_rows'  => true,
+  ]);
+
+  if ($query->have_posts()) {
+    while ($query->have_posts()) {
+      $query->the_post();
+      $id = get_the_ID();
+      $items[] = [
+        'orden'     => (int) get_field('orden', $id),
+        'titulo'    => (string) get_field('titulo', $id),
+        'contenido' => (string) get_field('contenido', $id),
+      ];
+    }
+    wp_reset_postdata();
+  }
+
+  usort($items, function ($a, $b) { return $a['orden'] <=> $b['orden']; });
+
+  return $cache[$clave] = $items;
+}
+
 // ── Formulario de contacto — envío de mail vía wp_mail() (WP Mail SMTP) ────
 add_action('wp_ajax_smart_enviar_formulario', 'smart_enviar_formulario');
 add_action('wp_ajax_nopriv_smart_enviar_formulario', 'smart_enviar_formulario');
@@ -824,7 +1091,7 @@ function smart_enviar_formulario() {
     . '<p style="margin:0 0 10px;color:#9ca3af;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;">Consulta</p>'
     . '<p style="margin:0;color:#141413;font-size:13px;line-height:1.7;">' . nl2br(esc_html($consulta ?: '—')) . '</p>'
     . '</td></tr>'
-    . '<tr><td style="background:#141413;padding:18px 36px;"><p style="margin:0;color:#ffffff;opacity:0.35;font-size:11px;">© 2026 smart Argentina</p></td></tr>'
+    . '<tr><td style="background:#141413;padding:18px 36px;"><p style="margin:0;color:#ffffff;opacity:0.35;font-size:11px;">© ' . esc_html(date('Y')) . ' smart Argentina</p></td></tr>'
     . '</table></td></tr></table></body></html>';
 
   $ok = wp_mail($to, $subject, $body, $headers);

@@ -174,14 +174,15 @@ Theme WordPress generado a partir de los `.html` estáticos. Templates `page-*.p
 
 ## Plan de implementación ACF (contenido editable desde wp-admin)
 
-Relevamiento completo + detalle técnico en **`ACF-PLAN.md`** (raíz del repo). Resumen de las 4 fases:
+Relevamiento completo + detalle técnico en **`ACF-PLAN.md`** (raíz del repo). Estado actual:
 
-| Fase | Alcance | Esfuerzo | Estado |
-|------|---------|----------|--------|
-| **1** | CPT `concesionario` + ACF (buscador de concesionarios) | ~4 días | **Implementado en código** (2026-07-22). Falta un solo paso manual: activar el plugin ACF Free en el servidor vivo (ya está subido a `wp-content/plugins/advanced-custom-fields/`, sin activar) — al activarlo, la migración de los 15 concesionarios corre sola. Hasta entonces, `/buscador/` se ve vacío en producción (lista, mapa y dropdown del form). |
-| **2** | Repeater "versión" (specs/comparativa smart1 y smart3) + specs BRABUS por modelo | ~5 días | Pendiente |
-| **3** | Repeater de tarjetas para los carruseles de características + configurador de color/interior (requiere exponer `lineaMap`/`ZOOM_SRCS` vía PHP en vez de arrays JS embebidos) | ~5 días | Pendiente |
-| **4** | Repeaters simples (acordeón de servicios, tipos de cookies) + WYSIWYG (legales, historia institucional) + `wp_nav_menu()` nativo para header/footer | ~2 días | Pendiente |
+| Fase | Alcance | Estado |
+|------|---------|--------|
+| **1** | CPT `concesionario` + ACF (buscador de concesionarios) | ✅ Hecho y en producción (2026-07-22) |
+| **2** | CPT `version_vehiculo` + `brabus_spec_modelo` (comparativa smart1/smart3 + specs BRABUS) | ✅ Hecho y en producción (2026-07-22) |
+| **3a** | CPT `feature_card` + `servicio_acordeon` (carruseles de tarjetas + acordeón de servicios) | ✅ Hecho y en producción (2026-07-22) |
+| ~~3b~~ | ~~Configurador de color/interior de smart1/smart3~~ | ❌ Sacado del proyecto — el cliente decidió que esta sección no debe ser editable desde wp-admin, queda hardcodeada permanentemente |
+| **4** | Tipos de cookies + WYSIWYG legales/historia institucional + `wp_nav_menu()` nativo para header/footer | Pendiente |
 
 ### Fase 1 — detalle de lo implementado
 - CPT `concesionario` (no público) registrado en `functions.php`, campos ACF vía `acf_add_local_field_group()` (versionado en código, no en base de datos): `nombre`, `direccion`, `localidad`, `provincia`, `telefono`, `latitud`, `longitud`, `tipo_servicio` (select), `horario` (textarea, nuevo — no existía en el sitio original, hoy vacío).

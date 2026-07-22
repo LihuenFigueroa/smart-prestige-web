@@ -1,4 +1,5 @@
 <?php /* Template Name: Cookies */ ?>
+<?php $smart_cookie_tipos = smart_get_cookie_tipos(); ?>
 <?php get_header(); ?>
 <?php get_template_part('partials/header'); ?>
   <style>
@@ -43,47 +44,23 @@
 
       <div class="flex flex-col gap-0 border border-neutral-200">
 
-        <div class="flex items-start gap-6 p-6 border-b border-neutral-200">
+        <?php foreach ($smart_cookie_tipos as $i => $t): $isLast = $i === count($smart_cookie_tipos) - 1; ?>
+        <div class="flex items-start gap-6 p-6<?php echo $isLast ? '' : ' border-b border-neutral-200'; ?>">
           <div class="flex-shrink-0 mt-1">
+            <?php if ($t['activo_por_defecto']): ?>
             <div class="w-5 h-5 rounded-full border-2 border-[#141413] flex items-center justify-center">
               <div class="w-2.5 h-2.5 rounded-full bg-[#141413]"></div>
             </div>
-          </div>
-          <div>
-            <p class="font-smart-next text-[#141413] mb-2" style="font-size:16px;">Cookies necesarias</p>
-            <p class="font-smart-sans text-neutral-500" style="font-size:14px; line-height:1.6;">Son imprescindibles para el funcionamiento básico de la página web. Sin estas cookies, la página web no puede funcionar correctamente.</p>
-          </div>
-        </div>
-
-        <div class="flex items-start gap-6 p-6 border-b border-neutral-200">
-          <div class="flex-shrink-0 mt-1">
+            <?php else: ?>
             <div class="w-5 h-5 rounded-full border-2 border-neutral-300"></div>
+            <?php endif; ?>
           </div>
           <div>
-            <p class="font-smart-next text-[#141413] mb-2" style="font-size:16px;">Cookies de rendimiento</p>
-            <p class="font-smart-sans text-neutral-500" style="font-size:14px; line-height:1.6;">Nos permiten analizar el uso de la página web para medir y mejorar su rendimiento. Toda la información que recopilan estas cookies es anónima.</p>
+            <p class="font-smart-next text-[#141413] mb-2" style="font-size:16px;"><?php echo esc_html($t['titulo']); ?></p>
+            <p class="font-smart-sans text-neutral-500" style="font-size:14px; line-height:1.6;"><?php echo esc_html($t['descripcion']); ?></p>
           </div>
         </div>
-
-        <div class="flex items-start gap-6 p-6 border-b border-neutral-200">
-          <div class="flex-shrink-0 mt-1">
-            <div class="w-5 h-5 rounded-full border-2 border-neutral-300"></div>
-          </div>
-          <div>
-            <p class="font-smart-next text-[#141413] mb-2" style="font-size:16px;">Cookies de funcionalidad</p>
-            <p class="font-smart-sans text-neutral-500" style="font-size:14px; line-height:1.6;">Permiten que la página web recuerde las elecciones que realizás (como tu nombre de usuario o el idioma) y proporcione funciones mejoradas y más personalizadas.</p>
-          </div>
-        </div>
-
-        <div class="flex items-start gap-6 p-6">
-          <div class="flex-shrink-0 mt-1">
-            <div class="w-5 h-5 rounded-full border-2 border-neutral-300"></div>
-          </div>
-          <div>
-            <p class="font-smart-next text-[#141413] mb-2" style="font-size:16px;">Cookies de publicidad</p>
-            <p class="font-smart-sans text-neutral-500" style="font-size:14px; line-height:1.6;">Se utilizan para mostrarte publicidad más relevante para vos y tus intereses, en colaboración con socios seleccionados (entre otros, Google, Meta).</p>
-          </div>
-        </div>
+        <?php endforeach; ?>
 
       </div>
     </section>

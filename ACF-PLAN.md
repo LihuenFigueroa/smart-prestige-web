@@ -65,16 +65,17 @@ Otros hallazgos:
 
 ---
 
-## 4. Plan de implementación — 4 fases
+## 4. Plan de implementación
 
 | Fase | Alcance | Esfuerzo estimado | Estado |
 |------|---------|--------------------|--------|
-| **1** | CPT `concesionario` + ACF | ~4 días | ✅ **Implementado en código** (2026-07-22) — ver detalle abajo. Pendiente activar ACF en el servidor vivo. |
-| **2** | Comparativa de versiones (smart1/smart3) + specs BRABUS por modelo | ~5 días | Pendiente |
-| **3** | Carruseles de características + configurador de color/interior | ~5 días | Pendiente |
-| **4** | Contenido institucional/legal/cookies/footer | ~2 días | Pendiente |
+| **1** | CPT `concesionario` + ACF | ~4 días | ✅ **Hecho y en producción** (2026-07-22) |
+| **2** | Comparativa de versiones (smart1/smart3) + specs BRABUS por modelo | ~5 días | ✅ **Hecho y en producción** (2026-07-22) |
+| **3a** | Carruseles de características (home, conectividad, sobre-smart, movilidad eléctrica) + acordeón de servicios | ~4 días | ✅ **Hecho y en producción** (2026-07-22) |
+| ~~3b~~ | ~~Configurador de color/interior de smart1/smart3~~ | — | ❌ **Sacado del alcance del proyecto, no se implementa.** Decisión del cliente: esta sección no debe quedar editable/mutable desde wp-admin. Queda hardcodeada tal cual está, permanentemente — no es "pendiente para más adelante", es contenido que se decidió mantener fuera de ACF. |
+| **4** | Contenido institucional/legal/cookies/footer | ~1.5 días | Pendiente (el acordeón de servicios, que originalmente era parte de esta fase, ya se hizo en la 3a) |
 
-**Total estimado: ~13-16 días.**
+**Total ejecutado hasta ahora: Fases 1, 2 y 3a.** Fase 4 es la única pendiente; el configurador de color/interior queda fuera del proyecto.
 
 ### Fase 1 — Concesionarios (implementado)
 
@@ -96,17 +97,21 @@ Objetivo: eliminar la triplicación manual y darle al cliente un único lugar (w
 3. Cargar el campo **horario** manualmente desde wp-admin para cada concesionario (no existía dato original que migrar).
 4. Dato de calidad detectado durante la migración: el concesionario Besten de San Fernando tenía en el dato original un tag de búsqueda "victoria" inconsistente con su propia dirección (dice San Fernando). No se replicó ese alias suelto — si alguien buscaba "Victoria" antes lo encontraba, ahora no. Se puede agregar "Victoria" a la localidad si el cliente quiere preservar ese comportamiento.
 
-### Fase 2 — Comparativa de versiones + specs BRABUS (pendiente, ~5 días)
+### Fase 2 — Comparativa de versiones + specs BRABUS (hecho, 2026-07-22)
 
-Repeater "versión" (imagen, nombre, autonomía, mecánica, exterior, interior, tecnología, seguridad) reutilizable entre `page-smart1.php` (4 columnas: Pure/Pro/Pro+/BRABUS) y `page-smart3.php` (3 columnas: Pro/Pro+/BRABUS), con cantidad de columnas variable en vez de hardcodeada. El HTML actual es un `display:grid` secuencial, no una tabla — requiere reescribir el template para iterar el repeater. De paso, separar los specs de `page-brabus.php` (3,9 seg / 66kWh / 400km / 428CV) por modelo (#1/#3) para corregir el bug de que hoy no varían con el toggle visual.
+CPT `version_vehiculo` (7 posts: 4 de smart1 + 3 de smart3) con campos `modelo`, `orden`, `nombre_version`, `imagen`, `destacado`, `autonomia_mixta`, `autonomia_ciudad`, `mecanica`/`exterior`/`interior`/`tecnologia`/`seguridad` (textarea, un ítem por línea) y `slug_form`. La cantidad de columnas quedó **fija** (4 en smart1, 3 en smart3, igual que antes) — decisión tomada con el cliente para no tocar el CSS del grid (`grid-template-columns` fijo en `styles.css`). CPT `brabus_spec_modelo` (2 posts) para las specs de `page-brabus.php`, resolviendo el bug de que solo 2 de 5 valores cambiaban con el toggle #1/#3 — ahora los 5 cambian, vía `wp_localize_script()`. De paso se corrigió otro bug preexistente: el dropdown "Modelo" del form de contacto en smart1/smart3 nunca cargaba opciones (el script corría antes de que cargara `main.js`).
 
-### Fase 3 — Carruseles de características + configurador de color/interior (pendiente, ~5 días)
+### Fase 3a — Carruseles de tarjetas + acordeón de servicios (hecho, 2026-07-22)
 
-Repeater de tarjetas (imagen+título+descripción) para los 8+ carruseles del sitio (smart1, smart3, conectividad, servicios, sobre-smart, movilidad eléctrica, home) — estructura uniforme, sin lógica JS que tocar. El configurador de color/interior es más costoso: las imágenes de interior viven en un array JS embebido (`lineaMap`/`STD` en smart1/smart3, `ZOOM_SRCS` duplicando rutas ya presentes en HTML) — migrar a ACF exige exponer esos datos vía `wp_localize_script()`/`json_encode()` generados desde PHP en vez de arrays JS literales. Es refactor de JS, no solo de plantilla.
+CPT `feature_card` (18 posts: home 4 + conectividad 4+4 + sobre-smart 3 + movilidad eléctrica 3) con campos opcionales (`disclaimer`, `cta_texto`, `cta_link`) para cubrir las variaciones estructurales entre tarjetas del mismo carrusel. CPT `servicio_acordeon` (9 posts) para el acordeón "sábana" de garantía/servicios. Mismo bug del dropdown "Modelo" encontrado y corregido en `front-page.php`.
 
-### Fase 4 — Contenido institucional/legal/cookies/footer (pendiente, ~2 días)
+### Fase 3b — Configurador de color/interior — **sacado del proyecto, no se implementa**
 
-Repeaters simples para el acordeón de servicios/garantía (9 ítems) y los 4 tipos de cookies (con el flag "activo por defecto" que hoy es CSS y debería ser un dato). WYSIWYG para legales e historia institucional (contenido estable, no necesita repeater). `wp_nav_menu()` nativo de WP para header/footer en vez de ACF. `date('Y')` para el copyright en vez de mantenerlo hardcodeado en 2 archivos.
+Iba a cubrir el configurador "Elegí tu versión" de `page-smart1.php`/`page-smart3.php` (swatches de color, carrusel de interior, `lineaMap`/`ZOOM_SRCS`). El cliente decidió que esta sección **no debe ser editable/mutable desde wp-admin** — queda hardcodeada tal cual está en el HTML/JS, de forma permanente. No se retoma en una fase futura salvo pedido explícito nuevo.
+
+### Fase 4 — Contenido institucional/legal/cookies/footer (pendiente, ~1.5 días)
+
+El acordeón de servicios/garantía, que originalmente estaba planeado acá, ya se resolvió en la Fase 3a. Queda: repeater simple para los 4 tipos de cookies (con el flag "activo por defecto" que hoy es CSS y debería ser un dato). WYSIWYG para legales e historia institucional (contenido estable, no necesita repeater). `wp_nav_menu()` nativo de WP para header/footer en vez de ACF. `date('Y')` para el copyright en vez de mantenerlo hardcodeado en 2 archivos.
 
 ---
 

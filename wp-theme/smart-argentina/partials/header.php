@@ -29,7 +29,7 @@
           <span class="mx-2 text-neutral-300">|</span>
           <a href="<?php echo home_url('/cookies/'); ?>" class="hover:text-[#141413] transition-colors">Cookies</a>
         </p>
-        <p class="text-xs text-neutral-400 font-smart-sans">© 2026 smart Argentina</p>
+        <p class="text-xs text-neutral-400 font-smart-sans">© <?php echo esc_html(date('Y')); ?> smart Argentina</p>
       </div>
     </div>
   </div>

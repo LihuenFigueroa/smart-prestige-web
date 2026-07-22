@@ -1,8 +1,14 @@
 <?php /* Template Name: Sobre Smart */ ?>
-<?php $smart_cards_sobre = smart_get_feature_cards('sobre_smart'); ?>
+<?php
+$smart_cards_sobre    = smart_get_feature_cards('sobre_smart');
+$smart_historia_bloque = smart_get_contenido('historia_institucional');
+$smart_historia        = $smart_historia_bloque[0]['contenido'] ?? '';
+?>
 <?php get_header(); ?>
 <?php get_template_part('partials/header'); ?>
   <style>
+    .sobre-scroll p { color:#fff; font-family:'FOR_smart_Sans','Helvetica Neue',Helvetica,Arial,sans-serif; font-size:21px; line-height:140%; margin:0 0 1.25rem; }
+    .sobre-scroll p:last-child { margin-bottom:0; }
     @media (max-width: 767px) {
       .sobre-hero-img {
         content: url('<?php echo get_template_directory_uri(); ?>/assets/img/sobre-smart/hero-mobile.png');
@@ -148,18 +154,7 @@
 
           <!-- Texto con scroll interno -->
           <div class="sobre-scroll overflow-y-auto pr-3" style="width:100%; height:432px;">
-            <p class="text-white font-smart-sans mb-5" style="font-size:21px; line-height:140%;">
-              Desde la fundación de la marca en la década de 1990, smart se ha mantenido comprometida con su visión de explorar las mejores soluciones para la movilidad urbana del futuro.
-            </p>
-            <p class="text-white font-smart-sans mb-5" style="font-size:21px; line-height:140%;">
-              En 2019, Mercedes-Benz AG y Zhejiang Geely Holding Group establecieron el joint venture global de smart. Desde entonces, smart ha renovado exitosamente su marca, sus productos y su modelo de negocio, evolucionando hasta convertirse en una distintiva marca premium contemporánea de vehículos eléctricos. Actualmente, cuenta con una gama de productos en expansión y presencia global en más de 40 países y regiones.
-            </p>
-            <p class="text-white font-smart-sans mb-5" style="font-size:21px; line-height:140%;">
-              Prestige Auto es el representante oficial de Mercedes-Benz (Autos y Vans) y de smart en Argentina. Lidera las operaciones de importación, distribución, ventas y posventa de estos vehículos en el país. Con una red de concesionarios en las principales ciudades, acompaña a cada cliente en cada etapa de su experiencia con la marca.
-            </p>
-            <p class="text-white font-smart-sans" style="font-size:21px; line-height:140%;">
-              Nuestro compromiso es acercar la movilidad eléctrica premium a Argentina, con el respaldo de una marca global y el servicio de un equipo local dedicado a brindar la mejor experiencia de compra y posventa.
-            </p>
+            <?php echo $smart_historia; ?>
           </div>
 
           <!-- Botón -->
