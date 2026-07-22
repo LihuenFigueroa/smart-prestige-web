@@ -25,7 +25,17 @@ function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, capt
     if (canvas.width === newW && canvas.height === newH) return;
     canvas.width  = newW;
     canvas.height = newH;
-    if (ready) renderProgress(drawProgress);
+    if (ready) {
+      renderProgress(drawProgress);
+    } else if (frames[0]) {
+      drawBitmap(frames[0], 1);
+      ctx.globalAlpha = 1;
+    } else if (video.readyState >= 2 && video.videoWidth) {
+      const cw = canvas.width, ch = canvas.height;
+      const vw = video.videoWidth, vh = video.videoHeight;
+      const scale = Math.max(cw / vw, ch / vh);
+      ctx.drawImage(video, (cw - vw * scale) / 2, (ch - vh * scale) / 2, vw * scale, vh * scale);
+    }
   }
   window.addEventListener('resize', resizeCanvas);
   resizeCanvas();
@@ -332,7 +342,7 @@ initScrollVideo({
   canvasId:   'heroCanvas',
   pinId:      'heroPin',
   videoSrc:   isMobile ? 'assets/video/videoHeroMobile.mp4' : 'assets/video/videoHero.mp4',
-  pxPerSecond: isMobile ? 750 : 1300,
+  pxPerSecond: isMobile ? 480 : 840,
   captureFps:  isMobile ? 30  : 15,
   lerp:        0.06,
   pinHeight:   null,
@@ -392,7 +402,7 @@ initScrollVideo({
   canvasId:    'brabusCanvas',
   pinId:       'brabusPin',
   videoSrc:    isMobile ? 'assets/video/videoSmartXBRABUSMobile.mp4' : 'assets/video/videoSmartXBRABUS.mp4',
-  pxPerSecond: isMobile ? 650 : 1250,
+  pxPerSecond: isMobile ? 400 : 800,
   captureFps:  60,
   lerp:        0.07,
   pinHeight:   null,
