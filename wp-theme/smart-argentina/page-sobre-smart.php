@@ -1,4 +1,5 @@
 <?php /* Template Name: Sobre Smart */ ?>
+<?php $smart_cards_sobre = smart_get_feature_cards('sobre_smart'); ?>
 <?php get_header(); ?>
 <?php get_template_part('partials/header'); ?>
   <style>
@@ -199,35 +200,17 @@
       <div id="sobre-carousel-viewport" class="flex-1 min-w-0 flex items-center" style="padding-top:69px; padding-bottom:63px; overflow:hidden;">
         <div id="track-sobre-carousel" class="flex select-none" style="gap:19px; height:561.42px; will-change:transform;">
 
+          <?php foreach ($smart_cards_sobre as $c): ?>
           <div class="flex-shrink-0 flex flex-col" style="width:292.38px; height:561.42px;">
             <div style="height:363.01px; flex-shrink:0; overflow:hidden;">
-              <img src="<?php echo get_template_directory_uri(); ?>/assets/img/sobre-smart/carousel-1.jpg" alt="" class="w-full h-full object-cover" draggable="false" />
+              <img src="<?php echo esc_url($c['imagen']); ?>" alt="<?php echo esc_attr($c['alt']); ?>" class="w-full h-full object-cover" draggable="false" />
             </div>
             <div style="padding-top:20.8px; flex:1;">
-              <h3 class="font-smart-sans font-normal" style="font-size:32.5px; line-height:120%; letter-spacing:-0.02em; color:#000000; margin-bottom:9.6px;">Diseño que tiene firma propia.</h3>
-              <p class="font-smart-sans font-normal" style="font-size:13px; line-height:140%; color:#000000;">Cada modelo smart es reconocible a primera vista. El modelo ideado por Mercedes–Benz tiene líneas fluidas, proporciones equilibradas y detalles que hablan de un ADN de marca consistente a lo largo del tiempo.</p>
+              <h3 class="font-smart-sans font-normal" style="font-size:32.5px; line-height:120%; letter-spacing:-0.02em; color:#000000; margin-bottom:9.6px;"><?php echo esc_html($c['titulo']); ?></h3>
+              <p class="font-smart-sans font-normal" style="font-size:13px; line-height:140%; color:#000000;"><?php echo esc_html($c['descripcion']); ?></p>
             </div>
           </div>
-
-          <div class="flex-shrink-0 flex flex-col" style="width:292.38px; height:561.42px;">
-            <div style="height:363.01px; flex-shrink:0; overflow:hidden;">
-              <img src="<?php echo get_template_directory_uri(); ?>/assets/img/sobre-smart/carousel-2.jpg" alt="" class="w-full h-full object-cover" draggable="false" />
-            </div>
-            <div style="padding-top:20.8px; flex:1;">
-              <h3 class="font-smart-sans font-normal" style="font-size:32.5px; line-height:120%; letter-spacing:-0.02em; color:#000000; margin-bottom:9.6px;">100% eléctrico.</h3>
-              <p class="font-smart-sans font-normal" style="font-size:13px; line-height:140%; color:#000000;">La alianza con la preparadora alemana BRABUS le dió a smart una versión de alto rendimiento que no resigna nada del ADN eléctrico de la marca.</p>
-            </div>
-          </div>
-
-          <div class="flex-shrink-0 flex flex-col" style="width:292.38px; height:561.42px;">
-            <div style="height:363.01px; flex-shrink:0; overflow:hidden;">
-              <img src="<?php echo get_template_directory_uri(); ?>/assets/img/sobre-smart/carousel-3.jpg" alt="" class="w-full h-full object-cover" draggable="false" />
-            </div>
-            <div style="padding-top:20.8px; flex:1;">
-              <h3 class="font-smart-sans font-normal" style="font-size:32.5px; line-height:120%; letter-spacing:-0.02em; color:#000000; margin-bottom:9.6px;">La colaboración BRABUS.</h3>
-              <p class="font-smart-sans font-normal" style="font-size:13px; line-height:140%; color:#000000;">La alianza con la preparadora alemana BRABUS le dió a smart una versión de alto rendimiento que no resigna nada del ADN eléctrico de la marca.</p>
-            </div>
-          </div>
+          <?php endforeach; ?>
 
         </div>
       </div>

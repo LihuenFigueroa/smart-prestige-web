@@ -1,4 +1,5 @@
 <?php /* Template Name: Movilidad Eléctrica */ ?>
+<?php $smart_cards_movilidad = smart_get_feature_cards('movilidad_electrica'); ?>
 <?php get_header(); ?>
 <?php get_template_part('partials/header'); ?>
   <style>
@@ -123,39 +124,20 @@
   <section id="mov-cards-section" style="background:white; padding:0 81px 56px;">
     <div id="mov-cards-track" style="display:flex; gap:81px; align-items:flex-start;">
 
-      <!-- Card 1 -->
+      <?php foreach ($smart_cards_movilidad as $c): ?>
       <div class="mov-card" style="flex:1; display:flex; flex-direction:column;">
         <div style="width:100%; overflow:hidden; aspect-ratio:4/3;">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/movilidad/card1.jpg" alt="smart #1" style="width:100%; height:100%; object-fit:cover; display:block;" />
+          <img src="<?php echo esc_url($c['imagen']); ?>" alt="<?php echo esc_attr($c['alt']); ?>" style="width:100%; height:100%; object-fit:cover; display:block;" />
         </div>
         <div style="margin-top:20px;">
-          <p class="mov-card-title font-smart-sans" style="font-size:20px; font-weight:700; color:#141413; margin-bottom:6px;">Hasta 584 km de autonomía WLTP</p>
-          <p class="font-smart-sans" style="font-size:14px; color:#141413; line-height:1.6; margin-bottom:12px;">En ciclo WLTP para el smart #1 Pro+.<br>Distancia de sobra para la ciudad y los viajes que más importan.</p>
-          <p class="font-smart-sans" style="font-size:11px; color:#9ca3af; line-height:1.5;">*Autonomía sujeta a tipo de conducción, condiciones del terreno y condiciones del clima.</p>
+          <p class="mov-card-title font-smart-sans" style="font-size:20px; font-weight:700; color:#141413; margin-bottom:6px;"><?php echo esc_html($c['titulo']); ?></p>
+          <p class="font-smart-sans" style="font-size:14px; color:#141413; line-height:1.6; margin-bottom:12px;"><?php echo nl2br(esc_html($c['descripcion'])); ?></p>
+          <?php if (!empty($c['disclaimer'])): ?>
+          <p class="font-smart-sans" style="font-size:11px; color:#9ca3af; line-height:1.5;"><?php echo esc_html($c['disclaimer']); ?></p>
+          <?php endif; ?>
         </div>
       </div>
-
-      <!-- Card 2 -->
-      <div class="mov-card" style="flex:1; display:flex; flex-direction:column;">
-        <div style="width:100%; overflow:hidden; aspect-ratio:4/3;">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/movilidad/card2.png" alt="smart #3" style="width:100%; height:100%; object-fit:cover; display:block;" />
-        </div>
-        <div style="margin-top:20px;">
-          <p class="mov-card-title font-smart-sans" style="font-size:20px; font-weight:700; color:#141413; margin-bottom:6px;">Sin ruido de motor. Sin combustible.</p>
-          <p class="font-smart-sans" style="font-size:14px; color:#141413; line-height:1.6;">Sin ir a la estación de servicio. Solo manejar.</p>
-        </div>
-      </div>
-
-      <!-- Card 3 -->
-      <div class="mov-card" style="flex:1; display:flex; flex-direction:column;">
-        <div style="width:100%; overflow:hidden; aspect-ratio:4/3;">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/movilidad/card3.png" alt="BRABUS Performance" style="width:100%; height:100%; object-fit:cover; display:block;" />
-        </div>
-        <div style="margin-top:20px;">
-          <p class="mov-card-title font-smart-sans" style="font-size:20px; font-weight:700; color:#141413; margin-bottom:6px;">Recuperación de energía en cada frenada.</p>
-          <p class="font-smart-sans" style="font-size:14px; color:#141413; line-height:1.6;">El sistema de frenos regenerativos convierte la energía cinética en carga para la batería. Menos frenadas, más kilómetros: la conducción eléctrica inteligente.</p>
-        </div>
-      </div>
+      <?php endforeach; ?>
 
     </div>
   </section>

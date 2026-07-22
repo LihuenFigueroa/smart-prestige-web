@@ -495,6 +495,280 @@ function smart_get_brabus_specs() {
   return $cache = $specs;
 }
 
+// ── CPT "Tarjeta de característica" (carruseles home/conectividad/sobre-smart/movilidad) ─
+add_action('init', function () {
+  register_post_type('feature_card', [
+    'labels' => [
+      'name'          => 'Tarjetas de características',
+      'singular_name' => 'Tarjeta',
+      'add_new_item'  => 'Agregar tarjeta',
+      'edit_item'     => 'Editar tarjeta',
+      'all_items'     => 'Tarjetas de características',
+      'search_items'  => 'Buscar tarjeta',
+      'not_found'     => 'No se encontraron tarjetas',
+    ],
+    'public'          => false,
+    'show_ui'         => true,
+    'show_in_menu'    => true,
+    'menu_icon'       => 'dashicons-images-alt2',
+    'supports'        => ['title'],
+    'has_archive'     => false,
+    'rewrite'         => false,
+    'capability_type' => 'post',
+  ]);
+});
+
+// ── CPT "Ítem del acordeón de servicios" ─────────────────────────────────────
+add_action('init', function () {
+  register_post_type('servicio_acordeon', [
+    'labels' => [
+      'name'          => 'Acordeón de servicios',
+      'singular_name' => 'Ítem del acordeón',
+      'add_new_item'  => 'Agregar ítem',
+      'edit_item'     => 'Editar ítem',
+      'all_items'     => 'Acordeón de servicios',
+      'search_items'  => 'Buscar ítem',
+      'not_found'     => 'No se encontraron ítems',
+    ],
+    'public'          => false,
+    'show_ui'         => true,
+    'show_in_menu'    => true,
+    'menu_icon'       => 'dashicons-list-view',
+    'supports'        => ['title'],
+    'has_archive'     => false,
+    'rewrite'         => false,
+    'capability_type' => 'post',
+  ]);
+});
+
+// ── Campos ACF: tarjeta de característica ───────────────────────────────────
+add_action('acf/init', function () {
+  if (!function_exists('acf_add_local_field_group')) return;
+
+  acf_add_local_field_group([
+    'key'      => 'group_feature_card',
+    'title'    => 'Datos de la tarjeta',
+    'fields'   => [
+      [
+        'key'      => 'field_fc_seccion',
+        'label'    => 'Sección',
+        'name'     => 'seccion',
+        'type'     => 'select',
+        'required' => 1,
+        'choices'  => [
+          'home'                 => 'Home — Elegí tu smart',
+          'conectividad_1'       => 'Conectividad — carrusel 1',
+          'conectividad_2'       => 'Conectividad — carrusel 2',
+          'sobre_smart'          => 'Sobre smart — red de concesionarios',
+          'movilidad_electrica'  => 'Movilidad eléctrica — cards',
+        ],
+      ],
+      ['key' => 'field_fc_orden', 'label' => 'Orden', 'name' => 'orden', 'type' => 'number', 'required' => 1, 'instructions' => '0 = primera tarjeta.'],
+      ['key' => 'field_fc_titulo', 'label' => 'Título', 'name' => 'titulo', 'type' => 'text', 'required' => 1],
+      ['key' => 'field_fc_descripcion', 'label' => 'Descripción', 'name' => 'descripcion', 'type' => 'textarea', 'rows' => 3, 'required' => 1],
+      ['key' => 'field_fc_imagen', 'label' => 'Imagen', 'name' => 'imagen', 'type' => 'text', 'required' => 1, 'instructions' => 'Ruta relativa dentro de assets/img/ (ej: home/carrusel/1.jpg). Para cambiar la foto hay que reemplazar ese archivo en el servidor.'],
+      ['key' => 'field_fc_alt', 'label' => 'Texto alternativo (alt)', 'name' => 'alt', 'type' => 'text', 'instructions' => 'Opcional. Si se deja vacío se usa el título.'],
+      ['key' => 'field_fc_disclaimer', 'label' => 'Disclaimer (opcional)', 'name' => 'disclaimer', 'type' => 'text', 'instructions' => 'Texto chico debajo de la descripción. Dejar vacío si la tarjeta no lleva.'],
+      ['key' => 'field_fc_cta_texto', 'label' => 'Texto del botón (opcional)', 'name' => 'cta_texto', 'type' => 'text', 'instructions' => 'Dejar vacío si la tarjeta no lleva botón.'],
+      ['key' => 'field_fc_cta_link', 'label' => 'Link del botón (opcional)', 'name' => 'cta_link', 'type' => 'text', 'instructions' => 'Si empieza con "/" se interpreta como página interna del sitio (ej: /brabus/). Si no, se usa tal cual (ej: "#" o una URL externa).'],
+    ],
+    'location' => [
+      [['param' => 'post_type', 'operator' => '==', 'value' => 'feature_card']],
+    ],
+  ]);
+});
+
+// ── Campos ACF: ítem del acordeón de servicios ──────────────────────────────
+add_action('acf/init', function () {
+  if (!function_exists('acf_add_local_field_group')) return;
+
+  acf_add_local_field_group([
+    'key'      => 'group_servicio_acordeon',
+    'title'    => 'Datos del ítem',
+    'fields'   => [
+      ['key' => 'field_sa_orden', 'label' => 'Orden', 'name' => 'orden', 'type' => 'number', 'required' => 1, 'instructions' => '0 = primer ítem.'],
+      ['key' => 'field_sa_titulo', 'label' => 'Título', 'name' => 'titulo', 'type' => 'text', 'required' => 1],
+      ['key' => 'field_sa_contenido', 'label' => 'Contenido', 'name' => 'contenido', 'type' => 'textarea', 'rows' => 5, 'required' => 1, 'instructions' => 'Dejar una línea en blanco entre párrafos.'],
+    ],
+    'location' => [
+      [['param' => 'post_type', 'operator' => '==', 'value' => 'servicio_acordeon']],
+    ],
+  ]);
+});
+
+// ── Migración one-time: tarjetas de características ─────────────────────────
+add_action('init', function () {
+  if (get_option('smart_feature_cards_migradas') === 'si') return;
+  if (!function_exists('update_field')) return;
+
+  update_option('smart_feature_cards_migradas', 'si');
+
+  $cards = [
+    // Home — "Elegí tu smart"
+    ['slug' => 'home-1', 'seccion' => 'home', 'orden' => 0, 'titulo' => 'smart X BRABUS.', 'descripcion' => 'Rendimiento extremo. Diseño inconfundible. La versión más potente de smart lleva cada detalle al límite.', 'imagen' => 'home/carrusel/1.jpg', 'alt' => 'smart X BRABUS', 'disclaimer' => '', 'cta_texto' => 'Descubrilo', 'cta_link' => '/brabus/'],
+    ['slug' => 'home-2', 'seccion' => 'home', 'orden' => 1, 'titulo' => 'Conectividad.', 'descripcion' => "Pantalla central de 12,8'', Apple CarPlay® y Android Auto® inalámbrico. El camino y tu mundo, integrados.", 'imagen' => 'home/carrusel/2.jpg', 'alt' => 'Conectividad', 'disclaimer' => '', 'cta_texto' => 'Conocé más', 'cta_link' => '/conectividad/'],
+    ['slug' => 'home-3', 'seccion' => 'home', 'orden' => 2, 'titulo' => 'Movilidad eléctrica.', 'descripcion' => 'Hasta 597 km de autonomía y carga rápida en menos de 30 minutos. El futuro de la movilidad ya tiene forma.', 'imagen' => 'home/carrusel/3.jpg', 'alt' => 'Movilidad eléctrica', 'disclaimer' => 'Autonomía sujeta a tipo de conducción, condiciones del terreno y condiciones del clima.', 'cta_texto' => 'Explorá', 'cta_link' => '/movilidad-electrica/'],
+    ['slug' => 'home-4', 'seccion' => 'home', 'orden' => 3, 'titulo' => 'Servicios al cliente.', 'descripcion' => 'Respaldo completo en cada kilómetro. Porque smart no termina en la compra.', 'imagen' => 'home/carrusel/4.png', 'alt' => 'Servicios al cliente', 'disclaimer' => '', 'cta_texto' => 'Ver servicios', 'cta_link' => '/servicios/'],
+    // Conectividad — carrusel 1
+    ['slug' => 'conectividad1-1', 'seccion' => 'conectividad_1', 'orden' => 0, 'titulo' => 'Hello smart App', 'descripcion' => 'Controlá tu auto desde tu celular: monitoreá la carga, programá la climatización antes de subir y localizá el vehículo en cualquier momento. Tu smart, siempre conectado a vos.', 'imagen' => 'conectividad/c1-1.png', 'alt' => 'Hello smart App', 'disclaimer' => '', 'cta_texto' => 'Descargar', 'cta_link' => '#'],
+    ['slug' => 'conectividad1-2', 'seccion' => 'conectividad_1', 'orden' => 1, 'titulo' => 'Apple CarPlay® y Android Auto® inalámbrico', 'descripcion' => 'Tu smartphone se conecta sin cables. Llamadas, mapas, música y mensajes integrados, sin perder la vista del camino.', 'imagen' => 'conectividad/c1-2.png', 'alt' => 'Apple CarPlay', 'disclaimer' => '', 'cta_texto' => '', 'cta_link' => ''],
+    ['slug' => 'conectividad1-3', 'seccion' => 'conectividad_1', 'orden' => 2, 'titulo' => 'Actualización OTA (Over-The-Air)', 'descripcion' => 'El software de tu smart se actualiza de forma remota. Sin ir al taller, sin interrupciones.', 'imagen' => 'conectividad/c1-3.png', 'alt' => 'Actualización OTA', 'disclaimer' => '', 'cta_texto' => '', 'cta_link' => ''],
+    ['slug' => 'conectividad1-4', 'seccion' => 'conectividad_1', 'orden' => 3, 'titulo' => 'Keyless entry', 'descripcion' => 'Acercate a tu smart y las puertas se abren. Usar la llave es opcional.', 'imagen' => 'conectividad/c1-4.png', 'alt' => 'Keyless entry', 'disclaimer' => '', 'cta_texto' => '', 'cta_link' => ''],
+    // Conectividad — carrusel 2
+    ['slug' => 'conectividad2-1', 'seccion' => 'conectividad_2', 'orden' => 0, 'titulo' => 'Asistente de voz', 'descripcion' => 'Controlá la navegación, el clima y los medios sin soltar el volante. El auto responde cuando hablás.', 'imagen' => 'conectividad/c2-1.png', 'alt' => 'Asistente de voz', 'disclaimer' => '', 'cta_texto' => '', 'cta_link' => ''],
+    ['slug' => 'conectividad2-2', 'seccion' => 'conectividad_2', 'orden' => 1, 'titulo' => 'Pantalla central de 12,8"', 'descripcion' => 'Todo el control del vehículo en una pantalla táctil de alta resolución. Y frente al conductor, una pantalla de instrumentos de 9,2" con información de conducción a simple vista.', 'imagen' => 'conectividad/c2-2.png', 'alt' => 'Pantalla central 12.8', 'disclaimer' => '', 'cta_texto' => '', 'cta_link' => ''],
+    ['slug' => 'conectividad2-3', 'seccion' => 'conectividad_2', 'orden' => 2, 'titulo' => 'Cuadro de instrumentos digital 9,2"', 'descripcion' => 'El cuadro de instrumentos de 9,2" es un panel de material LCD de alta definición que se usa para mostrar información de conducción, música y otros datos relacionados. Tiene una resolución de 1920x384 píxeles.', 'imagen' => 'conectividad/c2-3.png', 'alt' => 'Cuadro de instrumentos digital 9.2', 'disclaimer' => '', 'cta_texto' => '', 'cta_link' => ''],
+    ['slug' => 'conectividad2-4', 'seccion' => 'conectividad_2', 'orden' => 3, 'titulo' => 'Head Up display 10"', 'descripcion' => 'La imagen se proyecta en la luna delantera del vehículo, por lo que el conductor no tiene que bajar la cabeza para obtener la información que necesita, lo cual ofrece una experiencia de conducción más segura.', 'imagen' => 'conectividad/c2-4.png', 'alt' => 'Head Up display 10', 'disclaimer' => '', 'cta_texto' => '', 'cta_link' => ''],
+    // Sobre smart — red de concesionarios
+    ['slug' => 'sobre-smart-1', 'seccion' => 'sobre_smart', 'orden' => 0, 'titulo' => 'Diseño que tiene firma propia.', 'descripcion' => 'Cada modelo smart es reconocible a primera vista. El modelo ideado por Mercedes–Benz tiene líneas fluidas, proporciones equilibradas y detalles que hablan de un ADN de marca consistente a lo largo del tiempo.', 'imagen' => 'sobre-smart/carousel-1.jpg', 'alt' => '', 'disclaimer' => '', 'cta_texto' => '', 'cta_link' => ''],
+    ['slug' => 'sobre-smart-2', 'seccion' => 'sobre_smart', 'orden' => 1, 'titulo' => '100% eléctrico.', 'descripcion' => 'La alianza con la preparadora alemana BRABUS le dió a smart una versión de alto rendimiento que no resigna nada del ADN eléctrico de la marca.', 'imagen' => 'sobre-smart/carousel-2.jpg', 'alt' => '', 'disclaimer' => '', 'cta_texto' => '', 'cta_link' => ''],
+    ['slug' => 'sobre-smart-3', 'seccion' => 'sobre_smart', 'orden' => 2, 'titulo' => 'La colaboración BRABUS.', 'descripcion' => 'La alianza con la preparadora alemana BRABUS le dió a smart una versión de alto rendimiento que no resigna nada del ADN eléctrico de la marca.', 'imagen' => 'sobre-smart/carousel-3.jpg', 'alt' => '', 'disclaimer' => '', 'cta_texto' => '', 'cta_link' => ''],
+    // Movilidad eléctrica — cards
+    ['slug' => 'movilidad-1', 'seccion' => 'movilidad_electrica', 'orden' => 0, 'titulo' => 'Hasta 584 km de autonomía WLTP', 'descripcion' => "En ciclo WLTP para el smart #1 Pro+.\nDistancia de sobra para la ciudad y los viajes que más importan.", 'imagen' => 'movilidad/card1.jpg', 'alt' => 'smart #1', 'disclaimer' => '*Autonomía sujeta a tipo de conducción, condiciones del terreno y condiciones del clima.', 'cta_texto' => '', 'cta_link' => ''],
+    ['slug' => 'movilidad-2', 'seccion' => 'movilidad_electrica', 'orden' => 1, 'titulo' => 'Sin ruido de motor. Sin combustible.', 'descripcion' => 'Sin ir a la estación de servicio. Solo manejar.', 'imagen' => 'movilidad/card2.png', 'alt' => 'smart #3', 'disclaimer' => '', 'cta_texto' => '', 'cta_link' => ''],
+    ['slug' => 'movilidad-3', 'seccion' => 'movilidad_electrica', 'orden' => 2, 'titulo' => 'Recuperación de energía en cada frenada.', 'descripcion' => 'El sistema de frenos regenerativos convierte la energía cinética en carga para la batería. Menos frenadas, más kilómetros: la conducción eléctrica inteligente.', 'imagen' => 'movilidad/card3.png', 'alt' => 'BRABUS Performance', 'disclaimer' => '', 'cta_texto' => '', 'cta_link' => ''],
+  ];
+
+  foreach ($cards as $c) {
+    if (get_page_by_path($c['slug'], OBJECT, 'feature_card')) continue;
+
+    $post_id = wp_insert_post([
+      'post_type'   => 'feature_card',
+      'post_title'  => $c['titulo'],
+      'post_name'   => $c['slug'],
+      'post_status' => 'publish',
+    ]);
+    if (is_wp_error($post_id) || !$post_id) continue;
+
+    update_field('seccion', $c['seccion'], $post_id);
+    update_field('orden', $c['orden'], $post_id);
+    update_field('titulo', $c['titulo'], $post_id);
+    update_field('descripcion', $c['descripcion'], $post_id);
+    update_field('imagen', $c['imagen'], $post_id);
+    update_field('alt', $c['alt'], $post_id);
+    update_field('disclaimer', $c['disclaimer'], $post_id);
+    update_field('cta_texto', $c['cta_texto'], $post_id);
+    update_field('cta_link', $c['cta_link'], $post_id);
+  }
+}, 20);
+
+// ── Migración one-time: acordeón de servicios ────────────────────────────────
+add_action('init', function () {
+  if (get_option('smart_servicio_acordeon_migrado') === 'si') return;
+  if (!function_exists('update_field')) return;
+
+  update_option('smart_servicio_acordeon_migrado', 'si');
+
+  $items = [
+    ['slug' => 'garantia', 'orden' => 0, 'titulo' => 'Garantía', 'contenido' => "3 años sin límites de kilometraje para componentes del vehículo.\nGarantía batería y componentes de alto voltaje: 8 años o 160.000 km. lo que ocurra primero."],
+    ['slug' => 'asistencia-en-ruta', 'orden' => 1, 'titulo' => 'Asistencia en ruta', 'contenido' => 'Asistencia rápida donde te encuentres, las 24 horas del día. Frente a cualquier eventual problema en la ruta, te asistimos dentro del país y en países limítrofes.'],
+    ['slug' => 'mantenimiento', 'orden' => 2, 'titulo' => 'Mantenimiento', 'contenido' => "Nuestro servicio oficial smart es tu mejor opción para mantenerlo siempre en perfecto estado. Gracias al servicio premium y la atención al detalle, podrás seguir disfrutando de tu smart con la misma confianza y placer que el primer día.\n\nEl mantenimiento debe realizarse cada 10.000 kilómetros o cada dos años, para garantizar que tu smart conserve su fiabilidad, seguridad y máximo rendimiento. En cada visita, nuestros técnicos especializados realizan un mantenimiento integral, siguiendo los estándares más exigentes de la marca y utilizando siempre piezas originales smart."],
+    ['slug' => 'reparaciones', 'orden' => 3, 'titulo' => 'Reparaciones', 'contenido' => 'Podés contar con nosotros para cualquier tipo de solución que requiera tu smart.'],
+    ['slug' => 'sustitucion-del-parabrisas', 'orden' => 4, 'titulo' => 'Sustitución del parabrisas', 'contenido' => 'Si el parabrisas sufre un daño por impacto de piedras, tu seguridad también se ve afectada. El parabrisas contribuye a la rigidez torsional de la carrocería. Si se rompe, no puede garantizarse plenamente su capacidad portante, sobre todo en situaciones críticas. Al sustituir el parabrisas, lo importante es la correcta ejecución del trabajo en un taller autorizado smart.'],
+    ['slug' => 'frenos-y-pastillas-de-freno', 'orden' => 5, 'titulo' => 'Frenos y pastillas de freno', 'contenido' => 'Te ofrecemos un servicio especial en aras de tu seguridad: nuestro control de frenos. Para incrementar la seguridad en el tránsito vehicular es indispensable revisar periódicamente las pastillas de freno y la potencia de frenado. Por ello te recomendamos encargar la revisión de los frenos al menos una vez al año.'],
+    ['slug' => 'cambio-de-bateria-12v', 'orden' => 6, 'titulo' => 'Cambio de batería 12v', 'contenido' => 'Si tu batería pierde rendimiento, la única solución suele ser cambiarla. Estaremos encantados de ayudarte y encargarnos de sustituir tu batería de 12v. Efectuaremos el cambio de forma rápida y sin complicaciones; naturalmente, con la alta calidad habitual de smart.'],
+    ['slug' => 'repuestos-originales', 'orden' => 7, 'titulo' => 'Repuestos originales', 'contenido' => 'Si es necesario realizar una reparación o sustituir alguna pieza averiada, recomendamos utilizar repuestos originales smart. Todos estos repuestos están respaldados por el know-how de smart como fabricante, se desarrollan específicamente para tu modelo y se adaptan a la perfección a los demás componentes del vehículo.'],
+    ['slug' => 'manuales-de-usuario', 'orden' => 8, 'titulo' => 'Manuales de usuario', 'contenido' => 'Navegá por el manual en línea o descargá el PDF del manual de usuario para acceder rápidamente cuando lo necesites.'],
+  ];
+
+  foreach ($items as $i) {
+    if (get_page_by_path($i['slug'], OBJECT, 'servicio_acordeon')) continue;
+
+    $post_id = wp_insert_post([
+      'post_type'   => 'servicio_acordeon',
+      'post_title'  => $i['titulo'],
+      'post_name'   => $i['slug'],
+      'post_status' => 'publish',
+    ]);
+    if (is_wp_error($post_id) || !$post_id) continue;
+
+    update_field('orden', $i['orden'], $post_id);
+    update_field('titulo', $i['titulo'], $post_id);
+    update_field('contenido', $i['contenido'], $post_id);
+  }
+}, 20);
+
+// ── Helper: tarjetas de características (usado por front-page/conectividad/etc) ─
+function smart_get_feature_cards($seccion) {
+  static $cache = [];
+  if (isset($cache[$seccion])) return $cache[$seccion];
+
+  $items = [];
+  if (!function_exists('get_field')) return $cache[$seccion] = $items;
+
+  $query = new WP_Query([
+    'post_type'      => 'feature_card',
+    'posts_per_page' => -1,
+    'meta_query'     => [['key' => 'seccion', 'value' => $seccion]],
+    'no_found_rows'  => true,
+  ]);
+
+  if ($query->have_posts()) {
+    while ($query->have_posts()) {
+      $query->the_post();
+      $id = get_the_ID();
+
+      $titulo = (string) get_field('titulo', $id);
+      $alt    = (string) get_field('alt', $id);
+
+      $items[] = [
+        'orden'       => (int) get_field('orden', $id),
+        'titulo'      => $titulo,
+        'descripcion' => (string) get_field('descripcion', $id),
+        'imagen'      => get_template_directory_uri() . '/assets/img/' . ltrim((string) get_field('imagen', $id), '/'),
+        'alt'         => $alt !== '' ? $alt : $titulo,
+        'disclaimer'  => (string) get_field('disclaimer', $id),
+        'cta_texto'   => (string) get_field('cta_texto', $id),
+        'cta_link'    => (string) get_field('cta_link', $id),
+      ];
+    }
+    wp_reset_postdata();
+  }
+
+  usort($items, function ($a, $b) { return $a['orden'] <=> $b['orden']; });
+
+  return $cache[$seccion] = $items;
+}
+
+// ── Helper: link de CTA de una tarjeta (interno vs. literal) ─────────────────
+function smart_feature_card_link($cta_link) {
+  if ($cta_link === '') return '';
+  if ($cta_link[0] === '/') return home_url($cta_link);
+  return $cta_link;
+}
+
+// ── Helper: ítems del acordeón de servicios ─────────────────────────────────
+function smart_get_servicio_acordeon() {
+  static $cache = null;
+  if ($cache !== null) return $cache;
+
+  $items = [];
+  if (!function_exists('get_field')) return $cache = $items;
+
+  $query = new WP_Query([
+    'post_type'      => 'servicio_acordeon',
+    'posts_per_page' => -1,
+    'no_found_rows'  => true,
+  ]);
+
+  if ($query->have_posts()) {
+    while ($query->have_posts()) {
+      $query->the_post();
+      $id = get_the_ID();
+      $items[] = [
+        'orden'     => (int) get_field('orden', $id),
+        'titulo'    => (string) get_field('titulo', $id),
+        'contenido' => (string) get_field('contenido', $id),
+      ];
+    }
+    wp_reset_postdata();
+  }
+
+  usort($items, function ($a, $b) { return $a['orden'] <=> $b['orden']; });
+
+  return $cache = $items;
+}
+
 // ── Formulario de contacto — envío de mail vía wp_mail() (WP Mail SMTP) ────
 add_action('wp_ajax_smart_enviar_formulario', 'smart_enviar_formulario');
 add_action('wp_ajax_nopriv_smart_enviar_formulario', 'smart_enviar_formulario');
