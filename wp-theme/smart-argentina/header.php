@@ -20,6 +20,7 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-NGZTK3NT0Q');
+    gtag('config', 'G-S592HEGNHS');
   </script>
 
   <!-- Meta Pixel Code -->
