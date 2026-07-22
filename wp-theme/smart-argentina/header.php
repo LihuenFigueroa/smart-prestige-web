@@ -11,6 +11,7 @@
     window.WP_AJAX_URL     = '<?php echo admin_url('admin-ajax.php'); ?>';
     window.WP_CONTACT_NONCE = '<?php echo wp_create_nonce('smart_contacto'); ?>';
     window.WP_GRACIAS_URL  = '<?php echo home_url('/gracias/'); ?>';
+    window.WP_COOKIES_URL  = '<?php echo home_url('/cookies/'); ?>';
   </script>
 
   <!-- Google Analytics -->

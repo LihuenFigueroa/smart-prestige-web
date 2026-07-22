@@ -632,3 +632,41 @@ function submitContactForm(e) {
     if (btn) { btn.disabled = false; btn.textContent = 'Enviar'; }
   });
 }
+
+// ── Banner de cookies ───────────────────────────────────────────────────
+(function () {
+  var STORAGE_KEY = 'smart_cookie_consent';
+  if (localStorage.getItem(STORAGE_KEY)) return;
+
+  var cookiesUrl = window.WP_COOKIES_URL || 'cookies.html';
+
+  var banner = document.createElement('div');
+  banner.id = 'cookie-banner';
+  banner.className = 'cookie-banner';
+  banner.innerHTML =
+    '<p class="cookie-banner__text font-smart-sans">Utilizamos cookies propias y de terceros para mejorar tu experiencia de navegación y analizar el uso del sitio. Podés aceptarlas o rechazarlas. <a href="' + cookiesUrl + '">Más información</a>.</p>' +
+    '<div class="cookie-banner__actions">' +
+      '<button type="button" class="cookie-banner__btn cookie-banner__btn--reject font-smart-sans">Rechazar</button>' +
+      '<button type="button" class="cookie-banner__btn cookie-banner__btn--accept font-smart-sans">Aceptar</button>' +
+    '</div>';
+
+  function init() {
+    document.body.appendChild(banner);
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () { banner.classList.add('is-visible'); });
+    });
+
+    function close(value) {
+      localStorage.setItem(STORAGE_KEY, value);
+      banner.classList.remove('is-visible');
+      setTimeout(function () { banner.remove(); }, 400);
+    }
+
+    banner.querySelector('.cookie-banner__btn--accept').addEventListener('click', function () { close('accepted'); });
+    banner.querySelector('.cookie-banner__btn--reject').addEventListener('click', function () { close('rejected'); });
+  }
+
+  document.readyState === 'loading'
+    ? document.addEventListener('DOMContentLoaded', init)
+    : init();
+})();
