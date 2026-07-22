@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gracias — smart Argentina</title>
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="assets/css/tailwind.css" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body class="bg-white font-smart-sans">
+
+  <!-- ================================================================
+       NAV MENU OVERLAY
+  ================================================================ -->
+  <div id="nav-menu" class="fixed inset-0 z-[100] pointer-events-none">
+    <div id="nav-backdrop" class="absolute inset-0 bg-black/50 opacity-0 transition-opacity duration-300" onclick="closeNavMenu()"></div>
+    <div id="nav-drawer" class="absolute top-0 left-0 h-full w-full max-w-sm bg-white flex flex-col -translate-x-full transition-transform duration-300 ease-in-out">
+      <div class="px-8 h-16 flex items-center justify-between border-b border-neutral-200">
+        <a href="index.html"><img src="assets/img/Logonavbar.svg" alt="smart" class="h-6 w-auto" /></a>
+        <button onclick="closeNavMenu()" aria-label="Cerrar menú" class="text-[#141413] p-1">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <nav class="flex-1 overflow-y-auto px-8 py-8 flex flex-col">
+        <p class="text-xs uppercase tracking-widest text-neutral-500 mb-4 font-smart-next">Modelos</p>
+        <a href="smart1.html" class="text-[#141413] text-xl font-smart-next font-normal py-3 border-b border-neutral-200 hover:text-neutral-400 transition-colors">smart #1</a>
+        <a href="smart3.html" class="text-[#141413] text-xl font-smart-next font-normal py-3 border-b border-neutral-200 hover:text-neutral-400 transition-colors">smart #3</a>
+        <a href="brabus.html" class="text-[#141413] text-xl font-smart-next font-normal py-3 border-b border-neutral-200 hover:text-neutral-400 transition-colors">smart × BRABUS</a>
+        <p class="text-xs uppercase tracking-widest text-neutral-500 mt-8 mb-4 font-smart-next">Descubrí</p>
+        <a href="servicios.html" class="text-[#141413] text-xl font-smart-next font-normal py-3 border-b border-neutral-200 hover:text-neutral-400 transition-colors">Servicios al cliente</a>
+        <a href="movilidad-electrica.html" class="text-[#141413] text-xl font-smart-next font-normal py-3 border-b border-neutral-200 hover:text-neutral-400 transition-colors">Movilidad eléctrica</a>
+        <a href="conectividad.html" class="text-[#141413] text-xl font-smart-next font-normal py-3 border-b border-neutral-200 hover:text-neutral-400 transition-colors">Conectividad</a>
+        <p class="text-xs uppercase tracking-widest text-neutral-500 mt-8 mb-4 font-smart-next">Sobre smart</p>
+        <a href="buscador.html" class="text-[#141413] text-xl font-smart-next font-normal py-3 border-b border-neutral-200 hover:text-neutral-400 transition-colors">Buscador de concesionarios</a>
+        <a href="sobre-smart.html" class="text-[#141413] text-xl font-smart-next font-normal py-3 border-b border-neutral-200 hover:text-neutral-400 transition-colors">Sobre nosotros</a>
+      </nav>
+      <div class="px-8 py-6 border-t border-neutral-200">
+        <a href="index.html#contacto" class="text-sm text-neutral-500 hover:text-[#141413] transition-colors">Contáctanos</a>
+      </div>
+      <div class="px-8 pt-5 pb-8 border-t border-neutral-200 flex flex-col gap-3">
+        <p class="text-xs text-neutral-400 font-smart-sans">
+          <a href="legales.html" class="hover:text-[#141413] transition-colors">Legales</a>
+          <span class="mx-2 text-neutral-300">|</span>
+          <a href="cookies.html" class="hover:text-[#141413] transition-colors">Cookies</a>
+        </p>
+        <p class="text-xs text-neutral-400 font-smart-sans">© 2026 smart Argentina</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================================================================
+       NAVBAR
+  ================================================================ -->
+  <nav class="w-full bg-[#141413] px-5 md:px-14 h-14 md:h-16 flex items-center justify-between relative">
+    <div class="flex items-center gap-6">
+      <button onclick="openNavMenu()" class="flex flex-col gap-[5px] cursor-pointer" aria-label="Menú">
+        <span class="w-5 h-px bg-white block"></span>
+        <span class="w-5 h-px bg-white block"></span>
+        <span class="w-5 h-px bg-white block"></span>
+      </button>
+    </div>
+    <div class="absolute left-1/2 -translate-x-1/2">
+      <a href="index.html"><img src="assets/img/Logonavbar.svg" alt="smart" class="h-4 md:h-8 w-auto" /></a>
+    </div>
+  </nav>
+
+  <!-- ================================================================
+       CONTENIDO
+  ================================================================ -->
+  <main class="max-w-[800px] mx-auto px-5 md:px-8 pt-10 pb-12 md:pt-12 md:pb-16" style="margin-top: 24px;">
+
+    <p class="font-smart-sans text-neutral-400 text-xs uppercase tracking-widest mb-6">Mensaje recibido</p>
+
+    <h1 class="font-smart-next font-normal text-[#141413] mb-4" style="font-size: clamp(22px, 3vw, 32px); line-height: 1.1; letter-spacing: -0.02em;">
+      Gracias por contactarte.
+    </h1>
+
+    <div class="border-t border-neutral-200 mb-4"></div>
+
+    <div class="flex flex-row flex-wrap gap-2">
+      <a href="index.html" class="font-smart-sans inline-flex items-center h-8 px-5 bg-[#141413] text-white rounded-full font-bold text-xs tracking-tight hover:bg-neutral-800 transition-colors whitespace-nowrap">
+        Volver al inicio
+      </a>
+      <a href="smart1.html" class="font-smart-sans inline-flex items-center h-8 px-5 border border-[#141413] text-[#141413] rounded-full font-normal text-xs tracking-tight hover:bg-neutral-100 transition-colors whitespace-nowrap">
+        Ver modelos
+      </a>
+    </div>
+
+  </main>
+
+  <!-- ================================================================
+       FOOTER
+  ================================================================ -->
+  <div id="site-footer"></div>
+  <script>fetch('assets/partials/footer.html').then(r=>r.text()).then(html=>{document.getElementById('site-footer').innerHTML=html;});</script>
+
+  <script>
+    function openNavMenu() {
+      const menu     = document.getElementById('nav-menu');
+      const drawer   = document.getElementById('nav-drawer');
+      const backdrop = document.getElementById('nav-backdrop');
+      menu.classList.remove('pointer-events-none');
+      backdrop.classList.remove('opacity-0');
+      backdrop.classList.add('opacity-100');
+      drawer.classList.remove('-translate-x-full');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeNavMenu() {
+      const menu     = document.getElementById('nav-menu');
+      const drawer   = document.getElementById('nav-drawer');
+      const backdrop = document.getElementById('nav-backdrop');
+      backdrop.classList.remove('opacity-100');
+      backdrop.classList.add('opacity-0');
+      drawer.classList.add('-translate-x-full');
+      setTimeout(() => {
+        menu.classList.add('pointer-events-none');
+        document.body.style.overflow = '';
+      }, 300);
+    }
+  </script>
+
+</body>
+</html>

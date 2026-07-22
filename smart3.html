@@ -757,8 +757,7 @@
   <script>
     fetch('assets/partials/form-contacto.html').then(r=>r.text()).then(html=>{
       document.getElementById('site-contacto').innerHTML = html;
-      var sel = document.getElementById('form-modelo-select');
-      if(sel){[['smart3-pro','smart #3 Pro'],['smart3-proplus','smart #3 Pro+'],['smart3-brabus','smart #3 BRABUS']].forEach(function(m){var o=document.createElement('option');o.value=m[0];o.text=m[1];sel.add(o);});}
+      setFddOptions('modelo',[['smart3-pro','smart #3 Pro'],['smart3-proplus','smart #3 Pro+'],['smart3-brabus','smart #3 BRABUS']]);
     });
   </script>
 

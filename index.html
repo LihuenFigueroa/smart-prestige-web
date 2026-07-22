@@ -292,8 +292,7 @@
   <script>
     fetch('assets/partials/form-contacto.html').then(r=>r.text()).then(html=>{
       document.getElementById('site-contacto').innerHTML = html;
-      var sel = document.getElementById('form-modelo-select');
-      if(sel){[['smart1','smart #1'],['smart3','smart #3']].forEach(function(m){var o=document.createElement('option');o.value=m[0];o.text=m[1];sel.add(o);});}
+      setFddOptions('modelo',[['smart1','smart #1'],['smart3','smart #3']]);
     });
   </script>
 

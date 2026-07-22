@@ -453,3 +453,70 @@ function switchSpec(num) {
 
   currentSpec = num;
 }
+
+// ── Form Custom Dropdowns ─────────────────────────────────────────────────
+var _fddOpen = null;
+
+function toggleFdd(id) {
+  if (_fddOpen && _fddOpen !== id) closeFdd(_fddOpen);
+  var panel = document.getElementById('fdd-' + id + '-panel');
+  if (!panel) return;
+  var isOpen = panel.style.maxHeight && panel.style.maxHeight !== '0px';
+  isOpen ? closeFdd(id) : openFdd(id);
+}
+
+function openFdd(id) {
+  var panel   = document.getElementById('fdd-' + id + '-panel');
+  var chevron = document.getElementById('fdd-' + id + '-chevron');
+  if (!panel) return;
+  panel.style.maxHeight = panel.scrollHeight + 'px';
+  if (chevron) chevron.style.transform = 'rotate(180deg)';
+  _fddOpen = id;
+}
+
+function closeFdd(id) {
+  var panel   = document.getElementById('fdd-' + id + '-panel');
+  var chevron = document.getElementById('fdd-' + id + '-chevron');
+  if (!panel) return;
+  panel.style.maxHeight = '0';
+  if (chevron) chevron.style.transform = '';
+  if (_fddOpen === id) _fddOpen = null;
+}
+
+function selectFdd(id, value, label) {
+  var valEl   = document.getElementById('fdd-' + id + '-val');
+  var labelEl = document.getElementById('fdd-' + id + '-label');
+  if (valEl)   valEl.value = value;
+  if (labelEl) {
+    labelEl.textContent          = label;
+    labelEl.style.color          = '#111827';
+    labelEl.style.letterSpacing  = 'normal';
+    labelEl.style.fontSize       = '0.875rem';
+    labelEl.style.textTransform  = 'none';
+  }
+  closeFdd(id);
+}
+
+function setFddOptions(id, options) {
+  var panel = document.getElementById('fdd-' + id + '-panel');
+  if (!panel) return;
+  var inner = panel.querySelector('[data-fdd-items]');
+  if (!inner) return;
+  inner.innerHTML = '';
+  options.forEach(function(opt) {
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'fdd-item font-smart-sans';
+    btn.textContent = opt[1];
+    (function(v, l) {
+      btn.addEventListener('click', function() { selectFdd(id, v, l); });
+    })(opt[0], opt[1]);
+    inner.appendChild(btn);
+  });
+}
+
+document.addEventListener('click', function(e) {
+  if (!_fddOpen) return;
+  var wrap = document.getElementById('fdd-' + _fddOpen);
+  if (wrap && !wrap.contains(e.target)) closeFdd(_fddOpen);
+});
