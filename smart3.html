@@ -906,6 +906,71 @@
 
       ['track-c1', 'track-c2', 'track-c3', 'track-c4', 'track-c5', 'track-c6'].forEach(initDragCarousel);
 
+      // ── Auto-scroll + indicador flecha en borde derecho del carrusel ─────
+      (function () {
+        var arrow = document.createElement('div');
+        arrow.style.cssText = 'position:fixed;z-index:9999;pointer-events:none;width:36px;height:36px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 12px rgba(0,0,0,0.18);opacity:0;transition:opacity 0.15s,transform 0.15s;transform:translateX(16px);';
+        arrow.innerHTML = '<svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 6.5h9M8 3l3.5 3.5L8 10" stroke="#141413" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+        document.body.appendChild(arrow);
+
+        var raf      = null;
+        var active   = null;
+        var inZone   = false;
+        var dragging = false;
+
+        document.addEventListener('mousedown', function () { dragging = true; });
+        document.addEventListener('mouseup',   function () { dragging = false; }, { passive: true });
+
+        function stop() {
+          inZone = false;
+          cancelAnimationFrame(raf); raf = null;
+          arrow.style.opacity   = '0';
+          arrow.style.transform = 'translateX(16px)';
+        }
+
+        function scrollStep() {
+          if (!active || !inZone || dragging) { raf = null; return; }
+          var maxScroll = active.scrollWidth - active.clientWidth;
+          if (active.scrollLeft >= maxScroll) { stop(); return; }
+          active.scrollLeft += 3;
+          raf = requestAnimationFrame(scrollStep);
+        }
+
+        function initHoverScroll(trackId) {
+          var track = document.getElementById(trackId);
+          if (!track) return;
+          var wrapper = track.parentElement;
+
+          wrapper.addEventListener('mousemove', function (e) {
+            if (dragging) return;
+            var rect      = wrapper.getBoundingClientRect();
+            var hotSize   = rect.width * 0.22;
+            var maxScroll = track.scrollWidth - track.clientWidth;
+            var inHot     = (e.clientX - rect.left) > rect.width - hotSize && maxScroll > 2 && track.scrollLeft < maxScroll - 2;
+
+            if (inHot) {
+              if (!inZone || active !== track) {
+                cancelAnimationFrame(raf); raf = null;
+                active = track; inZone = true;
+                raf = requestAnimationFrame(scrollStep);
+              }
+              arrow.style.left      = (rect.right - 52) + 'px';
+              arrow.style.top       = (e.clientY - 18) + 'px';
+              arrow.style.opacity   = '1';
+              arrow.style.transform = 'translateX(0)';
+            } else if (active === track && inZone) {
+              stop();
+            }
+          });
+
+          wrapper.addEventListener('mouseleave', function () {
+            if (active === track) stop();
+          });
+        }
+
+        ['track-c1','track-c2','track-c3','track-c4','track-c5','track-c6'].forEach(initHoverScroll);
+      })();
+
       // ── Visualizador: toggle exterior / interior ──
       (function() {
         var indicator = document.getElementById('vis-indicator');
