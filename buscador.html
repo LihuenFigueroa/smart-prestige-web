@@ -9,6 +9,8 @@
   <link rel="stylesheet" href="assets/css/styles.css" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <style>
+    .bus-hero-title { font-size: 45px; line-height: 1.1; margin-bottom: 8px; }
+    .bus-hero-label { font-size: 18px; line-height: 1.5; margin-bottom: 16px; }
     @media (max-width: 767px) {
       .bus-hero-img {
         content: url('assets/img/buscador/hero-mobile.png');
@@ -19,15 +21,15 @@
         padding-bottom: 32px !important;
       }
       .bus-hero-title {
-        font-size: 36px !important;
-        line-height: 1.15 !important;
-        letter-spacing: -0.02em !important;
-        margin-bottom: 8px !important;
+        font-size: 36px;
+        line-height: 1.15;
+        letter-spacing: -0.02em;
+        margin-bottom: 8px;
       }
       .bus-hero-label {
-        font-size: 18px !important;
-        line-height: 1.4 !important;
-        margin-bottom: 0 !important;
+        font-size: 15px;
+        line-height: 1.4;
+        margin-bottom: 0;
       }
       .bus-hero-btn {
         display: none !important;
@@ -152,10 +154,12 @@
       </div>
     </nav>
 
-    <div class="bus-hero-wrap absolute bottom-0 left-0 right-0 z-10" style="padding-left:56px; padding-bottom:68px;">
-      <h1 class="bus-hero-title font-smart-next font-normal text-white" style="font-size:34px; line-height:1.1; margin-bottom:12px;">Buscador de concesionarios.</h1>
-      <p class="bus-hero-label font-smart-sans text-white" style="font-size:19px; opacity:0.9; margin-bottom:33px;">Encontrá tu concesionario más cercano.</p>
-      <a href="#buscador" class="bus-hero-btn font-smart-sans" style="display:inline-flex; align-items:center; height:50px; padding:0 28px; background:white; border-radius:25px; font-size:16px; color:#141413; text-decoration:none; font-weight:600;">Realizar consulta</a>
+    <div class="bus-hero-wrap absolute bottom-0 left-0 right-0 z-10" style="padding-left:56px; padding-bottom:56px;">
+      <h1 class="bus-hero-title font-smart-next font-normal text-white">Buscador de concesionarios.</h1>
+      <p class="bus-hero-label font-smart-sans text-white" style="opacity:0.9;">Encontrá tu concesionario más cercano.</p>
+      <div>
+        <a href="#buscador" class="bus-hero-btn font-smart-sans" style="display:inline-flex; align-items:center; height:40px; padding:0 24px; background:white; border-radius:9999px; font-size:14px; color:#141413; text-decoration:none; font-weight:700; letter-spacing:-0.025em;">Realizar consulta</a>
+      </div>
     </div>
   </section>
 
