@@ -160,3 +160,12 @@ Theme WordPress generado a partir de los `.html` estáticos. Templates `page-*.p
 ### Canvas del scroll-video (`initScrollVideo` en `main.js`)
 - El canvas se dimensiona con `devicePixelRatio` (no solo `offsetWidth`/`offsetHeight`) y usa `ctx.setTransform(dpr,0,0,dpr,0,0)` para dibujar en coordenadas CSS — si no, el video se ve pixelado/borroso en pantallas de alta densidad (Retina, Windows con escalado >100%).
 - Los assets de imagen del sitio (fotos) no pasan por ningún pipeline de resize — se sirven tal cual están en `assets/img/`. Si algo se ve pixelado, primero comparar tamaño/MD5 del archivo en repo vs. servidor antes de asumir que la imagen fuente es de baja calidad (y descartar compresión de RDP/VNC si se está revisando remoto).
+
+### Formulario de contacto — envío de mail
+- El sitio estático (`server.js` + Nodemailer) es solo una prueba local — **no se portó a WordPress**. En WP el envío es 100% nativo:
+  - `functions.php` registra el handler AJAX `smart_enviar_formulario` (`wp_ajax_*` + `wp_ajax_nopriv_*`) que valida campos obligatorios y llama a `wp_mail()`.
+  - `partials/header.php` expone `window.WP_AJAX_URL`, `window.WP_CONTACT_NONCE` y `window.WP_GRACIAS_URL` como globals PHP→JS.
+  - `main.js` → `submitContactForm()` detecta `window.WP_AJAX_URL`: si existe, postea a `admin-ajax.php` con `action`/`nonce` (form-urlencoded, respuesta `{success}`); si no, usa el flujo viejo del servidor Node local (JSON, respuesta `{ok}`) — así el mismo `main.js` sirve para ambos sitios sin ramas de build.
+  - Destinatario: `hola@prestige-auto.com.ar`. CCO fijo: `lifi.soluciones@gmail.com` y `clindstrom@prestige-auto.com.ar`.
+  - El envío real usa el plugin **WP Mail SMTP** contra Gmail (cuenta `smart.arg.mailing@gmail.com` con App Password) — configurado con constantes `WPMS_*` en `C:\inetpub\wwwroot\wp-config.php` (fuera del repo, no versionado). Requiere la extensión `openssl` habilitada en `C:\PHP\php.ini` (estaba comentada por defecto) + reinicio de IIS para que FastCGI la tome.
+  - `/gracias/` es una página WP nueva (`page-gracias.php`, sin hero) a la que redirige el JS tras un envío exitoso.
