@@ -1,4 +1,5 @@
 <?php /* Template Name: Smart 3 */ ?>
+<?php $smart_versiones_s3 = smart_get_versiones('smart3'); ?>
 <?php get_header(); ?>
 <?php get_template_part('partials/header'); ?>
   <!-- ================================================================
@@ -434,9 +435,9 @@
 
       <!-- Track de imágenes — solo mobile -->
       <div id="comp-s3-img-track" style="overflow-x:hidden;">
-        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart3/comp-pro.png"    alt="smart #3 Pro"    style="width:calc(100vw - 2.5rem); aspect-ratio:3/2; object-fit:cover; object-position:center; flex-shrink:0; display:block;" />
-        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart3/comp-prop.png"   alt="smart #3 Pro+"   style="width:calc(100vw - 2.5rem); aspect-ratio:3/2; object-fit:cover; object-position:center; flex-shrink:0; display:block;" />
-        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart3/comp-brabus.png" alt="smart #3 BRABUS" style="width:calc(100vw - 2.5rem); aspect-ratio:3/2; object-fit:cover; object-position:center; flex-shrink:0; display:block;" />
+        <?php foreach ($smart_versiones_s3 as $v): ?>
+        <img src="<?php echo esc_url($v['imagen']); ?>" alt="smart #3 <?php echo esc_attr($v['nombre_version']); ?>" style="width:calc(100vw - 2.5rem); aspect-ratio:3/2; object-fit:cover; object-position:center; flex-shrink:0; display:block;" />
+        <?php endforeach; ?>
       </div>
 
       <!-- Nav flechas — solo mobile -->
@@ -459,150 +460,78 @@
         <div id="comp-s3-grid" style="display:grid; row-gap:12px; align-items:start;">
 
           <!-- ROW: imágenes -->
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart3/comp-pro.png"    alt="smart #3 Pro"    style="width:100%; aspect-ratio:3/2; object-fit:cover; object-position:center;" />
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart3/comp-prop.png"   alt="smart #3 Pro+"   style="width:100%; aspect-ratio:3/2; object-fit:cover; object-position:center;" />
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart3/comp-brabus.png" alt="smart #3 BRABUS" style="width:100%; aspect-ratio:3/2; object-fit:cover; object-position:center;" />
+          <?php foreach ($smart_versiones_s3 as $v): ?>
+          <img src="<?php echo esc_url($v['imagen']); ?>" alt="smart #3 <?php echo esc_attr($v['nombre_version']); ?>" style="width:100%; aspect-ratio:3/2; object-fit:cover; object-position:center;" />
+          <?php endforeach; ?>
 
           <!-- ROW: modelo / versión -->
-          <div class="comp-ver-cell"><p class="comp-model">smart #3</p><p class="comp-version">Pro</p></div>
-          <div class="comp-ver-cell"><p class="comp-model">smart #3</p><p class="comp-version">Pro+</p></div>
-          <div class="comp-ver-cell"><p class="comp-model">smart #3</p><p class="comp-version">BRABUS</p></div>
+          <?php foreach ($smart_versiones_s3 as $v): ?>
+          <div class="comp-ver-cell"><p class="comp-model">smart #3</p><p class="comp-version"><?php echo esc_html($v['nombre_version']); ?></p></div>
+          <?php endforeach; ?>
 
           <!-- ROW: divider -->
-          <hr class="comp-divider" /><hr class="comp-divider" /><hr class="comp-divider" />
+          <?php foreach ($smart_versiones_s3 as $v): ?><hr class="comp-divider" /><?php endforeach; ?>
 
           <!-- ROW: autonomía -->
+          <?php foreach ($smart_versiones_s3 as $v): ?>
           <div>
             <p class="comp-range-label">Autonomía</p>
-            <p class="comp-range-num">325 km</p>
+            <p class="comp-range-num"><?php echo esc_html($v['autonomia_mixta']); ?></p>
             <p class="comp-range-sub">Autonomía WLTP<br>ciclo mixto</p>
-            <p class="comp-range-num">450 km</p>
+            <p class="comp-range-num"><?php echo esc_html($v['autonomia_ciudad']); ?></p>
             <p class="comp-range-sub">Autonomía WLTP<br>ciudad</p>
           </div>
-          <div>
-            <p class="comp-range-label">Autonomía</p>
-            <p class="comp-range-num">435 km</p>
-            <p class="comp-range-sub">Autonomía WLTP<br>ciclo mixto</p>
-            <p class="comp-range-num">597 km</p>
-            <p class="comp-range-sub">Autonomía WLTP<br>ciudad</p>
-          </div>
-          <div>
-            <p class="comp-range-label">Autonomía</p>
-            <p class="comp-range-num">310 km</p>
-            <p class="comp-range-sub">Autonomía WLTP<br>ciclo mixto</p>
-            <p class="comp-range-num">551 km</p>
-            <p class="comp-range-sub">Autonomía WLTP<br>ciudad</p>
-          </div>
+          <?php endforeach; ?>
 
           <!-- ROW: divider -->
-          <hr class="comp-divider" /><hr class="comp-divider" /><hr class="comp-divider" />
+          <?php foreach ($smart_versiones_s3 as $v): ?><hr class="comp-divider" /><?php endforeach; ?>
 
           <!-- ROW: mecánica -->
-          <ul class="comp-features">
-            <li>RWD (tracción trasera) 200 kW</li>
-            <li>Batería de 49 kWh</li>
-            <li>Carga CC de hasta 130 kW</li>
-            <li>Carga CA de hasta 7.4 kW</li>
+          <?php foreach ($smart_versiones_s3 as $v): ?>
+          <ul class="comp-features<?php echo $v['destacado'] ? ' comp-features--bold' : ''; ?>">
+            <?php foreach ($v['mecanica'] as $item): ?><li><?php echo esc_html($item); ?></li><?php endforeach; ?>
           </ul>
-          <ul class="comp-features">
-            <li>RWD (Tracción trasera), 200 kW</li>
-            <li>Batería de 66 kWh</li>
-            <li>Carga CC de hasta 150 kW</li>
-            <li>Carga CA de hasta 22 kW</li>
-          </ul>
-          <ul class="comp-features comp-features--bold">
-            <li>AWD (Tracción total), 315 kW</li>
-            <li>Batería de 66 kWh</li>
-            <li>Carga CC de hasta 150 kW</li>
-            <li>Carga CA de hasta 22 kW</li>
-          </ul>
+          <?php endforeach; ?>
 
           <!-- ROW: divider -->
-          <hr class="comp-divider" /><hr class="comp-divider" /><hr class="comp-divider" />
+          <?php foreach ($smart_versiones_s3 as $v): ?><hr class="comp-divider" /><?php endforeach; ?>
 
           <!-- ROW: exterior -->
-          <ul class="comp-features">
-            <li>Luces LED CyberSparks con Asistente automático de Luces Altas</li>
-            <li>Techo panorámico Halo</li>
-            <li>Portón trasero eléctrico</li>
+          <?php foreach ($smart_versiones_s3 as $v): ?>
+          <ul class="comp-features<?php echo $v['destacado'] ? ' comp-features--bold' : ''; ?>">
+            <?php foreach ($v['exterior'] as $item): ?><li><?php echo esc_html($item); ?></li><?php endforeach; ?>
           </ul>
-          <ul class="comp-features">
-            <li>Luces LED CyberSparks con Asistente automático de Luces Altas</li>
-            <li>Techo panorámico Halo</li>
-            <li>Portón trasero eléctrico</li>
-          </ul>
-          <ul class="comp-features comp-features--bold">
-            <li>Luces LED+ CyberSparks con Faros Matriciales y Luz de Carretera Adaptativa</li>
-            <li>Techo Panorámico Halo</li>
-            <li>Portón trasero con Control Gestual</li>
-            <li>Cristales de Privacidad (Tintados)</li>
-            <li>Luces de cortesía con proyección de logotipo</li>
-            <li>Estilo de carrocería y emblemas BRABUS</li>
-            <li>Pinzas de freno pintadas en rojo</li>
-          </ul>
+          <?php endforeach; ?>
 
           <!-- ROW: divider -->
-          <hr class="comp-divider" /><hr class="comp-divider" /><hr class="comp-divider" />
+          <?php foreach ($smart_versiones_s3 as $v): ?><hr class="comp-divider" /><?php endforeach; ?>
 
           <!-- ROW: interior -->
-          <ul class="comp-features">
-            <li>Asientos de cuero sintético</li>
-            <li>Asientos delanteros calefactables y ajustables eléctricamente</li>
+          <?php foreach ($smart_versiones_s3 as $v): ?>
+          <ul class="comp-features<?php echo $v['destacado'] ? ' comp-features--bold' : ''; ?>">
+            <?php foreach ($v['interior'] as $item): ?><li><?php echo esc_html($item); ?></li><?php endforeach; ?>
           </ul>
-          <ul class="comp-features">
-            <li>Asientos de cuero sintético</li>
-            <li>Asientos delanteros calefactables y ajustables eléctricamente</li>
-          </ul>
-          <ul class="comp-features comp-features--bold">
-            <li>Asientos de gamuza de microfibra</li>
-            <li>Asientos delanteros calefactables y ajustables eléctricamente</li>
-            <li>Iluminación ambiental+</li>
-            <li>Bomba de calor</li>
-            <li>Sistema de sonido Beats® con 13 altavoces</li>
-            <li>Volante de Alcantara®</li>
-            <li>Asientos delanteros ventilados</li>
-          </ul>
+          <?php endforeach; ?>
 
           <!-- ROW: divider -->
-          <hr class="comp-divider" /><hr class="comp-divider" /><hr class="comp-divider" />
+          <?php foreach ($smart_versiones_s3 as $v): ?><hr class="comp-divider" /><?php endforeach; ?>
 
           <!-- ROW: tecnología -->
-          <ul class="comp-features">
-            <li>Pantalla central de 12.8" con Sistema de Navegación</li>
-            <li>Apple CarPlay® y Android Auto</li>
-            <li>Cargador inalámbrico para teléfono</li>
+          <?php foreach ($smart_versiones_s3 as $v): ?>
+          <ul class="comp-features<?php echo $v['destacado'] ? ' comp-features--bold' : ''; ?>">
+            <?php foreach ($v['tecnologia'] as $item): ?><li><?php echo esc_html($item); ?></li><?php endforeach; ?>
           </ul>
-          <ul class="comp-features">
-            <li>Pantalla central de 12.8" con Sistema de Navegación</li>
-            <li>Apple CarPlay® y Android Auto</li>
-            <li>Cargador inalámbrico para teléfono</li>
-          </ul>
-          <ul class="comp-features">
-            <li>Pantalla central de 12.8" con Sistema de Navegación</li>
-            <li>Apple CarPlay® y Android Auto</li>
-            <li>Cargador inalámbrico para teléfono</li>
-            <li>Pantalla Head-Up Display de 10 pulgadas</li>
-          </ul>
+          <?php endforeach; ?>
 
           <!-- ROW: divider -->
-          <hr class="comp-divider" /><hr class="comp-divider" /><hr class="comp-divider" />
+          <?php foreach ($smart_versiones_s3 as $v): ?><hr class="comp-divider" /><?php endforeach; ?>
 
           <!-- ROW: seguridad -->
-          <ul class="comp-features">
-            <li>smart Pilot Assist</li>
-            <li>8 sensores de estacionamiento (delanteros y traseros)</li>
-            <li>Cámara de estacionamiento de 360°</li>
+          <?php foreach ($smart_versiones_s3 as $v): ?>
+          <ul class="comp-features<?php echo $v['destacado'] ? ' comp-features--bold' : ''; ?>">
+            <?php foreach ($v['seguridad'] as $item): ?><li><?php echo esc_html($item); ?></li><?php endforeach; ?>
           </ul>
-          <ul class="comp-features">
-            <li>smart Pilot Assist</li>
-            <li>8 sensores de estacionamiento (delanteros y traseros)</li>
-            <li>Cámara de estacionamiento de 360°</li>
-          </ul>
-          <ul class="comp-features">
-            <li>smart Pilot Assist</li>
-            <li>12 sensores de estacionamiento (delanteros y traseros) con Asistente de Estacionamiento Automático</li>
-            <li>Cámara de estacionamiento de 360°</li>
-          </ul>
+          <?php endforeach; ?>
 
         </div>
       </div>
@@ -706,9 +635,6 @@
        FORMULARIO
   ================================================================ -->
   <?php get_template_part('partials/form-contacto'); ?>
-  <script>
-    setFddOptions('modelo',[['smart3-pro','smart #3 Pro'],['smart3-proplus','smart #3 Pro+'],['smart3-brabus','smart #3 BRABUS']]);
-  </script>
 
   <!-- ================================================================
        FOOTER
@@ -719,7 +645,7 @@
   <script>
     // ── Características generales — nav flechas mobile ───────────────────────
     var compS3Index = 0;
-    var compS3Labels = ['Pro', 'Pro+', 'BRABUS'];
+    var compS3Labels = <?php echo wp_json_encode(array_map(function ($v) { return $v['nombre_version']; }, $smart_versiones_s3)); ?>;
     function compS3UpdateArrows() {
       var p = document.getElementById('comp-s3-btn-prev');
       var n = document.getElementById('comp-s3-btn-next');
@@ -1313,5 +1239,10 @@
     })();
   </script>
 <?php wp_footer(); ?>
+<script>
+  setFddOptions('modelo',<?php echo wp_json_encode(array_map(function ($v) {
+    return [$v['slug_form'], 'smart #3 ' . $v['nombre_version']];
+  }, $smart_versiones_s3)); ?>);
+</script>
 </body>
 </html>

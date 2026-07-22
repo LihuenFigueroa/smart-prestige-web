@@ -169,3 +169,22 @@ Theme WordPress generado a partir de los `.html` estáticos. Templates `page-*.p
   - Destinatario: `hola@prestige-auto.com.ar`. CCO fijo: `lifi.soluciones@gmail.com` y `clindstrom@prestige-auto.com.ar`.
   - El envío real usa el plugin **WP Mail SMTP** contra Gmail (cuenta `smart.arg.mailing@gmail.com` con App Password) — configurado con constantes `WPMS_*` en `C:\inetpub\wwwroot\wp-config.php` (fuera del repo, no versionado). Requiere la extensión `openssl` habilitada en `C:\PHP\php.ini` (estaba comentada por defecto) + reinicio de IIS para que FastCGI la tome.
   - `/gracias/` es una página WP nueva (`page-gracias.php`, sin hero) a la que redirige el JS tras un envío exitoso.
+
+---
+
+## Plan de implementación ACF (contenido editable desde wp-admin)
+
+Relevamiento completo + detalle técnico en **`ACF-PLAN.md`** (raíz del repo). Resumen de las 4 fases:
+
+| Fase | Alcance | Esfuerzo | Estado |
+|------|---------|----------|--------|
+| **1** | CPT `concesionario` + ACF (buscador de concesionarios) | ~4 días | **Implementado en código** (2026-07-22). Falta un solo paso manual: activar el plugin ACF Free en el servidor vivo (ya está subido a `wp-content/plugins/advanced-custom-fields/`, sin activar) — al activarlo, la migración de los 15 concesionarios corre sola. Hasta entonces, `/buscador/` se ve vacío en producción (lista, mapa y dropdown del form). |
+| **2** | Repeater "versión" (specs/comparativa smart1 y smart3) + specs BRABUS por modelo | ~5 días | Pendiente |
+| **3** | Repeater de tarjetas para los carruseles de características + configurador de color/interior (requiere exponer `lineaMap`/`ZOOM_SRCS` vía PHP en vez de arrays JS embebidos) | ~5 días | Pendiente |
+| **4** | Repeaters simples (acordeón de servicios, tipos de cookies) + WYSIWYG (legales, historia institucional) + `wp_nav_menu()` nativo para header/footer | ~2 días | Pendiente |
+
+### Fase 1 — detalle de lo implementado
+- CPT `concesionario` (no público) registrado en `functions.php`, campos ACF vía `acf_add_local_field_group()` (versionado en código, no en base de datos): `nombre`, `direccion`, `localidad`, `provincia`, `telefono`, `latitud`, `longitud`, `tipo_servicio` (select), `horario` (textarea, nuevo — no existía en el sitio original, hoy vacío).
+- Migración one-time de los 15 concesionarios hardcodeados, hooked en `init`, guardada con la opción `smart_concesionarios_migrados` — corre sola apenas ACF esté activo, no requiere WP-CLI ni acción manual además de activar el plugin.
+- Helper `smart_get_concesionarios()` en `functions.php` — única fuente de verdad, usada por `page-buscador.php` (listado + `wp_localize_script('smart-buscador-data', 'smartConcesionarios', ...)` para el mapa Leaflet) y por `partials/form-contacto.php` (dropdown de concesionario). Antes estaban triplicados a mano en 3 formatos distintos.
+- Los slugs de los 15 posts (`colcar-moreno`, `lonco-hue-libertador`, etc.) se mantuvieron iguales a los que ya usaba el dropdown del form, para no romper nada existente.

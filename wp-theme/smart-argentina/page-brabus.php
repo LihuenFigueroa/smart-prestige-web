@@ -1,5 +1,11 @@
 <?php /* Template Name: BRABUS */ ?>
+<?php $smart_brabus_specs = smart_get_brabus_specs(); ?>
 <?php get_header(); ?>
+<?php
+// 'smart-main' recién queda registrado después de wp_head() (wp_enqueue_scripts corre ahí adentro),
+// por eso localizamos acá y no antes de get_header().
+wp_localize_script('smart-main', 'brabusSpecs', $smart_brabus_specs);
+?>
 <?php get_template_part('partials/header'); ?>
   <!-- ================================================================
        HERO — scroll-pinned video smart x BRABUS
@@ -149,7 +155,7 @@
         <!-- 3,9 seg / 0–100 km/h -->
         <div style="margin-bottom:40px;">
           <p id="spec-accel" class="font-smart-sans"
-             style="font-weight:700; font-size:36px; line-height:1.2; color:#fff; margin:0;">3,9 seg</p>
+             style="font-weight:700; font-size:36px; line-height:1.2; color:#fff; margin:0;"><?php echo esc_html($smart_brabus_specs['1']['aceleracion']); ?></p>
           <p class="font-smart-sans"
              style="font-weight:400; font-size:13px; color:#fff; margin:0;">0 – 100 km/h</p>
         </div>
@@ -157,14 +163,14 @@
         <!-- 66kWh + AWD -->
         <div style="display:grid; grid-template-columns:112px 1fr; column-gap:31px; margin-bottom:40px;">
           <div>
-            <p class="font-smart-sans"
-               style="font-weight:700; font-size:36px; line-height:1.2; color:#fff; margin:0;">66kWh</p>
+            <p id="spec-bateria" class="font-smart-sans"
+               style="font-weight:700; font-size:36px; line-height:1.2; color:#fff; margin:0;"><?php echo esc_html($smart_brabus_specs['1']['bateria']); ?></p>
             <p class="font-smart-sans"
                style="font-weight:400; font-size:13px; color:#fff; margin:0;">Batería</p>
           </div>
           <div>
-            <p class="font-smart-sans"
-               style="font-weight:700; font-size:36px; line-height:1.2; color:#fff; margin:0;">AWD</p>
+            <p id="spec-traccion" class="font-smart-sans"
+               style="font-weight:700; font-size:36px; line-height:1.2; color:#fff; margin:0;"><?php echo esc_html($smart_brabus_specs['1']['traccion']); ?></p>
             <p class="font-smart-sans"
                style="font-weight:400; font-size:13px; color:#fff; margin:0;">Tracción</p>
           </div>
@@ -174,13 +180,13 @@
         <div style="display:grid; grid-template-columns:112px 1fr; column-gap:31px; margin-bottom:30px;">
           <div>
             <p id="spec-range" class="font-smart-sans"
-               style="font-weight:700; font-size:36px; line-height:1.2; color:#fff; margin:0;">400km</p>
+               style="font-weight:700; font-size:36px; line-height:1.2; color:#fff; margin:0;"><?php echo esc_html($smart_brabus_specs['1']['autonomia']); ?></p>
             <p class="font-smart-sans"
                style="font-weight:400; font-size:13px; color:#fff; margin:0;">Autonomía</p>
           </div>
           <div>
-            <p class="font-smart-sans"
-               style="font-weight:700; font-size:36px; line-height:1.2; color:#fff; margin:0;">428CV</p>
+            <p id="spec-potencia" class="font-smart-sans"
+               style="font-weight:700; font-size:36px; line-height:1.2; color:#fff; margin:0;"><?php echo esc_html($smart_brabus_specs['1']['potencia']); ?></p>
             <p class="font-smart-sans"
                style="font-weight:400; font-size:13px; color:#fff; margin:0;">Potencia</p>
           </div>
