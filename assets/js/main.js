@@ -589,19 +589,39 @@ function submitContactForm(e) {
 
   if (btn) { btn.disabled = true; btn.textContent = 'Enviando...'; }
 
-  var endpoint = window.location.hostname === 'localhost'
-    ? 'http://localhost:3001/enviar'
-    : '/enviar';
+  var isWp = !!window.WP_AJAX_URL;
+  var endpoint, fetchOpts;
 
-  fetch(endpoint, {
-    method:  'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body:    JSON.stringify(data),
-  })
+  if (isWp) {
+    // WordPress: admin-ajax.php con action + nonce, respuesta {success, data}
+    data.action = 'smart_enviar_formulario';
+    data.nonce  = window.WP_CONTACT_NONCE || '';
+    var params  = new URLSearchParams();
+    Object.keys(data).forEach(function(k) { params.append(k, data[k]); });
+    endpoint  = window.WP_AJAX_URL;
+    fetchOpts = {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body:    params.toString(),
+    };
+  } else {
+    // Sitio estático: servidor Node local, respuesta {ok}
+    endpoint = window.location.hostname === 'localhost'
+      ? 'http://localhost:3001/enviar'
+      : '/enviar';
+    fetchOpts = {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify(data),
+    };
+  }
+
+  fetch(endpoint, fetchOpts)
   .then(function(r) { return r.json(); })
   .then(function(res) {
-    if (res.ok) {
-      window.location.href = 'gracias.html';
+    var ok = isWp ? res.success : res.ok;
+    if (ok) {
+      window.location.href = window.WP_GRACIAS_URL || 'gracias.html';
     } else {
       alert('Hubo un error al enviar. Por favor intentá de nuevo.');
       if (btn) { btn.disabled = false; btn.textContent = 'Enviar'; }

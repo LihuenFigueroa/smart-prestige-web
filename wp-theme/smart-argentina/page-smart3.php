@@ -18,10 +18,13 @@
         <a href="<?php echo home_url('/'); ?>"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/Logonavbar.svg" alt="smart" style="height:1rem; width:auto;" /></a>
       </div>
     </nav>
-    <!-- SVG bottom (texto + botón, sin gradiente — lo maneja el CSS) -->
-    <div style="position:absolute; bottom:0; left:0; right:0; z-index:10; line-height:0;">
-      <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart3/hero-mobile-bottom.svg" alt="" style="width:100%; display:block;" draggable="false" />
-      <a href="#contacto" style="position:absolute; left:6.4%; bottom:11.7%; width:39.47%; aspect-ratio:148/33.92; border-radius:9999px; display:block;"></a>
+    <div style="position:absolute; bottom:0; left:0; right:0; z-index:10; padding:0 24px 32px;">
+      <h1 class="font-smart-next font-normal text-white" style="font-size:32px; line-height:1.15; margin-bottom:6px;">smart #3</h1>
+      <p class="font-smart-sans text-white" style="font-size:14px; line-height:1.4; opacity:0.9; margin-bottom:2px;">SUV fastback 100% eléctrica.</p>
+      <p class="font-smart-sans text-white" style="font-size:14px; line-height:1.4; opacity:0.9; margin-bottom:12px;">Hasta 597 km de autonomía WLTP y 0 a 100 en 3,7 segundos en su versión BRABUS.</p>
+      <div>
+        <a href="#contacto" class="font-smart-sans" style="display:inline-flex; align-items:center; height:40px; padding:0 24px; background:white; border-radius:9999px; font-size:14px; color:#141413; text-decoration:none; font-weight:700; letter-spacing:-0.025em;">Realizar consulta</a>
+      </div>
     </div>
   </section>
 
@@ -58,9 +61,15 @@
       </div>
     </nav>
 
-    <div class="absolute bottom-0 left-0 right-0 z-10 hidden md:block" style="line-height:0;">
-      <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart3/hero-content.svg" alt="" style="width:100%; display:block;" draggable="false" />
-      <a href="#contacto" style="position:absolute; left:4.167%; bottom:18.24%; width:12.708%; aspect-ratio:183/50; border-radius:25px; display:block;"></a>
+    <div class="absolute bottom-0 left-0 right-0 pointer-events-none" style="height:320px; z-index:5; background:linear-gradient(to bottom,rgba(0,0,0,0) 0%,rgba(0,0,0,0.85) 100%);"></div>
+    <div class="absolute bottom-0 left-0 right-0 z-10" style="padding-left:56px; padding-bottom:56px;">
+      <h1 class="font-smart-next font-normal text-white" style="font-size:45px; line-height:1.1; margin-bottom:8px;">smart #3</h1>
+      <p class="font-smart-sans text-white" style="font-size:18px; line-height:1.4; opacity:0.9; margin-bottom:2px;">SUV fastback 100% eléctrica.</p>
+      <p class="font-smart-sans text-white" style="font-size:18px; line-height:1.4; opacity:0.9; margin-bottom:8px;">Hasta 597 km de autonomía WLTP y 0 a 100 en 3,7 segundos en su versión BRABUS.</p>
+      <p class="font-smart-sans text-white" style="font-size:11px; line-height:1.4; opacity:0.65; margin-bottom:16px;">Autonomía sujeta a tipo de conducción, condiciones del terreno y condiciones del clima.</p>
+      <div>
+        <a href="#contacto" class="font-smart-sans" style="display:inline-flex; align-items:center; height:40px; padding:0 24px; background:white; border-radius:9999px; font-size:14px; color:#141413; text-decoration:none; font-weight:700; letter-spacing:-0.025em;">Realizar consulta</a>
+      </div>
     </div>
   </section>
 
@@ -655,7 +664,7 @@
             <button class="vis-linea-btn font-smart-sans" data-linea="Pro+"   style="font-size:13px; font-weight:400; color:#6B747B; background:none; border:none; cursor:pointer; padding:0;">Pro+</button>
           </div>
           <!-- Color -->
-          <div id="vis-color-row" style="display:flex; align-items:center; gap:10px; overflow:hidden; max-height:60px; transition:max-height 0.4s cubic-bezier(0.25,0,0,1);">
+          <div id="vis-color-row" style="display:flex; align-items:center; gap:10px; overflow:hidden; max-height:68px; padding:4px 5px 4px 0; transition:max-height 0.4s cubic-bezier(0.25,0,0,1), padding-top 0.4s cubic-bezier(0.25,0,0,1), padding-bottom 0.4s cubic-bezier(0.25,0,0,1);">
             <span class="font-smart-sans" style="font-size:11px; color:#6B747B; font-weight:700; min-width:44px;">Color</span>
             <div id="vis-color-wrap" style="display:flex; gap:10px; transition:opacity 0.3s ease;">
               <div id="vis-swatches-BRABUS" style="display:flex; gap:10px;">
@@ -697,6 +706,9 @@
        FORMULARIO
   ================================================================ -->
   <?php get_template_part('partials/form-contacto'); ?>
+  <script>
+    setFddOptions('modelo',[['smart3-pro','smart #3 Pro'],['smart3-proplus','smart #3 Pro+'],['smart3-brabus','smart #3 BRABUS']]);
+  </script>
 
   <!-- ================================================================
        FOOTER
@@ -841,6 +853,71 @@
 
       ['track-c1', 'track-c2', 'track-c3', 'track-c4', 'track-c5', 'track-c6'].forEach(initDragCarousel);
 
+      // ── Auto-scroll + indicador flecha en borde derecho del carrusel ─────
+      (function () {
+        var arrow = document.createElement('div');
+        arrow.style.cssText = 'position:fixed;z-index:9999;pointer-events:none;width:36px;height:36px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 12px rgba(0,0,0,0.18);opacity:0;transition:opacity 0.15s,transform 0.15s;transform:translateX(16px);';
+        arrow.innerHTML = '<svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 6.5h9M8 3l3.5 3.5L8 10" stroke="#141413" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+        document.body.appendChild(arrow);
+
+        var raf      = null;
+        var active   = null;
+        var inZone   = false;
+        var dragging = false;
+
+        document.addEventListener('mousedown', function () { dragging = true; });
+        document.addEventListener('mouseup',   function () { dragging = false; }, { passive: true });
+
+        function stop() {
+          inZone = false;
+          cancelAnimationFrame(raf); raf = null;
+          arrow.style.opacity   = '0';
+          arrow.style.transform = 'translateX(16px)';
+        }
+
+        function scrollStep() {
+          if (!active || !inZone || dragging) { raf = null; return; }
+          var maxScroll = active.scrollWidth - active.clientWidth;
+          if (active.scrollLeft >= maxScroll) { stop(); return; }
+          active.scrollLeft += 3;
+          raf = requestAnimationFrame(scrollStep);
+        }
+
+        function initHoverScroll(trackId) {
+          var track = document.getElementById(trackId);
+          if (!track) return;
+          var wrapper = track.parentElement;
+
+          wrapper.addEventListener('mousemove', function (e) {
+            if (dragging) return;
+            var rect      = wrapper.getBoundingClientRect();
+            var hotSize   = rect.width * 0.22;
+            var maxScroll = track.scrollWidth - track.clientWidth;
+            var inHot     = (e.clientX - rect.left) > rect.width - hotSize && maxScroll > 2 && track.scrollLeft < maxScroll - 2;
+
+            if (inHot) {
+              if (!inZone || active !== track) {
+                cancelAnimationFrame(raf); raf = null;
+                active = track; inZone = true;
+                raf = requestAnimationFrame(scrollStep);
+              }
+              arrow.style.left      = (rect.right - 52) + 'px';
+              arrow.style.top       = (e.clientY - 18) + 'px';
+              arrow.style.opacity   = '1';
+              arrow.style.transform = 'translateX(0)';
+            } else if (active === track && inZone) {
+              stop();
+            }
+          });
+
+          wrapper.addEventListener('mouseleave', function () {
+            if (active === track) stop();
+          });
+        }
+
+        ['track-c1','track-c2','track-c3','track-c4','track-c5','track-c6'].forEach(initHoverScroll);
+      })();
+
       // ── Visualizador: toggle exterior / interior ──
       (function() {
         var indicator = document.getElementById('vis-indicator');
@@ -874,7 +951,7 @@
             if (manualLink) { manualLink.style.color = '#141413'; manualLink.style.borderBottomColor = '#141413'; }
             var colorRow = document.getElementById('vis-color-row');
             var lineaRow = document.getElementById('vis-linea-row');
-            if (colorRow) { colorRow.style.maxHeight = '60px'; }
+            if (colorRow) { colorRow.style.maxHeight = '68px'; colorRow.style.paddingTop = '4px'; colorRow.style.paddingBottom = '4px'; }
             if (lineaRow) { lineaRow.style.marginBottom = '14px'; }
           } else {
             indicator.style.width = btnInt.offsetWidth + 'px';
@@ -886,7 +963,7 @@
             if (manualLink) { manualLink.style.color = '#fff'; manualLink.style.borderBottomColor = 'rgba(255,255,255,0.6)'; }
             var colorRow = document.getElementById('vis-color-row');
             var lineaRow = document.getElementById('vis-linea-row');
-            if (colorRow) { colorRow.style.maxHeight = '0'; }
+            if (colorRow) { colorRow.style.maxHeight = '0'; colorRow.style.paddingTop = '0'; colorRow.style.paddingBottom = '0'; }
             if (lineaRow) { lineaRow.style.marginBottom = '0'; }
             if (intPanel && window.loadInteriorFor) {
               var linea = window.getVisLinea ? window.getVisLinea() : 'BRABUS';

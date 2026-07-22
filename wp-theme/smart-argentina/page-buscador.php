@@ -3,6 +3,8 @@
 <?php get_template_part('partials/header'); ?>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <style>
+    .bus-hero-title { font-size: 45px; line-height: 1.1; margin-bottom: 8px; }
+    .bus-hero-label { font-size: 18px; line-height: 1.5; margin-bottom: 16px; }
     @media (max-width: 767px) {
       .bus-hero-img {
         content: url('<?php echo get_template_directory_uri(); ?>/assets/img/buscador/hero-mobile.png');
@@ -13,15 +15,15 @@
         padding-bottom: 32px !important;
       }
       .bus-hero-title {
-        font-size: 36px !important;
-        line-height: 1.15 !important;
-        letter-spacing: -0.02em !important;
-        margin-bottom: 8px !important;
+        font-size: 36px;
+        line-height: 1.15;
+        letter-spacing: -0.02em;
+        margin-bottom: 8px;
       }
       .bus-hero-label {
-        font-size: 18px !important;
-        line-height: 1.4 !important;
-        margin-bottom: 0 !important;
+        font-size: 15px;
+        line-height: 1.4;
+        margin-bottom: 0;
       }
       .bus-hero-btn {
         display: none !important;
@@ -53,6 +55,13 @@
         margin-top: 24px !important;
         max-height: 560px !important;
       }
+    }
+    /* Contactar: desktop muestra número, mobile muestra botón */
+    .bus-contact-btn   { display: none; }
+    .bus-contact-phone { display: inline; font-family:'FOR_smart_Sans',sans-serif; font-size:13px; color:#141413; }
+    @media (max-width: 767px) {
+      .bus-contact-btn   { display: inline-flex !important; align-items:center; height:36px; padding:0 20px; border-radius:18px; font-size:12px; color:#fff; background:#141413; text-decoration:none; }
+      .bus-contact-phone { display: none !important; }
     }
     .smart-marker { background: none; border: none; }
     .smart-popup .leaflet-popup-content-wrapper {
@@ -104,10 +113,12 @@
       </div>
     </nav>
 
-    <div class="bus-hero-wrap absolute bottom-0 left-0 right-0 z-10" style="padding-left:56px; padding-bottom:68px;">
-      <h1 class="bus-hero-title font-smart-next font-normal text-white" style="font-size:34px; line-height:1.1; margin-bottom:12px;">Buscador de concesionarios.</h1>
-      <p class="bus-hero-label font-smart-sans text-white" style="font-size:19px; opacity:0.9; margin-bottom:33px;">Encontrá tu concesionario más cercano.</p>
-      <a href="#buscador" class="bus-hero-btn font-smart-sans" style="display:inline-flex; align-items:center; height:50px; padding:0 28px; background:white; border-radius:25px; font-size:16px; color:#141413; text-decoration:none; font-weight:600;">Realizar consulta</a>
+    <div class="bus-hero-wrap absolute bottom-0 left-0 right-0 z-10" style="padding-left:56px; padding-bottom:56px;">
+      <h1 class="bus-hero-title font-smart-next font-normal text-white">Buscador de concesionarios.</h1>
+      <p class="bus-hero-label font-smart-sans text-white" style="opacity:0.9;">Encontrá tu concesionario más cercano.</p>
+      <div>
+        <a href="#buscador" class="bus-hero-btn font-smart-sans" style="display:inline-flex; align-items:center; height:40px; padding:0 24px; background:white; border-radius:9999px; font-size:14px; color:#141413; text-decoration:none; font-weight:700; letter-spacing:-0.025em;">Realizar consulta</a>
+      </div>
     </div>
   </section>
 
@@ -125,7 +136,8 @@
 
         <!-- Input -->
         <div style="border:1px solid #BDBDBD; padding:12px 16px; margin-bottom:6px;">
-          <input type="text" placeholder="CIUDAD, CÓDIGO POSTAL O CONCESIONARIO" id="buscador-input" oninput="filtrarConcesionarios(this.value)"
+          <input type="text" placeholder="CIUDAD, CÓDIGO POSTAL O CONCESIONARIO" id="buscador-input"
+            onkeydown="if(event.key==='Enter') filtrarConcesionarios(this.value)"
             class="font-smart-sans"
             style="width:100%; background:transparent; border:none; outline:none; font-size:12px; color:#141413; letter-spacing:0.06em;" />
         </div>
@@ -134,7 +146,7 @@
         <!-- Botones -->
         <div style="display:flex; gap:12px; margin-bottom:40px;">
           <button class="font-smart-sans" style="height:40px; padding:0 24px; border:1.34px solid #141413; border-radius:20px; font-size:12px; color:#141413; background:transparent; cursor:pointer; letter-spacing:0.03em;">Filtros</button>
-          <button class="font-smart-sans" style="height:40px; padding:0 24px; border-radius:20px; font-size:12px; color:#fff; background:#141413; border:none; cursor:pointer; letter-spacing:0.03em;">Buscar</button>
+          <button class="font-smart-sans" onclick="filtrarConcesionarios(document.getElementById('buscador-input').value)" style="height:40px; padding:0 24px; border-radius:20px; font-size:12px; color:#fff; background:#141413; border:none; cursor:pointer; letter-spacing:0.03em;">Buscar</button>
         </div>
 
         <!-- Listado de concesionarios -->
@@ -144,129 +156,121 @@
             <p class="font-smart-next" style="font-size:16px; color:#141413; margin-bottom:4px;">Colcar</p>
             <p class="font-smart-sans" style="font-size:13px; color:#141413; margin-bottom:2px;">Galileo Galilei 1744, Moreno, GBA.</p>
             <p class="font-smart-sans" style="font-size:13px; color:#141413; margin-bottom:16px;">Venta y servicio al cliente.</p>
-            <button class="font-smart-sans" style="height:36px; padding:0 20px; border-radius:18px; font-size:12px; color:#fff; background:#141413; border:none; cursor:pointer;">Contactar</button>
+            <a href="tel:+542374681233" class="bus-contact-btn">Contactar</a>
+            <span class="bus-contact-phone">+54 237 468-1233</span>
           </div>
 
           <div class="concesionario-item" data-tags="lonco hue palermo caba buenos aires capital" style="padding:20px 0; border-top:1px solid #E5E7EB;">
             <p class="font-smart-next" style="font-size:16px; color:#141413; margin-bottom:4px;">Lonco Hue</p>
             <p class="font-smart-sans" style="font-size:13px; color:#141413; margin-bottom:2px;">Av. Del Libertador 2244, Palermo, CABA.</p>
             <p class="font-smart-sans" style="font-size:13px; color:#141413; margin-bottom:16px;">Venta.</p>
-            <button class="font-smart-sans" style="height:36px; padding:0 20px; border-radius:18px; font-size:12px; color:#fff; background:#141413; border:none; cursor:pointer;">Contactar</button>
+            <a href="tel:+541147730537" class="bus-contact-btn">Contactar</a>
+            <span class="bus-contact-phone">+54 11 4773-0537</span>
+          </div>
+
+          <div class="concesionario-item" data-tags="lonco hue palermo caba buenos aires capital" style="padding:20px 0; border-top:1px solid #E5E7EB;">
+            <p class="font-smart-next" style="font-size:16px; color:#141413; margin-bottom:4px;">Lonco Hue</p>
+            <p class="font-smart-sans" style="font-size:13px; color:#141413; margin-bottom:2px;">Humboldt 2279, Palermo, CABA.</p>
+            <p class="font-smart-sans" style="font-size:13px; color:#141413; margin-bottom:16px;">Venta.</p>
+            <a href="tel:+541147730537" class="bus-contact-btn">Contactar</a>
+            <span class="bus-contact-phone">+54 11 4773-0537</span>
           </div>
 
           <div class="concesionario-item" data-tags="klasse vicente lopez gba buenos aires" style="padding:20px 0; border-top:1px solid #E5E7EB;">
             <p class="font-smart-next" style="font-size:16px; color:#141413; margin-bottom:4px;">Klasse</p>
-            <p class="font-smart-sans" style="font-size:13px; color:#141413; margin-bottom:2px;">Av. del Libertador 14850, Vicente López, GBA.</p>
+            <p class="font-smart-sans" style="font-size:13px; color:#141413; margin-bottom:2px;">Av. Del Libertador 1551, Vicente López, GBA.</p>
             <p class="font-smart-sans" style="font-size:13px; color:#141413; margin-bottom:16px;">Venta y servicio al cliente.</p>
-            <button class="font-smart-sans" style="height:36px; padding:0 20px; border-radius:18px; font-size:12px; color:#fff; background:#141413; border:none; cursor:pointer;">Contactar</button>
+            <a href="tel:+5491150975237" class="bus-contact-btn">Contactar</a>
+            <span class="bus-contact-phone">+54 9 11 5097-5237</span>
+          </div>
+
+          <div class="concesionario-item" data-tags="klasse villa devoto caba buenos aires capital" style="padding:20px 0; border-top:1px solid #E5E7EB;">
+            <p class="font-smart-next" style="font-size:16px; color:#141413; margin-bottom:4px;">Klasse</p>
+            <p class="font-smart-sans" style="font-size:13px; color:#141413; margin-bottom:2px;">Av. Francisco Beiró 4420, Villa Devoto, CABA.</p>
+            <p class="font-smart-sans" style="font-size:13px; color:#141413; margin-bottom:16px;">Venta.</p>
+            <a href="tel:+541145020500" class="bus-contact-btn">Contactar</a>
+            <span class="bus-contact-phone">+54 11 4502-0500</span>
+          </div>
+
+          <div class="concesionario-item" data-tags="klasse nunez caba buenos aires capital" style="padding:20px 0; border-top:1px solid #E5E7EB;">
+            <p class="font-smart-next" style="font-size:16px; color:#141413; margin-bottom:4px;">Klasse</p>
+            <p class="font-smart-sans" style="font-size:13px; color:#141413; margin-bottom:2px;">Grecia 3633, Núñez, CABA.</p>
+            <p class="font-smart-sans" style="font-size:13px; color:#141413; margin-bottom:16px;">Servicio al cliente.</p>
+            <a href="tel:+541147022095" class="bus-contact-btn">Contactar</a>
+            <span class="bus-contact-phone">+54 11 4702-2095</span>
           </div>
 
           <div class="concesionario-item" data-tags="la merced pilar gba buenos aires" style="padding:20px 0; border-top:1px solid #E5E7EB;">
             <p class="font-smart-next" style="font-size:16px; color:#141413; margin-bottom:4px;">La Merced</p>
             <p class="font-smart-sans" style="font-size:13px; color:#141413; margin-bottom:2px;">Panamericana km 50, Pilar, GBA.</p>
             <p class="font-smart-sans" style="font-size:13px; color:#141413; margin-bottom:16px;">Venta y servicio al cliente.</p>
-            <button class="font-smart-sans" style="height:36px; padding:0 20px; border-radius:18px; font-size:12px; color:#fff; background:#141413; border:none; cursor:pointer;">Contactar</button>
-          </div>
-
-          <div class="concesionario-item" data-tags="besten cardales tigre gba buenos aires" style="padding:20px 0; border-top:1px solid #E5E7EB;">
-            <p class="font-smart-next" style="font-size:16px; color:#141413; margin-bottom:4px;">Besten</p>
-            <p class="font-smart-sans" style="font-size:13px; color:#141413; margin-bottom:2px;">Ruta 9 km 61, Cardales / Tigre, GBA.</p>
-            <p class="font-smart-sans" style="font-size:13px; color:#141413; margin-bottom:16px;">Venta y servicio al cliente.</p>
-            <button class="font-smart-sans" style="height:36px; padding:0 20px; border-radius:18px; font-size:12px; color:#fff; background:#141413; border:none; cursor:pointer;">Contactar</button>
-          </div>
-
-          <div class="concesionario-item" data-tags="stern motors rosario santa fe" style="padding:20px 0; border-top:1px solid #E5E7EB;">
-            <p class="font-smart-next" style="font-size:16px; color:#141413; margin-bottom:4px;">Stern Motors</p>
-            <p class="font-smart-sans" style="font-size:13px; color:#141413; margin-bottom:2px;">Av. Francia 3450, Rosario, Santa Fe.</p>
-            <p class="font-smart-sans" style="font-size:13px; color:#141413; margin-bottom:16px;">Venta y servicio al cliente.</p>
-            <button class="font-smart-sans" style="height:36px; padding:0 20px; border-radius:18px; font-size:12px; color:#fff; background:#141413; border:none; cursor:pointer;">Contactar</button>
-          </div>
-
-          <div class="concesionario-item" data-tags="rolcar yerba buena tucuman" style="padding:20px 0; border-top:1px solid #E5E7EB;">
-            <p class="font-smart-next" style="font-size:16px; color:#141413; margin-bottom:4px;">Rolcar</p>
-            <p class="font-smart-sans" style="font-size:13px; color:#141413; margin-bottom:2px;">Av. Aconquija 1800, Yerba Buena, Tucumán.</p>
-            <p class="font-smart-sans" style="font-size:13px; color:#141413; margin-bottom:16px;">Venta y servicio al cliente.</p>
-            <button class="font-smart-sans" style="height:36px; padding:0 20px; border-radius:18px; font-size:12px; color:#fff; background:#141413; border:none; cursor:pointer;">Contactar</button>
-          </div>
-
-          <div class="concesionario-item" data-tags="klasse vicente lopez gba buenos aires" style="padding:20px 0; border-top:1px solid #E5E7EB;">
-            <p class="font-smart-next" style="font-size:16px; color:#141413; margin-bottom:4px;">Klasse</p>
-            <p class="font-smart-sans" style="font-size:13px; color:#141413; margin-bottom:2px;">Av. Del Libertador 1551. Vicente López, GBA.</p>
-            <p class="font-smart-sans" style="font-size:13px; color:#141413; margin-bottom:16px;">Venta.</p>
-            <button class="font-smart-sans" style="height:36px; padding:0 20px; border-radius:18px; font-size:12px; color:#fff; background:#141413; border:none; cursor:pointer;">Contactar</button>
-          </div>
-
-          <div class="concesionario-item" data-tags="klasse villa devoto caba buenos aires capital" style="padding:20px 0; border-top:1px solid #E5E7EB;">
-            <p class="font-smart-next" style="font-size:16px; color:#141413; margin-bottom:4px;">Klasse</p>
-            <p class="font-smart-sans" style="font-size:13px; color:#141413; margin-bottom:2px;">Av. Francisco Beiró 4420. Villa Devoto, CABA.</p>
-            <p class="font-smart-sans" style="font-size:13px; color:#141413; margin-bottom:16px;">Venta.</p>
-            <button class="font-smart-sans" style="height:36px; padding:0 20px; border-radius:18px; font-size:12px; color:#fff; background:#141413; border:none; cursor:pointer;">Contactar</button>
-          </div>
-
-          <div class="concesionario-item" data-tags="klasse nunez caba buenos aires capital" style="padding:20px 0; border-top:1px solid #E5E7EB;">
-            <p class="font-smart-next" style="font-size:16px; color:#141413; margin-bottom:4px;">Klasse</p>
-            <p class="font-smart-sans" style="font-size:13px; color:#141413; margin-bottom:2px;">Grecia 3633. Núñez, CABA.</p>
-            <p class="font-smart-sans" style="font-size:13px; color:#141413; margin-bottom:16px;">Servicio al cliente.</p>
-            <button class="font-smart-sans" style="height:36px; padding:0 20px; border-radius:18px; font-size:12px; color:#fff; background:#141413; border:none; cursor:pointer;">Contactar</button>
+            <a href="tel:+542304474700" class="bus-contact-btn">Contactar</a>
+            <span class="bus-contact-phone">+54 230 447-4700</span>
           </div>
 
           <div class="concesionario-item" data-tags="la merced pilar gba buenos aires" style="padding:20px 0; border-top:1px solid #E5E7EB;">
             <p class="font-smart-next" style="font-size:16px; color:#141413; margin-bottom:4px;">La Merced</p>
-            <p class="font-smart-sans" style="font-size:13px; color:#141413; margin-bottom:2px;">Las Magnolias 581. Pilar, GBA.</p>
+            <p class="font-smart-sans" style="font-size:13px; color:#141413; margin-bottom:2px;">Las Magnolias 581, Pilar, GBA.</p>
             <p class="font-smart-sans" style="font-size:13px; color:#141413; margin-bottom:16px;">Venta y servicio al cliente.</p>
-            <button class="font-smart-sans" style="height:36px; padding:0 20px; border-radius:18px; font-size:12px; color:#fff; background:#141413; border:none; cursor:pointer;">Contactar</button>
+            <a href="tel:+542304474700" class="bus-contact-btn">Contactar</a>
+            <span class="bus-contact-phone">+54 230 447-4700</span>
           </div>
 
           <div class="concesionario-item" data-tags="besten victoria gba buenos aires" style="padding:20px 0; border-top:1px solid #E5E7EB;">
             <p class="font-smart-next" style="font-size:16px; color:#141413; margin-bottom:4px;">Besten</p>
-            <p class="font-smart-sans" style="font-size:13px; color:#141413; margin-bottom:2px;">Av. del Libertador 2827. Victoria, GBA.</p>
+            <p class="font-smart-sans" style="font-size:13px; color:#141413; margin-bottom:2px;">Av. del Libertador 2827, San Fernando, GBA.</p>
             <p class="font-smart-sans" style="font-size:13px; color:#141413; margin-bottom:16px;">Venta.</p>
-            <button class="font-smart-sans" style="height:36px; padding:0 20px; border-radius:18px; font-size:12px; color:#fff; background:#141413; border:none; cursor:pointer;">Contactar</button>
+            <a href="tel:+541133285335" class="bus-contact-btn">Contactar</a>
+            <span class="bus-contact-phone">+54 11 3328-5335</span>
           </div>
 
           <div class="concesionario-item" data-tags="besten tigre gba buenos aires" style="padding:20px 0; border-top:1px solid #E5E7EB;">
             <p class="font-smart-next" style="font-size:16px; color:#141413; margin-bottom:4px;">Besten</p>
-            <p class="font-smart-sans" style="font-size:13px; color:#141413; margin-bottom:2px;">Av. Juan B. Justo 2353. Tigre, GBA.</p>
+            <p class="font-smart-sans" style="font-size:13px; color:#141413; margin-bottom:2px;">Av. Juan B. Justo 2353, Tigre, GBA.</p>
             <p class="font-smart-sans" style="font-size:13px; color:#141413; margin-bottom:16px;">Venta.</p>
-            <button class="font-smart-sans" style="height:36px; padding:0 20px; border-radius:18px; font-size:12px; color:#fff; background:#141413; border:none; cursor:pointer;">Contactar</button>
+            <a href="tel:+541123723008" class="bus-contact-btn">Contactar</a>
+            <span class="bus-contact-phone">+54 11 2372-3008</span>
           </div>
 
           <div class="concesionario-item" data-tags="stern motors rosario santa fe" style="padding:20px 0; border-top:1px solid #E5E7EB;">
             <p class="font-smart-next" style="font-size:16px; color:#141413; margin-bottom:4px;">Stern Motors</p>
-            <p class="font-smart-sans" style="font-size:13px; color:#141413; margin-bottom:2px;">Junín 250. Rosario.</p>
+            <p class="font-smart-sans" style="font-size:13px; color:#141413; margin-bottom:2px;">Junín 250, Rosario, Santa Fe.</p>
             <p class="font-smart-sans" style="font-size:13px; color:#141413; margin-bottom:16px;">Venta y servicio al cliente.</p>
-            <button class="font-smart-sans" style="height:36px; padding:0 20px; border-radius:18px; font-size:12px; color:#fff; background:#141413; border:none; cursor:pointer;">Contactar</button>
+            <a href="tel:+543415278932" class="bus-contact-btn">Contactar</a>
+            <span class="bus-contact-phone">+54 341 527-8932</span>
           </div>
 
           <div class="concesionario-item" data-tags="rolcar yerba buena tucuman" style="padding:20px 0; border-top:1px solid #E5E7EB;">
             <p class="font-smart-next" style="font-size:16px; color:#141413; margin-bottom:4px;">Rolcar</p>
-            <p class="font-smart-sans" style="font-size:13px; color:#141413; margin-bottom:2px;">Avenida Aconquija 1238. Yerba Buena, Tucumán.</p>
+            <p class="font-smart-sans" style="font-size:13px; color:#141413; margin-bottom:2px;">Avenida Aconquija 1238, Yerba Buena, Tucumán.</p>
             <p class="font-smart-sans" style="font-size:13px; color:#141413; margin-bottom:16px;">Venta y servicio al cliente.</p>
-            <button class="font-smart-sans" style="height:36px; padding:0 20px; border-radius:18px; font-size:12px; color:#fff; background:#141413; border:none; cursor:pointer;">Contactar</button>
+            <a href="tel:+543814106650" class="bus-contact-btn">Contactar</a>
+            <span class="bus-contact-phone">+54 381 410-6650</span>
           </div>
 
           <div class="concesionario-item" data-tags="colcor cordoba capital" style="padding:20px 0; border-top:1px solid #E5E7EB;">
             <p class="font-smart-next" style="font-size:16px; color:#141413; margin-bottom:4px;">Colcor</p>
-            <p class="font-smart-sans" style="font-size:13px; color:#141413; margin-bottom:2px;">Colectora Norte Agustín Tosco S/N, 5001. Córdoba Capital.</p>
+            <p class="font-smart-sans" style="font-size:13px; color:#141413; margin-bottom:2px;">Colectora Norte Agustín Tosco S/N, Córdoba Capital.</p>
             <p class="font-smart-sans" style="font-size:13px; color:#141413; margin-bottom:16px;">Venta y servicio al cliente.</p>
-            <button class="font-smart-sans" style="height:36px; padding:0 20px; border-radius:18px; font-size:12px; color:#fff; background:#141413; border:none; cursor:pointer;">Contactar</button>
+            <a href="tel:+543515892285" class="bus-contact-btn">Contactar</a>
+            <span class="bus-contact-phone">+54 351 589-2285</span>
           </div>
 
           <div class="concesionario-item" data-tags="yacopini maipu mendoza" style="padding:20px 0; border-top:1px solid #E5E7EB;">
             <p class="font-smart-next" style="font-size:16px; color:#141413; margin-bottom:4px;">Yacopini</p>
-            <p class="font-smart-sans" style="font-size:13px; color:#141413; margin-bottom:2px;">Carril Rodriguez Peña 744. Maipú, Mendoza.</p>
+            <p class="font-smart-sans" style="font-size:13px; color:#141413; margin-bottom:2px;">Carril Rodriguez Peña 744, Maipú, Mendoza.</p>
             <p class="font-smart-sans" style="font-size:13px; color:#141413; margin-bottom:16px;">Venta y servicio al cliente.</p>
-            <button class="font-smart-sans" style="height:36px; padding:0 20px; border-radius:18px; font-size:12px; color:#fff; background:#141413; border:none; cursor:pointer;">Contactar</button>
+            <a href="tel:+542614978585" class="bus-contact-btn">Contactar</a>
+            <span class="bus-contact-phone">+54 261 497-8585</span>
           </div>
 
           <div class="concesionario-item" data-tags="meister don torcuato gba buenos aires" style="padding:20px 0; border-top:1px solid #E5E7EB; border-bottom:1px solid #E5E7EB;">
             <p class="font-smart-next" style="font-size:16px; color:#141413; margin-bottom:4px;">Meister</p>
-            <p class="font-smart-sans" style="font-size:13px; color:#141413; margin-bottom:2px;">Colectora Este Panamericana 27559. Don Torcuato, GBA.</p>
+            <p class="font-smart-sans" style="font-size:13px; color:#141413; margin-bottom:2px;">Colectora Este Panamericana 27559, Don Torcuato, GBA.</p>
             <p class="font-smart-sans" style="font-size:13px; color:#141413; margin-bottom:16px;">Venta y servicio al cliente.</p>
             <button class="font-smart-sans" style="height:36px; padding:0 20px; border-radius:18px; font-size:12px; color:#fff; background:#141413; border:none; cursor:pointer;">Contactar</button>
           </div>
 
-        </div>
 
         <p class="font-smart-sans hidden" id="no-resultados" style="font-size:12px; color:#BDBDBD; margin-top:20px;">No se encontraron concesionarios para esa búsqueda.</p>
 
@@ -288,23 +292,20 @@
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script>
     const sucursales = [
-      { nombre: "Colcar",       direccion: "Galileo Galilei 1744, Moreno, GBA",                             tags: "colcar moreno gba buenos aires",                    lat: -34.6315864, lng: -58.7760953 },
-      { nombre: "Lonco Hue",    direccion: "Av. Del Libertador 2244, Palermo, CABA",                        tags: "lonco hue palermo caba buenos aires capital",        lat: -34.5811869, lng: -58.4044515 },
-      { nombre: "Klasse",       direccion: "Av. del Libertador 14850, Vicente López, GBA",                  tags: "klasse vicente lopez gba buenos aires",              lat: -34.4772848, lng: -58.4979407 },
-      { nombre: "La Merced",    direccion: "Panamericana km 50, Pilar, GBA",                                tags: "la merced pilar gba buenos aires",                   lat: -34.4439420, lng: -58.8776730 },
-      { nombre: "Besten",       direccion: "Ruta 9 km 61, Cardales / Tigre, GBA",                          tags: "besten cardales tigre gba buenos aires",             lat: -34.2736354, lng: -58.8988459 },
-      { nombre: "Stern Motors", direccion: "Av. Francia 3450, Rosario, Santa Fe",                           tags: "stern motors rosario santa fe",                      lat: -32.9723636, lng: -60.6736472 },
-      { nombre: "Rolcar",       direccion: "Av. Aconquija 1800, Yerba Buena, Tucumán",                      tags: "rolcar yerba buena tucuman",                         lat: -26.8125682, lng: -65.2948571 },
-      { nombre: "Klasse",       direccion: "Av. Del Libertador 1551, Vicente López, GBA",                   tags: "klasse vicente lopez gba buenos aires",              lat: -34.5187995, lng: -58.4746415 },
-      { nombre: "Klasse",       direccion: "Av. Francisco Beiró 4420, Villa Devoto, CABA",                  tags: "klasse villa devoto caba buenos aires capital",      lat: -34.6070101, lng: -58.5134585 },
-      { nombre: "Klasse",       direccion: "Grecia 3633, Núñez, CABA",                                     tags: "klasse nunez caba buenos aires capital",             lat: -34.5460833, lng: -58.4632994 },
-      { nombre: "La Merced",    direccion: "Las Magnolias 581, Pilar, GBA",                                 tags: "la merced pilar gba buenos aires",                   lat: -34.4455126, lng: -58.8718679 },
-      { nombre: "Besten",       direccion: "Av. del Libertador 2827, Victoria, GBA",                        tags: "besten victoria gba buenos aires",                   lat: -34.4482784, lng: -58.5380991 },
-      { nombre: "Besten",       direccion: "Av. Juan B. Justo 2353, Tigre, GBA",                            tags: "besten tigre gba buenos aires",                      lat: -34.4408562, lng: -58.5752994 },
-      { nombre: "Stern Motors", direccion: "Junín 250, Rosario",                                            tags: "stern motors rosario santa fe",                      lat: -32.9262057, lng: -60.6665938 },
-      { nombre: "Rolcar",       direccion: "Avenida Aconquija 1238, Yerba Buena, Tucumán",                  tags: "rolcar yerba buena tucuman",                         lat: -26.8147598, lng: -65.2870540 },
-      { nombre: "Colcor",       direccion: "Colectora Norte Agustín Tosco S/N, Córdoba Capital",            tags: "colcor cordoba capital",                             lat: -31.3527796, lng: -64.1938955 },
-      { nombre: "Yacopini",     direccion: "Carril Rodriguez Peña 744, Maipú, Mendoza",                     tags: "yacopini maipu mendoza",                             lat: -32.9315650, lng: -68.7962284 },
+      { nombre: "Colcar",       direccion: "Galileo Galilei 1744, Moreno, GBA",                             tags: "colcar moreno gba buenos aires",                    lat: -34.6315864, lng: -58.7760953, telefono: "+54 237 468-1233" },
+      { nombre: "Lonco Hue",    direccion: "Av. Del Libertador 2244, Palermo, CABA",                        tags: "lonco hue palermo caba buenos aires capital",        lat: -34.5811869, lng: -58.4044515, telefono: "+54 11 4773-0537" },
+      { nombre: "Lonco Hue",    direccion: "Humboldt 2279, Palermo, CABA",                                  tags: "lonco hue palermo caba buenos aires capital",        lat: -34.5887000, lng: -58.4380000, telefono: "+54 11 4773-0537" },
+      { nombre: "Klasse",       direccion: "Av. Del Libertador 1551, Vicente López, GBA",                   tags: "klasse vicente lopez gba buenos aires",              lat: -34.5187995, lng: -58.4746415, telefono: "+54 9 11 5097-5237" },
+      { nombre: "Klasse",       direccion: "Av. Francisco Beiró 4420, Villa Devoto, CABA",                  tags: "klasse villa devoto caba buenos aires capital",      lat: -34.6070101, lng: -58.5134585, telefono: "+54 11 4502-0500" },
+      { nombre: "Klasse",       direccion: "Grecia 3633, Núñez, CABA",                                     tags: "klasse nunez caba buenos aires capital",             lat: -34.5460833, lng: -58.4632994, telefono: "+54 11 4702-2095" },
+      { nombre: "La Merced",    direccion: "Panamericana km 50, Pilar, GBA",                                tags: "la merced pilar gba buenos aires",                   lat: -34.4439420, lng: -58.8776730, telefono: "+54 230 447-4700" },
+      { nombre: "La Merced",    direccion: "Las Magnolias 581, Pilar, GBA",                                 tags: "la merced pilar gba buenos aires",                   lat: -34.4455126, lng: -58.8718679, telefono: "+54 230 447-4700" },
+      { nombre: "Besten",       direccion: "Av. del Libertador 2827, San Fernando, GBA",                    tags: "besten victoria gba buenos aires",                   lat: -34.4482784, lng: -58.5380991, telefono: "+54 11 3328-5335" },
+      { nombre: "Besten",       direccion: "Av. Juan B. Justo 2353, Tigre, GBA",                            tags: "besten tigre gba buenos aires",                      lat: -34.4408562, lng: -58.5752994, telefono: "+54 11 2372-3008" },
+      { nombre: "Stern Motors", direccion: "Junín 250, Rosario",                                            tags: "stern motors rosario santa fe",                      lat: -32.9262057, lng: -60.6665938, telefono: "+54 341 527-8932" },
+      { nombre: "Rolcar",       direccion: "Avenida Aconquija 1238, Yerba Buena, Tucumán",                  tags: "rolcar yerba buena tucuman",                         lat: -26.8147598, lng: -65.2870540, telefono: "+54 381 410-6650" },
+      { nombre: "Colcor",       direccion: "Colectora Norte Agustín Tosco S/N, Córdoba Capital",            tags: "colcor cordoba capital",                             lat: -31.3527796, lng: -64.1938955, telefono: "+54 351 589-2285" },
+      { nombre: "Yacopini",     direccion: "Carril Rodriguez Peña 744, Maipú, Mendoza",                     tags: "yacopini maipu mendoza",                             lat: -32.9315650, lng: -68.7962284, telefono: "+54 261 497-8585" },
       { nombre: "Meister",      direccion: "Colectora Este Panamericana 27559, Don Torcuato, GBA",          tags: "meister don torcuato gba buenos aires",              lat: -34.4820155, lng: -58.6325636 }
     ];
 
@@ -342,8 +343,8 @@
       const marker = L.marker([s.lat, s.lng], { icon: pinIcon }).addTo(map);
       marker.bindPopup(
         `<p class="font-smart-next" style="font-size:16px;color:#141413;margin:0 0 4px;">${s.nombre}</p>
-         <p class="font-smart-sans" style="font-size:13px;color:#141413;margin:0 0 14px;">${s.direccion}</p>
-         <button class="font-smart-sans" style="height:36px;padding:0 20px;border-radius:18px;font-size:12px;color:#fff;background:#141413;border:none;cursor:pointer;">Contactar</button>`,
+         <p class="font-smart-sans" style="font-size:13px;color:#141413;margin:0 0 ${s.telefono ? '12px' : '0'};">${s.direccion}</p>
+         ${s.telefono ? `<a href="tel:${s.telefono.replace(/[\s\-]/g,'')}" class="bus-contact-btn font-smart-sans">Contactar</a><span class="bus-contact-phone font-smart-sans">${s.telefono}</span>` : ''}`,
         popupOptions
       );
       return marker;
