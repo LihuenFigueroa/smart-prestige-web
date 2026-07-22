@@ -783,7 +783,7 @@
             <button class="vis-linea-btn font-smart-sans" data-linea="Pro+"   style="font-size:13px; font-weight:400; color:#6B747B; background:none; border:none; cursor:pointer; padding:0;">Pro+</button>
           </div>
           <!-- Color -->
-          <div id="vis-color-row" style="display:flex; align-items:center; gap:10px; overflow:hidden; max-height:68px; padding:4px 5px 4px 0; box-sizing:border-box; transition:max-height 0.4s cubic-bezier(0.25,0,0,1);">
+          <div id="vis-color-row" style="display:flex; align-items:center; gap:10px; overflow:hidden; max-height:68px; padding:4px 5px 4px 0; transition:max-height 0.4s cubic-bezier(0.25,0,0,1), padding-top 0.4s cubic-bezier(0.25,0,0,1), padding-bottom 0.4s cubic-bezier(0.25,0,0,1);">
             <span class="font-smart-sans" style="font-size:11px; color:#6B747B; font-weight:700; min-width:44px;">Color</span>
             <div id="vis-color-wrap" style="display:flex; gap:10px; transition:opacity 0.3s ease;">
               <div id="vis-swatches-BRABUS" style="display:flex; gap:10px;">
@@ -1084,7 +1084,7 @@
             if (manualLink) { manualLink.style.color = '#141413'; manualLink.style.borderBottomColor = '#141413'; }
             var colorRow  = document.getElementById('vis-color-row');
             var lineaRow  = document.getElementById('vis-linea-row');
-            if (colorRow)  { colorRow.style.maxHeight = '68px'; }
+            if (colorRow)  { colorRow.style.maxHeight = '68px'; colorRow.style.paddingTop = '4px'; colorRow.style.paddingBottom = '4px'; }
             if (lineaRow)  { lineaRow.style.marginBottom = '14px'; }
           } else {
             indicator.style.width = btnInt.offsetWidth + 'px';
@@ -1096,7 +1096,7 @@
             if (manualLink) { manualLink.style.color = '#fff'; manualLink.style.borderBottomColor = 'rgba(255,255,255,0.6)'; }
             var colorRow  = document.getElementById('vis-color-row');
             var lineaRow  = document.getElementById('vis-linea-row');
-            if (colorRow)  { colorRow.style.maxHeight = '0'; }
+            if (colorRow)  { colorRow.style.maxHeight = '0'; colorRow.style.paddingTop = '0'; colorRow.style.paddingBottom = '0'; }
             if (lineaRow)  { lineaRow.style.marginBottom = '0'; }
             if (intPanel && window.loadInteriorFor) {
               var linea = window.getVisLinea ? window.getVisLinea() : 'BRABUS';

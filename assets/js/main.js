@@ -234,13 +234,14 @@ function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, capt
     function drawEarlyFrame() {
       if (firstFrameDrawn || !video.videoWidth || !canvas.width) return;
       firstFrameDrawn = true;
-      // Solo dibujar frame inicial si el usuario está en o arriba del hero
       if (window.scrollY > pin.offsetTop) return;
-      const cw = canvas.width, ch = canvas.height;
-      const vw = video.videoWidth, vh = video.videoHeight;
-      const scale = Math.max(cw / vw, ch / vh);
-      ctx.clearRect(0, 0, cw, ch);
-      ctx.drawImage(video, (cw - vw * scale) / 2, (ch - vh * scale) / 2, vw * scale, vh * scale);
+      // Pre-capturar frames[0] para que tick() tenga datos mientras llega el seek
+      // No modificar canvas.style.opacity — lo revela tryFirstFrame con el frame correcto
+      if (!frames[0]) {
+        const tmp = new OffscreenCanvas(video.videoWidth, video.videoHeight);
+        tmp.getContext('2d').drawImage(video, 0, 0);
+        frames[0] = tmp.transferToImageBitmap();
+      }
     }
     video.addEventListener('loadeddata', drawEarlyFrame, { once: true });
     video.addEventListener('canplay',    drawEarlyFrame, { once: true });
@@ -319,8 +320,8 @@ function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, capt
       : video.addEventListener('loadedmetadata', setup, { once: true });
   }
 
-  // Si al cargar ya estamos debajo del hero, ocultar canvas hasta tener el frame correcto
-  if (window.scrollY > pin.offsetTop) canvas.style.opacity = '0';
+  // Ocultar canvas siempre hasta que tryFirstFrame lo revele con el frame correcto
+  canvas.style.opacity = '0';
 
   requestAnimationFrame(tick);
   init();
