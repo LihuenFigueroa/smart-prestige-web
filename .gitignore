@@ -1,3 +1,6 @@
+node_modules/
+.env
+
 # Imágenes TIF — no renderizan en browsers y suelen ser muy pesadas
 *.tif
 *.tiff

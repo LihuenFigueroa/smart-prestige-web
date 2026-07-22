@@ -35,7 +35,17 @@ function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, capt
     logicalW = newW;
     logicalH = newH;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    if (ready) renderProgress(drawProgress);
+    if (ready) {
+      renderProgress(drawProgress);
+    } else if (frames[0]) {
+      drawBitmap(frames[0], 1);
+      ctx.globalAlpha = 1;
+    } else if (video.readyState >= 2 && video.videoWidth) {
+      const cw = logicalW, ch = logicalH;
+      const vw = video.videoWidth, vh = video.videoHeight;
+      const scale = Math.max(cw / vw, ch / vh);
+      ctx.drawImage(video, (cw - vw * scale) / 2, (ch - vh * scale) / 2, vw * scale, vh * scale);
+    }
   }
   window.addEventListener('resize', resizeCanvas);
   resizeCanvas();
@@ -55,16 +65,20 @@ function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, capt
     const idxA  = Math.floor(exact);
     const idxB  = Math.min(idxA + 1, frames.length - 1);
     const blend = exact - idxA;
-    if (!frames[idxA]) return;
+    let bmpA = frames[idxA];
+    if (!bmpA) {
+      for (let i = idxA - 1; i >= 0; i--) { if (frames[i]) { bmpA = frames[i]; break; } }
+      if (!bmpA) return;
+    }
     ctx.clearRect(0, 0, logicalW, logicalH);
-    drawBitmap(frames[idxA], 1);
+    drawBitmap(bmpA, 1);
     if (blend > 0.01 && frames[idxB]) drawBitmap(frames[idxB], blend);
     ctx.globalAlpha = 1;
   }
 
   // ── RAF loop ─────────────────────────────────────────────────────────────
   function tick() {
-    if (ready) {
+    if (frames[0]) {
       const diff = targetProgress - drawProgress;
       if (Math.abs(diff) > 0.0001) {
         drawProgress += diff * LERP;
@@ -214,22 +228,8 @@ function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, capt
 
   function onCaptureComplete() {
     ready = true;
-    // Calcular el progress correcto para la posición actual de scroll
-    // y asignarlo directamente a drawProgress para evitar animación desde 0
-    const rel     = window.scrollY - pin.offsetTop;
-    const videoPx = videoDuration * PX_PER_SECOND;
-    const extraPx = textZonePx || 0;
-    if (rel <= 0) {
-      targetProgress = drawProgress = 0;
-    } else if (rel <= videoPx) {
-      targetProgress = drawProgress = Math.max(0, rel / videoPx);
-    } else {
-      targetProgress = drawProgress = 1;
-    }
-    renderProgress(drawProgress);
     canvas.style.opacity = '1';
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
+    renderProgress(drawProgress);
   }
 
   // ── Init ─────────────────────────────────────────────────────────────────
@@ -244,13 +244,14 @@ function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, capt
     function drawEarlyFrame() {
       if (firstFrameDrawn || !video.videoWidth || !canvas.width) return;
       firstFrameDrawn = true;
-      // Solo dibujar frame inicial si el usuario está en o arriba del hero
       if (window.scrollY > pin.offsetTop) return;
-      const cw = logicalW, ch = logicalH;
-      const vw = video.videoWidth, vh = video.videoHeight;
-      const scale = Math.max(cw / vw, ch / vh);
-      ctx.clearRect(0, 0, cw, ch);
-      ctx.drawImage(video, (cw - vw * scale) / 2, (ch - vh * scale) / 2, vw * scale, vh * scale);
+      // Pre-capturar frames[0] para que tick() tenga datos mientras llega el seek
+      // No modificar canvas.style.opacity — lo revela tryFirstFrame con el frame correcto
+      if (!frames[0]) {
+        const tmp = new OffscreenCanvas(video.videoWidth, video.videoHeight);
+        tmp.getContext('2d').drawImage(video, 0, 0);
+        frames[0] = tmp.transferToImageBitmap();
+      }
     }
     video.addEventListener('loadeddata', drawEarlyFrame, { once: true });
     video.addEventListener('canplay',    drawEarlyFrame, { once: true });
@@ -319,14 +320,18 @@ function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, capt
       const startCapture = () => startBackgroundCapture(capVid, videoDuration, startOffset);
       capVid.readyState >= 1 ? startCapture()
         : capVid.addEventListener('loadedmetadata', startCapture, { once: true });
+
+      // Registrar scroll listener desde ya, sin esperar a que termine la captura
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
     }
 
     video.readyState >= 1 ? setup()
       : video.addEventListener('loadedmetadata', setup, { once: true });
   }
 
-  // Si al cargar ya estamos debajo del hero, ocultar canvas hasta tener el frame correcto
-  if (window.scrollY > pin.offsetTop) canvas.style.opacity = '0';
+  // Ocultar canvas siempre hasta que tryFirstFrame lo revele con el frame correcto
+  canvas.style.opacity = '0';
 
   requestAnimationFrame(tick);
   init();
@@ -342,7 +347,7 @@ initScrollVideo({
   canvasId:   'heroCanvas',
   pinId:      'heroPin',
   videoSrc:   isMobile ? (window.THEME_URL || '') + '/assets/video/videoHeroMobile.mp4' : (window.THEME_URL || '') + '/assets/video/videoHero.mp4',
-  pxPerSecond: isMobile ? 750 : 1300,
+  pxPerSecond: isMobile ? 480 : 840,
   captureFps:  isMobile ? 30  : 15,
   lerp:        0.06,
   pinHeight:   null,
@@ -402,7 +407,7 @@ initScrollVideo({
   canvasId:    'brabusCanvas',
   pinId:       'brabusPin',
   videoSrc:    isMobile ? (window.THEME_URL || '') + '/assets/video/videoSmartXBRABUSMobile.mp4' : (window.THEME_URL || '') + '/assets/video/videoSmartXBRABUS.mp4',
-  pxPerSecond: isMobile ? 650 : 1250,
+  pxPerSecond: isMobile ? 400 : 800,
   captureFps:  60,
   lerp:        0.07,
   pinHeight:   null,
@@ -457,4 +462,153 @@ function switchSpec(num) {
   if (range) range.textContent = num === 1 ? '400km'   : '415km';
 
   currentSpec = num;
+}
+
+// ── Form Custom Dropdowns ─────────────────────────────────────────────────
+var _fddOpen = null;
+
+function toggleFdd(id) {
+  if (_fddOpen && _fddOpen !== id) closeFdd(_fddOpen);
+  var panel = document.getElementById('fdd-' + id + '-panel');
+  if (!panel) return;
+  var isOpen = panel.style.maxHeight && panel.style.maxHeight !== '0px';
+  isOpen ? closeFdd(id) : openFdd(id);
+}
+
+function openFdd(id) {
+  var panel   = document.getElementById('fdd-' + id + '-panel');
+  var chevron = document.getElementById('fdd-' + id + '-chevron');
+  if (!panel) return;
+  panel.style.maxHeight = panel.scrollHeight + 'px';
+  if (chevron) chevron.style.transform = 'rotate(180deg)';
+  _fddOpen = id;
+}
+
+function closeFdd(id) {
+  var panel   = document.getElementById('fdd-' + id + '-panel');
+  var chevron = document.getElementById('fdd-' + id + '-chevron');
+  if (!panel) return;
+  panel.style.maxHeight = '0';
+  if (chevron) chevron.style.transform = '';
+  if (_fddOpen === id) _fddOpen = null;
+}
+
+function selectFdd(id, value, label) {
+  var valEl   = document.getElementById('fdd-' + id + '-val');
+  var labelEl = document.getElementById('fdd-' + id + '-label');
+  var wrap    = document.getElementById('fdd-' + id);
+  if (valEl)   valEl.value = value;
+  if (labelEl) {
+    labelEl.textContent          = label;
+    labelEl.style.color          = '#111827';
+    labelEl.style.letterSpacing  = 'normal';
+    labelEl.style.textTransform  = 'none';
+  }
+  if (wrap) wrap.style.borderBottomColor = '';
+  closeFdd(id);
+}
+
+function setFddOptions(id, options) {
+  var panel = document.getElementById('fdd-' + id + '-panel');
+  if (!panel) return;
+  var inner = panel.querySelector('[data-fdd-items]');
+  if (!inner) return;
+  inner.innerHTML = '';
+  options.forEach(function(opt) {
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'fdd-item font-smart-sans';
+    btn.textContent = opt[1];
+    (function(v, l) {
+      btn.addEventListener('click', function() { selectFdd(id, v, l); });
+    })(opt[0], opt[1]);
+    inner.appendChild(btn);
+  });
+}
+
+document.addEventListener('click', function(e) {
+  if (!_fddOpen) return;
+  var wrap = document.getElementById('fdd-' + _fddOpen);
+  if (wrap && !wrap.contains(e.target)) closeFdd(_fddOpen);
+});
+
+// ── Envío del formulario de contacto ─────────────────────────────────────
+function submitContactForm(e) {
+  e.preventDefault();
+  var form = document.getElementById('form-contacto');
+  var btn  = document.getElementById('btn-enviar');
+  var errorMsg = document.getElementById('form-error-msg');
+
+  // ── Validación ───────────────────────────────────────────────────────────
+  var valid = true;
+
+  // Inputs requeridos (data-req)
+  form.querySelectorAll('input[data-req]').forEach(function(inp) {
+    var wrap = inp.closest('.border-b');
+    if (!inp.value.trim()) {
+      valid = false;
+      if (wrap) wrap.style.borderBottomColor = 'rgba(239,68,68,0.22)';
+      inp.addEventListener('input', function clear() {
+        if (wrap) wrap.style.borderBottomColor = '';
+        inp.removeEventListener('input', clear);
+      });
+    } else {
+      if (wrap) wrap.style.borderBottomColor = '';
+    }
+  });
+
+  // Dropdowns requeridos
+  ['concesionario', 'modelo'].forEach(function(id) {
+    var val  = document.getElementById('fdd-' + id + '-val');
+    var wrap = document.getElementById('fdd-' + id);
+    if (val && !val.value) {
+      valid = false;
+      if (wrap) wrap.style.borderBottomColor = 'rgba(239,68,68,0.22)';
+    } else {
+      if (wrap) wrap.style.borderBottomColor = '';
+    }
+  });
+
+  if (!valid) {
+    if (errorMsg) errorMsg.classList.remove('hidden');
+    return;
+  }
+  if (errorMsg) errorMsg.classList.add('hidden');
+
+  // ── Envío ────────────────────────────────────────────────────────────────
+  var data = {
+    nombre:        form.querySelector('input[placeholder="NOMBRE"]')?.value        || '',
+    apellido:      form.querySelector('input[placeholder="APELLIDO"]')?.value      || '',
+    ciudad:        form.querySelector('input[placeholder="CIUDAD"]')?.value        || '',
+    email:         form.querySelector('input[type="email"]')?.value                || '',
+    celular:       form.querySelector('input[type="tel"]')?.value                  || '',
+    concesionario: document.getElementById('fdd-concesionario-label')?.textContent.trim() || document.getElementById('fdd-concesionario-val')?.value || '',
+    modelo:        document.getElementById('fdd-modelo-label')?.textContent.trim()        || document.getElementById('fdd-modelo-val')?.value        || '',
+    consulta:      form.querySelector('textarea')?.value                           || '',
+  };
+
+  if (btn) { btn.disabled = true; btn.textContent = 'Enviando...'; }
+
+  var endpoint = window.location.hostname === 'localhost'
+    ? 'http://localhost:3001/enviar'
+    : '/enviar';
+
+  fetch(endpoint, {
+    method:  'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body:    JSON.stringify(data),
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(res) {
+    if (res.ok) {
+      window.location.href = 'gracias.html';
+    } else {
+      alert('Hubo un error al enviar. Por favor intentá de nuevo.');
+      if (btn) { btn.disabled = false; btn.textContent = 'Enviar'; }
+    }
+  })
+  .catch(function() {
+    alert('Hubo un error al enviar. Por favor intentá de nuevo.');
+    if (btn) { btn.disabled = false; btn.textContent = 'Enviar'; }
+  });
 }
