@@ -55,16 +55,20 @@ function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, capt
     const idxA  = Math.floor(exact);
     const idxB  = Math.min(idxA + 1, frames.length - 1);
     const blend = exact - idxA;
-    if (!frames[idxA]) return;
+    let bmpA = frames[idxA];
+    if (!bmpA) {
+      for (let i = idxA - 1; i >= 0; i--) { if (frames[i]) { bmpA = frames[i]; break; } }
+      if (!bmpA) return;
+    }
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    drawBitmap(frames[idxA], 1);
+    drawBitmap(bmpA, 1);
     if (blend > 0.01 && frames[idxB]) drawBitmap(frames[idxB], blend);
     ctx.globalAlpha = 1;
   }
 
   // ── RAF loop ─────────────────────────────────────────────────────────────
   function tick() {
-    if (ready) {
+    if (frames[0]) {
       const diff = targetProgress - drawProgress;
       if (Math.abs(diff) > 0.0001) {
         drawProgress += diff * LERP;
@@ -214,22 +218,8 @@ function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, capt
 
   function onCaptureComplete() {
     ready = true;
-    // Calcular el progress correcto para la posición actual de scroll
-    // y asignarlo directamente a drawProgress para evitar animación desde 0
-    const rel     = window.scrollY - pin.offsetTop;
-    const videoPx = videoDuration * PX_PER_SECOND;
-    const extraPx = textZonePx || 0;
-    if (rel <= 0) {
-      targetProgress = drawProgress = 0;
-    } else if (rel <= videoPx) {
-      targetProgress = drawProgress = Math.max(0, rel / videoPx);
-    } else {
-      targetProgress = drawProgress = 1;
-    }
-    renderProgress(drawProgress);
     canvas.style.opacity = '1';
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
+    renderProgress(drawProgress);
   }
 
   // ── Init ─────────────────────────────────────────────────────────────────
@@ -319,6 +309,10 @@ function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, capt
       const startCapture = () => startBackgroundCapture(capVid, videoDuration, startOffset);
       capVid.readyState >= 1 ? startCapture()
         : capVid.addEventListener('loadedmetadata', startCapture, { once: true });
+
+      // Registrar scroll listener desde ya, sin esperar a que termine la captura
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
     }
 
     video.readyState >= 1 ? setup()
