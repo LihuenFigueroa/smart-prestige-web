@@ -5,6 +5,8 @@
   [data-fdd-items]::-webkit-scrollbar { width:3px; }
   [data-fdd-items]::-webkit-scrollbar-track { background:transparent; }
   [data-fdd-items]::-webkit-scrollbar-thumb { background:#d1d5db; border-radius:2px; }
+  .req-star { color:#9ca3af; font-size:0.6rem; line-height:1; margin-left:3px; flex-shrink:0; }
+  #form-contacto input::placeholder { color:#9ca3af; font-size:0.75rem; letter-spacing:0.1em; }
 </style>
 
 <section id="contacto" class="w-full bg-white py-12 md:py-20 px-5 md:px-14">
@@ -14,18 +16,35 @@
       <p class="contacto-subtitle text-base font-normal font-smart-sans">Completá el formulario y te contactaremos a la brevedad.</p>
     </div>
     <div class="flex-1">
-      <form id="form-contacto" novalidate onsubmit="event.preventDefault(); window.location.href='gracias.html';">
-        <div class="border-b border-neutral-200 py-3"><input type="text" placeholder="NOMBRE" class="font-smart-sans w-full text-sm text-black bg-transparent outline-none placeholder:text-xs placeholder:tracking-widest placeholder:text-neutral-400" /></div>
-        <div class="border-b border-neutral-200 py-3"><input type="text" placeholder="APELLIDO" class="font-smart-sans w-full text-sm text-black bg-transparent outline-none placeholder:text-xs placeholder:tracking-widest placeholder:text-neutral-400" /></div>
-        <div class="border-b border-neutral-200 py-3"><input type="text" placeholder="CIUDAD" class="font-smart-sans w-full text-sm text-black bg-transparent outline-none placeholder:text-xs placeholder:tracking-widest placeholder:text-neutral-400" /></div>
-        <div class="border-b border-neutral-200 py-3"><input type="email" placeholder="CORREO ELECTRÓNICO" class="font-smart-sans w-full text-sm text-black bg-transparent outline-none placeholder:text-xs placeholder:tracking-widest placeholder:text-neutral-400" /></div>
-        <div class="border-b border-neutral-200 py-3"><input type="tel" placeholder="CELULAR" class="font-smart-sans w-full text-sm text-black bg-transparent outline-none placeholder:text-xs placeholder:tracking-widest placeholder:text-neutral-400" /></div>
+      <form id="form-contacto" novalidate onsubmit="submitContactForm(event)">
+
+        <div class="border-b border-neutral-200 py-3">
+          <input type="text" placeholder="NOMBRE *" data-req class="font-smart-sans w-full text-sm text-black bg-transparent outline-none" />
+        </div>
+
+        <div class="border-b border-neutral-200 py-3">
+          <input type="text" placeholder="APELLIDO *" data-req class="font-smart-sans w-full text-sm text-black bg-transparent outline-none" />
+        </div>
+
+        <div class="border-b border-neutral-200 py-3">
+          <input type="text" placeholder="CIUDAD *" data-req class="font-smart-sans w-full text-sm text-black bg-transparent outline-none" />
+        </div>
+
+        <div class="border-b border-neutral-200 py-3">
+          <input type="email" placeholder="CORREO ELECTRÓNICO *" data-req class="font-smart-sans w-full text-sm text-black bg-transparent outline-none" />
+        </div>
+
+        <div class="border-b border-neutral-200 py-3">
+          <input type="tel" placeholder="CELULAR *" data-req class="font-smart-sans w-full text-sm text-black bg-transparent outline-none" />
+        </div>
 
         <!-- Dropdown: Concesionario -->
         <div class="border-b border-neutral-200 py-3 relative" id="fdd-concesionario">
           <input type="hidden" name="concesionario" id="fdd-concesionario-val" />
-          <button type="button" class="font-smart-sans w-full text-left bg-transparent cursor-pointer outline-none flex items-center" style="border:none;padding:0;" onclick="toggleFdd('concesionario')">
-            <span id="fdd-concesionario-label" class="flex-1" style="color:#9ca3af;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;">CONCESIONARIO</span>
+          <button type="button" class="font-smart-sans w-full text-left bg-transparent cursor-pointer outline-none flex items-center" style="border:none;padding:0;-webkit-appearance:none;appearance:none;height:1.3125rem;" onclick="toggleFdd('concesionario')">
+            <span id="fdd-concesionario-label" style="color:#9ca3af;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;">CONCESIONARIO</span>
+            <span class="req-star">*</span>
+            <span class="flex-1"></span>
             <span id="fdd-concesionario-chevron" style="color:#9ca3af;font-size:0.75rem;display:inline-block;line-height:1;transition:transform 0.35s cubic-bezier(0.25,0,0,1);">&#8964;</span>
           </button>
           <div id="fdd-concesionario-panel" style="position:absolute;left:0;right:0;top:100%;background:#fff;border:1px solid #e5e7eb;border-top:none;max-height:0;overflow:hidden;transition:max-height 0.4s cubic-bezier(0.25,0,0,1);z-index:200;box-shadow:0 6px 20px rgba(0,0,0,0.07);">
@@ -52,8 +71,10 @@
         <!-- Dropdown: Modelo -->
         <div class="border-b border-neutral-200 py-3 relative" id="fdd-modelo">
           <input type="hidden" name="modelo" id="fdd-modelo-val" />
-          <button type="button" class="font-smart-sans w-full text-left bg-transparent cursor-pointer outline-none flex items-center" style="border:none;padding:0;" onclick="toggleFdd('modelo')">
-            <span id="fdd-modelo-label" class="flex-1" style="color:#9ca3af;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;">SELECCIONE MODELO</span>
+          <button type="button" class="font-smart-sans w-full text-left bg-transparent cursor-pointer outline-none flex items-center" style="border:none;padding:0;-webkit-appearance:none;appearance:none;height:1.3125rem;" onclick="toggleFdd('modelo')">
+            <span id="fdd-modelo-label" style="color:#9ca3af;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;">SELECCIONE MODELO</span>
+            <span class="req-star">*</span>
+            <span class="flex-1"></span>
             <span id="fdd-modelo-chevron" style="color:#9ca3af;font-size:0.75rem;display:inline-block;line-height:1;transition:transform 0.35s cubic-bezier(0.25,0,0,1);">&#8964;</span>
           </button>
           <div id="fdd-modelo-panel" style="position:absolute;left:0;right:0;top:100%;background:#fff;border:1px solid #e5e7eb;border-top:none;max-height:0;overflow:hidden;transition:max-height 0.4s cubic-bezier(0.25,0,0,1);z-index:200;box-shadow:0 6px 20px rgba(0,0,0,0.07);">
@@ -62,12 +83,15 @@
         </div>
 
         <div class="py-3">
-          <p class="font-smart-sans text-xs" style="letter-spacing:0.05em; color:#9ca3af; text-transform:uppercase; margin-bottom:8px;">CONSULTA</p>
+          <p class="font-smart-sans" style="font-size:0.75rem;letter-spacing:0.1em;color:#9ca3af;text-transform:uppercase;margin-bottom:8px;">CONSULTA</p>
           <textarea rows="5" class="font-smart-sans w-full text-sm text-black bg-transparent outline-none resize-none border border-neutral-200 p-3"></textarea>
         </div>
-        <div class="pt-6">
+
+        <div class="pt-6 flex items-center gap-4">
           <button type="submit" id="btn-enviar" class="self-start h-10 px-8 bg-black rounded-full text-sm font-bold text-white hover:bg-neutral-800 transition-colors">Enviar</button>
+          <p id="form-error-msg" class="font-smart-sans text-xs hidden" style="color:rgba(239,68,68,0.6);">Completá todos los campos obligatorios (*).</p>
         </div>
+
       </form>
     </div>
   </div>

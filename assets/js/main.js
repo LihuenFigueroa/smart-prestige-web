@@ -486,14 +486,15 @@ function closeFdd(id) {
 function selectFdd(id, value, label) {
   var valEl   = document.getElementById('fdd-' + id + '-val');
   var labelEl = document.getElementById('fdd-' + id + '-label');
+  var wrap    = document.getElementById('fdd-' + id);
   if (valEl)   valEl.value = value;
   if (labelEl) {
     labelEl.textContent          = label;
     labelEl.style.color          = '#111827';
     labelEl.style.letterSpacing  = 'normal';
-    labelEl.style.fontSize       = '0.875rem';
     labelEl.style.textTransform  = 'none';
   }
+  if (wrap) wrap.style.borderBottomColor = '';
   closeFdd(id);
 }
 
@@ -520,3 +521,84 @@ document.addEventListener('click', function(e) {
   var wrap = document.getElementById('fdd-' + _fddOpen);
   if (wrap && !wrap.contains(e.target)) closeFdd(_fddOpen);
 });
+
+// ── Envío del formulario de contacto ─────────────────────────────────────
+function submitContactForm(e) {
+  e.preventDefault();
+  var form = document.getElementById('form-contacto');
+  var btn  = document.getElementById('btn-enviar');
+  var errorMsg = document.getElementById('form-error-msg');
+
+  // ── Validación ───────────────────────────────────────────────────────────
+  var valid = true;
+
+  // Inputs requeridos (data-req)
+  form.querySelectorAll('input[data-req]').forEach(function(inp) {
+    var wrap = inp.closest('.border-b');
+    if (!inp.value.trim()) {
+      valid = false;
+      if (wrap) wrap.style.borderBottomColor = 'rgba(239,68,68,0.22)';
+      inp.addEventListener('input', function clear() {
+        if (wrap) wrap.style.borderBottomColor = '';
+        inp.removeEventListener('input', clear);
+      });
+    } else {
+      if (wrap) wrap.style.borderBottomColor = '';
+    }
+  });
+
+  // Dropdowns requeridos
+  ['concesionario', 'modelo'].forEach(function(id) {
+    var val  = document.getElementById('fdd-' + id + '-val');
+    var wrap = document.getElementById('fdd-' + id);
+    if (val && !val.value) {
+      valid = false;
+      if (wrap) wrap.style.borderBottomColor = 'rgba(239,68,68,0.22)';
+    } else {
+      if (wrap) wrap.style.borderBottomColor = '';
+    }
+  });
+
+  if (!valid) {
+    if (errorMsg) errorMsg.classList.remove('hidden');
+    return;
+  }
+  if (errorMsg) errorMsg.classList.add('hidden');
+
+  // ── Envío ────────────────────────────────────────────────────────────────
+  var data = {
+    nombre:        form.querySelector('input[placeholder="NOMBRE"]')?.value        || '',
+    apellido:      form.querySelector('input[placeholder="APELLIDO"]')?.value      || '',
+    ciudad:        form.querySelector('input[placeholder="CIUDAD"]')?.value        || '',
+    email:         form.querySelector('input[type="email"]')?.value                || '',
+    celular:       form.querySelector('input[type="tel"]')?.value                  || '',
+    concesionario: document.getElementById('fdd-concesionario-label')?.textContent.trim() || document.getElementById('fdd-concesionario-val')?.value || '',
+    modelo:        document.getElementById('fdd-modelo-label')?.textContent.trim()        || document.getElementById('fdd-modelo-val')?.value        || '',
+    consulta:      form.querySelector('textarea')?.value                           || '',
+  };
+
+  if (btn) { btn.disabled = true; btn.textContent = 'Enviando...'; }
+
+  var endpoint = window.location.hostname === 'localhost'
+    ? 'http://localhost:3001/enviar'
+    : '/enviar';
+
+  fetch(endpoint, {
+    method:  'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body:    JSON.stringify(data),
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(res) {
+    if (res.ok) {
+      window.location.href = 'gracias.html';
+    } else {
+      alert('Hubo un error al enviar. Por favor intentá de nuevo.');
+      if (btn) { btn.disabled = false; btn.textContent = 'Enviar'; }
+    }
+  })
+  .catch(function() {
+    alert('Hubo un error al enviar. Por favor intentá de nuevo.');
+    if (btn) { btn.disabled = false; btn.textContent = 'Enviar'; }
+  });
+}
