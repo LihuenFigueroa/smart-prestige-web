@@ -396,8 +396,8 @@
       const marker = L.marker([s.lat, s.lng], { icon: pinIcon }).addTo(map);
       marker.bindPopup(
         `<p class="font-smart-next" style="font-size:16px;color:#141413;margin:0 0 4px;">${s.nombre}</p>
-         <p class="font-smart-sans" style="font-size:13px;color:#141413;margin:0 0 ${s.telefono ? '8px' : '0'};">${s.direccion}</p>
-         ${s.telefono ? `<p class="font-smart-sans" style="font-size:13px;color:#141413;margin:0;">${s.telefono}</p>` : ''}`,
+         <p class="font-smart-sans" style="font-size:13px;color:#141413;margin:0 0 ${s.telefono ? '12px' : '0'};">${s.direccion}</p>
+         ${s.telefono ? `<a href="tel:${s.telefono.replace(/[\s\-]/g,'')}" class="bus-contact-btn font-smart-sans">Contactar</a><span class="bus-contact-phone font-smart-sans">${s.telefono}</span>` : ''}`,
         popupOptions
       );
       return marker;
