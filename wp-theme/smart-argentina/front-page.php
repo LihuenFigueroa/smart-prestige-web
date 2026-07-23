@@ -43,7 +43,7 @@ $smart_hero_home  = smart_get_hero('home');
         </div>
       </div>
       <div class="absolute left-1/2 -translate-x-1/2">
-        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/Logonavbar.svg" alt="smart" class="h-4 md:h-8 w-auto" />
+        <a href="<?php echo home_url('/'); ?>"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/Logonavbar.svg" alt="smart" class="h-4 md:h-8 w-auto" /></a>
       </div>
     </nav>
 

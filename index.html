@@ -50,17 +50,9 @@
   </div>
 
   <!-- ================================================================
-       HERO + NAV  (scroll-pinned video)
+       HERO
   ================================================================ -->
-  <div id="heroPin">
-  <section class="sticky top-0 relative w-full overflow-hidden" style="height:100vh; height:100dvh; min-height:640px; background:#141413;">
-    <canvas id="heroCanvas" class="absolute inset-0 w-full h-full" style="z-index:2;"></canvas>
-    <video
-      id="heroVideo"
-      muted playsinline preload="auto"
-      class="absolute inset-0 w-full h-full object-cover object-center"
-      style="z-index:1; opacity:0; pointer-events:none;"
-    ></video>
+  <section class="relative w-full overflow-hidden" style="height:100vh; height:100dvh; min-height:640px; background:#141413;">
 
     <div class="absolute top-0 left-0 right-0 pointer-events-none" style="height:170px; z-index:5; background: linear-gradient(to bottom, rgba(20,20,19,0.65) 0%, rgba(20,20,19,0.57) 35%, rgba(20,20,19,0) 100%);"></div>
     <div class="absolute bottom-0 left-0 right-0 pointer-events-none" style="height:261px; z-index:5; background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.58) 60%, rgba(0,0,0,0.85) 100%);"></div>
@@ -85,7 +77,7 @@
         </div>
       </div>
       <div class="absolute left-1/2 -translate-x-1/2">
-        <img src="assets/img/Logonavbar.svg" alt="smart" class="h-4 md:h-8 w-auto" />
+        <a href="index.html"><img src="assets/img/Logonavbar.svg" alt="smart" class="h-4 md:h-8 w-auto" /></a>
       </div>
     </nav>
 
@@ -106,7 +98,6 @@
       </div>
     </div>
   </section>
-  </div>
 
   <!-- ================================================================
        ELEGÍ TU SMART
@@ -366,6 +357,8 @@
     (function () {
       const track = document.getElementById('cards-track');
       if (!track) return;
+      track.style.willChange = 'scroll-position';
+      track.style.webkitOverflowScrolling = 'touch';
 
       let isDragging  = false;
       let hasMoved    = false;
@@ -376,15 +369,13 @@
       let velocity    = 0;
       let rafId       = null;
 
-      // Inercia post-release
       function momentum() {
-        velocity *= 0.97;          // fricción: 0.97 = desaceleración muy suave
+        velocity *= 0.94;
         track.scrollLeft -= velocity;
-        if (Math.abs(velocity) > 0.15) {
-          rafId = requestAnimationFrame(momentum);
-        }
+        if (Math.abs(velocity) > 0.3) rafId = requestAnimationFrame(momentum);
       }
 
+      // ── Mouse ──
       track.addEventListener('mousedown', function (e) {
         cancelAnimationFrame(rafId);
         isDragging  = true;
@@ -408,21 +399,46 @@
         if (!isDragging) return;
         const delta = e.clientX - startX;
         if (Math.abs(delta) > 4) hasMoved = true;
-
-        // Velocidad: píxeles por ms, normalizado a frame de 16ms
         const now = performance.now();
         const dt  = now - lastTime || 1;
         velocity  = ((e.clientX - lastX) / dt) * 16;
         lastX     = e.clientX;
         lastTime  = now;
-
         track.scrollLeft = startScroll - delta;
       });
 
-      // Bloquear clicks en links si hubo arrastre real
       track.addEventListener('click', function (e) {
         if (hasMoved) e.preventDefault();
       }, true);
+
+      // ── Touch ──
+      track.addEventListener('touchstart', function (e) {
+        cancelAnimationFrame(rafId);
+        isDragging  = true;
+        hasMoved    = false;
+        startX      = e.touches[0].clientX;
+        startScroll = track.scrollLeft;
+        lastX       = e.touches[0].clientX;
+        lastTime    = performance.now();
+        velocity    = 0;
+      }, { passive: true });
+
+      track.addEventListener('touchmove', function (e) {
+        if (!isDragging) return;
+        const delta = e.touches[0].clientX - startX;
+        if (Math.abs(delta) > 4) hasMoved = true;
+        const now = performance.now();
+        const dt  = now - lastTime || 1;
+        velocity  = ((e.touches[0].clientX - lastX) / dt) * 16;
+        lastX     = e.touches[0].clientX;
+        lastTime  = now;
+        track.scrollLeft = startScroll - delta;
+      }, { passive: true });
+
+      track.addEventListener('touchend', function () {
+        isDragging = false;
+        rafId = requestAnimationFrame(momentum);
+      }, { passive: true });
     })();
   </script>
 
