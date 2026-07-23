@@ -35,7 +35,7 @@
     </nav>
 
     <div class="svc-hero-text-wrap absolute bottom-0 left-0 right-0 px-5 md:px-14 pb-8 md:pb-14 z-10">
-      <h1 class="svc-hero-title font-smart-next font-normal text-white" style="font-size:clamp(28px,4vw,56px); line-height:1.1;">Servicios al cliente.</h1>
+      <h1 class="svc-hero-title font-smart-next font-normal text-white" style="font-size:45px; line-height:1.1;">Servicios al cliente.</h1>
     </div>
   </section>
 
@@ -142,7 +142,7 @@
           <svg class="sabana-icon flex-shrink-0 text-neutral-400" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2"><line x1="8" y1="1" x2="8" y2="15" class="sabana-vline"/><line x1="1" y1="8" x2="15" y2="8"/></svg>
         </button>
         <div class="sabana-content">
-          <p class="font-smart-sans" style="color:#141413; font-size:15px; line-height:160%; padding-bottom:60px;">3 años sin límites de kilometraje para componentes del vehículo.<br>Garantía batería y componentes de alto voltaje: 8 años o 160.000 km. lo que ocurra primero.</p>
+          <p class="font-smart-sans" style="color:#141413; font-size:15px; line-height:160%; padding-bottom:24px;">3 años sin límites de kilometraje para componentes del vehículo.<br>Garantía batería y componentes de alto voltaje: 8 años o 160.000 km. lo que ocurra primero.</p>
         </div>
       </div>
 
@@ -152,7 +152,7 @@
           <svg class="sabana-icon flex-shrink-0 text-neutral-400" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2"><line x1="8" y1="1" x2="8" y2="15" class="sabana-vline"/><line x1="1" y1="8" x2="15" y2="8"/></svg>
         </button>
         <div class="sabana-content">
-          <p class="font-smart-sans" style="color:#141413; font-size:15px; line-height:160%; padding-bottom:60px;">Asistencia rápida donde te encuentres, las 24 horas del día. Frente a cualquier eventual problema en la ruta, te asistimos dentro del país y en países limítrofes.</p>
+          <p class="font-smart-sans" style="color:#141413; font-size:15px; line-height:160%; padding-bottom:24px;">Asistencia rápida donde te encuentres, las 24 horas del día. Frente a cualquier eventual problema en la ruta, te asistimos dentro del país y en países limítrofes.</p>
         </div>
       </div>
 
@@ -162,7 +162,7 @@
           <svg class="sabana-icon flex-shrink-0 text-neutral-400" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2"><line x1="8" y1="1" x2="8" y2="15" class="sabana-vline"/><line x1="1" y1="8" x2="15" y2="8"/></svg>
         </button>
         <div class="sabana-content">
-          <p class="font-smart-sans" style="color:#141413; font-size:15px; line-height:160%; padding-bottom:60px;">Nuestro servicio oficial smart es tu mejor opción para mantenerlo siempre en perfecto estado. Gracias al servicio premium y la atención al detalle, podrás seguir disfrutando de tu smart con la misma confianza y placer que el primer día.<br><br>El mantenimiento debe realizarse cada 10.000 kilómetros o cada dos años, para garantizar que tu smart conserve su fiabilidad, seguridad y máximo rendimiento. En cada visita, nuestros técnicos especializados realizan un mantenimiento integral, siguiendo los estándares más exigentes de la marca y utilizando siempre piezas originales smart.</p>
+          <p class="font-smart-sans" style="color:#141413; font-size:15px; line-height:160%; padding-bottom:24px;">Nuestro servicio oficial smart es tu mejor opción para mantenerlo siempre en perfecto estado. Gracias al servicio premium y la atención al detalle, podrás seguir disfrutando de tu smart con la misma confianza y placer que el primer día.<br><br>El mantenimiento debe realizarse cada 10.000 kilómetros o cada dos años, para garantizar que tu smart conserve su fiabilidad, seguridad y máximo rendimiento. En cada visita, nuestros técnicos especializados realizan un mantenimiento integral, siguiendo los estándares más exigentes de la marca y utilizando siempre piezas originales smart.</p>
         </div>
       </div>
 
@@ -172,7 +172,7 @@
           <svg class="sabana-icon flex-shrink-0 text-neutral-400" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2"><line x1="8" y1="1" x2="8" y2="15" class="sabana-vline"/><line x1="1" y1="8" x2="15" y2="8"/></svg>
         </button>
         <div class="sabana-content">
-          <p class="font-smart-sans" style="color:#141413; font-size:15px; line-height:160%; padding-bottom:60px;">Podés contar con nosotros para cualquier tipo de solución que requiera tu smart.</p>
+          <p class="font-smart-sans" style="color:#141413; font-size:15px; line-height:160%; padding-bottom:24px;">Podés contar con nosotros para cualquier tipo de solución que requiera tu smart.</p>
         </div>
       </div>
 
@@ -182,7 +182,7 @@
           <svg class="sabana-icon flex-shrink-0 text-neutral-400" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2"><line x1="8" y1="1" x2="8" y2="15" class="sabana-vline"/><line x1="1" y1="8" x2="15" y2="8"/></svg>
         </button>
         <div class="sabana-content">
-          <p class="font-smart-sans" style="color:#141413; font-size:15px; line-height:160%; padding-bottom:60px;">Si el parabrisas sufre un daño por impacto de piedras, tu seguridad también se ve afectada. El parabrisas contribuye a la rigidez torsional de la carrocería. Si se rompe, no puede garantizarse plenamente su capacidad portante, sobre todo en situaciones críticas. Al sustituir el parabrisas, lo importante es la correcta ejecución del trabajo en un taller autorizado smart.</p>
+          <p class="font-smart-sans" style="color:#141413; font-size:15px; line-height:160%; padding-bottom:24px;">Si el parabrisas sufre un daño por impacto de piedras, tu seguridad también se ve afectada. El parabrisas contribuye a la rigidez torsional de la carrocería. Si se rompe, no puede garantizarse plenamente su capacidad portante, sobre todo en situaciones críticas. Al sustituir el parabrisas, lo importante es la correcta ejecución del trabajo en un taller autorizado smart.</p>
         </div>
       </div>
 
@@ -192,7 +192,7 @@
           <svg class="sabana-icon flex-shrink-0 text-neutral-400" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2"><line x1="8" y1="1" x2="8" y2="15" class="sabana-vline"/><line x1="1" y1="8" x2="15" y2="8"/></svg>
         </button>
         <div class="sabana-content">
-          <p class="font-smart-sans" style="color:#141413; font-size:15px; line-height:160%; padding-bottom:60px;">Te ofrecemos un servicio especial en aras de tu seguridad: nuestro control de frenos. Para incrementar la seguridad en el tránsito vehicular es indispensable revisar periódicamente las pastillas de freno y la potencia de frenado. Por ello te recomendamos encargar la revisión de los frenos al menos una vez al año.</p>
+          <p class="font-smart-sans" style="color:#141413; font-size:15px; line-height:160%; padding-bottom:24px;">Te ofrecemos un servicio especial en aras de tu seguridad: nuestro control de frenos. Para incrementar la seguridad en el tránsito vehicular es indispensable revisar periódicamente las pastillas de freno y la potencia de frenado. Por ello te recomendamos encargar la revisión de los frenos al menos una vez al año.</p>
         </div>
       </div>
 
@@ -202,7 +202,7 @@
           <svg class="sabana-icon flex-shrink-0 text-neutral-400" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2"><line x1="8" y1="1" x2="8" y2="15" class="sabana-vline"/><line x1="1" y1="8" x2="15" y2="8"/></svg>
         </button>
         <div class="sabana-content">
-          <p class="font-smart-sans" style="color:#141413; font-size:15px; line-height:160%; padding-bottom:60px;">Si tu batería pierde rendimiento, la única solución suele ser cambiarla. Estaremos encantados de ayudarte y encargarnos de sustituir tu batería de 12v. Efectuaremos el cambio de forma rápida y sin complicaciones; naturalmente, con la alta calidad habitual de smart.</p>
+          <p class="font-smart-sans" style="color:#141413; font-size:15px; line-height:160%; padding-bottom:24px;">Si tu batería pierde rendimiento, la única solución suele ser cambiarla. Estaremos encantados de ayudarte y encargarnos de sustituir tu batería de 12v. Efectuaremos el cambio de forma rápida y sin complicaciones; naturalmente, con la alta calidad habitual de smart.</p>
         </div>
       </div>
 
@@ -212,7 +212,7 @@
           <svg class="sabana-icon flex-shrink-0 text-neutral-400" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2"><line x1="8" y1="1" x2="8" y2="15" class="sabana-vline"/><line x1="1" y1="8" x2="15" y2="8"/></svg>
         </button>
         <div class="sabana-content">
-          <p class="font-smart-sans" style="color:#141413; font-size:15px; line-height:160%; padding-bottom:60px;">Si es necesario realizar una reparación o sustituir alguna pieza averiada, recomendamos utilizar repuestos originales smart. Todos estos repuestos están respaldados por el know-how de smart como fabricante, se desarrollan específicamente para tu modelo y se adaptan a la perfección a los demás componentes del vehículo.</p>
+          <p class="font-smart-sans" style="color:#141413; font-size:15px; line-height:160%; padding-bottom:24px;">Si es necesario realizar una reparación o sustituir alguna pieza averiada, recomendamos utilizar repuestos originales smart. Todos estos repuestos están respaldados por el know-how de smart como fabricante, se desarrollan específicamente para tu modelo y se adaptan a la perfección a los demás componentes del vehículo.</p>
         </div>
       </div>
 
@@ -222,7 +222,7 @@
           <svg class="sabana-icon flex-shrink-0 text-neutral-400" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2"><line x1="8" y1="1" x2="8" y2="15" class="sabana-vline"/><line x1="1" y1="8" x2="15" y2="8"/></svg>
         </button>
         <div class="sabana-content">
-          <p class="font-smart-sans" style="color:#141413; font-size:15px; line-height:160%; padding-bottom:60px;">Navegá por el manual en línea o descargá el PDF del manual de usuario para acceder rápidamente cuando lo necesites.</p>
+          <p class="font-smart-sans" style="color:#141413; font-size:15px; line-height:160%; padding-bottom:24px;">Navegá por el manual en línea o descargá el PDF del manual de usuario para acceder rápidamente cuando lo necesites.</p>
         </div>
       </div>
 

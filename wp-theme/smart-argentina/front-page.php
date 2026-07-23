@@ -44,10 +44,10 @@
     <!-- Hero content -->
     <div class="absolute bottom-0 left-0 right-0 px-5 md:px-14 pb-8 md:pb-14 flex flex-col md:flex-row md:justify-between md:items-end gap-4 z-10">
       <div class="max-w-xl">
-        <h1 class="text-white text-3xl font-normal leading-10 mb-2 font-smart-next">
+        <h1 id="home-hero-title" class="text-white text-3xl font-normal leading-10 mb-2 font-smart-next">
           Electrizante por naturaleza.
         </h1>
-        <p class="text-white text-lg font-normal leading-6 mb-5 md:mb-8 font-smart-sans">
+        <p class="text-white text-lg font-normal leading-6 mb-4 font-smart-sans">
           El SUV 100% eléctrico que redefine lo que significa conducir bien.
         </p>
         <div class="flex gap-3 items-center flex-wrap">
@@ -69,10 +69,12 @@
     #elegi-title-area       { top:4%; gap:0.5rem; width:80%; }
     #model-cta              { top:89%; }
     @media (min-width:768px) {
+      #home-hero-title      { font-size:45px; }
       #elegir-modelo        { aspect-ratio:1440/891; }
-      #elegi-img-wrap       { left:3.19%; top:5.39%; width:93.54%; height:81.93%; }
+      #elegi-img-wrap       { left:3.19%; top:5.39%; width:93.54%; height:75%; }
+      #elegi-img-wrap img   { object-position: top; }
       #elegi-title-area     { top:9%; gap:1rem; width:auto; }
-      #model-cta            { top:93%; }
+      #model-cta            { top:84%; }
     }
     @media (min-width:768px) and (max-width:1024px) {
       #elegi-title-area     { top:4%; gap:0.5rem; }
@@ -239,6 +241,9 @@
        FORMULARIO DE CONTACTO
   ================================================================ -->
   <?php get_template_part('partials/form-contacto'); ?>
+  <script>
+    setFddOptions('modelo',[['smart1','smart #1'],['smart3','smart #3']]);
+  </script>
 
   <!-- ================================================================
        FOOTER
@@ -247,8 +252,8 @@
 
   <script>
     // Precargá las imágenes para que el slide no tenga delay
-    new Image().src = 'assets/img/home/elegiTuSmart/smart1_home.jpeg';
-    new Image().src = 'assets/img/home/elegiTuSmart/smart3_home.jpeg';
+    new Image().src = '<?php echo get_template_directory_uri(); ?>/assets/img/home/elegiTuSmart/smart1_home.jpeg';
+    new Image().src = '<?php echo get_template_directory_uri(); ?>/assets/img/home/elegiTuSmart/smart3_home.jpeg';
 
     let currentModel = 1;
 
@@ -289,7 +294,7 @@
       cta.textContent = num === 1
         ? 'Descubrí más sobre el smart #1'
         : 'Descubrí más sobre el smart #3';
-      cta.href = num === 1 ? 'smart1.html' : 'smart3.html';
+      cta.href = num === 1 ? '<?php echo home_url('/smart-1/'); ?>' : '<?php echo home_url('/smart-3/'); ?>';
 
       // Píldora deslizante: mover y redimensionar
       const activeTab = num === 1 ? tab1 : tab3;
@@ -368,8 +373,6 @@
       }, true);
     })();
   </script>
-
-  <script src="<?php echo get_template_directory_uri(); ?>/assets/js/main.js"></script>
 
   <script>
     function toggleModelosDropdown() {

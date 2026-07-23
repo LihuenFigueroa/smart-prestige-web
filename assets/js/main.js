@@ -16,22 +16,32 @@ function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, capt
   let ready = false, totalFrames = 0;
   let targetProgress = 0, drawProgress = 0;
   let videoDuration = 0;
+  let logicalW = 0, logicalH = 0;
 
   // ── Canvas ───────────────────────────────────────────────────────────────
+  // El buffer del canvas se dimensiona a resolución física (CSS px * devicePixelRatio)
+  // para que no se vea pixelado/borroso en pantallas de alta densidad (Retina, escalado de Windows, etc.).
+  // Todo el dibujo sigue usando coordenadas en CSS px gracias al ctx.setTransform.
   function resizeCanvas() {
+    const dpr  = window.devicePixelRatio || 1;
     const newW = canvas.offsetWidth  || window.innerWidth;
     const newH = canvas.offsetHeight || (pinHeight || window.innerHeight);
+    const newPxW = Math.round(newW * dpr);
+    const newPxH = Math.round(newH * dpr);
     // Solo redimensionar si cambió de verdad (evita el flash por address bar en mobile)
-    if (canvas.width === newW && canvas.height === newH) return;
-    canvas.width  = newW;
-    canvas.height = newH;
+    if (canvas.width === newPxW && canvas.height === newPxH) return;
+    canvas.width  = newPxW;
+    canvas.height = newPxH;
+    logicalW = newW;
+    logicalH = newH;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     if (ready) {
       renderProgress(drawProgress);
     } else if (frames[0]) {
       drawBitmap(frames[0], 1);
       ctx.globalAlpha = 1;
     } else if (video.readyState >= 2 && video.videoWidth) {
-      const cw = canvas.width, ch = canvas.height;
+      const cw = logicalW, ch = logicalH;
       const vw = video.videoWidth, vh = video.videoHeight;
       const scale = Math.max(cw / vw, ch / vh);
       ctx.drawImage(video, (cw - vw * scale) / 2, (ch - vh * scale) / 2, vw * scale, vh * scale);
@@ -42,7 +52,7 @@ function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, capt
 
   // ── Render ───────────────────────────────────────────────────────────────
   function drawBitmap(bmp, alpha) {
-    const cw = canvas.width, ch = canvas.height;
+    const cw = logicalW, ch = logicalH;
     const scale = Math.max(cw / bmp.width, ch / bmp.height);
     const sw = bmp.width * scale, sh = bmp.height * scale;
     ctx.globalAlpha = alpha;
@@ -60,7 +70,7 @@ function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, capt
       for (let i = idxA - 1; i >= 0; i--) { if (frames[i]) { bmpA = frames[i]; break; } }
       if (!bmpA) return;
     }
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.clearRect(0, 0, logicalW, logicalH);
     drawBitmap(bmpA, 1);
     if (blend > 0.01 && frames[idxB]) drawBitmap(frames[idxB], blend);
     ctx.globalAlpha = 1;
@@ -336,7 +346,7 @@ initScrollVideo({
   videoId:    'heroVideo',
   canvasId:   'heroCanvas',
   pinId:      'heroPin',
-  videoSrc:   isMobile ? 'assets/video/videoHeroMobile.mp4' : 'assets/video/videoHero.mp4',
+  videoSrc:   isMobile ? (window.THEME_URL || '') + '/assets/video/videoHeroMobile.mp4' : (window.THEME_URL || '') + '/assets/video/videoHero.mp4',
   pxPerSecond: isMobile ? 480 : 840,
   captureFps:  isMobile ? 30  : 15,
   lerp:        0.06,
@@ -396,7 +406,7 @@ initScrollVideo({
   videoId:     'brabusVideo',
   canvasId:    'brabusCanvas',
   pinId:       'brabusPin',
-  videoSrc:    isMobile ? 'assets/video/videoSmartXBRABUSMobile.mp4' : 'assets/video/videoSmartXBRABUS.mp4',
+  videoSrc:    isMobile ? (window.THEME_URL || '') + '/assets/video/videoSmartXBRABUSMobile.mp4' : (window.THEME_URL || '') + '/assets/video/videoSmartXBRABUS.mp4',
   pxPerSecond: isMobile ? 400 : 800,
   captureFps:  60,
   lerp:        0.07,
@@ -579,19 +589,39 @@ function submitContactForm(e) {
 
   if (btn) { btn.disabled = true; btn.textContent = 'Enviando...'; }
 
-  var endpoint = window.location.hostname === 'localhost'
-    ? 'http://localhost:3001/enviar'
-    : '/enviar';
+  var isWp = !!window.WP_AJAX_URL;
+  var endpoint, fetchOpts;
 
-  fetch(endpoint, {
-    method:  'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body:    JSON.stringify(data),
-  })
+  if (isWp) {
+    // WordPress: admin-ajax.php con action + nonce, respuesta {success, data}
+    data.action = 'smart_enviar_formulario';
+    data.nonce  = window.WP_CONTACT_NONCE || '';
+    var params  = new URLSearchParams();
+    Object.keys(data).forEach(function(k) { params.append(k, data[k]); });
+    endpoint  = window.WP_AJAX_URL;
+    fetchOpts = {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body:    params.toString(),
+    };
+  } else {
+    // Sitio estático: servidor Node local, respuesta {ok}
+    endpoint = window.location.hostname === 'localhost'
+      ? 'http://localhost:3001/enviar'
+      : '/enviar';
+    fetchOpts = {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify(data),
+    };
+  }
+
+  fetch(endpoint, fetchOpts)
   .then(function(r) { return r.json(); })
   .then(function(res) {
-    if (res.ok) {
-      window.location.href = 'gracias.html';
+    var ok = isWp ? res.success : res.ok;
+    if (ok) {
+      window.location.href = window.WP_GRACIAS_URL || 'gracias.html';
     } else {
       alert('Hubo un error al enviar. Por favor intentá de nuevo.');
       if (btn) { btn.disabled = false; btn.textContent = 'Enviar'; }
@@ -602,3 +632,41 @@ function submitContactForm(e) {
     if (btn) { btn.disabled = false; btn.textContent = 'Enviar'; }
   });
 }
+
+// ── Banner de cookies ───────────────────────────────────────────────────
+(function () {
+  var STORAGE_KEY = 'smart_cookie_consent';
+  if (localStorage.getItem(STORAGE_KEY)) return;
+
+  var cookiesUrl = window.WP_COOKIES_URL || 'cookies.html';
+
+  var banner = document.createElement('div');
+  banner.id = 'cookie-banner';
+  banner.className = 'cookie-banner';
+  banner.innerHTML =
+    '<p class="cookie-banner__text font-smart-sans">Utilizamos cookies propias y de terceros para mejorar tu experiencia de navegación y analizar el uso del sitio. Podés aceptarlas o rechazarlas. <a href="' + cookiesUrl + '">Más información</a>.</p>' +
+    '<div class="cookie-banner__actions">' +
+      '<button type="button" class="cookie-banner__btn cookie-banner__btn--reject font-smart-sans">Rechazar</button>' +
+      '<button type="button" class="cookie-banner__btn cookie-banner__btn--accept font-smart-sans">Aceptar</button>' +
+    '</div>';
+
+  function init() {
+    document.body.appendChild(banner);
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () { banner.classList.add('is-visible'); });
+    });
+
+    function close(value) {
+      localStorage.setItem(STORAGE_KEY, value);
+      banner.classList.remove('is-visible');
+      setTimeout(function () { banner.remove(); }, 400);
+    }
+
+    banner.querySelector('.cookie-banner__btn--accept').addEventListener('click', function () { close('accepted'); });
+    banner.querySelector('.cookie-banner__btn--reject').addEventListener('click', function () { close('rejected'); });
+  }
+
+  document.readyState === 'loading'
+    ? document.addEventListener('DOMContentLoaded', init)
+    : init();
+})();

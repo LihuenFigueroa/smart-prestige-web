@@ -1,6 +1,92 @@
 <?php /* Template Name: Sobre Smart */ ?>
 <?php get_header(); ?>
 <?php get_template_part('partials/header'); ?>
+  <style>
+    @media (max-width: 767px) {
+      .sobre-hero-img {
+        content: url('<?php echo get_template_directory_uri(); ?>/assets/img/sobre-smart/hero-mobile.png');
+        object-position: center center !important;
+      }
+      .sobre-hero-text-wrap {
+        bottom: unset !important;
+        top: 110px !important;
+        padding-left: 24px !important;
+        padding-right: 24px !important;
+        padding-bottom: 0 !important;
+      }
+      .sobre-hero-title {
+        font-size: 36px !important;
+        line-height: 1.2 !important;
+        letter-spacing: -0.02em !important;
+        font-family: 'FOR_smart_Next', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+      }
+      .sobre-banner-img-wrap {
+        padding: 0 !important;
+      }
+      .sobre-banner-text-col {
+        padding-left: 28px !important;
+        padding-right: 0 !important;
+      }
+      .sobre-banner-text-col .sobre-scroll {
+        padding-right: 25px !important;
+      }
+      .sobre-banner-text-col .sobre-scroll p {
+        font-size: 17px !important;
+      }
+
+      /* Carrusel — apilado vertical */
+      #sobre-pin-wrap,
+      #sobre-carousel {
+        height: auto !important;
+        position: static !important;
+      }
+      #sobre-carousel > .flex {
+        flex-direction: column !important;
+        height: auto !important;
+      }
+      #sobre-carousel > .flex > div:first-child {
+        width: 100% !important;
+        padding-left: 24px !important;
+        padding-right: 24px !important;
+        padding-top: 40px !important;
+        padding-bottom: 0 !important;
+      }
+      #sobre-carousel-viewport {
+        overflow: visible !important;
+        padding-top: 24px !important;
+        padding-bottom: 40px !important;
+        padding-left: 24px !important;
+        padding-right: 24px !important;
+      }
+      #track-sobre-carousel {
+        flex-direction: column !important;
+        height: auto !important;
+        transform: none !important;
+        gap: 2rem !important;
+      }
+      #track-sobre-carousel > div {
+        width: 100% !important;
+        height: auto !important;
+      }
+      #track-sobre-carousel > div > div:first-child {
+        height: auto !important;
+      }
+      #track-sobre-carousel > div > div:first-child img {
+        min-height: 260px !important;
+        max-height: 320px !important;
+      }
+    }
+    .sobre-scroll::-webkit-scrollbar { width: 3px; }
+    .sobre-scroll::-webkit-scrollbar-track { background: transparent; }
+    .sobre-scroll::-webkit-scrollbar-thumb { background: #4b4b4b; border-radius: 2px; }
+    @media (min-width: 768px) {
+      .sobre-scroll { padding-right: 22px; }
+    }
+    @media (max-width: 767px) {
+      .sobre-scroll::-webkit-scrollbar { width: 7px; }
+      .sobre-scroll::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.75); border-radius: 9999px; }
+    }
+  </style>
   <!-- ================================================================
        HERO
   ================================================================ -->
@@ -35,7 +121,7 @@
     </nav>
 
     <div class="sobre-hero-text-wrap absolute bottom-0 left-0 right-0 z-10" style="padding-left:56px; padding-bottom:68px;">
-      <h1 class="sobre-hero-title font-smart-next font-normal text-white" style="font-size:54px; line-height:1.15;">smart: tres décadas<br>reinventando el auto urbano.</h1>
+      <h1 class="sobre-hero-title font-smart-next font-normal text-white" style="font-size:45px; line-height:1.15;">smart: tres décadas<br>reinventando el auto urbano.</h1>
     </div>
   </section>
 
