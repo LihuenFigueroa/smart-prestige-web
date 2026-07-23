@@ -1,11 +1,23 @@
 <?php /* Template Name: Smart 3 */ ?>
+<?php
+$smart_versiones_s3 = smart_get_versiones('smart3');
+$smart_hero_s3       = smart_get_hero('smart3');
+$smart_carruseles_s3 = [
+  smart_get_feature_cards('smart3_c1'),
+  smart_get_feature_cards('smart3_c2'),
+  smart_get_feature_cards('smart3_c3'),
+  smart_get_feature_cards('smart3_c4'),
+  smart_get_feature_cards('smart3_c5'),
+  smart_get_feature_cards('smart3_c6'),
+];
+?>
 <?php get_header(); ?>
 <?php get_template_part('partials/header'); ?>
   <!-- ================================================================
        HERO MOBILE — smart #3
   ================================================================ -->
   <section id="hero-s3-mobile" style="position:relative; width:100%; aspect-ratio:375/812; overflow:hidden;">
-    <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart3/hero-mobile.png" alt="smart #3" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center;" />
+    <img src="<?php echo esc_url($smart_hero_s3['mobile']); ?>" alt="smart #3" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center;" />
     <div style="position:absolute; top:0; left:0; right:0; height:170px; z-index:5; pointer-events:none; background:linear-gradient(to bottom,rgba(20,20,19,0.65) 0%,rgba(20,20,19,0) 100%);"></div>
     <div style="position:absolute; bottom:0; left:0; right:0; height:55%; z-index:5; pointer-events:none; background:linear-gradient(to bottom,rgba(0,0,0,0) 0%,rgba(0,0,0,0.88) 100%);"></div>
     <nav style="position:absolute; top:0; left:0; right:0; z-index:20; padding:0 1.25rem; height:56px; display:flex; align-items:center;">
@@ -33,7 +45,7 @@
   ================================================================ -->
   <section id="hero-s3" class="relative w-full h-screen min-h-[640px] overflow-hidden">
     <div class="absolute inset-0 bg-neutral-700">
-      <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart3/hero.jpg" alt="smart #3" class="w-full h-full object-cover" />
+      <img src="<?php echo esc_url($smart_hero_s3['desktop']); ?>" alt="smart #3" class="w-full h-full object-cover" />
     </div>
     <div class="absolute top-0 left-0 right-0 pointer-events-none" style="height:170px; z-index:5; background:linear-gradient(to bottom,rgba(20,20,19,0.65) 0%,rgba(20,20,19,0) 100%);"></div>
 
@@ -88,338 +100,30 @@
   ================================================================ -->
   <section class="w-full bg-white pb-10">
 
-    <!-- ── Carrusel 1 — 4 fotos ── -->
+    <?php foreach ($smart_carruseles_s3 as $i => $carrusel): $track_num = $i + 1; ?>
+    <!-- ── Carrusel <?php echo $track_num; ?> ── -->
     <div style="padding-bottom:1rem; overflow:hidden;">
-      <div id="track-c1" class="flex select-none" style="overflow-x:scroll; scrollbar-width:none; -ms-overflow-style:none; padding-left:1.25rem; padding-right:1.25rem; gap:1rem; cursor:grab;">
+      <div id="track-c<?php echo $track_num; ?>" class="flex select-none" style="overflow-x:scroll; scrollbar-width:none; -ms-overflow-style:none; padding-left:1.25rem; padding-right:1.25rem; gap:1rem; cursor:grab;">
 
+        <?php foreach ($carrusel as $card): ?>
         <div class="c-card">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart3/2.png" alt="Dinamismo sin estridencias" class="c-card__img" />
-          <span class="c-card__tag">Exterior</span>
+          <img src="<?php echo esc_url($card['imagen']); ?>" alt="<?php echo esc_attr($card['alt']); ?>" class="c-card__img" />
+          <?php if (!empty($card['tag'])): ?>
+          <span class="c-card__tag"><?php echo esc_html($card['tag']); ?></span>
+          <?php endif; ?>
           <div class="c-card__gradient"></div>
           <div class="c-card__body">
             <div class="c-card__text">
-              <p class="c-card__title">Dinamismo sin estridencias.</p>
-              <p class="c-card__desc">El smart #3 ofrece un estilo deportivo refinado, con una respuesta eléctrica inmediata y una conducción ágil que hace honor a cada línea de su carrocería.</p>
+              <p class="c-card__title"><?php echo esc_html($card['titulo']); ?></p>
+              <p class="c-card__desc"><?php echo esc_html($card['descripcion']); ?></p>
             </div>
           </div>
         </div>
-
-        <div class="c-card">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart3/3.png" alt="Una silueta que impacta desde cualquier ángulo" class="c-card__img" />
-          <div class="c-card__gradient"></div>
-          <div class="c-card__body">
-            <div class="c-card__text">
-              <p class="c-card__title">Una silueta que impacta desde cualquier ángulo.</p>
-              <p class="c-card__desc">El perfil de coupé del smart #3 combina un spoiler integrado y ópticas LED de diseño escultórico para una presencia inconfundible.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="c-card">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart3/4.jpg" alt="Seguridad y garantía" class="c-card__img" />
-          <div class="c-card__gradient"></div>
-          <div class="c-card__body">
-            <div class="c-card__text">
-              <p class="c-card__title">Seguridad y garantía.</p>
-              <p class="c-card__desc">Cinco estrellas Euro NCAP, tres años de servicio de mantenimiento y ocho de asistencia en carretera. El smart #3 no solo redefine el diseño eléctrico: establece un nuevo estándar en seguridad y respaldo posventa.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="c-card">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart3/5.jpg" alt="Los detalles son los que definen lo premium" class="c-card__img" />
-          <div class="c-card__gradient"></div>
-          <div class="c-card__body">
-            <div class="c-card__text">
-              <p class="c-card__title">Los detalles son los que definen lo premium.</p>
-              <p class="c-card__desc">Las manijas al ras del smart #3 se integran en la carrocería con una geometría limpia que refuerza tanto la estética como la eficiencia aerodinámica del vehículo.</p>
-            </div>
-          </div>
-        </div>
+        <?php endforeach; ?>
 
       </div>
     </div>
-
-    <!-- ── Carrusel 2 — 4 fotos ── -->
-    <div style="padding-bottom:1rem; overflow:hidden;">
-      <div id="track-c2" class="flex select-none" style="overflow-x:scroll; scrollbar-width:none; -ms-overflow-style:none; padding-left:1.25rem; padding-right:1.25rem; gap:1rem; cursor:grab;">
-
-        <div class="c-card">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart3/8.png" alt="Tecnología al servicio del conductor" class="c-card__img" />
-          <span class="c-card__tag">Interior</span>
-          <div class="c-card__gradient"></div>
-          <div class="c-card__body">
-            <div class="c-card__text">
-              <p class="c-card__title">Tecnología al servicio del conductor.</p>
-              <p class="c-card__desc">La pantalla central del smart #3 integra Apple CarPlay™ y Android Auto™ en un sistema diseñado para mantener el foco donde corresponde: en el camino.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="c-card">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart3/9.png" alt="El centro de comando a bordo" class="c-card__img" />
-          <div class="c-card__gradient"></div>
-          <div class="c-card__body">
-            <div class="c-card__text">
-              <p class="c-card__title">El centro de comando a bordo.</p>
-              <p class="c-card__desc">El volante multifunción del smart #3 agrupa los controles principales en un diseño ergonómico y accesible, pensado para operar de forma natural sin distraer la conducción.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="c-card">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart3/10.jpg" alt="Conectividad continua, sin interrupciones" class="c-card__img" />
-          <div class="c-card__gradient"></div>
-          <div class="c-card__body">
-            <div class="c-card__text">
-              <p class="c-card__title">Conectividad continua, sin interrupciones.</p>
-              <p class="c-card__desc">La base de carga inalámbrica integrada mantiene el dispositivo cargado durante todo el recorrido, de forma simple y eficiente.</p>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- ── Carrusel 3 — 7 fotos ── -->
-    <div style="padding-bottom:1rem; overflow:hidden;">
-      <div id="track-c3" class="flex select-none" style="overflow-x:scroll; scrollbar-width:none; -ms-overflow-style:none; padding-left:1.25rem; padding-right:1.25rem; gap:1rem; cursor:grab;">
-
-        <div class="c-card">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart3/15.png" alt="Cámara 360" class="c-card__img" />
-          <span class="c-card__tag">Confort</span>
-          <div class="c-card__gradient"></div>
-          <div class="c-card__body">
-            <div class="c-card__text">
-              <p class="c-card__title">Cámara 360.</p>
-              <p class="c-card__desc">Esta función permite seleccionar hasta nueve vistas diferentes con las distintas cámaras situadas alrededor del vehículo para ofrecer un control óptimo de la situación en todas las direcciones, lo cual resulta enormemente práctico tanto para estacionar como para desplazarse a velocidades reducidas.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="c-card">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart3/16.jpg" alt="Techo Halo panorámico" class="c-card__img" />
-          <div class="c-card__gradient"></div>
-          <div class="c-card__body">
-            <div class="c-card__text">
-              <p class="c-card__title">Techo Halo panorámico.</p>
-              <p class="c-card__desc">El techo es una pieza de vidrio fija. El área del vidrio es de 1,3 m² y filtra el 99 % de la radiación ultravioleta.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="c-card">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart3/17.jpg" alt="Asientos eléctricos y calefaccionados" class="c-card__img" />
-          <div class="c-card__gradient"></div>
-          <div class="c-card__body">
-            <div class="c-card__text">
-              <p class="c-card__title">Asientos eléctricos y calefaccionados.</p>
-              <p class="c-card__desc">Los asientos delanteros presentan un ajuste eléctrico en seis direcciones y un soporte lumbar eléctrico ajustable en cuatro direcciones. Los asientos del conductor y del acompañante son calefactables y el del conductor cuenta también con función de memoria.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="c-card">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart3/18.png" alt="Climatización bizona" class="c-card__img" />
-          <div class="c-card__gradient"></div>
-          <div class="c-card__body">
-            <div class="c-card__text">
-              <p class="c-card__title">Climatización bizona.</p>
-              <p class="c-card__desc">Los usuarios de los asientos delanteros establecen la temperatura del aire acondicionado en los lados izquierdo y derecho respectivamente. El sistema ajusta automáticamente la temperatura, el modo y el flujo de aire en las zonas izquierda y derecha.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="c-card">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart3/19.jpg" alt="Volante calefaccionado" class="c-card__img" />
-          <div class="c-card__gradient"></div>
-          <div class="c-card__body">
-            <div class="c-card__text">
-              <p class="c-card__title">Volante calefaccionado.</p>
-              <p class="c-card__desc">En condiciones de temperatura bajas, el volante calefactable ayuda a mejorar la experiencia de conducción.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="c-card">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart3/20.jpg" alt="Sistema de audio Beats" class="c-card__img" />
-          <div class="c-card__gradient"></div>
-          <div class="c-card__body">
-            <div class="c-card__text">
-              <p class="c-card__title">Sistema de audio Beats®.</p>
-              <p class="c-card__desc">El vehículo incorpora 13 altavoces: 4 altavoces de agudos situados en los pilares A derecho e izquierdo y en la parte superior de las puertas traseras, 3 altavoces de graves y medios, 1 altavoz bajo y en el centro del panel de instrumentos, 2 altavoces de sonido envolvente en los pilares C, 2 altavoces de graves en la parte inferior de las puertas traseras, 1 altavoz de graves bajo el compartimento trasero. *Función disponible para la versión BRABUS.</p>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- ── Carrusel 4 — 7 fotos ── -->
-    <div style="padding-bottom:1rem; overflow:hidden;">
-      <div id="track-c4" class="flex select-none" style="overflow-x:scroll; scrollbar-width:none; -ms-overflow-style:none; padding-left:1.25rem; padding-right:1.25rem; gap:1rem; cursor:grab;">
-
-        <div class="c-card">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart3/22.png" alt="smart pilot assist" class="c-card__img" />
-          <span class="c-card__tag">Seguridad</span>
-          <div class="c-card__gradient"></div>
-          <div class="c-card__body">
-            <div class="c-card__text">
-              <p class="c-card__title">smart pilot assist.</p>
-              <p class="c-card__desc">La función de asistencia en ruta (PAH) permite controlar el vehículo. Ayuda a que el conductor permanezca en su carril y permite configurar el intervalo de distancia con el vehículo de adelante. Esta función cuenta además con ayuda para el adelantamiento de camiones. (Función incluida en el equipamiento de seguridad inteligente de S4 ADAS).</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="c-card">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart3/21-seguridad.png" alt="Parking Assist" class="c-card__img" />
-          <div class="c-card__gradient"></div>
-          <div class="c-card__body">
-            <div class="c-card__text">
-              <p class="c-card__title">Parking Assist.</p>
-              <p class="c-card__desc">El sistema inteligente de smart combina sensores ultrasónicos y cámaras periféricas para estacionar de manera 100% autónoma (APA), controlando la dirección, la velocidad y el frenado. Además, incluye cámara de visión 360° y freno de emergencia automático para evitar colisiones a bajas velocidades.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="c-card">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart3/24.png" alt="Control crucero adaptativo" class="c-card__img" />
-          <div class="c-card__gradient"></div>
-          <div class="c-card__body">
-            <div class="c-card__text">
-              <p class="c-card__title">Control crucero adaptativo.</p>
-              <p class="c-card__desc">Una vez ajustada la velocidad de crucero (de 0 a 150 km/h), el vehículo circula al valor establecido o lo ajusta de forma automática en función de la velocidad y la distancia del vehículo que tenga delante. Si este frena o detiene a cero de forma repetitiva, el coche realiza la misma acción automáticamente a través de la función Stop&Go.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="c-card">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart3/25.jpg" alt="Airbags" class="c-card__img" />
-          <div class="c-card__gradient"></div>
-          <div class="c-card__body">
-            <div class="c-card__text">
-              <p class="c-card__title">Airbags.</p>
-              <p class="c-card__desc">El smart #3 tiene siete airbags: dos delanteros, dos delanteros laterales, dos de cortina lateral y uno central.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="c-card">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart3/26.jpg" alt="Asistencia mantenimiento de carril" class="c-card__img" />
-          <div class="c-card__gradient"></div>
-          <div class="c-card__body">
-            <div class="c-card__text">
-              <p class="c-card__title">Asistencia mantenimiento de carril.</p>
-              <p class="c-card__desc">El asistente de mantenimiento en el carril se emplea para ayudar a prevenir accidentes ocasionados por una desviación no intencionada del carril cuando el vehículo circula a velocidades de entre 60 y 180 km/h. Si el vehículo empieza a desviarse, el sistema lo indica mediante advertencias y el ajuste automático del volante, que devuelve el vehículo al carril actual.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="c-card">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart3/27.jpg" alt="Freno AEB" class="c-card__img" />
-          <div class="c-card__gradient"></div>
-          <div class="c-card__body">
-            <div class="c-card__text">
-              <p class="c-card__title">Freno AEB.</p>
-              <p class="c-card__desc">Cuando el vehículo está a punto de chocar contra un objeto situado frente a él, el sistema lo frena por completo para reducir el daño. El freno puede alcanzar una fuerza máxima de 1 G y funciona para velocidades inferiores a los 60 km/h. Esta función está disponible para peatones, bicicletas y vehículos.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="c-card">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart3/28.jpg" alt="CyberSparksLED" class="c-card__img" />
-          <div class="c-card__gradient"></div>
-          <div class="c-card__body">
-            <div class="c-card__text">
-              <p class="c-card__title">CyberSparksLED.</p>
-              <p class="c-card__desc">La tecnología LED se emplea para crear faros de bajo consumo que son duraderos y proporcionan el mayor alcance de iluminación. Cuando la velocidad supera los 60 km/h y la distancia al vehículo de delante es superior a 15 metros, el sistema controla automáticamente los faros de luz larga y baja, mejorando la visión del conductor y evitando el deslumbramiento de los demás conductores.</p>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- ── Carrusel 5 — 3 fotos ── -->
-    <div style="padding-bottom:1rem; overflow:hidden;">
-      <div id="track-c5" class="flex select-none" style="overflow-x:scroll; scrollbar-width:none; -ms-overflow-style:none; padding-left:1.25rem; padding-right:1.25rem; gap:1rem; cursor:grab;">
-
-        <div class="c-card">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart3/30.png" alt="Pantalla central 12,8" class="c-card__img" />
-          <span class="c-card__tag">Conectividad</span>
-          <div class="c-card__gradient"></div>
-          <div class="c-card__body">
-            <div class="c-card__text">
-              <p class="c-card__title">Pantalla central 12,8".</p>
-              <p class="c-card__desc">La pantalla central de 12,8" es una pantalla táctil con una resolución de 1920×1080 píxeles y modos de día y noche. Superficie de la pantalla: 283×159 mm. Pantalla completa: 321×190 mm. RAM de 12 GB, almacenamiento de 128 GB.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="c-card">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart3/31.png" alt="Cuadro de instrumentos digital 9,2" class="c-card__img" />
-          <div class="c-card__gradient"></div>
-          <div class="c-card__body">
-            <div class="c-card__text">
-              <p class="c-card__title">Cuadro de instrumentos digital 9,2".</p>
-              <p class="c-card__desc">El cuadro de instrumentos de 9,2" es un panel de material LCD de alta definición que se usa para mostrar información de conducción, música y otros datos relacionados. Tiene una resolución de 1920x384 píxeles.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="c-card">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart3/32.png" alt="Head Up Display 10" class="c-card__img" />
-          <div class="c-card__gradient"></div>
-          <div class="c-card__body">
-            <div class="c-card__text">
-              <p class="c-card__title">Head Up display 10".</p>
-              <p class="c-card__desc">Los grupos ópticos del smart #3 integran tecnología LED en un diseño escultórico que refuerza el carácter premium del vehículo. *Función disponible para la versión BRABUS.</p>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- ── Carrusel 6 — 3 fotos ── -->
-    <div style="padding-bottom:1rem; overflow:hidden;">
-      <div id="track-c6" class="flex select-none" style="overflow-x:scroll; scrollbar-width:none; -ms-overflow-style:none; padding-left:1.25rem; padding-right:1.25rem; gap:1rem; cursor:grab;">
-
-        <div class="c-card">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart3/33.png" alt="Baúl trasero eléctrico" class="c-card__img" />
-          <span class="c-card__tag">Practicidad</span>
-          <div class="c-card__gradient"></div>
-          <div class="c-card__body">
-            <div class="c-card__text">
-              <p class="c-card__title">Baúl trasero eléctrico.</p>
-              <p class="c-card__desc">La apertura y el cierre del baúl trasero son automáticos y pueden accionarse desde el botón del portón, el comando interior o la llave con mando a distancia. Además, incorpora funciones de memoria y ajuste de apertura. Este sistema facilita el acceso a un baúl de 323 litros de capacidad, ampliable hasta 986 litros al rebatir los asientos traseros.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="c-card">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart3/34.jpg" alt="Baúl delantero" class="c-card__img" />
-          <div class="c-card__gradient"></div>
-          <div class="c-card__body">
-            <div class="c-card__text">
-              <p class="c-card__title">Baúl delantero.</p>
-              <p class="c-card__desc">Compartimento de 15 litros bajo el capó. Apertura manual y sellado con espuma.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="c-card">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart3/35.jpg" alt="Deslizamiento asientos traseros" class="c-card__img" />
-          <div class="c-card__gradient"></div>
-          <div class="c-card__body">
-            <div class="c-card__text">
-              <p class="c-card__title">Deslizamiento asientos traseros.</p>
-              <p class="c-card__desc">Los asientos traseros pueden deslizarse 130 mm para disponer de un espacio más amplio para las piernas o de mayor capacidad de almacenamiento en el baúl.</p>
-            </div>
-          </div>
-        </div>
-
-      </div>
+    <?php endforeach; ?>
 
   </section>
 
@@ -434,9 +138,9 @@
 
       <!-- Track de imágenes — solo mobile -->
       <div id="comp-s3-img-track" style="overflow-x:hidden;">
-        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart3/comp-pro.png"    alt="smart #3 Pro"    style="width:calc(100vw - 2.5rem); aspect-ratio:3/2; object-fit:cover; object-position:center; flex-shrink:0; display:block;" />
-        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart3/comp-prop.png"   alt="smart #3 Pro+"   style="width:calc(100vw - 2.5rem); aspect-ratio:3/2; object-fit:cover; object-position:center; flex-shrink:0; display:block;" />
-        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart3/comp-brabus.png" alt="smart #3 BRABUS" style="width:calc(100vw - 2.5rem); aspect-ratio:3/2; object-fit:cover; object-position:center; flex-shrink:0; display:block;" />
+        <?php foreach ($smart_versiones_s3 as $v): ?>
+        <img src="<?php echo esc_url($v['imagen']); ?>" alt="smart #3 <?php echo esc_attr($v['nombre_version']); ?>" style="width:calc(100vw - 2.5rem); aspect-ratio:3/2; object-fit:cover; object-position:center; flex-shrink:0; display:block;" />
+        <?php endforeach; ?>
       </div>
 
       <!-- Nav flechas — solo mobile -->
@@ -459,150 +163,78 @@
         <div id="comp-s3-grid" style="display:grid; row-gap:12px; align-items:start;">
 
           <!-- ROW: imágenes -->
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart3/comp-pro.png"    alt="smart #3 Pro"    style="width:100%; aspect-ratio:3/2; object-fit:cover; object-position:center;" />
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart3/comp-prop.png"   alt="smart #3 Pro+"   style="width:100%; aspect-ratio:3/2; object-fit:cover; object-position:center;" />
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart3/comp-brabus.png" alt="smart #3 BRABUS" style="width:100%; aspect-ratio:3/2; object-fit:cover; object-position:center;" />
+          <?php foreach ($smart_versiones_s3 as $v): ?>
+          <img src="<?php echo esc_url($v['imagen']); ?>" alt="smart #3 <?php echo esc_attr($v['nombre_version']); ?>" style="width:100%; aspect-ratio:3/2; object-fit:cover; object-position:center;" />
+          <?php endforeach; ?>
 
           <!-- ROW: modelo / versión -->
-          <div class="comp-ver-cell"><p class="comp-model">smart #3</p><p class="comp-version">Pro</p></div>
-          <div class="comp-ver-cell"><p class="comp-model">smart #3</p><p class="comp-version">Pro+</p></div>
-          <div class="comp-ver-cell"><p class="comp-model">smart #3</p><p class="comp-version">BRABUS</p></div>
+          <?php foreach ($smart_versiones_s3 as $v): ?>
+          <div class="comp-ver-cell"><p class="comp-model">smart #3</p><p class="comp-version"><?php echo esc_html($v['nombre_version']); ?></p></div>
+          <?php endforeach; ?>
 
           <!-- ROW: divider -->
-          <hr class="comp-divider" /><hr class="comp-divider" /><hr class="comp-divider" />
+          <?php foreach ($smart_versiones_s3 as $v): ?><hr class="comp-divider" /><?php endforeach; ?>
 
           <!-- ROW: autonomía -->
+          <?php foreach ($smart_versiones_s3 as $v): ?>
           <div>
             <p class="comp-range-label">Autonomía</p>
-            <p class="comp-range-num">325 km</p>
+            <p class="comp-range-num"><?php echo esc_html($v['autonomia_mixta']); ?></p>
             <p class="comp-range-sub">Autonomía WLTP<br>ciclo mixto</p>
-            <p class="comp-range-num">450 km</p>
+            <p class="comp-range-num"><?php echo esc_html($v['autonomia_ciudad']); ?></p>
             <p class="comp-range-sub">Autonomía WLTP<br>ciudad</p>
           </div>
-          <div>
-            <p class="comp-range-label">Autonomía</p>
-            <p class="comp-range-num">435 km</p>
-            <p class="comp-range-sub">Autonomía WLTP<br>ciclo mixto</p>
-            <p class="comp-range-num">597 km</p>
-            <p class="comp-range-sub">Autonomía WLTP<br>ciudad</p>
-          </div>
-          <div>
-            <p class="comp-range-label">Autonomía</p>
-            <p class="comp-range-num">310 km</p>
-            <p class="comp-range-sub">Autonomía WLTP<br>ciclo mixto</p>
-            <p class="comp-range-num">551 km</p>
-            <p class="comp-range-sub">Autonomía WLTP<br>ciudad</p>
-          </div>
+          <?php endforeach; ?>
 
           <!-- ROW: divider -->
-          <hr class="comp-divider" /><hr class="comp-divider" /><hr class="comp-divider" />
+          <?php foreach ($smart_versiones_s3 as $v): ?><hr class="comp-divider" /><?php endforeach; ?>
 
           <!-- ROW: mecánica -->
-          <ul class="comp-features">
-            <li>RWD (tracción trasera) 200 kW</li>
-            <li>Batería de 49 kWh</li>
-            <li>Carga CC de hasta 130 kW</li>
-            <li>Carga CA de hasta 7.4 kW</li>
+          <?php foreach ($smart_versiones_s3 as $v): ?>
+          <ul class="comp-features<?php echo $v['destacado'] ? ' comp-features--bold' : ''; ?>">
+            <?php foreach ($v['mecanica'] as $item): ?><li><?php echo esc_html($item); ?></li><?php endforeach; ?>
           </ul>
-          <ul class="comp-features">
-            <li>RWD (Tracción trasera), 200 kW</li>
-            <li>Batería de 66 kWh</li>
-            <li>Carga CC de hasta 150 kW</li>
-            <li>Carga CA de hasta 22 kW</li>
-          </ul>
-          <ul class="comp-features comp-features--bold">
-            <li>AWD (Tracción total), 315 kW</li>
-            <li>Batería de 66 kWh</li>
-            <li>Carga CC de hasta 150 kW</li>
-            <li>Carga CA de hasta 22 kW</li>
-          </ul>
+          <?php endforeach; ?>
 
           <!-- ROW: divider -->
-          <hr class="comp-divider" /><hr class="comp-divider" /><hr class="comp-divider" />
+          <?php foreach ($smart_versiones_s3 as $v): ?><hr class="comp-divider" /><?php endforeach; ?>
 
           <!-- ROW: exterior -->
-          <ul class="comp-features">
-            <li>Luces LED CyberSparks con Asistente automático de Luces Altas</li>
-            <li>Techo panorámico Halo</li>
-            <li>Portón trasero eléctrico</li>
+          <?php foreach ($smart_versiones_s3 as $v): ?>
+          <ul class="comp-features<?php echo $v['destacado'] ? ' comp-features--bold' : ''; ?>">
+            <?php foreach ($v['exterior'] as $item): ?><li><?php echo esc_html($item); ?></li><?php endforeach; ?>
           </ul>
-          <ul class="comp-features">
-            <li>Luces LED CyberSparks con Asistente automático de Luces Altas</li>
-            <li>Techo panorámico Halo</li>
-            <li>Portón trasero eléctrico</li>
-          </ul>
-          <ul class="comp-features comp-features--bold">
-            <li>Luces LED+ CyberSparks con Faros Matriciales y Luz de Carretera Adaptativa</li>
-            <li>Techo Panorámico Halo</li>
-            <li>Portón trasero con Control Gestual</li>
-            <li>Cristales de Privacidad (Tintados)</li>
-            <li>Luces de cortesía con proyección de logotipo</li>
-            <li>Estilo de carrocería y emblemas BRABUS</li>
-            <li>Pinzas de freno pintadas en rojo</li>
-          </ul>
+          <?php endforeach; ?>
 
           <!-- ROW: divider -->
-          <hr class="comp-divider" /><hr class="comp-divider" /><hr class="comp-divider" />
+          <?php foreach ($smart_versiones_s3 as $v): ?><hr class="comp-divider" /><?php endforeach; ?>
 
           <!-- ROW: interior -->
-          <ul class="comp-features">
-            <li>Asientos de cuero sintético</li>
-            <li>Asientos delanteros calefactables y ajustables eléctricamente</li>
+          <?php foreach ($smart_versiones_s3 as $v): ?>
+          <ul class="comp-features<?php echo $v['destacado'] ? ' comp-features--bold' : ''; ?>">
+            <?php foreach ($v['interior'] as $item): ?><li><?php echo esc_html($item); ?></li><?php endforeach; ?>
           </ul>
-          <ul class="comp-features">
-            <li>Asientos de cuero sintético</li>
-            <li>Asientos delanteros calefactables y ajustables eléctricamente</li>
-          </ul>
-          <ul class="comp-features comp-features--bold">
-            <li>Asientos de gamuza de microfibra</li>
-            <li>Asientos delanteros calefactables y ajustables eléctricamente</li>
-            <li>Iluminación ambiental+</li>
-            <li>Bomba de calor</li>
-            <li>Sistema de sonido Beats® con 13 altavoces</li>
-            <li>Volante de Alcantara®</li>
-            <li>Asientos delanteros ventilados</li>
-          </ul>
+          <?php endforeach; ?>
 
           <!-- ROW: divider -->
-          <hr class="comp-divider" /><hr class="comp-divider" /><hr class="comp-divider" />
+          <?php foreach ($smart_versiones_s3 as $v): ?><hr class="comp-divider" /><?php endforeach; ?>
 
           <!-- ROW: tecnología -->
-          <ul class="comp-features">
-            <li>Pantalla central de 12.8" con Sistema de Navegación</li>
-            <li>Apple CarPlay® y Android Auto</li>
-            <li>Cargador inalámbrico para teléfono</li>
+          <?php foreach ($smart_versiones_s3 as $v): ?>
+          <ul class="comp-features<?php echo $v['destacado'] ? ' comp-features--bold' : ''; ?>">
+            <?php foreach ($v['tecnologia'] as $item): ?><li><?php echo esc_html($item); ?></li><?php endforeach; ?>
           </ul>
-          <ul class="comp-features">
-            <li>Pantalla central de 12.8" con Sistema de Navegación</li>
-            <li>Apple CarPlay® y Android Auto</li>
-            <li>Cargador inalámbrico para teléfono</li>
-          </ul>
-          <ul class="comp-features">
-            <li>Pantalla central de 12.8" con Sistema de Navegación</li>
-            <li>Apple CarPlay® y Android Auto</li>
-            <li>Cargador inalámbrico para teléfono</li>
-            <li>Pantalla Head-Up Display de 10 pulgadas</li>
-          </ul>
+          <?php endforeach; ?>
 
           <!-- ROW: divider -->
-          <hr class="comp-divider" /><hr class="comp-divider" /><hr class="comp-divider" />
+          <?php foreach ($smart_versiones_s3 as $v): ?><hr class="comp-divider" /><?php endforeach; ?>
 
           <!-- ROW: seguridad -->
-          <ul class="comp-features">
-            <li>smart Pilot Assist</li>
-            <li>8 sensores de estacionamiento (delanteros y traseros)</li>
-            <li>Cámara de estacionamiento de 360°</li>
+          <?php foreach ($smart_versiones_s3 as $v): ?>
+          <ul class="comp-features<?php echo $v['destacado'] ? ' comp-features--bold' : ''; ?>">
+            <?php foreach ($v['seguridad'] as $item): ?><li><?php echo esc_html($item); ?></li><?php endforeach; ?>
           </ul>
-          <ul class="comp-features">
-            <li>smart Pilot Assist</li>
-            <li>8 sensores de estacionamiento (delanteros y traseros)</li>
-            <li>Cámara de estacionamiento de 360°</li>
-          </ul>
-          <ul class="comp-features">
-            <li>smart Pilot Assist</li>
-            <li>12 sensores de estacionamiento (delanteros y traseros) con Asistente de Estacionamiento Automático</li>
-            <li>Cámara de estacionamiento de 360°</li>
-          </ul>
+          <?php endforeach; ?>
 
         </div>
       </div>
@@ -706,9 +338,6 @@
        FORMULARIO
   ================================================================ -->
   <?php get_template_part('partials/form-contacto'); ?>
-  <script>
-    setFddOptions('modelo',[['smart3-pro','smart #3 Pro'],['smart3-proplus','smart #3 Pro+'],['smart3-brabus','smart #3 BRABUS']]);
-  </script>
 
   <!-- ================================================================
        FOOTER
@@ -719,7 +348,7 @@
   <script>
     // ── Características generales — nav flechas mobile ───────────────────────
     var compS3Index = 0;
-    var compS3Labels = ['Pro', 'Pro+', 'BRABUS'];
+    var compS3Labels = <?php echo wp_json_encode(array_map(function ($v) { return $v['nombre_version']; }, $smart_versiones_s3)); ?>;
     function compS3UpdateArrows() {
       var p = document.getElementById('comp-s3-btn-prev');
       var n = document.getElementById('comp-s3-btn-next');
@@ -1313,5 +942,10 @@
     })();
   </script>
 <?php wp_footer(); ?>
+<script>
+  setFddOptions('modelo',<?php echo wp_json_encode(array_map(function ($v) {
+    return [$v['slug_form'], 'smart #3 ' . $v['nombre_version']];
+  }, $smart_versiones_s3)); ?>);
+</script>
 </body>
 </html>

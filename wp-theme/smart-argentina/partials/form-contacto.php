@@ -49,21 +49,9 @@
           </button>
           <div id="fdd-concesionario-panel" style="position:absolute;left:0;right:0;top:100%;background:#fff;border:1px solid #e5e7eb;border-top:none;max-height:0;overflow:hidden;transition:max-height 0.4s cubic-bezier(0.25,0,0,1);z-index:200;box-shadow:0 6px 20px rgba(0,0,0,0.07);">
             <div data-fdd-items style="padding:6px 0;">
-              <button type="button" class="fdd-item font-smart-sans" onclick="selectFdd('concesionario','colcar-moreno','Colcar — Galileo Galilei 1744, Moreno')">Colcar — Galileo Galilei 1744, Moreno</button>
-              <button type="button" class="fdd-item font-smart-sans" onclick="selectFdd('concesionario','lonco-hue-libertador','Lonco Hue — Av. Del Libertador 2244, Palermo')">Lonco Hue — Av. Del Libertador 2244, Palermo</button>
-              <button type="button" class="fdd-item font-smart-sans" onclick="selectFdd('concesionario','lonco-hue-humboldt','Lonco Hue — Humboldt 2279, Palermo')">Lonco Hue — Humboldt 2279, Palermo</button>
-              <button type="button" class="fdd-item font-smart-sans" onclick="selectFdd('concesionario','klasse-libertador','Klasse — Av. Del Libertador 1551, Vicente López')">Klasse — Av. Del Libertador 1551, Vicente López</button>
-              <button type="button" class="fdd-item font-smart-sans" onclick="selectFdd('concesionario','klasse-beiro','Klasse — Av. Francisco Beiró 4420, Villa Devoto')">Klasse — Av. Francisco Beiró 4420, Villa Devoto</button>
-              <button type="button" class="fdd-item font-smart-sans" onclick="selectFdd('concesionario','klasse-nunez','Klasse — Grecia 3633, Núñez')">Klasse — Grecia 3633, Núñez</button>
-              <button type="button" class="fdd-item font-smart-sans" onclick="selectFdd('concesionario','la-merced-panamericana','La Merced — Panamericana km 50, Pilar')">La Merced — Panamericana km 50, Pilar</button>
-              <button type="button" class="fdd-item font-smart-sans" onclick="selectFdd('concesionario','la-merced-magnolias','La Merced — Las Magnolias 581, Pilar')">La Merced — Las Magnolias 581, Pilar</button>
-              <button type="button" class="fdd-item font-smart-sans" onclick="selectFdd('concesionario','besten-san-fernando','Besten — Av. del Libertador 2827, San Fernando')">Besten — Av. del Libertador 2827, San Fernando</button>
-              <button type="button" class="fdd-item font-smart-sans" onclick="selectFdd('concesionario','besten-tigre','Besten — Av. Juan B. Justo 2353, Tigre')">Besten — Av. Juan B. Justo 2353, Tigre</button>
-              <button type="button" class="fdd-item font-smart-sans" onclick="selectFdd('concesionario','stern-motors-rosario','Stern Motors — Junín 250, Rosario')">Stern Motors — Junín 250, Rosario</button>
-              <button type="button" class="fdd-item font-smart-sans" onclick="selectFdd('concesionario','rolcar-yerba-buena','Rolcar — Av. Aconquija 1238, Yerba Buena')">Rolcar — Av. Aconquija 1238, Yerba Buena</button>
-              <button type="button" class="fdd-item font-smart-sans" onclick="selectFdd('concesionario','colcor-cordoba','Colcor — Colectora Norte Agustín Tosco S/N, Córdoba')">Colcor — Colectora Norte Agustín Tosco S/N, Córdoba</button>
-              <button type="button" class="fdd-item font-smart-sans" onclick="selectFdd('concesionario','yacopini-maipu','Yacopini — Carril Rodriguez Peña 744, Maipú')">Yacopini — Carril Rodriguez Peña 744, Maipú</button>
-              <button type="button" class="fdd-item font-smart-sans" onclick="selectFdd('concesionario','meister-don-torcuato','Meister — Colectora Este Panamericana 27559, Don Torcuato')">Meister — Colectora Este Panamericana 27559, Don Torcuato</button>
+              <?php foreach (smart_get_concesionarios() as $c): $fddLabel = $c['nombre'] . ' — ' . $c['direccion'] . ', ' . $c['localidad']; ?>
+              <button type="button" class="fdd-item font-smart-sans" onclick="selectFdd('concesionario','<?php echo esc_js($c['slug']); ?>','<?php echo esc_js($fddLabel); ?>')"><?php echo esc_html($fddLabel); ?></button>
+              <?php endforeach; ?>
             </div>
           </div>
         </div>

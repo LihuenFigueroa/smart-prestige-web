@@ -1,18 +1,24 @@
 <?php /* Template Name: Home */ ?>
+<?php
+$smart_cards_home = smart_get_feature_cards('home');
+$smart_hero_home  = smart_get_hero('home');
+?>
 <?php get_header(); ?>
 <?php get_template_part('partials/header'); ?>
   <!-- ================================================================
-       HERO + NAV  (scroll-pinned video)
+       HERO
   ================================================================ -->
-  <div id="heroPin">
-  <section class="sticky top-0 relative w-full overflow-hidden" style="height:100vh; height:100dvh; min-height:640px; background:#141413;">
-    <canvas id="heroCanvas" class="absolute inset-0 w-full h-full" style="z-index:2;"></canvas>
-    <video
-      id="heroVideo"
-      muted playsinline preload="auto"
-      class="absolute inset-0 w-full h-full object-cover object-center"
-      style="z-index:1; opacity:0; pointer-events:none;"
-    ></video>
+  <style>
+    @media (max-width: 767px) {
+      .home-hero-img {
+        content: url('<?php echo esc_url($smart_hero_home['mobile']); ?>');
+      }
+    }
+  </style>
+  <section class="relative w-full overflow-hidden" style="height:100vh; height:100dvh; min-height:640px; background:#141413;">
+    <?php if (!empty($smart_hero_home['desktop'])): ?>
+    <img src="<?php echo esc_url($smart_hero_home['desktop']); ?>" alt="smart" class="home-hero-img absolute inset-0 w-full h-full object-cover object-center" />
+    <?php endif; ?>
 
     <div class="absolute top-0 left-0 right-0 pointer-events-none" style="height:170px; z-index:5; background: linear-gradient(to bottom, rgba(20,20,19,0.65) 0%, rgba(20,20,19,0.57) 35%, rgba(20,20,19,0) 100%);"></div>
     <div class="absolute bottom-0 left-0 right-0 pointer-events-none" style="height:261px; z-index:5; background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.58) 60%, rgba(0,0,0,0.85) 100%);"></div>
@@ -58,7 +64,6 @@
       </div>
     </div>
   </section>
-  </div>
 
   <!-- ================================================================
        ELEGÍ TU SMART
@@ -147,42 +152,21 @@
       style="overflow-x:scroll; scrollbar-width:none; -ms-overflow-style:none;"
     >
 
+      <?php foreach ($smart_cards_home as $c): ?>
       <div class="flex flex-col cards-item">
-        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/home/carrusel/1.jpg" alt="smart X BRABUS" class="w-full aspect-[4/3] object-cover" style="pointer-events:none;" />
+        <img src="<?php echo esc_url($c['imagen']); ?>" alt="<?php echo esc_attr($c['alt']); ?>" class="w-full aspect-[4/3] object-cover" style="pointer-events:none;" />
         <div class="flex flex-col flex-1" style="gap:0.75rem;">
-          <h3 class="font-smart-next text-3xl md:text-4xl font-normal text-black leading-tight">smart X BRABUS.</h3>
-          <p class="text-base text-black leading-6 flex-1 font-smart-sans">Rendimiento extremo. Diseño inconfundible. La versión más potente de smart lleva cada detalle al límite.</p>
-          <a href="<?php echo home_url('/brabus/'); ?>" class="self-start h-10 px-5 rounded-full border border-black text-sm font-bold text-neutral-900 flex items-center hover:bg-black hover:text-white transition-colors">Descubrilo</a>
+          <h3 class="font-smart-next text-3xl md:text-4xl font-normal text-black leading-tight"><?php echo esc_html($c['titulo']); ?></h3>
+          <p class="text-base text-black leading-6 flex-1 font-smart-sans"><?php echo esc_html($c['descripcion']); ?></p>
+          <?php if (!empty($c['disclaimer'])): ?>
+          <p class="text-xs text-black/30 leading-4 font-smart-sans"><?php echo esc_html($c['disclaimer']); ?></p>
+          <?php endif; ?>
+          <?php if (!empty($c['cta_texto'])): ?>
+          <a href="<?php echo esc_url(smart_feature_card_link($c['cta_link'])); ?>" class="self-start h-10 px-5 rounded-full border border-black text-sm font-bold text-neutral-900 flex items-center hover:bg-black hover:text-white transition-colors"><?php echo esc_html($c['cta_texto']); ?></a>
+          <?php endif; ?>
         </div>
       </div>
-
-      <div class="flex flex-col cards-item">
-        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/home/carrusel/2.jpg" alt="Conectividad" class="w-full aspect-[4/3] object-cover" style="pointer-events:none;" />
-        <div class="flex flex-col flex-1" style="gap:0.75rem;">
-          <h3 class="font-smart-next text-3xl md:text-4xl font-normal text-black leading-tight">Conectividad.</h3>
-          <p class="text-base text-black leading-6 flex-1 font-smart-sans">Pantalla central de 12,8'', Apple CarPlay® y Android Auto® inalámbrico. El camino y tu mundo, integrados.</p>
-          <a href="<?php echo home_url('/conectividad/'); ?>" class="self-start h-10 px-5 rounded-full border border-black text-sm font-bold text-neutral-900 flex items-center hover:bg-black hover:text-white transition-colors">Conocé más</a>
-        </div>
-      </div>
-
-      <div class="flex flex-col cards-item">
-        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/home/carrusel/3.jpg" alt="Movilidad eléctrica" class="w-full aspect-[4/3] object-cover" style="pointer-events:none;" />
-        <div class="flex flex-col flex-1" style="gap:0.75rem;">
-          <h3 class="font-smart-next text-3xl md:text-4xl font-normal text-black leading-tight">Movilidad eléctrica.</h3>
-          <p class="text-base text-black leading-6 flex-1 font-smart-sans">Hasta 597 km de autonomía y carga rápida en menos de 30 minutos. El futuro de la movilidad ya tiene forma.</p>
-          <p class="text-xs text-black/30 leading-4 font-smart-sans">Autonomía sujeta a tipo de conducción, condiciones del terreno y condiciones del clima.</p>
-          <a href="<?php echo home_url('/movilidad-electrica/'); ?>" class="self-start h-10 px-5 rounded-full border border-black text-sm font-bold text-neutral-900 flex items-center hover:bg-black hover:text-white transition-colors">Explorá</a>
-        </div>
-      </div>
-
-      <div class="flex flex-col cards-item">
-        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/home/carrusel/4.png" alt="Servicios al cliente" class="w-full aspect-[4/3] object-cover" style="pointer-events:none;" />
-        <div class="flex flex-col flex-1" style="gap:0.75rem;">
-          <h3 class="font-smart-next text-3xl md:text-4xl font-normal text-black leading-tight">Servicios al cliente.</h3>
-          <p class="text-base text-black leading-6 flex-1 font-smart-sans">Respaldo completo en cada kilómetro. Porque smart no termina en la compra.</p>
-          <a href="<?php echo home_url('/servicios/'); ?>" class="self-start h-10 px-5 rounded-full border border-black text-sm font-bold text-neutral-900 flex items-center hover:bg-black hover:text-white transition-colors">Ver servicios</a>
-        </div>
-      </div>
+      <?php endforeach; ?>
 
     </div>
   </section>
@@ -241,9 +225,6 @@
        FORMULARIO DE CONTACTO
   ================================================================ -->
   <?php get_template_part('partials/form-contacto'); ?>
-  <script>
-    setFddOptions('modelo',[['smart1','smart #1'],['smart3','smart #3']]);
-  </script>
 
   <!-- ================================================================
        FOOTER
@@ -436,5 +417,8 @@
     });
   </script>
 <?php wp_footer(); ?>
+<script>
+  setFddOptions('modelo',[['smart1','smart #1'],['smart3','smart #3']]);
+</script>
 </body>
 </html>

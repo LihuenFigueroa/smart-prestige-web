@@ -1,4 +1,9 @@
 <?php /* Template Name: Conectividad */ ?>
+<?php
+$smart_cards_cc1 = smart_get_feature_cards('conectividad_1');
+$smart_cards_cc2 = smart_get_feature_cards('conectividad_2');
+$smart_hero_con   = smart_get_hero('conectividad');
+?>
 <?php get_header(); ?>
 <?php get_template_part('partials/header'); ?>
   <!-- ================================================================
@@ -6,7 +11,7 @@
   ================================================================ -->
   <section class="relative w-full h-screen min-h-[640px] overflow-hidden">
     <div class="absolute inset-0 bg-neutral-800">
-      <img src="<?php echo get_template_directory_uri(); ?>/assets/img/conectividad/hero.jpg" alt="Conectividad smart" class="con-hero-img w-full h-full object-cover" />
+      <img src="<?php echo esc_url($smart_hero_con['desktop']); ?>" alt="Conectividad smart" class="con-hero-img w-full h-full object-cover" />
     </div>
     <div class="absolute top-0 left-0 right-0 pointer-events-none" style="height:170px; z-index:5; background:linear-gradient(to bottom,rgba(20,20,19,0.65) 0%,rgba(20,20,19,0) 100%);"></div>
     <div class="absolute bottom-0 left-0 right-0 pointer-events-none" style="height:261px; z-index:5; background:linear-gradient(to bottom,rgba(0,0,0,0) 0%,rgba(0,0,0,0.85) 100%);"></div>
@@ -58,50 +63,21 @@
     <div class="pb-6" style="overflow:hidden;">
       <div id="track-cc1" class="flex select-none" style="overflow-x:scroll; scrollbar-width:none; -ms-overflow-style:none; padding-left:1.25rem; padding-right:1.25rem; gap:1rem; cursor:grab;">
 
+        <?php foreach ($smart_cards_cc1 as $c): ?>
         <div class="c-card">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/conectividad/c1-1.png" alt="Hello smart App" class="c-card__img" />
+          <img src="<?php echo esc_url($c['imagen']); ?>" alt="<?php echo esc_attr($c['alt']); ?>" class="c-card__img" />
           <div class="c-card__gradient"></div>
           <div class="c-card__body">
             <div class="c-card__text">
-              <p class="c-card__title">Hello smart App</p>
-              <p class="c-card__desc">Controlá tu auto desde tu celular: monitoreá la carga, programá la climatización antes de subir y localizá el vehículo en cualquier momento. Tu smart, siempre conectado a vos.</p>
+              <p class="c-card__title"><?php echo esc_html($c['titulo']); ?></p>
+              <p class="c-card__desc"><?php echo esc_html($c['descripcion']); ?></p>
             </div>
-            <a href="#" style="display:inline-flex; align-items:center; height:32px; padding:0 36px; background:#fff; border:none; border-radius:16px; font-size:11px; font-family:'FOR_smart_Sans','Helvetica Neue',Helvetica,Arial,sans-serif; color:#141413; text-decoration:none; margin-top:10px; white-space:nowrap;">Descargar</a>
+            <?php if (!empty($c['cta_texto'])): ?>
+            <a href="<?php echo esc_url(smart_feature_card_link($c['cta_link'])); ?>" style="display:inline-flex; align-items:center; height:32px; padding:0 36px; background:#fff; border:none; border-radius:16px; font-size:11px; font-family:'FOR_smart_Sans','Helvetica Neue',Helvetica,Arial,sans-serif; color:#141413; text-decoration:none; margin-top:10px; white-space:nowrap;"><?php echo esc_html($c['cta_texto']); ?></a>
+            <?php endif; ?>
           </div>
         </div>
-
-        <div class="c-card">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/conectividad/c1-2.png" alt="Apple CarPlay" class="c-card__img" />
-          <div class="c-card__gradient"></div>
-          <div class="c-card__body">
-            <div class="c-card__text">
-              <p class="c-card__title">Apple CarPlay® y Android Auto® inalámbrico</p>
-              <p class="c-card__desc">Tu smartphone se conecta sin cables. Llamadas, mapas, música y mensajes integrados, sin perder la vista del camino.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="c-card">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/conectividad/c1-3.png" alt="Actualización OTA" class="c-card__img" />
-          <div class="c-card__gradient"></div>
-          <div class="c-card__body">
-            <div class="c-card__text">
-              <p class="c-card__title">Actualización OTA (Over-The-Air)</p>
-              <p class="c-card__desc">El software de tu smart se actualiza de forma remota. Sin ir al taller, sin interrupciones.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="c-card">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/conectividad/c1-4.png" alt="Keyless entry" class="c-card__img" />
-          <div class="c-card__gradient"></div>
-          <div class="c-card__body">
-            <div class="c-card__text">
-              <p class="c-card__title">Keyless entry</p>
-              <p class="c-card__desc">Acercate a tu smart y las puertas se abren. Usar la llave es opcional.</p>
-            </div>
-          </div>
-        </div>
+        <?php endforeach; ?>
 
       </div>
     </div>
@@ -110,49 +86,21 @@
     <div class="pb-6" style="overflow:hidden;">
       <div id="track-cc2" class="flex select-none" style="overflow-x:scroll; scrollbar-width:none; -ms-overflow-style:none; padding-left:1.25rem; padding-right:1.25rem; gap:1rem; cursor:grab;">
 
+        <?php foreach ($smart_cards_cc2 as $c): ?>
         <div class="c-card">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/conectividad/c2-1.png" alt="Asistente de voz" class="c-card__img" />
+          <img src="<?php echo esc_url($c['imagen']); ?>" alt="<?php echo esc_attr($c['alt']); ?>" class="c-card__img" />
           <div class="c-card__gradient"></div>
           <div class="c-card__body">
             <div class="c-card__text">
-              <p class="c-card__title">Asistente de voz</p>
-              <p class="c-card__desc">Controlá la navegación, el clima y los medios sin soltar el volante. El auto responde cuando hablás.</p>
+              <p class="c-card__title"><?php echo esc_html($c['titulo']); ?></p>
+              <p class="c-card__desc"><?php echo esc_html($c['descripcion']); ?></p>
             </div>
+            <?php if (!empty($c['cta_texto'])): ?>
+            <a href="<?php echo esc_url(smart_feature_card_link($c['cta_link'])); ?>" style="display:inline-flex; align-items:center; height:32px; padding:0 36px; background:#fff; border:none; border-radius:16px; font-size:11px; font-family:'FOR_smart_Sans','Helvetica Neue',Helvetica,Arial,sans-serif; color:#141413; text-decoration:none; margin-top:10px; white-space:nowrap;"><?php echo esc_html($c['cta_texto']); ?></a>
+            <?php endif; ?>
           </div>
         </div>
-
-        <div class="c-card">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/conectividad/c2-2.png" alt="Pantalla central 12.8" class="c-card__img" />
-          <div class="c-card__gradient"></div>
-          <div class="c-card__body">
-            <div class="c-card__text">
-              <p class="c-card__title">Pantalla central de 12,8"</p>
-              <p class="c-card__desc">Todo el control del vehículo en una pantalla táctil de alta resolución. Y frente al conductor, una pantalla de instrumentos de 9,2" con información de conducción a simple vista.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="c-card">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/conectividad/c2-3.png" alt="Cuadro de instrumentos digital 9.2" class="c-card__img" />
-          <div class="c-card__gradient"></div>
-          <div class="c-card__body">
-            <div class="c-card__text">
-              <p class="c-card__title">Cuadro de instrumentos digital 9,2"</p>
-              <p class="c-card__desc">El cuadro de instrumentos de 9,2" es un panel de material LCD de alta definición que se usa para mostrar información de conducción, música y otros datos relacionados. Tiene una resolución de 1920x384 píxeles.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="c-card">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/conectividad/c2-4.png" alt="Head Up display 10" class="c-card__img" />
-          <div class="c-card__gradient"></div>
-          <div class="c-card__body">
-            <div class="c-card__text">
-              <p class="c-card__title">Head Up display 10"</p>
-              <p class="c-card__desc">La imagen se proyecta en la luna delantera del vehículo, por lo que el conductor no tiene que bajar la cabeza para obtener la información que necesita, lo cual ofrece una experiencia de conducción más segura.</p>
-            </div>
-          </div>
-        </div>
+        <?php endforeach; ?>
 
       </div>
     </div>

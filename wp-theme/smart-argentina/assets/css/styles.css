@@ -1,0 +1,517 @@
+@font-face {
+  font-family: 'FOR_smart_Sans';
+  src: url('../fonts/FORsmartSans-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'FOR_smart_Sans';
+  src: url('../fonts/FORsmartSans-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'FOR_smart_Next';
+  src: url('../fonts/FORsmartNext-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'FOR_smart_Next';
+  src: url('../fonts/FORsmartNext-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+* { box-sizing: border-box; }
+body { font-family: 'FOR_smart_Next', 'Helvetica Neue', Helvetica, Arial, sans-serif; overflow-x: hidden; margin: 0; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+input::placeholder { color: #9ca3af; opacity: 1; }
+input:focus { outline: none; }
+select:focus { outline: none; }
+select option { color: #111111; }
+
+/* ── Tu auto piensa como vos — carousel indicator ── */
+#tuAutoDots .dot {
+  height: 8px;
+  border-radius: 9999px;
+  background: white;
+  width: 8px;
+  opacity: 0.7;
+  transition: width 0.45s cubic-bezier(0.4,0,0.2,1),
+              opacity 0.45s cubic-bezier(0.4,0,0.2,1);
+}
+#tuAutoDots .dot.active {
+  width: 28px;
+  opacity: 1;
+}
+.font-smart-next { font-family: 'FOR_smart_Next', 'FOR_smart_Sans', sans-serif; }
+.font-smart-sans { font-family: 'FOR_smart_Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+
+/* ── Carrusel con overlay — card y capas ── */
+.c-card {
+  flex-shrink: 0;
+  width: 30vw;
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  will-change: transform;
+  transform: translateZ(0);
+}
+.c-card__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  pointer-events: none;
+  will-change: transform;
+}
+.c-card__gradient {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 55%;
+  background: linear-gradient(to top, rgba(20,20,19,0.85) 0%, rgba(20,20,19,0.5) 50%, rgba(20,20,19,0) 100%);
+  z-index: 2;
+}
+.c-card__body {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.75vw 1.5vw;
+  z-index: 3;
+}
+.c-card__text {
+  max-width: 70%;
+}
+.c-card__title {
+  font-family: 'FOR_smart_Next', sans-serif;
+  font-size: 17.41px;
+  font-weight: 400;
+  line-height: 1.2;
+  color: #fff;
+  margin: 0 0 6px 0;
+  -webkit-font-smoothing: antialiased;
+}
+.c-card__desc {
+  font-family: 'FOR_smart_Sans', sans-serif;
+  font-size: 9.8px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: 0;
+  color: #fff;
+  opacity: 0.85;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Feature cards carousel — ocultar scrollbar nativo ── */
+#cards-track::-webkit-scrollbar { display: none; }
+
+/* ── Características generales — comparison grid ── */
+.comp-header-label { font-family: 'FOR_smart_Sans', sans-serif; font-size: 20px; font-weight: 400; color: #6B747B; line-height: 120%; letter-spacing: -0.01em; margin: 0 0 4px; }
+.comp-header-title { font-family: 'FOR_smart_Sans', sans-serif; font-size: 40px; font-weight: 400; color: #141413; line-height: 90%; margin: 0 0 48px; }
+.comp-divider { border: none; border-top: 0.888px solid #DFE2E5; margin: 0; align-self: center; }
+.comp-model { font-family: 'FOR_smart_Sans', sans-serif; font-size: 12.432px; font-weight: 700; color: #141413; line-height: 140%; margin: 0 0 2px 0; }
+.comp-version { font-family: 'FOR_smart_Sans', sans-serif; font-size: 19.536px; font-weight: 700; color: #141413; letter-spacing: -0.01em; line-height: 120%; margin: 4px 0 0; }
+.comp-range-label { font-family: 'FOR_smart_Sans', sans-serif; font-size: 8.88px; font-weight: 700; color: #6B747B; letter-spacing: -0.01em; line-height: 120%; margin: 0 0 10px; }
+.comp-range-num { font-family: 'FOR_smart_Sans', sans-serif; font-size: 28.8834px; font-weight: 700; color: #000; letter-spacing: -0.01em; line-height: 120%; margin: 0 0 2px; }
+.comp-range-sub { font-family: 'FOR_smart_Sans', sans-serif; font-size: 12.432px; font-weight: 700; color: #6B747B; line-height: 1.2; margin: 0 0 10px; }
+.comp-features { margin: 0; padding-left: 14px; list-style: disc; }
+.comp-features li { font-family: 'FOR_smart_Sans', sans-serif; font-size: 10.5px; font-weight: 400; color: #6B747B; line-height: 120%; letter-spacing: -0.01em; margin-bottom: 4px; }
+.comp-features li:last-child { margin-bottom: 0; }
+.comp-features--bold li { font-weight: 400; }
+
+/* ── Formulario de contacto ── */
+.contacto-title    { font-size: 32px; line-height: 1.2; }
+.contacto-subtitle { color: #141413; line-height: 1.5; }
+
+
+/* ── Elegí tu versión — layout base (desktop) ── */
+#vis-stage    { position: relative; }
+#vis-interior { inset: 0; }
+#vis-top-bar       { display: flex; justify-content: space-between; align-items: flex-end; padding: 52px 60px 12px; }
+#vis-left-content  { max-width: 480px; align-self: flex-start; }
+#elegi-tu-version h2 { font-size: 40px; }
+#vis-btn-row       { display: block; }
+.vis-manual-link   { display: none; }
+#vis-bottom-bar    { padding: 20px 31px 28px; }
+#vis-controls-card { background: #fff; border-radius: 16px; padding: 18px 24px; }
+#vis-btn-ext, #vis-btn-int { height: 36px; padding: 0 20px; font-size: 14px; }
+
+/* ── Hero mobile — smart #1 ── */
+#hero-s1-mobile { display: none; }
+
+/* ── Hero mobile — smart #3 ── */
+#hero-s3-mobile { display: none; }
+
+/* ── Características generales — smart #3 ── */
+#comp-s3-grid       { grid-template-columns: repeat(3, minmax(260px, 1fr)); column-gap: 23px; }
+#comp-s3-grid > img { display: block; }
+#comp-s3-nav        { display: none; }
+#comp-s3-img-track  { display: none; }
+
+/* ── Características generales ── */
+#comp-s1-grid       { grid-template-columns: repeat(4, minmax(260px, 1fr)); column-gap: 23px; }
+#comp-s1-grid > img { display: block; }
+#comp-s1-nav        { display: none; }
+#comp-s1-img-track  { display: none; }
+
+/* ── Quiénes somos — imagen ── */
+#quienes-img { padding: 35px 46px 35px 0; }
+
+/* ── Feature cards (home) — layout base (desktop) ── */
+#cards-track { gap: 1.5rem; cursor: grab; padding-left: 1.25rem; padding-right: 1.25rem; }
+.cards-item  { flex-shrink: 0; width: 30vw; gap: 1rem; }
+
+/* ── Card tag (badge de categoría sobre imagen) ── */
+.c-card__tag {
+  position: absolute;
+  top: 1.4vw;
+  right: 0.85vw;
+  z-index: 10;
+  width: 5.2vw;
+  height: 1.75vw;
+  background: #201F1F;
+  border-radius: 9999px;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-family: 'FOR_smart_Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 0.82vw;
+  font-weight: 400;
+}
+
+/* ── Visualizador de versión — color swatches ── */
+.vis-color-btn { transition: box-shadow 0.2s ease; }
+
+/* ── Navbar — drawer hamburguesa ── */
+#nav-drawer img { filter: brightness(0); }
+
+/* ── Navbar — dropdown Modelos ── */
+#modelos-menu {
+  opacity: 0;
+  transform: translateY(-6px);
+  pointer-events: none;
+  transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+  background: #ffffff;
+  white-space: nowrap;
+}
+#modelos-menu.is-open {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+#modelos-chevron {
+  transition: transform 0.2s ease-out;
+}
+
+/* ── brabus: imagen mobile-only — oculta en desktop ── */
+.brabus-collab-img-mobile { display: none; }
+
+/* ── brabus: gradiente specs mobile-only — oculto en desktop ── */
+.brabus-specs-gradient-mobile { display: none; }
+
+/* ════════════════════════════════════════════════════════════════
+   DESKTOP OVERRIDES  (min-width: 768px)
+   ════════════════════════════════════════════════════════════════ */
+@media (min-width: 768px) {
+  .mob-only { display: none !important; }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   MOBILE OVERRIDES  (max-width: 767px)
+   Todo lo que esté aquí sobreescribe los estilos de arriba
+   únicamente en pantallas mobile.
+   ════════════════════════════════════════════════════════════════ */
+@media (max-width: 767px) {
+
+  /* ── Links deshabilitados en mobile ── */
+  .mob-disabled {
+    opacity: 0.35;
+    pointer-events: none;
+  }
+
+  /* ── Feature cards (home) — layout vertical ── */
+  #cards-track {
+    flex-direction: column;
+    padding-left: 41px;
+    padding-right: 41px;
+    gap: 33px;
+    cursor: default;
+  }
+  .cards-item {
+    width: 100%;
+    gap: 21px;
+  }
+  #cards-track .cards-item img {
+    aspect-ratio: 291.62 / 315.56;
+  }
+  #cards-track .cards-item h3 {
+    font-size: 32px;
+    line-height: 120%;
+    letter-spacing: -0.01em;
+  }
+
+  /* ── Elegí tu versión — layout mobile ── */
+  #vis-switcher { z-index: 20; }
+  #vis-car-back { height: 60vw; }
+  #vis-car-back, #vis-car-front { object-position: center 78%; }
+  #vis-interior { top: -70px; right: 0; bottom: 120px; left: 0; }
+  #vis-top-bar      { flex-direction: column; padding: 2rem 1.75rem 1rem; align-items: flex-start; }
+  #vis-left-content { max-width: 100%; }
+  #elegi-tu-version h2 { font-size: 28px; }
+  #vis-btn-row      { display: flex; justify-content: space-between; align-items: center; margin-top: 0.5rem; }
+  .vis-manual-link  { display: inline; }
+  #vis-switcher     { align-self: flex-end; margin-top: 3rem; }
+  #vis-btn-ext, #vis-btn-int { height: 26px; padding: 0 12px; font-size: 11px; }
+  #vis-bottom-bar   { padding: 0; }
+  #vis-controls-card { background: #fff; border-radius: 0; padding: 1rem 1.25rem 1.5rem; }
+  #vis-manual-link  { display: none; }
+
+  /* ── Hero mobile — smart #1 ── */
+  #hero-s1-mobile { display: block; }
+  #hero-s1        { display: none; }
+
+  /* ── Hero mobile — smart #3 ── */
+  #hero-s3-mobile { display: block; }
+  #hero-s3        { display: none; }
+
+  /* ── Características generales — smart #3 ── */
+  #comp-s3-img-track { display: flex; }
+  #comp-s3-grid { grid-template-columns: repeat(3, calc(100vw - 2.5rem)); column-gap: 0; }
+  #comp-s3-grid > img { display: none; }
+  #comp-s3-container { scroll-snap-type: x mandatory; }
+  #comp-s3-grid > * { scroll-snap-align: start; }
+  #comp-s3-nav { display: flex; }
+
+  /* ── Características generales ── */
+  #comp-s1-img-track { display: flex; }
+  #comp-s1-grid { grid-template-columns: repeat(4, calc(100vw - 2.5rem)); column-gap: 0; }
+  #comp-s1-grid > img { display: none; }
+  #comp-s1-container { scroll-snap-type: x mandatory; }
+  #comp-s1-grid > *  { scroll-snap-align: start; }
+  #comp-s1-nav { display: flex; }
+  .comp-ver-cell > p { display: none; }
+
+  /* ── Formulario de contacto ── */
+  .contacto-title {
+    font-size: 27.5px;
+    line-height: 120%;
+    letter-spacing: -0.01em;
+  }
+  .contacto-subtitle {
+    color: #000000;
+    line-height: 130%;
+    letter-spacing: 0.02em;
+  }
+  #form-contacto input,
+  #form-contacto select,
+  #form-contacto textarea,
+  #form-contacto p {
+    font-size: 16px;
+  }
+  #form-contacto input::placeholder {
+    font-size: 16px;
+  }
+
+  /* ── Quiénes somos — imagen arriba en mobile ── */
+  #quienes-img { order: -1; padding: 0; }
+
+  /* ── Carrusel con overlay — cards ── */
+  .c-card {
+    width: 72vw;
+  }
+  .c-card__body {
+    padding: 3.5vw 3vw;
+  }
+  .c-card__title {
+    font-size: 15px;
+    margin: 0 0 4px 0;
+  }
+  .c-card__desc {
+    font-size: 9px;
+  }
+  .c-card__tag {
+    width: 13vw;
+    height: 4.3vw;
+    font-size: 2vw;
+    top: 3.2vw;
+    right: 2vw;
+  }
+
+  /* ── Comparativa — cabecera ── */
+  .comp-header-label {
+    font-size: 14px;
+  }
+  .comp-header-title {
+    font-size: 28px;
+    margin: 0 0 28px;
+  }
+
+  /* ── Comparativa — columnas ── */
+  .comp-model  { font-size: 10px; }
+  .comp-version { font-size: 15px; }
+  .comp-range-label { font-size: 7px; }
+  .comp-range-num { font-size: 22px; }
+  .comp-range-sub { font-size: 10px; }
+  .comp-features li { font-size: 9px; }
+
+  /* ── brabus: imagen mobile-only post-texto ── */
+  .brabus-collab-img-mobile { display: flex; justify-content: center; }
+
+  /* ── brabus: gradiente specs — visible en mobile ── */
+  .brabus-specs-gradient-mobile { display: block; opacity: 0.45; }
+
+  /* ── brabus: specs group — mobile ── */
+  .brabus-specs-group {
+    left: 34px !important;
+    top: 45px !important;
+    width: 236px !important;
+    height: 204.51px !important;
+  }
+  /* Números */
+  .brabus-specs-group #spec-accel,
+  .brabus-specs-group #spec-range,
+  .brabus-specs-group p[style*="font-size:36px"] {
+    font-size: 21px !important;
+    line-height: 1.2 !important;
+  }
+  /* Labels */
+  .brabus-specs-group p[style*="font-size:13px"] {
+    font-size: 7.4px !important;
+  }
+  /* Grid columns */
+  .brabus-specs-group div[style*="grid-template-columns:112px"] {
+    grid-template-columns: 77px 1fr !important;
+    column-gap: 6px !important;
+  }
+  /* Espaciado entre filas de specs */
+  .brabus-specs-group div[style*="margin-bottom:40px"],
+  .brabus-specs-group div[style*="margin-bottom:30px"] {
+    margin-bottom: 8px !important;
+  }
+  /* Párrafo disclaimer */
+  .brabus-specs-group p[style*="font-size:13.82px"] {
+    font-size: 8px !important;
+    margin-bottom: 11px !important;
+  }
+  /* Botón */
+  .brabus-specs-btn {
+    width: 155px !important;
+    height: 24px !important;
+    font-size: 9px !important;
+  }
+  .brabus-specs-toggle {
+    left: 34px !important;
+    bottom: 40px !important;
+  }
+
+  /* ── brabus: sección "La colaboración" — mobile ── */
+  .brabus-collab-wrap {
+    padding: 24px 37px 24px 37px !important;
+  }
+  .brabus-collab-text-wrap {
+    width: 100% !important;
+    min-height: unset !important;
+  }
+  .brabus-collab-text {
+    font-size: 26px !important;
+  }
+
+}
+
+/* ── Hero canvas: fondo oscuro para evitar parpadeo negro inicial ── */
+#heroCanvas, #brabusCanvas {
+  background: #141413;
+}
+
+
+/* ── Mobile: links deshabilitados (visitas no disponibles) ── */
+@media (max-width: 767px) {
+  a.mob-disabled {
+    opacity: 0.35;
+    pointer-events: none;
+    cursor: default;
+  }
+}
+
+/* ── Banner de cookies ── */
+.cookie-banner {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  background: #141413;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 56px;
+  box-shadow: 0 -4px 24px rgba(0,0,0,0.25);
+  transform: translateY(100%);
+  transition: transform 0.4s cubic-bezier(0.25,0,0,1);
+}
+.cookie-banner.is-visible {
+  transform: translateY(0);
+}
+.cookie-banner__text {
+  flex: 1 1 320px;
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.75);
+}
+.cookie-banner__text a {
+  color: #fff;
+  text-decoration: underline;
+}
+.cookie-banner__actions {
+  display: flex;
+  gap: 12px;
+  flex-shrink: 0;
+}
+.cookie-banner__btn {
+  height: 40px;
+  padding: 0 24px;
+  border-radius: 9999px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.cookie-banner__btn:hover {
+  opacity: 0.85;
+}
+.cookie-banner__btn--accept {
+  background: #fff;
+  color: #141413;
+  border: none;
+}
+.cookie-banner__btn--reject {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.4);
+}
+@media (max-width: 767px) {
+  .cookie-banner {
+    padding: 18px 20px;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .cookie-banner__actions {
+    justify-content: stretch;
+  }
+  .cookie-banner__btn {
+    flex: 1;
+  }
+}

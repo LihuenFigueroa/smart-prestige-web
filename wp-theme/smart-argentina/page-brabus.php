@@ -1,18 +1,37 @@
 <?php /* Template Name: BRABUS */ ?>
+<?php
+$smart_brabus_specs = smart_get_brabus_specs();
+$smart_hero_brabus   = smart_get_hero('brabus');
+?>
 <?php get_header(); ?>
+<?php
+// 'smart-main' recién queda registrado después de wp_head() (wp_enqueue_scripts corre ahí adentro),
+// por eso localizamos acá y no antes de get_header().
+wp_localize_script('smart-main', 'brabusSpecs', $smart_brabus_specs);
+?>
 <?php get_template_part('partials/header'); ?>
   <!-- ================================================================
-       HERO — scroll-pinned video smart x BRABUS
+       HERO — smart x BRABUS
   ================================================================ -->
-  <div id="brabusPin" style="height:calc(100vh + 20000px)">
-  <section class="sticky top-0 relative w-full overflow-hidden" style="height:100vh; height:100dvh; min-height:640px;">
-    <canvas id="brabusCanvas" class="absolute inset-0 w-full h-full" style="z-index:2;"></canvas>
-    <video
-      id="brabusVideo"
-      muted playsinline preload="auto"
-      class="absolute inset-0 w-full h-full object-cover object-center"
-      style="z-index:1; opacity:0; pointer-events:none;"
-    ></video>
+  <style>
+    @media (max-width: 767px) {
+      .brabus-hero-img {
+        content: url('<?php echo esc_url($smart_hero_brabus['mobile']); ?>');
+      }
+    }
+    /* "md:hidden" no está compilado en tailwind.css — se fuerza acá para que
+       los textos mobile/desktop no queden ambos visibles a la vez. */
+    @media (min-width: 768px) {
+      #brabusTextMobile, #brabusTextMid { display: none !important; }
+    }
+    @media (max-width: 767px) {
+      #brabusText, #brabusTextMidDesktop { display: none !important; }
+    }
+  </style>
+  <section class="relative w-full overflow-hidden" style="height:100vh; height:100dvh; min-height:640px; background:#141413;">
+    <?php if (!empty($smart_hero_brabus['desktop'])): ?>
+    <img src="<?php echo esc_url($smart_hero_brabus['desktop']); ?>" alt="smart x BRABUS" class="brabus-hero-img absolute inset-0 w-full h-full object-cover object-center" style="z-index:1;" />
+    <?php endif; ?>
 
     <div class="absolute top-0 left-0 right-0 pointer-events-none" style="height:170px; z-index:5; background:linear-gradient(to bottom,rgba(20,20,19,0.65) 0%,rgba(20,20,19,0.57) 35%,rgba(20,20,19,0) 100%);"></div>
     <div class="absolute bottom-0 left-0 right-0 pointer-events-none" style="height:261px; z-index:5; background:linear-gradient(to bottom,rgba(0,0,0,0) 0%,rgba(0,0,0,0.58) 60%,rgba(0,0,0,0.85) 100%);"></div>
@@ -36,13 +55,13 @@
     </nav>
 
     <!-- Texto mid-video — solo mobile -->
-    <div id="brabusTextMid" class="md:hidden absolute bottom-0 right-0 z-10 pointer-events-none" style="opacity:0; transform:translateY(40px); padding:0 1.5rem 2rem; display:flex; flex-direction:column; align-items:flex-end; gap:6px;">
+    <div id="brabusTextMid" class="md:hidden absolute bottom-0 right-0 z-10 pointer-events-none" style="opacity:1; padding:0 1.5rem 2rem; display:flex; flex-direction:column; align-items:flex-end; gap:6px;">
       <img src="<?php echo get_template_directory_uri(); ?>/assets/img/brabus/inconfundiblemente.svg" alt="Inconfundiblemente" style="display:block;" draggable="false" />
       <img src="<?php echo get_template_directory_uri(); ?>/assets/img/brabus/brabus-label.svg" alt="BRABUS." style="display:block;" draggable="false" />
     </div>
 
     <!-- Texto mid-video — solo desktop: SVG overlay inconfundiblemente + BRABUS -->
-    <div id="brabusTextMidDesktop" class="hidden md:block absolute bottom-0 left-0 right-0 z-10 pointer-events-none" style="opacity:0; transform:translateY(40px);">
+    <div id="brabusTextMidDesktop" class="hidden md:block absolute bottom-0 left-0 z-10 pointer-events-none" style="opacity:1; width:50%;">
       <svg width="100%" height="auto" viewBox="0 0 1440 329" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <rect width="1440" height="209" transform="translate(0 120)" fill="url(#paint0_linear_304_48318)"/>
 <path d="M1024.83 215V212.227H1028.35V190.898H1024.83V188.066H1035.03V190.898H1031.51V212.227H1035.03V215H1024.83ZM1038.01 215V212.324H1040.66V196.934H1038.01V194.258H1043.3L1043.53 197.266C1045.13 195.352 1047.15 193.73 1049.8 193.73C1053.92 193.73 1055.62 195.625 1055.62 202.402V212.324H1058.3V215H1050.11V212.324H1052.56V202.402C1052.56 198.496 1052.05 196.699 1049.1 196.699C1046.64 196.699 1044.98 198.516 1043.73 199.863V212.324H1046.17V215H1038.01ZM1074.89 210.02L1076.79 211.934C1075.24 214.043 1072.88 215.566 1069.44 215.566C1064.19 215.566 1060.83 210.879 1060.83 204.648C1060.83 198.848 1063.86 193.73 1069.23 193.73C1071.65 193.73 1073.46 194.863 1074.38 196.738L1074.56 194.258H1076.57V201.641H1074.25C1074.17 200.82 1073.45 196.504 1069.52 196.504C1065.98 196.504 1063.89 199.805 1063.89 204.648C1063.89 209.492 1066.02 212.793 1069.73 212.793C1071.75 212.793 1073.54 211.816 1074.89 210.02ZM1087.97 196.504C1084.53 196.504 1082.42 199.629 1082.42 204.648C1082.42 209.688 1084.53 212.793 1087.97 212.793C1091.4 212.793 1093.51 209.688 1093.51 204.648C1093.51 199.629 1091.4 196.504 1087.97 196.504ZM1087.97 193.73C1093.16 193.73 1096.58 198.418 1096.58 204.648C1096.58 210.879 1093.16 215.566 1087.97 215.566C1082.75 215.566 1079.35 210.879 1079.35 204.648C1079.35 198.418 1082.75 193.73 1087.97 193.73ZM1099.42 215V212.324H1102.08V196.934H1099.42V194.258H1104.72L1104.95 197.266C1106.55 195.352 1108.56 193.73 1111.22 193.73C1115.34 193.73 1117.04 195.625 1117.04 202.402V212.324H1119.72V215H1111.53V212.324H1113.97V202.402C1113.97 198.496 1113.47 196.699 1110.52 196.699C1108.06 196.699 1106.4 198.516 1105.15 199.863V212.324H1107.59V215H1099.42ZM1122.42 196.934V194.258H1125.45V191.23C1125.45 187.168 1127.6 184.922 1131.33 184.922C1133.18 184.922 1135.35 185.371 1135.6 185.43L1135.17 188.027C1134.39 187.891 1133.2 187.598 1131.27 187.598C1129.47 187.598 1128.51 189.062 1128.51 191.23V194.258H1133.28V196.934H1128.51V212.324H1133.26V215H1122.42V212.324H1125.45V196.934H1122.42ZM1153.27 194.258V212.324H1155.93V215H1150.61L1150.42 211.699C1149.17 213.418 1147.02 215.566 1144.05 215.566C1139.68 215.566 1138.31 212.324 1138.31 207.188V196.934H1135.65V194.258H1141.38V207.383C1141.38 209.629 1141.42 212.793 1144.7 212.793C1146.3 212.793 1147.69 211.875 1148.66 210.957C1149.23 210.43 1149.76 209.805 1150.2 209.102V196.934H1147.47V194.258H1153.27ZM1158.69 215V212.324H1161.35V196.934H1158.69V194.258H1163.98L1164.22 197.266C1165.82 195.352 1167.83 193.73 1170.49 193.73C1174.61 193.73 1176.31 195.625 1176.31 202.402V212.324H1178.98V215H1170.8V212.324H1173.24V202.402C1173.24 198.496 1172.73 196.699 1169.79 196.699C1167.32 196.699 1165.66 198.516 1164.41 199.863V212.324H1166.86V215H1158.69ZM1189.46 193.73C1191.28 193.73 1194.27 194.629 1195.67 197.891V187.891L1191.61 188.125L1191.42 185.43L1198.74 184.922V212.324H1201.42V215H1195.89L1195.67 211.543C1194.5 214.219 1192.41 215.566 1189.4 215.566C1186.36 215.566 1181.57 213.164 1181.57 204.648C1181.57 196.172 1186.28 193.73 1189.46 193.73ZM1190.15 196.504C1187.65 196.504 1184.64 198.516 1184.64 204.648C1184.64 210.977 1187.88 212.793 1190.09 212.793C1192.59 212.793 1195.77 211.074 1195.77 204.648C1195.77 198.75 1192.8 196.504 1190.15 196.504ZM1204.18 215V212.324H1207.34V196.934H1204.18V194.258H1210.41V212.324H1213.56V215H1204.18ZM1210.59 185.488V189.512H1206.88V185.488H1210.59ZM1227.88 193.73C1231.12 193.73 1235.77 195.879 1235.77 204.551C1235.77 213.223 1231.12 215.566 1227.88 215.566C1225.81 215.566 1223.04 214.668 1221.63 211.699L1221.4 215H1215.89V212.324H1218.6V187.793L1215.69 188.027L1215.52 185.43L1221.67 184.922V197.891C1223.12 194.629 1226.03 193.73 1227.88 193.73ZM1227.2 196.504C1224.78 196.504 1221.57 198.32 1221.57 204.551C1221.57 211.113 1224.78 212.793 1227.2 212.793C1229.56 212.793 1232.71 210.859 1232.71 204.551C1232.71 198.281 1229.56 196.504 1227.2 196.504ZM1244.73 212.324H1248.03V215H1238.34V212.324H1241.66V187.793L1238.34 188.047L1238.17 185.469L1244.73 184.922V212.324ZM1265.05 210.02L1266.95 211.973C1265.25 213.984 1262.69 215.566 1259.5 215.566C1252 215.566 1250.36 209.062 1250.36 204.219C1250.36 199.805 1252.24 193.73 1258.94 193.73C1266.11 193.73 1267.06 201.387 1267.06 204.883V205.664H1253.62C1253.68 209.727 1255.83 212.793 1259.64 212.793C1261.5 212.793 1263.49 211.797 1265.05 210.02ZM1258.94 196.504C1254.95 196.504 1253.62 200.098 1253.62 203.066H1263.86C1263.86 200.098 1262.69 196.504 1258.94 196.504ZM1270.16 215V212.324H1272.81V196.934H1270.16V194.258H1275.65L1275.8 196.074C1276.96 194.961 1279.3 193.73 1281.66 193.73C1283.67 193.73 1284.67 194.805 1285.3 195.84C1286.08 195.215 1288.46 193.73 1291.37 193.73C1295.1 193.73 1296.43 196.836 1296.43 199.766V212.324H1298.87V215H1293.36V200.684C1293.36 198.711 1293.15 196.504 1290.72 196.504C1288.81 196.504 1286.43 197.969 1286.06 198.184C1286.27 199.102 1286.27 199.629 1286.27 200.391V212.324H1289.08V215H1283.21V200.391C1283.21 198.477 1282.85 196.504 1280.57 196.504C1279.47 196.504 1278.32 197.012 1277.4 197.5C1276.88 197.793 1276.37 198.105 1275.88 198.477V212.324H1278.71V215H1270.16ZM1316.32 210.02L1318.22 211.973C1316.52 213.984 1313.96 215.566 1310.77 215.566C1303.27 215.566 1301.63 209.062 1301.63 204.219C1301.63 199.805 1303.51 193.73 1310.21 193.73C1317.38 193.73 1318.33 201.387 1318.33 204.883V205.664H1304.9C1304.95 209.727 1307.1 212.793 1310.91 212.793C1312.77 212.793 1314.76 211.797 1316.32 210.02ZM1310.21 196.504C1306.22 196.504 1304.9 200.098 1304.9 203.066H1315.13C1315.13 200.098 1313.96 196.504 1310.21 196.504ZM1321.23 215V212.324H1323.89V196.934H1321.23V194.258H1326.53L1326.76 197.266C1328.36 195.352 1330.37 193.73 1333.03 193.73C1337.15 193.73 1338.85 195.625 1338.85 202.402V212.324H1341.53V215H1333.34V212.324H1335.78V202.402C1335.78 198.496 1335.28 196.699 1332.33 196.699C1329.87 196.699 1328.21 198.516 1326.96 199.863V212.324H1329.4V215H1321.23ZM1345.48 208.379V188.066H1348.55V194.258H1355.48V196.934H1348.55V208.047C1348.55 210.879 1349.19 212.598 1351.46 212.598C1352.53 212.598 1353.51 212.344 1354.27 212.051C1354.7 211.895 1355.11 211.699 1355.48 211.484L1356.2 214.062C1355.68 214.355 1355.11 214.609 1354.54 214.824C1353.55 215.195 1352.26 215.566 1351.01 215.566C1346.26 215.566 1345.48 212.07 1345.48 208.379ZM1372.46 210.02L1374.36 211.973C1372.66 213.984 1370.1 215.566 1366.92 215.566C1359.42 215.566 1357.78 209.062 1357.78 204.219C1357.78 199.805 1359.65 193.73 1366.35 193.73C1373.52 193.73 1374.48 201.387 1374.48 204.883V205.664H1361.04C1361.1 209.727 1363.25 212.793 1367.05 212.793C1368.91 212.793 1370.9 211.797 1372.46 210.02ZM1366.35 196.504C1362.37 196.504 1361.04 200.098 1361.04 203.066H1371.27C1371.27 200.098 1370.1 196.504 1366.35 196.504Z" fill="white"/>
@@ -72,16 +91,15 @@
 
     <!-- Texto final — aparece al terminar el video -->
     <!-- Texto final — desktop -->
-    <div id="brabusText" class="hidden md:block" style="position:absolute; left:0; bottom:0; right:0; opacity:0; pointer-events:none; z-index:20;">
-      <img src="<?php echo get_template_directory_uri(); ?>/assets/img/brabus/bottom-text-desktop.svg" alt="" style="width:100%; display:block; transform:scale(1.14); transform-origin:bottom left;" draggable="false" />
+    <div id="brabusText" class="hidden md:block" style="position:absolute; right:0; bottom:0; width:50%; opacity:1; pointer-events:none; z-index:20;">
+      <img src="<?php echo get_template_directory_uri(); ?>/assets/img/brabus/bottom-text-desktop.svg" alt="" style="width:100%; display:block; transform-origin:bottom right;" draggable="false" />
     </div>
     <!-- Texto final — mobile -->
-    <div id="brabusTextMobile" class="md:hidden" style="position:absolute; left:0; top:0; right:0; opacity:0; pointer-events:none; z-index:20; padding:6rem 2rem 0;">
+    <div id="brabusTextMobile" class="md:hidden" style="position:absolute; left:0; top:0; right:0; opacity:1; pointer-events:none; z-index:20; padding:6rem 2rem 0;">
       <img src="<?php echo get_template_directory_uri(); ?>/assets/img/brabus/final-text-mobile.png" alt="Diseño que no necesita presentación." style="width:100%; display:block;" draggable="false" />
     </div>
 
   </section>
-  </div>
 
   <!-- ================================================================
        STRIP — título smart x BRABUS + descripción
@@ -149,7 +167,7 @@
         <!-- 3,9 seg / 0–100 km/h -->
         <div style="margin-bottom:40px;">
           <p id="spec-accel" class="font-smart-sans"
-             style="font-weight:700; font-size:36px; line-height:1.2; color:#fff; margin:0;">3,9 seg</p>
+             style="font-weight:700; font-size:36px; line-height:1.2; color:#fff; margin:0;"><?php echo esc_html($smart_brabus_specs['1']['aceleracion']); ?></p>
           <p class="font-smart-sans"
              style="font-weight:400; font-size:13px; color:#fff; margin:0;">0 – 100 km/h</p>
         </div>
@@ -157,14 +175,14 @@
         <!-- 66kWh + AWD -->
         <div style="display:grid; grid-template-columns:112px 1fr; column-gap:31px; margin-bottom:40px;">
           <div>
-            <p class="font-smart-sans"
-               style="font-weight:700; font-size:36px; line-height:1.2; color:#fff; margin:0;">66kWh</p>
+            <p id="spec-bateria" class="font-smart-sans"
+               style="font-weight:700; font-size:36px; line-height:1.2; color:#fff; margin:0;"><?php echo esc_html($smart_brabus_specs['1']['bateria']); ?></p>
             <p class="font-smart-sans"
                style="font-weight:400; font-size:13px; color:#fff; margin:0;">Batería</p>
           </div>
           <div>
-            <p class="font-smart-sans"
-               style="font-weight:700; font-size:36px; line-height:1.2; color:#fff; margin:0;">AWD</p>
+            <p id="spec-traccion" class="font-smart-sans"
+               style="font-weight:700; font-size:36px; line-height:1.2; color:#fff; margin:0;"><?php echo esc_html($smart_brabus_specs['1']['traccion']); ?></p>
             <p class="font-smart-sans"
                style="font-weight:400; font-size:13px; color:#fff; margin:0;">Tracción</p>
           </div>
@@ -174,13 +192,13 @@
         <div style="display:grid; grid-template-columns:112px 1fr; column-gap:31px; margin-bottom:30px;">
           <div>
             <p id="spec-range" class="font-smart-sans"
-               style="font-weight:700; font-size:36px; line-height:1.2; color:#fff; margin:0;">400km</p>
+               style="font-weight:700; font-size:36px; line-height:1.2; color:#fff; margin:0;"><?php echo esc_html($smart_brabus_specs['1']['autonomia']); ?></p>
             <p class="font-smart-sans"
                style="font-weight:400; font-size:13px; color:#fff; margin:0;">Autonomía</p>
           </div>
           <div>
-            <p class="font-smart-sans"
-               style="font-weight:700; font-size:36px; line-height:1.2; color:#fff; margin:0;">428CV</p>
+            <p id="spec-potencia" class="font-smart-sans"
+               style="font-weight:700; font-size:36px; line-height:1.2; color:#fff; margin:0;"><?php echo esc_html($smart_brabus_specs['1']['potencia']); ?></p>
             <p class="font-smart-sans"
                style="font-weight:400; font-size:13px; color:#fff; margin:0;">Potencia</p>
           </div>

@@ -1,10 +1,18 @@
 <?php /* Template Name: Sobre Smart */ ?>
+<?php
+$smart_cards_sobre    = smart_get_feature_cards('sobre_smart');
+$smart_historia_bloque = smart_get_contenido('historia_institucional');
+$smart_historia        = $smart_historia_bloque[0]['contenido'] ?? '';
+$smart_hero_sobre      = smart_get_hero('sobre_smart');
+?>
 <?php get_header(); ?>
 <?php get_template_part('partials/header'); ?>
   <style>
+    .sobre-scroll p { color:#fff; font-family:'FOR_smart_Sans','Helvetica Neue',Helvetica,Arial,sans-serif; font-size:21px; line-height:140%; margin:0 0 1.25rem; }
+    .sobre-scroll p:last-child { margin-bottom:0; }
     @media (max-width: 767px) {
       .sobre-hero-img {
-        content: url('<?php echo get_template_directory_uri(); ?>/assets/img/sobre-smart/hero-mobile.png');
+        content: url('<?php echo esc_url($smart_hero_sobre['mobile']); ?>');
         object-position: center center !important;
       }
       .sobre-hero-text-wrap {
@@ -92,7 +100,7 @@
   ================================================================ -->
   <section class="relative w-full h-screen min-h-[640px] overflow-hidden">
     <div class="absolute inset-0 bg-neutral-800">
-      <img src="<?php echo get_template_directory_uri(); ?>/assets/img/sobre-smart/hero.jpg" alt="Sobre smart" class="sobre-hero-img w-full h-full object-cover" />
+      <img src="<?php echo esc_url($smart_hero_sobre['desktop']); ?>" alt="Sobre smart" class="sobre-hero-img w-full h-full object-cover" />
     </div>
     <div class="absolute top-0 left-0 right-0 pointer-events-none" style="height:170px; z-index:5; background:linear-gradient(to bottom,rgba(20,20,19,0.65) 0%,rgba(20,20,19,0) 100%);"></div>
     <div class="absolute bottom-0 left-0 right-0 pointer-events-none" style="height:261px; z-index:5; background:linear-gradient(to bottom,rgba(0,0,0,0) 0%,rgba(0,0,0,0.85) 100%);"></div>
@@ -147,18 +155,7 @@
 
           <!-- Texto con scroll interno -->
           <div class="sobre-scroll overflow-y-auto pr-3" style="width:100%; height:432px;">
-            <p class="text-white font-smart-sans mb-5" style="font-size:21px; line-height:140%;">
-              Desde la fundación de la marca en la década de 1990, smart se ha mantenido comprometida con su visión de explorar las mejores soluciones para la movilidad urbana del futuro.
-            </p>
-            <p class="text-white font-smart-sans mb-5" style="font-size:21px; line-height:140%;">
-              En 2019, Mercedes-Benz AG y Zhejiang Geely Holding Group establecieron el joint venture global de smart. Desde entonces, smart ha renovado exitosamente su marca, sus productos y su modelo de negocio, evolucionando hasta convertirse en una distintiva marca premium contemporánea de vehículos eléctricos. Actualmente, cuenta con una gama de productos en expansión y presencia global en más de 40 países y regiones.
-            </p>
-            <p class="text-white font-smart-sans mb-5" style="font-size:21px; line-height:140%;">
-              Prestige Auto es el representante oficial de Mercedes-Benz (Autos y Vans) y de smart en Argentina. Lidera las operaciones de importación, distribución, ventas y posventa de estos vehículos en el país. Con una red de concesionarios en las principales ciudades, acompaña a cada cliente en cada etapa de su experiencia con la marca.
-            </p>
-            <p class="text-white font-smart-sans" style="font-size:21px; line-height:140%;">
-              Nuestro compromiso es acercar la movilidad eléctrica premium a Argentina, con el respaldo de una marca global y el servicio de un equipo local dedicado a brindar la mejor experiencia de compra y posventa.
-            </p>
+            <?php echo $smart_historia; ?>
           </div>
 
           <!-- Botón -->
@@ -199,35 +196,17 @@
       <div id="sobre-carousel-viewport" class="flex-1 min-w-0 flex items-center" style="padding-top:69px; padding-bottom:63px; overflow:hidden;">
         <div id="track-sobre-carousel" class="flex select-none" style="gap:19px; height:561.42px; will-change:transform;">
 
+          <?php foreach ($smart_cards_sobre as $c): ?>
           <div class="flex-shrink-0 flex flex-col" style="width:292.38px; height:561.42px;">
             <div style="height:363.01px; flex-shrink:0; overflow:hidden;">
-              <img src="<?php echo get_template_directory_uri(); ?>/assets/img/sobre-smart/carousel-1.jpg" alt="" class="w-full h-full object-cover" draggable="false" />
+              <img src="<?php echo esc_url($c['imagen']); ?>" alt="<?php echo esc_attr($c['alt']); ?>" class="w-full h-full object-cover" draggable="false" />
             </div>
             <div style="padding-top:20.8px; flex:1;">
-              <h3 class="font-smart-sans font-normal" style="font-size:32.5px; line-height:120%; letter-spacing:-0.02em; color:#000000; margin-bottom:9.6px;">Diseño que tiene firma propia.</h3>
-              <p class="font-smart-sans font-normal" style="font-size:13px; line-height:140%; color:#000000;">Cada modelo smart es reconocible a primera vista. El modelo ideado por Mercedes–Benz tiene líneas fluidas, proporciones equilibradas y detalles que hablan de un ADN de marca consistente a lo largo del tiempo.</p>
+              <h3 class="font-smart-sans font-normal" style="font-size:32.5px; line-height:120%; letter-spacing:-0.02em; color:#000000; margin-bottom:9.6px;"><?php echo esc_html($c['titulo']); ?></h3>
+              <p class="font-smart-sans font-normal" style="font-size:13px; line-height:140%; color:#000000;"><?php echo esc_html($c['descripcion']); ?></p>
             </div>
           </div>
-
-          <div class="flex-shrink-0 flex flex-col" style="width:292.38px; height:561.42px;">
-            <div style="height:363.01px; flex-shrink:0; overflow:hidden;">
-              <img src="<?php echo get_template_directory_uri(); ?>/assets/img/sobre-smart/carousel-2.jpg" alt="" class="w-full h-full object-cover" draggable="false" />
-            </div>
-            <div style="padding-top:20.8px; flex:1;">
-              <h3 class="font-smart-sans font-normal" style="font-size:32.5px; line-height:120%; letter-spacing:-0.02em; color:#000000; margin-bottom:9.6px;">100% eléctrico.</h3>
-              <p class="font-smart-sans font-normal" style="font-size:13px; line-height:140%; color:#000000;">La alianza con la preparadora alemana BRABUS le dió a smart una versión de alto rendimiento que no resigna nada del ADN eléctrico de la marca.</p>
-            </div>
-          </div>
-
-          <div class="flex-shrink-0 flex flex-col" style="width:292.38px; height:561.42px;">
-            <div style="height:363.01px; flex-shrink:0; overflow:hidden;">
-              <img src="<?php echo get_template_directory_uri(); ?>/assets/img/sobre-smart/carousel-3.jpg" alt="" class="w-full h-full object-cover" draggable="false" />
-            </div>
-            <div style="padding-top:20.8px; flex:1;">
-              <h3 class="font-smart-sans font-normal" style="font-size:32.5px; line-height:120%; letter-spacing:-0.02em; color:#000000; margin-bottom:9.6px;">La colaboración BRABUS.</h3>
-              <p class="font-smart-sans font-normal" style="font-size:13px; line-height:140%; color:#000000;">La alianza con la preparadora alemana BRABUS le dió a smart una versión de alto rendimiento que no resigna nada del ADN eléctrico de la marca.</p>
-            </div>
-          </div>
+          <?php endforeach; ?>
 
         </div>
       </div>
