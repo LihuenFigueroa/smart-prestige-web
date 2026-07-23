@@ -258,7 +258,7 @@ add_action('acf/init', function () {
       ['key' => 'field_ver_modelo', 'label' => 'Modelo', 'name' => 'modelo', 'type' => 'select', 'choices' => ['smart1' => 'smart #1', 'smart3' => 'smart #3'], 'required' => 1],
       ['key' => 'field_ver_orden', 'label' => 'Orden (columna)', 'name' => 'orden', 'type' => 'number', 'required' => 1, 'instructions' => '0 = primera columna (izquierda).'],
       ['key' => 'field_ver_nombre', 'label' => 'Nombre de la versión', 'name' => 'nombre_version', 'type' => 'text', 'required' => 1, 'instructions' => 'Ej: Pure, Pro, Pro+, BRABUS.'],
-      ['key' => 'field_ver_imagen', 'label' => 'Imagen', 'name' => 'imagen', 'type' => 'text', 'required' => 1, 'instructions' => 'Ruta relativa dentro de assets/img/ (ej: smart1/comp-pure.png). Para cambiar la foto hay que reemplazar ese archivo en el servidor.'],
+      ['key' => 'field_ver_imagen', 'label' => 'Imagen', 'name' => 'imagen', 'type' => 'image', 'required' => 1, 'return_format' => 'url', 'preview_size' => 'medium'],
       ['key' => 'field_ver_destacado', 'label' => 'Destacado (versión tope de gama)', 'name' => 'destacado', 'type' => 'true_false', 'instructions' => 'Aplica el estilo en negrita de la columna BRABUS.'],
       ['key' => 'field_ver_autonomia_mixta', 'label' => 'Autonomía WLTP ciclo mixto', 'name' => 'autonomia_mixta', 'type' => 'text', 'required' => 1],
       ['key' => 'field_ver_autonomia_ciudad', 'label' => 'Autonomía WLTP ciudad', 'name' => 'autonomia_ciudad', 'type' => 'text', 'required' => 1],
@@ -449,7 +449,7 @@ function smart_get_versiones($modelo) {
       $items[] = [
         'orden'            => (int) get_field('orden', $id),
         'nombre_version'   => (string) get_field('nombre_version', $id),
-        'imagen'           => get_template_directory_uri() . '/assets/img/' . ltrim((string) get_field('imagen', $id), '/'),
+        'imagen'           => (string) get_field('imagen', $id),
         'destacado'        => (bool) get_field('destacado', $id),
         'autonomia_mixta'  => (string) get_field('autonomia_mixta', $id),
         'autonomia_ciudad' => (string) get_field('autonomia_ciudad', $id),
@@ -566,7 +566,7 @@ add_action('acf/init', function () {
       ['key' => 'field_fc_orden', 'label' => 'Orden', 'name' => 'orden', 'type' => 'number', 'required' => 1, 'instructions' => '0 = primera tarjeta.'],
       ['key' => 'field_fc_titulo', 'label' => 'Título', 'name' => 'titulo', 'type' => 'text', 'required' => 1],
       ['key' => 'field_fc_descripcion', 'label' => 'Descripción', 'name' => 'descripcion', 'type' => 'textarea', 'rows' => 3, 'required' => 1],
-      ['key' => 'field_fc_imagen', 'label' => 'Imagen', 'name' => 'imagen', 'type' => 'text', 'required' => 1, 'instructions' => 'Ruta relativa dentro de assets/img/ (ej: home/carrusel/1.jpg). Para cambiar la foto hay que reemplazar ese archivo en el servidor.'],
+      ['key' => 'field_fc_imagen', 'label' => 'Imagen', 'name' => 'imagen', 'type' => 'image', 'required' => 1, 'return_format' => 'url', 'preview_size' => 'medium'],
       ['key' => 'field_fc_alt', 'label' => 'Texto alternativo (alt)', 'name' => 'alt', 'type' => 'text', 'instructions' => 'Opcional. Si se deja vacío se usa el título.'],
       ['key' => 'field_fc_disclaimer', 'label' => 'Disclaimer (opcional)', 'name' => 'disclaimer', 'type' => 'text', 'instructions' => 'Texto chico debajo de la descripción. Dejar vacío si la tarjeta no lleva.'],
       ['key' => 'field_fc_cta_texto', 'label' => 'Texto del botón (opcional)', 'name' => 'cta_texto', 'type' => 'text', 'instructions' => 'Dejar vacío si la tarjeta no lleva botón.'],
@@ -715,7 +715,7 @@ function smart_get_feature_cards($seccion) {
         'orden'       => (int) get_field('orden', $id),
         'titulo'      => $titulo,
         'descripcion' => (string) get_field('descripcion', $id),
-        'imagen'      => get_template_directory_uri() . '/assets/img/' . ltrim((string) get_field('imagen', $id), '/'),
+        'imagen'      => (string) get_field('imagen', $id),
         'alt'         => $alt !== '' ? $alt : $titulo,
         'disclaimer'  => (string) get_field('disclaimer', $id),
         'cta_texto'   => (string) get_field('cta_texto', $id),
@@ -1034,6 +1034,189 @@ function smart_get_contenido($clave) {
   usort($items, function ($a, $b) { return $a['orden'] <=> $b['orden']; });
 
   return $cache[$clave] = $items;
+}
+
+// ── Helper: importar un archivo del theme como adjunto de la Biblioteca de Medios ─
+function smart_import_attachment_from_theme_path($ruta_relativa, $titulo = '') {
+  $ruta_relativa = ltrim((string) $ruta_relativa, '/');
+  if ($ruta_relativa === '') return 0;
+
+  $existente = get_posts([
+    'post_type'      => 'attachment',
+    'posts_per_page' => 1,
+    'meta_key'       => '_smart_ruta_original',
+    'meta_value'     => $ruta_relativa,
+    'fields'         => 'ids',
+  ]);
+  if (!empty($existente)) return (int) $existente[0];
+
+  $archivo_origen = get_template_directory() . '/assets/img/' . $ruta_relativa;
+  if (!file_exists($archivo_origen)) return 0;
+
+  $contenido = file_get_contents($archivo_origen);
+  $nombre    = basename($ruta_relativa);
+  $subido    = wp_upload_bits($nombre, null, $contenido);
+  if (!empty($subido['error'])) return 0;
+
+  $tipo          = wp_check_filetype($subido['file'], null);
+  $attachment_id = wp_insert_attachment([
+    'post_mime_type' => $tipo['type'],
+    'post_title'      => $titulo !== '' ? $titulo : preg_replace('/\.[^.]+$/', '', $nombre),
+    'post_status'     => 'inherit',
+  ], $subido['file']);
+  if (is_wp_error($attachment_id) || !$attachment_id) return 0;
+
+  if (!function_exists('wp_generate_attachment_metadata')) require_once ABSPATH . 'wp-admin/includes/image.php';
+  $metadata = wp_generate_attachment_metadata($attachment_id, $subido['file']);
+  wp_update_attachment_metadata($attachment_id, $metadata);
+  update_post_meta($attachment_id, '_smart_ruta_original', $ruta_relativa);
+
+  return $attachment_id;
+}
+
+// ── Migración one-time: convertir las imágenes de versión/tarjeta de ruta a adjunto real ─
+add_action('init', function () {
+  if (get_option('smart_imagenes_migradas_v1') === 'si') return;
+  if (!function_exists('update_field')) return;
+
+  update_option('smart_imagenes_migradas_v1', 'si');
+
+  foreach (['version_vehiculo', 'feature_card'] as $post_type) {
+    $q = new WP_Query(['post_type' => $post_type, 'posts_per_page' => -1, 'no_found_rows' => true]);
+    if (!$q->have_posts()) continue;
+
+    foreach ($q->posts as $post) {
+      $id           = $post->ID;
+      $valor_actual = get_post_meta($id, 'imagen', true);
+      if (!is_string($valor_actual) || $valor_actual === '' || is_numeric($valor_actual)) continue;
+
+      $attachment_id = smart_import_attachment_from_theme_path($valor_actual, get_the_title($id));
+      if ($attachment_id) {
+        update_field('imagen', $attachment_id, $id);
+      }
+    }
+  }
+}, 30);
+
+// ── CPT "Hero de página" ─────────────────────────────────────────────────────
+add_action('init', function () {
+  register_post_type('hero_pagina', [
+    'labels' => [
+      'name'          => 'Heroes de página',
+      'singular_name' => 'Hero',
+      'add_new_item'  => 'Agregar hero',
+      'edit_item'     => 'Editar hero',
+      'all_items'     => 'Heroes de página',
+      'search_items'  => 'Buscar hero',
+      'not_found'     => 'No se encontraron heroes',
+    ],
+    'public'          => false,
+    'show_ui'         => true,
+    'show_in_menu'    => true,
+    'menu_icon'       => 'dashicons-format-image',
+    'supports'        => ['title'],
+    'has_archive'     => false,
+    'rewrite'         => false,
+    'capability_type' => 'post',
+  ]);
+});
+
+// ── Campos ACF: hero de página ───────────────────────────────────────────────
+add_action('acf/init', function () {
+  if (!function_exists('acf_add_local_field_group')) return;
+
+  acf_add_local_field_group([
+    'key'      => 'group_hero_pagina',
+    'title'    => 'Datos del hero',
+    'fields'   => [
+      [
+        'key'      => 'field_hero_pagina',
+        'label'    => 'Página',
+        'name'     => 'pagina',
+        'type'     => 'select',
+        'required' => 1,
+        'choices'  => [
+          'home'                => 'Home',
+          'smart1'              => 'smart #1',
+          'smart3'              => 'smart #3',
+          'brabus'              => 'smart x BRABUS',
+          'conectividad'        => 'Conectividad',
+          'servicios'           => 'Servicios al cliente',
+          'movilidad_electrica' => 'Movilidad eléctrica',
+          'sobre_smart'         => 'Sobre smart',
+          'buscador'            => 'Buscador de concesionarios',
+        ],
+      ],
+      ['key' => 'field_hero_desktop', 'label' => 'Imagen desktop', 'name' => 'hero_desktop', 'type' => 'image', 'return_format' => 'url', 'preview_size' => 'medium'],
+      ['key' => 'field_hero_mobile', 'label' => 'Imagen mobile', 'name' => 'hero_mobile', 'type' => 'image', 'return_format' => 'url', 'preview_size' => 'medium', 'instructions' => 'Opcional. Si se deja vacío se usa la imagen desktop también en mobile.'],
+    ],
+    'location' => [
+      [['param' => 'post_type', 'operator' => '==', 'value' => 'hero_pagina']],
+    ],
+  ]);
+});
+
+// ── Migración one-time: heroes de página ─────────────────────────────────────
+add_action('init', function () {
+  if (get_option('smart_heroes_migrados') === 'si') return;
+  if (!function_exists('update_field')) return;
+
+  update_option('smart_heroes_migrados', 'si');
+
+  $heroes = [
+    ['slug' => 'hero-home',                 'pagina' => 'home',                'titulo' => 'Home',                       'desktop' => '',                             'mobile' => ''],
+    ['slug' => 'hero-smart1',               'pagina' => 'smart1',              'titulo' => 'smart #1',                   'desktop' => 'smart1/hero.png',              'mobile' => 'smart1/hero-mobile.png'],
+    ['slug' => 'hero-smart3',               'pagina' => 'smart3',              'titulo' => 'smart #3',                   'desktop' => 'smart3/hero.jpg',              'mobile' => 'smart3/hero-mobile.png'],
+    ['slug' => 'hero-brabus',               'pagina' => 'brabus',              'titulo' => 'smart x BRABUS',             'desktop' => '',                             'mobile' => ''],
+    ['slug' => 'hero-conectividad',         'pagina' => 'conectividad',        'titulo' => 'Conectividad',               'desktop' => 'conectividad/hero.jpg',        'mobile' => ''],
+    ['slug' => 'hero-servicios',            'pagina' => 'servicios',           'titulo' => 'Servicios al cliente',       'desktop' => 'servicios/hero.jpg',           'mobile' => ''],
+    ['slug' => 'hero-movilidad-electrica',  'pagina' => 'movilidad_electrica', 'titulo' => 'Movilidad eléctrica',        'desktop' => 'movilidad/hero.jpg',           'mobile' => 'movilidad/hero-mobile.png'],
+    ['slug' => 'hero-sobre-smart',          'pagina' => 'sobre_smart',         'titulo' => 'Sobre smart',                'desktop' => 'sobre-smart/hero.jpg',         'mobile' => 'sobre-smart/hero-mobile.png'],
+    ['slug' => 'hero-buscador',             'pagina' => 'buscador',            'titulo' => 'Buscador de concesionarios', 'desktop' => 'buscador/hero.jpg',            'mobile' => 'buscador/hero-mobile.png'],
+  ];
+
+  foreach ($heroes as $h) {
+    if (get_page_by_path($h['slug'], OBJECT, 'hero_pagina')) continue;
+
+    $post_id = wp_insert_post([
+      'post_type'   => 'hero_pagina',
+      'post_title'  => $h['titulo'],
+      'post_name'   => $h['slug'],
+      'post_status' => 'publish',
+    ]);
+    if (is_wp_error($post_id) || !$post_id) continue;
+
+    update_field('pagina', $h['pagina'], $post_id);
+
+    if ($h['desktop'] !== '') {
+      $attachment_id = smart_import_attachment_from_theme_path($h['desktop'], $h['titulo'] . ' — desktop');
+      if ($attachment_id) update_field('hero_desktop', $attachment_id, $post_id);
+    }
+    if ($h['mobile'] !== '') {
+      $attachment_id = smart_import_attachment_from_theme_path($h['mobile'], $h['titulo'] . ' — mobile');
+      if ($attachment_id) update_field('hero_mobile', $attachment_id, $post_id);
+    }
+  }
+}, 30);
+
+// ── Helper: hero de página (usado por todos los templates con hero) ────────
+function smart_get_hero($pagina) {
+  static $cache = [];
+  if (isset($cache[$pagina])) return $cache[$pagina];
+
+  $vacio = ['desktop' => '', 'mobile' => ''];
+  if (!function_exists('get_field')) return $cache[$pagina] = $vacio;
+
+  $post = get_page_by_path('hero-' . str_replace('_', '-', $pagina), OBJECT, 'hero_pagina');
+  if (!$post) return $cache[$pagina] = $vacio;
+
+  $desktop = (string) get_field('hero_desktop', $post->ID);
+  $mobile  = (string) get_field('hero_mobile', $post->ID);
+
+  return $cache[$pagina] = [
+    'desktop' => $desktop,
+    'mobile'  => $mobile !== '' ? $mobile : $desktop,
+  ];
 }
 
 // ── Formulario de contacto — envío de mail vía wp_mail() (WP Mail SMTP) ────

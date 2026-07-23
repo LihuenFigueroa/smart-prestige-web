@@ -1,19 +1,24 @@
 <?php /* Template Name: Home */ ?>
-<?php $smart_cards_home = smart_get_feature_cards('home'); ?>
+<?php
+$smart_cards_home = smart_get_feature_cards('home');
+$smart_hero_home  = smart_get_hero('home');
+?>
 <?php get_header(); ?>
 <?php get_template_part('partials/header'); ?>
   <!-- ================================================================
-       HERO + NAV  (scroll-pinned video)
+       HERO
   ================================================================ -->
-  <div id="heroPin">
-  <section class="sticky top-0 relative w-full overflow-hidden" style="height:100vh; height:100dvh; min-height:640px; background:#141413;">
-    <canvas id="heroCanvas" class="absolute inset-0 w-full h-full" style="z-index:2;"></canvas>
-    <video
-      id="heroVideo"
-      muted playsinline preload="auto"
-      class="absolute inset-0 w-full h-full object-cover object-center"
-      style="z-index:1; opacity:0; pointer-events:none;"
-    ></video>
+  <style>
+    @media (max-width: 767px) {
+      .home-hero-img {
+        content: url('<?php echo esc_url($smart_hero_home['mobile']); ?>');
+      }
+    }
+  </style>
+  <section class="relative w-full overflow-hidden" style="height:100vh; height:100dvh; min-height:640px; background:#141413;">
+    <?php if (!empty($smart_hero_home['desktop'])): ?>
+    <img src="<?php echo esc_url($smart_hero_home['desktop']); ?>" alt="smart" class="home-hero-img absolute inset-0 w-full h-full object-cover object-center" />
+    <?php endif; ?>
 
     <div class="absolute top-0 left-0 right-0 pointer-events-none" style="height:170px; z-index:5; background: linear-gradient(to bottom, rgba(20,20,19,0.65) 0%, rgba(20,20,19,0.57) 35%, rgba(20,20,19,0) 100%);"></div>
     <div class="absolute bottom-0 left-0 right-0 pointer-events-none" style="height:261px; z-index:5; background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.58) 60%, rgba(0,0,0,0.85) 100%);"></div>
@@ -59,7 +64,6 @@
       </div>
     </div>
   </section>
-  </div>
 
   <!-- ================================================================
        ELEGÍ TU SMART

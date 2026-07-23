@@ -1,6 +1,7 @@
 <?php /* Template Name: Buscador */ ?>
 <?php
 $smart_concesionarios = smart_get_concesionarios();
+$smart_hero_buscador  = smart_get_hero('buscador');
 
 wp_register_script('smart-buscador-data', '');
 wp_enqueue_script('smart-buscador-data');
@@ -23,7 +24,7 @@ wp_localize_script('smart-buscador-data', 'smartConcesionarios', array_map(funct
     .bus-hero-label { font-size: 18px; line-height: 1.5; margin-bottom: 16px; }
     @media (max-width: 767px) {
       .bus-hero-img {
-        content: url('<?php echo get_template_directory_uri(); ?>/assets/img/buscador/hero-mobile.png');
+        content: url('<?php echo esc_url($smart_hero_buscador['mobile']); ?>');
         object-position: center center !important;
       }
       .bus-hero-wrap {
@@ -101,7 +102,7 @@ wp_localize_script('smart-buscador-data', 'smartConcesionarios', array_map(funct
   ================================================================ -->
   <section class="relative w-full h-screen min-h-[640px] overflow-hidden">
     <div class="absolute inset-0 bg-neutral-800">
-      <img src="<?php echo get_template_directory_uri(); ?>/assets/img/buscador/hero.jpg" alt="Buscador de concesionarios" class="bus-hero-img w-full h-full object-cover" style="object-position:center top;" />
+      <img src="<?php echo esc_url($smart_hero_buscador['desktop']); ?>" alt="Buscador de concesionarios" class="bus-hero-img w-full h-full object-cover" style="object-position:center top;" />
     </div>
     <div class="absolute top-0 left-0 right-0 pointer-events-none" style="height:170px; z-index:5; background:linear-gradient(to bottom,rgba(20,20,19,0.65) 0%,rgba(20,20,19,0) 100%);"></div>
     <div class="absolute bottom-0 left-0 right-0 pointer-events-none" style="height:261px; z-index:5; background:linear-gradient(to bottom,rgba(0,0,0,0) 0%,rgba(0,0,0,0.85) 100%);"></div>

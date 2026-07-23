@@ -1,11 +1,14 @@
 <?php /* Template Name: Movilidad Eléctrica */ ?>
-<?php $smart_cards_movilidad = smart_get_feature_cards('movilidad_electrica'); ?>
+<?php
+$smart_cards_movilidad = smart_get_feature_cards('movilidad_electrica');
+$smart_hero_movilidad  = smart_get_hero('movilidad_electrica');
+?>
 <?php get_header(); ?>
 <?php get_template_part('partials/header'); ?>
   <style>
     @media (max-width: 767px) {
       .mov-hero-img {
-        content: url('<?php echo get_template_directory_uri(); ?>/assets/img/movilidad/hero-mobile.png');
+        content: url('<?php echo esc_url($smart_hero_movilidad['mobile']); ?>');
         object-position: center center !important;
       }
       .mov-hero-text-wrap {
@@ -73,7 +76,7 @@
   ================================================================ -->
   <section class="relative w-full h-screen min-h-[640px] overflow-hidden">
     <div class="absolute inset-0 bg-neutral-800">
-      <img src="<?php echo get_template_directory_uri(); ?>/assets/img/movilidad/hero.jpg" alt="Movilidad eléctrica" class="mov-hero-img w-full h-full object-cover" style="object-position: center center;" />
+      <img src="<?php echo esc_url($smart_hero_movilidad['desktop']); ?>" alt="Movilidad eléctrica" class="mov-hero-img w-full h-full object-cover" style="object-position: center center;" />
     </div>
     <div class="absolute top-0 left-0 right-0 pointer-events-none" style="height:170px; z-index:5; background:linear-gradient(to bottom,rgba(20,20,19,0.65) 0%,rgba(20,20,19,0) 100%);"></div>
     <div class="absolute bottom-0 left-0 right-0 pointer-events-none" style="height:261px; z-index:5; background:linear-gradient(to bottom,rgba(0,0,0,0) 0%,rgba(0,0,0,0.85) 100%);"></div>

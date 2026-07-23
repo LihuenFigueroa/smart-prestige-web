@@ -1,5 +1,8 @@
 <?php /* Template Name: Servicios */ ?>
-<?php $smart_acordeon_servicios = smart_get_servicio_acordeon(); ?>
+<?php
+$smart_acordeon_servicios = smart_get_servicio_acordeon();
+$smart_hero_servicios     = smart_get_hero('servicios');
+?>
 <?php get_header(); ?>
 <?php get_template_part('partials/header'); ?>
   <!-- ================================================================
@@ -7,7 +10,7 @@
   ================================================================ -->
   <section class="relative w-full h-screen min-h-[640px] overflow-hidden">
     <div class="absolute inset-0 bg-neutral-700">
-      <img src="<?php echo get_template_directory_uri(); ?>/assets/img/servicios/hero.jpg" alt="Servicios al cliente" class="servicios-hero-img w-full h-full object-cover" style="object-position: center 85%;" />
+      <img src="<?php echo esc_url($smart_hero_servicios['desktop']); ?>" alt="Servicios al cliente" class="servicios-hero-img w-full h-full object-cover" style="object-position: center 85%;" />
     </div>
     <div class="absolute top-0 left-0 right-0 pointer-events-none" style="height:170px; z-index:5; background:linear-gradient(to bottom,rgba(20,20,19,0.65) 0%,rgba(20,20,19,0) 100%);"></div>
     <div class="absolute bottom-0 left-0 right-0 pointer-events-none" style="height:261px; z-index:5; background:linear-gradient(to bottom,rgba(0,0,0,0) 0%,rgba(0,0,0,0.85) 100%);"></div>

@@ -2,11 +2,11 @@
 
 Relevamiento del theme `wp-theme/smart-argentina/` y plan de trabajo para que el cliente pueda editar contenido desde wp-admin sin tocar código. Última actualización: 2026-07-23.
 
-## Estado: proyecto cerrado ✅
+## Estado: proyecto cerrado ✅ (con Fase 5 agregada)
 
-Las Fases 1, 2, 3a y 4 están **hechas, verificadas y en producción**. La Fase 3b (configurador de color/interior de smart1/smart3) quedó **fuera de alcance por decisión del cliente** — no se implementa, ni ahora ni en una fase futura salvo pedido explícito nuevo. No queda trabajo pendiente de este plan.
+Las Fases 1, 2, 3a, 4 y 5 están **hechas, verificadas y en producción**. La Fase 3b (configurador de color/interior de smart1/smart3) quedó **fuera de alcance por decisión del cliente** — no se implementa, ni ahora ni en una fase futura salvo pedido explícito nuevo. No queda trabajo pendiente de este plan.
 
-**7 CPTs nuevos en `functions.php`**: `concesionario` (15), `version_vehiculo` (7), `brabus_spec_modelo` (2), `feature_card` (18), `servicio_acordeon` (9), `cookie_tipo` (4), `contenido_wysiwyg` (3) — 58 posts migrados en total, todos con ACF Free (sin repeater ni options page, que son de pago), siguiendo siempre el mismo patrón: un post por registro + un helper `smart_get_*()` como única fuente de verdad + migración one-time idempotente.
+**9 CPTs nuevos en `functions.php`**: `concesionario` (15), `version_vehiculo` (7), `brabus_spec_modelo` (2), `feature_card` (18), `servicio_acordeon` (9), `cookie_tipo` (4), `contenido_wysiwyg` (3), `hero_pagina` (9) — 61 posts migrados en total, todos con ACF Free (sin repeater ni options page, que son de pago), siguiendo siempre el mismo patrón: un post por registro + un helper `smart_get_*()` como única fuente de verdad + migración one-time idempotente. Desde la Fase 5, los campos de imagen usan la Biblioteca de Medios real de WordPress (37 adjuntos importados), no rutas de texto.
 
 ---
 
@@ -80,6 +80,7 @@ Otros hallazgos:
 | **3a** | Carruseles de características (home, conectividad, sobre-smart, movilidad eléctrica) + acordeón de servicios | ✅ **Hecho y en producción** (2026-07-22) |
 | ~~3b~~ | ~~Configurador de color/interior de smart1/smart3~~ | ❌ **Sacado del alcance del proyecto, no se implementa.** Decisión del cliente: esta sección no debe quedar editable/mutable desde wp-admin. Queda hardcodeada tal cual está, permanentemente. |
 | **4** | Cookies, legales, historia institucional, copyright | ✅ **Hecho y en producción** (2026-07-23) |
+| **5** | Imágenes reales (Biblioteca de Medios) para comparativa/carruseles + heroes de las 9 páginas | ✅ **Hecho y en producción** (2026-07-23) |
 
 **Proyecto cerrado.** No queda ninguna fase pendiente.
 
@@ -122,6 +123,26 @@ CPT `cookie_tipo` (4 posts) para los 4 tipos de cookies, incluyendo el flag `act
 El menú de navegación (drawer mobile + columnas del footer) se decidió **dejarlo como está** — no se migró a `wp_nav_menu()` nativo de WP para no introducir un flujo de trabajo nuevo (Apariencia → Menús) que el cliente no pidió.
 
 De paso se corrigió un bug de estética preexistente (no introducido por este proyecto, confirmado contra el HTML original pre-ACF): el círculo relleno de "Cookies necesarias" usaba clases arbitrarias de Tailwind (`border-[#141413]`, `bg-[#141413]`, `w-2.5`) que nunca estuvieron en el CSS compilado del sitio — el indicador se veía vacío en producción desde siempre. Se reemplazaron por estilos inline equivalentes.
+
+### Fase 5 — Imágenes reales (Biblioteca de Medios) + heroes de todas las páginas (hecho, 2026-07-23)
+
+El cliente pidió poder cambiar fotos (carruseles, comparativa, heroes) directamente desde wp-admin con upload real, en vez de editar rutas de texto o depender de un dev para reemplazar archivos por FTP.
+
+**Prerrequisitos de servidor (fuera del repo, documentados acá):**
+- La extensión **GD de PHP** estaba deshabilitada (`;extension=gd` comentada en `C:\PHP\php.ini`) — sin ella, WordPress no puede generar los tamaños de miniatura de la Biblioteca de Medios. Se descomentó + `iisreset`.
+- `WP_MAX_MEMORY_LIMIT` (256M por defecto) no alcanzaba para procesar las fotos de alta resolución del sitio (algunas de +7MB) — se agregó `define('WP_MAX_MEMORY_LIMIT', '512M');` en `wp-config.php`.
+- Sin estos dos cambios, la migración de imágenes tira "Allowed memory size exhausted" a mitad de camino.
+
+**Qué se construyó:**
+- Los ~25 campos `imagen` de `version_vehiculo`/`feature_card` (antes texto con ruta relativa) pasaron a tipo **Imagen** real de ACF (`return_format => 'url'`). Los helpers `smart_get_versiones()`/`smart_get_feature_cards()` casi no cambiaron: `get_field('imagen', $id)` ahora devuelve la URL completa directamente, así que **ningún template que los consume tuvo que tocarse**.
+- **CPT `hero_pagina`** (9 posts: home, smart1, smart3, brabus, conectividad, servicios, movilidad_electrica, sobre_smart, buscador) con campos `hero_desktop`/`hero_mobile` (Imagen). Reemplaza los heroes hardcodeados de las 7 páginas que ya eran imagen estática, sin cambiarles el comportamiento.
+- **`home` y `/brabus/` — cambio de comportamiento pedido por el cliente**: sus heroes eran video scroll-driven (`initScrollVideo`, canvas + captura de frames) y pasaron a ser una imagen fija editable. Se sacaron las 2 llamadas a `initScrollVideo` de `assets/js/main.js` (la función en sí queda intacta). En `/brabus/`, los 2 textos que antes aparecían secuencialmente durante el scroll ("Inconfundiblemente."/"BRABUS." a mitad de video, "Diseño que no necesita presentación..." al final) ahora quedan **visibles permanentemente, uno a cada lado** (mid-text a la izquierda, texto final a la derecha) — pedido explícito del cliente, no una migración 1:1.
+- **Imagen inicial de home/brabus**: no se pudo extraer un frame del video automáticamente (el Chrome de este entorno no decodifica el mp4, ni siquiera vía blob URL) — el cliente eligió dejar esos 2 campos vacíos y subir la foto real él mismo desde wp-admin. El resto de las 7 páginas + comparativa + carruseles sí tienen su imagen original migrada.
+- Helper `smart_import_attachment_from_theme_path()` en `functions.php`: copia un archivo del theme a `wp-content/uploads/`, lo registra como adjunto real (con metadata/thumbnails), y guarda la ruta original en el meta `_smart_ruta_original` del adjunto para no reimportar dos veces.
+
+**Bug encontrado durante la migración (y ya corregido):** la migración automática de 25+9 imágenes en un solo request largo fallaba silenciosamente a mitad de camino (algunas imágenes grandes agotaban la memoria incluso con el fix de arriba, dejando el flag "migrado" en `true` sin terminar). Se resolvió corriendo las imágenes restantes una por una en vez de en un solo loop masivo — quedó documentado como precaución si se necesita volver a migrar algo pesado a futuro.
+
+**Otro bug de estética preexistente encontrado (no introducido acá):** la utilidad `md:hidden` de Tailwind nunca se compiló en `tailwind.css` (sí existe `md:block`) — antes era invisible porque el JS del scroll-video mantenía todo en `opacity:0` salvo lo que correspondía. Al sacar esa lógica en `/brabus/`, quedó expuesto y se corrigió con una media query explícita en el propio template. Vale la pena tenerlo en cuenta si en el futuro se usa `md:hidden` en algún otro lugar del sitio — puede no estar funcionando ahí tampoco.
 
 ---
 

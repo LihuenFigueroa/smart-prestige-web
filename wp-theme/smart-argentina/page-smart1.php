@@ -1,5 +1,8 @@
 <?php /* Template Name: Smart 1 */ ?>
-<?php $smart_versiones_s1 = smart_get_versiones('smart1'); ?>
+<?php
+$smart_versiones_s1 = smart_get_versiones('smart1');
+$smart_hero_s1       = smart_get_hero('smart1');
+?>
 <?php get_header(); ?>
 <?php get_template_part('partials/header'); ?>
   <!-- ================================================================
@@ -8,7 +11,7 @@
   <section id="hero-s1-mobile" style="position:relative; width:100%; aspect-ratio:375/812; overflow:hidden;">
 
     <!-- Imagen a dimensiones naturales -->
-    <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/hero-mobile.png" alt="smart #1" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center;" />
+    <img src="<?php echo esc_url($smart_hero_s1['mobile']); ?>" alt="smart #1" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center;" />
 
     <!-- Gradiente superior (nav) -->
     <div style="position:absolute; top:0; left:0; right:0; height:170px; z-index:5; pointer-events:none; background:linear-gradient(to bottom,rgba(20,20,19,0.65) 0%,rgba(20,20,19,0) 100%);"></div>
@@ -42,7 +45,7 @@
   ================================================================ -->
   <section id="hero-s1" class="relative w-full h-screen min-h-[640px] overflow-hidden">
     <div class="absolute inset-0 bg-neutral-700">
-      <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/hero.png" alt="smart #1" class="w-full h-full object-cover" />
+      <img src="<?php echo esc_url($smart_hero_s1['desktop']); ?>" alt="smart #1" class="w-full h-full object-cover" />
     </div>
     <div class="absolute top-0 left-0 right-0 pointer-events-none" style="height:170px; z-index:5; background:linear-gradient(to bottom,rgba(20,20,19,0.65) 0%,rgba(20,20,19,0) 100%);"></div>
 

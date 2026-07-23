@@ -1,12 +1,15 @@
 <?php /* Template Name: Smart 3 */ ?>
-<?php $smart_versiones_s3 = smart_get_versiones('smart3'); ?>
+<?php
+$smart_versiones_s3 = smart_get_versiones('smart3');
+$smart_hero_s3       = smart_get_hero('smart3');
+?>
 <?php get_header(); ?>
 <?php get_template_part('partials/header'); ?>
   <!-- ================================================================
        HERO MOBILE — smart #3
   ================================================================ -->
   <section id="hero-s3-mobile" style="position:relative; width:100%; aspect-ratio:375/812; overflow:hidden;">
-    <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart3/hero-mobile.png" alt="smart #3" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center;" />
+    <img src="<?php echo esc_url($smart_hero_s3['mobile']); ?>" alt="smart #3" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center;" />
     <div style="position:absolute; top:0; left:0; right:0; height:170px; z-index:5; pointer-events:none; background:linear-gradient(to bottom,rgba(20,20,19,0.65) 0%,rgba(20,20,19,0) 100%);"></div>
     <div style="position:absolute; bottom:0; left:0; right:0; height:55%; z-index:5; pointer-events:none; background:linear-gradient(to bottom,rgba(0,0,0,0) 0%,rgba(0,0,0,0.88) 100%);"></div>
     <nav style="position:absolute; top:0; left:0; right:0; z-index:20; padding:0 1.25rem; height:56px; display:flex; align-items:center;">
@@ -34,7 +37,7 @@
   ================================================================ -->
   <section id="hero-s3" class="relative w-full h-screen min-h-[640px] overflow-hidden">
     <div class="absolute inset-0 bg-neutral-700">
-      <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart3/hero.jpg" alt="smart #3" class="w-full h-full object-cover" />
+      <img src="<?php echo esc_url($smart_hero_s3['desktop']); ?>" alt="smart #3" class="w-full h-full object-cover" />
     </div>
     <div class="absolute top-0 left-0 right-0 pointer-events-none" style="height:170px; z-index:5; background:linear-gradient(to bottom,rgba(20,20,19,0.65) 0%,rgba(20,20,19,0) 100%);"></div>
 

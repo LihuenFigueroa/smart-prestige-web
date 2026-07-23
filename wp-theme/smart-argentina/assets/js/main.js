@@ -341,20 +341,6 @@ function initScrollVideo({ videoId, canvasId, pinId, videoSrc, pxPerSecond, capt
 const isMobile = window.innerWidth < 768;
 
 
-// ── Hero ─────────────────────────────────────────────────────────────────
-initScrollVideo({
-  videoId:    'heroVideo',
-  canvasId:   'heroCanvas',
-  pinId:      'heroPin',
-  videoSrc:   isMobile ? (window.THEME_URL || '') + '/assets/video/videoHeroMobile.mp4' : (window.THEME_URL || '') + '/assets/video/videoHero.mp4',
-  pxPerSecond: isMobile ? 480 : 840,
-  captureFps:  isMobile ? 30  : 15,
-  lerp:        0.06,
-  pinHeight:   null,
-  textZonePx:  400,
-  startOffset: 0
-});
-
 // ── Eléctrico de verdad — carrusel horizontal ────────────────────────────
 (function () {
   const pin   = document.getElementById('electricoPin');
@@ -400,23 +386,6 @@ initScrollVideo({
   window.addEventListener('scroll', updateTuAuto, { passive: true });
   updateTuAuto();
 })();
-
-// ── smart X BRABUS banner ─────────────────────────────────────────────────
-initScrollVideo({
-  videoId:     'brabusVideo',
-  canvasId:    'brabusCanvas',
-  pinId:       'brabusPin',
-  videoSrc:    isMobile ? (window.THEME_URL || '') + '/assets/video/videoSmartXBRABUSMobile.mp4' : (window.THEME_URL || '') + '/assets/video/videoSmartXBRABUS.mp4',
-  pxPerSecond: isMobile ? 400 : 800,
-  captureFps:  60,
-  lerp:        0.07,
-  pinHeight:   null,
-  textEl:            isMobile ? document.getElementById('brabusTextMobile') : document.getElementById('brabusText'),
-  textElMid:         isMobile ? document.getElementById('brabusTextMid') : null,
-  textElMidDesktop:  !isMobile ? document.getElementById('brabusTextMidDesktop') : null,
-  textZonePx:        isMobile ? 300 : 500,
-  holdZonePx:  isMobile ? 400 : 600
-});
 
 // ── Brabus specs toggle ───────────────────────────────────────────────────────
 let currentSpec = 1;
