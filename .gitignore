@@ -1,5 +1,6 @@
 node_modules/
 .env
+.claude/settings.local.json
 
 # Imágenes TIF — no renderizan en browsers y suelen ser muy pesadas
 *.tif

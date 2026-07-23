@@ -61,7 +61,21 @@
       "Bash(cp \"$SRC/PRO Y PRO + 4.png\" \"$DST/int-std-4.png\")",
       "Bash(git add:*)",
       "Bash(git commit:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(git checkout:*)",
+      "Bash(git stash:*)",
+      "Bash(git pull:*)",
+      "Read(//c/Users/Lihuen/Downloads/**)",
+      "Bash(unzip -l \"INTERNO SMART \\(14\\).zip\")",
+      "Bash(unzip -o \"INTERNO SMART \\(14\\).zip\" -d \"smart14_extract\")",
+      "Bash(where inkscape:*)",
+      "Bash(pip install:*)",
+      "Bash(python:*)",
+      "Bash(powershell -Command \"\nAdd-Type -AssemblyName System.Windows.Forms\nAdd-Type -AssemblyName System.Drawing\n\\\\$wc = New-Object System.Net.WebClient\n\\\\$svg1 = [System.IO.File]::ReadAllText\\('C:/Users/Lihuen/Downloads/smart14_extract/Title.svg'\\)\nWrite-Host \\\\$svg1.Substring\\(0, 200\\)\n\")",
+      "Bash(where chrome:*)",
+      "Bash(where chromium:*)",
+      "Bash(where msedge:*)",
+      "Bash(npm --version)"
     ]
   }
 }
