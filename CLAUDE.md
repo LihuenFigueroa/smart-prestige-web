@@ -174,7 +174,7 @@ Theme WordPress generado a partir de los `.html` estáticos. Templates `page-*.p
 
 ## Plan de implementación ACF (contenido editable desde wp-admin)
 
-Relevamiento completo + detalle técnico en **`ACF-PLAN.md`** (raíz del repo). Estado actual:
+Relevamiento completo + detalle técnico en **`ACF-PLAN.md`** (raíz del repo). **Proyecto cerrado** — todas las fases hechas y en producción:
 
 | Fase | Alcance | Estado |
 |------|---------|--------|
@@ -182,7 +182,9 @@ Relevamiento completo + detalle técnico en **`ACF-PLAN.md`** (raíz del repo). 
 | **2** | CPT `version_vehiculo` + `brabus_spec_modelo` (comparativa smart1/smart3 + specs BRABUS) | ✅ Hecho y en producción (2026-07-22) |
 | **3a** | CPT `feature_card` + `servicio_acordeon` (carruseles de tarjetas + acordeón de servicios) | ✅ Hecho y en producción (2026-07-22) |
 | ~~3b~~ | ~~Configurador de color/interior de smart1/smart3~~ | ❌ Sacado del proyecto — el cliente decidió que esta sección no debe ser editable desde wp-admin, queda hardcodeada permanentemente |
-| **4** | Tipos de cookies + WYSIWYG legales/historia institucional + `wp_nav_menu()` nativo para header/footer | Pendiente |
+| **4** | CPT `cookie_tipo` + `contenido_wysiwyg` (cookies, legales, historia institucional) + copyright con `date('Y')` | ✅ Hecho y en producción (2026-07-23) |
+
+7 CPTs en total (`concesionario`, `version_vehiculo`, `brabus_spec_modelo`, `feature_card`, `servicio_acordeon`, `cookie_tipo`, `contenido_wysiwyg`), 58 posts migrados, mismo patrón en todos: ACF Free (sin repeater/options page), un helper `smart_get_*()` por CPT como única fuente de verdad, migración one-time idempotente hooked en `init`. El menú de navegación (header/footer) se dejó como está a propósito — no se migró a `wp_nav_menu()` para no cambiarle el flujo de trabajo al cliente.
 
 ### Fase 1 — detalle de lo implementado
 - CPT `concesionario` (no público) registrado en `functions.php`, campos ACF vía `acf_add_local_field_group()` (versionado en código, no en base de datos): `nombre`, `direccion`, `localidad`, `provincia`, `telefono`, `latitud`, `longitud`, `tipo_servicio` (select), `horario` (textarea, nuevo — no existía en el sitio original, hoy vacío).

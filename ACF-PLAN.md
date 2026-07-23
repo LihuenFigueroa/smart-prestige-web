@@ -1,6 +1,12 @@
 # Plan de implementación ACF — smart-argentina (WordPress)
 
-Relevamiento del theme `wp-theme/smart-argentina/` y plan de trabajo para que el cliente pueda editar contenido desde wp-admin sin tocar código. Última actualización: 2026-07-22.
+Relevamiento del theme `wp-theme/smart-argentina/` y plan de trabajo para que el cliente pueda editar contenido desde wp-admin sin tocar código. Última actualización: 2026-07-23.
+
+## Estado: proyecto cerrado ✅
+
+Las Fases 1, 2, 3a y 4 están **hechas, verificadas y en producción**. La Fase 3b (configurador de color/interior de smart1/smart3) quedó **fuera de alcance por decisión del cliente** — no se implementa, ni ahora ni en una fase futura salvo pedido explícito nuevo. No queda trabajo pendiente de este plan.
+
+**7 CPTs nuevos en `functions.php`**: `concesionario` (15), `version_vehiculo` (7), `brabus_spec_modelo` (2), `feature_card` (18), `servicio_acordeon` (9), `cookie_tipo` (4), `contenido_wysiwyg` (3) — 58 posts migrados en total, todos con ACF Free (sin repeater ni options page, que son de pago), siguiendo siempre el mismo patrón: un post por registro + un helper `smart_get_*()` como única fuente de verdad + migración one-time idempotente.
 
 ---
 
@@ -67,15 +73,15 @@ Otros hallazgos:
 
 ## 4. Plan de implementación
 
-| Fase | Alcance | Esfuerzo estimado | Estado |
-|------|---------|--------------------|--------|
-| **1** | CPT `concesionario` + ACF | ~4 días | ✅ **Hecho y en producción** (2026-07-22) |
-| **2** | Comparativa de versiones (smart1/smart3) + specs BRABUS por modelo | ~5 días | ✅ **Hecho y en producción** (2026-07-22) |
-| **3a** | Carruseles de características (home, conectividad, sobre-smart, movilidad eléctrica) + acordeón de servicios | ~4 días | ✅ **Hecho y en producción** (2026-07-22) |
-| ~~3b~~ | ~~Configurador de color/interior de smart1/smart3~~ | — | ❌ **Sacado del alcance del proyecto, no se implementa.** Decisión del cliente: esta sección no debe quedar editable/mutable desde wp-admin. Queda hardcodeada tal cual está, permanentemente — no es "pendiente para más adelante", es contenido que se decidió mantener fuera de ACF. |
-| **4** | Contenido institucional/legal/cookies/footer | ~1.5 días | Pendiente (el acordeón de servicios, que originalmente era parte de esta fase, ya se hizo en la 3a) |
+| Fase | Alcance | Estado |
+|------|---------|--------|
+| **1** | CPT `concesionario` + ACF | ✅ **Hecho y en producción** (2026-07-22) |
+| **2** | Comparativa de versiones (smart1/smart3) + specs BRABUS por modelo | ✅ **Hecho y en producción** (2026-07-22) |
+| **3a** | Carruseles de características (home, conectividad, sobre-smart, movilidad eléctrica) + acordeón de servicios | ✅ **Hecho y en producción** (2026-07-22) |
+| ~~3b~~ | ~~Configurador de color/interior de smart1/smart3~~ | ❌ **Sacado del alcance del proyecto, no se implementa.** Decisión del cliente: esta sección no debe quedar editable/mutable desde wp-admin. Queda hardcodeada tal cual está, permanentemente. |
+| **4** | Cookies, legales, historia institucional, copyright | ✅ **Hecho y en producción** (2026-07-23) |
 
-**Total ejecutado hasta ahora: Fases 1, 2 y 3a.** Fase 4 es la única pendiente; el configurador de color/interior queda fuera del proyecto.
+**Proyecto cerrado.** No queda ninguna fase pendiente.
 
 ### Fase 1 — Concesionarios (implementado)
 
@@ -91,11 +97,11 @@ Objetivo: eliminar la triplicación manual y darle al cliente un único lugar (w
 - Los slugs de los 15 posts (`colcar-moreno`, `lonco-hue-libertador`, etc.) se mantuvieron idénticos a los que ya usaba el dropdown del form original, para no romper nada existente.
 - **ACF Free** se descargó de wordpress.org y se dejó instalado (sin activar) en `C:\inetpub\wwwroot\wp-content\plugins\advanced-custom-fields\` del servidor vivo. No se vendorizó dentro del theme (sería ~9MB de código de terceros a mantener aparte).
 
-**Pendiente para que quede 100% operativo:**
-1. Activar el plugin **Advanced Custom Fields** en `wp-admin/plugins.php` del servidor vivo (un clic). Hasta que esto pase, `/buscador/` se ve vacío en producción (sin lista, sin mapa, sin opciones en el dropdown) — el código no tira error, simplemente no hay datos todavía.
-2. Una vez activado, la migración corre sola en el siguiente request. No hace falta tocar nada más.
-3. Cargar el campo **horario** manualmente desde wp-admin para cada concesionario (no existía dato original que migrar).
-4. Dato de calidad detectado durante la migración: el concesionario Besten de San Fernando tenía en el dato original un tag de búsqueda "victoria" inconsistente con su propia dirección (dice San Fernando). No se replicó ese alias suelto — si alguien buscaba "Victoria" antes lo encontraba, ahora no. Se puede agregar "Victoria" a la localidad si el cliente quiere preservar ese comportamiento.
+**Estado:** ACF Free ya está activo en el servidor vivo, los 15 concesionarios migraron correctamente (se detectó y corrigió una condición de carrera que duplicó 4 posts en la primera corrida — ver commit de Fase 1) y `/buscador/` funciona 100% con datos en vivo.
+
+**Pendiente solo si el cliente quiere completarlo, no bloquea nada:**
+1. Cargar el campo **horario** manualmente desde wp-admin para cada concesionario (no existía dato original que migrar, quedó vacío).
+2. Dato de calidad detectado durante la migración: el concesionario Besten de San Fernando tenía en el dato original un tag de búsqueda "victoria" inconsistente con su propia dirección (dice San Fernando). No se replicó ese alias suelto — si alguien buscaba "Victoria" antes lo encontraba, ahora no. Se puede agregar "Victoria" a la localidad si el cliente quiere preservar ese comportamiento.
 
 ### Fase 2 — Comparativa de versiones + specs BRABUS (hecho, 2026-07-22)
 
@@ -109,9 +115,13 @@ CPT `feature_card` (18 posts: home 4 + conectividad 4+4 + sobre-smart 3 + movili
 
 Iba a cubrir el configurador "Elegí tu versión" de `page-smart1.php`/`page-smart3.php` (swatches de color, carrusel de interior, `lineaMap`/`ZOOM_SRCS`). El cliente decidió que esta sección **no debe ser editable/mutable desde wp-admin** — queda hardcodeada tal cual está en el HTML/JS, de forma permanente. No se retoma en una fase futura salvo pedido explícito nuevo.
 
-### Fase 4 — Contenido institucional/legal/cookies/footer (pendiente, ~1.5 días)
+### Fase 4 — Cookies, legales, historia institucional, copyright (hecho, 2026-07-23)
 
-El acordeón de servicios/garantía, que originalmente estaba planeado acá, ya se resolvió en la Fase 3a. Queda: repeater simple para los 4 tipos de cookies (con el flag "activo por defecto" que hoy es CSS y debería ser un dato). WYSIWYG para legales e historia institucional (contenido estable, no necesita repeater). `wp_nav_menu()` nativo de WP para header/footer en vez de ACF. `date('Y')` para el copyright en vez de mantenerlo hardcodeado en 2 archivos.
+CPT `cookie_tipo` (4 posts) para los 4 tipos de cookies, incluyendo el flag `activo_por_defecto` (antes hardcodeado en CSS, solo "Necesarias" lo tiene). CPT `contenido_wysiwyg` (3 posts, campo tipo WYSIWYG de ACF Free) para las 2 secciones de legales — con la lista de 13 bullets como HTML real dentro del editor, no como repeater — y el párrafo de historia institucional de sobre-smart. Copyright "© 2026 smart Argentina" corregido con `date('Y')` en los 3 lugares donde estaba hardcodeado (`header.php`, `footer.php` y el template de mail del formulario de contacto).
+
+El menú de navegación (drawer mobile + columnas del footer) se decidió **dejarlo como está** — no se migró a `wp_nav_menu()` nativo de WP para no introducir un flujo de trabajo nuevo (Apariencia → Menús) que el cliente no pidió.
+
+De paso se corrigió un bug de estética preexistente (no introducido por este proyecto, confirmado contra el HTML original pre-ACF): el círculo relleno de "Cookies necesarias" usaba clases arbitrarias de Tailwind (`border-[#141413]`, `bg-[#141413]`, `w-2.5`) que nunca estuvieron en el CSS compilado del sitio — el indicador se veía vacío en producción desde siempre. Se reemplazaron por estilos inline equivalentes.
 
 ---
 

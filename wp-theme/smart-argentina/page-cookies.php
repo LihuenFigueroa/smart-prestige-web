@@ -48,8 +48,8 @@
         <div class="flex items-start gap-6 p-6<?php echo $isLast ? '' : ' border-b border-neutral-200'; ?>">
           <div class="flex-shrink-0 mt-1">
             <?php if ($t['activo_por_defecto']): ?>
-            <div class="w-5 h-5 rounded-full border-2 border-[#141413] flex items-center justify-center">
-              <div class="w-2.5 h-2.5 rounded-full bg-[#141413]"></div>
+            <div class="w-5 h-5 rounded-full flex items-center justify-center" style="border:2px solid #141413;">
+              <div class="rounded-full" style="width:0.625rem; height:0.625rem; background:#141413;"></div>
             </div>
             <?php else: ?>
             <div class="w-5 h-5 rounded-full border-2 border-neutral-300"></div>
