@@ -2,6 +2,14 @@
 <?php
 $smart_versiones_s1 = smart_get_versiones('smart1');
 $smart_hero_s1       = smart_get_hero('smart1');
+$smart_carruseles_s1 = [
+  smart_get_feature_cards('smart1_c1'),
+  smart_get_feature_cards('smart1_c2'),
+  smart_get_feature_cards('smart1_c3'),
+  smart_get_feature_cards('smart1_c4'),
+  smart_get_feature_cards('smart1_c5'),
+  smart_get_feature_cards('smart1_c6'),
+];
 ?>
 <?php get_header(); ?>
 <?php get_template_part('partials/header'); ?>
@@ -107,360 +115,30 @@ $smart_hero_s1       = smart_get_hero('smart1');
   ================================================================ -->
   <section class="w-full bg-white pb-10">
 
-    <!-- ── Carrusel 1 — 4 fotos ── -->
+    <?php foreach ($smart_carruseles_s1 as $i => $carrusel): $track_num = $i + 1; ?>
+    <!-- ── Carrusel <?php echo $track_num; ?> ── -->
     <div style="padding-bottom:1rem; overflow:hidden;">
-      <div id="track-c1" class="flex select-none" style="overflow-x:scroll; scrollbar-width:none; -ms-overflow-style:none; padding-left:1.25rem; padding-right:1.25rem; gap:1rem; cursor:grab;">
+      <div id="track-c<?php echo $track_num; ?>" class="flex select-none" style="overflow-x:scroll; scrollbar-width:none; -ms-overflow-style:none; padding-left:1.25rem; padding-right:1.25rem; gap:1rem; cursor:grab;">
 
+        <?php foreach ($carrusel as $card): ?>
         <div class="c-card">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/2.png" alt="Vista frontal" class="c-card__img" />
-          <span class="c-card__tag">Exterior</span>
+          <img src="<?php echo esc_url($card['imagen']); ?>" alt="<?php echo esc_attr($card['alt']); ?>" class="c-card__img" />
+          <?php if (!empty($card['tag'])): ?>
+          <span class="c-card__tag"><?php echo esc_html($card['tag']); ?></span>
+          <?php endif; ?>
           <div class="c-card__gradient"></div>
           <div class="c-card__body">
             <div class="c-card__text">
-              <p class="c-card__title">Los detalles son los que definen lo premium.</p>
-              <p class="c-card__desc">El frente del smart #1 combina una firma lumínica LED de última generación con una parrilla sellada que anticipa su naturaleza 100% eléctrica.</p>
+              <p class="c-card__title"><?php echo esc_html($card['titulo']); ?></p>
+              <p class="c-card__desc"><?php echo esc_html($card['descripcion']); ?></p>
             </div>
           </div>
         </div>
-
-        <div class="c-card">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/3.jpg" alt="Faros full LED" class="c-card__img" />
-          <div class="c-card__gradient"></div>
-          <div class="c-card__body">
-            <div class="c-card__text">
-              <p class="c-card__title">Precisión en cada detalle.</p>
-              <p class="c-card__desc">Las ópticas del smart #1 integran tecnología LED en un diseño escultórico que refuerza el carácter premium del vehículo.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="c-card">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/4.jpg" alt="Manija electro-emergente" class="c-card__img" />
-          <div class="c-card__gradient"></div>
-          <div class="c-card__body">
-            <div class="c-card__text">
-              <p class="c-card__title">Una identidad visual que no pasa desapercibida.</p>
-              <p class="c-card__desc">Las manijas al ras del smart #1 se integran en la carrocería con una geometría limpia que refuerza tanto la estética como la eficiencia aerodinámica del vehículo.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="c-card">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/5.png" alt="Portón trasero" class="c-card__img" />
-          <div class="c-card__gradient"></div>
-          <div class="c-card__body">
-            <div class="c-card__text">
-              <p class="c-card__title">Funcionalidad sin compromisos.</p>
-              <p class="c-card__desc">Con hasta 313 litros de capacidad y apertura eléctrica manos libres, el baúl del smart #1 se adapta a cada necesidad con total comodidad.</p>
-            </div>
-          </div>
-        </div>
+        <?php endforeach; ?>
 
       </div>
     </div>
-
-    <!-- ── Carrusel 2 — 4 fotos ── -->
-    <div style="padding-bottom:1rem; overflow:hidden;">
-      <div id="track-c2" class="flex select-none" style="overflow-x:scroll; scrollbar-width:none; -ms-overflow-style:none; padding-left:1.25rem; padding-right:1.25rem; gap:1rem; cursor:grab;">
-
-        <div class="c-card">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/teaser.png" alt="Un espacio diseñado para quienes valoran el confort" class="c-card__img" />
-          <span class="c-card__tag">Interior</span>
-          <div class="c-card__gradient"></div>
-          <div class="c-card__body">
-            <div class="c-card__text">
-              <p class="c-card__title">Un espacio diseñado para quienes valoran el confort.</p>
-              <p class="c-card__desc">El habitáculo del smart #1 ofrece cinco plazas amplias, materiales de calidad superior y una atmósfera que eleva cada trayecto.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="c-card">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/8.png" alt="Control total, siempre a mano" class="c-card__img" />
-          <div class="c-card__gradient"></div>
-          <div class="c-card__body">
-            <div class="c-card__text">
-              <p class="c-card__title">Control total, siempre a mano.</p>
-              <p class="c-card__desc">El volante multifunción del smart #1 integra todos los comandos esenciales para una conducción segura, intuitiva y enfocada en el camino.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="c-card">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/9.jpg" alt="Tecnología al servicio del conductor" class="c-card__img" />
-          <div class="c-card__gradient"></div>
-          <div class="c-card__body">
-            <div class="c-card__text">
-              <p class="c-card__title">Tecnología al servicio del conductor.</p>
-              <p class="c-card__desc">La pantalla táctil de 12,8 pulgadas con smart OS centraliza navegación, conectividad y climatización en una interfaz clara y precisa.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="c-card">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/10.jpg" alt="Conectividad continua, sin interrupciones" class="c-card__img" />
-          <div class="c-card__gradient"></div>
-          <div class="c-card__body">
-            <div class="c-card__text">
-              <p class="c-card__title">Conectividad continua, sin interrupciones.</p>
-              <p class="c-card__desc">La base de carga inalámbrica integrada mantiene el dispositivo cargado durante todo el recorrido, de forma simple y eficiente.</p>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- ── Carrusel 3 — 7 fotos ── -->
-    <div style="padding-bottom:1rem; overflow:hidden;">
-      <div id="track-c3" class="flex select-none" style="overflow-x:scroll; scrollbar-width:none; -ms-overflow-style:none; padding-left:1.25rem; padding-right:1.25rem; gap:1rem; cursor:grab;">
-
-        <div class="c-card">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/confort-1.png" alt="Cámara 360" class="c-card__img" />
-          <span class="c-card__tag">Confort</span>
-          <div class="c-card__gradient"></div>
-          <div class="c-card__body">
-            <div class="c-card__text">
-              <p class="c-card__title">Cámara 360.</p>
-              <p class="c-card__desc">Esta función permite seleccionar hasta nueve vistas diferentes con las distintas cámaras situadas alrededor del vehículo para ofrecer un control óptimo de la situación en todas las direcciones. *Disponible en todas las versiones, excepto Pure.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="c-card">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/teaser5.png" alt="Techo Halo panorámico" class="c-card__img" />
-          <div class="c-card__gradient"></div>
-          <div class="c-card__body">
-            <div class="c-card__text">
-              <p class="c-card__title">Techo Halo panorámico.</p>
-              <p class="c-card__desc">El techo es una pieza de vidrio fija. El área del vidrio es de 1,5 m² y filtra el 99 % de la radiación ultravioleta. *Disponible en todas las versiones, excepto Pure.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="c-card">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/15.jpg" alt="Asientos eléctricos y calefaccionados" class="c-card__img" />
-          <div class="c-card__gradient"></div>
-          <div class="c-card__body">
-            <div class="c-card__text">
-              <p class="c-card__title">Asientos eléctricos y calefaccionados.</p>
-              <p class="c-card__desc">Los asientos delanteros presentan un ajuste eléctrico en seis direcciones y un soporte lumbar ajustable. El conductor cuenta también con función de memoria. *Disponible en todas las versiones, excepto Pure.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="c-card">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/16.jpg" alt="Climatización bizona" class="c-card__img" />
-          <div class="c-card__gradient"></div>
-          <div class="c-card__body">
-            <div class="c-card__text">
-              <p class="c-card__title">Climatización bizona.</p>
-              <p class="c-card__desc">Cada ocupante ajusta la temperatura de su zona de forma independiente. El sistema regula automáticamente la temperatura, el modo y el flujo de aire. *Disponible en todas las versiones, excepto Pure.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="c-card">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/17.jpg" alt="Volante calefaccionado" class="c-card__img" />
-          <div class="c-card__gradient"></div>
-          <div class="c-card__body">
-            <div class="c-card__text">
-              <p class="c-card__title">Volante calefaccionado.</p>
-              <p class="c-card__desc">En condiciones de temperatura bajas, el volante calefactable ayuda a mejorar la experiencia de conducción.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="c-card">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/18.jpg" alt="Sistema de audio Beats" class="c-card__img" />
-          <div class="c-card__gradient"></div>
-          <div class="c-card__body">
-            <div class="c-card__text">
-              <p class="c-card__title">Sistema de audio Beats®.</p>
-              <p class="c-card__desc">13 altavoces distribuidos estratégicamente en toda la cabina para una experiencia sonora de alta fidelidad. *Disponible para la versión BRABUS.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="c-card">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/19.png" alt="Luz ambiental" class="c-card__img" />
-          <div class="c-card__gradient"></div>
-          <div class="c-card__body">
-            <div class="c-card__text">
-              <p class="c-card__title">Luz ambiental.</p>
-              <p class="c-card__desc">Ajusta el brillo y el color de la iluminación ambiente a través de la pantalla de control central.</p>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- ── Carrusel 4 — 7 fotos ── -->
-    <div style="padding-bottom:1rem; overflow:hidden;">
-      <div id="track-c4" class="flex select-none" style="overflow-x:scroll; scrollbar-width:none; -ms-overflow-style:none; padding-left:1.25rem; padding-right:1.25rem; gap:1rem; cursor:grab;">
-
-        <div class="c-card">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/20.png" alt="smart pilot assist" class="c-card__img" />
-          <span class="c-card__tag">Seguridad</span>
-          <div class="c-card__gradient"></div>
-          <div class="c-card__body">
-            <div class="c-card__text">
-              <p class="c-card__title">smart pilot assist.</p>
-              <p class="c-card__desc">Ayuda al conductor a permanecer en su carril y permite configurar el intervalo de distancia con el vehículo de adelante, incluyendo ayuda para el adelantamiento de camiones. *Disponible en todas las versiones, excepto Pure.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="c-card">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/21.png" alt="Parking Assist" class="c-card__img" />
-          <div class="c-card__gradient"></div>
-          <div class="c-card__body">
-            <div class="c-card__text">
-              <p class="c-card__title">Parking Assist.</p>
-              <p class="c-card__desc">El sistema combina sensores ultrasónicos y cámaras para estacionar de manera 100% autónoma, controlando la dirección, la velocidad y el frenado.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="c-card">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/22.png" alt="Control crucero adaptativo" class="c-card__img" />
-          <div class="c-card__gradient"></div>
-          <div class="c-card__body">
-            <div class="c-card__text">
-              <p class="c-card__title">Control crucero adaptativo.</p>
-              <p class="c-card__desc">Una vez ajustada la velocidad de crucero (de 0 a 150 km/h), el vehículo circula al valor establecido o lo ajusta automáticamente según el tráfico que tenga delante.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="c-card">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/23.png" alt="Airbags" class="c-card__img" />
-          <div class="c-card__gradient"></div>
-          <div class="c-card__body">
-            <div class="c-card__text">
-              <p class="c-card__title">Airbags.</p>
-              <p class="c-card__desc">El smart #1 ofrece seis airbags: dos delanteros, dos laterales, dos de cortina lateral y uno central.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="c-card">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/24.jpg" alt="Asistencia mantenimiento de carril" class="c-card__img" />
-          <div class="c-card__gradient"></div>
-          <div class="c-card__body">
-            <div class="c-card__text">
-              <p class="c-card__title">Asistencia mantenimiento de carril.</p>
-              <p class="c-card__desc">Previene desviaciones no intencionadas del carril a velocidades entre 60 y 180 km/h mediante advertencias y ajuste automático del volante.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="c-card">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/25.jpg" alt="Freno AEB" class="c-card__img" />
-          <div class="c-card__gradient"></div>
-          <div class="c-card__body">
-            <div class="c-card__text">
-              <p class="c-card__title">Freno AEB.</p>
-              <p class="c-card__desc">Cuando el vehículo está a punto de colisionar, el sistema frena automáticamente para evitar o reducir el impacto. Disponible para peatones, bicicletas y vehículos.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="c-card">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/26.jpg" alt="CyberSparksLED" class="c-card__img" />
-          <div class="c-card__gradient"></div>
-          <div class="c-card__body">
-            <div class="c-card__text">
-              <p class="c-card__title">CyberSparksLED.</p>
-              <p class="c-card__desc">Faros LED de bajo consumo que a más de 60 km/h y con suficiente distancia al vehículo de adelante activan automáticamente la luz larga sin deslumbrar.</p>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- ── Carrusel 5 — 3 fotos ── -->
-    <div style="padding-bottom:1rem; overflow:hidden;">
-      <div id="track-c5" class="flex select-none" style="overflow-x:scroll; scrollbar-width:none; -ms-overflow-style:none; padding-left:1.25rem; padding-right:1.25rem; gap:1rem; cursor:grab;">
-
-        <div class="c-card">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/27.jpg" alt="Pantalla central 12,8" class="c-card__img" />
-          <span class="c-card__tag">Conectividad</span>
-          <div class="c-card__gradient"></div>
-          <div class="c-card__body">
-            <div class="c-card__text">
-              <p class="c-card__title">Pantalla central 12,8".</p>
-              <p class="c-card__desc">La pantalla central de 12,8" es una pantalla táctil con una resolución de 1920×1080 píxeles y modos de día y noche. Superficie de la pantalla: 283×159 mm. Pantalla completa: 321×190 mm RAM de 12 GB, almacenamiento de 128 GB.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="c-card">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/32.png" alt="Cuadro de instrumentos digital 9,2" class="c-card__img" />
-          <div class="c-card__gradient"></div>
-          <div class="c-card__body">
-            <div class="c-card__text">
-              <p class="c-card__title">Cuadro de instrumentos digital 9,2".</p>
-              <p class="c-card__desc">El cuadro de instrumentos de 9,2" es un panel de material LCD de alta definición que se usa para mostrar información de conducción, música y otros datos relacionados. Tiene una resolución de 1920x384 píxeles.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="c-card">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/30.png" alt="Head Up display 10" class="c-card__img" />
-          <div class="c-card__gradient"></div>
-          <div class="c-card__body">
-            <div class="c-card__text">
-              <p class="c-card__title">Head Up display 10".</p>
-              <p class="c-card__desc">Los grupos ópticos del smart #1 integran tecnología LED en un diseño escultórico que refuerza el carácter premium del vehículo. *Función disponible para la versión BRABUS.</p>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- ── Carrusel 6 — 3 fotos ── -->
-    <div style="padding-bottom:1rem; overflow:hidden;">
-      <div id="track-c6" class="flex select-none" style="overflow-x:scroll; scrollbar-width:none; -ms-overflow-style:none; padding-left:1.25rem; padding-right:1.25rem; gap:1rem; cursor:grab;">
-
-        <div class="c-card">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/33.png" alt="Baúl trasero eléctrico" class="c-card__img" />
-          <span class="c-card__tag">Practicidad</span>
-          <div class="c-card__gradient"></div>
-          <div class="c-card__body">
-            <div class="c-card__text">
-              <p class="c-card__title">Baúl trasero eléctrico.</p>
-              <p class="c-card__desc">La apertura y el cierre del baúl trasero son automáticos y pueden accionarse desde el botón del portón, el comando interior o la llave con mando a distancia. Además, incorpora funciones de memoria y ajuste de apertura. Este sistema facilita el acceso a un baúl de 323 litros de capacidad, ampliable hasta 986 litros al rebatir los asientos traseros.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="c-card">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/34.jpg" alt="Baúl delantero" class="c-card__img" />
-          <div class="c-card__gradient"></div>
-          <div class="c-card__body">
-            <div class="c-card__text">
-              <p class="c-card__title">Baúl delantero.</p>
-              <p class="c-card__desc">Compartimento de 15 litros bajo el capó. Apertura manual y sellado con espuma.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="c-card">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/35.jpg" alt="Deslizamiento asientos traseros" class="c-card__img" />
-          <div class="c-card__gradient"></div>
-          <div class="c-card__body">
-            <div class="c-card__text">
-              <p class="c-card__title">Deslizamiento asientos traseros.</p>
-              <p class="c-card__desc">Los asientos traseros pueden deslizarse 130 mm para disponer de un espacio más amplio para las piernas o de mayor capacidad de almacenamiento en el baúl.</p>
-            </div>
-          </div>
-        </div>
-
-      </div>
+    <?php endforeach; ?>
 
   </section>
 

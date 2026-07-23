@@ -184,8 +184,15 @@ Relevamiento completo + detalle técnico en **`ACF-PLAN.md`** (raíz del repo). 
 | ~~3b~~ | ~~Configurador de color/interior de smart1/smart3~~ | ❌ Sacado del proyecto — el cliente decidió que esta sección no debe ser editable desde wp-admin, queda hardcodeada permanentemente |
 | **4** | CPT `cookie_tipo` + `contenido_wysiwyg` (cookies, legales, historia institucional) + copyright con `date('Y')` | ✅ Hecho y en producción (2026-07-23) |
 | **5** | CPT `hero_pagina` + campos `imagen` reales (Biblioteca de Medios) en `version_vehiculo`/`feature_card` | ✅ Hecho y en producción (2026-07-23) |
+| **6** | Carruseles propios de smart1/smart3 (54 tarjetas de `feature_card` no cubiertas por la Fase 3a) | ✅ Hecho y en producción (2026-07-23) |
 
-9 CPTs en total (`concesionario`, `version_vehiculo`, `brabus_spec_modelo`, `feature_card`, `servicio_acordeon`, `cookie_tipo`, `contenido_wysiwyg`, `hero_pagina`), 61 posts migrados, mismo patrón en todos: ACF Free (sin repeater/options page), un helper `smart_get_*()` por CPT como única fuente de verdad, migración one-time idempotente hooked en `init`. El menú de navegación (header/footer) se dejó como está a propósito — no se migró a `wp_nav_menu()` para no cambiarle el flujo de trabajo al cliente.
+9 CPTs en total (`concesionario`, `version_vehiculo`, `brabus_spec_modelo`, `feature_card`, `servicio_acordeon`, `cookie_tipo`, `contenido_wysiwyg`, `hero_pagina`), 115 posts migrados, mismo patrón en todos: ACF Free (sin repeater/options page), un helper `smart_get_*()` por CPT como única fuente de verdad, migración one-time idempotente hooked en `init`. El menú de navegación (header/footer) se dejó como está a propósito — no se migró a `wp_nav_menu()` para no cambiarle el flujo de trabajo al cliente.
+
+### Fase 6 — detalle de lo implementado
+- La Fase 3a había migrado los carruseles de home/conectividad/sobre-smart/movilidad eléctrica, pero pasó por alto los 6 carruseles propios de `page-smart1.php` y `page-smart3.php` (54 tarjetas: 28 + 26) — distintos del configurador de color/interior excluido en la Fase 3b. El cliente pidió que también sean editables.
+- Se reutilizó el CPT `feature_card` existente: 12 valores nuevos de `seccion` (`smart1_c1`..`smart1_c6`, `smart3_c1`..`smart3_c6`) + campo nuevo `tag` (etiqueta corta, solo en la primera tarjeta de cada carrusel: Exterior/Interior/Confort/Seguridad/Conectividad/Practicidad).
+- `page-smart1.php`/`page-smart3.php` reemplazaron el HTML hardcodeado por un `foreach` sobre `smart_get_feature_cards($seccion)`, sin tocar clases/IDs (`track-c1`..`track-c6`) de los que depende el drag-to-scroll de `main.js`.
+- `WP_MAX_MEMORY_LIMIT` subido de 512M a **1024M** — algunas fotos de smart1/smart3 llegan a 64MB / ~100 megapíxeles, más grandes que todo lo procesado en la Fase 5. Import de las 54 imágenes hecho una por una vía CLI (no en loop), aplicando la lección de la Fase 5 preventivamente.
 
 ### Fase 5 — detalle de lo implementado
 - Los campos `imagen` de `version_vehiculo`/`feature_card` pasaron de texto (ruta relativa) a tipo **Imagen** real de ACF (Biblioteca de Medios) — 37 adjuntos importados desde `assets/img/` vía `smart_import_attachment_from_theme_path()`. Los helpers casi no cambiaron (`get_field('imagen', $id)` ya devuelve la URL completa), así que los templates que los consumen no se tocaron.

@@ -2,11 +2,11 @@
 
 Relevamiento del theme `wp-theme/smart-argentina/` y plan de trabajo para que el cliente pueda editar contenido desde wp-admin sin tocar código. Última actualización: 2026-07-23.
 
-## Estado: proyecto cerrado ✅ (con Fase 5 agregada)
+## Estado: proyecto cerrado ✅ (con Fase 6 agregada)
 
-Las Fases 1, 2, 3a, 4 y 5 están **hechas, verificadas y en producción**. La Fase 3b (configurador de color/interior de smart1/smart3) quedó **fuera de alcance por decisión del cliente** — no se implementa, ni ahora ni en una fase futura salvo pedido explícito nuevo. No queda trabajo pendiente de este plan.
+Las Fases 1, 2, 3a, 4, 5 y 6 están **hechas, verificadas y en producción**. La Fase 3b (configurador de color/interior de smart1/smart3) quedó **fuera de alcance por decisión del cliente** — no se implementa, ni ahora ni en una fase futura salvo pedido explícito nuevo. No queda trabajo pendiente de este plan.
 
-**9 CPTs nuevos en `functions.php`**: `concesionario` (15), `version_vehiculo` (7), `brabus_spec_modelo` (2), `feature_card` (18), `servicio_acordeon` (9), `cookie_tipo` (4), `contenido_wysiwyg` (3), `hero_pagina` (9) — 61 posts migrados en total, todos con ACF Free (sin repeater ni options page, que son de pago), siguiendo siempre el mismo patrón: un post por registro + un helper `smart_get_*()` como única fuente de verdad + migración one-time idempotente. Desde la Fase 5, los campos de imagen usan la Biblioteca de Medios real de WordPress (37 adjuntos importados), no rutas de texto.
+**9 CPTs nuevos en `functions.php`**: `concesionario` (15), `version_vehiculo` (7), `brabus_spec_modelo` (2), `feature_card` (72, tras la Fase 6), `servicio_acordeon` (9), `cookie_tipo` (4), `contenido_wysiwyg` (3), `hero_pagina` (9) — 115 posts migrados en total, todos con ACF Free (sin repeater ni options page, que son de pago), siguiendo siempre el mismo patrón: un post por registro + un helper `smart_get_*()` como única fuente de verdad + migración one-time idempotente. Desde la Fase 5, los campos de imagen usan la Biblioteca de Medios real de WordPress (91 adjuntos importados tras la Fase 6), no rutas de texto.
 
 ---
 
@@ -81,6 +81,7 @@ Otros hallazgos:
 | ~~3b~~ | ~~Configurador de color/interior de smart1/smart3~~ | ❌ **Sacado del alcance del proyecto, no se implementa.** Decisión del cliente: esta sección no debe quedar editable/mutable desde wp-admin. Queda hardcodeada tal cual está, permanentemente. |
 | **4** | Cookies, legales, historia institucional, copyright | ✅ **Hecho y en producción** (2026-07-23) |
 | **5** | Imágenes reales (Biblioteca de Medios) para comparativa/carruseles + heroes de las 9 páginas | ✅ **Hecho y en producción** (2026-07-23) |
+| **6** | Carruseles de características propios de smart1/smart3 (54 tarjetas, no cubiertos por la Fase 3a) | ✅ **Hecho y en producción** (2026-07-23) |
 
 **Proyecto cerrado.** No queda ninguna fase pendiente.
 
@@ -143,6 +144,18 @@ El cliente pidió poder cambiar fotos (carruseles, comparativa, heroes) directam
 **Bug encontrado durante la migración (y ya corregido):** la migración automática de 25+9 imágenes en un solo request largo fallaba silenciosamente a mitad de camino (algunas imágenes grandes agotaban la memoria incluso con el fix de arriba, dejando el flag "migrado" en `true` sin terminar). Se resolvió corriendo las imágenes restantes una por una en vez de en un solo loop masivo — quedó documentado como precaución si se necesita volver a migrar algo pesado a futuro.
 
 **Otro bug de estética preexistente encontrado (no introducido acá):** la utilidad `md:hidden` de Tailwind nunca se compiló en `tailwind.css` (sí existe `md:block`) — antes era invisible porque el JS del scroll-video mantenía todo en `opacity:0` salvo lo que correspondía. Al sacar esa lógica en `/brabus/`, quedó expuesto y se corrigió con una media query explícita en el propio template. Vale la pena tenerlo en cuenta si en el futuro se usa `md:hidden` en algún otro lugar del sitio — puede no estar funcionando ahí tampoco.
+
+### Fase 6 — Carruseles propios de smart1/smart3 (hecho, 2026-07-23)
+
+La Fase 3a migró los carruseles de home, conectividad, sobre-smart y movilidad eléctrica, pero **se pasaron por alto los 6 carruseles embebidos directamente en `page-smart1.php` y `page-smart3.php`** (distintos del configurador de color/interior excluido en la Fase 3b) — 28 tarjetas en smart1 + 26 en smart3 = 54 en total, cada una con imagen, título, descripción y, en la primera tarjeta de cada carrusel, una etiqueta chica (`Exterior`/`Interior`/`Confort`/`Seguridad`/`Conectividad`/`Practicidad`). El cliente pidió explícitamente que también queden editables.
+
+**Qué se construyó:**
+- Se reutilizó el CPT `feature_card` ya existente (mismo patrón, sin CPT nuevo): 12 nuevos valores de `seccion` (`smart1_c1`..`smart1_c6`, `smart3_c1`..`smart3_c6`) y un campo nuevo `tag` (texto corto, opcional — solo la primera tarjeta de cada carrusel lo usa).
+- `page-smart1.php` y `page-smart3.php` reemplazaron sus ~360 líneas de `.c-card` hardcodeado por un `foreach` doble sobre `smart_get_feature_cards($seccion)`, conservando exactamente el mismo markup/clases/IDs (`track-c1`..`track-c6`) de los que depende el drag-to-scroll de `main.js`.
+- Mismo prerrequisito de servidor que la Fase 5 (`WP_MAX_MEMORY_LIMIT`), subido de 512M a **1024M** al encontrar fotos de hasta 64MB / ~100 megapíxeles en `assets/img/smart1` y `assets/img/smart3` — más grandes que cualquier imagen procesada en la Fase 5.
+- Import de imágenes hecho **una por una vía CLI** (54 invocaciones separadas de PHP), no en un loop — lección de la Fase 5 aplicada preventivamente, no hubo que reaccionar a un crash esta vez.
+
+**Verificado:** ambas páginas se ven idénticas a como estaban antes (fotos, títulos, descripciones, badges en la tarjeta correcta), sin errores de consola, con el drag-to-scroll funcionando en los 12 tracks.
 
 ---
 
