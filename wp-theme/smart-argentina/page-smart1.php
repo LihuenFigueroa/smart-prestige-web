@@ -507,66 +507,96 @@ $smart_carruseles_s1 = [
 
       ['track-c1', 'track-c2', 'track-c3', 'track-c4', 'track-c5', 'track-c6'].forEach(initDragCarousel);
 
-      // ── Auto-scroll + indicador flecha en borde derecho del carrusel ─────
+      // ── Flechas estáticas (solo indicativas) + hover-scroll en las franjas donde viven ─────
       (function () {
-        var arrow = document.createElement('div');
-        arrow.style.cssText = 'position:fixed;z-index:9999;pointer-events:none;width:36px;height:36px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 12px rgba(0,0,0,0.18);opacity:0;transition:opacity 0.15s,transform 0.15s;transform:translateX(16px);';
-        arrow.innerHTML = '<svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 6.5h9M8 3l3.5 3.5L8 10" stroke="#141413" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-        document.body.appendChild(arrow);
+        if (window.innerWidth < 768) return; // en mobile la navegación es con botones táctiles
 
-        var raf      = null;
-        var active   = null;
-        var inZone   = false;
         var dragging = false;
-
         document.addEventListener('mousedown', function () { dragging = true; });
         document.addEventListener('mouseup',   function () { dragging = false; }, { passive: true });
 
-        function stop() {
-          inZone = false;
-          cancelAnimationFrame(raf); raf = null;
-          arrow.style.opacity   = '0';
-          arrow.style.transform = 'translateX(16px)';
-        }
+        var HOT_WIDTH  = 90;  // px — ancho de la franja donde vive cada flecha
+        var GRAD_WIDTH = 110; // px — ancho del gradiente que resalta esa franja
 
-        function scrollStep() {
-          if (!active || !inZone || dragging) { raf = null; return; }
-          var maxScroll = active.scrollWidth - active.clientWidth;
-          if (active.scrollLeft >= maxScroll) { stop(); return; }
-          active.scrollLeft += 3;
-          raf = requestAnimationFrame(scrollStep);
-        }
+        var ARROW_RIGHT_SVG = '<svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 6.5h9M8 3l3.5 3.5L8 10" stroke="#141413" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+        var ARROW_LEFT_SVG  = '<svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M11 6.5h-9M5 3L1.5 6.5 5 10" stroke="#141413" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 
         function initHoverScroll(trackId) {
           var track = document.getElementById(trackId);
           if (!track) return;
           var wrapper = track.parentElement;
+          wrapper.style.position = 'relative';
+
+          var gradRight = document.createElement('div');
+          gradRight.style.cssText = 'position:absolute; top:0; bottom:0; right:0; width:' + GRAD_WIDTH + 'px; background:linear-gradient(to left, rgba(0,0,0,0.35), rgba(0,0,0,0)); pointer-events:none; z-index:4; opacity:1; transition:opacity 0.2s ease;';
+          wrapper.appendChild(gradRight);
+
+          var arrowRight = document.createElement('div');
+          arrowRight.style.cssText = 'position:absolute; top:50%; right:16px; width:36px; height:36px; background:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 12px rgba(0,0,0,0.18); pointer-events:none; z-index:5; opacity:1; transform:translateY(-50%) translateX(0); transition:opacity 0.2s ease, transform 0.2s ease;';
+          arrowRight.innerHTML = ARROW_RIGHT_SVG;
+          wrapper.appendChild(arrowRight);
+
+          var gradLeft = document.createElement('div');
+          gradLeft.style.cssText = 'position:absolute; top:0; bottom:0; left:0; width:' + GRAD_WIDTH + 'px; background:linear-gradient(to right, rgba(0,0,0,0.35), rgba(0,0,0,0)); pointer-events:none; z-index:4; opacity:0; transition:opacity 0.2s ease;';
+          wrapper.appendChild(gradLeft);
+
+          var arrowLeft = document.createElement('div');
+          arrowLeft.style.cssText = 'position:absolute; top:50%; left:16px; width:36px; height:36px; background:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 12px rgba(0,0,0,0.18); pointer-events:none; z-index:5; opacity:0; transform:translateY(-50%) translateX(-16px); transition:opacity 0.2s ease, transform 0.2s ease;';
+          arrowLeft.innerHTML = ARROW_LEFT_SVG;
+          wrapper.appendChild(arrowLeft);
+
+          function updateEdges() {
+            var maxScroll = track.scrollWidth - track.clientWidth;
+            var atEnd     = track.scrollLeft >= maxScroll - 2;
+            var atStart   = track.scrollLeft <= 2;
+
+            arrowRight.style.opacity   = atEnd ? '0' : '1';
+            arrowRight.style.transform = 'translateY(-50%) translateX(' + (atEnd ? '16px' : '0') + ')';
+            gradRight.style.opacity    = atEnd ? '0' : '1';
+
+            arrowLeft.style.opacity   = atStart ? '0' : '1';
+            arrowLeft.style.transform = 'translateY(-50%) translateX(' + (atStart ? '-16px' : '0') + ')';
+            gradLeft.style.opacity    = atStart ? '0' : '1';
+          }
+          updateEdges();
+          track.addEventListener('scroll', updateEdges);
+          window.addEventListener('resize', updateEdges);
+
+          var raf = null;
+          var dir = 0; // 1 = derecha, -1 = izquierda, 0 = quieto
+
+          function stop() {
+            dir = 0;
+            cancelAnimationFrame(raf); raf = null;
+          }
+
+          function scrollStep() {
+            if (!dir || dragging) { raf = null; return; }
+            var maxScroll = track.scrollWidth - track.clientWidth;
+            if (dir > 0 && track.scrollLeft >= maxScroll) { stop(); return; }
+            if (dir < 0 && track.scrollLeft <= 0)         { stop(); return; }
+            track.scrollLeft += dir * 3;
+            raf = requestAnimationFrame(scrollStep);
+          }
 
           wrapper.addEventListener('mousemove', function (e) {
             if (dragging) return;
             var rect      = wrapper.getBoundingClientRect();
-            var hotSize   = rect.width * 0.22;
+            var x         = e.clientX - rect.left;
             var maxScroll = track.scrollWidth - track.clientWidth;
-            var inHot     = (e.clientX - rect.left) > rect.width - hotSize && maxScroll > 2 && track.scrollLeft < maxScroll - 2;
+            var inRightHot = x > rect.width - HOT_WIDTH && maxScroll > 2 && track.scrollLeft < maxScroll - 2;
+            var inLeftHot  = x < HOT_WIDTH             && maxScroll > 2 && track.scrollLeft > 2;
 
-            if (inHot) {
-              if (!inZone || active !== track) {
-                cancelAnimationFrame(raf); raf = null;
-                active = track; inZone = true;
-                raf = requestAnimationFrame(scrollStep);
-              }
-              arrow.style.left      = (rect.right - 52) + 'px';
-              arrow.style.top       = (e.clientY - 18) + 'px';
-              arrow.style.opacity   = '1';
-              arrow.style.transform = 'translateX(0)';
-            } else if (active === track && inZone) {
+            if (inRightHot) {
+              if (dir !== 1) { dir = 1; cancelAnimationFrame(raf); raf = requestAnimationFrame(scrollStep); }
+            } else if (inLeftHot) {
+              if (dir !== -1) { dir = -1; cancelAnimationFrame(raf); raf = requestAnimationFrame(scrollStep); }
+            } else if (dir !== 0) {
               stop();
             }
           });
 
-          wrapper.addEventListener('mouseleave', function () {
-            if (active === track) stop();
-          });
+          wrapper.addEventListener('mouseleave', stop);
         }
 
         ['track-c1','track-c2','track-c3','track-c4','track-c5','track-c6'].forEach(initHoverScroll);

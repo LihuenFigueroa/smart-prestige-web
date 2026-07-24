@@ -24,6 +24,7 @@
 }
 
 * { box-sizing: border-box; }
+html { overflow-x: hidden; }
 body { font-family: 'FOR_smart_Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; overflow-x: hidden; margin: 0; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 input::placeholder { color: #9ca3af; opacity: 1; }
 input:focus { outline: none; }

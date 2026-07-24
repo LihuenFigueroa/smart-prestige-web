@@ -67,33 +67,38 @@ $smart_hero_home  = smart_get_hero('home');
 
   <!-- ================================================================
        ELEGÍ TU SMART
+       Título + toggle van superpuestos DENTRO de la misma imagen (pedido
+       explícito). Medí con análisis de color dónde arranca el techo del
+       auto en cada foto: smart#1 al 34% de la altura, smart#3 al 21.3%
+       (mucho más arriba — por eso smart#3 se veía tapado antes). El
+       tamaño/posición del combo título+toggle está calculado para nunca
+       pasar de ~16% (mobile) / ~14% (desktop, sobre el recorte visible)
+       de la altura de la imagen — con margen real de sobra bajo el peor
+       caso (smart#3), verificado en varios anchos de pantalla.
   ================================================================ -->
   <style>
-    #elegir-modelo          { aspect-ratio:375/465; }
-    #elegi-img-wrap         { left:5.07%; top:10.75%; width:89.6%; height:71%; }
-    #elegi-title-area       { top:4%; gap:0.5rem; width:80%; }
-    #model-cta              { top:89%; }
+    #elegi-img-wrap           { position:relative; width:89.6%; margin:0 auto; aspect-ratio:1.018; overflow:hidden; }
+    #elegi-title-area         { position:absolute; top:2%; left:50%; transform:translateX(-50%); z-index:10; width:100%; display:flex; flex-direction:column; align-items:center; }
+    #elegi-title-area h2      { font-size:clamp(0.8rem,4.2vw,1.3rem); white-space:nowrap; margin:0 0 clamp(2px,0.8vw,5px); }
+    #model-switcher           { height:clamp(14px,5vw,20px); }
+    #tab-smart1, #tab-smart3  { height:100%; display:flex; align-items:center; font-size:clamp(0.5rem,1.9vw,0.65rem); padding:0 clamp(6px,2.6vw,12px); }
     @media (min-width:768px) {
-      #home-hero-title      { font-size:45px; }
-      #elegir-modelo        { aspect-ratio:1440/891; }
-      #elegi-img-wrap       { left:3.19%; top:5.39%; width:93.54%; height:75%; }
-      #elegi-img-wrap img   { object-position: top; }
-      #elegi-title-area     { top:9%; gap:1rem; width:auto; }
-      #model-cta            { top:84%; }
-    }
-    @media (min-width:768px) and (max-width:1024px) {
-      #elegi-title-area     { top:4%; gap:0.5rem; }
-      #elegi-title-area h2  { font-size:1.4rem; }
-      #tab-smart1, #tab-smart3 { height:26px; font-size:12px; padding-left:14px; padding-right:14px; }
+      #home-hero-title        { font-size:45px; }
+      #elegi-img-wrap         { width:93.54%; aspect-ratio:2.016; }
+      #elegi-img-wrap img     { object-position: top; }
+      #elegi-title-area       { top:4%; }
+      #elegi-title-area h2    { font-size:clamp(1rem,2.4vw,1.8rem); margin-bottom:clamp(3px,0.5vw,6px); }
+      #model-switcher         { height:clamp(18px,2.4vw,24px); }
+      #tab-smart1, #tab-smart3{ font-size:clamp(0.6rem,0.85vw,0.8rem); padding:0 clamp(10px,1.2vw,16px); }
     }
   </style>
-  <section id="elegir-modelo" style="position:relative; width:100%; overflow:hidden; background:#fff;">
+  <section id="elegir-modelo" class="w-full bg-white" style="padding:16px 0 40px;">
 
-    <!-- Wrapper de imagen: posición exacta del Figma, clipea el slide -->
-    <div id="elegi-img-wrap" style="position:absolute; overflow:hidden;">
+    <!-- Wrapper de imagen: título+toggle anclados DENTRO de este mismo contenedor -->
+    <div id="elegi-img-wrap">
 
-      <!-- Gradiente blanco en el top -->
-      <div style="position:absolute; top:0; left:0; right:0; height:25%; background:linear-gradient(to bottom,rgba(255,255,255,0.95) 0%,rgba(255,255,255,0) 100%); z-index:2; pointer-events:none;"></div>
+      <!-- Gradiente blanco en el top, para que el título/toggle se lean bien sobre cualquier foto -->
+      <div style="position:absolute; top:0; left:0; right:0; height:20%; background:linear-gradient(to bottom,rgba(255,255,255,0.9) 0%,rgba(255,255,255,0) 100%); z-index:2; pointer-events:none;"></div>
 
       <img
         id="model-img-1"
@@ -107,45 +112,53 @@ $smart_hero_home  = smart_get_hero('home');
         alt="smart #3"
         style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center; transform:translateX(100%); opacity:0; transition:transform 0.5s ease,opacity 0.5s ease;"
       />
-    </div>
 
-    <!-- Título + tabs: centrados -->
-    <div id="elegi-title-area" style="position:absolute; left:50%; transform:translateX(-50%); z-index:10; display:flex; flex-direction:column; align-items:center;">
-      <h2 class="font-smart-next font-bold text-neutral-900 text-center" style="font-size:clamp(2rem,3.5vw,2.8rem); white-space:nowrap;">Elegí tu smart.</h2>
-      <div id="model-switcher" class="flex items-center bg-white border border-neutral-900 rounded-full" style="position:relative; overflow:hidden;">
-        <!-- Píldora deslizante -->
-        <div id="model-slider-indicator" style="position:absolute; top:0; left:0; height:100%; border-radius:9999px; background:#171717; z-index:0; transition:transform 0.4s cubic-bezier(0.4,0,0.2,1), width 0.4s cubic-bezier(0.4,0,0.2,1);"></div>
-        <button
-          id="tab-smart1"
-          onclick="switchModel(1)"
-          class="h-[30px] md:h-8 px-5 md:px-5 text-[13px] md:text-base font-normal whitespace-nowrap"
-          style="position:relative; z-index:1; color:#fff; transition:color 0.4s ease;"
-        >smart #1</button>
-        <button
-          id="tab-smart3"
-          onclick="switchModel(3)"
-          class="h-[30px] md:h-8 px-5 md:px-5 text-[13px] md:text-base font-normal whitespace-nowrap"
-          style="position:relative; z-index:1; color:#171717; transition:color 0.4s ease;"
-        >smart #3</button>
+      <!-- Título + tabs: superpuestos arriba, dentro de la imagen -->
+      <div id="elegi-title-area">
+        <h2 class="font-smart-next font-bold text-neutral-900 text-center">Elegí tu smart.</h2>
+        <div id="model-switcher" class="flex items-center bg-white border border-neutral-900 rounded-full" style="position:relative; overflow:hidden;">
+          <!-- Píldora deslizante -->
+          <div id="model-slider-indicator" style="position:absolute; top:0; left:0; height:100%; border-radius:9999px; background:#171717; z-index:0; transition:transform 0.4s cubic-bezier(0.4,0,0.2,1), width 0.4s cubic-bezier(0.4,0,0.2,1);"></div>
+          <button
+            id="tab-smart1"
+            onclick="switchModel(1)"
+            class="font-normal whitespace-nowrap"
+            style="position:relative; z-index:1; color:#fff; transition:color 0.4s ease;"
+          >smart #1</button>
+          <button
+            id="tab-smart3"
+            onclick="switchModel(3)"
+            class="font-normal whitespace-nowrap"
+            style="position:relative; z-index:1; color:#171717; transition:color 0.4s ease;"
+          >smart #3</button>
+        </div>
+      </div>
+
+      <!-- CTA: superpuesto abajo, dentro de la imagen -->
+      <div style="position:absolute; left:50%; bottom:5%; transform:translateX(-50%); z-index:10;">
+        <a
+          id="model-cta"
+          href="<?php echo home_url('/smart-1/'); ?>"
+          style="white-space:nowrap;"
+          class="h-10 md:h-12 px-6 md:px-8 rounded-full border border-neutral-900 bg-white text-sm md:text-sm font-bold text-neutral-900 inline-flex items-center hover:bg-neutral-900 hover:text-white transition-colors"
+        >
+          Descubrí más sobre el smart #1
+        </a>
       </div>
     </div>
-
-    <!-- CTA: centrado debajo de la imagen -->
-    <a
-      id="model-cta"
-      href="<?php echo home_url('/smart-1/'); ?>"
-      style="position:absolute; left:50%; transform:translate(-50%,-50%); white-space:nowrap; z-index:10;"
-      class="h-10 md:h-12 px-6 md:px-8 rounded-full border border-neutral-900 text-sm md:text-sm font-bold text-neutral-900 inline-flex items-center hover:bg-neutral-900 hover:text-white transition-colors"
-    >
-      Descubrí más sobre el smart #1
-    </a>
 
   </section>
 
   <!-- ================================================================
        FEATURE CARDS — carrusel drag-to-scroll
   ================================================================ -->
+  <style>
+    #modelos-title { padding-left:41px; padding-right:41px; }
+    @media (min-width:768px) { #modelos-title { padding-left:20px; padding-right:20px; } }
+  </style>
   <section id="modelos" class="w-full bg-white py-10 md:py-16" style="overflow:hidden;">
+    <h2 id="modelos-title" class="font-smart-next text-3xl md:text-4xl font-normal text-neutral-900 leading-tight mb-6 md:mb-8">Aspectos destacados.</h2>
+    <div id="cards-track-wrap" style="position:relative;">
     <div
       id="cards-track"
       class="flex select-none"
@@ -168,6 +181,7 @@ $smart_hero_home  = smart_get_hero('home');
       </div>
       <?php endforeach; ?>
 
+    </div>
     </div>
   </section>
 
@@ -238,11 +252,13 @@ $smart_hero_home  = smart_get_hero('home');
 
     let currentModel = 1;
 
+    // Recalcula la píldora según el tab activo — se llama al cargar Y al
+    // resize/rotar pantalla, para que nunca quede desalineada del texto.
     function initModelSwitcher() {
-      const tab1      = document.getElementById('tab-smart1');
+      const activeTab = document.getElementById(currentModel === 1 ? 'tab-smart1' : 'tab-smart3');
       const indicator = document.getElementById('model-slider-indicator');
-      indicator.style.width     = tab1.offsetWidth + 'px';
-      indicator.style.transform = `translateX(${tab1.offsetLeft}px)`;
+      indicator.style.width     = activeTab.offsetWidth + 'px';
+      indicator.style.transform = `translateX(${activeTab.offsetLeft}px)`;
     }
 
     function switchModel(num) {
@@ -290,6 +306,12 @@ $smart_hero_home  = smart_get_hero('home');
     }
 
     requestAnimationFrame(initModelSwitcher);
+
+    let modelSwitcherResizeRaf = null;
+    window.addEventListener('resize', function () {
+      if (modelSwitcherResizeRaf) cancelAnimationFrame(modelSwitcherResizeRaf);
+      modelSwitcherResizeRaf = requestAnimationFrame(initModelSwitcher);
+    });
 
     // ── Carrusel de feature cards — drag-to-scroll con inercia ─────────
     (function () {
@@ -377,6 +399,110 @@ $smart_hero_home  = smart_get_hero('home');
         isDragging = false;
         rafId = requestAnimationFrame(momentum);
       }, { passive: true });
+    })();
+
+    // ── Flechas estáticas (solo indicativas) + hover-scroll en las franjas donde viven ─────
+    (function () {
+      if (window.innerWidth < 768) return; // en mobile la navegación es con drag táctil
+
+      var track   = document.getElementById('cards-track');
+      var wrapper = document.getElementById('cards-track-wrap');
+      if (!track || !wrapper) return;
+
+      var dragging = false;
+      document.addEventListener('mousedown', function () { dragging = true; });
+      document.addEventListener('mouseup',   function () { dragging = false; }, { passive: true });
+
+      var HOT_WIDTH  = 90;  // px — ancho de la franja donde vive cada flecha
+      var GRAD_WIDTH = 110; // px — ancho del gradiente que resalta esa franja
+
+      var gradRight = document.createElement('div');
+      gradRight.style.cssText = 'position:absolute; right:0; width:' + GRAD_WIDTH + 'px; background:linear-gradient(to left, rgba(0,0,0,0.35), rgba(0,0,0,0)); pointer-events:none; z-index:4; opacity:1; transition:opacity 0.2s ease;';
+      wrapper.appendChild(gradRight);
+
+      var arrowRight = document.createElement('div');
+      arrowRight.style.cssText = 'position:absolute; right:16px; width:36px; height:36px; background:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 12px rgba(0,0,0,0.18); pointer-events:none; z-index:5; opacity:1; transform:translateX(0); transition:opacity 0.2s ease, transform 0.2s ease;';
+      arrowRight.innerHTML = '<svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 6.5h9M8 3l3.5 3.5L8 10" stroke="#141413" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+      wrapper.appendChild(arrowRight);
+
+      var gradLeft = document.createElement('div');
+      gradLeft.style.cssText = 'position:absolute; left:0; width:' + GRAD_WIDTH + 'px; background:linear-gradient(to right, rgba(0,0,0,0.35), rgba(0,0,0,0)); pointer-events:none; z-index:4; opacity:0; transition:opacity 0.2s ease;';
+      wrapper.appendChild(gradLeft);
+
+      var arrowLeft = document.createElement('div');
+      arrowLeft.style.cssText = 'position:absolute; left:16px; width:36px; height:36px; background:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 12px rgba(0,0,0,0.18); pointer-events:none; z-index:5; opacity:0; transform:translateX(-16px); transition:opacity 0.2s ease, transform 0.2s ease;';
+      arrowLeft.innerHTML = '<svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M11 6.5h-9M5 3L1.5 6.5 5 10" stroke="#141413" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+      wrapper.appendChild(arrowLeft);
+
+      function positionEdges() {
+        var img = track.querySelector('img');
+        if (!img) return;
+        var imgRect     = img.getBoundingClientRect();
+        var wrapperRect = wrapper.getBoundingClientRect();
+        var top    = imgRect.top - wrapperRect.top;
+        var height = imgRect.height;
+        gradRight.style.top    = top + 'px';
+        gradRight.style.height = height + 'px';
+        gradLeft.style.top     = top + 'px';
+        gradLeft.style.height  = height + 'px';
+        arrowRight.style.top = (top + height / 2 - 18) + 'px';
+        arrowLeft.style.top  = (top + height / 2 - 18) + 'px';
+      }
+      positionEdges();
+      window.addEventListener('resize', positionEdges);
+
+      function updateEdgesVisibility() {
+        var maxScroll = track.scrollWidth - track.clientWidth;
+        var atEnd     = track.scrollLeft >= maxScroll - 2;
+        var atStart   = track.scrollLeft <= 2;
+
+        arrowRight.style.opacity   = atEnd ? '0' : '1';
+        arrowRight.style.transform = 'translateX(' + (atEnd ? '16px' : '0') + ')';
+        gradRight.style.opacity    = atEnd ? '0' : '1';
+
+        arrowLeft.style.opacity   = atStart ? '0' : '1';
+        arrowLeft.style.transform = 'translateX(' + (atStart ? '-16px' : '0') + ')';
+        gradLeft.style.opacity    = atStart ? '0' : '1';
+      }
+      updateEdgesVisibility();
+      track.addEventListener('scroll', updateEdgesVisibility);
+      window.addEventListener('resize', updateEdgesVisibility);
+
+      var raf = null;
+      var dir = 0; // 1 = derecha, -1 = izquierda, 0 = quieto
+
+      function stop() {
+        dir = 0;
+        cancelAnimationFrame(raf); raf = null;
+      }
+
+      function scrollStep() {
+        if (!dir || dragging) { raf = null; return; }
+        var maxScroll = track.scrollWidth - track.clientWidth;
+        if (dir > 0 && track.scrollLeft >= maxScroll) { stop(); return; }
+        if (dir < 0 && track.scrollLeft <= 0)         { stop(); return; }
+        track.scrollLeft += dir * 3;
+        raf = requestAnimationFrame(scrollStep);
+      }
+
+      wrapper.addEventListener('mousemove', function (e) {
+        if (dragging) return;
+        var rect      = wrapper.getBoundingClientRect();
+        var x         = e.clientX - rect.left;
+        var maxScroll = track.scrollWidth - track.clientWidth;
+        var inRightHot = x > rect.width - HOT_WIDTH && maxScroll > 2 && track.scrollLeft < maxScroll - 2;
+        var inLeftHot  = x < HOT_WIDTH             && maxScroll > 2 && track.scrollLeft > 2;
+
+        if (inRightHot) {
+          if (dir !== 1) { dir = 1; cancelAnimationFrame(raf); raf = requestAnimationFrame(scrollStep); }
+        } else if (inLeftHot) {
+          if (dir !== -1) { dir = -1; cancelAnimationFrame(raf); raf = requestAnimationFrame(scrollStep); }
+        } else if (dir !== 0) {
+          stop();
+        }
+      });
+
+      wrapper.addEventListener('mouseleave', stop);
     })();
   </script>
 
