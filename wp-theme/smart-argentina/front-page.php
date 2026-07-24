@@ -295,6 +295,8 @@ $smart_hero_home  = smart_get_hero('home');
     (function () {
       const track = document.getElementById('cards-track');
       if (!track) return;
+      track.style.willChange = 'scroll-position';
+      track.style.webkitOverflowScrolling = 'touch';
 
       let isDragging  = false;
       let hasMoved    = false;
@@ -305,15 +307,13 @@ $smart_hero_home  = smart_get_hero('home');
       let velocity    = 0;
       let rafId       = null;
 
-      // Inercia post-release
       function momentum() {
-        velocity *= 0.97;          // fricción: 0.97 = desaceleración muy suave
+        velocity *= 0.94;
         track.scrollLeft -= velocity;
-        if (Math.abs(velocity) > 0.15) {
-          rafId = requestAnimationFrame(momentum);
-        }
+        if (Math.abs(velocity) > 0.3) rafId = requestAnimationFrame(momentum);
       }
 
+      // ── Mouse ──
       track.addEventListener('mousedown', function (e) {
         cancelAnimationFrame(rafId);
         isDragging  = true;
@@ -337,21 +337,46 @@ $smart_hero_home  = smart_get_hero('home');
         if (!isDragging) return;
         const delta = e.clientX - startX;
         if (Math.abs(delta) > 4) hasMoved = true;
-
-        // Velocidad: píxeles por ms, normalizado a frame de 16ms
         const now = performance.now();
         const dt  = now - lastTime || 1;
         velocity  = ((e.clientX - lastX) / dt) * 16;
         lastX     = e.clientX;
         lastTime  = now;
-
         track.scrollLeft = startScroll - delta;
       });
 
-      // Bloquear clicks en links si hubo arrastre real
       track.addEventListener('click', function (e) {
         if (hasMoved) e.preventDefault();
       }, true);
+
+      // ── Touch ──
+      track.addEventListener('touchstart', function (e) {
+        cancelAnimationFrame(rafId);
+        isDragging  = true;
+        hasMoved    = false;
+        startX      = e.touches[0].clientX;
+        startScroll = track.scrollLeft;
+        lastX       = e.touches[0].clientX;
+        lastTime    = performance.now();
+        velocity    = 0;
+      }, { passive: true });
+
+      track.addEventListener('touchmove', function (e) {
+        if (!isDragging) return;
+        const delta = e.touches[0].clientX - startX;
+        if (Math.abs(delta) > 4) hasMoved = true;
+        const now = performance.now();
+        const dt  = now - lastTime || 1;
+        velocity  = ((e.touches[0].clientX - lastX) / dt) * 16;
+        lastX     = e.touches[0].clientX;
+        lastTime  = now;
+        track.scrollLeft = startScroll - delta;
+      }, { passive: true });
+
+      track.addEventListener('touchend', function () {
+        isDragging = false;
+        rafId = requestAnimationFrame(momentum);
+      }, { passive: true });
     })();
   </script>
 

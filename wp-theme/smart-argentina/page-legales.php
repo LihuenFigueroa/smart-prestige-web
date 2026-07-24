@@ -8,8 +8,8 @@ $smart_legales = array_merge(
 <?php get_header(); ?>
 <?php get_template_part('partials/header'); ?>
   <style>
-    main h1, main h2 { font-family: 'FOR_smart_Next', 'Helvetica Neue', Helvetica, Arial, sans-serif !important; }
-    main p, main li  { font-family: 'FOR_smart_Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif !important; }
+    main h1, main h2 { font-family: 'FOR_smart_Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif !important; }
+    main p, main li  { font-family: 'FOR_smart_Next', 'Helvetica Neue', Helvetica, Arial, sans-serif !important; }
     .legal-content p, .legal-content ul { color:#141413; font-size:16px; line-height:1.7; margin:0 0 24px; }
     .legal-content ul { list-style:disc; padding-left:24px; }
     .legal-content li { margin-bottom:8px; }

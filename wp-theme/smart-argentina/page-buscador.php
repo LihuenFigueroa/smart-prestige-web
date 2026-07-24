@@ -75,7 +75,7 @@ wp_localize_script('smart-buscador-data', 'smartConcesionarios', array_map(funct
     }
     /* Contactar: desktop muestra número, mobile muestra botón */
     .bus-contact-btn   { display: none; }
-    .bus-contact-phone { display: inline; font-family:'FOR_smart_Sans',sans-serif; font-size:13px; color:#141413; }
+    .bus-contact-phone { display: inline; font-family:'FOR_smart_Next',sans-serif; font-size:13px; color:#141413; }
     @media (max-width: 767px) {
       .bus-contact-btn   { display: inline-flex !important; align-items:center; height:36px; padding:0 20px; border-radius:18px; font-size:12px; color:#fff; background:#141413; text-decoration:none; }
       .bus-contact-phone { display: none !important; }

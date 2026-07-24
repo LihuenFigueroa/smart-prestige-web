@@ -73,7 +73,7 @@ $smart_hero_con   = smart_get_hero('conectividad');
               <p class="c-card__desc"><?php echo esc_html($c['descripcion']); ?></p>
             </div>
             <?php if (!empty($c['cta_texto'])): ?>
-            <a href="<?php echo esc_url(smart_feature_card_link($c['cta_link'])); ?>" style="display:inline-flex; align-items:center; height:32px; padding:0 36px; background:#fff; border:none; border-radius:16px; font-size:11px; font-family:'FOR_smart_Sans','Helvetica Neue',Helvetica,Arial,sans-serif; color:#141413; text-decoration:none; margin-top:10px; white-space:nowrap;"><?php echo esc_html($c['cta_texto']); ?></a>
+            <a href="<?php echo esc_url(smart_feature_card_link($c['cta_link'])); ?>" style="display:inline-flex; align-items:center; height:32px; padding:0 36px; background:#fff; border:none; border-radius:16px; font-size:11px; font-family:'FOR_smart_Next','Helvetica Neue',Helvetica,Arial,sans-serif; color:#141413; text-decoration:none; margin-top:10px; white-space:nowrap;"><?php echo esc_html($c['cta_texto']); ?></a>
             <?php endif; ?>
           </div>
         </div>
@@ -96,7 +96,7 @@ $smart_hero_con   = smart_get_hero('conectividad');
               <p class="c-card__desc"><?php echo esc_html($c['descripcion']); ?></p>
             </div>
             <?php if (!empty($c['cta_texto'])): ?>
-            <a href="<?php echo esc_url(smart_feature_card_link($c['cta_link'])); ?>" style="display:inline-flex; align-items:center; height:32px; padding:0 36px; background:#fff; border:none; border-radius:16px; font-size:11px; font-family:'FOR_smart_Sans','Helvetica Neue',Helvetica,Arial,sans-serif; color:#141413; text-decoration:none; margin-top:10px; white-space:nowrap;"><?php echo esc_html($c['cta_texto']); ?></a>
+            <a href="<?php echo esc_url(smart_feature_card_link($c['cta_link'])); ?>" style="display:inline-flex; align-items:center; height:32px; padding:0 36px; background:#fff; border:none; border-radius:16px; font-size:11px; font-family:'FOR_smart_Next','Helvetica Neue',Helvetica,Arial,sans-serif; color:#141413; text-decoration:none; margin-top:10px; white-space:nowrap;"><?php echo esc_html($c['cta_texto']); ?></a>
             <?php endif; ?>
           </div>
         </div>

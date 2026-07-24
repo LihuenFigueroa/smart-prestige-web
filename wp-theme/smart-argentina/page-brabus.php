@@ -106,7 +106,7 @@ wp_localize_script('smart-main', 'brabusSpecs', $smart_brabus_specs);
   ================================================================ -->
   <section class="w-full bg-white brabus-strip-section" style="padding: 39px 59px 35px;">
     <div>
-      <p class="brabus-strip-desc" style="font-family:'FOR_smart_Sans',sans-serif; font-weight:400; font-size:25px; line-height:130%; letter-spacing:0.02em; color:#141413; margin:0; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;">
+      <p class="brabus-strip-desc" style="font-family:'FOR_smart_Next',sans-serif; font-weight:400; font-size:25px; line-height:130%; letter-spacing:0.02em; color:#141413; margin:0; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;">
         Representa la máxima expresión de desempeño dentro de la gama smart. Desarrollado en colaboración con BRABUS, combina la movilidad 100% eléctrica con un diseño distintivo, prestaciones deportivas y una experiencia de conducción emocionante.
       </p>
     </div>
@@ -124,8 +124,8 @@ wp_localize_script('smart-main', 'brabusSpecs', $smart_brabus_specs);
     <div class="brabus-collab-wrap" style="padding: 0px 35px 35px 59px; display:flex; flex-direction:row; align-items:flex-start; gap:35px;">
       <!-- Texto izquierda -->
       <div class="flex-shrink-0 flex flex-col justify-center brabus-collab-text-wrap" style="width:406px; height:480px;">
-        <h2 class="brabus-strip-title" style="font-family:'FOR_smart_Next',sans-serif; font-weight:400; font-size:45px; line-height:120%; letter-spacing:-0.02em; color:#141413; margin:0 0 16px;">smart x BRABUS.</h2>
-        <p class="brabus-collab-text" style="font-family:'FOR_smart_Sans',sans-serif; font-weight:400; font-size:26px; line-height:140%; color:#000000; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;">
+        <h2 class="brabus-strip-title" style="font-family:'FOR_smart_Sans',sans-serif; font-weight:400; font-size:45px; line-height:120%; letter-spacing:-0.02em; color:#141413; margin:0 0 16px;">smart x BRABUS.</h2>
+        <p class="brabus-collab-text" style="font-family:'FOR_smart_Next',sans-serif; font-weight:400; font-size:26px; line-height:140%; color:#000000; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;">
           La colaboración entre smart y BRABUS nació para los que no se conforman con el estándar. El resultado es un SUV eléctrico que combina ingeniería de alto rendimiento con una estética deportiva que parte del interior hacia afuera.
         </p>
       </div>
@@ -172,7 +172,7 @@ wp_localize_script('smart-main', 'brabusSpecs', $smart_brabus_specs);
              style="font-weight:400; font-size:13px; color:#fff; margin:0;">0 – 100 km/h</p>
         </div>
 
-        <!-- 66kWh + AWD -->
+        <!-- 66 kWh + AWD -->
         <div style="display:grid; grid-template-columns:112px 1fr; column-gap:31px; margin-bottom:40px;">
           <div>
             <p id="spec-bateria" class="font-smart-sans"
@@ -188,7 +188,7 @@ wp_localize_script('smart-main', 'brabusSpecs', $smart_brabus_specs);
           </div>
         </div>
 
-        <!-- 400km + 428CV -->
+        <!-- 400 km + 428 CV -->
         <div style="display:grid; grid-template-columns:112px 1fr; column-gap:31px; margin-bottom:30px;">
           <div>
             <p id="spec-range" class="font-smart-sans"

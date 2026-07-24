@@ -3,8 +3,8 @@
 <?php get_header(); ?>
 <?php get_template_part('partials/header'); ?>
   <style>
-    main h1, main h2 { font-family: 'FOR_smart_Next', 'Helvetica Neue', Helvetica, Arial, sans-serif !important; }
-    main p, main li  { font-family: 'FOR_smart_Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif !important; }
+    main h1, main h2 { font-family: 'FOR_smart_Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif !important; }
+    main p, main li  { font-family: 'FOR_smart_Next', 'Helvetica Neue', Helvetica, Arial, sans-serif !important; }
   </style>
 
   <!-- ================================================================

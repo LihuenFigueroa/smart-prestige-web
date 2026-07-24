@@ -26,7 +26,7 @@ $smart_hero_sobre      = smart_get_hero('sobre_smart');
         font-size: 36px !important;
         line-height: 1.2 !important;
         letter-spacing: -0.02em !important;
-        font-family: 'FOR_smart_Next', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+        font-family: 'FOR_smart_Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
       }
       .sobre-banner-img-wrap {
         padding: 0 !important;
