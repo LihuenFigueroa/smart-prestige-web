@@ -152,10 +152,6 @@ $smart_hero_servicios     = smart_get_hero('servicios');
       </div>
       <?php endforeach; ?>
 
-      <div style="margin-top:24px;">
-        <a href="#contacto" class="inline-flex items-center h-10 px-6 rounded-full border border-neutral-800 font-smart-sans text-sm font-normal text-black hover:bg-neutral-100 transition-colors">Contact Support</a>
-      </div>
-
     </div>
   </section>
 
