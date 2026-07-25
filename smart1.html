@@ -804,6 +804,14 @@
         <button id="vis-int-next" aria-label="Siguiente" style="position:absolute; top:50%; right:16px; width:36px; height:36px; background:#fff; border:none; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 12px rgba(0,0,0,0.18); z-index:6; cursor:pointer; transform:translateY(-50%); transition:opacity 0.2s ease;">
           <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 6.5h9M8 3l3.5 3.5L8 10" stroke="#141413" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
+        <div id="vis-int-nav-m" style="display:none; position:absolute; bottom:16px; right:16px; gap:1.5rem; align-items:center; z-index:6;">
+          <button id="vis-int-prev-m" aria-label="Anterior" style="background:none; border:none; padding:0; cursor:pointer; line-height:0; transition:opacity 0.2s ease;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0.5 10.7949L7.14648 4.14844L7.85352 4.85547L1.20728 11.502H24V12.502H1.20703L7.85352 19.1484L7.14648 19.8555L0.5 13.2092C0.177734 12.887 0 12.4583 0 12.002C0 11.5457 0.177734 11.1169 0.5 10.7949Z" fill="#141413"/></svg>
+          </button>
+          <button id="vis-int-next-m" aria-label="Siguiente" style="background:none; border:none; padding:0; cursor:pointer; line-height:0; transition:opacity 0.2s ease;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g transform="translate(24,0) scale(-1,1)"><path d="M0.5 10.7949L7.14648 4.14844L7.85352 4.85547L1.20728 11.502H24V12.502H1.20703L7.85352 19.1484L7.14648 19.8555L0.5 13.2092C0.177734 12.887 0 12.4583 0 12.002C0 11.5457 0.177734 11.1169 0.5 10.7949Z" fill="#141413"/></g></svg>
+          </button>
+        </div>
       </div>
 
       <!-- Barra inferior: z-index alto para flotar sobre el interior -->
@@ -1302,8 +1310,18 @@
         var track = document.getElementById('vis-int-track');
         if (!panel || !track) return;
 
-        var btnPrev = document.getElementById('vis-int-prev');
-        var btnNext = document.getElementById('vis-int-next');
+        var btnPrev  = document.getElementById('vis-int-prev');
+        var btnNext  = document.getElementById('vis-int-next');
+        var navM     = document.getElementById('vis-int-nav-m');
+        var btnPrevM = document.getElementById('vis-int-prev-m');
+        var btnNextM = document.getElementById('vis-int-next-m');
+
+        var isMobile = window.innerWidth < 768;
+        if (isMobile) {
+          if (btnPrev) btnPrev.style.display = 'none';
+          if (btnNext) btnNext.style.display = 'none';
+          if (navM)    navM.style.display    = 'flex';
+        }
 
         var idx  = 0;
         var imgs = [];
@@ -1314,8 +1332,10 @@
         };
 
         function updateArrows() {
-          if (btnPrev) { btnPrev.style.opacity = idx === 0 ? '0' : '1'; btnPrev.style.pointerEvents = idx === 0 ? 'none' : ''; }
-          if (btnNext) { btnNext.style.opacity = idx === imgs.length - 1 ? '0' : '1'; btnNext.style.pointerEvents = idx === imgs.length - 1 ? 'none' : ''; }
+          if (btnPrev)  { btnPrev.style.opacity  = idx === 0 ? '0' : '1'; btnPrev.style.pointerEvents  = idx === 0 ? 'none' : ''; }
+          if (btnNext)  { btnNext.style.opacity  = idx === imgs.length - 1 ? '0' : '1'; btnNext.style.pointerEvents  = idx === imgs.length - 1 ? 'none' : ''; }
+          if (btnPrevM) { btnPrevM.style.opacity = idx === 0 ? '0' : '1'; btnPrevM.style.pointerEvents = idx === 0 ? 'none' : ''; }
+          if (btnNextM) { btnNextM.style.opacity = idx === imgs.length - 1 ? '0' : '1'; btnNextM.style.pointerEvents = idx === imgs.length - 1 ? 'none' : ''; }
         }
 
         window.loadInteriorFor = function(linea) {
@@ -1374,13 +1394,15 @@
         panel.addEventListener('touchmove',  function(e) { dMove(e.touches[0].clientX); },  {passive:true});
         panel.addEventListener('touchend', dEnd, {passive:true});
 
-        [btnPrev, btnNext].forEach(function(btn) {
+        [btnPrev, btnNext, btnPrevM, btnNextM].forEach(function(btn) {
           if (!btn) return;
           btn.addEventListener('mousedown', function(e) { e.stopPropagation(); });
           btn.addEventListener('touchstart', function(e) { e.stopPropagation(); }, {passive:true});
         });
-        if (btnPrev) btnPrev.addEventListener('click', function(e) { e.stopPropagation(); goTo(idx - 1); });
-        if (btnNext) btnNext.addEventListener('click', function(e) { e.stopPropagation(); goTo(idx + 1); });
+        if (btnPrev)  btnPrev.addEventListener('click',  function(e) { e.stopPropagation(); goTo(idx - 1); });
+        if (btnNext)  btnNext.addEventListener('click',  function(e) { e.stopPropagation(); goTo(idx + 1); });
+        if (btnPrevM) btnPrevM.addEventListener('click', function(e) { e.stopPropagation(); goTo(idx - 1); });
+        if (btnNextM) btnNextM.addEventListener('click', function(e) { e.stopPropagation(); goTo(idx + 1); });
       })();
 
     function toggleModelosDropdown() {
