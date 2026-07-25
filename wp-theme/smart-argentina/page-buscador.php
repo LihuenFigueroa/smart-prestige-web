@@ -42,10 +42,6 @@ wp_localize_script('smart-buscador-data', 'smartConcesionarios', array_map(funct
         line-height: 1.4;
         margin-bottom: 0;
       }
-      .bus-hero-btn {
-        display: none !important;
-      }
-
       /* Sección buscador mobile */
       #buscador {
         height: auto !important;
@@ -77,7 +73,7 @@ wp_localize_script('smart-buscador-data', 'smartConcesionarios', array_map(funct
     .bus-contact-btn   { display: none; }
     .bus-contact-phone { display: inline; font-family:'FOR_smart_Next',sans-serif; font-size:13px; color:#141413; }
     @media (max-width: 767px) {
-      .bus-contact-btn   { display: inline-flex !important; align-items:center; height:36px; padding:0 20px; border-radius:18px; font-size:12px; color:#fff; background:#141413; text-decoration:none; }
+      .bus-contact-btn   { display: inline-flex !important; align-items:center; height:36px; padding:0 20px; border-radius:18px; font-size:12px; color:#fff; background:#141413; text-decoration:none; -webkit-text-fill-color:#fff; }
       .bus-contact-phone { display: none !important; }
     }
     .smart-marker { background: none; border: none; }
@@ -133,9 +129,6 @@ wp_localize_script('smart-buscador-data', 'smartConcesionarios', array_map(funct
     <div class="bus-hero-wrap absolute bottom-0 left-0 right-0 z-10" style="padding-left:56px; padding-bottom:56px;">
       <h1 class="bus-hero-title font-smart-next font-normal text-white">Buscador de concesionarios.</h1>
       <p class="bus-hero-label font-smart-sans text-white" style="opacity:0.9;">Encontrá tu concesionario más cercano.</p>
-      <div>
-        <a href="#buscador" class="bus-hero-btn font-smart-sans" style="display:inline-flex; align-items:center; height:40px; padding:0 24px; background:white; border-radius:9999px; font-size:14px; color:#141413; text-decoration:none; font-weight:700; letter-spacing:-0.025em;">Realizar consulta</a>
-      </div>
     </div>
   </section>
 
@@ -152,17 +145,15 @@ wp_localize_script('smart-buscador-data', 'smartConcesionarios', array_map(funct
         <h2 class="font-smart-next" style="font-size:27px; color:#141413; line-height:1.2; margin-bottom:24px;">Encontrá la sucursal smart más cercana.</h2>
 
         <!-- Input -->
-        <div style="border:1px solid #BDBDBD; padding:12px 16px; margin-bottom:6px;">
+        <div style="border:1px solid #BDBDBD; padding:12px 16px; margin-bottom:20px;">
           <input type="text" placeholder="CIUDAD, CÓDIGO POSTAL O CONCESIONARIO" id="buscador-input"
             onkeydown="if(event.key==='Enter') filtrarConcesionarios(this.value)"
             class="font-smart-sans"
             style="width:100%; background:transparent; border:none; outline:none; font-size:12px; color:#141413; letter-spacing:0.06em;" />
         </div>
-        <p class="font-smart-sans" style="font-size:11px; color:#BDBDBD; margin-bottom:20px;">Ingresá tu barrio o localidad</p>
 
-        <!-- Botones -->
-        <div style="display:flex; gap:12px; margin-bottom:40px;">
-          <button class="font-smart-sans" style="height:40px; padding:0 24px; border:1.34px solid #141413; border-radius:20px; font-size:12px; color:#141413; background:transparent; cursor:pointer; letter-spacing:0.03em;">Filtros</button>
+        <!-- Botón -->
+        <div style="margin-bottom:20px;">
           <button class="font-smart-sans" onclick="filtrarConcesionarios(document.getElementById('buscador-input').value)" style="height:40px; padding:0 24px; border-radius:20px; font-size:12px; color:#fff; background:#141413; border:none; cursor:pointer; letter-spacing:0.03em;">Buscar</button>
         </div>
 
@@ -183,9 +174,9 @@ wp_localize_script('smart-buscador-data', 'smartConcesionarios', array_map(funct
           </div>
           <?php endforeach; ?>
 
-        <p class="font-smart-sans hidden" id="no-resultados" style="font-size:12px; color:#BDBDBD; margin-top:20px;">No se encontraron concesionarios para esa búsqueda.</p>
-
         </div>
+
+        <p class="font-smart-sans hidden" id="no-resultados" style="font-size:12px; color:#BDBDBD; margin-top:20px;">No se encontraron concesionarios para esa búsqueda.</p>
 
       </div>
 
@@ -252,6 +243,18 @@ wp_localize_script('smart-buscador-data', 'smartConcesionarios', array_map(funct
     const allLatLngs = sucursales.map(s => [s.lat, s.lng]);
     map.fitBounds(allLatLngs, { padding: [40, 40] });
 
+    // Si una búsqueda dejó ocultos otros concesionarios (p. ej. el modo
+    // "más cercano"), al hacer zoom out / mover el mapa manualmente se
+    // vuelven a mostrar los que entran en el área visible.
+    map.on('zoomend moveend', function () {
+      const bounds = map.getBounds();
+      window.mapMarkers.forEach(m => {
+        if (!map.hasLayer(m) && bounds.contains(m.getLatLng())) {
+          m.addTo(map);
+        }
+      });
+    });
+
     function activateMarker(i) {
       if (activeItemIdx !== null && activeItemIdx !== i) {
         window.mapMarkers[activeItemIdx].setIcon(pinIcon);
@@ -267,6 +270,7 @@ wp_localize_script('smart-buscador-data', 'smartConcesionarios', array_map(funct
 
     // Click / hover en item → destacar marcador, centrar mapa, abrir popup
     document.querySelectorAll('.concesionario-item').forEach((item, i) => {
+      item.dataset.idx = i; // índice estable — no cambia aunque se reordene la lista por distancia
       item.style.cursor = 'pointer';
       item.addEventListener('mouseenter', () => activateMarker(i));
       item.addEventListener('mouseleave', () => {
@@ -297,30 +301,148 @@ wp_localize_script('smart-buscador-data', 'smartConcesionarios', array_map(funct
       marker.on('popupclose', () => deactivateMarker(i));
     });
 
-    function filtrarConcesionarios(query) {
+    // ── Búsqueda por proximidad ──────────────────────────────────────────
+    // Si el texto no matchea ningún nombre/tag de concesionario (p. ej. un
+    // barrio o código postal que no esté hardcodeado), geocodificamos la
+    // consulta con Nominatim (OpenStreetMap — el mismo proveedor del mapa,
+    // sin costo ni API key) y ordenamos los concesionarios por distancia
+    // real (haversine) al punto encontrado.
+    const geocodeCache = {};
+
+    function distKm(lat1, lon1, lat2, lon2) {
+      const R = 6371;
+      const dLat = (lat2 - lat1) * Math.PI / 180;
+      const dLon = (lon2 - lon1) * Math.PI / 180;
+      const a = Math.sin(dLat / 2) ** 2 +
+                Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                Math.sin(dLon / 2) ** 2;
+      return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    }
+
+    async function geocode(query) {
+      const key = query.toLowerCase().trim();
+      if (key in geocodeCache) return geocodeCache[key];
+      try {
+        const url = 'https://nominatim.openstreetmap.org/search?format=json&limit=1&countrycodes=ar&q=' + encodeURIComponent(query + ', Argentina');
+        const res  = await fetch(url, { headers: { 'Accept-Language': 'es' } });
+        const data = await res.json();
+        const result = (data && data[0]) ? { lat: parseFloat(data[0].lat), lng: parseFloat(data[0].lon) } : null;
+        geocodeCache[key] = result;
+        return result;
+      } catch (e) {
+        return null;
+      }
+    }
+
+    function clearDistanceBadges() {
+      document.querySelectorAll('.bus-distancia').forEach(el => el.remove());
+    }
+
+    // Marcador del punto buscado (la localidad/CP geocodificado) — distinto
+    // del pin de concesionario, para no confundirlos en el mapa.
+    let origenMarker = null;
+
+    function clearOrigenMarker() {
+      if (origenMarker) { map.removeLayer(origenMarker); origenMarker = null; }
+    }
+
+    function makeOrigenIcon() {
+      return new L.DivIcon({
+        className: 'smart-marker-origen',
+        html: '<div style="width:16px;height:16px;border-radius:50%;background:#2563EB;border:3px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,0.4);"></div>',
+        iconSize: [16, 16],
+        iconAnchor: [8, 8]
+      });
+    }
+
+    function ordenarPorDistancia(origen, queryLabel) {
+      const items = Array.from(document.querySelectorAll('.concesionario-item')).map(item => {
+        const i = parseInt(item.dataset.idx, 10);
+        const s = sucursales[i];
+        return { item, i, km: distKm(origen.lat, origen.lng, s.lat, s.lng) };
+      });
+      items.sort((a, b) => a.km - b.km);
+
+      const lista = document.getElementById('lista-concesionarios');
+      items.forEach(({ item, km }) => {
+        lista.appendChild(item); // re-insertar en orden de distancia ascendente
+        item.style.display = '';
+        const badge = document.createElement('p');
+        badge.className = 'font-smart-sans bus-distancia';
+        badge.style.cssText = 'font-size:12px; color:#6B7280; margin:-14px 0 16px;';
+        badge.textContent = km < 1 ? 'A menos de 1 km' : `A ${km.toFixed(0)} km`;
+        item.insertBefore(badge, item.querySelector('.bus-contact-btn'));
+      });
+
+      const nearest = items[0];
+      if (!nearest) return;
+
+      // En el mapa: solo el concesionario más cercano + el punto buscado, nada más.
+      window.mapMarkers.forEach(m => map.removeLayer(m));
+      clearOrigenMarker();
+
+      window.mapMarkers[nearest.i].addTo(map);
+      activateMarker(nearest.i);
+      window.mapMarkers[nearest.i].openPopup();
+
+      origenMarker = L.marker([origen.lat, origen.lng], { icon: makeOrigenIcon() })
+        .addTo(map)
+        .bindPopup(`<p class="font-smart-sans" style="font-size:13px;color:#141413;margin:0;">${queryLabel}</p>`, popupOptions);
+
+      map.fitBounds([
+        [origen.lat, origen.lng],
+        [sucursales[nearest.i].lat, sucursales[nearest.i].lng]
+      ], { padding: [60, 60], maxZoom: 14 });
+    }
+
+    async function filtrarConcesionarios(query) {
       const items = document.querySelectorAll('.concesionario-item');
       const noRes = document.getElementById('no-resultados');
       const q = query.toLowerCase().trim();
+      clearDistanceBadges();
+
+      if (!q) {
+        items.forEach(item => { item.style.display = ''; });
+        window.mapMarkers.forEach(m => m.addTo(map));
+        clearOrigenMarker();
+        noRes.classList.add('hidden');
+        map.fitBounds(allLatLngs, { padding: [40, 40] });
+        return;
+      }
+
+      // 1) Coincidencia directa por nombre/tag (rápida, sin red)
       let visibleLatLngs = [];
-      items.forEach((item, i) => {
-        const tags = item.getAttribute('data-tags') || '';
-        const name = item.querySelector('p').textContent.toLowerCase();
-        const match = !q || tags.includes(q) || name.includes(q);
+      items.forEach(item => {
+        const i     = parseInt(item.dataset.idx, 10);
+        const tags  = item.getAttribute('data-tags') || '';
+        const name  = item.querySelector('p').textContent.toLowerCase();
+        const match = tags.includes(q) || name.includes(q);
         item.style.display = match ? '' : 'none';
         const marker = window.mapMarkers[i];
         if (marker) {
-          if (match) {
-            marker.addTo(map);
-            visibleLatLngs.push(marker.getLatLng());
-          } else {
-            map.removeLayer(marker);
-          }
+          if (match) { marker.addTo(map); visibleLatLngs.push(marker.getLatLng()); }
+          else map.removeLayer(marker);
         }
       });
-      noRes.classList.toggle('hidden', visibleLatLngs.length > 0 || !q);
+
       if (visibleLatLngs.length > 0) {
+        clearOrigenMarker();
+        noRes.classList.add('hidden');
         map.fitBounds(visibleLatLngs, { padding: [40, 40] });
-      } else if (q) {
+        return;
+      }
+
+      // 2) Sin coincidencia directa → geocodificar y ordenar por proximidad
+      items.forEach(item => { item.style.display = ''; });
+      const origen = await geocode(query);
+
+      if (origen) {
+        ordenarPorDistancia(origen, query);
+        noRes.classList.add('hidden');
+      } else {
+        window.mapMarkers.forEach(m => map.removeLayer(m));
+        clearOrigenMarker();
+        noRes.classList.remove('hidden');
         map.fitBounds(allLatLngs, { padding: [40, 40] });
       }
     }
