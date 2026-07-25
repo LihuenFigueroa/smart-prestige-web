@@ -287,6 +287,12 @@ $smart_carruseles_s3 = [
       <!-- Interior carousel: cubre todo el stage (auto + barra) sin recortar -->
       <div id="vis-interior" style="position:absolute; z-index:5; transform:translateX(100%); transition:transform 0.52s cubic-bezier(0.25,0,0,1); overflow:hidden; cursor:grab;">
         <div id="vis-int-track" style="display:flex; height:100%; will-change:transform;"></div>
+        <button id="vis-int-prev" aria-label="Anterior" style="position:absolute; top:50%; left:16px; width:36px; height:36px; background:#fff; border:none; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 12px rgba(0,0,0,0.18); z-index:6; cursor:pointer; transform:translateY(-50%); transition:opacity 0.2s ease;">
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M11 6.5h-9M5 3L1.5 6.5 5 10" stroke="#141413" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button id="vis-int-next" aria-label="Siguiente" style="position:absolute; top:50%; right:16px; width:36px; height:36px; background:#fff; border:none; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 12px rgba(0,0,0,0.18); z-index:6; cursor:pointer; transform:translateY(-50%); transition:opacity 0.2s ease;">
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 6.5h9M8 3l3.5 3.5L8 10" stroke="#141413" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
       </div>
 
       <!-- Barra inferior: z-index alto para flotar sobre el interior -->
@@ -787,6 +793,9 @@ $smart_carruseles_s3 = [
         var track = document.getElementById('vis-int-track');
         if (!panel || !track) return;
 
+        var btnPrev = document.getElementById('vis-int-prev');
+        var btnNext = document.getElementById('vis-int-next');
+
         var idx  = 0;
         var imgs = [];
         var STD  = ['<?php echo get_template_directory_uri(); ?>/assets/img/smart3/int-std-1.png','<?php echo get_template_directory_uri(); ?>/assets/img/smart3/int-std-2.png','<?php echo get_template_directory_uri(); ?>/assets/img/smart3/int-std-3.png','<?php echo get_template_directory_uri(); ?>/assets/img/smart3/int-std-4.png'];
@@ -794,6 +803,11 @@ $smart_carruseles_s3 = [
           'BRABUS': ['<?php echo get_template_directory_uri(); ?>/assets/img/smart3/int-brabus-1.png','<?php echo get_template_directory_uri(); ?>/assets/img/smart3/int-brabus-2.png','<?php echo get_template_directory_uri(); ?>/assets/img/smart3/int-brabus-3.png','<?php echo get_template_directory_uri(); ?>/assets/img/smart3/int-brabus-4.png'],
           'Pro': STD, 'Pro+': STD
         };
+
+        function updateArrows() {
+          if (btnPrev) { btnPrev.style.opacity = idx === 0 ? '0' : '1'; btnPrev.style.pointerEvents = idx === 0 ? 'none' : ''; }
+          if (btnNext) { btnNext.style.opacity = idx === imgs.length - 1 ? '0' : '1'; btnNext.style.pointerEvents = idx === imgs.length - 1 ? 'none' : ''; }
+        }
 
         window.loadInteriorFor = function(linea) {
           imgs = lineaMap[linea] || lineaMap['BRABUS'];
@@ -810,6 +824,7 @@ $smart_carruseles_s3 = [
           });
           track.style.transition = 'none';
           track.style.transform  = 'translateX(0)';
+          updateArrows();
         };
 
         function goTo(n) {
@@ -817,6 +832,7 @@ $smart_carruseles_s3 = [
           idx = n;
           track.style.transition = 'transform 0.4s cubic-bezier(0.25,0,0,1)';
           track.style.transform  = 'translateX(-' + (idx * panel.offsetWidth) + 'px)';
+          updateArrows();
         }
 
         var dragging = false, sx = 0, cx = 0;
@@ -848,6 +864,14 @@ $smart_carruseles_s3 = [
         panel.addEventListener('touchstart', function(e) { dStart(e.touches[0].clientX); }, {passive:true});
         panel.addEventListener('touchmove',  function(e) { dMove(e.touches[0].clientX); },  {passive:true});
         panel.addEventListener('touchend', dEnd, {passive:true});
+
+        [btnPrev, btnNext].forEach(function(btn) {
+          if (!btn) return;
+          btn.addEventListener('mousedown', function(e) { e.stopPropagation(); });
+          btn.addEventListener('touchstart', function(e) { e.stopPropagation(); }, {passive:true});
+        });
+        if (btnPrev) btnPrev.addEventListener('click', function(e) { e.stopPropagation(); goTo(idx - 1); });
+        if (btnNext) btnNext.addEventListener('click', function(e) { e.stopPropagation(); goTo(idx + 1); });
       })();
 
     function toggleModelosDropdown() {
