@@ -295,26 +295,27 @@ $smart_carruseles_s3 = [
         </button>
       </div>
 
-      <!-- Interior mobile: flechas debajo de la imagen (mismo estilo que carruseles de fotos) -->
-      <div id="vis-int-nav-m" style="display:none; visibility:hidden; justify-content:flex-end; align-items:center; gap:1.5rem; padding:0.75rem 1.25rem 0; margin-top:80px;">
-        <button id="vis-int-prev-m" aria-label="Anterior" style="background:none; border:none; padding:0; cursor:pointer; line-height:0; transition:opacity 0.2s ease;">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0.5 10.7949L7.14648 4.14844L7.85352 4.85547L1.20728 11.502H24V12.502H1.20703L7.85352 19.1484L7.14648 19.8555L0.5 13.2092C0.177734 12.887 0 12.4583 0 12.002C0 11.5457 0.177734 11.1169 0.5 10.7949Z" fill="#141413"/></svg>
-        </button>
-        <button id="vis-int-next-m" aria-label="Siguiente" style="background:none; border:none; padding:0; cursor:pointer; line-height:0; transition:opacity 0.2s ease;">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g transform="translate(24,0) scale(-1,1)"><path d="M0.5 10.7949L7.14648 4.14844L7.85352 4.85547L1.20728 11.502H24V12.502H1.20703L7.85352 19.1484L7.14648 19.8555L0.5 13.2092C0.177734 12.887 0 12.4583 0 12.002C0 11.5457 0.177734 11.1169 0.5 10.7949Z" fill="#141413"/></g></svg>
-        </button>
-      </div>
-
       <!-- Barra inferior: z-index alto para flotar sobre el interior -->
       <div id="vis-bottom-bar" style="position:relative; z-index:20; display:flex; justify-content:space-between; align-items:flex-end;">
 
         <div id="vis-controls-card">
-          <!-- Línea -->
-          <div id="vis-linea-row" style="display:flex; align-items:center; gap:20px; margin-bottom:14px; transition:margin-bottom 0.4s cubic-bezier(0.25,0,0,1);">
-            <span class="font-smart-sans" style="font-size:11px; color:#6B747B; font-weight:700; min-width:44px;">Línea</span>
-            <button class="vis-linea-btn font-smart-sans" data-linea="Pro"    style="font-size:13px; font-weight:700; color:#141413; background:none; border:none; cursor:pointer; padding:0;">Pro</button>
-            <button class="vis-linea-btn font-smart-sans" data-linea="Pro+"   style="font-size:13px; font-weight:400; color:#6B747B; background:none; border:none; cursor:pointer; padding:0;">Pro+</button>
-            <button class="vis-linea-btn font-smart-sans" data-linea="BRABUS" style="font-size:13px; font-weight:400; color:#6B747B; background:none; border:none; cursor:pointer; padding:0;">BRABUS</button>
+          <!-- Línea (+ flechas mobile del carrusel interior, alineadas a la misma altura) -->
+          <div id="vis-linea-row" style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:0.5rem 1rem; margin-bottom:14px; transition:margin-bottom 0.4s cubic-bezier(0.25,0,0,1);">
+            <div style="display:flex; align-items:center; gap:20px;">
+              <span class="font-smart-sans" style="font-size:11px; color:#6B747B; font-weight:700; min-width:44px;">Línea</span>
+              <button class="vis-linea-btn font-smart-sans" data-linea="Pro"    style="font-size:13px; font-weight:700; color:#141413; background:none; border:none; cursor:pointer; padding:0;">Pro</button>
+              <button class="vis-linea-btn font-smart-sans" data-linea="Pro+"   style="font-size:13px; font-weight:400; color:#6B747B; background:none; border:none; cursor:pointer; padding:0;">Pro+</button>
+              <button class="vis-linea-btn font-smart-sans" data-linea="BRABUS" style="font-size:13px; font-weight:400; color:#6B747B; background:none; border:none; cursor:pointer; padding:0;">BRABUS</button>
+            </div>
+            <!-- Interior mobile: flechas alineadas con la fila de Línea -->
+            <div id="vis-int-nav-m" style="display:none; visibility:hidden; align-items:center; gap:1rem; flex-shrink:0;">
+              <button id="vis-int-prev-m" aria-label="Anterior" style="background:none; border:none; padding:0; cursor:pointer; line-height:0; transition:opacity 0.2s ease;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0.5 10.7949L7.14648 4.14844L7.85352 4.85547L1.20728 11.502H24V12.502H1.20703L7.85352 19.1484L7.14648 19.8555L0.5 13.2092C0.177734 12.887 0 12.4583 0 12.002C0 11.5457 0.177734 11.1169 0.5 10.7949Z" fill="#141413"/></svg>
+              </button>
+              <button id="vis-int-next-m" aria-label="Siguiente" style="background:none; border:none; padding:0; cursor:pointer; line-height:0; transition:opacity 0.2s ease;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g transform="translate(24,0) scale(-1,1)"><path d="M0.5 10.7949L7.14648 4.14844L7.85352 4.85547L1.20728 11.502H24V12.502H1.20703L7.85352 19.1484L7.14648 19.8555L0.5 13.2092C0.177734 12.887 0 12.4583 0 12.002C0 11.5457 0.177734 11.1169 0.5 10.7949Z" fill="#141413"/></g></svg>
+              </button>
+            </div>
           </div>
           <!-- Color -->
           <div id="vis-color-row" style="display:flex; align-items:center; gap:10px; overflow:hidden; max-height:68px; padding:4px 5px 4px 0; transition:max-height 0.4s cubic-bezier(0.25,0,0,1), padding-top 0.4s cubic-bezier(0.25,0,0,1), padding-bottom 0.4s cubic-bezier(0.25,0,0,1);">
