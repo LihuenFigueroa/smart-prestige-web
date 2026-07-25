@@ -104,7 +104,7 @@ $smart_carruseles_s3 = [
     <!-- ── Carrusel <?php echo $track_num; ?> ── -->
     <?php if (!empty($carrusel_titulo)): ?>
     <div class="w-full px-5 md:px-14">
-      <div class="max-w-[1320px] mx-auto pt-10 md:pt-14">
+      <div class="max-w-[1320px] mx-auto pt-6 md:pt-10">
         <h3 class="font-smart-next font-normal text-black text-2xl md:text-3xl mb-4 md:mb-6"><?php echo esc_html($carrusel_titulo); ?>.</h3>
         <div class="border-t border-neutral-200 mb-6 md:mb-8"></div>
       </div>

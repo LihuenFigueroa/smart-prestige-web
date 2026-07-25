@@ -2493,8 +2493,8 @@ video {
   padding-top: 2.5rem;
 }
 
-.pt-14 {
-  padding-top: 3.5rem;
+.pt-6 {
+  padding-top: 1.5rem;
 }
 
 .pt-3 {
@@ -2980,8 +2980,8 @@ video {
     margin-bottom: 2rem;
   }
 
-  .md\:pt-14 {
-    padding-top: 3.5rem;
+  .md\:pt-10 {
+    padding-top: 2.5rem;
   }
 
   .md\:mb-6 {
