@@ -293,14 +293,6 @@ $smart_carruseles_s3 = [
         <button id="vis-int-next" aria-label="Siguiente" style="position:absolute; top:50%; right:16px; width:36px; height:36px; background:#fff; border:none; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 12px rgba(0,0,0,0.18); z-index:6; cursor:pointer; transform:translateY(-50%); transition:opacity 0.2s ease;">
           <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 6.5h9M8 3l3.5 3.5L8 10" stroke="#141413" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
-        <div id="vis-int-nav-m" style="display:none; position:absolute; bottom:16px; right:16px; gap:1.5rem; align-items:center; z-index:6;">
-          <button id="vis-int-prev-m" aria-label="Anterior" style="background:none; border:none; padding:0; cursor:pointer; line-height:0; transition:opacity 0.2s ease;">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0.5 10.7949L7.14648 4.14844L7.85352 4.85547L1.20728 11.502H24V12.502H1.20703L7.85352 19.1484L7.14648 19.8555L0.5 13.2092C0.177734 12.887 0 12.4583 0 12.002C0 11.5457 0.177734 11.1169 0.5 10.7949Z" fill="#141413"/></svg>
-          </button>
-          <button id="vis-int-next-m" aria-label="Siguiente" style="background:none; border:none; padding:0; cursor:pointer; line-height:0; transition:opacity 0.2s ease;">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g transform="translate(24,0) scale(-1,1)"><path d="M0.5 10.7949L7.14648 4.14844L7.85352 4.85547L1.20728 11.502H24V12.502H1.20703L7.85352 19.1484L7.14648 19.8555L0.5 13.2092C0.177734 12.887 0 12.4583 0 12.002C0 11.5457 0.177734 11.1169 0.5 10.7949Z" fill="#141413"/></g></svg>
-          </button>
-        </div>
       </div>
 
       <!-- Barra inferior: z-index alto para flotar sobre el interior -->
@@ -350,6 +342,16 @@ $smart_carruseles_s3 = [
       </div><!-- end vis-bottom-bar -->
 
     </div><!-- end vis-stage -->
+
+    <!-- Interior mobile: flechas debajo de la imagen (mismo estilo que carruseles de fotos) -->
+    <div id="vis-int-nav-m" style="display:none; justify-content:flex-end; align-items:center; gap:1.5rem; padding:0.75rem 1.25rem 0;">
+      <button id="vis-int-prev-m" aria-label="Anterior" style="background:none; border:none; padding:0; cursor:pointer; line-height:0; transition:opacity 0.2s ease;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0.5 10.7949L7.14648 4.14844L7.85352 4.85547L1.20728 11.502H24V12.502H1.20703L7.85352 19.1484L7.14648 19.8555L0.5 13.2092C0.177734 12.887 0 12.4583 0 12.002C0 11.5457 0.177734 11.1169 0.5 10.7949Z" fill="#141413"/></svg>
+      </button>
+      <button id="vis-int-next-m" aria-label="Siguiente" style="background:none; border:none; padding:0; cursor:pointer; line-height:0; transition:opacity 0.2s ease;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g transform="translate(24,0) scale(-1,1)"><path d="M0.5 10.7949L7.14648 4.14844L7.85352 4.85547L1.20728 11.502H24V12.502H1.20703L7.85352 19.1484L7.14648 19.8555L0.5 13.2092C0.177734 12.887 0 12.4583 0 12.002C0 11.5457 0.177734 11.1169 0.5 10.7949Z" fill="#141413"/></g></svg>
+      </button>
+    </div>
 
   </section>
 
@@ -615,6 +617,8 @@ $smart_carruseles_s3 = [
           var carBack    = document.getElementById('vis-car-back');
           var carFront   = document.getElementById('vis-car-front');
           var manualLink = document.getElementById('vis-manual-link');
+          var navM       = document.getElementById('vis-int-nav-m');
+          if (navM) navM.style.display = (view === 'int' && window.innerWidth < 768) ? 'flex' : 'none';
           if (view === 'ext') {
             indicator.style.width = btnExt.offsetWidth + 'px';
             indicator.style.transform = 'translateX(0)';
@@ -803,15 +807,12 @@ $smart_carruseles_s3 = [
 
         var btnPrev  = document.getElementById('vis-int-prev');
         var btnNext  = document.getElementById('vis-int-next');
-        var navM     = document.getElementById('vis-int-nav-m');
         var btnPrevM = document.getElementById('vis-int-prev-m');
         var btnNextM = document.getElementById('vis-int-next-m');
 
-        var isMobile = window.innerWidth < 768;
-        if (isMobile) {
+        if (window.innerWidth < 768) {
           if (btnPrev) btnPrev.style.display = 'none';
           if (btnNext) btnNext.style.display = 'none';
-          if (navM)    navM.style.display    = 'flex';
         }
 
         var idx  = 0;
