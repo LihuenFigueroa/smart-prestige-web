@@ -115,17 +115,22 @@ $smart_carruseles_s1 = [
   ================================================================ -->
   <section class="w-full bg-white pb-10">
 
-    <?php foreach ($smart_carruseles_s1 as $i => $carrusel): $track_num = $i + 1; ?>
+    <?php foreach ($smart_carruseles_s1 as $i => $carrusel): $track_num = $i + 1; $carrusel_titulo = $carrusel[0]['tag'] ?? ''; ?>
     <!-- ── Carrusel <?php echo $track_num; ?> ── -->
+    <?php if (!empty($carrusel_titulo)): ?>
+    <div class="w-full px-5 md:px-14">
+      <div class="max-w-[1320px] mx-auto pt-10 md:pt-14">
+        <h3 class="font-smart-next font-normal text-black text-2xl md:text-3xl mb-4 md:mb-6"><?php echo esc_html($carrusel_titulo); ?>.</h3>
+        <div class="border-t border-neutral-200 mb-6 md:mb-8"></div>
+      </div>
+    </div>
+    <?php endif; ?>
     <div style="padding-bottom:1rem; overflow:hidden;">
       <div id="track-c<?php echo $track_num; ?>" class="flex select-none" style="overflow-x:scroll; scrollbar-width:none; -ms-overflow-style:none; padding-left:1.25rem; padding-right:1.25rem; gap:1rem; cursor:grab;">
 
         <?php foreach ($carrusel as $card): ?>
         <div class="c-card">
           <img src="<?php echo esc_url($card['imagen']); ?>" alt="<?php echo esc_attr($card['alt']); ?>" class="c-card__img" />
-          <?php if (!empty($card['tag'])): ?>
-          <span class="c-card__tag"><?php echo esc_html($card['tag']); ?></span>
-          <?php endif; ?>
           <div class="c-card__gradient"></div>
           <div class="c-card__body">
             <div class="c-card__text">
