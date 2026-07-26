@@ -5,6 +5,14 @@ $smart_hero_servicios     = smart_get_hero('servicios');
 ?>
 <?php get_header(); ?>
 <?php get_template_part('partials/header'); ?>
+  <style>
+    @media (max-width: 767px) {
+      .servicios-hero-img {
+        content: url('<?php echo esc_url($smart_hero_servicios['mobile']); ?>');
+        object-position: center 90% !important;
+      }
+    }
+  </style>
   <!-- ================================================================
        HERO
   ================================================================ -->

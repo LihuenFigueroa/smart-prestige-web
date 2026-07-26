@@ -1283,7 +1283,7 @@ add_action('init', function () {
     ['slug' => 'hero-smart3',               'pagina' => 'smart3',              'titulo' => 'smart #3',                   'desktop' => 'smart3/hero.jpg',              'mobile' => 'smart3/hero-mobile.png'],
     ['slug' => 'hero-brabus',               'pagina' => 'brabus',              'titulo' => 'smart x BRABUS',             'desktop' => '',                             'mobile' => ''],
     ['slug' => 'hero-conectividad',         'pagina' => 'conectividad',        'titulo' => 'Conectividad',               'desktop' => 'conectividad/hero.jpg',        'mobile' => ''],
-    ['slug' => 'hero-servicios',            'pagina' => 'servicios',           'titulo' => 'Servicios al cliente',       'desktop' => 'servicios/hero.jpg',           'mobile' => ''],
+    ['slug' => 'hero-servicios',            'pagina' => 'servicios',           'titulo' => 'Servicios al cliente',       'desktop' => 'servicios/hero.jpg',           'mobile' => 'servicios/hero-mobile.png'],
     ['slug' => 'hero-movilidad-electrica',  'pagina' => 'movilidad_electrica', 'titulo' => 'Movilidad eléctrica',        'desktop' => 'movilidad/hero.jpg',           'mobile' => 'movilidad/hero-mobile.png'],
     ['slug' => 'hero-sobre-smart',          'pagina' => 'sobre_smart',         'titulo' => 'Sobre smart',                'desktop' => 'sobre-smart/hero.jpg',         'mobile' => 'sobre-smart/hero-mobile.png'],
     ['slug' => 'hero-buscador',             'pagina' => 'buscador',            'titulo' => 'Buscador de concesionarios', 'desktop' => 'buscador/hero.jpg',            'mobile' => 'buscador/hero-mobile.png'],
@@ -1312,6 +1312,16 @@ add_action('init', function () {
     }
   }
 }, 30);
+
+// ── Migración: agrega la imagen mobile de servicios a un post hero-servicios
+//    que ya existía sin ella (el array de arriba solo corre en la creación) ──
+add_action('init', function () {
+  if (!function_exists('update_field') || !function_exists('get_field')) return;
+  $post = get_page_by_path('hero-servicios', OBJECT, 'hero_pagina');
+  if (!$post || get_field('hero_mobile', $post->ID)) return;
+  $attachment_id = smart_import_attachment_from_theme_path('servicios/hero-mobile.png', 'Servicios al cliente — mobile');
+  if ($attachment_id) update_field('hero_mobile', $attachment_id, $post->ID);
+}, 31);
 
 // ── Helper: hero de página (usado por todos los templates con hero) ────────
 function smart_get_hero($pagina) {
