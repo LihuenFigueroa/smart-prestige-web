@@ -49,9 +49,16 @@ wp_localize_script('smart-main', 'brabusSpecs', $smart_brabus_specs);
           <span class="w-5 h-px bg-white block"></span>
           <span class="w-5 h-px bg-white block"></span>
         </button>
-        <button class="hidden md:flex items-center gap-1 text-white text-sm font-normal uppercase tracking-wide">
-          MODELOS <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
-        </button>
+        <div class="relative hidden md:block" id="modelos-dropdown">
+          <button onclick="toggleModelosDropdown()" class="flex items-center gap-1 text-white text-sm font-normal uppercase tracking-wide leading-6">
+            MODELOS
+            <svg id="modelos-chevron" class="w-3 h-3 ml-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="modelos-menu" class="absolute top-full left-0 mt-1 min-w-[152px] z-50">
+            <a href="<?php echo home_url('/smart-1/'); ?>" class="block px-6 py-4 text-[#141413] text-base font-smart-sans border-b border-neutral-200 hover:bg-neutral-100 transition-colors">smart #1</a>
+            <a href="<?php echo home_url('/smart-3/'); ?>" class="block px-6 py-4 text-[#141413] text-base font-smart-sans hover:bg-neutral-100 transition-colors">smart #3</a>
+          </div>
+        </div>
       </div>
       <div class="absolute left-1/2 -translate-x-1/2">
         <a href="<?php echo home_url('/'); ?>"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/Logonavbar.svg" alt="smart" class="h-4 md:h-8 w-auto" /></a>
@@ -246,6 +253,21 @@ wp_localize_script('smart-main', 'brabusSpecs', $smart_brabus_specs);
     new Image().src = '<?php echo get_template_directory_uri(); ?>/assets/img/brabus/spec1_wide.png';
     new Image().src = '<?php echo get_template_directory_uri(); ?>/assets/img/brabus/spec3_wide.png';
 
+    function toggleModelosDropdown() {
+      const menu    = document.getElementById('modelos-menu');
+      const chevron = document.getElementById('modelos-chevron');
+      menu.classList.toggle('is-open');
+      chevron.style.transform = menu.classList.contains('is-open') ? 'rotate(180deg)' : '';
+    }
+    document.addEventListener('click', function(e) {
+      const dd = document.getElementById('modelos-dropdown');
+      if (dd && !dd.contains(e.target)) {
+        const menu    = document.getElementById('modelos-menu');
+        const chevron = document.getElementById('modelos-chevron');
+        if (menu)    menu.classList.remove('is-open');
+        if (chevron) chevron.style.transform = '';
+      }
+    });
     function openNavMenu() {
       const menu     = document.getElementById('nav-menu');
       const drawer   = document.getElementById('nav-drawer');
