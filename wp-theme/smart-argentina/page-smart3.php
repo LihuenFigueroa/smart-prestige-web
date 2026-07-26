@@ -262,7 +262,7 @@ $smart_carruseles_s3 = [
         <p class="font-smart-sans" style="font-size:10px; color:#9ca3af; line-height:1.4; margin:0 0 12px;">Autonomía sujeta a tipo de conducción, condiciones del terrreno y condiciones del clima.</p>
         <div id="vis-btn-row">
           <button class="font-smart-sans" style="height:40px; padding:0 22px; border-radius:999px; background:#1A1A1A; font-size:13px; font-weight:700; color:#fff; cursor:pointer; border:none;">Ficha técnica</button>
-          <a class="vis-manual-link font-smart-sans" href="<?php echo get_template_directory_uri(); ?>/assets/pdf/manual-smart3.pdf" download style="font-size:12px; color:#6B747B; text-decoration:underline;">Manual de usuario</a>
+          <a class="vis-manual-link font-smart-sans" href="<?php echo get_template_directory_uri(); ?>/assets/pdf/manual-smart3.pdf" download style="align-items:center; height:40px; padding:0 22px; border-radius:999px; background:#fff; border:1px solid #141413; font-size:13px; font-weight:700; color:#141413; text-decoration:none; white-space:nowrap;">Manual de usuario</a>
         </div>
       </div>
 
@@ -346,8 +346,6 @@ $smart_carruseles_s3 = [
             </div>
           </div>
         </div>
-
-        <a id="vis-manual-link" href="<?php echo get_template_directory_uri(); ?>/assets/pdf/manual-smart3.pdf" download class="font-smart-sans" style="font-size:12px; color:#141413; text-decoration:underline; padding-bottom:1px; transition:color 0.3s;">Manual de usuario</a>
 
       </div><!-- end vis-bottom-bar -->
 
@@ -616,7 +614,6 @@ $smart_carruseles_s3 = [
 
           var carBack    = document.getElementById('vis-car-back');
           var carFront   = document.getElementById('vis-car-front');
-          var manualLink = document.getElementById('vis-manual-link');
           var navM       = document.getElementById('vis-int-nav-m');
           if (navM) navM.style.visibility = (view === 'int' && window.innerWidth < 768) ? 'visible' : 'hidden';
           if (view === 'ext') {
@@ -630,7 +627,6 @@ $smart_carruseles_s3 = [
             }
             if (carBack)    carBack.style.visibility    = '';
             if (carFront)   carFront.style.visibility   = '';
-            if (manualLink) { manualLink.style.color = '#141413'; manualLink.style.borderBottomColor = '#141413'; }
             var colorRow = document.getElementById('vis-color-row');
             var lineaRow = document.getElementById('vis-linea-row');
             if (colorRow) { colorRow.style.maxHeight = '68px'; colorRow.style.paddingTop = '4px'; colorRow.style.paddingBottom = '4px'; }
@@ -642,7 +638,6 @@ $smart_carruseles_s3 = [
             btnExt.style.color = '#141413';
             if (carBack)    carBack.style.visibility    = 'hidden';
             if (carFront)   carFront.style.visibility   = 'hidden';
-            if (manualLink) { manualLink.style.color = '#fff'; manualLink.style.borderBottomColor = 'rgba(255,255,255,0.6)'; }
             var colorRow = document.getElementById('vis-color-row');
             var lineaRow = document.getElementById('vis-linea-row');
             if (colorRow) { colorRow.style.maxHeight = '0'; colorRow.style.paddingTop = '0'; colorRow.style.paddingBottom = '0'; }
