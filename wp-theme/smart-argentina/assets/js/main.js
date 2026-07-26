@@ -8,7 +8,10 @@ function initHeroAutoplayVideo(videoId) {
 
   new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
-      const isFullyVisible = entry.isIntersecting && entry.intersectionRatio >= 0.98;
+      // 0.9 en vez de ~1: el hero tiene min-height:640px, que en ventanas más
+      // bajas que eso puede superar el alto real del viewport y volver
+      // inalcanzable un ratio cercano a 1 (el video nunca arrancaría).
+      const isFullyVisible = entry.isIntersecting && entry.intersectionRatio >= 0.9;
       // Solo reinicia si terminó (o si todavía no arrancó nunca) — mientras
       // está reproduciéndose no se debe reiniciar aunque se pierda y recupere la visibilidad.
       const canRestart = video.ended || (video.paused && video.currentTime === 0);
@@ -17,7 +20,7 @@ function initHeroAutoplayVideo(videoId) {
         video.play().catch(() => {});
       }
     });
-  }, { threshold: [0, 0.98, 1] }).observe(section);
+  }, { threshold: [0, 0.5, 0.9, 1] }).observe(section);
 }
 
 // ── Hero ─────────────────────────────────────────────────────────────────
