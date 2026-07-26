@@ -118,7 +118,7 @@ $smart_hero_movilidad  = smart_get_hero('movilidad_electrica');
   ================================================================ -->
   <section class="mov-strip-section" style="background:white; padding:39px 81px 35px;">
     <p class="font-smart-sans" style="font-size:22px; line-height:130%; letter-spacing:0.02em; color:#141413; margin-bottom:16px;"><strong class="font-smart-sans">Los modelos smart #1 y #3 están diseñados para la vida cotidiana y para mucho más.</strong> Batería de gran capacidad, carga rápida y una autonomía que acompaña cada viaje sin que tengas que pensar en el siguiente enchufe.</p>
-    <a href="<?php echo home_url('/buscador/'); ?>" style="display:inline-flex; align-items:center; height:48px; padding:0 32px; border:1px solid #141413; border-radius:24px; font-size:16px; color:#141413; text-decoration:none; white-space:nowrap;" class="font-smart-sans">Encontrá tu smart</a>
+    <a href="<?php echo home_url('/#elegir-modelo'); ?>" style="display:inline-flex; align-items:center; height:48px; padding:0 32px; border:1px solid #141413; border-radius:24px; font-size:16px; color:#141413; text-decoration:none; white-space:nowrap;" class="font-smart-sans">Encontrá tu smart</a>
   </section>
 
   <!-- ================================================================
