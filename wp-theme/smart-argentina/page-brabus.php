@@ -14,9 +14,82 @@ wp_localize_script('smart-main', 'brabusSpecs', $smart_brabus_specs);
        HERO — smart x BRABUS
   ================================================================ -->
   <style>
+    /* Defaults (desktop) — deben ir ANTES del media query */
+    .brabus-collab-img-mobile { display: none; }
+    .brabus-specs-gradient-mobile { display: none; }
+    .brabus-specs-desktop-gradient { display: block; }
+
     @media (max-width: 767px) {
       .brabus-hero-img {
         content: url('<?php echo esc_url($smart_hero_brabus['mobile']); ?>');
+      }
+
+      .brabus-collab-img-mobile { display: flex; justify-content: center; }
+      .brabus-specs-desktop-gradient { background: linear-gradient(180deg, rgba(20,20,19,0.75) 0%, transparent 60%) !important; }
+
+      /* Sección specs: altura = ancho * 4/3 para coincidir con imagen portrait */
+      .brabus-specs-section {
+        min-height: unset !important;
+        height: calc(100vw * 1.7) !important;
+      }
+      /* Imágenes de fondo mobile-only para la sección specs */
+      #spec-bg-1 { content: url('<?php echo get_template_directory_uri(); ?>/assets/img/brabus/spec1-mobile.png'); object-fit: cover !important; object-position: center top !important; }
+      #spec-bg-3 { content: url('<?php echo get_template_directory_uri(); ?>/assets/img/brabus/spec3-mobile.png'); object-fit: cover !important; object-position: center top !important; }
+
+      .brabus-specs-gradient-mobile { display: block; opacity: 0.45; }
+
+      .brabus-specs-group {
+        left: 34px !important;
+        top: 45px !important;
+        width: 236px !important;
+        height: 204.51px !important;
+      }
+      .brabus-specs-group #spec-accel,
+      .brabus-specs-group #spec-range,
+      .brabus-specs-group p[style*="font-size:36px"] {
+        font-size: 21px !important;
+        line-height: 1.2 !important;
+      }
+      .brabus-specs-group p[style*="font-size:13px"] {
+        font-size: 7.4px !important;
+      }
+      .brabus-specs-group div[style*="grid-template-columns:112px"] {
+        grid-template-columns: 77px 1fr !important;
+        column-gap: 6px !important;
+      }
+      .brabus-specs-group div[style*="margin-bottom:40px"],
+      .brabus-specs-group div[style*="margin-bottom:30px"] {
+        margin-bottom: 8px !important;
+      }
+      .brabus-specs-group p[style*="font-size:13.82px"] {
+        font-size: 8px !important;
+        margin-bottom: 11px !important;
+      }
+      .brabus-specs-btn {
+        width: 198px !important;
+        height: 29.51px !important;
+        font-size: 10.33px !important;
+      }
+      .brabus-specs-toggle {
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        bottom: 24px !important;
+      }
+      /* Strip "smart x BRABUS." — mobile */
+      .brabus-strip-section { padding: 28px 37px 28px !important; }
+      .brabus-strip-title   { font-size: 32px !important; }
+      .brabus-strip-desc    { font-size: 26px !important; }
+
+      .brabus-collab-wrap {
+        padding: 32px !important;
+      }
+      .brabus-collab-text-wrap {
+        width: 100% !important;
+        min-height: unset !important;
+        height: auto !important;
+      }
+      .brabus-collab-text {
+        font-size: 26px !important;
       }
     }
     /* "md:hidden" no está compilado en tailwind.css — se fuerza acá para que
