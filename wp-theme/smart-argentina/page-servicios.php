@@ -11,6 +11,55 @@ $smart_hero_servicios     = smart_get_hero('servicios');
         content: url('<?php echo esc_url(add_query_arg('v', '4', $smart_hero_servicios['mobile'])); ?>');
         object-position: center 100% !important;
       }
+      /* Sección intro — mobile */
+      .svc-intro-section  { height: auto !important; }
+      .svc-intro-text-wrap {
+        width: 100% !important;
+        padding-left: 24px !important;
+        padding-right: 24px !important;
+        padding-top: 40px !important;
+        padding-bottom: 32px !important;
+      }
+      .svc-intro-inner    { width: 100% !important; height: auto !important; }
+      .svc-intro-label    { font-size: 13px !important; }
+      .svc-intro-headline { font-size: 29px !important; line-height: 120% !important; }
+      .svc-intro-desc     { font-size: 16px !important; width: 100% !important; }
+
+      .svc-hero-text-wrap {
+        left: 24px !important;
+        padding-left: 0 !important;
+        padding-bottom: 32px !important;
+      }
+      .svc-hero-title {
+        font-size: 39px !important;
+        line-height: 120% !important;
+        letter-spacing: -0.02em !important;
+        width: 257px;
+      }
+
+      /* Sábana — texto contenido */
+      .sabana-content p {
+        color: #141413 !important;
+        font-size: 16px !important;
+      }
+
+      /* Carrusel mobile */
+      #svc-carousel-viewport {
+        padding-top: 24px !important;
+        padding-bottom: 24px !important;
+      }
+      #track-svc-intro {
+        height: auto !important;
+        padding-left: 1.25rem !important;
+      }
+      .svc-intro-slide {
+        width: calc(100vw - 2.5rem) !important;
+        height: auto !important;
+      }
+      .svc-intro-slide img {
+        height: auto !important;
+        aspect-ratio: 4 / 3;
+      }
     }
   </style>
   <!-- ================================================================
