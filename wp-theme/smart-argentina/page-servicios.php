@@ -8,8 +8,8 @@ $smart_hero_servicios     = smart_get_hero('servicios');
   <style>
     @media (max-width: 767px) {
       .servicios-hero-img {
-        content: url('<?php echo esc_url(add_query_arg('v', '3', $smart_hero_servicios['mobile'])); ?>');
-        object-position: center center !important;
+        content: url('<?php echo esc_url(add_query_arg('v', '4', $smart_hero_servicios['mobile'])); ?>');
+        object-position: center 100% !important;
       }
     }
   </style>
