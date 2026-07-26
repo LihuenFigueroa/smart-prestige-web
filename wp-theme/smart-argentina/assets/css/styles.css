@@ -401,11 +401,6 @@ select option { color: #111111; }
 
 }
 
-/* ── Hero canvas: fondo oscuro para evitar parpadeo negro inicial ── */
-#heroCanvas, #brabusCanvas {
-  background: #141413;
-}
-
 
 /* ── Mobile: links deshabilitados (visitas no disponibles) ── */
 @media (max-width: 767px) {

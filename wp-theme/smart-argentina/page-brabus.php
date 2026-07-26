@@ -33,6 +33,11 @@ wp_localize_script('smart-main', 'brabusSpecs', $smart_brabus_specs);
     <img src="<?php echo esc_url($smart_hero_brabus['desktop']); ?>" alt="smart x BRABUS" class="brabus-hero-img absolute inset-0 w-full h-full object-cover object-center" style="z-index:1;" />
     <?php endif; ?>
 
+    <video id="brabusVideo" muted playsinline preload="auto" class="absolute inset-0 w-full h-full object-cover object-center" style="z-index:1;">
+      <source src="<?php echo get_template_directory_uri(); ?>/assets/video/videoSmartXBRABUSMobile.mp4" media="(max-width: 767px)" />
+      <source src="<?php echo get_template_directory_uri(); ?>/assets/video/videoSmartXBRABUS.mp4" />
+    </video>
+
     <div class="absolute top-0 left-0 right-0 pointer-events-none" style="height:170px; z-index:5; background:linear-gradient(to bottom,rgba(20,20,19,0.65) 0%,rgba(20,20,19,0.57) 35%,rgba(20,20,19,0) 100%);"></div>
     <div class="absolute bottom-0 left-0 right-0 pointer-events-none" style="height:261px; z-index:5; background:linear-gradient(to bottom,rgba(0,0,0,0) 0%,rgba(0,0,0,0.58) 60%,rgba(0,0,0,0.85) 100%);"></div>
 
