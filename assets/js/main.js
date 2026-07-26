@@ -80,8 +80,9 @@ initHeroAutoplayVideo('brabusVideo');
   const video = document.getElementById('brabusVideo');
   if (!video) return;
 
-  const midEls   = [document.getElementById('brabusTextMid'), document.getElementById('brabusTextMidDesktop')].filter(Boolean);
-  const finalEls = [document.getElementById('brabusText'), document.getElementById('brabusTextMobile')].filter(Boolean);
+  const midEls       = [document.getElementById('brabusTextMid'), document.getElementById('brabusTextMidDesktop')].filter(Boolean);
+  const midDesktopEl = document.getElementById('brabusTextMidDesktop');
+  const finalEls     = [document.getElementById('brabusText'), document.getElementById('brabusTextMobile')].filter(Boolean);
 
   function setOpacity(els, v) {
     els.forEach((el) => {
@@ -90,8 +91,14 @@ initHeroAutoplayVideo('brabusVideo');
     });
   }
 
+  // El texto mid desktop, además de fade, tenía un slide-up desde 40px (como antes con scroll)
+  function setMid(v) {
+    setOpacity(midEls, v);
+    if (midDesktopEl) midDesktopEl.style.transform = `translateY(${(40 * (1 - v)).toFixed(1)}px)`;
+  }
+
   function reset() {
-    setOpacity(midEls, 0);
+    setMid(0);
     setOpacity(finalEls, 0);
   }
   reset();
@@ -109,7 +116,7 @@ initHeroAutoplayVideo('brabusVideo');
     else if (p < midOut) midOpacity = 1;
     else if (p < midGone) midOpacity = 1 - (p - midOut) / (midGone - midOut);
     else midOpacity = 0;
-    setOpacity(midEls, midOpacity.toFixed(3));
+    setMid(midOpacity.toFixed(3));
 
     // Texto final: aparece cerca del final del video y queda visible
     const finalIn = 0.8;
@@ -118,7 +125,7 @@ initHeroAutoplayVideo('brabusVideo');
   });
 
   video.addEventListener('ended', () => {
-    setOpacity(midEls, 0);
+    setMid(0);
     setOpacity(finalEls, 1);
   });
 
