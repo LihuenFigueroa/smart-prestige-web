@@ -359,6 +359,28 @@ function submitContactForm(e) {
   });
 }
 
+// ── Scroll a sección vía ?scroll=id (ej: botón "Encontrá tu smart" de
+//    movilidad eléctrica) — en mobile centra la sección en pantalla en vez
+//    de alinearla arriba de todo, como hace el comportamiento nativo de un #hash ──
+(function () {
+  var params = new URLSearchParams(window.location.search);
+  var targetId = params.get('scroll');
+  if (!targetId) return;
+
+  function init() {
+    var el = document.getElementById(targetId);
+    if (el) {
+      var isMobile = window.innerWidth < 768;
+      el.scrollIntoView({ behavior: 'auto', block: isMobile ? 'center' : 'start' });
+    }
+    history.replaceState(null, '', window.location.pathname + window.location.hash);
+  }
+
+  document.readyState === 'loading'
+    ? document.addEventListener('DOMContentLoaded', init)
+    : init();
+})();
+
 // ── Banner de cookies ───────────────────────────────────────────────────
 (function () {
   var STORAGE_KEY = 'smart_cookie_consent';
