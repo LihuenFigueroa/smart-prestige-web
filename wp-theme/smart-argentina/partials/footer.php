@@ -11,7 +11,6 @@
           <a href="<?php echo home_url('/smart-1/'); ?>" class="text-white text-base leading-6 hover:opacity-70">smart #1</a>
           <a href="<?php echo home_url('/smart-3/'); ?>" class="text-white text-base leading-6 hover:opacity-70">smart #3</a>
           <a href="<?php echo home_url('/brabus/'); ?>" class="text-white text-base leading-6 hover:opacity-70">BRABUS</a>
-          <a href="<?php echo home_url('/servicios/'); ?>" class="text-white text-base leading-6 hover:opacity-70">Servicios al cliente</a>
         </nav>
       </div>
       <!-- Col 2: sin título -->
@@ -20,8 +19,6 @@
         <nav class="flex flex-col gap-2">
           <a href="<?php echo home_url('/movilidad-electrica/'); ?>" class="text-white text-base leading-6 hover:opacity-70">Movilidad eléctrica</a>
           <a href="<?php echo home_url('/conectividad/'); ?>" class="text-white text-base leading-6 hover:opacity-70">Conectividad</a>
-          <a href="<?php echo home_url('/buscador/'); ?>" class="text-white text-base leading-6 hover:opacity-70">Buscador de sucursales</a>
-          <a href="<?php echo home_url('/sobre-smart/'); ?>" class="text-white text-base leading-6 hover:opacity-70">Sobre smart</a>
         </nav>
       </div>
       <!-- Col 3: Modelos -->
@@ -37,7 +34,7 @@
         <p class="text-white text-sm font-normal leading-5 opacity-50 mb-2 font-smart-sans">Servicios</p>
         <nav class="flex flex-col gap-2">
           <a href="<?php echo home_url('/buscador/'); ?>" class="text-white text-base leading-6 hover:opacity-70">Buscador de concesionarios</a>
-          <a href="<?php echo home_url('/servicios/'); ?>" class="text-white text-base leading-6 hover:opacity-70">Servicios</a>
+          <a href="<?php echo home_url('/servicios/'); ?>" class="text-white text-base leading-6 hover:opacity-70">Servicios al cliente</a>
         </nav>
       </div>
       <!-- Col 5: Sobre smart -->
