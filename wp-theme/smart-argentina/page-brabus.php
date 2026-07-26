@@ -176,12 +176,16 @@ wp_localize_script('smart-main', 'brabusSpecs', $smart_brabus_specs);
 
     <!-- Texto final — aparece al terminar el video -->
     <!-- Texto final — desktop -->
-    <div id="brabusText" class="hidden md:block" style="position:absolute; left:0; bottom:0; right:0; opacity:0; transition:opacity 0.15s linear; pointer-events:none; z-index:20;">
-      <img src="<?php echo get_template_directory_uri(); ?>/assets/img/brabus/bottom-text-desktop.svg" alt="" style="width:100%; display:block; transform:scale(1.14); transform-origin:bottom left;" draggable="false" />
+    <div id="brabusText" class="hidden md:block" style="position:absolute; left:0; bottom:0; right:0; padding:0 56px 56px; opacity:0; transition:opacity 0.15s linear; pointer-events:none; z-index:20;">
+      <div style="max-width:640px;">
+        <p class="font-smart-next" style="color:#fff; font-size:40px; font-weight:400; line-height:120%; letter-spacing:-0.02em; margin:0 0 8px;">Diseño que no necesita presentación.</p>
+        <p class="font-smart-next" style="color:#fff; font-size:40px; font-weight:400; line-height:120%; letter-spacing:-0.02em; margin:0;">Rendimiento que se siente antes de que lo cuentes.</p>
+      </div>
     </div>
     <!-- Texto final — mobile -->
     <div id="brabusTextMobile" class="md:hidden" style="position:absolute; left:0; top:0; right:0; opacity:0; transition:opacity 0.15s linear; pointer-events:none; z-index:20; padding:6rem 2rem 0;">
-      <img src="<?php echo get_template_directory_uri(); ?>/assets/img/brabus/final-text-mobile.png" alt="Diseño que no necesita presentación." style="width:100%; display:block;" draggable="false" />
+      <p class="font-smart-next" style="color:#fff; font-size:28px; font-weight:400; line-height:130%; letter-spacing:-0.01em; margin:0 0 10px;">Diseño que no necesita presentación.</p>
+      <p class="font-smart-next" style="color:#fff; font-size:28px; font-weight:400; line-height:130%; letter-spacing:-0.01em; margin:0;">Rendimiento que se siente antes de que lo cuentes.</p>
     </div>
 
   </section>
