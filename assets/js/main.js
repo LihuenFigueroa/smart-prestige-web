@@ -8,7 +8,11 @@ function initHeroAutoplayVideo(videoId) {
 
   new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
-      if (entry.isIntersecting && entry.intersectionRatio >= 0.98) {
+      const isFullyVisible = entry.isIntersecting && entry.intersectionRatio >= 0.98;
+      // Solo reinicia si terminó (o si todavía no arrancó nunca) — mientras
+      // está reproduciéndose no se debe reiniciar aunque se pierda y recupere la visibilidad.
+      const canRestart = video.ended || (video.paused && video.currentTime === 0);
+      if (isFullyVisible && canRestart) {
         video.currentTime = 0;
         video.play().catch(() => {});
       }
