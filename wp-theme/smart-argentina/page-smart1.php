@@ -823,9 +823,9 @@ $smart_carruseles_s1 = [
 
         var idx  = 0;
         var imgs = [];
-        var STD  = ['<?php echo get_template_directory_uri(); ?>/assets/img/smart1/int-std-1.png','<?php echo get_template_directory_uri(); ?>/assets/img/smart1/int-std-2.png','<?php echo get_template_directory_uri(); ?>/assets/img/smart1/int-std-3.png','<?php echo get_template_directory_uri(); ?>/assets/img/smart1/int-std-4.png'];
+        var STD  = ['<?php echo get_template_directory_uri(); ?>/assets/img/smart1/int-std-1.jpg','<?php echo get_template_directory_uri(); ?>/assets/img/smart1/int-std-2.jpg','<?php echo get_template_directory_uri(); ?>/assets/img/smart1/int-std-3.jpg','<?php echo get_template_directory_uri(); ?>/assets/img/smart1/int-std-4.jpg'];
         var lineaMap = {
-          'BRABUS': ['<?php echo get_template_directory_uri(); ?>/assets/img/smart1/int-brabus-1.png','<?php echo get_template_directory_uri(); ?>/assets/img/smart1/int-brabus-2.png','<?php echo get_template_directory_uri(); ?>/assets/img/smart1/int-brabus-3.png','<?php echo get_template_directory_uri(); ?>/assets/img/smart1/int-brabus-4.png'],
+          'BRABUS': ['<?php echo get_template_directory_uri(); ?>/assets/img/smart1/int-brabus-1.jpg','<?php echo get_template_directory_uri(); ?>/assets/img/smart1/int-brabus-2.jpg','<?php echo get_template_directory_uri(); ?>/assets/img/smart1/int-brabus-3.jpg','<?php echo get_template_directory_uri(); ?>/assets/img/smart1/int-brabus-4.jpg'],
           'Pure': STD, 'Pro': STD, 'Pro+': STD
         };
 
