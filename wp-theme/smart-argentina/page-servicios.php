@@ -9,7 +9,7 @@ $smart_hero_servicios     = smart_get_hero('servicios');
     @media (max-width: 767px) {
       .servicios-hero-img {
         content: url('<?php echo esc_url($smart_hero_servicios['mobile']); ?>');
-        object-position: center 100% !important;
+        object-position: center center !important;
       }
     }
   </style>
