@@ -178,14 +178,14 @@ wp_localize_script('smart-main', 'brabusSpecs', $smart_brabus_specs);
     <!-- Texto final — desktop -->
     <div id="brabusText" class="hidden md:block" style="position:absolute; left:0; bottom:0; right:0; padding:0 56px 56px; opacity:0; transition:opacity 0.15s linear; pointer-events:none; z-index:20;">
       <div style="max-width:640px;">
-        <p class="font-smart-next" style="color:#fff; font-size:30px; font-weight:400; line-height:120%; letter-spacing:-0.02em; margin:0 0 8px;">Diseño que no necesita presentación.</p>
-        <p class="font-smart-next" style="color:#fff; font-size:30px; font-weight:400; line-height:120%; letter-spacing:-0.02em; margin:0;">Rendimiento que se siente antes de que lo cuentes.</p>
+        <p class="font-smart-next" style="color:#fff; font-size:24px; font-weight:400; line-height:120%; letter-spacing:-0.02em; margin:0 0 8px;">Diseño que no necesita presentación.</p>
+        <p class="font-smart-next" style="color:#fff; font-size:24px; font-weight:400; line-height:120%; letter-spacing:-0.02em; margin:0;">Rendimiento que se siente antes de que lo cuentes.</p>
       </div>
     </div>
     <!-- Texto final — mobile -->
     <div id="brabusTextMobile" class="md:hidden" style="position:absolute; left:0; top:0; right:0; opacity:0; transition:opacity 0.15s linear; pointer-events:none; z-index:20; padding:6rem 2rem 0;">
-      <p class="font-smart-next" style="color:#fff; font-size:22px; font-weight:400; line-height:130%; letter-spacing:-0.01em; margin:0 0 10px;">Diseño que no necesita presentación.</p>
-      <p class="font-smart-next" style="color:#fff; font-size:22px; font-weight:400; line-height:130%; letter-spacing:-0.01em; margin:0;">Rendimiento que se siente antes de que lo cuentes.</p>
+      <p class="font-smart-next" style="color:#fff; font-size:18px; font-weight:400; line-height:130%; letter-spacing:-0.01em; margin:0 0 10px;">Diseño que no necesita presentación.</p>
+      <p class="font-smart-next" style="color:#fff; font-size:18px; font-weight:400; line-height:130%; letter-spacing:-0.01em; margin:0;">Rendimiento que se siente antes de que lo cuentes.</p>
     </div>
 
   </section>
