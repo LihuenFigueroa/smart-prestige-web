@@ -6,6 +6,69 @@ $smart_hero_con   = smart_get_hero('conectividad');
 ?>
 <?php get_header(); ?>
 <?php get_template_part('partials/header'); ?>
+  <style>
+    @media (max-width: 767px) {
+      .con-hero-img {
+        content: url('<?php echo esc_url($smart_hero_con['mobile']); ?>');
+        object-position: center center !important;
+      }
+      .con-hero-text-wrap {
+        top: unset !important;
+        left: 24px !important;
+        padding-left: 0 !important;
+        padding-bottom: 32px !important;
+        width: 257px !important;
+      }
+      /* Carruseles — apilado vertical */
+      #track-cc1, #track-cc2 {
+        flex-direction: column !important;
+        overflow-x: visible !important;
+        cursor: default !important;
+        gap: 1.5rem !important;
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+      }
+      #track-cc1 .c-card, #track-cc2 .c-card {
+        width: 100% !important;
+        flex-shrink: 0;
+      }
+      #track-cc1 .c-card__text, #track-cc2 .c-card__text {
+        max-width: 88% !important;
+        padding-left: 6px !important;
+        padding-bottom: 8px !important;
+      }
+      #track-cc1 .c-card__title, #track-cc2 .c-card__title {
+        font-size: 18px !important;
+        line-height: 1.25 !important;
+        margin-bottom: 6px !important;
+      }
+      #track-cc1 .c-card__desc, #track-cc2 .c-card__desc {
+        font-size: 13px !important;
+        line-height: 1.45 !important;
+      }
+
+      /* Intro text */
+      .con-intro-section {
+        padding-left: 32px !important;
+        padding-right: 32px !important;
+      }
+      .con-intro-text {
+        font-size: 18px !important;
+      }
+
+      .con-hero-label {
+        font-size: 19.58px !important;
+        line-height: 140% !important;
+        margin-bottom: 0 !important;
+        opacity: 1 !important;
+      }
+      .con-hero-title {
+        font-size: 39.16px !important;
+        line-height: 120% !important;
+        letter-spacing: -0.02em !important;
+      }
+    }
+  </style>
   <!-- ================================================================
        HERO
   ================================================================ -->
