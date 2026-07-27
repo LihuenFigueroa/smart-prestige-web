@@ -11,6 +11,9 @@ $smart_proteccion_datos = smart_get_contenido('proteccion_datos');
     .legal-content ul { list-style:disc; padding-left:24px; }
     .legal-content li { margin-bottom:8px; }
     .legal-content p:last-child, .legal-content ul:last-child { margin-bottom:0; }
+    @media (max-width: 767px) {
+      main { margin-top: 24px !important; }
+    }
   </style>
 
   <!-- ================================================================

@@ -5,6 +5,9 @@
   <style>
     main h1, main h2 { font-family: 'FOR_smart_Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif !important; }
     main p, main li  { font-family: 'FOR_smart_Next', 'Helvetica Neue', Helvetica, Arial, sans-serif !important; }
+    @media (max-width: 767px) {
+      main { margin-top: 24px !important; }
+    }
   </style>
 
   <!-- ================================================================
