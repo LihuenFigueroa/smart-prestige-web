@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Código de Integridad — smart Argentina</title>
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="assets/css/tailwind.css" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <style>
+    main h1, main h2 { font-family: 'FOR_smart_Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif !important; }
+    main p, main li  { font-family: 'FOR_smart_Next', 'Helvetica Neue', Helvetica, Arial, sans-serif !important; }
+    .legal-content p, .legal-content ul { color:#141413; font-size:16px; line-height:1.7; margin:0 0 24px; }
+    .legal-content ul { list-style:disc; padding-left:24px; }
+    .legal-content li { margin-bottom:8px; }
+    .legal-content p:last-child, .legal-content ul:last-child { margin-bottom:0; }
+    @media (max-width: 767px) {
+      main { margin-top: 24px !important; }
+    }
+  </style>
+</head>
+<body class="bg-white font-smart-sans">
+
+  <!-- ================================================================
+       NAV MENU OVERLAY
+  ================================================================ -->
+  <div id="nav-menu" class="fixed inset-0 z-[100] pointer-events-none">
+    <div id="nav-backdrop" class="absolute inset-0 bg-black/50 opacity-0 transition-opacity duration-300" onclick="closeNavMenu()"></div>
+    <div id="nav-drawer" class="absolute top-0 left-0 h-full w-full max-w-sm bg-white flex flex-col -translate-x-full transition-transform duration-300 ease-in-out">
+      <div class="px-8 h-16 flex items-center justify-between border-b border-neutral-200">
+        <a href="index.html"><img src="assets/img/Logonavbar.svg" alt="smart" class="h-6 w-auto" /></a>
+        <button onclick="closeNavMenu()" aria-label="Cerrar menú" class="text-[#141413] p-1">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <nav class="flex-1 overflow-y-auto px-8 py-8 flex flex-col">
+        <p class="text-xs uppercase tracking-widest text-neutral-500 mb-4 font-smart-next">Modelos</p>
+        <a href="smart1.html" class="text-[#141413] text-xl font-smart-next font-normal py-3 border-b border-neutral-200 hover:text-neutral-400 transition-colors">smart #1</a>
+        <a href="smart3.html" class="text-[#141413] text-xl font-smart-next font-normal py-3 border-b border-neutral-200 hover:text-neutral-400 transition-colors">smart #3</a>
+        <a href="brabus.html" class="text-[#141413] text-xl font-smart-next font-normal py-3 border-b border-neutral-200 hover:text-neutral-400 transition-colors">smart × BRABUS</a>
+        <p class="text-xs uppercase tracking-widest text-neutral-500 mt-8 mb-4 font-smart-next">Descubrí</p>
+        <a href="servicios.html" class="text-[#141413] text-xl font-smart-next font-normal py-3 border-b border-neutral-200 hover:text-neutral-400 transition-colors">Servicios al cliente</a>
+        <a href="movilidad-electrica.html" class="text-[#141413] text-xl font-smart-next font-normal py-3 border-b border-neutral-200 hover:text-neutral-400 transition-colors">Movilidad eléctrica</a>
+        <a href="conectividad.html" class="text-[#141413] text-xl font-smart-next font-normal py-3 border-b border-neutral-200 hover:text-neutral-400 transition-colors">Conectividad</a>
+        <p class="text-xs uppercase tracking-widest text-neutral-500 mt-8 mb-4 font-smart-next">Sobre smart</p>
+        <a href="buscador.html" class="text-[#141413] text-xl font-smart-next font-normal py-3 border-b border-neutral-200 hover:text-neutral-400 transition-colors">Buscador de concesionarios</a>
+        <a href="sobre-smart.html" class="text-[#141413] text-xl font-smart-next font-normal py-3 border-b border-neutral-200 hover:text-neutral-400 transition-colors">Sobre nosotros</a>
+      </nav>
+      <div class="px-8 py-6 border-t border-neutral-200">
+        <a href="index.html#contacto" class="text-sm text-neutral-500 hover:text-[#141413] transition-colors">Contáctanos</a>
+      </div>
+      <div class="px-8 pt-5 pb-8 border-t border-neutral-200 flex flex-col gap-3">
+        <p class="text-xs text-neutral-400 font-smart-sans">
+          <a href="legales.html" class="hover:text-[#141413] transition-colors">Legales</a>
+          <span class="mx-2 text-neutral-300">|</span>
+          <a href="cookies.html" class="hover:text-[#141413] transition-colors">Cookies</a>
+        </p>
+        <p class="text-xs text-neutral-400 font-smart-sans">© 2026 smart Argentina</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================================================================
+       NAVBAR
+  ================================================================ -->
+  <nav class="w-full bg-[#141413] px-5 md:px-14 h-14 md:h-16 flex items-center justify-between">
+    <div class="flex items-center gap-6">
+      <button onclick="openNavMenu()" class="flex flex-col gap-[5px] cursor-pointer" aria-label="Menú">
+        <span class="w-5 h-px bg-white block"></span>
+        <span class="w-5 h-px bg-white block"></span>
+        <span class="w-5 h-px bg-white block"></span>
+      </button>
+    </div>
+    <div class="absolute left-1/2 -translate-x-1/2">
+      <a href="index.html"><img src="assets/img/Logonavbar.svg" alt="smart" class="h-4 md:h-8 w-auto" /></a>
+    </div>
+  </nav>
+
+  <!-- ================================================================
+       CONTENIDO
+  ================================================================ -->
+  <main class="mx-auto px-5 md:px-8 pt-16 pb-16 md:pt-20 md:pb-24" style="margin-top: 48px;">
+
+    <h1 class="font-smart-next font-normal text-[#141413] mb-12" style="font-size:40px; line-height:1.1;">Código de Integridad.</h1>
+
+    <section class="mb-10">
+      <h2 class="font-smart-next font-normal text-[#141413] mb-4" style="font-size:22px; line-height:1.2;">Ámbito de aplicación</h2>
+      <div class="legal-content">
+        <p>Este Código de Integridad define los lineamientos generales que esperamos rijan en la relación entre Prestige Auto y sus socios comerciales. Su finalidad es prevenir conductas inapropiadas, promover el comportamiento íntegro y transparente, y consolidar vínculos responsables y sostenibles a lo largo de toda la cadena de valor.</p>
+        <p>El Código promueve una actuación coherente con las normas jurídicas vigentes y con estándares éticos exigentes, fomentando una cultura de respeto, confianza y responsabilidad compartida. Se espera que cada tercero conozca, comprenda y aplique su contenido y que, ante dudas o dilemas, recurra a los canales establecidos para su interpretación o denuncia.</p>
+        <p><strong>¿Quiénes son nuestros Socios Comerciales?</strong> Contratistas, proveedores, concesionarios, talleres, socios comerciales en general y cualquier tercero que mantenga una relación comercial. En Prestige Auto esperamos que nuestros Socios Comerciales hagan extensivas estas obligaciones a sus colaboradores, su propia cadena de suministro y velen por su cumplimiento.</p>
+      </div>
+    </section>
+
+    <div class="border-t border-neutral-200 mb-10"></div>
+
+    <section class="mb-10">
+      <h2 class="font-smart-next font-normal text-[#141413] mb-4" style="font-size:22px; line-height:1.2;">Misión, Visión y Valores</h2>
+      <div class="legal-content">
+        <p><strong>Misión.</strong> Impulsamos una nueva era en la industria automotriz, desarrollando soluciones de movilidad que estimulen el progreso humano y económico.</p>
+        <p><strong>Visión.</strong> Ser referentes en movilidad inteligente en América Latina, integrando excelencia industrial con compromiso ambiental y social.</p>
+        <p><strong>Valores.</strong></p>
+        <ul>
+          <li><strong>Calidad que transforma.</strong> Nos aseguramos de que cada vehículo, cada proceso y cada decisión refleje nuestro compromiso con altos estándares de fabricación.</li>
+          <li><strong>Integridad que nos mueve.</strong> Actuamos con transparencia, responsabilidad y ética, construyendo relaciones de confianza duradera con todos nuestros públicos.</li>
+          <li><strong>Excelencia que trasciende.</strong> Buscamos superar constantemente las expectativas, promoviendo una cultura de mejora continua en cada área de nuestra operación industrial y comercial.</li>
+          <li><strong>Innovación con propósito.</strong> Diseñamos soluciones que respondan a los desafíos del presente y anticipen el futuro de la movilidad.</li>
+          <li><strong>Pasión que inspira.</strong> Somos impulsores de la transformación de la industria automotriz y motor de desarrollo humano.</li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="border-t border-neutral-200 mb-10"></div>
+
+    <section class="mb-10">
+      <h2 class="font-smart-next font-normal text-[#141413] mb-4" style="font-size:22px; line-height:1.2;">Integridad en Prestige Auto</h2>
+      <div class="legal-content">
+        <p>Para nosotros, integridad significa tomar las decisiones correctas: es la coherencia entre lo que decimos y lo que hacemos. La integridad no es una meta sino una forma de ser y de hacer las cosas. Es el fundamento sobre el cual construimos relaciones duraderas, una reputación sólida y una cultura empresarial confiable.</p>
+        <p>El Código es la base de nuestro entendimiento compartido de los valores y nos guía en nuestros vínculos comerciales sostenibles a largo plazo.</p>
+        <p>Como Socio Comercial de Prestige Auto, se espera que tomen decisiones comerciales sobre una base correcta e íntegra.</p>
+      </div>
+    </section>
+
+    <div class="border-t border-neutral-200 mb-10"></div>
+
+    <section class="mb-10">
+      <h2 class="font-smart-next font-normal text-[#141413] mb-4" style="font-size:22px; line-height:1.2;">Compliance Integral: Anticorrupción</h2>
+      <div class="legal-content">
+        <p>En Prestige Auto no toleramos ninguna forma de corrupción ni en el ámbito público ni en el privado, ni prácticas comerciales desleales. La transparencia y la apertura son esenciales para sostener la confianza y la credibilidad en nuestras actividades y relaciones. Por ello, esperamos que nuestros Socios Comerciales (proveedores, clientes, concesionarios, contratistas, intermediarios y demás terceros) cumplan lo siguiente:</p>
+        <ul>
+          <li><strong>Tolerancia cero al soborno y la corrupción.</strong> No ofrecer, prometer, solicitar ni aceptar sobornos, comisiones indebidas, pagos facilitadores, ventajas personales, regalos no permitidos ni cualquier beneficio destinado a influir decisiones o asegurar tratos preferenciales.</li>
+          <li><strong>Conflictos de interés.</strong> Prevenir y declarar de inmediato toda situación real o aparente (vínculos personales/familiares, relaciones financieras o profesionales con personal de Prestige Auto). Las invitaciones y regalos deben ser apropiados, ocasionales y de valor simbólico; están prohibidos durante licitaciones, evaluaciones o negociaciones, y jamás se permite dinero en efectivo o equivalentes ni pagos a funcionarios públicos.</li>
+          <li><strong>Intermediarios y remuneraciones.</strong> Asegurar que los honorarios de consultores, agentes, brokers u otros intermediarios sean razonables, transparentes y no encubran ventajas indebidas; aplicar debida diligencia y cláusulas anticorrupción.</li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="border-t border-neutral-200 mb-10"></div>
+
+    <section class="mb-10">
+      <h2 class="font-smart-next font-normal text-[#141413] mb-4" style="font-size:22px; line-height:1.2;">Prevención de LA/FT y Defensa a la Competencia</h2>
+      <div class="legal-content">
+        <p>En Prestige Auto esperamos que nuestros socios comerciales cumplan con normativas en materia de Prevención de Lavado de Activos y Financiación al Terrorismo, como también con normativas y buenas prácticas empresariales en materia de Defensa a la Competencia.</p>
+        <ul>
+          <li><strong>Prevención de LA/FT.</strong> Implementar controles acordes al riesgo (identificación y verificación de clientes/proveedores y beneficiarios finales, monitoreo de operaciones inusuales, registros y políticas internas). Abstenerse de pagos en efectivo inusuales, operar a/desde terceros no previstos o cuentas no informadas y de usar jurisdicciones de alto riesgo sin sustento legal/documental. Acreditar, cuando se requiera, cumplimientos legales e impositivos.</li>
+          <li><strong>Comercio exterior, sanciones y antiterrorismo.</strong> Cumplir las normas de importación/exportación, controles de exportación, sanciones y disposiciones contra el terrorismo internacional; no operar con personas o jurisdicciones restringidas.</li>
+          <li><strong>Defensa de la Competencia.</strong> Cumplir todas las leyes de defensa de la competencia: no realizar acuerdos o intercambios de información sensible que afecten precios, condiciones, estrategias, territorios/clientes o licitaciones, ni otras conductas que restrinjan ilegalmente la competencia.</li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="border-t border-neutral-200 mb-10"></div>
+
+    <section class="mb-10">
+      <h2 class="font-smart-next font-normal text-[#141413] mb-4" style="font-size:22px; line-height:1.2;">Protección de la Información y Datos Personales</h2>
+      <div class="legal-content">
+        <p>En Prestige Auto esperamos que nuestros socios comerciales cuiden y adopten los recaudos necesarios para el cuidado de la información confidencial, sensible y personal que se obtenga en el marco de la relación.</p>
+        <ul>
+          <li><strong>Información confidencial y datos personales.</strong> Proteger la información no pública y los datos personales; usarlos solo con base legal y finalidad autorizada, aplicando necesidad/mínimo privilegio, almacenamiento seguro, controles de acceso y notificación inmediata de incidentes. Cumplir la normativa aplicable y alinearse a las políticas de Seguridad de la Información de Prestige Auto.</li>
+          <li><strong>Reporte y colaboración.</strong> Informar de inmediato cualquier hecho presuntamente delictivo o irregularidad que pueda afectar a Prestige Auto mediante los canales de denuncia; colaborar con debida diligencia, verificaciones o auditorías razonables y aplicar medidas correctivas cuando corresponda.</li>
+          <li><strong>Cadena de suministro.</strong> Seleccionar diligentemente a sus propios proveedores y subcontratistas.</li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="border-t border-neutral-200 mb-10"></div>
+
+    <section class="mb-10">
+      <h2 class="font-smart-next font-normal text-[#141413] mb-4" style="font-size:22px; line-height:1.2;">DD.HH. y Medio Ambiente</h2>
+      <div class="legal-content">
+        <p>En Prestige Auto creemos que el éxito solo es auténtico cuando respeta la dignidad de las personas, cuida el entorno y aporta al bienestar colectivo. Por ello, esperamos que nuestros Socios Comerciales se conduzcan de acuerdo con los siguientes lineamientos y estándares:</p>
+        <ul>
+          <li><strong>Respeto de los Derechos Humanos y la legislación aplicable.</strong> Cumplir las leyes laborales y de Derechos Humanos, los convenios OIT y marcos como los Principios Rectores de la ONU.</li>
+          <li><strong>Trabajo digno y prohibiciones absolutas.</strong> No permitir trabajo infantil, forzoso o trata; no retener documentos; asegurar salarios y horarios acordes a ley.</li>
+          <li><strong>No discriminación y trato respetuoso.</strong> Prohibir toda discriminación, acoso o violencia; promover entornos seguros e inclusivos, respetando identidad u orientación sexual, género, edad, religión, nacionalidad, discapacidad, opiniones u otras condiciones.</li>
+          <li><strong>Libertad de asociación.</strong> Respetar la libertad de asociación y la negociación colectiva conforme la normativa aplicable.</li>
+          <li><strong>Seguridad y salud.</strong> Poner la seguridad de las personas primero: ambientes de trabajo seguros, entrenamiento adecuado y EPP; incorporar la prevención como práctica cotidiana.</li>
+          <li><strong>Debida diligencia en Derechos Humanos.</strong> Identificar y mitigar riesgos, contar con canales de denuncia sin represalias, cooperar con verificaciones/auditorías y remediar impactos si se detectan.</li>
+          <li><strong>Cumplimiento ambiental.</strong> Contar con los permisos, licencias y reportes ambientales vigentes, y disponer de sistemas de gestión ambiental certificados cuando corresponda. Acreditar evidencia cuando sea requerida.</li>
+          <li><strong>Gestión responsable de impactos.</strong> Gestionar residuos, efluentes y emisiones (incluidos ruidos/olores), manipular de forma segura sustancias peligrosas y contar con planes de contingencia.</li>
+          <li><strong>Eficiencia de recursos.</strong> Optimizar el uso de energía y agua y priorizar prevención, reducción, reutilización y reciclado a lo largo de las operaciones.</li>
+          <li><strong>Enfoque de ciclo de vida.</strong> Asegurar que productos y servicios sean seguros y minimicen impactos desde el diseño hasta la fabricación, logística, uso y disposición final.</li>
+          <li><strong>Incidentes y mejoras.</strong> Notificar de inmediato incidentes o no conformidades ambientales/ocupacionales, cooperar en la contención e implementar medidas correctivas con registros verificables.</li>
+          <li><strong>Cadena de suministro.</strong> Extender estas exigencias a subcontratistas y proveedores críticos y verificar su cumplimiento.</li>
+        </ul>
+        <p>Estas pautas son la base para proteger a las personas, preservar el ambiente y mantener la confianza que sostiene nuestra relación.</p>
+      </div>
+    </section>
+
+    <div class="border-t border-neutral-200 mb-10"></div>
+
+    <section class="mb-10">
+      <h2 class="font-smart-next font-normal text-[#141413] mb-4" style="font-size:22px; line-height:1.2;">Canal de Denuncias</h2>
+      <div class="legal-content">
+        <p>El contenido de este Código refleja el propio Código de Conducta de Prestige Auto, donde fomentamos una cultura de transparencia y confianza; por eso toda violación o indicio de violación al presente Código debe ser denunciada directamente a través de los canales de recepción de denuncias habilitados, ya sea a la gerencia de Compliance &amp; Auditoría Interna, o bien a través del Canal de Denuncias &ldquo;Línea Ética&rdquo;. El canal de denuncias está a disposición de empleados, proveedores, concesionarios y otros terceros vinculados a la compañía. Está gestionado de manera tercerizada por KPMG para garantizar confidencialidad, imparcialidad, transparencia y profesionalismo.</p>
+        <p>Este Canal de Denuncias está disponible para informar situaciones que puedan constituir:</p>
+        <ul>
+          <li>Violaciones a este Código.</li>
+          <li>Conductas irregulares o contrarias a las normativas, políticas, procedimientos y procesos.</li>
+          <li>Sospechas de fraude, corrupción, acoso, discriminación, conflicto de interés, entre otros.</li>
+          <li>Incumplimientos en materia de derechos laborales, protección de datos, seguridad ambiental o regulaciones legales.</li>
+        </ul>
+        <p><strong>¿Cómo acceder al Canal de Denuncias?</strong></p>
+        <ul>
+          <li>Línea telefónica gratuita: 0800-122-0396</li>
+          <li>Formulario web: prestige.lineaseticas.com</li>
+          <li>Correo electrónico: prestigelineaseticas@kpmg.com.ar</li>
+          <li>Escaneando el código QR disponible en el documento del Código de Integridad</li>
+        </ul>
+        <p><strong>Confidencialidad y protección contra represalias.</strong> Toda denuncia será tratada con el máximo nivel de reserva. No se tolerarán represalias, amenazas ni consecuencias adversas contra quienes reporten hechos de buena fe. La protección contra represalias incluye tanto al denunciante como a cualquier persona que colabore en una investigación. Si se realiza un informe sobre la conducta de un Socio Comercial, el Socio Comercial en cuestión deberá ayudar con la investigación y proporcionar acceso a cualquier información que razonablemente solicite Prestige Auto. También se espera que los Socios Comerciales tomen medidas para prevenir, detectar y corregir cualquier acción de represalia contra los denunciantes.</p>
+      </div>
+    </section>
+
+    <div class="border-t border-neutral-200 mb-10"></div>
+
+    <section class="mb-10">
+      <h2 class="font-smart-next font-normal text-[#141413] mb-4" style="font-size:22px; line-height:1.2;">Cumplimiento del Código</h2>
+      <div class="legal-content">
+        <p>Nuestros Socios Comerciales se asegurarán de que los principios de este Código se cumplan, comuniquen y comprendan en sus propias cadenas de suministro. Para ello, deberán conocer, aplicar y difundir estas pautas. También esperamos que el personal de nuestros Proveedores esté capacitado y en conocimiento de las políticas y buenas prácticas, como así también que mantengan sus políticas internas, libros y registros fieles y completos; acrediten cumplimientos legales e impositivos y permisos/licencias vigentes; y colaboren con auditorías, verificaciones y requerimientos razonables de información que disponga Prestige Auto, resguardando la confidencialidad.</p>
+        <p>En caso de desviaciones menores, el Socio Comercial deberá implementar medidas correctivas adecuadas y presentar evidencia de su ejecución dentro de un plazo razonable acordado con Prestige Auto.</p>
+        <p>En caso de incumplimientos graves o reiterados (en especial, violaciones legales o de alto riesgo), Prestige Auto podrá aplicar medidas contractuales proporcionales, que incluyen —sin limitarse a— advertencias formales, planes de remediación, auditorías (on/off-site), suspensión de accesos/pedidos/servicios, retención o diferimiento de pagos, rescisión con causa e inhabilitación para futuras contrataciones, reclamos por daños y perjuicios, y denuncias ante autoridades. Prestige Auto podrá adoptar medidas preventivas inmediatas cuando esté comprometida la seguridad, el cumplimiento normativo, la protección de datos/información, la calidad o la reputación.</p>
+      </div>
+    </section>
+
+    <a href="assets/pdf/codigo-integridad-prestige.pdf" download class="self-start h-10 px-6 bg-black rounded-full text-sm font-bold text-white hover:bg-neutral-800 transition-colors" style="display:inline-flex; align-items:center;">Descargar</a>
+
+  </main>
+
+  <!-- ================================================================
+       FOOTER
+  ================================================================ -->
+  <div id="site-footer"></div>
+  <script>fetch('assets/partials/footer.html').then(r=>r.text()).then(html=>{document.getElementById('site-footer').innerHTML=html;});</script>
+
+  <script>
+    function toggleModelosDropdown() {
+      const menu    = document.getElementById('modelos-menu');
+      const chevron = document.getElementById('modelos-chevron');
+      if (menu) menu.classList.toggle('is-open');
+      if (chevron) chevron.style.transform = menu.classList.contains('is-open') ? 'rotate(180deg)' : '';
+    }
+    function openNavMenu() {
+      const menu     = document.getElementById('nav-menu');
+      const drawer   = document.getElementById('nav-drawer');
+      const backdrop = document.getElementById('nav-backdrop');
+      menu.classList.remove('pointer-events-none');
+      backdrop.classList.remove('opacity-0');
+      backdrop.classList.add('opacity-100');
+      drawer.classList.remove('-translate-x-full');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeNavMenu() {
+      const menu     = document.getElementById('nav-menu');
+      const drawer   = document.getElementById('nav-drawer');
+      const backdrop = document.getElementById('nav-backdrop');
+      backdrop.classList.remove('opacity-100');
+      backdrop.classList.add('opacity-0');
+      drawer.classList.add('-translate-x-full');
+      setTimeout(() => {
+        menu.classList.add('pointer-events-none');
+        document.body.style.overflow = '';
+      }, 300);
+    }
+  </script>
+</body>
+</html>
