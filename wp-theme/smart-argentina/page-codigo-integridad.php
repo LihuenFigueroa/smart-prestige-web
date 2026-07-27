@@ -35,7 +35,7 @@ $smart_codigo_integridad = smart_get_contenido('codigo_integridad');
   <!-- ================================================================
        CONTENIDO
   ================================================================ -->
-  <main class="max-w-[800px] mx-auto px-5 md:px-8 pt-16 pb-16 md:pt-20 md:pb-24" style="margin-top: 48px;">
+  <main class="mx-auto px-5 md:px-8 pt-16 pb-16 md:pt-20 md:pb-24" style="margin-top: 48px;">
 
     <h1 class="font-smart-next font-normal text-[#141413] mb-12" style="font-size:40px; line-height:1.1;">Código de Integridad.</h1>
 
