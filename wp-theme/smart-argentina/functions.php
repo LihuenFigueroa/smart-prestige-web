@@ -966,6 +966,9 @@ add_action('acf/init', function () {
           'legal_propiedad_intelectual'     => 'Legales — Propiedad intelectual',
           'legal_afirmaciones_prospectivas' => 'Legales — Afirmaciones prospectivas',
           'historia_institucional'          => 'Sobre smart — Historia institucional',
+          'proveedor_contacto'              => 'Proveedor — Datos de contacto',
+          'proteccion_datos'                => 'Protección de Datos — Secciones',
+          'codigo_integridad'               => 'Código de Integridad — Secciones',
         ],
       ],
       ['key' => 'field_cw_orden', 'label' => 'Orden', 'name' => 'orden', 'type' => 'number', 'required' => 1],
@@ -1083,6 +1086,156 @@ add_action('init', function () {
     update_field('contenido', $b['contenido'], $post_id);
   }
 }, 20);
+
+// ── Migración one-time: Proveedor + Código de Integridad ────────────────────
+add_action('init', function () {
+  if (get_option('smart_paginas_proveedor_integridad_migrado') === 'si') return;
+  if (!function_exists('update_field')) return;
+
+  update_option('smart_paginas_proveedor_integridad_migrado', 'si');
+
+  $bloques = [
+    [
+      'slug'      => 'proveedor-datos-contacto',
+      'clave'     => 'proveedor_contacto',
+      'orden'     => 0,
+      'titulo'    => '',
+      'contenido' => '<p><strong>Prestige Auto SAU</strong><br>Lumina Panamericana – Edificio II<br>Sargento Cabral 3770, Munro.<br>(B1605EFJ) Vicente López.</p>'
+        . '<p>Teléfono: 0800 66 MBENZ (62369)<br>Conmutador casa central: +5411-4469-9000<br>Atención de lunes a viernes de 8 a 17 hs.</p>'
+        . '<p>Mail: <a href="mailto:hola@prestige-auto.com.ar">hola@prestige-auto.com.ar</a></p>',
+    ],
+    [
+      'slug'      => 'codigo-integridad-1',
+      'clave'     => 'codigo_integridad',
+      'orden'     => 0,
+      'titulo'    => 'Ámbito de aplicación',
+      'contenido' => '<p>Este Código de Integridad define los lineamientos generales que esperamos rijan en la relación entre Prestige Auto y sus socios comerciales. Su finalidad es prevenir conductas inapropiadas, promover el comportamiento íntegro y transparente, y consolidar vínculos responsables y sostenibles a lo largo de toda la cadena de valor.</p>'
+        . '<p>El Código promueve una actuación coherente con las normas jurídicas vigentes y con estándares éticos exigentes, fomentando una cultura de respeto, confianza y responsabilidad compartida. Se espera que cada tercero conozca, comprenda y aplique su contenido y que, ante dudas o dilemas, recurra a los canales establecidos para su interpretación o denuncia.</p>'
+        . '<p><strong>¿Quiénes son nuestros Socios Comerciales?</strong> Contratistas, proveedores, concesionarios, talleres, socios comerciales en general y cualquier tercero que mantenga una relación comercial. En Prestige Auto esperamos que nuestros Socios Comerciales hagan extensivas estas obligaciones a sus colaboradores, su propia cadena de suministro y velen por su cumplimiento.</p>',
+    ],
+    [
+      'slug'      => 'codigo-integridad-2',
+      'clave'     => 'codigo_integridad',
+      'orden'     => 1,
+      'titulo'    => 'Misión, Visión y Valores',
+      'contenido' => '<p><strong>Misión.</strong> Impulsamos una nueva era en la industria automotriz, desarrollando soluciones de movilidad que estimulen el progreso humano y económico.</p>'
+        . '<p><strong>Visión.</strong> Ser referentes en movilidad inteligente en América Latina, integrando excelencia industrial con compromiso ambiental y social.</p>'
+        . '<p><strong>Valores.</strong></p><ul>'
+        . '<li><strong>Calidad que transforma.</strong> Nos aseguramos de que cada vehículo, cada proceso y cada decisión refleje nuestro compromiso con altos estándares de fabricación.</li>'
+        . '<li><strong>Integridad que nos mueve.</strong> Actuamos con transparencia, responsabilidad y ética, construyendo relaciones de confianza duradera con todos nuestros públicos.</li>'
+        . '<li><strong>Excelencia que trasciende.</strong> Buscamos superar constantemente las expectativas, promoviendo una cultura de mejora continua en cada área de nuestra operación industrial y comercial.</li>'
+        . '<li><strong>Innovación con propósito.</strong> Diseñamos soluciones que respondan a los desafíos del presente y anticipen el futuro de la movilidad.</li>'
+        . '<li><strong>Pasión que inspira.</strong> Somos impulsores de la transformación de la industria automotriz y motor de desarrollo humano.</li>'
+        . '</ul>',
+    ],
+    [
+      'slug'      => 'codigo-integridad-3',
+      'clave'     => 'codigo_integridad',
+      'orden'     => 2,
+      'titulo'    => 'Integridad en Prestige Auto',
+      'contenido' => '<p>Para nosotros, integridad significa tomar las decisiones correctas: es la coherencia entre lo que decimos y lo que hacemos. La integridad no es una meta sino una forma de ser y de hacer las cosas. Es el fundamento sobre el cual construimos relaciones duraderas, una reputación sólida y una cultura empresarial confiable.</p>'
+        . '<p>El Código es la base de nuestro entendimiento compartido de los valores y nos guía en nuestros vínculos comerciales sostenibles a largo plazo.</p>'
+        . '<p>Como Socio Comercial de Prestige Auto, se espera que tomen decisiones comerciales sobre una base correcta e íntegra.</p>',
+    ],
+    [
+      'slug'      => 'codigo-integridad-4',
+      'clave'     => 'codigo_integridad',
+      'orden'     => 3,
+      'titulo'    => 'Compliance Integral: Anticorrupción',
+      'contenido' => '<p>En Prestige Auto no toleramos ninguna forma de corrupción ni en el ámbito público ni en el privado, ni prácticas comerciales desleales. La transparencia y la apertura son esenciales para sostener la confianza y la credibilidad en nuestras actividades y relaciones. Por ello, esperamos que nuestros Socios Comerciales (proveedores, clientes, concesionarios, contratistas, intermediarios y demás terceros) cumplan lo siguiente:</p><ul>'
+        . '<li><strong>Tolerancia cero al soborno y la corrupción.</strong> No ofrecer, prometer, solicitar ni aceptar sobornos, comisiones indebidas, pagos facilitadores, ventajas personales, regalos no permitidos ni cualquier beneficio destinado a influir decisiones o asegurar tratos preferenciales.</li>'
+        . '<li><strong>Conflictos de interés.</strong> Prevenir y declarar de inmediato toda situación real o aparente (vínculos personales/familiares, relaciones financieras o profesionales con personal de Prestige Auto). Las invitaciones y regalos deben ser apropiados, ocasionales y de valor simbólico; están prohibidos durante licitaciones, evaluaciones o negociaciones, y jamás se permite dinero en efectivo o equivalentes ni pagos a funcionarios públicos.</li>'
+        . '<li><strong>Intermediarios y remuneraciones.</strong> Asegurar que los honorarios de consultores, agentes, brokers u otros intermediarios sean razonables, transparentes y no encubran ventajas indebidas; aplicar debida diligencia y cláusulas anticorrupción.</li>'
+        . '</ul>',
+    ],
+    [
+      'slug'      => 'codigo-integridad-5',
+      'clave'     => 'codigo_integridad',
+      'orden'     => 4,
+      'titulo'    => 'Prevención de LA/FT y Defensa a la Competencia',
+      'contenido' => '<p>En Prestige Auto esperamos que nuestros socios comerciales cumplan con normativas en materia de Prevención de Lavado de Activos y Financiación al Terrorismo, como también con normativas y buenas prácticas empresariales en materia de Defensa a la Competencia.</p><ul>'
+        . '<li><strong>Prevención de LA/FT.</strong> Implementar controles acordes al riesgo (identificación y verificación de clientes/proveedores y beneficiarios finales, monitoreo de operaciones inusuales, registros y políticas internas). Abstenerse de pagos en efectivo inusuales, operar a/desde terceros no previstos o cuentas no informadas y de usar jurisdicciones de alto riesgo sin sustento legal/documental. Acreditar, cuando se requiera, cumplimientos legales e impositivos.</li>'
+        . '<li><strong>Comercio exterior, sanciones y antiterrorismo.</strong> Cumplir las normas de importación/exportación, controles de exportación, sanciones y disposiciones contra el terrorismo internacional; no operar con personas o jurisdicciones restringidas.</li>'
+        . '<li><strong>Defensa de la Competencia.</strong> Cumplir todas las leyes de defensa de la competencia: no realizar acuerdos o intercambios de información sensible que afecten precios, condiciones, estrategias, territorios/clientes o licitaciones, ni otras conductas que restrinjan ilegalmente la competencia.</li>'
+        . '</ul>',
+    ],
+    [
+      'slug'      => 'codigo-integridad-6',
+      'clave'     => 'codigo_integridad',
+      'orden'     => 5,
+      'titulo'    => 'Protección de la Información y Datos Personales',
+      'contenido' => '<p>En Prestige Auto esperamos que nuestros socios comerciales cuiden y adopten los recaudos necesarios para el cuidado de la información confidencial, sensible y personal que se obtenga en el marco de la relación.</p><ul>'
+        . '<li><strong>Información confidencial y datos personales.</strong> Proteger la información no pública y los datos personales; usarlos solo con base legal y finalidad autorizada, aplicando necesidad/mínimo privilegio, almacenamiento seguro, controles de acceso y notificación inmediata de incidentes. Cumplir la normativa aplicable y alinearse a las políticas de Seguridad de la Información de Prestige Auto.</li>'
+        . '<li><strong>Reporte y colaboración.</strong> Informar de inmediato cualquier hecho presuntamente delictivo o irregularidad que pueda afectar a Prestige Auto mediante los canales de denuncia; colaborar con debida diligencia, verificaciones o auditorías razonables y aplicar medidas correctivas cuando corresponda.</li>'
+        . '<li><strong>Cadena de suministro.</strong> Seleccionar diligentemente a sus propios proveedores y subcontratistas.</li>'
+        . '</ul>',
+    ],
+    [
+      'slug'      => 'codigo-integridad-7',
+      'clave'     => 'codigo_integridad',
+      'orden'     => 6,
+      'titulo'    => 'DD.HH. y Medio Ambiente',
+      'contenido' => '<p>En Prestige Auto creemos que el éxito solo es auténtico cuando respeta la dignidad de las personas, cuida el entorno y aporta al bienestar colectivo. Por ello, esperamos que nuestros Socios Comerciales se conduzcan de acuerdo con los siguientes lineamientos y estándares:</p><ul>'
+        . '<li><strong>Respeto de los Derechos Humanos y la legislación aplicable.</strong> Cumplir las leyes laborales y de Derechos Humanos, los convenios OIT y marcos como los Principios Rectores de la ONU.</li>'
+        . '<li><strong>Trabajo digno y prohibiciones absolutas.</strong> No permitir trabajo infantil, forzoso o trata; no retener documentos; asegurar salarios y horarios acordes a ley.</li>'
+        . '<li><strong>No discriminación y trato respetuoso.</strong> Prohibir toda discriminación, acoso o violencia; promover entornos seguros e inclusivos, respetando identidad u orientación sexual, género, edad, religión, nacionalidad, discapacidad, opiniones u otras condiciones.</li>'
+        . '<li><strong>Libertad de asociación.</strong> Respetar la libertad de asociación y la negociación colectiva conforme la normativa aplicable.</li>'
+        . '<li><strong>Seguridad y salud.</strong> Poner la seguridad de las personas primero: ambientes de trabajo seguros, entrenamiento adecuado y EPP; incorporar la prevención como práctica cotidiana.</li>'
+        . '<li><strong>Debida diligencia en Derechos Humanos.</strong> Identificar y mitigar riesgos, contar con canales de denuncia sin represalias, cooperar con verificaciones/auditorías y remediar impactos si se detectan.</li>'
+        . '<li><strong>Cumplimiento ambiental.</strong> Contar con los permisos, licencias y reportes ambientales vigentes, y disponer de sistemas de gestión ambiental certificados cuando corresponda. Acreditar evidencia cuando sea requerida.</li>'
+        . '<li><strong>Gestión responsable de impactos.</strong> Gestionar residuos, efluentes y emisiones (incluidos ruidos/olores), manipular de forma segura sustancias peligrosas y contar con planes de contingencia.</li>'
+        . '<li><strong>Eficiencia de recursos.</strong> Optimizar el uso de energía y agua y priorizar prevención, reducción, reutilización y reciclado a lo largo de las operaciones.</li>'
+        . '<li><strong>Enfoque de ciclo de vida.</strong> Asegurar que productos y servicios sean seguros y minimicen impactos desde el diseño hasta la fabricación, logística, uso y disposición final.</li>'
+        . '<li><strong>Incidentes y mejoras.</strong> Notificar de inmediato incidentes o no conformidades ambientales/ocupacionales, cooperar en la contención e implementar medidas correctivas con registros verificables.</li>'
+        . '<li><strong>Cadena de suministro.</strong> Extender estas exigencias a subcontratistas y proveedores críticos y verificar su cumplimiento.</li>'
+        . '</ul><p>Estas pautas son la base para proteger a las personas, preservar el ambiente y mantener la confianza que sostiene nuestra relación.</p>',
+    ],
+    [
+      'slug'      => 'codigo-integridad-8',
+      'clave'     => 'codigo_integridad',
+      'orden'     => 7,
+      'titulo'    => 'Canal de Denuncias',
+      'contenido' => '<p>El contenido de este Código refleja el propio Código de Conducta de Prestige Auto, donde fomentamos una cultura de transparencia y confianza; por eso toda violación o indicio de violación al presente Código debe ser denunciada directamente a través de los canales de recepción de denuncias habilitados, ya sea a la gerencia de Compliance &amp; Auditoría Interna, o bien a través del Canal de Denuncias &ldquo;Línea Ética&rdquo;. El canal de denuncias está a disposición de empleados, proveedores, concesionarios y otros terceros vinculados a la compañía. Está gestionado de manera tercerizada por KPMG para garantizar confidencialidad, imparcialidad, transparencia y profesionalismo.</p>'
+        . '<p>Este Canal de Denuncias está disponible para informar situaciones que puedan constituir:</p><ul>'
+        . '<li>Violaciones a este Código.</li>'
+        . '<li>Conductas irregulares o contrarias a las normativas, políticas, procedimientos y procesos.</li>'
+        . '<li>Sospechas de fraude, corrupción, acoso, discriminación, conflicto de interés, entre otros.</li>'
+        . '<li>Incumplimientos en materia de derechos laborales, protección de datos, seguridad ambiental o regulaciones legales.</li>'
+        . '</ul><p><strong>¿Cómo acceder al Canal de Denuncias?</strong></p><ul>'
+        . '<li>Línea telefónica gratuita: 0800-122-0396</li>'
+        . '<li>Formulario web: prestige.lineaseticas.com</li>'
+        . '<li>Correo electrónico: prestigelineaseticas@kpmg.com.ar</li>'
+        . '<li>Escaneando el código QR disponible en el documento del Código de Integridad</li>'
+        . '</ul><p><strong>Confidencialidad y protección contra represalias.</strong> Toda denuncia será tratada con el máximo nivel de reserva. No se tolerarán represalias, amenazas ni consecuencias adversas contra quienes reporten hechos de buena fe. La protección contra represalias incluye tanto al denunciante como a cualquier persona que colabore en una investigación. Si se realiza un informe sobre la conducta de un Socio Comercial, el Socio Comercial en cuestión deberá ayudar con la investigación y proporcionar acceso a cualquier información que razonablemente solicite Prestige Auto. También se espera que los Socios Comerciales tomen medidas para prevenir, detectar y corregir cualquier acción de represalia contra los denunciantes.</p>',
+    ],
+    [
+      'slug'      => 'codigo-integridad-9',
+      'clave'     => 'codigo_integridad',
+      'orden'     => 8,
+      'titulo'    => 'Cumplimiento del Código',
+      'contenido' => '<p>Nuestros Socios Comerciales se asegurarán de que los principios de este Código se cumplan, comuniquen y comprendan en sus propias cadenas de suministro. Para ello, deberán conocer, aplicar y difundir estas pautas. También esperamos que el personal de nuestros Proveedores esté capacitado y en conocimiento de las políticas y buenas prácticas, como así también que mantengan sus políticas internas, libros y registros fieles y completos; acrediten cumplimientos legales e impositivos y permisos/licencias vigentes; y colaboren con auditorías, verificaciones y requerimientos razonables de información que disponga Prestige Auto, resguardando la confidencialidad.</p>'
+        . '<p>En caso de desviaciones menores, el Socio Comercial deberá implementar medidas correctivas adecuadas y presentar evidencia de su ejecución dentro de un plazo razonable acordado con Prestige Auto.</p>'
+        . '<p>En caso de incumplimientos graves o reiterados (en especial, violaciones legales o de alto riesgo), Prestige Auto podrá aplicar medidas contractuales proporcionales, que incluyen —sin limitarse a— advertencias formales, planes de remediación, auditorías (on/off-site), suspensión de accesos/pedidos/servicios, retención o diferimiento de pagos, rescisión con causa e inhabilitación para futuras contrataciones, reclamos por daños y perjuicios, y denuncias ante autoridades. Prestige Auto podrá adoptar medidas preventivas inmediatas cuando esté comprometida la seguridad, el cumplimiento normativo, la protección de datos/información, la calidad o la reputación.</p>',
+    ],
+  ];
+
+  foreach ($bloques as $b) {
+    if (get_page_by_path($b['slug'], OBJECT, 'contenido_wysiwyg')) continue;
+
+    $post_id = wp_insert_post([
+      'post_type'   => 'contenido_wysiwyg',
+      'post_title'  => $b['titulo'] !== '' ? $b['titulo'] : $b['slug'],
+      'post_name'   => $b['slug'],
+      'post_status' => 'publish',
+    ]);
+    if (is_wp_error($post_id) || !$post_id) continue;
+
+    update_field('clave', $b['clave'], $post_id);
+    update_field('orden', $b['orden'], $post_id);
+    update_field('titulo', $b['titulo'], $post_id);
+    update_field('contenido', $b['contenido'], $post_id);
+  }
+}, 21);
 
 // ── Helper: tipos de cookies (usado por page-cookies.php) ───────────────────
 function smart_get_cookie_tipos() {
