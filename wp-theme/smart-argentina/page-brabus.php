@@ -230,12 +230,12 @@ wp_localize_script('smart-main', 'brabusSpecs', $smart_brabus_specs);
 
     <!-- Background images (alternan con el toggle, slide igual al home) -->
     <img id="spec-bg-1"
-         src="<?php echo get_template_directory_uri(); ?>/assets/img/brabus/spec1_wide.png"
+         src="<?php echo get_template_directory_uri(); ?>/assets/img/brabus/spec1_wide.jpg"
          alt="smart #1 BRABUS"
          class="absolute inset-0 w-full h-full object-cover"
          style="transform:translateX(0); transition:transform 0.5s ease, opacity 0.5s ease;" />
     <img id="spec-bg-3"
-         src="<?php echo get_template_directory_uri(); ?>/assets/img/brabus/spec3_wide.png"
+         src="<?php echo get_template_directory_uri(); ?>/assets/img/brabus/spec3_wide.jpg"
          alt="smart #3 BRABUS"
          class="absolute inset-0 w-full h-full object-cover"
          style="transform:translateX(100%); opacity:0; transition:transform 0.5s ease, opacity 0.5s ease;" />
@@ -327,8 +327,8 @@ wp_localize_script('smart-main', 'brabusSpecs', $smart_brabus_specs);
 
   <script>
     // Preload spec images para que el primer slide no tenga delay
-    new Image().src = '<?php echo get_template_directory_uri(); ?>/assets/img/brabus/spec1_wide.png';
-    new Image().src = '<?php echo get_template_directory_uri(); ?>/assets/img/brabus/spec3_wide.png';
+    new Image().src = '<?php echo get_template_directory_uri(); ?>/assets/img/brabus/spec1_wide.jpg';
+    new Image().src = '<?php echo get_template_directory_uri(); ?>/assets/img/brabus/spec3_wide.jpg';
 
     function toggleModelosDropdown() {
       const menu    = document.getElementById('modelos-menu');
