@@ -49,7 +49,7 @@ $smart_codigo_integridad = smart_get_contenido('codigo_integridad');
     </section>
     <?php endforeach; ?>
 
-    <a href="<?php echo get_template_directory_uri(); ?>/assets/pdf/codigo-integridad-prestige.pdf" download class="self-start h-10 px-6 bg-black rounded-full text-sm font-bold text-white hover:bg-neutral-800 transition-colors" style="display:inline-flex; align-items:center;">Descargar PDF</a>
+    <a href="<?php echo get_template_directory_uri(); ?>/assets/pdf/codigo-integridad-prestige.pdf" download class="self-start h-10 px-6 bg-black rounded-full text-sm font-bold text-white hover:bg-neutral-800 transition-colors" style="display:inline-flex; align-items:center;">Descargar</a>
 
   </main>
 
