@@ -40,13 +40,13 @@ function initHeroAutoplayVideo(videoId) {
   if ('IntersectionObserver' in window) {
     new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        // 0.6 en vez de más alto: el hero tiene min-height:640px, que en
+        // 0.2 en vez de más alto: el hero tiene min-height:640px, que en
         // ventanas más bajas que eso (barra de Safari visible, teclado, modo
         // landscape) puede superar el alto real del viewport — la sección
-        // nunca llega a estar 100% en pantalla y un umbral muy exigente
-        // (0.9+) puede quedar SIEMPRE fuera de alcance, dejando el video
-        // congelado para siempre porque play() nunca llega a llamarse.
-        const isFullyVisible = entry.isIntersecting && entry.intersectionRatio >= 0.6;
+        // nunca llega a estar 100% en pantalla y un umbral exigente puede
+        // quedar SIEMPRE fuera de alcance, dejando el video congelado para
+        // siempre porque play() nunca llega a llamarse.
+        const isFullyVisible = entry.isIntersecting && entry.intersectionRatio >= 0.2;
         // Reinicia si está pausado por cualquier motivo (terminó, nunca arrancó,
         // o el navegador lo pausó solo al quedar fuera de pantalla — común en
         // mobile para ahorrar batería, deja currentTime > 0 sin haber terminado)
@@ -57,7 +57,7 @@ function initHeroAutoplayVideo(videoId) {
           attemptPlay();
         }
       });
-    }, { threshold: [0, 0.5, 0.6, 0.9, 1] }).observe(section);
+    }, { threshold: [0, 0.2, 0.5, 0.9, 1] }).observe(section);
   }
 
   // Red de seguridad: el hero es lo primero de la página, casi siempre
@@ -67,7 +67,7 @@ function initHeroAutoplayVideo(videoId) {
   // por getBoundingClientRect es el respaldo que igual intenta arrancar.
   const rect = section.getBoundingClientRect();
   const visible = Math.max(0, Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0));
-  if (video.paused && rect.height > 0 && visible / rect.height >= 0.4) {
+  if (video.paused && rect.height > 0 && visible / rect.height >= 0.2) {
     attemptPlay();
   }
 }
