@@ -11,7 +11,31 @@ function initHeroAutoplayVideo(videoId) {
   // El atributo poster nativo no sirve acá porque el navegador deja de
   // mostrarlo después de la primera reproducción; esto funciona siempre,
   // tanto en la carga inicial como en cada reinicio posterior.
-  video.addEventListener('playing', () => { video.style.opacity = '1'; });
+  let watchdog = null;
+  function clearWatchdog() {
+    if (watchdog) { clearTimeout(watchdog); watchdog = null; }
+  }
+  function attemptPlay() {
+    video.style.opacity = '0';
+    video.currentTime = 0;
+    video.play().catch(() => {});
+    clearWatchdog();
+    // Safari (sobre todo iOS) a veces deja la promesa de play() colgada sin
+    // resolver ni rechazar y el video nunca arranca a decodificar — sin
+    // ningún evento/error que capturar. Si a los 4s sigue pausado, se
+    // reintenta desde cero con load() (reinicia el estado de red interno).
+    watchdog = setTimeout(() => {
+      if (video.paused) {
+        video.load();
+        video.play().catch(() => {});
+      }
+    }, 4000);
+  }
+
+  video.addEventListener('playing', () => {
+    video.style.opacity = '1';
+    clearWatchdog();
+  });
 
   new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
@@ -26,9 +50,7 @@ function initHeroAutoplayVideo(videoId) {
       // reiniciar un video que sigue andando por un parpadeo de visibilidad.
       const canRestart = video.paused;
       if (isFullyVisible && canRestart) {
-        video.style.opacity = '0';
-        video.currentTime = 0;
-        video.play().catch(() => {});
+        attemptPlay();
       }
     });
   }, { threshold: [0, 0.5, 0.9, 1] }).observe(section);

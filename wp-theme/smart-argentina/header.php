@@ -6,6 +6,13 @@
   <meta name="format-detection" content="telephone=no" />
   <title><?php wp_title('|', true, 'right'); ?><?php bloginfo('name'); ?></title>
   <link rel="icon" href="<?php echo get_template_directory_uri(); ?>/assets/img/favicon.svg" type="image/svg+xml" />
+  <?php if (is_front_page()): ?>
+  <link rel="preload" as="video" href="<?php echo get_template_directory_uri(); ?>/assets/video/videoHeroMobile.mp4" type="video/mp4" media="(max-width: 767px)" />
+  <link rel="preload" as="video" href="<?php echo get_template_directory_uri(); ?>/assets/video/videoHero.mp4" type="video/mp4" media="(min-width: 768px)" />
+  <?php elseif (is_page('brabus')): ?>
+  <link rel="preload" as="video" href="<?php echo get_template_directory_uri(); ?>/assets/video/videoSmartXBRABUSMobile.mp4" type="video/mp4" media="(max-width: 767px)" />
+  <link rel="preload" as="video" href="<?php echo get_template_directory_uri(); ?>/assets/video/videoSmartXBRABUS.mp4" type="video/mp4" media="(min-width: 768px)" />
+  <?php endif; ?>
   <?php wp_head(); ?>
   <script>
     window.THEME_URL       = '<?php echo get_template_directory_uri(); ?>';
