@@ -250,7 +250,7 @@ select option { color: #111111; }
   #vis-left-content { max-width: 100%; }
   #elegi-tu-version h2 { font-size: 28px; }
   #vis-btn-row      { display: flex; justify-content: space-between; align-items: center; margin-top: 0.5rem; }
-  .vis-manual-link  { display: inline; }
+  .vis-manual-link  { display: inline-flex; }
   #vis-switcher     { align-self: flex-end; margin-top: 3rem; }
   #vis-btn-ext, #vis-btn-int { height: 26px; padding: 0 12px; font-size: 11px; }
   #vis-bottom-bar   { padding: 0; }
