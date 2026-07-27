@@ -45,8 +45,8 @@ select option { color: #111111; }
   width: 28px;
   opacity: 1;
 }
-.font-smart-next { font-family: 'FOR_smart_Sans', 'FOR_smart_Next', sans-serif; }
-.font-smart-sans { font-family: 'FOR_smart_Next', 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+.font-smart-next { font-family: 'FOR_smart_Next', 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+.font-smart-sans { font-family: 'FOR_smart_Sans', 'FOR_smart_Next', sans-serif; }
 
 /* ── Carrusel con overlay — card y capas ── */
 .c-card {
@@ -89,16 +89,16 @@ select option { color: #111111; }
   max-width: 70%;
 }
 .c-card__title {
-  font-family: 'FOR_smart_Sans', sans-serif;
+  font-family: 'FOR_smart_Next', sans-serif;
   font-size: 17.41px;
-  font-weight: 400;
+  font-weight: 700;
   line-height: 1.2;
   color: #fff;
   margin: 0 0 6px 0;
   -webkit-font-smoothing: antialiased;
 }
 .c-card__desc {
-  font-family: 'FOR_smart_Next', sans-serif;
+  font-family: 'FOR_smart_Sans', sans-serif;
   font-size: 9.8px;
   font-weight: 400;
   line-height: 1.4;

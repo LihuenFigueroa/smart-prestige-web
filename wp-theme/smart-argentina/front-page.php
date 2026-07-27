@@ -55,7 +55,7 @@ $smart_hero_home  = smart_get_hero('home');
     <!-- Hero content -->
     <div class="absolute bottom-0 left-0 right-0 px-5 md:px-14 pb-8 md:pb-14 flex flex-col md:flex-row md:justify-between md:items-end gap-4 z-10">
       <div class="max-w-xl">
-        <h1 id="home-hero-title" class="text-white text-3xl font-normal leading-10 mb-2 font-smart-next">
+        <h1 id="home-hero-title" class="text-white text-3xl font-bold leading-10 mb-2 font-smart-next">
           Electrizante por naturaleza.
         </h1>
         <p class="text-white text-lg font-normal leading-6 mb-4 font-smart-sans">
@@ -174,7 +174,7 @@ $smart_hero_home  = smart_get_hero('home');
       <div class="flex flex-col cards-item">
         <img src="<?php echo esc_url($c['imagen']); ?>" alt="<?php echo esc_attr($c['alt']); ?>" class="w-full aspect-[4/3] object-cover" style="pointer-events:none;" />
         <div class="flex flex-col flex-1" style="gap:0.75rem;">
-          <h3 class="font-smart-next text-3xl md:text-4xl font-normal text-black leading-tight"><?php echo esc_html($c['titulo']); ?></h3>
+          <h3 class="font-smart-next text-3xl md:text-4xl font-bold text-black leading-tight"><?php echo esc_html($c['titulo']); ?></h3>
           <p class="text-base text-black leading-6 flex-1 font-smart-sans"><?php echo esc_html($c['descripcion']); ?></p>
           <?php if (!empty($c['disclaimer'])): ?>
           <p class="text-xs text-black/30 leading-4 font-smart-sans"><?php echo esc_html($c['disclaimer']); ?></p>

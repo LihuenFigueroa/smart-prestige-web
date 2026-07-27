@@ -105,7 +105,7 @@ $smart_hero_movilidad  = smart_get_hero('movilidad_electrica');
     </nav>
 
     <div class="mov-hero-text-wrap absolute bottom-0 left-0 right-0 z-10" style="padding-left:56px; padding-bottom:56px;">
-      <h1 class="mov-hero-title font-smart-next font-normal text-white" style="font-size:45px; line-height:1.15; margin-bottom:8px;">Movilidad eléctrica</h1>
+      <h1 class="mov-hero-title font-smart-next font-bold text-white" style="font-size:45px; line-height:1.15; margin-bottom:8px;">Movilidad eléctrica</h1>
       <p class="mov-hero-desc font-smart-sans text-white" style="font-size:18px; line-height:1.4; opacity:0.9; margin-bottom:16px;">Elegir lo eléctrico con smart es una apuesta segura: tenés todo para ganar y nada que perder.</p>
       <div class="mov-hero-btn">
         <a href="#contacto" class="font-smart-sans" style="display:inline-flex; align-items:center; height:40px; padding:0 24px; background:white; border-radius:9999px; font-size:14px; color:#141413; text-decoration:none; font-weight:700; letter-spacing:-0.025em;">Realizar consulta</a>

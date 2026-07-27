@@ -96,7 +96,7 @@ $smart_hero_servicios     = smart_get_hero('servicios');
     </nav>
 
     <div class="svc-hero-text-wrap absolute bottom-0 left-0 right-0 px-5 md:px-14 pb-8 md:pb-14 z-10">
-      <h1 class="svc-hero-title font-smart-next font-normal text-white" style="font-size:45px; line-height:1.1;">Servicios al cliente.</h1>
+      <h1 class="svc-hero-title font-smart-next font-bold text-white" style="font-size:45px; line-height:1.1;">Servicios al cliente.</h1>
     </div>
   </section>
 
