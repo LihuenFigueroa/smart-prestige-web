@@ -37,6 +37,13 @@ function initHeroAutoplayVideo(videoId) {
     clearWatchdog();
   });
 
+  function isSectionVisible(minRatio) {
+    const rect = section.getBoundingClientRect();
+    if (rect.height <= 0) return false;
+    const visible = Math.max(0, Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0));
+    return visible / rect.height >= minRatio;
+  }
+
   if ('IntersectionObserver' in window) {
     new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -65,11 +72,22 @@ function initHeroAutoplayVideo(videoId) {
   // llega a disparar (viewport/toolbar rarísimos, no debería pasar pero
   // pasó al menos una vez en un dispositivo real), este chequeo directo
   // por getBoundingClientRect es el respaldo que igual intenta arrancar.
-  const rect = section.getBoundingClientRect();
-  const visible = Math.max(0, Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0));
-  if (video.paused && rect.height > 0 && visible / rect.height >= 0.2) {
+  if (video.paused && isSectionVisible(0.2)) {
     attemptPlay();
   }
+
+  // Con el Modo de Bajo Consumo activado en iOS, Safari a veces exige un
+  // gesto del usuario en la página (no necesariamente sobre el video) antes
+  // de permitir que arranque la decodificación — confirmado en un
+  // dispositivo real: el video quedaba congelado hasta el primer toque en
+  // pantalla. Cualquier toque/click/scroll reintenta si sigue pausado.
+  ['touchstart', 'pointerdown', 'click', 'scroll'].forEach((evt) => {
+    window.addEventListener(evt, () => {
+      if (video.paused && isSectionVisible(0.2)) {
+        attemptPlay();
+      }
+    }, { passive: true });
+  });
 }
 
 // ── Hero ─────────────────────────────────────────────────────────────────
