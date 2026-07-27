@@ -1197,21 +1197,27 @@
 
         function carFade(newSrc) {
           if (!newSrc || newSrc === activeSrc || fading) return;
+          var oldSrc = activeSrc;
           activeSrc = newSrc;
           fading = true;
-          back.src = newSrc;
-          front.style.opacity = '0';
-          setTimeout(function() {
-            front.src = newSrc;
-            front.style.transition = 'none';
-            front.style.opacity    = '1';
+
+          // Crossfade simultáneo: back queda con la foto vieja (estática),
+          // front carga la nueva y se desvanece de 0 a 1 encima — sin hueco muerto en el medio.
+          back.src = oldSrc;
+          front.src = newSrc;
+          front.style.transition = 'none';
+          front.style.opacity    = '0';
+
+          requestAnimationFrame(function() {
             requestAnimationFrame(function() {
-              requestAnimationFrame(function() {
-                front.style.transition = 'opacity 0.4s cubic-bezier(0.25,0,0,1)';
-                fading = false;
-              });
+              front.style.transition = 'opacity 0.3s cubic-bezier(0.25,0,0,1)';
+              front.style.opacity    = '1';
             });
-          }, 450);
+          });
+
+          setTimeout(function() {
+            fading = false;
+          }, 320);
         }
 
         function selectColorBtn(btn) {

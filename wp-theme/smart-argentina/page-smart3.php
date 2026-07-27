@@ -673,25 +673,32 @@ $smart_carruseles_s3 = [
 
         function carFade(newSrc) {
           if (!newSrc || newSrc === activeSrc || fading) return;
+          var oldSrc  = activeSrc;
+          var oldScale = (ZOOM_SRCS.indexOf(oldSrc) !== -1 && window.innerWidth > 767) ? 'scale(1.14)' : 'scale(1)';
+          var newScale = (ZOOM_SRCS.indexOf(newSrc) !== -1 && window.innerWidth > 767) ? 'scale(1.14)' : 'scale(1)';
           activeSrc = newSrc;
           fading = true;
-          var scale = (ZOOM_SRCS.indexOf(newSrc) !== -1 && window.innerWidth > 767) ? 'scale(1.14)' : 'scale(1)';
           applyMobilePos(newSrc);
-          back.src = newSrc;
-          back.style.transform = scale;
-          front.style.opacity = '0';
-          setTimeout(function() {
-            front.src = newSrc;
-            front.style.transform = scale;
-            front.style.transition = 'none';
-            front.style.opacity    = '1';
+
+          // Crossfade simultáneo: back queda con la foto vieja (estática),
+          // front carga la nueva y se desvanece de 0 a 1 encima — sin hueco muerto en el medio.
+          back.src = oldSrc;
+          back.style.transform = oldScale;
+          front.src = newSrc;
+          front.style.transform = newScale;
+          front.style.transition = 'none';
+          front.style.opacity    = '0';
+
+          requestAnimationFrame(function() {
             requestAnimationFrame(function() {
-              requestAnimationFrame(function() {
-                front.style.transition = 'opacity 0.4s cubic-bezier(0.25,0,0,1)';
-                fading = false;
-              });
+              front.style.transition = 'opacity 0.3s cubic-bezier(0.25,0,0,1)';
+              front.style.opacity    = '1';
             });
-          }, 450);
+          });
+
+          setTimeout(function() {
+            fading = false;
+          }, 320);
         }
 
         function selectColorBtn(btn) {
