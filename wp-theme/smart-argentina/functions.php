@@ -1237,6 +1237,148 @@ add_action('init', function () {
   }
 }, 21);
 
+// ── Migración one-time: Protección de Datos ──────────────────────────────────
+add_action('init', function () {
+  if (get_option('smart_pagina_proteccion_datos_migrado') === 'si') return;
+  if (!function_exists('update_field')) return;
+
+  update_option('smart_pagina_proteccion_datos_migrado', 'si');
+
+  $bloques = [
+    [
+      'slug'      => 'proteccion-datos-0',
+      'clave'     => 'proteccion_datos',
+      'orden'     => 0,
+      'titulo'    => 'Responsable del tratamiento',
+      'contenido' => '<p><strong>Delegado de Protección de Datos:</strong><br>Prestige Auto SAU<br>Sargento Cabral N° 3770. Edificio II. Lumina Panamericana. Munro.<br>Vicente López. Pcia. de Buenos Aires. Argentina.<br>E-mail: <a href="mailto:compliance@prestige-auto.com.ar">compliance@prestige-auto.com.ar</a></p>'
+        . '<p>De acuerdo con lo dispuesto en la Ley N.º 25.326 de Protección de Datos Personales y su normativa complementaria, Prestige Auto S.A.U. asume el compromiso de proteger la privacidad de los usuarios y de garantizar un tratamiento adecuado de la información personal que se recolecta a través de sus sitios web.</p>',
+    ],
+    [
+      'slug'      => 'proteccion-datos-1',
+      'clave'     => 'proteccion_datos',
+      'orden'     => 1,
+      'titulo'    => 'Alcance del tratamiento de los datos',
+      'contenido' => '<p>Nos alegra que visites nuestra página web y agradecemos tu interés en nuestros productos y servicios. La protección de tus datos personales es una prioridad para nosotros.</p>'
+        . '<p>En esta política te explicamos:</p><ul>'
+        . '<li>Qué datos recolectamos.</li>'
+        . '<li>Cómo y para qué fines los utilizamos.</li>'
+        . '<li>La base legal que nos habilita a tratarlos.</li>'
+        . '<li>Con quién podemos compartirlos.</li>'
+        . '<li>Qué derechos tenés en relación con tus datos personales.</li>'
+        . '</ul><p>Esta política se aplica únicamente a las actividades desarrolladas en el sitio web de Prestige Auto S.A.U. No cubre a sitios de terceros ni a redes sociales que puedan estar enlazadas desde nuestra web, los cuales cuentan con sus propias políticas de privacidad.</p>',
+    ],
+    [
+      'slug'      => 'proteccion-datos-2',
+      'clave'     => 'proteccion_datos',
+      'orden'     => 2,
+      'titulo'    => 'Obtención y tratamiento de datos personales',
+      'contenido' => '<ul>'
+        . '<li><strong>Datos de navegación.</strong> Al visitar nuestro sitio podemos registrar información sobre tu navegador, sistema operativo, fecha y hora de acceso, dirección IP, proveedor de internet, páginas consultadas y enlaces utilizados. Estos datos se conservan por un tiempo limitado con fines de seguridad y para mejorar la experiencia de navegación.</li>'
+        . '<li><strong>Datos proporcionados voluntariamente.</strong> También recolectamos la información que nos brindes a través de formularios de contacto, encuestas, registros, concursos o para la ejecución de contratos y servicios.</li>'
+        . '<li><strong>Carácter opcional.</strong> No estás obligado a proporcionar datos personales. Sin embargo, es posible que determinadas funciones de nuestras páginas web dependan de la cesión de datos personales. En estos casos, si no deseas cedernos tus datos personales, es posible que no puedas utilizar determinadas funciones, o que estén a tu disposición solo con ciertas restricciones.</li>'
+        . '</ul>',
+    ],
+    [
+      'slug'      => 'proteccion-datos-3',
+      'clave'     => 'proteccion_datos',
+      'orden'     => 3,
+      'titulo'    => 'Uso previsto',
+      'contenido' => '<ul>'
+        . '<li>Utilizamos los datos personales obtenidos durante una visita a nuestras páginas web para operar estas páginas de un modo que resulte confortable para los visitantes, y para proteger nuestros sistemas informáticos de ataques y otras acciones ilegales.</li>'
+        . '<li>En la medida en que nos comuniques otros datos personales, por ejemplo, en el marco de un registro, un chat, al cumplimentar un formulario de toma de contacto, en relación con una encuesta o un concurso, o para la conclusión y ejecución de un contrato, utilizamos estos datos para el uso mencionado, para tareas de administración de clientes y, si resulta necesario, para la tramitación y la liquidación de transacciones comerciales, y solamente en la medida en que sea necesario.</li>'
+        . '<li>En relación con otros fines (por ejemplo, mostrar contenidos o publicidad personalizados, basados en tu comportamiento como usuario), utilizamos tus datos y, si es necesario, también los utilizan determinados terceros, siempre que hayas otorgado tu consentimiento (= autorización) en el marco de nuestro Sistema de gestión de consentimiento. Para la visualización de publicidad o contenidos personalizados de conformidad con el o los consentimiento(s) que hayas otorgado, podrán aplicarse procedimientos de análisis, incluida la elaboración de perfiles y el scoring. La elaboración de perfiles y el scoring nos permiten, por ejemplo, proporcionarte información personalizada y acorde con tus intereses, así como recomendaciones individuales sobre determinados modelos de vehículo.</li>'
+        . '<li>Además, utilizamos datos personales en la medida en que estemos obligados a ello (por ejemplo, memorización de datos si es necesario para cumplir las obligaciones comerciales o fiscales de conservación de datos, comunicación en cumplimiento de las disposiciones administrativas o judiciales, por ejemplo, si así lo requieren los órganos de seguridad del estado).</li>'
+        . '<li>Por lo demás, tratamos tus datos personales en la medida en que ello sea necesario para preservar nuestros intereses legítimos. En consecuencia, adaptamos continuamente las funciones y la oferta de nuestras páginas web a los requisitos que se desprenden de tu comportamiento como usuario, y utilizamos tus datos personales para fines internos de liquidación.</li>'
+        . '</ul>',
+    ],
+    [
+      'slug'      => 'proteccion-datos-4',
+      'clave'     => 'proteccion_datos',
+      'orden'     => 4,
+      'titulo'    => 'Entrega de datos personales a terceros',
+      'contenido' => '<p>Nuestras páginas web pueden contener también ofertas de terceros. Si hacés clic en una oferta de este tipo, transferiremos datos al proveedor correspondiente en la extensión necesaria (por ejemplo, la indicación de que has encontrado esta oferta en nuestras páginas y, en su caso, otras informaciones que hayas comunicado para este fin en nuestras páginas web).</p>'
+        . '<p>Recurrimos además a proveedores cualificados para la operación, la optimización y la protección de nuestras páginas web (por ejemplo, proveedores de tecnologías informáticas, agencias de marketing). Solo transferimos datos personales a dichos proveedores en la medida en que sea necesario para la puesta a disposición y el uso de las páginas web y sus funciones, la satisfacción de intereses legítimos, el cumplimiento de obligaciones legales o en la medida en que hayas dado tu consentimiento.</p>',
+    ],
+    [
+      'slug'      => 'proteccion-datos-5',
+      'clave'     => 'proteccion_datos',
+      'orden'     => 5,
+      'titulo'    => 'Cookies',
+      'contenido' => '<p>Nuestro sitio utiliza cookies y tecnologías similares para optimizar tu experiencia de navegación. Algunas son estrictamente necesarias para el funcionamiento del sitio; otras pueden usarse con fines estadísticos o publicitarios, siempre que hayas otorgado tu consentimiento.</p>'
+        . '<p>Podés configurar tu navegador para bloquear, restringir o eliminar cookies en cualquier momento. Tené en cuenta que, al hacerlo, ciertas funcionalidades podrían no estar disponibles o verse limitadas.</p>',
+    ],
+    [
+      'slug'      => 'proteccion-datos-6',
+      'clave'     => 'proteccion_datos',
+      'orden'     => 6,
+      'titulo'    => 'Seguridad',
+      'contenido' => '<p>Prestige Auto S.A.U. aplica medidas técnicas y organizativas adecuadas para proteger los datos personales contra el acceso no autorizado, pérdida, alteración o divulgación indebida, en línea con los estándares de la industria y la normativa vigente.</p>',
+    ],
+    [
+      'slug'      => 'proteccion-datos-7',
+      'clave'     => 'proteccion_datos',
+      'orden'     => 7,
+      'titulo'    => 'Base legal para el tratamiento de datos',
+      'contenido' => '<ul>'
+        . '<li>El tratamiento de datos personales realizado por Prestige Auto S.A.U. se encuentra amparado por la Ley N.º 25.326 de Protección de Datos Personales, su Decreto Reglamentario y por las disposiciones y criterios emitidos por la Agencia de Acceso a la Información Pública (AAIP), autoridad de aplicación en la materia.</li>'
+        . '<li>El tratamiento de los datos se efectuará, en primer lugar, sobre la base del consentimiento previo, expreso, libre e informado del titular, conforme lo dispuesto en el artículo 5 de la Ley N.º 25.326. Dicho consentimiento podrá ser retirado en cualquier momento por el titular, sin que ello afecte la legitimidad de los tratamientos realizados con anterioridad a su revocación.</li>'
+        . '<li>Los datos personales también podrán ser tratados en la medida en que ello resulte necesario para el cumplimiento de obligaciones legales, regulatorias, fiscales o administrativas que resulten aplicables a Prestige Auto S.A.U., así como para la ejecución, desarrollo y cumplimiento de relaciones contractuales asumidas con los titulares de los datos.</li>'
+        . '<li>El tratamiento podrá igualmente efectuarse respecto de datos provenientes de registros, listas o bases de acceso público irrestricto, siempre que tales datos resulten adecuados, pertinentes y no excesivos en relación con la finalidad legítima que motivó su recolección, conforme lo autorizado por la normativa vigente.</li>'
+        . '<li>Prestige Auto S.A.U. podrá asimismo tratar datos personales cuando dicho tratamiento resulte necesario para la satisfacción de intereses legítimos vinculados a la seguridad informática, la prevención del fraude, la mejora de la experiencia de los usuarios en el sitio web, la administración interna, la gestión de auditorías y controles internos, o cualquier otro fin compatible con su objeto social, siempre que tales intereses no prevalezcan sobre los derechos y libertades fundamentales de los titulares de los datos.</li>'
+        . '<li>En todos los supuestos, Prestige Auto S.A.U. garantiza el respeto a los principios de licitud, lealtad, transparencia, finalidad, proporcionalidad y calidad de los datos, previstos en el artículo 4 de la Ley N.º 25.326, así como la aplicación de medidas técnicas y organizativas adecuadas que aseguren la confidencialidad, integridad y seguridad de la información, de conformidad con lo establecido en los artículos 9 y 10 de la normativa aplicable.</li>'
+        . '</ul>',
+    ],
+    [
+      'slug'      => 'proteccion-datos-8',
+      'clave'     => 'proteccion_datos',
+      'orden'     => 8,
+      'titulo'    => 'Supresión de datos personales',
+      'contenido' => '<p>Tu dirección IP y el nombre del proveedor de servicios de Internet se memorizan solamente por motivos de seguridad y se borran al cabo de siete días. Por lo demás, borramos tus datos personales en el momento en que expira el motivo para el que hemos obtenido y tratado tus datos. Una vez finalizado este periodo de tiempo, solamente memorizamos datos si ello es obligatorio según las leyes, los reglamentos y otras prescripciones legales aplicables, siempre que pueda asegurarse un nivel adecuado de protección de datos. En caso de que, en un caso específico, no sea posible eliminar los datos personales, dichos datos se marcarán con el objetivo de restringir su tratamiento futuro.</p>',
+    ],
+    [
+      'slug'      => 'proteccion-datos-9',
+      'clave'     => 'proteccion_datos',
+      'orden'     => 9,
+      'titulo'    => 'Derechos de los interesados',
+      'contenido' => '<ul>'
+        . '<li>El titular de los datos personales tiene derecho a solicitar y obtener información sobre sus propios datos que se encuentren en las bases de datos de Prestige Auto S.A.U., en cumplimiento de lo establecido en el artículo 14 de la Ley N.º 25.326.</li>'
+        . '<li>El titular podrá asimismo solicitar la rectificación, actualización y, cuando corresponda, la supresión o confidencialidad de los datos personales que resulten incorrectos, incompletos o inexactos, de conformidad con lo previsto en el artículo 16 de la misma ley.</li>'
+        . '<li>El ejercicio de estos derechos podrá realizarse en forma gratuita a intervalos no inferiores a seis meses, salvo que se acredite un interés legítimo al efecto conforme lo dispuesto en el artículo 14, inciso 3, de la Ley N.º 25.326.</li>'
+        . '<li>En todos los casos, el titular podrá revocar el consentimiento previamente otorgado para el tratamiento de sus datos personales, sin efectos retroactivos sobre el tratamiento legítimamente efectuado con anterioridad a la revocación.</li>'
+        . '<li>Para ejercer los derechos reconocidos en la Ley N.º 25.326, el titular podrá dirigir una solicitud a Prestige Auto S.A.U. a través del correo electrónico <a href="mailto:compliance@prestige-auto.com.ar">compliance@prestige-auto.com.ar</a>, o mediante presentación escrita en el domicilio indicado.</li>'
+        . '<li>Se hace saber al titular de los datos que la Agencia de Acceso a la Información Pública, en su carácter de órgano de control de la Ley N.º 25.326, tiene la atribución de atender denuncias y reclamos que se interpongan en relación con el incumplimiento de las normas sobre protección de datos personales.</li>'
+        . '</ul>',
+    ],
+    [
+      'slug'      => 'proteccion-datos-10',
+      'clave'     => 'proteccion_datos',
+      'orden'     => 10,
+      'titulo'    => 'Transmisión de datos a destinatarios fuera del EEE',
+      'contenido' => '<ul>'
+        . '<li>En caso de ser necesario transferir datos personales a destinatarios ubicados en países extranjeros, Prestige Auto S.A.U. garantizará el cumplimiento del artículo 12 de la Ley N.º 25.326, asegurando que dichos países proporcionen un nivel de protección adecuado o, en su defecto, que se suscriban acuerdos contractuales que aseguren condiciones equivalentes de seguridad y confidencialidad.</li>'
+        . '<li>Desde el punto de vista de la Unión Europea, existe un nivel adecuado de protección en el tratamiento de datos personales, conforme con los estándares de la UE (según la llamada decisión de adecuación) en los países indicados a continuación: Andorra, Argentina, Canadá (restringida), Islas Feroe, Guernsey, Israel, Isla of Man, Japón, Jersey, Nueva Zelanda, Suiza y Uruguay. Hemos acordado con destinatarios de otros países que apliquen las cláusulas contractuales estándar de la UE, que asuman regulaciones corporativas vinculantes o que adopten otros mecanismos para crear un nivel apropiado de protección, conforme con las exigencias legales.</li>'
+        . '</ul>',
+    ],
+  ];
+
+  foreach ($bloques as $b) {
+    if (get_page_by_path($b['slug'], OBJECT, 'contenido_wysiwyg')) continue;
+
+    $post_id = wp_insert_post([
+      'post_type'   => 'contenido_wysiwyg',
+      'post_title'  => $b['titulo'] !== '' ? $b['titulo'] : $b['slug'],
+      'post_name'   => $b['slug'],
+      'post_status' => 'publish',
+    ]);
+    if (is_wp_error($post_id) || !$post_id) continue;
+
+    update_field('clave', $b['clave'], $post_id);
+    update_field('orden', $b['orden'], $post_id);
+    update_field('titulo', $b['titulo'], $post_id);
+    update_field('contenido', $b['contenido'], $post_id);
+  }
+}, 22);
+
 // ── Helper: tipos de cookies (usado por page-cookies.php) ───────────────────
 function smart_get_cookie_tipos() {
   static $cache = null;

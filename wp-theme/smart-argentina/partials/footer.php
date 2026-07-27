@@ -59,10 +59,16 @@
         <span class="opacity-40">|</span>
         <p class="text-[#BABFC4] text-sm font-smart-sans">© <?php echo esc_html(date('Y')); ?> smart Argentina</p>
       </div>
-      <div class="flex items-center gap-x-4 text-[#BABFC4] text-sm">
+      <div class="flex flex-wrap items-center gap-x-4 gap-y-2 text-[#BABFC4] text-sm">
         <a href="<?php echo home_url('/legales/'); ?>" class="hover:text-white transition-colors">Legales</a>
         <span class="opacity-40">|</span>
         <a href="<?php echo home_url('/cookies/'); ?>" class="hover:text-white transition-colors">Cookies</a>
+        <span class="opacity-40">|</span>
+        <a href="<?php echo home_url('/proveedor/'); ?>" class="hover:text-white transition-colors">Proveedor</a>
+        <span class="opacity-40">|</span>
+        <a href="<?php echo home_url('/proteccion-datos/'); ?>" class="hover:text-white transition-colors">Protección de Datos</a>
+        <span class="opacity-40">|</span>
+        <a href="<?php echo home_url('/codigo-integridad/'); ?>" class="hover:text-white transition-colors">Código de Integridad</a>
       </div>
     </div>
 
