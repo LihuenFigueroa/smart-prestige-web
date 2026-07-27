@@ -12,9 +12,12 @@ function initHeroAutoplayVideo(videoId) {
       // bajas que eso puede superar el alto real del viewport y volver
       // inalcanzable un ratio cercano a 1 (el video nunca arrancaría).
       const isFullyVisible = entry.isIntersecting && entry.intersectionRatio >= 0.9;
-      // Solo reinicia si terminó (o si todavía no arrancó nunca) — mientras
-      // está reproduciéndose no se debe reiniciar aunque se pierda y recupere la visibilidad.
-      const canRestart = video.ended || (video.paused && video.currentTime === 0);
+      // Reinicia si está pausado por cualquier motivo (terminó, nunca arrancó,
+      // o el navegador lo pausó solo al quedar fuera de pantalla — común en
+      // mobile para ahorrar batería, deja currentTime > 0 sin haber terminado)
+      // — mientras está reproduciéndose activamente no se toca, para no
+      // reiniciar un video que sigue andando por un parpadeo de visibilidad.
+      const canRestart = video.paused;
       if (isFullyVisible && canRestart) {
         video.currentTime = 0;
         video.play().catch(() => {});
