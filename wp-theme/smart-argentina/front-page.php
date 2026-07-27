@@ -16,15 +16,18 @@ $smart_hero_home  = smart_get_hero('home');
     }
   </style>
   <section class="relative w-full overflow-hidden" style="height:100vh; height:100dvh; min-height:640px; background:#141413;">
+    <picture>
+      <source srcset="<?php echo get_template_directory_uri(); ?>/assets/img/hero/hero-poster-mobile.jpg" media="(max-width: 767px)" />
+      <img src="<?php echo get_template_directory_uri(); ?>/assets/img/hero/hero-poster.jpg" alt="" class="absolute inset-0 w-full h-full object-cover object-center" style="z-index:0;" />
+    </picture>
     <?php if (!empty($smart_hero_home['desktop'])): ?>
     <img src="<?php echo esc_url($smart_hero_home['desktop']); ?>" alt="smart" class="home-hero-img absolute inset-0 w-full h-full object-cover object-center" />
     <?php endif; ?>
 
-    <video id="heroVideo" muted playsinline preload="auto" poster="<?php echo get_template_directory_uri(); ?>/assets/img/hero/hero-poster.jpg" class="absolute inset-0 w-full h-full object-cover object-center" style="z-index:0;">
+    <video id="heroVideo" muted playsinline preload="auto" class="absolute inset-0 w-full h-full object-cover object-center" style="z-index:0; opacity:0; transition:opacity .3s;">
       <source src="<?php echo get_template_directory_uri(); ?>/assets/video/videoHeroMobile.mp4" media="(max-width: 767px)" />
       <source src="<?php echo get_template_directory_uri(); ?>/assets/video/videoHero.mp4" />
     </video>
-    <script>document.getElementById('heroVideo').poster = window.matchMedia('(max-width: 767px)').matches ? '<?php echo get_template_directory_uri(); ?>/assets/img/hero/hero-poster-mobile.jpg' : '<?php echo get_template_directory_uri(); ?>/assets/img/hero/hero-poster.jpg';</script>
 
     <div class="absolute top-0 left-0 right-0 pointer-events-none" style="height:170px; z-index:5; background: linear-gradient(to bottom, rgba(20,20,19,0.65) 0%, rgba(20,20,19,0.57) 35%, rgba(20,20,19,0) 100%);"></div>
     <div class="absolute bottom-0 left-0 right-0 pointer-events-none" style="height:261px; z-index:5; background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.58) 60%, rgba(0,0,0,0.85) 100%);"></div>

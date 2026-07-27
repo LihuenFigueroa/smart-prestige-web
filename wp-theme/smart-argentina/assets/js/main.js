@@ -6,6 +6,13 @@ function initHeroAutoplayVideo(videoId) {
   const section = video.closest('section');
   if (!section) return;
 
+  // El <video> arranca en opacity:0 (ver markup) mostrando la foto de fondo
+  // detrás — recién se hace visible cuando hay un frame real para mostrar.
+  // El atributo poster nativo no sirve acá porque el navegador deja de
+  // mostrarlo después de la primera reproducción; esto funciona siempre,
+  // tanto en la carga inicial como en cada reinicio posterior.
+  video.addEventListener('playing', () => { video.style.opacity = '1'; });
+
   new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       // 0.9 en vez de ~1: el hero tiene min-height:640px, que en ventanas más
@@ -19,6 +26,7 @@ function initHeroAutoplayVideo(videoId) {
       // reiniciar un video que sigue andando por un parpadeo de visibilidad.
       const canRestart = video.paused;
       if (isFullyVisible && canRestart) {
+        video.style.opacity = '0';
         video.currentTime = 0;
         video.play().catch(() => {});
       }
