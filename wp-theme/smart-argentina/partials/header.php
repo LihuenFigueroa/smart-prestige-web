@@ -28,6 +28,12 @@
           <a href="<?php echo home_url('/legales/'); ?>" class="hover:text-[#141413] transition-colors">Legales</a>
           <span class="mx-2 text-neutral-300">|</span>
           <a href="<?php echo home_url('/cookies/'); ?>" class="hover:text-[#141413] transition-colors">Cookies</a>
+          <span class="mx-2 text-neutral-300">|</span>
+          <a href="<?php echo home_url('/proveedor/'); ?>" class="hover:text-[#141413] transition-colors">Proveedor</a>
+          <span class="mx-2 text-neutral-300">|</span>
+          <a href="<?php echo home_url('/proteccion-datos/'); ?>" class="hover:text-[#141413] transition-colors">Protección de Datos</a>
+          <span class="mx-2 text-neutral-300">|</span>
+          <a href="<?php echo home_url('/codigo-integridad/'); ?>" class="hover:text-[#141413] transition-colors">Código de Integridad</a>
         </p>
         <p class="text-xs text-neutral-400 font-smart-sans">© <?php echo esc_html(date('Y')); ?> smart Argentina</p>
       </div>

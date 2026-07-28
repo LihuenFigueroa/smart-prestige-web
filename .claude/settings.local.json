@@ -231,7 +231,10 @@
       "Bash(node_modules/.bin/tailwindcss -i assets/css/input.css -o assets/css/tailwind.css.new)",
       "Bash(awk 'NR==241,/<\\\\/section>/{print NR\": \"$0}' \"C:\\\\Users\\\\lfigueroa.ext\\\\Desktop\\\\smart-prestige-web\\\\servicios.html\")",
       "Bash(git status *)",
-      "Bash(git merge *)"
+      "Bash(git merge *)",
+      "Bash(perl -e ' *)",
+      "Bash(xxd)",
+      "Bash(perl -CSD -e ' *)"
     ]
   }
 }
