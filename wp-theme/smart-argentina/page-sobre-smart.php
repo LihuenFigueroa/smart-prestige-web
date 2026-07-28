@@ -175,7 +175,7 @@ $smart_hero_sobre      = smart_get_hero('sobre_smart');
   <!-- ================================================================
        RED DE CONCESIONARIOS — CARRUSEL
   ================================================================ -->
-  <section id="sobre-carousel" class="w-full bg-white overflow-hidden" style="height:693.42px;">
+  <section id="sobre-carousel" class="w-full bg-white overflow-hidden" style="height:861.85px;">
     <div class="flex flex-col md:flex-row" style="height:100%;">
 
       <!-- Texto izquierda -->
@@ -192,16 +192,16 @@ $smart_hero_sobre      = smart_get_hero('sobre_smart');
 
       <!-- Carrusel -->
       <div id="sobre-carousel-viewport" class="flex-1 min-w-0 flex items-center" style="padding-top:69px; padding-bottom:63px; overflow:hidden;">
-        <div id="track-sobre-carousel" class="flex select-none" style="gap:19px; height:561.42px; overflow-x:scroll; scrollbar-width:none; -ms-overflow-style:none; cursor:grab;">
+        <div id="track-sobre-carousel" class="flex select-none" style="gap:19px; height:729.85px; overflow-x:scroll; scrollbar-width:none; -ms-overflow-style:none; cursor:grab;">
 
           <?php foreach ($smart_cards_sobre as $c): ?>
-          <div class="flex-shrink-0 flex flex-col" style="width:292.38px; height:561.42px;">
-            <div style="height:363.01px; flex-shrink:0; overflow:hidden;">
+          <div class="flex-shrink-0 flex flex-col" style="width:380.09px; height:729.85px;">
+            <div style="height:471.91px; flex-shrink:0; overflow:hidden;">
               <img src="<?php echo esc_url($c['imagen']); ?>" alt="<?php echo esc_attr($c['alt']); ?>" class="w-full h-full object-cover" draggable="false" />
             </div>
-            <div style="padding-top:20.8px; flex:1;">
-              <h3 class="font-smart-sans font-normal" style="font-size:32.5px; line-height:120%; letter-spacing:-0.02em; color:#000000; margin-bottom:9.6px;"><?php echo esc_html($c['titulo']); ?></h3>
-              <p class="font-smart-sans font-normal" style="font-size:13px; line-height:140%; color:#000000;"><?php echo esc_html($c['descripcion']); ?></p>
+            <div style="padding-top:27.04px; flex:1;">
+              <h3 class="font-smart-sans font-normal" style="font-size:42.25px; line-height:120%; letter-spacing:-0.02em; color:#000000; margin-bottom:12.48px;"><?php echo esc_html($c['titulo']); ?></h3>
+              <p class="font-smart-sans font-normal" style="font-size:16.9px; line-height:140%; color:#000000;"><?php echo esc_html($c['descripcion']); ?></p>
             </div>
           </div>
           <?php endforeach; ?>
