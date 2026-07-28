@@ -170,7 +170,7 @@
       </div>
     </div>
     <div style="padding-bottom:1rem; overflow:hidden;">
-      <div id="track-c1" class="flex select-none" style="overflow-x:scroll; scrollbar-width:none; -ms-overflow-style:none; padding-left:1.25rem; padding-right:1.25rem; gap:1rem; cursor:grab;">
+      <div id="track-c1" class="flex select-none" style="overflow-x:scroll; scrollbar-width:none; -ms-overflow-style:none; padding-left:1.25rem; padding-right:1.25rem; gap:1rem; cursor:grab; touch-action:pan-y;">
 
         <div class="c-card">
           <img src="assets/img/smart1/2.jpg" alt="Vista frontal" class="c-card__img" />
@@ -227,7 +227,7 @@
       </div>
     </div>
     <div style="padding-bottom:1rem; overflow:hidden;">
-      <div id="track-c2" class="flex select-none" style="overflow-x:scroll; scrollbar-width:none; -ms-overflow-style:none; padding-left:1.25rem; padding-right:1.25rem; gap:1rem; cursor:grab;">
+      <div id="track-c2" class="flex select-none" style="overflow-x:scroll; scrollbar-width:none; -ms-overflow-style:none; padding-left:1.25rem; padding-right:1.25rem; gap:1rem; cursor:grab; touch-action:pan-y;">
 
         <div class="c-card">
           <img src="assets/img/smart1/teaser.png" alt="Un espacio diseñado para quienes valoran el confort" class="c-card__img" />
@@ -284,7 +284,7 @@
       </div>
     </div>
     <div style="padding-bottom:1rem; overflow:hidden;">
-      <div id="track-c3" class="flex select-none" style="overflow-x:scroll; scrollbar-width:none; -ms-overflow-style:none; padding-left:1.25rem; padding-right:1.25rem; gap:1rem; cursor:grab;">
+      <div id="track-c3" class="flex select-none" style="overflow-x:scroll; scrollbar-width:none; -ms-overflow-style:none; padding-left:1.25rem; padding-right:1.25rem; gap:1rem; cursor:grab; touch-action:pan-y;">
 
         <div class="c-card">
           <img src="assets/img/smart1/confort-1.png" alt="Cámara 360" class="c-card__img" />
@@ -374,7 +374,7 @@
       </div>
     </div>
     <div style="padding-bottom:1rem; overflow:hidden;">
-      <div id="track-c4" class="flex select-none" style="overflow-x:scroll; scrollbar-width:none; -ms-overflow-style:none; padding-left:1.25rem; padding-right:1.25rem; gap:1rem; cursor:grab;">
+      <div id="track-c4" class="flex select-none" style="overflow-x:scroll; scrollbar-width:none; -ms-overflow-style:none; padding-left:1.25rem; padding-right:1.25rem; gap:1rem; cursor:grab; touch-action:pan-y;">
 
         <div class="c-card">
           <img src="assets/img/smart1/20.jpg" alt="smart pilot assist" class="c-card__img" />
@@ -464,7 +464,7 @@
       </div>
     </div>
     <div style="padding-bottom:1rem; overflow:hidden;">
-      <div id="track-c5" class="flex select-none" style="overflow-x:scroll; scrollbar-width:none; -ms-overflow-style:none; padding-left:1.25rem; padding-right:1.25rem; gap:1rem; cursor:grab;">
+      <div id="track-c5" class="flex select-none" style="overflow-x:scroll; scrollbar-width:none; -ms-overflow-style:none; padding-left:1.25rem; padding-right:1.25rem; gap:1rem; cursor:grab; touch-action:pan-y;">
 
         <div class="c-card">
           <img src="assets/img/smart1/27.jpg" alt="Pantalla central 12,8" class="c-card__img" />
@@ -510,7 +510,7 @@
       </div>
     </div>
     <div style="padding-bottom:1rem; overflow:hidden;">
-      <div id="track-c6" class="flex select-none" style="overflow-x:scroll; scrollbar-width:none; -ms-overflow-style:none; padding-left:1.25rem; padding-right:1.25rem; gap:1rem; cursor:grab;">
+      <div id="track-c6" class="flex select-none" style="overflow-x:scroll; scrollbar-width:none; -ms-overflow-style:none; padding-left:1.25rem; padding-right:1.25rem; gap:1rem; cursor:grab; touch-action:pan-y;">
 
         <div class="c-card">
           <img src="assets/img/smart1/33.png" alt="Baúl trasero eléctrico" class="c-card__img" />
@@ -1532,7 +1532,7 @@
         if (!track) return;
 
         track.style.overflow   = 'visible';
-        track.style.touchAction = 'none';
+        track.style.touchAction = 'pan-y';
         track.style.transition = 'transform 0.32s cubic-bezier(0.4,0,0.2,1)';
         track.style.gap        = '4rem';
         indices[id] = 0;

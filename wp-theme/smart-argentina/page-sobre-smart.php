@@ -192,7 +192,7 @@ $smart_hero_sobre      = smart_get_hero('sobre_smart');
 
       <!-- Carrusel -->
       <div id="sobre-carousel-viewport" class="flex-1 min-w-0 flex items-center" style="padding-top:69px; padding-bottom:63px; overflow:hidden;">
-        <div id="track-sobre-carousel" class="flex select-none" style="gap:19px; height:729.85px; overflow-x:scroll; scrollbar-width:none; -ms-overflow-style:none; cursor:grab;">
+        <div id="track-sobre-carousel" class="flex select-none" style="gap:19px; height:729.85px; overflow-x:scroll; scrollbar-width:none; -ms-overflow-style:none; cursor:grab; touch-action:pan-y;">
 
           <?php foreach ($smart_cards_sobre as $c): ?>
           <div class="flex-shrink-0 flex flex-col" style="width:380.09px; height:729.85px;">

@@ -129,7 +129,7 @@ $smart_hero_con   = smart_get_hero('conectividad');
 
     <!-- ── Carrusel 1 ── -->
     <div class="pb-6" style="overflow:hidden;">
-      <div id="track-cc1" class="flex select-none" style="overflow-x:scroll; scrollbar-width:none; -ms-overflow-style:none; padding-left:1.25rem; padding-right:1.25rem; gap:1rem; cursor:grab;">
+      <div id="track-cc1" class="flex select-none" style="overflow-x:scroll; scrollbar-width:none; -ms-overflow-style:none; padding-left:1.25rem; padding-right:1.25rem; gap:1rem; cursor:grab; touch-action:pan-y;">
 
         <?php foreach ($smart_cards_cc1 as $c): ?>
         <div class="c-card">
@@ -152,7 +152,7 @@ $smart_hero_con   = smart_get_hero('conectividad');
 
     <!-- ── Carrusel 2 ── -->
     <div class="pb-6" style="overflow:hidden;">
-      <div id="track-cc2" class="flex select-none" style="overflow-x:scroll; scrollbar-width:none; -ms-overflow-style:none; padding-left:1.25rem; padding-right:1.25rem; gap:1rem; cursor:grab;">
+      <div id="track-cc2" class="flex select-none" style="overflow-x:scroll; scrollbar-width:none; -ms-overflow-style:none; padding-left:1.25rem; padding-right:1.25rem; gap:1rem; cursor:grab; touch-action:pan-y;">
 
         <?php foreach ($smart_cards_cc2 as $c): ?>
         <div class="c-card">

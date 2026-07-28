@@ -241,7 +241,7 @@ $smart_hero_movilidad  = smart_get_hero('movilidad_electrica');
       var slides = track.querySelectorAll('.mov-card');
 
       track.style.overflow    = 'visible';
-      track.style.touchAction = 'none';
+      track.style.touchAction = 'pan-y';
       track.style.transition  = 'transform 0.32s cubic-bezier(0.4,0,0.2,1)';
 
       function step() { return window.innerWidth + 24; }

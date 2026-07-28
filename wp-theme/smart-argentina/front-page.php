@@ -171,7 +171,7 @@ $smart_hero_home  = smart_get_hero('home');
     <div
       id="cards-track"
       class="flex select-none"
-      style="overflow-x:scroll; scrollbar-width:none; -ms-overflow-style:none;"
+      style="overflow-x:scroll; scrollbar-width:none; -ms-overflow-style:none; touch-action:pan-y;"
     >
 
       <?php foreach ($smart_cards_home as $c): ?>

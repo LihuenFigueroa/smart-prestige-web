@@ -137,7 +137,7 @@ $smart_carruseles_s1 = [
     </div>
     <?php endif; ?>
     <div style="padding-bottom:1rem; overflow:hidden;">
-      <div id="track-c<?php echo $track_num; ?>" class="flex select-none" style="overflow-x:scroll; scrollbar-width:none; -ms-overflow-style:none; padding-left:1.25rem; padding-right:1.25rem; gap:1rem; cursor:grab;">
+      <div id="track-c<?php echo $track_num; ?>" class="flex select-none" style="overflow-x:scroll; scrollbar-width:none; -ms-overflow-style:none; padding-left:1.25rem; padding-right:1.25rem; gap:1rem; cursor:grab; touch-action:pan-y;">
 
         <?php foreach ($carrusel as $card): ?>
         <div class="c-card">
@@ -1029,7 +1029,7 @@ $smart_carruseles_s1 = [
         if (!track) return;
 
         track.style.overflow   = 'visible';
-        track.style.touchAction = 'none';
+        track.style.touchAction = 'pan-y';
         track.style.transition = 'transform 0.32s cubic-bezier(0.4,0,0.2,1)';
         track.style.gap        = '4rem';
         indices[id] = 0;
