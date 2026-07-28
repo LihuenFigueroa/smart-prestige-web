@@ -2847,6 +2847,10 @@ video {
     display: none;
   }
 
+  .md\:whitespace-nowrap {
+    white-space: nowrap;
+  }
+
   .md\:h-12 {
     height: 3rem;
   }

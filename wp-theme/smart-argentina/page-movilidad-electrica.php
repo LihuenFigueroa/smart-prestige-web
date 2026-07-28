@@ -89,7 +89,7 @@ $smart_hero_movilidad  = smart_get_hero('movilidad_electrica');
           <span class="w-5 h-px bg-white block"></span>
         </button>
         <div class="relative hidden md:block" id="modelos-dropdown">
-          <button onclick="toggleModelosDropdown()" class="flex items-center gap-1 text-white text-sm font-normal uppercase tracking-wide leading-6">
+          <button onclick="toggleModelosDropdown()" class="flex items-center gap-1 text-white text-sm font-smart-sans font-normal uppercase tracking-wide leading-6">
             MODELOS
             <svg id="modelos-chevron" class="w-3 h-3 ml-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
           </button>
@@ -133,7 +133,7 @@ $smart_hero_movilidad  = smart_get_hero('movilidad_electrica');
           <img src="<?php echo esc_url($c['imagen']); ?>" alt="<?php echo esc_attr($c['alt']); ?>" style="width:100%; height:100%; object-fit:cover; display:block;" />
         </div>
         <div style="margin-top:20px;">
-          <p class="mov-card-title font-smart-sans" style="font-size:20px; font-weight:700; color:#141413; margin-bottom:6px;"><?php echo esc_html($c['titulo']); ?></p>
+          <p class="mov-card-title font-smart-next" style="font-size:17.41px; font-weight:700; color:#141413; margin-bottom:6px;"><?php echo esc_html($c['titulo']); ?></p>
           <p class="font-smart-sans" style="font-size:14px; color:#141413; line-height:1.6; margin-bottom:12px;"><?php echo nl2br(esc_html($c['descripcion'])); ?></p>
           <?php if (!empty($c['disclaimer'])): ?>
           <p class="font-smart-sans" style="font-size:11px; color:#9ca3af; line-height:1.5;"><?php echo esc_html($c['disclaimer']); ?></p>

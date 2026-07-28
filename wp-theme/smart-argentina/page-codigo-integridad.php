@@ -44,12 +44,14 @@ $smart_codigo_integridad = smart_get_contenido('codigo_integridad');
     <div class="border-t border-neutral-200 mb-10"></div>
     <?php endif; ?>
     <section class="mb-10">
+      <?php if (!empty($bloque['titulo'])): ?>
       <h2 class="font-smart-next font-normal text-[#141413] mb-4" style="font-size:22px; line-height:1.2;"><?php echo esc_html($bloque['titulo']); ?></h2>
+      <?php endif; ?>
       <div class="legal-content"><?php echo $bloque['contenido']; ?></div>
     </section>
     <?php endforeach; ?>
 
-    <a href="<?php echo get_template_directory_uri(); ?>/assets/pdf/codigo-integridad-prestige.pdf" download class="self-start h-10 px-6 bg-black rounded-full text-sm font-bold text-white hover:bg-neutral-800 transition-colors" style="display:inline-flex; align-items:center;">Descargar</a>
+    <a href="<?php echo get_template_directory_uri(); ?>/assets/pdf/codigo-integridad-prestige.pdf" download class="self-start h-10 px-6 bg-black rounded-full text-sm font-smart-sans font-bold text-white hover:bg-neutral-800 transition-colors" style="display:inline-flex; align-items:center;">Descargar</a>
 
   </main>
 

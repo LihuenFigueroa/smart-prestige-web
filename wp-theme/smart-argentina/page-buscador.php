@@ -111,7 +111,7 @@ wp_localize_script('smart-buscador-data', 'smartConcesionarios', array_map(funct
           <span class="w-5 h-px bg-white block"></span>
         </button>
         <div class="relative hidden md:block" id="modelos-dropdown">
-          <button onclick="toggleModelosDropdown()" class="flex items-center gap-1 text-white text-sm font-normal uppercase tracking-wide leading-6">
+          <button onclick="toggleModelosDropdown()" class="flex items-center gap-1 text-white text-sm font-smart-sans font-normal uppercase tracking-wide leading-6">
             MODELOS
             <svg id="modelos-chevron" class="w-3 h-3 ml-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
           </button>
@@ -371,7 +371,7 @@ wp_localize_script('smart-buscador-data', 'smartConcesionarios', array_map(funct
         badge.className = 'font-smart-sans bus-distancia';
         badge.style.cssText = 'font-size:12px; color:#6B7280; margin:-14px 0 16px;';
         badge.textContent = km < 1 ? 'A menos de 1 km' : `A ${km.toFixed(0)} km`;
-        item.insertBefore(badge, item.querySelector('.bus-contact-btn'));
+        item.insertBefore(badge, item.querySelector('.bus-contact-btn, button'));
       });
 
       const nearest = items[0];

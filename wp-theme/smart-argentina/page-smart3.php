@@ -58,7 +58,7 @@ $smart_carruseles_s3 = [
           <span class="w-5 h-px bg-white block"></span>
         </button>
         <div class="relative hidden md:block" id="modelos-dropdown">
-          <button onclick="toggleModelosDropdown()" class="flex items-center gap-1 text-white text-sm font-normal uppercase tracking-wide leading-6">
+          <button onclick="toggleModelosDropdown()" class="flex items-center gap-1 text-white text-sm font-smart-sans font-normal uppercase tracking-wide leading-6">
             MODELOS
             <svg id="modelos-chevron" class="w-3 h-3 ml-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
           </button>
@@ -98,15 +98,26 @@ $smart_carruseles_s3 = [
   <!-- ================================================================
        CARRUSELES DE CARACTERÍSTICAS
   ================================================================ -->
+  <style>
+    /* Encabezados de los carruseles de características (Exterior/Interior/etc.) —
+       desktop: título más grande, línea divisoria de borde a borde de pantalla
+       con el mismo margen que el gap entre cards, título alineado con la línea. */
+    @media (min-width: 768px) {
+      .csec-wrap { padding-left: 16px !important; padding-right: 16px !important; }
+      .csec-title { font-size: 34px !important; }
+      .csec-divider { border-top-color: #C7CBD1; }
+      .c-card__title { font-weight: 400; }
+    }
+  </style>
   <section class="w-full bg-white pb-10">
 
     <?php foreach ($smart_carruseles_s3 as $i => $carrusel): $track_num = $i + 1; $carrusel_titulo = $carrusel[0]['tag'] ?? ''; ?>
     <!-- ── Carrusel <?php echo $track_num; ?> ── -->
     <?php if (!empty($carrusel_titulo)): ?>
-    <div class="w-full px-5 md:px-14">
-      <div class="max-w-[1320px] mx-auto pt-6 md:pt-10">
-        <h3 class="font-smart-next font-normal text-black text-2xl md:text-3xl mb-4 md:mb-6"><?php echo esc_html($carrusel_titulo); ?>.</h3>
-        <div class="border-t border-neutral-200 mb-6 md:mb-8"></div>
+    <div class="w-full px-5 csec-wrap">
+      <div class="pt-6 md:pt-10">
+        <h3 class="csec-title font-smart-next font-normal text-black text-2xl mb-4 md:mb-6"><?php echo esc_html($carrusel_titulo); ?>.</h3>
+        <div class="csec-divider border-t border-neutral-200 mb-6 md:mb-8"></div>
       </div>
     </div>
     <?php endif; ?>
@@ -312,7 +323,7 @@ $smart_carruseles_s3 = [
           <!-- Línea -->
           <div id="vis-linea-row" style="display:flex; align-items:center; gap:20px; margin-bottom:14px; transition:margin-bottom 0.4s cubic-bezier(0.25,0,0,1);">
             <span class="font-smart-sans" style="font-size:11px; color:#6B747B; font-weight:700; min-width:44px;">Línea</span>
-            <button class="vis-linea-btn font-smart-sans" data-linea="Pro"    style="font-size:13px; font-weight:700; color:#141413; background:none; border:none; cursor:pointer; padding:0;">Pro</button>
+            <button class="vis-linea-btn font-smart-sans" data-linea="Pro"    style="font-size:13px; font-weight:400; color:#141413; background:none; border:none; cursor:pointer; padding:0;">Pro</button>
             <button class="vis-linea-btn font-smart-sans" data-linea="Pro+"   style="font-size:13px; font-weight:400; color:#6B747B; background:none; border:none; cursor:pointer; padding:0;">Pro+</button>
             <button class="vis-linea-btn font-smart-sans" data-linea="BRABUS" style="font-size:13px; font-weight:400; color:#6B747B; background:none; border:none; cursor:pointer; padding:0;">BRABUS</button>
           </div>
@@ -470,11 +481,16 @@ $smart_carruseles_s3 = [
         }, true);
 
         // ── Touch ──
+        let touchStartY = 0;
+        let axisLocked  = null; // 'x' | 'y' | null mientras no se define
+
         track.addEventListener('touchstart', function (e) {
           cancelAnimationFrame(rafId);
           isDragging  = true;
           hasMoved    = false;
+          axisLocked  = null;
           startX      = e.touches[0].clientX;
+          touchStartY = e.touches[0].clientY;
           startScroll = track.scrollLeft;
           lastX       = e.touches[0].clientX;
           lastTime    = performance.now();
@@ -483,14 +499,28 @@ $smart_carruseles_s3 = [
 
         track.addEventListener('touchmove', function (e) {
           if (!isDragging) return;
-          const delta = e.touches[0].clientX - startX;
-          if (Math.abs(delta) > 4) hasMoved = true;
+          const touch  = e.touches[0];
+          const deltaX = touch.clientX - startX;
+          const deltaY = touch.clientY - touchStartY;
+
+          // Recién definimos si el gesto es horizontal o vertical cuando hay
+          // movimiento suficiente — si es vertical, soltamos el drag para no
+          // pelearle al scroll natural de la página (si no, arrancar el touch
+          // sobre la imagen de una card bloqueaba el scroll hacia abajo).
+          if (axisLocked === null) {
+            if (Math.abs(deltaX) < 6 && Math.abs(deltaY) < 6) return;
+            axisLocked = Math.abs(deltaX) > Math.abs(deltaY) ? 'x' : 'y';
+            if (axisLocked === 'y') { isDragging = false; return; }
+          }
+          if (axisLocked === 'y') return;
+
+          if (Math.abs(deltaX) > 4) hasMoved = true;
           const now = performance.now();
           const dt  = now - lastTime || 1;
-          velocity  = ((e.touches[0].clientX - lastX) / dt) * 16;
-          lastX     = e.touches[0].clientX;
+          velocity  = ((touch.clientX - lastX) / dt) * 16;
+          lastX     = touch.clientX;
           lastTime  = now;
-          track.scrollLeft = startScroll - delta;
+          track.scrollLeft = startScroll - deltaX;
         }, { passive: true });
 
         track.addEventListener('touchend', function () {

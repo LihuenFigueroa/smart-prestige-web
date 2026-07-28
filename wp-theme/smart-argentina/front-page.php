@@ -41,7 +41,7 @@ $smart_hero_home  = smart_get_hero('home');
           <span class="w-5 h-px bg-white block"></span>
         </button>
         <div class="relative hidden md:block" id="modelos-dropdown">
-          <button onclick="toggleModelosDropdown()" class="flex items-center gap-1 text-white text-sm font-normal uppercase tracking-wide leading-6">
+          <button onclick="toggleModelosDropdown()" class="flex items-center gap-1 text-white text-sm font-smart-sans font-normal uppercase tracking-wide leading-6">
             MODELOS
             <svg id="modelos-chevron" class="w-3 h-3 ml-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
           </button>
@@ -66,7 +66,7 @@ $smart_hero_home  = smart_get_hero('home');
           El SUV 100% eléctrico que redefine lo que significa conducir bien.
         </p>
         <div class="flex gap-3 items-center flex-wrap">
-          <a href="#contacto" class="h-10 px-6 bg-white rounded-full text-sm font-bold tracking-tight text-neutral-900 flex items-center hover:bg-neutral-100 transition-colors">
+          <a href="#contacto" class="h-10 px-6 bg-white rounded-full text-sm font-smart-sans font-bold tracking-tight text-neutral-900 flex items-center hover:bg-neutral-100 transition-colors">
             Contactanos
           </a>
         </div>
@@ -131,13 +131,13 @@ $smart_hero_home  = smart_get_hero('home');
           <button
             id="tab-smart1"
             onclick="switchModel(1)"
-            class="font-normal whitespace-nowrap"
+            class="font-smart-sans font-normal whitespace-nowrap"
             style="position:relative; z-index:1; color:#fff; transition:color 0.4s ease;"
           >smart #1</button>
           <button
             id="tab-smart3"
             onclick="switchModel(3)"
-            class="font-normal whitespace-nowrap"
+            class="font-smart-sans font-normal whitespace-nowrap"
             style="position:relative; z-index:1; color:#171717; transition:color 0.4s ease;"
           >smart #3</button>
         </div>
@@ -149,7 +149,7 @@ $smart_hero_home  = smart_get_hero('home');
           id="model-cta"
           href="<?php echo home_url('/smart-1/'); ?>"
           style="white-space:nowrap;"
-          class="h-10 md:h-12 px-6 md:px-8 rounded-full border border-neutral-900 bg-white text-sm md:text-sm font-bold text-neutral-900 inline-flex items-center hover:bg-neutral-900 hover:text-white transition-colors"
+          class="h-10 md:h-12 px-6 md:px-8 rounded-full border border-neutral-900 bg-white text-sm md:text-sm font-smart-sans font-bold text-neutral-900 inline-flex items-center hover:bg-neutral-900 hover:text-white transition-colors"
         >
           Descubrí más sobre el smart #1
         </a>
@@ -184,7 +184,7 @@ $smart_hero_home  = smart_get_hero('home');
           <p class="text-xs text-black/30 leading-4 font-smart-sans"><?php echo esc_html($c['disclaimer']); ?></p>
           <?php endif; ?>
           <?php if (!empty($c['cta_texto'])): ?>
-          <a href="<?php echo esc_url(smart_feature_card_link($c['cta_link'])); ?>" class="self-start h-10 px-5 rounded-full border border-black text-sm font-bold text-neutral-900 flex items-center hover:bg-black hover:text-white transition-colors"><?php echo esc_html($c['cta_texto']); ?></a>
+          <a href="<?php echo esc_url(smart_feature_card_link($c['cta_link'])); ?>" class="self-start h-10 px-5 rounded-full border border-black text-sm font-smart-sans font-bold text-neutral-900 flex items-center hover:bg-black hover:text-white transition-colors"><?php echo esc_html($c['cta_texto']); ?></a>
           <?php endif; ?>
         </div>
       </div>
@@ -209,7 +209,7 @@ $smart_hero_home  = smart_get_hero('home');
             Desde la primera consulta hasta cada nuevo destino, la red de concesionarios smart te acompaña en cada paso de tu experiencia.
           </p>
         </div>
-        <a href="<?php echo home_url('/buscador/'); ?>" class="self-start h-12 px-6 bg-neutral-900 rounded-full text-sm font-bold text-white inline-flex items-center hover:bg-neutral-700 transition-colors">
+        <a href="<?php echo home_url('/buscador/'); ?>" class="self-start h-12 px-6 bg-neutral-900 rounded-full text-sm font-smart-sans font-bold text-white inline-flex items-center hover:bg-neutral-700 transition-colors">
           Encontrá tu concesionario
         </a>
       </div>
@@ -231,7 +231,7 @@ $smart_hero_home  = smart_get_hero('home');
         <h2 class="font-smart-next text-3xl md:text-4xl font-normal text-white leading-tight">
           smart: tres décadas reinventando el auto urbano.
         </h2>
-        <a href="<?php echo home_url('/sobre-smart/'); ?>" class="self-start h-12 px-6 bg-white rounded-full text-sm font-bold text-neutral-900 inline-flex items-center hover:bg-neutral-100 transition-colors">
+        <a href="<?php echo home_url('/sobre-smart/'); ?>" class="self-start h-12 px-6 bg-white rounded-full text-sm font-smart-sans font-bold text-neutral-900 inline-flex items-center hover:bg-neutral-100 transition-colors">
           Descubrí quiénes somos
         </a>
       </div>
@@ -381,11 +381,16 @@ $smart_hero_home  = smart_get_hero('home');
       }, true);
 
       // ── Touch ──
+      let touchStartY = 0;
+      let axisLocked  = null; // 'x' | 'y' | null mientras no se define
+
       track.addEventListener('touchstart', function (e) {
         cancelAnimationFrame(rafId);
         isDragging  = true;
         hasMoved    = false;
+        axisLocked  = null;
         startX      = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
         startScroll = track.scrollLeft;
         lastX       = e.touches[0].clientX;
         lastTime    = performance.now();
@@ -394,14 +399,28 @@ $smart_hero_home  = smart_get_hero('home');
 
       track.addEventListener('touchmove', function (e) {
         if (!isDragging) return;
-        const delta = e.touches[0].clientX - startX;
-        if (Math.abs(delta) > 4) hasMoved = true;
+        const touch  = e.touches[0];
+        const deltaX = touch.clientX - startX;
+        const deltaY = touch.clientY - touchStartY;
+
+        // Recién definimos si el gesto es horizontal o vertical cuando hay
+        // movimiento suficiente — si es vertical, soltamos el drag para no
+        // pelearle al scroll natural de la página (si no, arrancar el touch
+        // sobre la imagen de una card bloqueaba el scroll hacia abajo).
+        if (axisLocked === null) {
+          if (Math.abs(deltaX) < 6 && Math.abs(deltaY) < 6) return;
+          axisLocked = Math.abs(deltaX) > Math.abs(deltaY) ? 'x' : 'y';
+          if (axisLocked === 'y') { isDragging = false; return; }
+        }
+        if (axisLocked === 'y') return;
+
+        if (Math.abs(deltaX) > 4) hasMoved = true;
         const now = performance.now();
         const dt  = now - lastTime || 1;
-        velocity  = ((e.touches[0].clientX - lastX) / dt) * 16;
-        lastX     = e.touches[0].clientX;
+        velocity  = ((touch.clientX - lastX) / dt) * 16;
+        lastX     = touch.clientX;
         lastTime  = now;
-        track.scrollLeft = startScroll - delta;
+        track.scrollLeft = startScroll - deltaX;
       }, { passive: true });
 
       track.addEventListener('touchend', function () {

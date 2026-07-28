@@ -106,7 +106,7 @@ add_action('init', function () {
     ['slug' => 'rolcar-yerba-buena',       'nombre' => 'Rolcar',       'direccion' => 'Avenida Aconquija 1238',             'localidad' => 'Yerba Buena',     'provincia' => 'Tucumán',      'telefono' => '+54 381 410-6650',   'lat' => -26.8147598, 'lng' => -65.2870540, 'tipo' => 'venta_servicio'],
     ['slug' => 'colcor-cordoba',           'nombre' => 'Colcor',       'direccion' => 'Colectora Norte Agustín Tosco S/N',  'localidad' => 'Córdoba Capital', 'provincia' => 'Córdoba',      'telefono' => '+54 351 589-2285',   'lat' => -31.3527796, 'lng' => -64.1938955, 'tipo' => 'venta_servicio'],
     ['slug' => 'yacopini-maipu',           'nombre' => 'Yacopini',     'direccion' => 'Carril Rodriguez Peña 744',          'localidad' => 'Maipú',           'provincia' => 'Mendoza',      'telefono' => '+54 261 497-8585',   'lat' => -32.9315650, 'lng' => -68.7962284, 'tipo' => 'venta_servicio'],
-    ['slug' => 'meister-don-torcuato',     'nombre' => 'Meister',      'direccion' => 'Colectora Este Panamericana 27559',  'localidad' => 'Don Torcuato',    'provincia' => 'Buenos Aires', 'telefono' => '',                   'lat' => -34.4820155, 'lng' => -58.6325636, 'tipo' => 'venta_servicio'],
+    ['slug' => 'meister-don-torcuato',     'nombre' => 'Meister',      'direccion' => 'Colectora Este Panamericana 27559',  'localidad' => 'Don Torcuato',    'provincia' => 'Buenos Aires', 'telefono' => '0800 362 8555',      'lat' => -34.4820155, 'lng' => -58.6325636, 'tipo' => 'venta_servicio'],
   ];
 
   foreach ($concesionarios as $c) {
@@ -353,7 +353,7 @@ add_action('init', function () {
       'seguridad' => "smart Pilot Assist\n8 sensores de estacionamiento (delanteros y traseros)\nCámara de estacionamiento de 360°",
       'slug_form' => 'smart3-proplus'],
     ['slug' => 'smart3-brabus', 'modelo' => 'smart3', 'orden' => 2, 'nombre_version' => 'BRABUS', 'imagen' => 'smart3/comp-brabus.png', 'destacado' => 1,
-      'autonomia_mixta' => '310 km', 'autonomia_ciudad' => '551 km',
+      'autonomia_mixta' => '415 km', 'autonomia_ciudad' => '551 km',
       'mecanica' => "AWD (Tracción total), 315 kW\nBatería de 66 kWh\nCarga CC de hasta 150 kW\nCarga CA de hasta 22 kW",
       'exterior' => "Luces LED+ CyberSparks con Faros Matriciales y Luz de Carretera Adaptativa\nTecho Panorámico Halo\nPortón trasero con Control Gestual\nCristales de Privacidad (Tintados)\nLuces de cortesía con proyección de logotipo\nEstilo de carrocería y emblemas BRABUS\nPinzas de freno pintadas en rojo",
       'interior' => "Asientos de gamuza de microfibra\nAsientos delanteros calefactables y ajustables eléctricamente\nIluminación ambiental+\nBomba de calor\nSistema de sonido Beats® con 13 altavoces\nVolante de Alcantara®\nAsientos delanteros ventilados",

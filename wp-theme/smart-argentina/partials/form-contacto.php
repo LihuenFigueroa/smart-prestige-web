@@ -76,7 +76,7 @@
         </div>
 
         <div class="pt-6 flex items-center gap-4">
-          <button type="submit" id="btn-enviar" class="self-start h-10 px-8 bg-black rounded-full text-sm font-bold text-white hover:bg-neutral-800 transition-colors">Enviar</button>
+          <button type="submit" id="btn-enviar" class="self-start h-10 px-8 bg-black rounded-full text-sm font-smart-sans font-bold text-white hover:bg-neutral-800 transition-colors">Enviar</button>
           <p id="form-error-msg" class="font-smart-sans text-xs hidden" style="color:rgba(239,68,68,0.6);">Completá todos los campos obligatorios (*).</p>
         </div>
 

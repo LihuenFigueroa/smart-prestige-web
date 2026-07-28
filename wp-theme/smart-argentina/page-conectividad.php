@@ -68,6 +68,11 @@ $smart_hero_con   = smart_get_hero('conectividad');
         letter-spacing: -0.02em !important;
       }
     }
+    /* Carrusel de conectividad — mismo tratamiento que en los carruseles de
+       smart#1/smart#3: título de card sin bold en desktop. */
+    @media (min-width: 768px) {
+      .c-card__title { font-weight: 400; }
+    }
   </style>
   <!-- ================================================================
        HERO
@@ -87,7 +92,7 @@ $smart_hero_con   = smart_get_hero('conectividad');
           <span class="w-5 h-px bg-white block"></span>
         </button>
         <div class="relative hidden md:block" id="modelos-dropdown">
-          <button onclick="toggleModelosDropdown()" class="flex items-center gap-1 text-white text-sm font-normal uppercase tracking-wide leading-6">
+          <button onclick="toggleModelosDropdown()" class="flex items-center gap-1 text-white text-sm font-smart-sans font-normal uppercase tracking-wide leading-6">
             MODELOS
             <svg id="modelos-chevron" class="w-3 h-3 ml-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
           </button>
@@ -136,7 +141,7 @@ $smart_hero_con   = smart_get_hero('conectividad');
               <p class="c-card__desc"><?php echo esc_html($c['descripcion']); ?></p>
             </div>
             <?php if (!empty($c['cta_texto'])): ?>
-            <a href="<?php echo esc_url(smart_feature_card_link($c['cta_link'])); ?>" style="display:inline-flex; align-items:center; height:32px; padding:0 36px; background:#fff; border:none; border-radius:16px; font-size:11px; font-family:'FOR_smart_Next','Helvetica Neue',Helvetica,Arial,sans-serif; color:#141413; text-decoration:none; margin-top:10px; white-space:nowrap;"><?php echo esc_html($c['cta_texto']); ?></a>
+            <a href="<?php echo esc_url(smart_feature_card_link($c['cta_link'])); ?>" style="display:inline-flex; align-items:center; height:32px; padding:0 36px; background:#fff; border:none; border-radius:16px; font-size:11px; font-family:'FOR_smart_Sans','Helvetica Neue',Helvetica,Arial,sans-serif; font-weight:700; color:#141413; text-decoration:none; margin-top:10px; white-space:nowrap;"><?php echo esc_html($c['cta_texto']); ?></a>
             <?php endif; ?>
           </div>
         </div>
@@ -159,7 +164,7 @@ $smart_hero_con   = smart_get_hero('conectividad');
               <p class="c-card__desc"><?php echo esc_html($c['descripcion']); ?></p>
             </div>
             <?php if (!empty($c['cta_texto'])): ?>
-            <a href="<?php echo esc_url(smart_feature_card_link($c['cta_link'])); ?>" style="display:inline-flex; align-items:center; height:32px; padding:0 36px; background:#fff; border:none; border-radius:16px; font-size:11px; font-family:'FOR_smart_Next','Helvetica Neue',Helvetica,Arial,sans-serif; color:#141413; text-decoration:none; margin-top:10px; white-space:nowrap;"><?php echo esc_html($c['cta_texto']); ?></a>
+            <a href="<?php echo esc_url(smart_feature_card_link($c['cta_link'])); ?>" style="display:inline-flex; align-items:center; height:32px; padding:0 36px; background:#fff; border:none; border-radius:16px; font-size:11px; font-family:'FOR_smart_Sans','Helvetica Neue',Helvetica,Arial,sans-serif; font-weight:700; color:#141413; text-decoration:none; margin-top:10px; white-space:nowrap;"><?php echo esc_html($c['cta_texto']); ?></a>
             <?php endif; ?>
           </div>
         </div>
@@ -235,11 +240,16 @@ $smart_hero_con   = smart_get_hero('conectividad');
           if (hasMoved) e.preventDefault();
         }, true);
 
+        let touchStartY = 0;
+        let axisLocked  = null; // 'x' | 'y' | null mientras no se define
+
         track.addEventListener('touchstart', function (e) {
           cancelAnimationFrame(rafId);
           isDragging  = true;
           hasMoved    = false;
+          axisLocked  = null;
           startX      = e.touches[0].clientX;
+          touchStartY = e.touches[0].clientY;
           startScroll = track.scrollLeft;
           lastX       = e.touches[0].clientX;
           lastTime    = performance.now();
@@ -248,14 +258,28 @@ $smart_hero_con   = smart_get_hero('conectividad');
 
         track.addEventListener('touchmove', function (e) {
           if (!isDragging) return;
-          const delta = e.touches[0].clientX - startX;
-          if (Math.abs(delta) > 4) hasMoved = true;
+          const touch  = e.touches[0];
+          const deltaX = touch.clientX - startX;
+          const deltaY = touch.clientY - touchStartY;
+
+          // Recién definimos si el gesto es horizontal o vertical cuando hay
+          // movimiento suficiente — si es vertical, soltamos el drag para no
+          // pelearle al scroll natural de la página (si no, arrancar el touch
+          // sobre la imagen de una card bloqueaba el scroll hacia abajo).
+          if (axisLocked === null) {
+            if (Math.abs(deltaX) < 6 && Math.abs(deltaY) < 6) return;
+            axisLocked = Math.abs(deltaX) > Math.abs(deltaY) ? 'x' : 'y';
+            if (axisLocked === 'y') { isDragging = false; return; }
+          }
+          if (axisLocked === 'y') return;
+
+          if (Math.abs(deltaX) > 4) hasMoved = true;
           const now = performance.now();
           const dt  = now - lastTime || 1;
-          velocity  = ((e.touches[0].clientX - lastX) / dt) * 16;
-          lastX     = e.touches[0].clientX;
+          velocity  = ((touch.clientX - lastX) / dt) * 16;
+          lastX     = touch.clientX;
           lastTime  = now;
-          track.scrollLeft = startScroll - delta;
+          track.scrollLeft = startScroll - deltaX;
         }, { passive: true });
 
         track.addEventListener('touchend', function () {

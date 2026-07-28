@@ -140,67 +140,9 @@ initHeroAutoplayVideo('heroVideo');
 })();
 
 // ── smart X BRABUS banner ─────────────────────────────────────────────────
+// El título/subtítulo del hero son estáticos (ver brabus.html) — ya no
+// dependen del timing del video.
 initHeroAutoplayVideo('brabusVideo');
-
-// ── smart X BRABUS banner: textos sincronizados con el tiempo del video ───
-(function () {
-  const video = document.getElementById('brabusVideo');
-  if (!video) return;
-
-  const midEls       = [document.getElementById('brabusTextMid'), document.getElementById('brabusTextMidDesktop')].filter(Boolean);
-  const midDesktopEl = document.getElementById('brabusTextMidDesktop');
-  const finalEls     = [document.getElementById('brabusText'), document.getElementById('brabusTextMobile')].filter(Boolean);
-
-  function setOpacity(els, v) {
-    els.forEach((el) => {
-      el.style.opacity = v;
-      el.style.pointerEvents = v > 0.5 ? 'auto' : 'none';
-    });
-  }
-
-  // El texto mid desktop, además de fade, tenía un slide-up desde 40px (como antes con scroll)
-  function setMid(v) {
-    setOpacity(midEls, v);
-    if (midDesktopEl) midDesktopEl.style.transform = `translateY(${(40 * (1 - v)).toFixed(1)}px)`;
-  }
-
-  function reset() {
-    setMid(0);
-    setOpacity(finalEls, 0);
-  }
-  reset();
-
-  video.addEventListener('timeupdate', () => {
-    const d = video.duration;
-    if (!d || isNaN(d)) return;
-    const p = video.currentTime / d;
-
-    // Texto mid: aparece, se mantiene un rato, desaparece antes del final
-    const midIn = 0.15, midHold = 0.35, midOut = 0.55, midGone = 0.65;
-    let midOpacity;
-    if (p < midIn) midOpacity = 0;
-    else if (p < midHold) midOpacity = (p - midIn) / (midHold - midIn);
-    else if (p < midOut) midOpacity = 1;
-    else if (p < midGone) midOpacity = 1 - (p - midOut) / (midGone - midOut);
-    else midOpacity = 0;
-    setMid(midOpacity.toFixed(3));
-
-    // Texto final: aparece cerca del final del video y queda visible
-    const finalIn = 0.8;
-    const finalOpacity = p < finalIn ? 0 : Math.min(1, (p - finalIn) / (1 - finalIn));
-    setOpacity(finalEls, finalOpacity.toFixed(3));
-  });
-
-  video.addEventListener('ended', () => {
-    setMid(0);
-    setOpacity(finalEls, 1);
-  });
-
-  // Si el video se reinicia (ver initHeroAutoplayVideo), los textos vuelven a su estado inicial
-  video.addEventListener('play', () => {
-    if (video.currentTime < 0.15) reset();
-  });
-})();
 
 // ── Brabus specs toggle ───────────────────────────────────────────────────────
 let currentSpec = 1;

@@ -43,7 +43,6 @@ $smart_hero_sobre      = smart_get_hero('sobre_smart');
       }
 
       /* Carrusel — apilado vertical */
-      #sobre-pin-wrap,
       #sobre-carousel {
         height: auto !important;
         position: static !important;
@@ -113,7 +112,7 @@ $smart_hero_sobre      = smart_get_hero('sobre_smart');
           <span class="w-5 h-px bg-white block"></span>
         </button>
         <div class="relative hidden md:block" id="modelos-dropdown">
-          <button onclick="toggleModelosDropdown()" class="flex items-center gap-1 text-white text-sm font-normal uppercase tracking-wide leading-6">
+          <button onclick="toggleModelosDropdown()" class="flex items-center gap-1 text-white text-sm font-smart-sans font-normal uppercase tracking-wide leading-6">
             MODELOS
             <svg id="modelos-chevron" class="w-3 h-3 ml-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
           </button>
@@ -137,7 +136,7 @@ $smart_hero_sobre      = smart_get_hero('sobre_smart');
        BANNER — QUIÉNES SOMOS
   ================================================================ -->
   <section class="w-full bg-white px-5 md:px-14 py-10 md:py-14">
-    <div class="max-w-[1320px] mx-auto bg-[#141413] overflow-hidden">
+    <div class="bg-[#141413] overflow-hidden">
       <div class="flex flex-col md:flex-row">
 
         <!-- Imagen izquierda -->
@@ -176,7 +175,6 @@ $smart_hero_sobre      = smart_get_hero('sobre_smart');
   <!-- ================================================================
        RED DE CONCESIONARIOS — CARRUSEL
   ================================================================ -->
-  <div id="sobre-pin-wrap" style="position:relative;">
   <section id="sobre-carousel" class="w-full bg-white overflow-hidden" style="height:693.42px;">
     <div class="flex flex-col md:flex-row" style="height:100%;">
 
@@ -194,7 +192,7 @@ $smart_hero_sobre      = smart_get_hero('sobre_smart');
 
       <!-- Carrusel -->
       <div id="sobre-carousel-viewport" class="flex-1 min-w-0 flex items-center" style="padding-top:69px; padding-bottom:63px; overflow:hidden;">
-        <div id="track-sobre-carousel" class="flex select-none" style="gap:19px; height:561.42px; will-change:transform;">
+        <div id="track-sobre-carousel" class="flex select-none" style="gap:19px; height:561.42px; overflow-x:scroll; scrollbar-width:none; -ms-overflow-style:none; cursor:grab;">
 
           <?php foreach ($smart_cards_sobre as $c): ?>
           <div class="flex-shrink-0 flex flex-col" style="width:292.38px; height:561.42px;">
@@ -213,64 +211,197 @@ $smart_hero_sobre      = smart_get_hero('sobre_smart');
 
     </div>
   </section>
-  </div>
 
   <!-- ================================================================
        FOOTER
   ================================================================ -->
   <?php get_template_part('partials/footer'); ?>
 
-
   <script>
-    /* ── Scroll-driven horizontal carousel (sobre-smart) ── */
+    /* ── Carrusel "Red de concesionarios" (desktop) — mismo drag-to-scroll
+         con inercia y hover-scroll en los bordes que home/smart1/smart3. ── */
     (function () {
       if (window.innerWidth < 768) return;
 
-      var wrap     = document.getElementById('sobre-pin-wrap');
-      var section  = document.getElementById('sobre-carousel');
-      var viewport = document.getElementById('sobre-carousel-viewport');
-      var track    = document.getElementById('track-sobre-carousel');
-      if (!wrap || !section || !viewport || !track) return;
+      function initDragCarousel(trackId) {
+        const track = document.getElementById(trackId);
+        if (!track) return;
+        track.style.willChange = 'scroll-position';
+        track.style.webkitOverflowScrolling = 'touch';
 
-      var sectionH     = 693.42;
-      var startHoldPx  = 300;
-      var endHoldPx    = 500;
-      var stickyTopPx  = -40;
+        let isDragging  = false;
+        let hasMoved    = false;
+        let startX      = 0;
+        let startScroll = 0;
+        let lastX       = 0;
+        let lastTime    = 0;
+        let velocity    = 0;
+        let rafId       = null;
 
-      function maxTranslate() {
-        return track.scrollWidth - viewport.clientWidth;
-      }
-
-      function init() {
-        var extra = maxTranslate();
-        if (extra <= 0) return;
-        wrap.style.height      = (sectionH + extra + startHoldPx + endHoldPx) + 'px';
-        section.style.position = 'sticky';
-        section.style.top      = stickyTopPx + 'px';
-        section.style.zIndex   = '1';
-      }
-
-      function onScroll() {
-        var wrapTop  = wrap.getBoundingClientRect().top + window.scrollY;
-        var progress = window.scrollY - wrapTop;
-        var max      = maxTranslate();
-        var offset   = Math.max(0, Math.min(progress - startHoldPx, max));
-        track.style.transform = 'translateX(-' + offset + 'px)';
-      }
-
-      window.addEventListener('load', function () { init(); onScroll(); });
-      window.addEventListener('scroll', onScroll, { passive: true });
-      window.addEventListener('resize', function () {
-        if (window.innerWidth < 768) {
-          wrap.style.height      = '';
-          section.style.position = '';
-          section.style.top      = '';
-          track.style.transform  = '';
-        } else {
-          init();
-          onScroll();
+        function momentum() {
+          velocity *= 0.94;
+          track.scrollLeft -= velocity;
+          if (Math.abs(velocity) > 0.3) rafId = requestAnimationFrame(momentum);
         }
-      });
+
+        // ── Mouse ──
+        track.addEventListener('mousedown', function (e) {
+          cancelAnimationFrame(rafId);
+          isDragging  = true;
+          hasMoved    = false;
+          startX      = e.clientX;
+          startScroll = track.scrollLeft;
+          lastX       = e.clientX;
+          lastTime    = performance.now();
+          velocity    = 0;
+          track.style.cursor = 'grabbing';
+        });
+
+        window.addEventListener('mouseup', function () {
+          if (!isDragging) return;
+          isDragging = false;
+          track.style.cursor = 'grab';
+          rafId = requestAnimationFrame(momentum);
+        });
+
+        track.addEventListener('mousemove', function (e) {
+          if (!isDragging) return;
+          const delta = e.clientX - startX;
+          if (Math.abs(delta) > 4) hasMoved = true;
+          const now = performance.now();
+          const dt  = now - lastTime || 1;
+          velocity  = ((e.clientX - lastX) / dt) * 16;
+          lastX     = e.clientX;
+          lastTime  = now;
+          track.scrollLeft = startScroll - delta;
+        });
+
+        track.addEventListener('click', function (e) {
+          if (hasMoved) e.preventDefault();
+        }, true);
+
+        // ── Touch ──
+        track.addEventListener('touchstart', function (e) {
+          cancelAnimationFrame(rafId);
+          isDragging  = true;
+          hasMoved    = false;
+          startX      = e.touches[0].clientX;
+          startScroll = track.scrollLeft;
+          lastX       = e.touches[0].clientX;
+          lastTime    = performance.now();
+          velocity    = 0;
+        }, { passive: true });
+
+        track.addEventListener('touchmove', function (e) {
+          if (!isDragging) return;
+          const delta = e.touches[0].clientX - startX;
+          if (Math.abs(delta) > 4) hasMoved = true;
+          const now = performance.now();
+          const dt  = now - lastTime || 1;
+          velocity  = ((e.touches[0].clientX - lastX) / dt) * 16;
+          lastX     = e.touches[0].clientX;
+          lastTime  = now;
+          track.scrollLeft = startScroll - delta;
+        }, { passive: true });
+
+        track.addEventListener('touchend', function () {
+          isDragging = false;
+          rafId = requestAnimationFrame(momentum);
+        }, { passive: true });
+      }
+
+      initDragCarousel('track-sobre-carousel');
+
+      // ── Flechas estáticas (solo indicativas) + hover-scroll en las franjas donde viven ─────
+      var dragging = false;
+      document.addEventListener('mousedown', function () { dragging = true; });
+      document.addEventListener('mouseup',   function () { dragging = false; }, { passive: true });
+
+      var HOT_WIDTH  = 90;  // px — ancho de la franja donde vive cada flecha
+      var GRAD_WIDTH = 110; // px — ancho del gradiente que resalta esa franja
+
+      var ARROW_RIGHT_SVG = '<svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 6.5h9M8 3l3.5 3.5L8 10" stroke="#141413" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+      var ARROW_LEFT_SVG  = '<svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M11 6.5h-9M5 3L1.5 6.5 5 10" stroke="#141413" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+      function initHoverScroll(trackId) {
+        var track = document.getElementById(trackId);
+        if (!track) return;
+        var wrapper = track.parentElement;
+        wrapper.style.position = 'relative';
+
+        var gradRight = document.createElement('div');
+        gradRight.style.cssText = 'position:absolute; top:0; bottom:0; right:0; width:' + GRAD_WIDTH + 'px; background:linear-gradient(to left, rgba(0,0,0,0.35), rgba(0,0,0,0)); pointer-events:none; z-index:4; opacity:1; transition:opacity 0.2s ease;';
+        wrapper.appendChild(gradRight);
+
+        var arrowRight = document.createElement('div');
+        arrowRight.style.cssText = 'position:absolute; top:50%; right:16px; width:36px; height:36px; background:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 12px rgba(0,0,0,0.18); pointer-events:none; z-index:5; opacity:1; transform:translateY(-50%) translateX(0); transition:opacity 0.2s ease, transform 0.2s ease;';
+        arrowRight.innerHTML = ARROW_RIGHT_SVG;
+        wrapper.appendChild(arrowRight);
+
+        var gradLeft = document.createElement('div');
+        gradLeft.style.cssText = 'position:absolute; top:0; bottom:0; left:0; width:' + GRAD_WIDTH + 'px; background:linear-gradient(to right, rgba(0,0,0,0.35), rgba(0,0,0,0)); pointer-events:none; z-index:4; opacity:0; transition:opacity 0.2s ease;';
+        wrapper.appendChild(gradLeft);
+
+        var arrowLeft = document.createElement('div');
+        arrowLeft.style.cssText = 'position:absolute; top:50%; left:16px; width:36px; height:36px; background:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 12px rgba(0,0,0,0.18); pointer-events:none; z-index:5; opacity:0; transform:translateY(-50%) translateX(-16px); transition:opacity 0.2s ease, transform 0.2s ease;';
+        arrowLeft.innerHTML = ARROW_LEFT_SVG;
+        wrapper.appendChild(arrowLeft);
+
+        function updateEdges() {
+          var maxScroll = track.scrollWidth - track.clientWidth;
+          var atEnd     = track.scrollLeft >= maxScroll - 2;
+          var atStart   = track.scrollLeft <= 2;
+
+          arrowRight.style.opacity   = atEnd ? '0' : '1';
+          arrowRight.style.transform = 'translateY(-50%) translateX(' + (atEnd ? '16px' : '0') + ')';
+          gradRight.style.opacity    = atEnd ? '0' : '1';
+
+          arrowLeft.style.opacity   = atStart ? '0' : '1';
+          arrowLeft.style.transform = 'translateY(-50%) translateX(' + (atStart ? '-16px' : '0') + ')';
+          gradLeft.style.opacity    = atStart ? '0' : '1';
+        }
+        updateEdges();
+        track.addEventListener('scroll', updateEdges);
+        window.addEventListener('resize', updateEdges);
+
+        var raf = null;
+        var dir = 0; // 1 = derecha, -1 = izquierda, 0 = quieto
+
+        function stop() {
+          dir = 0;
+          cancelAnimationFrame(raf); raf = null;
+        }
+
+        function scrollStep() {
+          if (!dir || dragging) { raf = null; return; }
+          var maxScroll = track.scrollWidth - track.clientWidth;
+          if (dir > 0 && track.scrollLeft >= maxScroll) { stop(); return; }
+          if (dir < 0 && track.scrollLeft <= 0)         { stop(); return; }
+          track.scrollLeft += dir * 3;
+          raf = requestAnimationFrame(scrollStep);
+        }
+
+        wrapper.addEventListener('mousemove', function (e) {
+          if (dragging) return;
+          var rect      = wrapper.getBoundingClientRect();
+          var x         = e.clientX - rect.left;
+          var maxScroll = track.scrollWidth - track.clientWidth;
+          var inRightHot = x > rect.width - HOT_WIDTH && maxScroll > 2 && track.scrollLeft < maxScroll - 2;
+          var inLeftHot  = x < HOT_WIDTH             && maxScroll > 2 && track.scrollLeft > 2;
+
+          if (inRightHot) {
+            if (dir !== 1) { dir = 1; cancelAnimationFrame(raf); raf = requestAnimationFrame(scrollStep); }
+          } else if (inLeftHot) {
+            if (dir !== -1) { dir = -1; cancelAnimationFrame(raf); raf = requestAnimationFrame(scrollStep); }
+          } else if (dir !== 0) {
+            stop();
+          }
+        });
+
+        wrapper.addEventListener('mouseleave', stop);
+      }
+
+      initHoverScroll('track-sobre-carousel');
     })();
   </script>
 
