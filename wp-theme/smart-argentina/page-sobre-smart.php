@@ -8,7 +8,7 @@ $smart_hero_sobre      = smart_get_hero('sobre_smart');
 <?php get_header(); ?>
 <?php get_template_part('partials/header'); ?>
   <style>
-    .sobre-scroll p { color:#fff; font-family:'FOR_smart_Sans','Helvetica Neue',Helvetica,Arial,sans-serif; font-size:21px; line-height:140%; margin:0 0 1.25rem; }
+    .sobre-scroll p { color:#fff; font-family:'FOR_smart_Sans','Helvetica Neue',Helvetica,Arial,sans-serif; font-size:19px; line-height:140%; margin:0 0 1.25rem; }
     .sobre-scroll p:last-child { margin-bottom:0; }
     @media (max-width: 767px) {
       .sobre-hero-img {
@@ -87,7 +87,7 @@ $smart_hero_sobre      = smart_get_hero('sobre_smart');
     .sobre-scroll::-webkit-scrollbar-track { background: transparent; }
     .sobre-scroll::-webkit-scrollbar-thumb { background: #4b4b4b; border-radius: 2px; }
     @media (min-width: 768px) {
-      .sobre-scroll { padding-right: 22px; }
+      .sobre-scroll { padding-right: 6px; }
     }
     @media (max-width: 767px) {
       .sobre-scroll::-webkit-scrollbar { width: 7px; }
@@ -150,7 +150,7 @@ $smart_hero_sobre      = smart_get_hero('sobre_smart');
         </div>
 
         <!-- Texto + botón derecha -->
-        <div class="sobre-banner-text-col md:w-[45%] flex flex-col justify-between gap-8" style="padding: 44px 64px 44px 48px;">
+        <div class="sobre-banner-text-col md:w-[45%] flex flex-col justify-between gap-8" style="padding: 44px 0 44px 48px;">
 
           <!-- Texto con scroll interno -->
           <div class="sobre-scroll overflow-y-auto pr-3" style="width:100%; height:432px;">
