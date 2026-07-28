@@ -86,8 +86,10 @@ $smart_hero_sobre      = smart_get_hero('sobre_smart');
     .sobre-scroll::-webkit-scrollbar { width: 3px; }
     .sobre-scroll::-webkit-scrollbar-track { background: transparent; }
     .sobre-scroll::-webkit-scrollbar-thumb { background: #4b4b4b; border-radius: 2px; }
+    #track-sobre-carousel h3 { font-weight: 700; }
     @media (min-width: 768px) {
       .sobre-scroll { padding-right: 6px; }
+      #track-sobre-carousel h3 { font-weight: 400; }
     }
     @media (max-width: 767px) {
       .sobre-scroll::-webkit-scrollbar { width: 7px; }
@@ -200,7 +202,7 @@ $smart_hero_sobre      = smart_get_hero('sobre_smart');
               <img src="<?php echo esc_url($c['imagen']); ?>" alt="<?php echo esc_attr($c['alt']); ?>" class="w-full h-full object-cover" draggable="false" />
             </div>
             <div style="padding-top:27.04px; flex:1;">
-              <h3 class="font-smart-next font-normal" style="font-size:42.25px; line-height:120%; letter-spacing:-0.02em; color:#000000; margin-bottom:12.48px;"><?php echo esc_html($c['titulo']); ?></h3>
+              <h3 class="font-smart-next" style="font-size:42.25px; line-height:120%; letter-spacing:-0.02em; color:#000000; margin-bottom:12.48px;"><?php echo esc_html($c['titulo']); ?></h3>
               <p class="font-smart-sans font-normal" style="font-size:16.9px; line-height:140%; color:#000000;"><?php echo esc_html($c['descripcion']); ?></p>
             </div>
           </div>
