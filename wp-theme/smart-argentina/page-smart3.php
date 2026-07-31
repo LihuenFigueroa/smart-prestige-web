@@ -844,7 +844,7 @@ $smart_carruseles_s3 = [
         var imgs = [];
         var STD  = ['<?php echo get_template_directory_uri(); ?>/assets/img/smart3/int-std-1.jpg','<?php echo get_template_directory_uri(); ?>/assets/img/smart3/int-std-2.jpg','<?php echo get_template_directory_uri(); ?>/assets/img/smart3/int-std-3.jpg','<?php echo get_template_directory_uri(); ?>/assets/img/smart3/int-std-4.jpg'];
         var lineaMap = {
-          'BRABUS': ['<?php echo get_template_directory_uri(); ?>/assets/img/smart3/int-brabus-1.jpg','<?php echo get_template_directory_uri(); ?>/assets/img/smart3/int-brabus-2.jpg','<?php echo get_template_directory_uri(); ?>/assets/img/smart3/int-brabus-3.jpg','<?php echo get_template_directory_uri(); ?>/assets/img/smart3/int-brabus-4.jpg'],
+          'BRABUS': ['<?php echo get_template_directory_uri(); ?>/assets/img/smart3/int-brabus-1.png','<?php echo get_template_directory_uri(); ?>/assets/img/smart3/int-brabus-2.png','<?php echo get_template_directory_uri(); ?>/assets/img/smart3/int-brabus-3.png','<?php echo get_template_directory_uri(); ?>/assets/img/smart3/int-brabus-4.png'],
           'Pro': STD, 'Pro+': STD
         };
 
