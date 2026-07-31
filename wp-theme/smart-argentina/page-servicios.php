@@ -125,7 +125,7 @@ $smart_hero_servicios     = smart_get_hero('servicios');
       <div id="svc-carousel-viewport" class="flex-1 min-w-0 flex items-center" style="padding-top:19px; padding-bottom:19px; overflow:hidden;">
         <div id="track-svc-intro" class="flex select-none" style="gap:19px; height:432px; will-change:transform; overflow-x:scroll; scrollbar-width:none; -ms-overflow-style:none; cursor:grab; touch-action:pan-y;">
           <div class="svc-intro-slide flex-shrink-0 h-full" style="width:clamp(260px,39.9vw,574px);">
-            <img src="<?php echo get_template_directory_uri(); ?>/assets/img/servicios/intro-img1.jpg" alt="" class="w-full h-full object-cover" draggable="false" />
+            <img src="<?php echo get_template_directory_uri(); ?>/assets/img/servicios/intro-img1.png" alt="" class="w-full h-full object-cover" draggable="false" />
           </div>
           <div class="svc-intro-slide flex-shrink-0 h-full" style="width:clamp(260px,39.8vw,573px);">
             <img src="<?php echo get_template_directory_uri(); ?>/assets/img/servicios/intro-img2.jpg" alt="" class="w-full h-full object-cover" draggable="false" />
