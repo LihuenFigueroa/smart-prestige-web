@@ -105,7 +105,7 @@ wp_localize_script('smart-main', 'brabusSpecs', $smart_brabus_specs);
     <img src="<?php echo esc_url($smart_hero_brabus['desktop']); ?>" alt="smart x BRABUS" class="brabus-hero-img absolute inset-0 w-full h-full object-cover object-center" style="z-index:1;" />
     <?php endif; ?>
 
-    <video id="brabusVideo" muted playsinline preload="auto" class="absolute inset-0 w-full h-full object-cover object-center" style="z-index:1; opacity:0; transition:opacity .3s;">
+    <video id="brabusVideo" muted playsinline loop preload="auto" class="absolute inset-0 w-full h-full object-cover object-center" style="z-index:1; opacity:0; transition:opacity .3s;">
       <source src="<?php echo get_template_directory_uri(); ?>/assets/video/videoSmartXBRABUSMobile.mp4" media="(max-width: 767px)" />
       <source src="<?php echo get_template_directory_uri(); ?>/assets/video/videoSmartXBRABUS.mp4" />
     </video>
@@ -165,7 +165,7 @@ wp_localize_script('smart-main', 'brabusSpecs', $smart_brabus_specs);
 
   <!-- Imagen mobile-only: aparece después del texto introductorio -->
   <div class="brabus-collab-img-mobile" style="padding:32px 32px 0 32px;">
-    <img src="<?php echo get_template_directory_uri(); ?>/assets/img/brabus/collab-mobile.png" alt="smart x BRABUS" style="width:100%; height:auto; object-fit:cover; display:block;" />
+    <img src="<?php echo get_template_directory_uri(); ?>/assets/img/brabus/collab-mobile.jpg" alt="smart x BRABUS" style="width:100%; height:auto; object-fit:cover; display:block;" />
   </div>
 
   <!-- ================================================================
@@ -181,14 +181,14 @@ wp_localize_script('smart-main', 'brabusSpecs', $smart_brabus_specs);
         </p>
       </div>
       <!-- Imagen derecha — oculta en mobile (se muestra arriba) -->
-      <div class="flex-1 hidden md:block" style="height:480px; overflow:hidden; background-image:url('<?php echo get_template_directory_uri(); ?>/assets/img/brabus/collab-desktop.png'); background-size:120%; background-position:28% 65%;"></div>
+      <div class="flex-1 hidden md:block" style="height:480px; overflow:hidden; background-image:url('<?php echo get_template_directory_uri(); ?>/assets/img/brabus/collab-desktop.jpg'); background-size:120%; background-position:28% 65%;"></div>
     </div>
   </section>
 
   <!-- ================================================================
        SPECS — toggle smart #1 / smart #3
   ================================================================ -->
-  <section class="w-full bg-[#141413] relative overflow-hidden brabus-specs-section" style="min-height:100vh;">
+  <section class="w-full bg-[#141413] relative overflow-hidden brabus-specs-section">
 
     <!-- Background images (alternan con el toggle, slide igual al home) -->
     <img id="spec-bg-1"

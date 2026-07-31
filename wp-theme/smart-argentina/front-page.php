@@ -24,7 +24,7 @@ $smart_hero_home  = smart_get_hero('home');
     <img src="<?php echo esc_url($smart_hero_home['desktop']); ?>" alt="smart" class="home-hero-img absolute inset-0 w-full h-full object-cover object-center" />
     <?php endif; ?>
 
-    <video id="heroVideo" muted playsinline preload="auto" class="absolute inset-0 w-full h-full object-cover object-center" style="z-index:0; opacity:0; transition:opacity .3s;">
+    <video id="heroVideo" muted playsinline loop preload="auto" class="absolute inset-0 w-full h-full object-cover object-center" style="z-index:0; opacity:0; transition:opacity .3s;">
       <source src="<?php echo get_template_directory_uri(); ?>/assets/video/videoHeroMobile.mp4" media="(max-width: 767px)" />
       <source src="<?php echo get_template_directory_uri(); ?>/assets/video/videoHero.mp4" />
     </video>

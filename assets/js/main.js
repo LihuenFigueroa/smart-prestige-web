@@ -303,9 +303,9 @@ function submitContactForm(e) {
 
   // ── Envío ────────────────────────────────────────────────────────────────
   var data = {
-    nombre:        form.querySelector('input[placeholder="NOMBRE"]')?.value        || '',
-    apellido:      form.querySelector('input[placeholder="APELLIDO"]')?.value      || '',
-    ciudad:        form.querySelector('input[placeholder="CIUDAD"]')?.value        || '',
+    nombre:        form.querySelector('input[name="nombre"]')?.value               || '',
+    apellido:      form.querySelector('input[name="apellido"]')?.value             || '',
+    ciudad:        form.querySelector('input[name="ciudad"]')?.value               || '',
     email:         form.querySelector('input[type="email"]')?.value                || '',
     celular:       form.querySelector('input[type="tel"]')?.value                  || '',
     concesionario: document.getElementById('fdd-concesionario-label')?.textContent.trim() || document.getElementById('fdd-concesionario-val')?.value || '',

@@ -90,8 +90,15 @@ $smart_carruseles_s3 = [
   ================================================================ -->
   <section class="w-full bg-white px-5 md:px-14 py-2 md:py-16">
     <div class="max-w-[1320px] mx-auto">
+      <!-- Mobile: SVG statement -->
       <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart3/statement.svg" alt="" class="mob-only w-full" draggable="false" />
-      <img src="<?php echo get_template_directory_uri(); ?>/assets/img/smart3/headline.svg" alt="Hacé la diferencia. El smart #3 combina el arte y el rendimiento." class="hidden md:block w-full" draggable="false" />
+      <!-- Desktop: texto real, mismo tamaño que smart #1 -->
+      <div class="hidden md:block">
+        <p class="text-neutral-500 text-sm mb-3 font-smart-next">smart #3</p>
+        <h2 class="font-smart-next font-normal text-black max-w-2xl" style="font-size:45px; line-height:1.15;">
+          Hacé la diferencia. El smart #3 combina el arte y el rendimiento.
+        </h2>
+      </div>
     </div>
   </section>
 
@@ -346,6 +353,7 @@ $smart_carruseles_s3 = [
                 <button class="vis-color-btn" data-color="pro3" data-img="<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-pro-c3.png" style="width:28px;height:28px;border-radius:50%;background:#232327;border:none;cursor:pointer;"></button>
                 <button class="vis-color-btn" data-color="pro4" data-img="<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-pro-c4.png" style="width:28px;height:28px;border-radius:50%;background:#f0f0f0;border:1px solid #ddd;cursor:pointer;"></button>
                 <button class="vis-color-btn" data-color="pro5" data-img="<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-pro-c5.png" style="width:28px;height:28px;border-radius:50%;background:#8aaa8e;border:none;cursor:pointer;"></button>
+                <button class="vis-color-btn" data-color="pro6" data-img="<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-pro-c6.png" style="width:28px;height:28px;border-radius:50%;background:linear-gradient(to bottom,#111111 50%,#0a2c54 50%);border:none;cursor:pointer;"></button>
               </div>
               <div id="vis-swatches-Pro+" style="display:none; gap:10px;">
                 <button class="vis-color-btn" data-color="pp1" data-img="<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-prop-c1.png" style="width:28px;height:28px;border-radius:50%;background:linear-gradient(to bottom,#c4c020 50%,#1c1c1c 50%);border:none;cursor:pointer;"></button>
@@ -353,6 +361,7 @@ $smart_carruseles_s3 = [
                 <button class="vis-color-btn" data-color="pp3" data-img="<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-prop-c3.png" style="width:28px;height:28px;border-radius:50%;background:#232327;border:none;cursor:pointer;"></button>
                 <button class="vis-color-btn" data-color="pp4" data-img="<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-prop-c4.png" style="width:28px;height:28px;border-radius:50%;background:#f0f0f0;border:1px solid #ddd;cursor:pointer;"></button>
                 <button class="vis-color-btn" data-color="pp5" data-img="<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-prop-c5.png" style="width:28px;height:28px;border-radius:50%;background:#8aaa8e;border:none;cursor:pointer;"></button>
+                <button class="vis-color-btn" data-color="pp6" data-img="<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-prop-c6.png" style="width:28px;height:28px;border-radius:50%;background:linear-gradient(to bottom,#111111 50%,#0a2c54 50%);border:none;cursor:pointer;"></button>
               </div>
             </div>
           </div>
@@ -697,7 +706,7 @@ $smart_carruseles_s3 = [
         var fading      = false;
         window.getVisLinea = function() { return activeLinea; };
 
-        var ZOOM_SRCS = ['<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-c1.png','<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-c2.png','<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-c3.png','<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-c4.png','<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-c5.png','<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-c6.png','<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-c7.png','<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-pro-c1.png','<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-pro-c2.png','<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-pro-c3.png','<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-pro-c4.png','<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-pro-c5.png','<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-prop-c1.png','<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-prop-c2.png','<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-prop-c3.png','<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-prop-c4.png','<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-prop-c5.png'];
+        var ZOOM_SRCS = ['<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-c1.png','<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-c2.png','<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-c3.png','<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-c4.png','<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-c5.png','<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-c6.png','<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-c7.png','<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-pro-c1.png','<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-pro-c2.png','<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-pro-c3.png','<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-pro-c4.png','<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-pro-c5.png','<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-pro-c6.png','<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-prop-c1.png','<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-prop-c2.png','<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-prop-c3.png','<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-prop-c4.png','<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-prop-c5.png','<?php echo get_template_directory_uri(); ?>/assets/img/smart3/normalized/vis-prop-c6.png'];
         // All normalized images have identical car alignment — no per-image position adjustment needed
         function applyMobilePos(src) { /* no-op: images are normalized */ }
 

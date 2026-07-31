@@ -140,6 +140,27 @@ $smart_hero_servicios     = smart_get_hero('servicios');
   </section>
 
   <!-- ================================================================
+       SÁBANA
+  ================================================================ -->
+  <section class="w-full bg-white px-5 md:px-14 pt-10 md:pt-16" style="padding-bottom:48px;">
+    <div class="max-w-[1320px] mx-auto">
+
+      <?php foreach ($smart_acordeon_servicios as $i => $item): $isLast = $i === count($smart_acordeon_servicios) - 1; ?>
+      <div class="sabana-card border-t <?php echo $isLast ? 'border-b ' : ''; ?>border-neutral-200">
+        <button class="sabana-btn w-full flex items-center justify-between text-left gap-6" style="height:71px;" onclick="toggleSabana(this)">
+          <span class="font-smart-sans font-normal text-black" style="font-size:18px;"><?php echo esc_html($item['titulo']); ?></span>
+          <svg class="sabana-icon flex-shrink-0 text-neutral-400" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2"><line x1="8" y1="1" x2="8" y2="15" class="sabana-vline"/><line x1="1" y1="8" x2="15" y2="8"/></svg>
+        </button>
+        <div class="sabana-content">
+          <p class="font-smart-sans" style="color:#141413; font-size:15px; line-height:160%; padding-bottom:24px;"><?php echo nl2br(esc_html($item['contenido'])); ?></p>
+        </div>
+      </div>
+      <?php endforeach; ?>
+
+    </div>
+  </section>
+
+  <!-- ================================================================
        FORMULARIO
   ================================================================ -->
   <section id="contacto" class="w-full bg-white py-12 md:pt-16 md:pb-16 px-5 md:px-14">
@@ -190,28 +211,6 @@ $smart_hero_servicios     = smart_get_hero('servicios');
 
     </div>
   </section>
-
-  <!-- ================================================================
-       SÁBANA
-  ================================================================ -->
-  <section class="w-full bg-white px-5 md:px-14 pt-10 md:pt-16" style="padding-bottom:48px;">
-    <div class="max-w-[1320px] mx-auto">
-
-      <?php foreach ($smart_acordeon_servicios as $i => $item): $isLast = $i === count($smart_acordeon_servicios) - 1; ?>
-      <div class="sabana-card border-t <?php echo $isLast ? 'border-b ' : ''; ?>border-neutral-200">
-        <button class="sabana-btn w-full flex items-center justify-between text-left gap-6" style="height:71px;" onclick="toggleSabana(this)">
-          <span class="font-smart-sans font-normal text-black" style="font-size:18px;"><?php echo esc_html($item['titulo']); ?></span>
-          <svg class="sabana-icon flex-shrink-0 text-neutral-400" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2"><line x1="8" y1="1" x2="8" y2="15" class="sabana-vline"/><line x1="1" y1="8" x2="15" y2="8"/></svg>
-        </button>
-        <div class="sabana-content">
-          <p class="font-smart-sans" style="color:#141413; font-size:15px; line-height:160%; padding-bottom:24px;"><?php echo nl2br(esc_html($item['contenido'])); ?></p>
-        </div>
-      </div>
-      <?php endforeach; ?>
-
-    </div>
-  </section>
-
 
   <!-- ================================================================
        FOOTER

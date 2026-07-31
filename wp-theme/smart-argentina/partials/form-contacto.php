@@ -19,23 +19,23 @@
       <form id="form-contacto" novalidate onsubmit="submitContactForm(event)">
 
         <div class="border-b border-neutral-200 py-3">
-          <input type="text" placeholder="NOMBRE *" data-req class="font-smart-sans w-full text-sm text-black bg-transparent outline-none" />
+          <input type="text" name="nombre" placeholder="NOMBRE *" data-req class="font-smart-sans w-full text-sm text-black bg-transparent outline-none" />
         </div>
 
         <div class="border-b border-neutral-200 py-3">
-          <input type="text" placeholder="APELLIDO *" data-req class="font-smart-sans w-full text-sm text-black bg-transparent outline-none" />
+          <input type="text" name="apellido" placeholder="APELLIDO *" data-req class="font-smart-sans w-full text-sm text-black bg-transparent outline-none" />
         </div>
 
         <div class="border-b border-neutral-200 py-3">
-          <input type="text" placeholder="CIUDAD *" data-req class="font-smart-sans w-full text-sm text-black bg-transparent outline-none" />
+          <input type="text" name="ciudad" placeholder="CIUDAD *" data-req class="font-smart-sans w-full text-sm text-black bg-transparent outline-none" />
         </div>
 
         <div class="border-b border-neutral-200 py-3">
-          <input type="email" placeholder="CORREO ELECTRÓNICO *" data-req class="font-smart-sans w-full text-sm text-black bg-transparent outline-none" />
+          <input type="email" name="email" placeholder="CORREO ELECTRÓNICO *" data-req class="font-smart-sans w-full text-sm text-black bg-transparent outline-none" />
         </div>
 
         <div class="border-b border-neutral-200 py-3">
-          <input type="tel" placeholder="CELULAR *" data-req class="font-smart-sans w-full text-sm text-black bg-transparent outline-none" />
+          <input type="tel" name="celular" placeholder="CELULAR *" data-req class="font-smart-sans w-full text-sm text-black bg-transparent outline-none" />
         </div>
 
         <!-- Dropdown: Concesionario -->

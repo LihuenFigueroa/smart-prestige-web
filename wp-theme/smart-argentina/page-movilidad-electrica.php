@@ -176,7 +176,7 @@ $smart_hero_movilidad  = smart_get_hero('movilidad_electrica');
         <p class="font-smart-sans" style="font-size:14px; color:#141413; line-height:1.7;">Con smart, cualquier toma de corriente puede convertirse en una estación de carga para que tengas la tranquilidad de saber que tu auto nunca se va a quedar sin batería. Cargá tu vehículo eléctrico con la misma facilidad que cargás tu smartphone: enchufalo en tu garage durante la noche, en tu lugar de trabajo durante el día o en una estación de carga ultrarrápida.</p>
       </div>
 
-      <a href="<?php echo home_url('/smart-1/'); ?>" class="font-smart-sans" style="display:inline-flex; align-items:center; height:50px; padding:0 28px; background:#201F1F; border-radius:25px; font-size:14px; color:white; text-decoration:none;">Descubrí nuestros modelos</a>
+      <a href="<?php echo home_url('/?scroll=elegir-modelo'); ?>" class="font-smart-sans" style="display:inline-flex; align-items:center; height:50px; padding:0 28px; background:#201F1F; border-radius:25px; font-size:14px; color:white; text-decoration:none;">Descubrí nuestros modelos</a>
 
     </div>
   </section>
