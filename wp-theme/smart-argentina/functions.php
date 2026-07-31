@@ -13,6 +13,14 @@ add_action('wp_enqueue_scripts', 'smart_argentina_assets');
 add_filter('show_admin_bar', '__return_false');
 register_nav_menus(['primary' => 'Menú Principal']);
 
+// ── Desactiva el downscaling automático de imágenes grandes ────────────────
+// Por defecto WP genera una versión "-scaled" (máx. 2560px) de cualquier
+// imagen subida que la supere, y esa es la que queda como adjunto "full".
+// El cliente pidió priorizar la calidad HD de las fotos por sobre el peso
+// del archivo, así que se desactiva para que el campo ACF (return_format
+// "url") sirva siempre el archivo original tal cual se subió.
+add_filter('big_image_size_threshold', '__return_false');
+
 // ── ACF (Advanced Custom Fields) ────────────────────────────────────────────
 // El theme requiere el plugin ACF (versión gratuita) para los campos del CPT
 // "Concesionario". No se vendoriza en el theme (repo de terceros, ~5MB, con
