@@ -361,7 +361,7 @@ $smart_hero_con   = smart_get_hero('conectividad');
           var maxScroll = track.scrollWidth - track.clientWidth;
           if (dir > 0 && track.scrollLeft >= maxScroll) { stop(); return; }
           if (dir < 0 && track.scrollLeft <= 0)         { stop(); return; }
-          track.scrollLeft += dir * 3;
+          track.scrollLeft += dir * 6;
           raf = requestAnimationFrame(scrollStep);
         }
 

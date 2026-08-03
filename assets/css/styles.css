@@ -118,9 +118,9 @@ select option { color: #111111; }
 .comp-divider { border: none; border-top: 0.888px solid #DFE2E5; margin: 0; align-self: center; }
 .comp-model { font-family: 'FOR_smart_Next', sans-serif; font-size: 14.5px; font-weight: 700; color: #141413; line-height: 140%; margin: 0 0 2px 0; }
 .comp-version { font-family: 'FOR_smart_Next', sans-serif; font-size: 22.5px; font-weight: 700; color: #141413; letter-spacing: -0.01em; line-height: 120%; margin: 4px 0 0; }
-.comp-range-label { font-family: 'FOR_smart_Next', sans-serif; font-size: 11px; font-weight: 700; color: #141413; letter-spacing: -0.01em; line-height: 120%; margin: 0 0 10px; }
-.comp-range-num { font-family: 'FOR_smart_Next', sans-serif; font-size: 12.5px; font-weight: 700; color: #000; letter-spacing: -0.01em; line-height: 120%; margin: 0 0 2px; }
-.comp-range-sub { font-family: 'FOR_smart_Next', sans-serif; font-size: 14.5px; font-weight: 700; color: #141413; line-height: 1.2; margin: 0 0 10px; }
+.comp-range-label { font-family: 'FOR_smart_Next', sans-serif; font-size: 12.5px; font-weight: 700; color: #141413; letter-spacing: -0.01em; line-height: 120%; margin: 0 0 10px; }
+.comp-range-num { font-family: 'FOR_smart_Next', sans-serif; font-size: 32px; font-weight: 700; color: #000; letter-spacing: -0.01em; line-height: 120%; margin: 0 0 2px; }
+.comp-range-sub { font-family: 'FOR_smart_Next', sans-serif; font-size: 12.5px; font-weight: 700; color: #141413; line-height: 1.2; margin: 0 0 10px; }
 .comp-features { margin: 0; padding-left: 14px; list-style: disc; }
 .comp-features li { font-family: 'FOR_smart_Next', sans-serif; font-size: 12.5px; font-weight: 400; color: #141413; line-height: 120%; letter-spacing: -0.01em; margin-bottom: 4px; }
 .comp-features li:last-child { margin-bottom: 0; }
@@ -346,9 +346,9 @@ select option { color: #111111; }
   /* ── Comparativa — columnas ── */
   .comp-model  { font-size: 12px; }
   .comp-version { font-size: 17px; }
-  .comp-range-label { font-size: 9px; }
-  .comp-range-num { font-size: 11px; }
-  .comp-range-sub { font-size: 12px; }
+  .comp-range-label { font-size: 11px; }
+  .comp-range-num { font-size: 24px; }
+  .comp-range-sub { font-size: 11px; }
   .comp-features li { font-size: 11px; }
 
   /* ── brabus: imagen mobile-only post-texto ── */
