@@ -60,14 +60,14 @@ $smart_hero_home  = smart_get_hero('home');
     <div class="absolute bottom-0 left-0 right-0 px-5 md:px-14 pb-8 md:pb-14 flex flex-col md:flex-row md:justify-between md:items-end gap-4 z-10">
       <div class="max-w-xl">
         <h1 id="home-hero-title" class="text-white text-3xl font-bold leading-10 mb-2 font-smart-next">
-          Electrizante por naturaleza.
+          <?php echo $smart_hero_home['titulo']; ?>
         </h1>
         <p class="text-white text-lg font-normal leading-6 mb-4 font-smart-sans">
-          El SUV 100% eléctrico que redefine lo que significa conducir bien.
+          <?php echo esc_html($smart_hero_home['parrafo']); ?>
         </p>
         <div class="flex gap-3 items-center flex-wrap">
           <a href="#contacto" class="h-10 px-6 bg-white rounded-full text-sm font-smart-sans font-bold tracking-tight text-neutral-900 flex items-center hover:bg-neutral-100 transition-colors">
-            Contactanos
+            <?php echo esc_html($smart_hero_home['cta_texto']); ?>
           </a>
         </div>
       </div>

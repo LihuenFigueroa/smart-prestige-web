@@ -31,11 +31,11 @@ $smart_carruseles_s3 = [
       </div>
     </nav>
     <div style="position:absolute; bottom:0; left:0; right:0; z-index:10; padding:0 24px 32px;">
-      <h1 class="font-smart-next font-bold text-white" style="font-size:32px; line-height:1.15; margin-bottom:6px;">smart #3</h1>
-      <p class="font-smart-sans text-white" style="font-size:14px; line-height:1.4; opacity:0.9; margin-bottom:2px;">SUV fastback 100% eléctrica.</p>
-      <p class="font-smart-sans text-white" style="font-size:14px; line-height:1.4; opacity:0.9; margin-bottom:12px;">Hasta 435 km de autonomía WLTP y 0 a 100 en 3,7 segundos en su versión BRABUS.</p>
+      <h1 class="font-smart-next font-bold text-white" style="font-size:32px; line-height:1.15; margin-bottom:6px;"><?php echo $smart_hero_s3['titulo']; ?></h1>
+      <p class="font-smart-sans text-white" style="font-size:14px; line-height:1.4; opacity:0.9; margin-bottom:2px;"><?php echo esc_html($smart_hero_s3['linea_1']); ?></p>
+      <p class="font-smart-sans text-white" style="font-size:14px; line-height:1.4; opacity:0.9; margin-bottom:12px;"><?php echo esc_html($smart_hero_s3['linea_2']); ?></p>
       <div>
-        <a href="#contacto" class="font-smart-sans" style="display:inline-flex; align-items:center; height:40px; padding:0 24px; background:white; border-radius:9999px; font-size:14px; color:#141413; text-decoration:none; font-weight:700; letter-spacing:-0.025em;">Realizar consulta</a>
+        <a href="#contacto" class="font-smart-sans" style="display:inline-flex; align-items:center; height:40px; padding:0 24px; background:white; border-radius:9999px; font-size:14px; color:#141413; text-decoration:none; font-weight:700; letter-spacing:-0.025em;"><?php echo esc_html($smart_hero_s3['cta_texto']); ?></a>
       </div>
     </div>
   </section>
@@ -75,12 +75,12 @@ $smart_carruseles_s3 = [
 
     <div class="absolute bottom-0 left-0 right-0 pointer-events-none" style="height:320px; z-index:5; background:linear-gradient(to bottom,rgba(0,0,0,0) 0%,rgba(0,0,0,0.85) 100%);"></div>
     <div class="absolute bottom-0 left-0 right-0 z-10" style="padding-left:56px; padding-bottom:56px;">
-      <h1 class="font-smart-next font-bold text-white" style="font-size:45px; line-height:1.1; margin-bottom:8px;">smart #3</h1>
-      <p class="font-smart-sans text-white" style="font-size:18px; line-height:1.4; opacity:0.9; margin-bottom:2px;">SUV fastback 100% eléctrica.</p>
-      <p class="font-smart-sans text-white" style="font-size:18px; line-height:1.4; opacity:0.9; margin-bottom:8px;">Hasta 435 km de autonomía WLTP y 0 a 100 en 3,7 segundos en su versión BRABUS.</p>
-      <p class="font-smart-sans text-white" style="font-size:11px; line-height:1.4; opacity:0.65; margin-bottom:16px;">Autonomía sujeta a tipo de conducción, condiciones del terreno y condiciones del clima.</p>
+      <h1 class="font-smart-next font-bold text-white" style="font-size:45px; line-height:1.1; margin-bottom:8px;"><?php echo $smart_hero_s3['titulo']; ?></h1>
+      <p class="font-smart-sans text-white" style="font-size:18px; line-height:1.4; opacity:0.9; margin-bottom:2px;"><?php echo esc_html($smart_hero_s3['linea_1']); ?></p>
+      <p class="font-smart-sans text-white" style="font-size:18px; line-height:1.4; opacity:0.9; margin-bottom:8px;"><?php echo esc_html($smart_hero_s3['linea_2']); ?></p>
+      <p class="font-smart-sans text-white" style="font-size:11px; line-height:1.4; opacity:0.65; margin-bottom:16px;"><?php echo esc_html($smart_hero_s3['disclaimer']); ?></p>
       <div>
-        <a href="#contacto" class="font-smart-sans" style="display:inline-flex; align-items:center; height:40px; padding:0 24px; background:white; border-radius:9999px; font-size:14px; color:#141413; text-decoration:none; font-weight:700; letter-spacing:-0.025em;">Realizar consulta</a>
+        <a href="#contacto" class="font-smart-sans" style="display:inline-flex; align-items:center; height:40px; padding:0 24px; background:white; border-radius:9999px; font-size:14px; color:#141413; text-decoration:none; font-weight:700; letter-spacing:-0.025em;"><?php echo esc_html($smart_hero_s3['cta_texto']); ?></a>
       </div>
     </div>
   </section>

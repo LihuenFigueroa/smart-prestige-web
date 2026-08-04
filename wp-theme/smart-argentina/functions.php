@@ -1564,6 +1564,79 @@ add_action('acf/init', function () {
           'buscador'            => 'Buscador de concesionarios',
         ],
       ],
+      [
+        'key'          => 'field_hero_titulo',
+        'label'        => 'Título',
+        'name'         => 'titulo',
+        'type'         => 'textarea',
+        'rows'         => 2,
+        'new_lines'    => 'br',
+        'instructions' => 'El título grande del hero. Para forzar un salto de línea manual (como en "Sobre smart"), apretá Enter donde corresponda.',
+      ],
+      [
+        'key'               => 'field_hero_texto_secundario',
+        'label'             => 'Texto secundario',
+        'name'              => 'texto_secundario',
+        'type'              => 'text',
+        'instructions'      => 'En "Conectividad" aparece arriba del título; en "Buscador de concesionarios" aparece debajo.',
+        'conditional_logic' => [
+          [['field' => 'field_hero_pagina', 'operator' => '==', 'value' => 'conectividad']],
+          [['field' => 'field_hero_pagina', 'operator' => '==', 'value' => 'buscador']],
+        ],
+      ],
+      [
+        'key'               => 'field_hero_linea_1',
+        'label'             => 'Línea 1',
+        'name'              => 'linea_1',
+        'type'              => 'text',
+        'conditional_logic' => [
+          [['field' => 'field_hero_pagina', 'operator' => '==', 'value' => 'smart1']],
+          [['field' => 'field_hero_pagina', 'operator' => '==', 'value' => 'smart3']],
+        ],
+      ],
+      [
+        'key'               => 'field_hero_linea_2',
+        'label'             => 'Línea 2 (autonomía)',
+        'name'              => 'linea_2',
+        'type'              => 'text',
+        'conditional_logic' => [
+          [['field' => 'field_hero_pagina', 'operator' => '==', 'value' => 'smart1']],
+          [['field' => 'field_hero_pagina', 'operator' => '==', 'value' => 'smart3']],
+        ],
+      ],
+      [
+        'key'               => 'field_hero_parrafo',
+        'label'             => 'Párrafo',
+        'name'              => 'parrafo',
+        'type'              => 'textarea',
+        'rows'              => 3,
+        'conditional_logic' => [
+          [['field' => 'field_hero_pagina', 'operator' => '==', 'value' => 'home']],
+          [['field' => 'field_hero_pagina', 'operator' => '==', 'value' => 'brabus']],
+          [['field' => 'field_hero_pagina', 'operator' => '==', 'value' => 'movilidad_electrica']],
+        ],
+      ],
+      [
+        'key'               => 'field_hero_disclaimer',
+        'label'             => 'Texto legal chico (disclaimer)',
+        'name'              => 'disclaimer',
+        'type'              => 'text',
+        'conditional_logic' => [
+          [['field' => 'field_hero_pagina', 'operator' => '==', 'value' => 'smart1']],
+          [['field' => 'field_hero_pagina', 'operator' => '==', 'value' => 'smart3']],
+        ],
+      ],
+      [
+        'key'               => 'field_hero_cta_texto',
+        'label'             => 'Texto del botón',
+        'name'              => 'cta_texto',
+        'type'              => 'text',
+        'conditional_logic' => [
+          [['field' => 'field_hero_pagina', 'operator' => '==', 'value' => 'home']],
+          [['field' => 'field_hero_pagina', 'operator' => '==', 'value' => 'smart1']],
+          [['field' => 'field_hero_pagina', 'operator' => '==', 'value' => 'smart3']],
+        ],
+      ],
       ['key' => 'field_hero_desktop', 'label' => 'Imagen desktop', 'name' => 'hero_desktop', 'type' => 'image', 'return_format' => 'url', 'preview_size' => 'medium'],
       ['key' => 'field_hero_mobile', 'label' => 'Imagen mobile', 'name' => 'hero_mobile', 'type' => 'image', 'return_format' => 'url', 'preview_size' => 'medium', 'instructions' => 'Opcional. Si se deja vacío se usa la imagen desktop también en mobile.'],
     ],
@@ -1636,12 +1709,80 @@ add_action('init', function () {
   if ($attachment_id) update_field('hero_mobile', $attachment_id, $post->ID);
 }, 31);
 
+// ── Migración one-time: completa los campos de texto del hero (título,
+//    líneas, párrafo, disclaimer, botón) en los 9 posts que ya existían
+//    sin ellos, con el texto literal que ya estaba escrito a mano en cada
+//    plantilla — para que al activar los campos nuevos no quede nada en
+//    blanco ni cambie una sola letra de lo que ya se ve en el sitio ──────────
+add_action('init', function () {
+  if (get_option('smart_heroes_texto_migrado') === 'si') return;
+  if (!function_exists('update_field') || !function_exists('get_field')) return;
+
+  update_option('smart_heroes_texto_migrado', 'si');
+
+  $textos = [
+    'hero-home' => [
+      'titulo'  => 'Electrizante por naturaleza.',
+      'parrafo' => 'El SUV 100% eléctrico que redefine lo que significa conducir bien.',
+      'cta_texto' => 'Contactanos',
+    ],
+    'hero-smart1' => [
+      'titulo'     => 'smart #1',
+      'linea_1'    => 'SUV 100% eléctrico.',
+      'linea_2'    => 'Hasta 420 km de autonomía WLTP y 428 CV en su versión BRABUS.',
+      'disclaimer' => 'Autonomía sujeta a tipo de conducción, condiciones del terreno y condiciones del clima.',
+      'cta_texto'  => 'Realizar consulta',
+    ],
+    'hero-smart3' => [
+      'titulo'     => 'smart #3',
+      'linea_1'    => 'SUV fastback 100% eléctrica.',
+      'linea_2'    => 'Hasta 435 km de autonomía WLTP y 0 a 100 en 3,7 segundos en su versión BRABUS.',
+      'disclaimer' => 'Autonomía sujeta a tipo de conducción, condiciones del terreno y condiciones del clima.',
+      'cta_texto'  => 'Realizar consulta',
+    ],
+    'hero-brabus' => [
+      'titulo'  => 'Inconfundiblemente BRABUS.',
+      'parrafo' => 'Diseño que no necesita presentación. Rendimiento que se siente antes de que lo cuentes.',
+    ],
+    'hero-conectividad' => [
+      'titulo'           => 'Tu auto piensa como vos.',
+      'texto_secundario' => 'Tecnología de integración',
+    ],
+    'hero-servicios' => [
+      'titulo' => 'Servicios al cliente.',
+    ],
+    'hero-movilidad-electrica' => [
+      'titulo'  => 'Movilidad eléctrica',
+      'parrafo' => 'Elegir lo eléctrico con smart es una apuesta segura: tenés todo para ganar y nada que perder.',
+    ],
+    'hero-sobre-smart' => [
+      'titulo' => "smart: tres décadas\nreinventando el auto urbano.",
+    ],
+    'hero-buscador' => [
+      'titulo'           => 'Buscador de concesionarios.',
+      'texto_secundario' => 'Encontrá tu concesionario más cercano.',
+    ],
+  ];
+
+  foreach ($textos as $slug => $campos) {
+    $post = get_page_by_path($slug, OBJECT, 'hero_pagina');
+    if (!$post) continue;
+    foreach ($campos as $campo => $valor) {
+      if (get_field($campo, $post->ID)) continue; // no pisar si ya se cargó algo a mano
+      update_field($campo, $valor, $post->ID);
+    }
+  }
+}, 32);
+
 // ── Helper: hero de página (usado por todos los templates con hero) ────────
 function smart_get_hero($pagina) {
   static $cache = [];
   if (isset($cache[$pagina])) return $cache[$pagina];
 
-  $vacio = ['desktop' => '', 'mobile' => ''];
+  $vacio = [
+    'desktop' => '', 'mobile' => '', 'titulo' => '', 'texto_secundario' => '',
+    'linea_1' => '', 'linea_2' => '', 'parrafo' => '', 'disclaimer' => '', 'cta_texto' => '',
+  ];
   if (!function_exists('get_field')) return $cache[$pagina] = $vacio;
 
   $post = get_page_by_path('hero-' . str_replace('_', '-', $pagina), OBJECT, 'hero_pagina');
@@ -1650,9 +1791,20 @@ function smart_get_hero($pagina) {
   $desktop = (string) get_field('hero_desktop', $post->ID);
   $mobile  = (string) get_field('hero_mobile', $post->ID);
 
+  // El título permite <br> (para el salto de línea manual) — se sanitiza
+  // aceptando únicamente esa etiqueta, todo lo demás se limpia como texto plano.
+  $titulo = wp_kses((string) get_field('titulo', $post->ID), ['br' => []]);
+
   return $cache[$pagina] = [
-    'desktop' => $desktop,
-    'mobile'  => $mobile !== '' ? $mobile : $desktop,
+    'desktop'          => $desktop,
+    'mobile'           => $mobile !== '' ? $mobile : $desktop,
+    'titulo'           => $titulo,
+    'texto_secundario' => (string) get_field('texto_secundario', $post->ID),
+    'linea_1'          => (string) get_field('linea_1', $post->ID),
+    'linea_2'          => (string) get_field('linea_2', $post->ID),
+    'parrafo'          => (string) get_field('parrafo', $post->ID),
+    'disclaimer'       => (string) get_field('disclaimer', $post->ID),
+    'cta_texto'        => (string) get_field('cta_texto', $post->ID),
   ];
 }
 

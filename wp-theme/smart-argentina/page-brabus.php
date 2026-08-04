@@ -143,10 +143,10 @@ wp_localize_script('smart-main', 'brabusSpecs', $smart_brabus_specs);
     <div class="absolute bottom-0 left-0 right-0 px-5 md:px-14 pb-8 md:pb-14 z-10">
       <div class="max-w-xl">
         <h1 id="brabus-hero-title" class="text-white text-3xl font-bold leading-10 mb-2 font-smart-next md:whitespace-nowrap">
-          Inconfundiblemente BRABUS.
+          <?php echo $smart_hero_brabus['titulo']; ?>
         </h1>
         <p class="text-white text-lg font-normal leading-6 font-smart-sans">
-          Diseño que no necesita presentación. Rendimiento que se siente antes de que lo cuentes.
+          <?php echo esc_html($smart_hero_brabus['parrafo']); ?>
         </p>
       </div>
     </div>

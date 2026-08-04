@@ -127,8 +127,8 @@ wp_localize_script('smart-buscador-data', 'smartConcesionarios', array_map(funct
     </nav>
 
     <div class="bus-hero-wrap absolute bottom-0 left-0 right-0 z-10" style="padding-left:56px; padding-bottom:56px;">
-      <h1 class="bus-hero-title font-smart-next font-bold text-white">Buscador de concesionarios.</h1>
-      <p class="bus-hero-label font-smart-sans text-white" style="opacity:0.9;">Encontrá tu concesionario más cercano.</p>
+      <h1 class="bus-hero-title font-smart-next font-bold text-white"><?php echo $smart_hero_buscador['titulo']; ?></h1>
+      <p class="bus-hero-label font-smart-sans text-white" style="opacity:0.9;"><?php echo esc_html($smart_hero_buscador['texto_secundario']); ?></p>
     </div>
   </section>
 

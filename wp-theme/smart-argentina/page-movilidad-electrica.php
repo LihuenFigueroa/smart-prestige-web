@@ -104,8 +104,8 @@ $smart_hero_movilidad  = smart_get_hero('movilidad_electrica');
     </nav>
 
     <div class="mov-hero-text-wrap absolute bottom-0 left-0 right-0 z-10" style="padding-left:56px; padding-bottom:56px;">
-      <h1 class="mov-hero-title font-smart-next font-bold text-white" style="font-size:45px; line-height:1.15; margin-bottom:8px;">Movilidad eléctrica</h1>
-      <p class="mov-hero-desc font-smart-sans text-white" style="font-size:18px; line-height:1.4; opacity:0.9; margin-bottom:16px;">Elegir lo eléctrico con smart es una apuesta segura: tenés todo para ganar y nada que perder.</p>
+      <h1 class="mov-hero-title font-smart-next font-bold text-white" style="font-size:45px; line-height:1.15; margin-bottom:8px;"><?php echo $smart_hero_movilidad['titulo']; ?></h1>
+      <p class="mov-hero-desc font-smart-sans text-white" style="font-size:18px; line-height:1.4; opacity:0.9; margin-bottom:16px;"><?php echo esc_html($smart_hero_movilidad['parrafo']); ?></p>
     </div>
   </section>
 
