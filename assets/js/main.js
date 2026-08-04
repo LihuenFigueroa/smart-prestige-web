@@ -259,10 +259,15 @@ document.addEventListener('click', function(e) {
 });
 
 // ── Envío del formulario de contacto ─────────────────────────────────────
-function submitContactForm(e) {
+// formId: permite reusar la misma lógica de validación/envío/redirect en
+// cualquier formulario del sitio (contacto principal, servicios, etc.) —
+// cada uno puede tener sus propios selects (fdd-dropdown estilo concesionario
+// o un <select> nativo como "servicio") sin duplicar la función entera.
+function submitContactForm(e, formId) {
   e.preventDefault();
-  var form = document.getElementById('form-contacto');
-  var btn  = document.getElementById('btn-enviar');
+  formId = formId || 'form-contacto';
+  var form = document.getElementById(formId);
+  var btn  = form.querySelector('button[type="submit"]') || document.getElementById('btn-enviar');
   var errorMsg = document.getElementById('form-error-msg');
 
   // ── Validación ───────────────────────────────────────────────────────────
@@ -283,11 +288,22 @@ function submitContactForm(e) {
     }
   });
 
-  // Dropdowns requeridos
+  // Selects requeridos: soporta tanto el fdd-dropdown custom (concesionario,
+  // modelo en el form principal) como un <select> nativo con data-req
+  // (modelo/servicio en el form de servicios).
   ['concesionario', 'modelo'].forEach(function(id) {
     var val  = document.getElementById('fdd-' + id + '-val');
     var wrap = document.getElementById('fdd-' + id);
     if (val && !val.value) {
+      valid = false;
+      if (wrap) wrap.style.borderBottomColor = 'rgba(239,68,68,0.22)';
+    } else if (val) {
+      if (wrap) wrap.style.borderBottomColor = '';
+    }
+  });
+  form.querySelectorAll('select[data-req]').forEach(function(sel) {
+    var wrap = sel.closest('.border-b');
+    if (!sel.value) {
       valid = false;
       if (wrap) wrap.style.borderBottomColor = 'rgba(239,68,68,0.22)';
     } else {
@@ -309,7 +325,8 @@ function submitContactForm(e) {
     email:         form.querySelector('input[type="email"]')?.value                || '',
     celular:       form.querySelector('input[type="tel"]')?.value                  || '',
     concesionario: document.getElementById('fdd-concesionario-label')?.textContent.trim() || document.getElementById('fdd-concesionario-val')?.value || '',
-    modelo:        document.getElementById('fdd-modelo-label')?.textContent.trim()        || document.getElementById('fdd-modelo-val')?.value        || '',
+    modelo:        document.getElementById('fdd-modelo-label')?.textContent.trim()        || document.getElementById('fdd-modelo-val')?.value        || form.querySelector('select[name="modelo"]')?.value || '',
+    servicio:      form.querySelector('select[name="servicio"]')?.value            || '',
     consulta:      form.querySelector('textarea')?.value                           || '',
   };
 

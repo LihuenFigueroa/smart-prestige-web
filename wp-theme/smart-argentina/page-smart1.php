@@ -355,6 +355,7 @@ $smart_carruseles_s1 = [
                 <button class="vis-color-btn" data-color="6" data-img="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/vis-c6.png" style="width:28px;height:28px;border-radius:50%;background:#4a4e57;border:none;cursor:pointer;"></button>
                 <button class="vis-color-btn" data-color="7" data-img="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/vis-c7.png" style="width:28px;height:28px;border-radius:50%;background:linear-gradient(to bottom,#bf1e2e 50%,#7a7d84 50%);border:none;cursor:pointer;"></button>
                 <button class="vis-color-btn" data-color="8" data-img="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/vis-c8.png" style="width:28px;height:28px;border-radius:50%;background:linear-gradient(to bottom,#3a3c40 50%,#c8caca 50%);border:none;cursor:pointer;"></button>
+                <button class="vis-color-btn" data-color="9" data-img="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/vis-c9.png" style="width:28px;height:28px;border-radius:50%;background:linear-gradient(to bottom,#bf1e2e 50%,#2a2c2f 50%);border:none;cursor:pointer;"></button>
               </div>
               <div id="vis-swatches-Pro" style="display:none; gap:10px;">
                 <button class="vis-color-btn" data-color="pro1" data-img="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/vis-pro-c1.png" style="width:28px;height:28px;border-radius:50%;background:linear-gradient(to bottom,#111111 50%,#bfb641 50%);border:none;cursor:pointer;"></button>

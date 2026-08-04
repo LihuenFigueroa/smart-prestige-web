@@ -1669,9 +1669,12 @@ function smart_enviar_formulario() {
   $celular       = sanitize_text_field(wp_unslash($_POST['celular'] ?? ''));
   $concesionario = sanitize_text_field(wp_unslash($_POST['concesionario'] ?? ''));
   $modelo        = sanitize_text_field(wp_unslash($_POST['modelo'] ?? ''));
+  $servicio      = sanitize_text_field(wp_unslash($_POST['servicio'] ?? ''));
   $consulta      = sanitize_textarea_field(wp_unslash($_POST['consulta'] ?? ''));
 
-  if (!$nombre || !$apellido || !$ciudad || !$email || !$celular || !$concesionario || !$modelo) {
+  // El form de contacto principal pide concesionario; el de servicios pide
+  // tipo de servicio en su lugar — alcanza con que venga uno de los dos.
+  if (!$nombre || !$apellido || !$ciudad || !$email || !$celular || !$modelo || (!$concesionario && !$servicio)) {
     wp_send_json_error(['message' => 'Faltan campos obligatorios'], 400);
   }
 
@@ -1706,6 +1709,7 @@ function smart_enviar_formulario() {
     . $campo('Celular', $celular)
     . $campo('Concesionario', $concesionario)
     . $campo('Modelo', $modelo)
+    . $campo('Tipo de servicio', $servicio)
     . '</table></td></tr>'
     . '<tr><td style="padding:24px 36px 32px;">'
     . '<p style="margin:0 0 10px;color:#9ca3af;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;">Consulta</p>'

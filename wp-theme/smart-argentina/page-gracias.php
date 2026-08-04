@@ -35,7 +35,7 @@
       <a href="<?php echo home_url('/'); ?>" class="font-smart-sans inline-flex items-center h-8 px-5 bg-[#141413] text-white rounded-full font-bold text-xs tracking-tight hover:bg-neutral-800 transition-colors whitespace-nowrap">
         Volver al inicio
       </a>
-      <a href="<?php echo home_url('/smart-1/'); ?>" class="font-smart-sans inline-flex items-center h-8 px-5 border border-[#141413] text-[#141413] rounded-full font-bold text-xs tracking-tight hover:bg-neutral-100 transition-colors whitespace-nowrap">
+      <a href="<?php echo home_url('/?scroll=elegir-modelo'); ?>" class="font-smart-sans inline-flex items-center h-8 px-5 border border-[#141413] text-[#141413] rounded-full font-bold text-xs tracking-tight hover:bg-neutral-100 transition-colors whitespace-nowrap">
         Ver modelos
       </a>
     </div>

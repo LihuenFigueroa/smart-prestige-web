@@ -16,7 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // ── Endpoint: recibir formulario ─────────────────────────────────────────
 app.post('/enviar', async (req, res) => {
-  const { nombre, apellido, ciudad, email, celular, concesionario, modelo, consulta } = req.body;
+  const { nombre, apellido, ciudad, email, celular, concesionario, modelo, servicio, consulta } = req.body;
 
   const transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -38,6 +38,7 @@ app.post('/enviar', async (req, res) => {
       `Celular:        ${celular || '—'}`,
       `Concesionario:  ${concesionario || '—'}`,
       `Modelo:         ${modelo || '—'}`,
+      `Tipo servicio:  ${servicio || '—'}`,
       ``,
       `Consulta:`,
       consulta || '—',
@@ -110,6 +111,14 @@ app.post('/enviar', async (req, res) => {
               </td>
               <td style="padding:14px 0 14px 20px;border-bottom:1px solid #f3f4f6;vertical-align:top;">
                 <span style="color:#141413;font-size:13px;">${modelo || '—'}</span>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:14px 0;border-bottom:1px solid #f3f4f6;vertical-align:top;">
+                <span style="color:#9ca3af;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;">Tipo de servicio</span>
+              </td>
+              <td style="padding:14px 0 14px 20px;border-bottom:1px solid #f3f4f6;vertical-align:top;">
+                <span style="color:#141413;font-size:13px;">${servicio || '—'}</span>
               </td>
             </tr>
           </table>
