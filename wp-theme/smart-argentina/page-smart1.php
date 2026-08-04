@@ -41,7 +41,7 @@ $smart_carruseles_s1 = [
     <div style="position:absolute; bottom:0; left:0; right:0; z-index:10; padding:0 24px 32px;">
       <h1 class="font-smart-next font-bold text-white" style="font-size:32px; line-height:1.15; margin-bottom:6px;">smart #1</h1>
       <p class="font-smart-sans text-white" style="font-size:14px; line-height:1.4; opacity:0.9; margin-bottom:2px;">SUV 100% eléctrico.</p>
-      <p class="font-smart-sans text-white" style="font-size:14px; line-height:1.4; opacity:0.9; margin-bottom:12px;">Hasta 584 km de autonomía WLTP y 428 CV en su versión BRABUS.</p>
+      <p class="font-smart-sans text-white" style="font-size:14px; line-height:1.4; opacity:0.9; margin-bottom:12px;">Hasta 420 km de autonomía WLTP y 428 CV en su versión BRABUS.</p>
       <div>
         <a href="#contacto" class="font-smart-sans" style="display:inline-flex; align-items:center; height:40px; padding:0 24px; background:white; border-radius:9999px; font-size:14px; color:#141413; text-decoration:none; font-weight:700; letter-spacing:-0.025em;">Realizar consulta</a>
       </div>
@@ -85,7 +85,7 @@ $smart_carruseles_s1 = [
     <div class="absolute bottom-0 left-0 right-0 z-10" style="padding-left:56px; padding-bottom:56px;">
       <h1 class="font-smart-next font-bold text-white" style="font-size:45px; line-height:1.1; margin-bottom:8px;">smart #1</h1>
       <p class="font-smart-sans text-white" style="font-size:18px; line-height:1.4; opacity:0.9; margin-bottom:2px;">SUV 100% eléctrico.</p>
-      <p class="font-smart-sans text-white" style="font-size:18px; line-height:1.4; opacity:0.9; margin-bottom:8px;">Hasta 584 km de autonomía WLTP y 428 CV en su versión BRABUS.</p>
+      <p class="font-smart-sans text-white" style="font-size:18px; line-height:1.4; opacity:0.9; margin-bottom:8px;">Hasta 420 km de autonomía WLTP y 428 CV en su versión BRABUS.</p>
       <p class="font-smart-sans text-white" style="font-size:11px; line-height:1.4; opacity:0.65; margin-bottom:16px;">Autonomía sujeta a tipo de conducción, condiciones del terreno y condiciones del clima.</p>
       <div>
         <a href="#contacto" class="font-smart-sans" style="display:inline-flex; align-items:center; height:40px; padding:0 24px; background:white; border-radius:9999px; font-size:14px; color:#141413; text-decoration:none; font-weight:700; letter-spacing:-0.025em;">Realizar consulta</a>
@@ -358,8 +358,6 @@ $smart_carruseles_s1 = [
                 <button class="vis-color-btn" data-color="9" data-img="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/vis-c9.png" style="width:28px;height:28px;border-radius:50%;background:linear-gradient(to bottom,#bf1e2e 50%,#2a2c2f 50%);border:none;cursor:pointer;"></button>
               </div>
               <div id="vis-swatches-Pro" style="display:none; gap:10px;">
-                <button class="vis-color-btn" data-color="pro1" data-img="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/vis-pro-c1.png" style="width:28px;height:28px;border-radius:50%;background:linear-gradient(to bottom,#111111 50%,#bfb641 50%);border:none;cursor:pointer;"></button>
-                <button class="vis-color-btn" data-color="pro2" data-img="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/vis-pro-c2.png" style="width:28px;height:28px;border-radius:50%;background:linear-gradient(to bottom,#bfb641 50%,#111111 50%);border:none;cursor:pointer;"></button>
                 <button class="vis-color-btn" data-color="pro3" data-img="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/vis-pro-c3.png" style="width:28px;height:28px;border-radius:50%;background:#111111;border:none;cursor:pointer;"></button>
                 <button class="vis-color-btn" data-color="pro4" data-img="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/vis-pro-c4.png" style="width:28px;height:28px;border-radius:50%;background:linear-gradient(to bottom,#111111 50%,#b8baba 50%);border:none;cursor:pointer;"></button>
                 <button class="vis-color-btn" data-color="pro5" data-img="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/vis-pro-c5.png" style="width:28px;height:28px;border-radius:50%;background:linear-gradient(to bottom,#111111 50%,#88958c 50%);border:none;cursor:pointer;"></button>
@@ -368,8 +366,6 @@ $smart_carruseles_s1 = [
                 <button class="vis-color-btn" data-color="pro8" data-img="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/vis-pro-c8.png" style="width:28px;height:28px;border-radius:50%;background:linear-gradient(to bottom,#111111 50%,#0a2c54 50%);border:none;cursor:pointer;"></button>
               </div>
               <div id="vis-swatches-Pro+" style="display:none; gap:10px;">
-                <button class="vis-color-btn" data-color="pp1" data-img="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/vis-pro-c1.png" style="width:28px;height:28px;border-radius:50%;background:linear-gradient(to bottom,#111111 50%,#bfb641 50%);border:none;cursor:pointer;"></button>
-                <button class="vis-color-btn" data-color="pp2" data-img="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/vis-pro-c2.png" style="width:28px;height:28px;border-radius:50%;background:linear-gradient(to bottom,#bfb641 50%,#111111 50%);border:none;cursor:pointer;"></button>
                 <button class="vis-color-btn" data-color="pp3" data-img="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/vis-pro-c3.png" style="width:28px;height:28px;border-radius:50%;background:#111111;border:none;cursor:pointer;"></button>
                 <button class="vis-color-btn" data-color="pp4" data-img="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/vis-pro-c4.png" style="width:28px;height:28px;border-radius:50%;background:linear-gradient(to bottom,#111111 50%,#b8baba 50%);border:none;cursor:pointer;"></button>
                 <button class="vis-color-btn" data-color="pp5" data-img="<?php echo get_template_directory_uri(); ?>/assets/img/smart1/vis-pro-c5.png" style="width:28px;height:28px;border-radius:50%;background:linear-gradient(to bottom,#111111 50%,#88958c 50%);border:none;cursor:pointer;"></button>
