@@ -1808,6 +1808,360 @@ function smart_get_hero($pagina) {
   ];
 }
 
+// ── CPT "Configurador de color e interior" (smart1/smart3) ─────────────────
+add_action('init', function () {
+  register_post_type('configurador_item', [
+    'labels' => [
+      'name'          => 'Configurador de color e interior',
+      'singular_name' => 'Ítem del configurador',
+      'add_new_item'  => 'Agregar ítem',
+      'edit_item'     => 'Editar ítem',
+      'all_items'     => 'Configurador de color e interior',
+      'search_items'  => 'Buscar ítem',
+      'not_found'     => 'No se encontraron ítems',
+    ],
+    'public'          => false,
+    'show_ui'         => true,
+    'show_in_menu'    => true,
+    'menu_icon'       => 'dashicons-art',
+    'supports'        => ['title'],
+    'has_archive'     => false,
+    'rewrite'         => false,
+    'capability_type' => 'post',
+  ]);
+});
+
+// ── Campos ACF: configurador de color e interior ────────────────────────────
+add_action('acf/init', function () {
+  if (!function_exists('acf_add_local_field_group')) return;
+
+  acf_add_local_field_group([
+    'key'      => 'group_configurador_item',
+    'title'    => 'Datos del ítem',
+    'fields'   => [
+      [
+        'key'      => 'field_cfg_modelo',
+        'label'    => 'Modelo',
+        'name'     => 'modelo',
+        'type'     => 'select',
+        'required' => 1,
+        'choices'  => ['smart1' => 'smart #1', 'smart3' => 'smart #3'],
+      ],
+      [
+        'key'      => 'field_cfg_tipo',
+        'label'    => 'Tipo',
+        'name'     => 'tipo',
+        'type'     => 'select',
+        'required' => 1,
+        'choices'  => ['exterior' => 'Color exterior', 'interior' => 'Foto de interior'],
+      ],
+      [
+        'key'               => 'field_cfg_linea',
+        'label'             => 'Línea',
+        'name'              => 'linea',
+        'type'              => 'select',
+        'required'          => 1,
+        'choices'           => ['Pure' => 'Pure (solo smart #1)', 'Pro' => 'Pro', 'Pro+' => 'Pro+', 'BRABUS' => 'BRABUS'],
+        'instructions'      => 'A qué línea pertenece este color.',
+        'conditional_logic' => [
+          [['field' => 'field_cfg_tipo', 'operator' => '==', 'value' => 'exterior']],
+        ],
+      ],
+      [
+        'key'               => 'field_cfg_grupo_interior',
+        'label'             => 'Grupo de interior',
+        'name'              => 'grupo_interior',
+        'type'              => 'select',
+        'required'          => 1,
+        'choices'           => ['STD' => 'Estándar (Pure/Pro/Pro+)', 'BRABUS' => 'BRABUS'],
+        'instructions'      => 'STD son las mismas fotos para Pure, Pro y Pro+ (comparten interior). BRABUS tiene sus propias fotos.',
+        'conditional_logic' => [
+          [['field' => 'field_cfg_tipo', 'operator' => '==', 'value' => 'interior']],
+        ],
+      ],
+      [
+        'key'          => 'field_cfg_orden',
+        'label'        => 'Orden',
+        'name'         => 'orden',
+        'type'         => 'number',
+        'required'     => 1,
+        'instructions' => 'Posición dentro de su línea/grupo. 0 = primero. En los colores exteriores, el que está en la posición 0 es el que se ve seleccionado por defecto al entrar a la página.',
+      ],
+      ['key' => 'field_cfg_imagen', 'label' => 'Imagen', 'name' => 'imagen', 'type' => 'image', 'required' => 1, 'return_format' => 'url', 'preview_size' => 'medium'],
+      [
+        'key'               => 'field_cfg_color_1',
+        'label'             => 'Color',
+        'name'              => 'color_1',
+        'type'              => 'color_picker',
+        'required'          => 1,
+        'instructions'      => 'El color del círculo que ve el cliente para elegir esta opción.',
+        'conditional_logic' => [
+          [['field' => 'field_cfg_tipo', 'operator' => '==', 'value' => 'exterior']],
+        ],
+      ],
+      [
+        'key'               => 'field_cfg_es_degrade',
+        'label'             => '¿Es un color partido en dos (degradé)?',
+        'name'              => 'es_degrade',
+        'type'              => 'true_false',
+        'instructions'      => 'Activalo para colores de dos tonos (ej. techo de un color y carrocería de otro).',
+        'conditional_logic' => [
+          [['field' => 'field_cfg_tipo', 'operator' => '==', 'value' => 'exterior']],
+        ],
+      ],
+      [
+        'key'               => 'field_cfg_color_2',
+        'label'             => 'Color 2 (mitad inferior)',
+        'name'              => 'color_2',
+        'type'              => 'color_picker',
+        'conditional_logic' => [
+          [
+            ['field' => 'field_cfg_tipo', 'operator' => '==', 'value' => 'exterior'],
+            ['field' => 'field_cfg_es_degrade', 'operator' => '==', 'value' => '1'],
+          ],
+        ],
+      ],
+      [
+        'key'               => 'field_cfg_zoom_tecnico',
+        'label'             => 'Ajuste de zoom técnico',
+        'name'              => 'zoom_tecnico',
+        'type'              => 'true_false',
+        'instructions'      => 'No tocar salvo que tu desarrollador te lo pida — corrige que una foto se vea más chica o más grande que las demás.',
+        'conditional_logic' => [
+          [['field' => 'field_cfg_tipo', 'operator' => '==', 'value' => 'exterior']],
+        ],
+      ],
+    ],
+    'location' => [
+      [['param' => 'post_type', 'operator' => '==', 'value' => 'configurador_item']],
+    ],
+  ]);
+});
+
+// ── Migración one-time: colores exteriores + fotos de interior de smart1/smart3
+add_action('init', function () {
+  if (get_option('smart_configurador_migrado') === 'si') return;
+  if (!function_exists('update_field')) return;
+
+  update_option('smart_configurador_migrado', 'si');
+
+  $colores = [
+    // smart1 — BRABUS
+    ['modelo'=>'smart1','linea'=>'BRABUS','orden'=>0,'img'=>'smart1/vis-c1.png','c1'=>'#2a2a2a','c2'=>'#bf1e2e','degrade'=>1,'zoom'=>0],
+    ['modelo'=>'smart1','linea'=>'BRABUS','orden'=>1,'img'=>'smart1/vis-c2.png','c1'=>'#111111','degrade'=>0,'zoom'=>0],
+    ['modelo'=>'smart1','linea'=>'BRABUS','orden'=>2,'img'=>'smart1/vis-c4.png','c1'=>'#bf1e2e','c2'=>'#111111','degrade'=>1,'zoom'=>0],
+    ['modelo'=>'smart1','linea'=>'BRABUS','orden'=>3,'img'=>'smart1/vis-c5.png','c1'=>'#111111','c2'=>'#4a4e57','degrade'=>1,'zoom'=>0],
+    ['modelo'=>'smart1','linea'=>'BRABUS','orden'=>4,'img'=>'smart1/vis-c6.png','c1'=>'#4a4e57','degrade'=>0,'zoom'=>0],
+    ['modelo'=>'smart1','linea'=>'BRABUS','orden'=>5,'img'=>'smart1/vis-c7.png','c1'=>'#bf1e2e','c2'=>'#7a7d84','degrade'=>1,'zoom'=>0],
+    ['modelo'=>'smart1','linea'=>'BRABUS','orden'=>6,'img'=>'smart1/vis-c8.png','c1'=>'#3a3c40','c2'=>'#c8caca','degrade'=>1,'zoom'=>0],
+    ['modelo'=>'smart1','linea'=>'BRABUS','orden'=>7,'img'=>'smart1/vis-c9.png','c1'=>'#bf1e2e','c2'=>'#2a2c2f','degrade'=>1,'zoom'=>0],
+    // smart1 — Pro
+    ['modelo'=>'smart1','linea'=>'Pro','orden'=>0,'img'=>'smart1/vis-pro-c3.png','c1'=>'#111111','degrade'=>0,'zoom'=>0],
+    ['modelo'=>'smart1','linea'=>'Pro','orden'=>1,'img'=>'smart1/vis-pro-c4.png','c1'=>'#111111','c2'=>'#b8baba','degrade'=>1,'zoom'=>0],
+    ['modelo'=>'smart1','linea'=>'Pro','orden'=>2,'img'=>'smart1/vis-pro-c5.png','c1'=>'#111111','c2'=>'#88958c','degrade'=>1,'zoom'=>0],
+    ['modelo'=>'smart1','linea'=>'Pro','orden'=>3,'img'=>'smart1/vis-pro-c6.png','c1'=>'#111111','c2'=>'#f0f0f0','degrade'=>1,'zoom'=>0],
+    ['modelo'=>'smart1','linea'=>'Pro','orden'=>4,'img'=>'smart1/vis-pro-c7.png','c1'=>'#111111','c2'=>'#bf1e2e','degrade'=>1,'zoom'=>0],
+    ['modelo'=>'smart1','linea'=>'Pro','orden'=>5,'img'=>'smart1/vis-pro-c8.png','c1'=>'#111111','c2'=>'#0a2c54','degrade'=>1,'zoom'=>0],
+    // smart1 — Pro+
+    ['modelo'=>'smart1','linea'=>'Pro+','orden'=>0,'img'=>'smart1/vis-pro-c3.png','c1'=>'#111111','degrade'=>0,'zoom'=>0],
+    ['modelo'=>'smart1','linea'=>'Pro+','orden'=>1,'img'=>'smart1/vis-pro-c4.png','c1'=>'#111111','c2'=>'#b8baba','degrade'=>1,'zoom'=>0],
+    ['modelo'=>'smart1','linea'=>'Pro+','orden'=>2,'img'=>'smart1/vis-pro-c5.png','c1'=>'#111111','c2'=>'#88958c','degrade'=>1,'zoom'=>0],
+    ['modelo'=>'smart1','linea'=>'Pro+','orden'=>3,'img'=>'smart1/vis-pro-c6.png','c1'=>'#111111','c2'=>'#f0f0f0','degrade'=>1,'zoom'=>0],
+    ['modelo'=>'smart1','linea'=>'Pro+','orden'=>4,'img'=>'smart1/vis-pro-c7.png','c1'=>'#111111','c2'=>'#bf1e2e','degrade'=>1,'zoom'=>0],
+    ['modelo'=>'smart1','linea'=>'Pro+','orden'=>5,'img'=>'smart1/vis-pro-c8.png','c1'=>'#111111','c2'=>'#0a2c54','degrade'=>1,'zoom'=>0],
+    // smart1 — Pure
+    ['modelo'=>'smart1','linea'=>'Pure','orden'=>0,'img'=>'smart1/vis-pure-c1.png','c1'=>'#111111','degrade'=>0,'zoom'=>0],
+    ['modelo'=>'smart1','linea'=>'Pure','orden'=>1,'img'=>'smart1/vis-pure-c2.png','c1'=>'#b8baba','degrade'=>0,'zoom'=>0],
+    ['modelo'=>'smart1','linea'=>'Pure','orden'=>2,'img'=>'smart1/vis-pure-c3.png','c1'=>'#f0f0f0','degrade'=>0,'zoom'=>0],
+    // smart3 — BRABUS (todas con zoom técnico activo)
+    ['modelo'=>'smart3','linea'=>'BRABUS','orden'=>0,'img'=>'smart3/normalized/vis-c3.png','c1'=>'#e05a1a','degrade'=>0,'zoom'=>1],
+    ['modelo'=>'smart3','linea'=>'BRABUS','orden'=>1,'img'=>'smart3/normalized/vis-c1.png','c1'=>'#f0f0f0','c2'=>'#1c1c1c','degrade'=>1,'zoom'=>1],
+    ['modelo'=>'smart3','linea'=>'BRABUS','orden'=>2,'img'=>'smart3/normalized/vis-c2.png','c1'=>'#252525','degrade'=>0,'zoom'=>1],
+    ['modelo'=>'smart3','linea'=>'BRABUS','orden'=>3,'img'=>'smart3/normalized/vis-c6.png','c1'=>'#c41920','c2'=>'#1c1c1c','degrade'=>1,'zoom'=>1],
+    ['modelo'=>'smart3','linea'=>'BRABUS','orden'=>4,'img'=>'smart3/normalized/vis-c5.png','c1'=>'#4c5058','degrade'=>0,'zoom'=>1],
+    ['modelo'=>'smart3','linea'=>'BRABUS','orden'=>5,'img'=>'smart3/normalized/vis-c4.png','c1'=>'#1c1c1c','c2'=>'#c0201e','degrade'=>1,'zoom'=>1],
+    ['modelo'=>'smart3','linea'=>'BRABUS','orden'=>6,'img'=>'smart3/normalized/vis-c7.png','c1'=>'#4c5058','c2'=>'#c0201e','degrade'=>1,'zoom'=>1],
+    // smart3 — Pro (todas con zoom técnico activo)
+    ['modelo'=>'smart3','linea'=>'Pro','orden'=>0,'img'=>'smart3/normalized/vis-pro-c2.png','c1'=>'#b8bcc0','degrade'=>0,'zoom'=>1],
+    ['modelo'=>'smart3','linea'=>'Pro','orden'=>1,'img'=>'smart3/normalized/vis-pro-c3.png','c1'=>'#232327','degrade'=>0,'zoom'=>1],
+    ['modelo'=>'smart3','linea'=>'Pro','orden'=>2,'img'=>'smart3/normalized/vis-pro-c4.png','c1'=>'#f0f0f0','degrade'=>0,'zoom'=>1],
+    ['modelo'=>'smart3','linea'=>'Pro','orden'=>3,'img'=>'smart3/normalized/vis-pro-c5.png','c1'=>'#8aaa8e','degrade'=>0,'zoom'=>1],
+    ['modelo'=>'smart3','linea'=>'Pro','orden'=>4,'img'=>'smart3/normalized/vis-pro-c6-v4.png','c1'=>'#111111','c2'=>'#0a2c54','degrade'=>1,'zoom'=>1],
+    // smart3 — Pro+ (todas con zoom técnico activo)
+    ['modelo'=>'smart3','linea'=>'Pro+','orden'=>0,'img'=>'smart3/normalized/vis-prop-c2.png','c1'=>'#b8bcc0','degrade'=>0,'zoom'=>1],
+    ['modelo'=>'smart3','linea'=>'Pro+','orden'=>1,'img'=>'smart3/normalized/vis-prop-c3.png','c1'=>'#232327','degrade'=>0,'zoom'=>1],
+    ['modelo'=>'smart3','linea'=>'Pro+','orden'=>2,'img'=>'smart3/normalized/vis-prop-c4.png','c1'=>'#f0f0f0','degrade'=>0,'zoom'=>1],
+    ['modelo'=>'smart3','linea'=>'Pro+','orden'=>3,'img'=>'smart3/normalized/vis-prop-c5.png','c1'=>'#8aaa8e','degrade'=>0,'zoom'=>1],
+    ['modelo'=>'smart3','linea'=>'Pro+','orden'=>4,'img'=>'smart3/normalized/vis-prop-c6-v4.png','c1'=>'#111111','c2'=>'#0a2c54','degrade'=>1,'zoom'=>1],
+  ];
+
+  $interiores = [
+    ['modelo'=>'smart1','grupo'=>'STD','orden'=>0,'img'=>'smart1/int-std-1.jpg'],
+    ['modelo'=>'smart1','grupo'=>'STD','orden'=>1,'img'=>'smart1/int-std-2.jpg'],
+    ['modelo'=>'smart1','grupo'=>'STD','orden'=>2,'img'=>'smart1/int-std-3.jpg'],
+    ['modelo'=>'smart1','grupo'=>'STD','orden'=>3,'img'=>'smart1/int-std-4.jpg'],
+    ['modelo'=>'smart1','grupo'=>'BRABUS','orden'=>0,'img'=>'smart1/int-brabus-1.png'],
+    ['modelo'=>'smart1','grupo'=>'BRABUS','orden'=>1,'img'=>'smart1/int-brabus-2.png'],
+    ['modelo'=>'smart1','grupo'=>'BRABUS','orden'=>2,'img'=>'smart1/int-brabus-3.png'],
+    ['modelo'=>'smart1','grupo'=>'BRABUS','orden'=>3,'img'=>'smart1/int-brabus-4.png'],
+    ['modelo'=>'smart3','grupo'=>'STD','orden'=>0,'img'=>'smart3/int-std-1.jpg'],
+    ['modelo'=>'smart3','grupo'=>'STD','orden'=>1,'img'=>'smart3/int-std-2.jpg'],
+    ['modelo'=>'smart3','grupo'=>'STD','orden'=>2,'img'=>'smart3/int-std-3.jpg'],
+    ['modelo'=>'smart3','grupo'=>'STD','orden'=>3,'img'=>'smart3/int-std-4.jpg'],
+    ['modelo'=>'smart3','grupo'=>'BRABUS','orden'=>0,'img'=>'smart3/int-brabus-1.png'],
+    ['modelo'=>'smart3','grupo'=>'BRABUS','orden'=>1,'img'=>'smart3/int-brabus-2.png'],
+    ['modelo'=>'smart3','grupo'=>'BRABUS','orden'=>2,'img'=>'smart3/int-brabus-3.png'],
+    ['modelo'=>'smart3','grupo'=>'BRABUS','orden'=>3,'img'=>'smart3/int-brabus-4.png'],
+  ];
+
+  foreach ($colores as $c) {
+    $titulo = 'Color ' . $c['modelo'] . ' ' . $c['linea'] . ' #' . $c['orden'];
+    $post_id = wp_insert_post(['post_type' => 'configurador_item', 'post_title' => $titulo, 'post_status' => 'publish']);
+    if (is_wp_error($post_id) || !$post_id) continue;
+
+    update_field('modelo', $c['modelo'], $post_id);
+    update_field('tipo', 'exterior', $post_id);
+    update_field('linea', $c['linea'], $post_id);
+    update_field('orden', $c['orden'], $post_id);
+    update_field('color_1', $c['c1'], $post_id);
+    update_field('es_degrade', $c['degrade'], $post_id);
+    if (!empty($c['c2'])) update_field('color_2', $c['c2'], $post_id);
+    update_field('zoom_tecnico', $c['zoom'], $post_id);
+
+    $attachment_id = smart_import_attachment_from_theme_path($c['img'], $titulo);
+    if ($attachment_id) update_field('imagen', $attachment_id, $post_id);
+  }
+
+  foreach ($interiores as $i) {
+    $titulo = 'Interior ' . $i['modelo'] . ' ' . $i['grupo'] . ' #' . $i['orden'];
+    $post_id = wp_insert_post(['post_type' => 'configurador_item', 'post_title' => $titulo, 'post_status' => 'publish']);
+    if (is_wp_error($post_id) || !$post_id) continue;
+
+    update_field('modelo', $i['modelo'], $post_id);
+    update_field('tipo', 'interior', $post_id);
+    update_field('grupo_interior', $i['grupo'], $post_id);
+    update_field('orden', $i['orden'], $post_id);
+
+    $attachment_id = smart_import_attachment_from_theme_path($i['img'], $titulo);
+    if ($attachment_id) update_field('imagen', $attachment_id, $post_id);
+  }
+}, 33);
+
+// ── Helper: ¿un color hexadecimal es lo bastante claro como para necesitar
+//    un borde fino? (reproduce el único caso existente: los blancos casi
+//    puros como #f0f0f0 llevan borde; grises como #b8baba no) ───────────────
+function smart_color_is_light($hex) {
+  $hex = ltrim((string) $hex, '#');
+  if (strlen($hex) !== 6) return false;
+  $r = hexdec(substr($hex, 0, 2));
+  $g = hexdec(substr($hex, 2, 2));
+  $b = hexdec(substr($hex, 4, 2));
+  return (0.299 * $r + 0.587 * $g + 0.114 * $b) > 220;
+}
+
+// ── Helper: colores exteriores del configurador, ordenados ─────────────────
+function smart_get_configurador_colores($modelo, $linea) {
+  static $cache = [];
+  $key = $modelo . '|' . $linea;
+  if (isset($cache[$key])) return $cache[$key];
+  if (!function_exists('get_field')) return $cache[$key] = [];
+
+  $query = new WP_Query([
+    'post_type'      => 'configurador_item',
+    'posts_per_page' => -1,
+    'orderby'        => 'ID',
+    'order'          => 'ASC',
+    'no_found_rows'  => true,
+    'meta_query'     => [
+      ['key' => 'modelo', 'value' => $modelo],
+      ['key' => 'tipo', 'value' => 'exterior'],
+      ['key' => 'linea', 'value' => $linea],
+    ],
+  ]);
+
+  $items = [];
+  if ($query->have_posts()) {
+    while ($query->have_posts()) {
+      $query->the_post();
+      $id = get_the_ID();
+      $items[] = [
+        'id'           => $id,
+        'orden'        => (int) get_field('orden', $id),
+        'imagen'       => (string) get_field('imagen', $id),
+        'color_1'      => (string) get_field('color_1', $id),
+        'color_2'      => (string) get_field('color_2', $id),
+        'es_degrade'   => (bool) get_field('es_degrade', $id),
+        'zoom_tecnico' => (bool) get_field('zoom_tecnico', $id),
+      ];
+    }
+    wp_reset_postdata();
+  }
+
+  usort($items, function ($a, $b) { return $a['orden'] <=> $b['orden']; });
+  return $cache[$key] = $items;
+}
+
+// ── Helper: fotos de interior del configurador, ordenadas ──────────────────
+function smart_get_configurador_interior($modelo, $grupo) {
+  static $cache = [];
+  $key = $modelo . '|' . $grupo;
+  if (isset($cache[$key])) return $cache[$key];
+  if (!function_exists('get_field')) return $cache[$key] = [];
+
+  $query = new WP_Query([
+    'post_type'      => 'configurador_item',
+    'posts_per_page' => -1,
+    'orderby'        => 'ID',
+    'order'          => 'ASC',
+    'no_found_rows'  => true,
+    'meta_query'     => [
+      ['key' => 'modelo', 'value' => $modelo],
+      ['key' => 'tipo', 'value' => 'interior'],
+      ['key' => 'grupo_interior', 'value' => $grupo],
+    ],
+  ]);
+
+  $items = [];
+  if ($query->have_posts()) {
+    while ($query->have_posts()) {
+      $query->the_post();
+      $id = get_the_ID();
+      $items[] = ['orden' => (int) get_field('orden', $id), 'imagen' => (string) get_field('imagen', $id)];
+    }
+    wp_reset_postdata();
+  }
+
+  usort($items, function ($a, $b) { return $a['orden'] <=> $b['orden']; });
+  return $cache[$key] = array_values(array_map(function ($i) { return $i['imagen']; }, $items));
+}
+
+// ── Helper: arma el CSS inline del círculo de color de un swatch ───────────
+function smart_configurador_swatch_css($item, $marcado = false) {
+  $c1 = $item['color_1'] ?: '#cccccc';
+  if ($item['es_degrade'] && !empty($item['color_2'])) {
+    $bg = 'linear-gradient(to bottom,' . $c1 . ' 50%,' . $item['color_2'] . ' 50%)';
+    $border = 'none';
+  } else {
+    $bg = $c1;
+    $border = smart_color_is_light($c1) ? '1px solid #ddd' : 'none';
+  }
+  $css = 'width:28px;height:28px;border-radius:50%;background:' . $bg . ';border:' . $border . ';cursor:pointer;';
+  if ($marcado) $css .= 'box-shadow:0 0 0 2px #fff,0 0 0 3.5px #141413;';
+  return $css;
+}
+
+// ── Helper: imprime los botones de swatch de una línea del configurador ────
+function smart_render_configurador_swatches($items) {
+  foreach ($items as $i => $item) {
+    printf(
+      '<button class="vis-color-btn" data-color="%d" data-img="%s" style="%s"></button>',
+      (int) $item['id'],
+      esc_url($item['imagen']),
+      esc_attr(smart_configurador_swatch_css($item, $i === 0))
+    );
+  }
+}
+
 // ── Formulario de contacto — envío de mail vía wp_mail() (WP Mail SMTP) ────
 add_action('wp_ajax_smart_enviar_formulario', 'smart_enviar_formulario');
 add_action('wp_ajax_nopriv_smart_enviar_formulario', 'smart_enviar_formulario');
