@@ -1986,13 +1986,13 @@ add_action('init', function () {
     ['modelo'=>'smart3','linea'=>'Pro','orden'=>1,'img'=>'smart3/normalized/vis-pro-c3.png','c1'=>'#232327','degrade'=>0,'zoom'=>1],
     ['modelo'=>'smart3','linea'=>'Pro','orden'=>2,'img'=>'smart3/normalized/vis-pro-c4.png','c1'=>'#f0f0f0','degrade'=>0,'zoom'=>1],
     ['modelo'=>'smart3','linea'=>'Pro','orden'=>3,'img'=>'smart3/normalized/vis-pro-c5.png','c1'=>'#8aaa8e','degrade'=>0,'zoom'=>1],
-    ['modelo'=>'smart3','linea'=>'Pro','orden'=>4,'img'=>'smart3/normalized/vis-pro-c6-v4.png','c1'=>'#111111','c2'=>'#0a2c54','degrade'=>1,'zoom'=>1],
+    ['modelo'=>'smart3','linea'=>'Pro','orden'=>4,'img'=>'smart3/normalized/vis-pro-c6-v4.png','c1'=>'#0a2c54','degrade'=>0,'zoom'=>1],
     // smart3 — Pro+ (todas con zoom técnico activo)
     ['modelo'=>'smart3','linea'=>'Pro+','orden'=>0,'img'=>'smart3/normalized/vis-prop-c2.png','c1'=>'#b8bcc0','degrade'=>0,'zoom'=>1],
     ['modelo'=>'smart3','linea'=>'Pro+','orden'=>1,'img'=>'smart3/normalized/vis-prop-c3.png','c1'=>'#232327','degrade'=>0,'zoom'=>1],
     ['modelo'=>'smart3','linea'=>'Pro+','orden'=>2,'img'=>'smart3/normalized/vis-prop-c4.png','c1'=>'#f0f0f0','degrade'=>0,'zoom'=>1],
     ['modelo'=>'smart3','linea'=>'Pro+','orden'=>3,'img'=>'smart3/normalized/vis-prop-c5.png','c1'=>'#8aaa8e','degrade'=>0,'zoom'=>1],
-    ['modelo'=>'smart3','linea'=>'Pro+','orden'=>4,'img'=>'smart3/normalized/vis-prop-c6-v4.png','c1'=>'#111111','c2'=>'#0a2c54','degrade'=>1,'zoom'=>1],
+    ['modelo'=>'smart3','linea'=>'Pro+','orden'=>4,'img'=>'smart3/normalized/vis-prop-c6-v4.png','c1'=>'#0a2c54','degrade'=>0,'zoom'=>1],
   ];
 
   $interiores = [
