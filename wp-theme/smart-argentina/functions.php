@@ -2162,6 +2162,76 @@ function smart_render_configurador_swatches($items) {
   }
 }
 
+// ── CPT "Consulta recibida" — historial de formularios enviados ────────────
+add_action('init', function () {
+  register_post_type('consulta_recibida', [
+    'labels' => [
+      'name'          => 'Consultas recibidas',
+      'singular_name' => 'Consulta',
+      'add_new_item'  => 'Agregar consulta',
+      'edit_item'     => 'Ver consulta',
+      'all_items'     => 'Consultas recibidas',
+      'search_items'  => 'Buscar consulta',
+      'not_found'     => 'No se encontraron consultas',
+    ],
+    'public'          => false,
+    'show_ui'         => true,
+    'show_in_menu'    => true,
+    'menu_icon'       => 'dashicons-email-alt2',
+    'supports'        => ['title'],
+    'has_archive'     => false,
+    'rewrite'         => false,
+    'capability_type' => 'post',
+  ]);
+});
+
+// ── Campos ACF: consulta recibida ───────────────────────────────────────────
+add_action('acf/init', function () {
+  if (!function_exists('acf_add_local_field_group')) return;
+
+  acf_add_local_field_group([
+    'key'      => 'group_consulta_recibida',
+    'title'    => 'Datos de la consulta',
+    'fields'   => [
+      ['key' => 'field_consulta_nombre',        'label' => 'Nombre',           'name' => 'nombre',        'type' => 'text'],
+      ['key' => 'field_consulta_apellido',      'label' => 'Apellido',         'name' => 'apellido',      'type' => 'text'],
+      ['key' => 'field_consulta_ciudad',        'label' => 'Ciudad',           'name' => 'ciudad',        'type' => 'text'],
+      ['key' => 'field_consulta_email',         'label' => 'Email',            'name' => 'email',         'type' => 'email'],
+      ['key' => 'field_consulta_celular',       'label' => 'Celular',          'name' => 'celular',       'type' => 'text'],
+      ['key' => 'field_consulta_concesionario', 'label' => 'Concesionario',    'name' => 'concesionario', 'type' => 'text'],
+      ['key' => 'field_consulta_modelo',        'label' => 'Modelo',           'name' => 'modelo',        'type' => 'text'],
+      ['key' => 'field_consulta_servicio',      'label' => 'Tipo de servicio', 'name' => 'servicio',      'type' => 'text'],
+      ['key' => 'field_consulta_texto',         'label' => 'Consulta',         'name' => 'consulta',      'type' => 'textarea', 'rows' => 4],
+    ],
+    'location' => [
+      [['param' => 'post_type', 'operator' => '==', 'value' => 'consulta_recibida']],
+    ],
+  ]);
+});
+
+// ── Columnas del listado admin de "Consultas recibidas" ────────────────────
+add_filter('manage_consulta_recibida_posts_columns', function ($columns) {
+  $nuevas = [];
+  foreach ($columns as $key => $label) {
+    $nuevas[$key] = $label;
+    if ($key === 'title') {
+      $nuevas['smart_email']     = 'Email';
+      $nuevas['smart_celular']   = 'Celular';
+      $nuevas['smart_modelo']    = 'Modelo';
+      $nuevas['smart_lugar']     = 'Concesionario / Servicio';
+    }
+  }
+  return $nuevas;
+});
+add_action('manage_consulta_recibida_posts_custom_column', function ($column, $post_id) {
+  switch ($column) {
+    case 'smart_email':   echo esc_html(get_field('email', $post_id)); break;
+    case 'smart_celular': echo esc_html(get_field('celular', $post_id)); break;
+    case 'smart_modelo':  echo esc_html(get_field('modelo', $post_id)); break;
+    case 'smart_lugar':   echo esc_html(get_field('concesionario', $post_id) ?: get_field('servicio', $post_id)); break;
+  }
+}, 10, 2);
+
 // ── Formulario de contacto — envío de mail vía wp_mail() (WP Mail SMTP) ────
 add_action('wp_ajax_smart_enviar_formulario', 'smart_enviar_formulario');
 add_action('wp_ajax_nopriv_smart_enviar_formulario', 'smart_enviar_formulario');
@@ -2182,6 +2252,25 @@ function smart_enviar_formulario() {
   // tipo de servicio en su lugar — alcanza con que venga uno de los dos.
   if (!$nombre || !$apellido || !$ciudad || !$email || !$celular || !$modelo || (!$concesionario && !$servicio)) {
     wp_send_json_error(['message' => 'Faltan campos obligatorios'], 400);
+  }
+
+  // Se guarda en wp-admin ANTES de intentar el envío del mail: así la consulta
+  // queda registrada aunque el mail falle (SMTP caído, etc.).
+  $consulta_post_id = wp_insert_post([
+    'post_type'   => 'consulta_recibida',
+    'post_title'  => sprintf('%s %s — %s', $nombre, $apellido, date('d/m/Y H:i')),
+    'post_status' => 'publish',
+  ]);
+  if ($consulta_post_id && !is_wp_error($consulta_post_id) && function_exists('update_field')) {
+    update_field('nombre', $nombre, $consulta_post_id);
+    update_field('apellido', $apellido, $consulta_post_id);
+    update_field('ciudad', $ciudad, $consulta_post_id);
+    update_field('email', $email, $consulta_post_id);
+    update_field('celular', $celular, $consulta_post_id);
+    update_field('concesionario', $concesionario, $consulta_post_id);
+    update_field('modelo', $modelo, $consulta_post_id);
+    update_field('servicio', $servicio, $consulta_post_id);
+    update_field('consulta', $consulta, $consulta_post_id);
   }
 
   $to      = 'hola@prestige-auto.com.ar';
